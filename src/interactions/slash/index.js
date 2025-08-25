@@ -1,3 +1,5 @@
+console.log('[slash] loaded');
+
 const anmelden          = require('./anmelden');
 const arena             = require('./arena');
 const ergebnis_setzen   = require('./ergebnis_setzen');
@@ -40,5 +42,13 @@ const map = new Map([
 
 module.exports = async function handleSlash(interaction, daten) {
   const h = map.get(interaction.commandName);
-  if (h?.execute) return h.execute(interaction, daten);
+  if (!h || typeof h.execute !== 'function') {
+    return interaction.reply({ content: `❌ Kein Handler für /${interaction.commandName} (noch nicht verdrahtet).`, ephemeral: true });
+  }
+  try {
+    return await h.execute(interaction, daten);
+  } catch (err) {
+    console.error('[slash]', interaction.commandName, err);
+    return interaction.reply({ content: '❌ Fehler beim Ausführen des Befehls.', ephemeral: true });
+  }
 };
