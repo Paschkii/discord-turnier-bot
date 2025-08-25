@@ -5,8 +5,8 @@ require('dotenv').config();
 // === Imports ===
 const { Client, GatewayIntentBits, Partials } = require('discord.js');
 const keepAlive = require('./server/keepAlive');
-const onReady = require('.events/ready');
-const { onInteractionCreate } = require('.events/interactionCreate');
+const onReady = require('./events/ready');
+const { onInteractionCreate } = require('./events/interactionCreate');
 const { initDB } = require('../datenbank');
 
 // === Main ===
