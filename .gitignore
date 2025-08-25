@@ -1,2 +1,6 @@
-node_modules/
+node_modules
 .env
+turnier.json
+dist
+coverage
+.DS_Store
