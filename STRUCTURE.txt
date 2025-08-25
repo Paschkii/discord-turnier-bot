@@ -1,0 +1,44 @@
+./
+├── .DS_Store
+├── .env
+├── .gitignore
+├── .vscode/
+│   └── settings.json
+├── datenbank.js
+├── package-lock.json
+├── package.json
+├── src/
+│   ├── .DS_Store
+│   ├── config/
+│   │   ├── .DS_Store
+│   │   ├── constants.js
+│   │   ├── events/
+│   │   │   ├── interactionCreate.js
+│   │   │   └── ready.js
+│   │   └── locales/
+│   ├── embeds/
+│   │   ├── groups.js
+│   │   ├── info.js
+│   │   └── rules.js
+│   ├── index.js
+│   ├── interactions/
+│   │   ├── .DS_Store
+│   │   ├── autocomplete/
+│   │   ├── buttons/
+│   │   ├── modals/
+│   │   ├── selects/
+│   │   └── slash/
+│   ├── scripts/
+│   │   └── deploy-commands.js
+│   ├── server/
+│   │   └── keepAlive.js
+│   ├── services/
+│   │   └── tournament.js
+│   ├── store/
+│   │   └── turniere.js
+│   └── utils/
+│       └── index.js
+├── STRUCTURE.txt
+└── turnier.json
+
+18 directories, 24 files

@@ -1,0 +1,52 @@
+// === Konstanten ===
+module.exports = {
+    // Erlaubte KO-Runden Größen
+    ALLOWED_KO_SIZES: [16, 14, 12, 8, 4, 2],
+    // Klassen Liste
+    KLASSE_LISTE: [
+    { emoji: '🏹', name: 'Cra' },
+    { emoji: '🎲', name: 'Ecaflip' },
+    { emoji: '🩹', name: 'Eniripsa' },
+    { emoji: '💰', name: 'Enutrof' },
+    { emoji: '🛡️', name: 'Feca' },
+    { emoji: '💣', name: 'Halsabschneider' },
+    { emoji: '🗡', name: 'Iop' },
+    { emoji: '🎭', name: 'Maskerador' },
+    { emoji: '🐉', name: 'Osamodas' },
+    { emoji: '🐼', name: 'Pandawa' },
+    { emoji: '🩸', name: 'Sacrieur' },
+    { emoji: '🌱', name: 'Sadida' },
+    { emoji: '💀', name: 'Sram' },
+    { emoji: '🚂', name: 'Steamer' },
+    { emoji: '⏳', name: 'Xelor' },
+    ],
+    // Arena Daten
+    arenaData: {
+    Nahkampf: ['Iop', 'Sacrieur', 'Ecaflip'],
+    Mittlere: ['Eniripsa', 'Sadida'],
+    Distanz: ['Xelor', 'Halsabschneider', 'Steamer', 'Sram'],
+    },
+    HELP_COMMANDS: [
+    // User
+    { name: 'anmelden', description: 'Meldet dich für das Turnier an.', admin: false },
+    { name: 'arena', description: 'Zufällige Arena-Auswahl.', admin: false },
+    { name: 'gruppen', description: 'Zeigt Gruppen + Kämpfe (Pagination).', admin: false },
+    { name: 'kampfinfo', description: 'Übersicht: Kämpfe der aktuellen Phase (Pagination).', admin: false },
+    { name: 'teilnehmer', description: 'Zeigt alle Teilnehmer an.', admin: false },
+    { name: 'offene_kaempfe', description: 'Listet offene Kämpfe der aktuellen Phase (optional Filter).', admin: false },
+    { name: 'hall_of_fame', description: 'Zeigt vergangene Turniere (Podium).', admin: false },
+    { name: 'turnier_info', description: 'Komplette Turnier-Übersicht (Pott & Status).', admin: false },
+    // Admin
+    { name: 'ergebnis_setzen', description: 'Admin: Ergebnis eines Kampfes setzen/korrigieren.', admin: true },
+    { name: 'ergebnisse_wuerfeln', description: 'Admin: Zufalls-Ergebnisse für die aktuelle Phase setzen.', admin: true },
+    { name: 'hof_loeschen', description: 'Admin: Löscht einen Hall-of-Fame-Eintrag per Turniernummer.', admin: true },
+    { name: 'fake_anmeldungen', description: 'Admin: Fügt N fiktive Teilnehmer (zum Testen) hinzu.', admin: true },
+    { name: 'pott_setzen', description: 'Admin: Pott & Aufteilung (Top 3) setzen.', admin: true },
+    { name: 'turnier_advance', description: 'Admin: Nächste Phase (Quali → Gruppen → KO → Finale).', admin: true },
+    { name: 'turnier_start', description: 'Admin: Startet ein Turnier (immer 1v1).', admin: true },
+    { name: 'turnier_stop', description: 'Admin: Beendet das Turnier & leert Daten.', admin: true },
+    { name: 'teilnehmer_ersetzen', description: 'Admin: Teilnehmer (ID/Name) auf anderen User umstellen und/oder Klasse/Name ändern.', admin: true }
+    ],
+    // Phasen Labels
+    PHASE_LABEL: { quali: 'Qualifikation', gruppen: 'Gruppenphase', ko: 'K.O.-Phase', finale: 'Finale' },
+};
