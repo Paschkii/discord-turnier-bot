@@ -42,7 +42,6 @@ async function execute(interaction) {
 
   return interaction.reply({
     embeds: [embed],
-    flags: MessageFlags.Ephemeral,
   });
 }
 
