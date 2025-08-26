@@ -1,29 +1,23 @@
-const {
-  MessageFlags,
-  EmbedBuilder
-} = require('discord.js');
+// src/interactions/slash/teilnehmer.js
+const { MessageFlags } = require('discord.js');
 const { KLASSE_LISTE } = require('../../config/constants');
 
-module.exports = {
-  async execute(interaction, daten) {
-    const entries = Object.entries(daten.teilnehmer || {});
-    if (!entries.length) return interaction.reply({ content: 'Noch keine Anmeldungen.', flags: MessageFlags.Ephemeral });
+const classEmoji = (klasse) => KLASSE_LISTE.find(k => k.name === klasse)?.emoji || '';
+const tagEmoji   = (p) => p?.tag === 'Top' ? '⬆️' : (p?.tag === 'Low' ? '⬇️' : '');
 
-    const byClass = new Map();
-    for (const [id, p] of entries) {
-      const key = p.klasse || 'ohne Klasse';
-      if (!byClass.has(key)) byClass.set(key, []);
-      byClass.get(key).push(p.name || id);
-    }
+async function execute(interaction, daten) {
+  const teilnehmer = Object.entries(daten.teilnehmer || {})
+    .map(([id, p]) => ({ id, ...p }))
+    .sort((a, b) => (a.name || '').localeCompare(b.name || '', 'de', { sensitivity: 'base' }));
 
-    const list = [...byClass.entries()]
-      .sort((a,b) => a[0].localeCompare(b[0]))
-      .map(([k, arr]) => {
-        const em = (KLASSE_LISTE.find(x => x.name === k)?.emoji) || '•';
-        return { name: `${em} ${k} (${arr.length})`, value: arr.map(n => `– ${n}`).join('\n').slice(0, 1024) || '—' };
-      });
+  const lines = teilnehmer.map(p =>
+    `${classEmoji(p.klasse)} ${p.name} ${tagEmoji(p)} — ${p.klasse}`
+  );
 
-    const embed = new EmbedBuilder().setColor(0x00aeff).setTitle('👥 Teilnehmer').addFields(list).setFooter({ text: `${entries.length} Teilnehmer` });
-    return interaction.reply({ embeds: [embed], flags: MessageFlags.Ephemeral });
-  }
-};
+  return interaction.reply({
+    content: lines.join('\n') || '—',
+    flags: MessageFlags.Ephemeral,
+  });
+}
+
+module.exports = { execute };

@@ -53,11 +53,21 @@ function buildTournamentInfoEmbeds(daten) {
   const teilnehmerArr = Object.entries(daten.teilnehmer || {}).map(([id, p]) => ({ id, ...p }));
   const alive = computeAliveSet(daten);
 
-  // Pott
-  const p = daten.prize || null;
-  const potLine = p
-    ? `Gesamtpott: **${p.text?.total ?? formatMK(p.totalMK)}**\nAufteilung: 🥇 **${p.text?.first ?? formatMK(p.firstMK)}** · 🥈 **${p.text?.second ?? formatMK(p.secondMK)}** · 🥉 **${p.text?.third ?? formatMK(p.thirdMK)}**`
-    : 'Gesamtpott: **—**\nAufteilung: **—**';
+  // Pott-Block in src/embeds/info.js
+  const p = daten.prize;
+  const potValue = p
+    ? [
+        '**Gesamtpott:**',
+        `💰 ${p.text?.total ?? formatMK(p.totalMK)}`,
+        '',
+        '**Aufteilung:**',
+        `🥇 ${p.text?.first  ?? formatMK(p.firstMK)}`,
+        `🥈 ${p.text?.second ?? formatMK(p.secondMK)}`,
+        `🥉 ${p.text?.third  ?? formatMK(p.thirdMK)}`
+      ].join('\n')
+    : '**Gesamtpott:** —\n**Aufteilung:** —';
+
+  fields.push({ name: '💰 Pott', value: potValue, inline: false });
 
   // Teilnehmerliste (in mehrere Felder splitten, max. ~25/Liste)
   // Klasse-Emoji-Mapping

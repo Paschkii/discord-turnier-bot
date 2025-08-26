@@ -28,6 +28,11 @@ const commands = [
     new SlashCommandBuilder()
       .setName('arena')
       .setDescription('Zufällige Arena-Auswahl')
+      .addIntegerOption(o=>o
+        .setName('anzahl')
+        .setDescription('1–3 unterschiedliche Arenen')
+        .setMinValue(1)
+        .setMaxValue(3))
   ),
   // /gruppen
   guildOnly(

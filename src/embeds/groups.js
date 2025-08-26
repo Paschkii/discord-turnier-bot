@@ -1,5 +1,8 @@
 // === Imports ===
-const { PHASE_LABEL } = require('../config/constants');
+const {
+  KLASSE_LISTE,
+  PHASE_LABEL
+} = require('../config/constants');
 const {
   ActionRowBuilder,
   ButtonBuilder,
@@ -7,6 +10,7 @@ const {
   EmbedBuilder
 } = require('discord.js');
 const { computeGroupStandings } = require('../services/tournament');
+const classEmoji = (k) => KLASSE_LISTE.find(x => x.name === k)?.emoji || '';
 
 // Gruppen-Embeds für Discord
 function buildGroupPointsMap(daten) {
@@ -35,7 +39,7 @@ function buildGroupEmbeds(daten) {
       const extras = [];
       if (tag) extras.push(tag);
       if (pts !== null) extras.push(`${pts} Punkte`);
-      return `- **${m.name}** (${m.klasse || '—'})${extras.length ? ` {${extras.join(' / ')}}` : ''}`;
+      return `- ${classEmoji(m.klasse)} **${m.name}**${extras.length ? ` · ${extras.join(' / ')}` : ''}`;
     });
 
     const groupMatches = phaseKey
@@ -45,21 +49,30 @@ function buildGroupEmbeds(daten) {
       : [];
 
     const linesMatches = groupMatches.map(f => {
-      const a = f.playerA?.name ?? '—';
-      const b = f.playerB?.name ?? '—';
+      const pA = f.playerA || {};
+      const pB = f.playerB || {};
+      const a = pA.name ?? '—';
+      const b = pB.name ?? '—';
       const sA = Number.isInteger(f.scoreA) ? f.scoreA : 0;
       const sB = Number.isInteger(f.scoreB) ? f.scoreB : 0;
       const status = f.finished ? '✅' : '⏳';
-      return `  • Kampf: **${a}** vs **${b}** — ${sA}:${sB} ${status}`;
+      return `  • ${a} ${classEmoji(pA.klasse)} vs ${b} ${classEmoji(pB.klasse)} — ${sA}:${sB} ${status}`;
     });
 
     const descParts = [];
     if (linesMembers.length) descParts.push(linesMembers.join('\n'));
     if (linesMatches.length) descParts.push(linesMatches.join('\n'));
 
+    const base =
+      g.displayName
+        ? g.displayName
+        : (g.bucket ? `${g.name} ${g.bucket === 'top' ? '⬆️' : '⬇️'}` : g.name);
+
+    const title = `📜 ${base} — ${phaseName}`;
+
     const embed = new EmbedBuilder()
       .setColor(0x00aeff)
-      .setTitle(`📜 ${g.name} — ${phaseName}`)
+      .setTitle(title)
       .setDescription(descParts.join('\n') || '—')
       .setTimestamp();
 

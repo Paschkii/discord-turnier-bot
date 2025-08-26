@@ -62,63 +62,42 @@ module.exports = {
         });
       }
 
-      // QUALI → GRUPPEN
+      // Quali → Gruppen (Top/Low + Matches)
       if (daten.status === 'quali') {
-        const unfinished = (daten.kämpfe || []).filter((f) => f.phase === 'quali' && !f.finished);
+        const unfinished = (daten.kämpfe || []).filter(f => f.phase === 'quali' && !f.finished);
         if (unfinished.length > 0) {
-          return interaction.reply({ content: `⚠️ Es gibt noch ${unfinished.length} offene Quali-Kämpfe.`, flags: MessageFlags.Ephemeral });
+          return interaction.reply({ content: `⚠️ Es gibt noch ${unfinished.length} offene Quali-Kämpfe.`, flags: 64 });
         }
 
-        // Gewinner/Verlierer taggen
-        for (const q of daten.kämpfe || []) {
-          const winnerId = q.winnerId ?? (q.scoreA > q.scoreB ? q.playerA.id : q.playerB.id);
-          if (!winnerId) continue;
-          const loserId = winnerId === q.playerA.id ? q.playerB.id : q.playerA.id;
-          if (daten.teilnehmer[winnerId]) daten.teilnehmer[winnerId].tag = 'Top';
-          if (daten.teilnehmer[loserId]) daten.teilnehmer[loserId].tag = 'Low';
+        // Gewinner/Verlierer markieren → tag 'Top' / 'Low'
+        for (const q of (daten.kämpfe || [])) {
+          const winId = q.winnerId ?? (q.scoreA > q.scoreB ? q.playerA.id : q.playerB.id);
+          const loseId = winId === q.playerA.id ? q.playerB.id : q.playerA.id;
+          if (daten.teilnehmer[winId])  daten.teilnehmer[winId].tag  = 'Top';
+          if (daten.teilnehmer[loseId]) daten.teilnehmer[loseId].tag = 'Low';
         }
 
+        // 4 Gruppen erzeugen (2×Top, 2×Low) – mit Matches!
         const { groups, fights } = createGroupsPhaseTopLow(daten.teilnehmer);
-        daten.groups = groups;
-        daten.kämpfe = fights;
+        daten.groups = groups;        // groups[i].matches bereits gefüllt
+        daten.kämpfe = fights;        // ALLE Gruppen-Matches
+        daten.status = 'gruppen';
 
         await speichereTurnier(daten);
         const { embeds, components } = buildPagedGroupReply(daten, 1, 10);
-        return interaction.reply({
-          content: `🟦 Gruppenphase gestartet (${daten.kämpfe.length} Kämpfe).`,
-          embeds, components
-        });
+        return interaction.reply({ content: `🟦 Gruppenphase gestartet (${daten.kämpfe.length} Kämpfe).`, embeds, components });
       }
 
       // Gruppen → KO (Top/Low Viertelfinale)
       if (daten.status === 'gruppen') {
-        const unfinished = daten.kämpfe.filter(f => f.phase === 'gruppen' && !f.finished);
+        const unfinished = (daten.kämpfe || []).filter(f => f.phase === 'gruppen' && !f.finished);
         if (unfinished.length > 0) {
-          return interaction.reply({ content: `⚠️ Es gibt noch ${unfinished.length} offene Gruppen-Kämpfe.`, flags: MessageFlags.Ephemeral });
+          return interaction.reply({ content: `⚠️ Es gibt noch ${unfinished.length} offene Gruppen-Kämpfe.`, flags: 64 });
         }
 
-        const groupFights = daten.kämpfe.filter(f => f.phase === 'gruppen');
+        const groupFights = (daten.kämpfe || []).filter(f => f.phase === 'gruppen');
         const standings = computeGroupStandings(groupFights, daten.groups);
-
-        // Top 2 je Gruppe, getrennt nach Buckets (Top/Low)
         const { topSeeds, lowSeeds, tieBreakers } = determineQualifiedTopLow(standings, daten.groups, 2);
-        const countSeeds = (seedsObj) => Object.values(seedsObj).reduce((n, arr) => n + (arr?.length || 0), 0);
-        const topCount = countSeeds(topSeeds);
-        const lowCount = countSeeds(lowSeeds);
-
-        // Erwartungswerte: typischerweise 4 & 4
-        if ((topCount === 4 && lowCount === 4)) {
-          // alles gut → QF bauen
-        } else if (topCount === 2 && lowCount === 2) {
-          // Mini-Feld (z. B. sehr wenige TN) → direkt Halbfinale statt QF
-          // -> überspringe QF-Erzeugung und baue direkt SF (Top-SF & Low-SF)
-          // (alternativ: interaction.reply mit Hinweis)
-        } else {
-          return interaction.reply({
-            content: `❌ Unerwartete Quali-Zahlen: Top=${topCount}, Low=${lowCount}. Erwartet je 4 (oder je 2 für direkten SF).`,
-            flags: MessageFlags.Ephemeral
-          });
-        }
 
         if (tieBreakers.length > 0) {
           daten.pendingTieBreakers = tieBreakers;
@@ -132,35 +111,34 @@ module.exports = {
           });
         }
 
-        // Viertelfinale innerhalb der Buckets
-        const qf = createTopLowQuarterfinals(topSeeds, lowSeeds); // liefert fights mit bucket + groupName "KO 🔼 Top — Viertelfinale" / "KO 🔽 Low — Viertelfinale"
-        daten.kämpfe = qf;
-        // localId je KO-Gruppe neu vergeben
-        const byLabel = new Map();
-        for (const f of daten.kämpfe) {
-          const key = f.groupName;
-          const n = (byLabel.get(key) || 0) + 1;
-          byLabel.set(key, n);
-          f.localId = n;
+        // Erwartung: 4 Top-Seeds & 4 Low-Seeds → Viertelfinale
+        const countSeeds = (obj) => Object.values(obj).reduce((n, a) => n + (a?.length || 0), 0);
+        const topCount = countSeeds(topSeeds), lowCount = countSeeds(lowSeeds);
+        if (!(topCount === 4 && lowCount === 4)) {
+          return interaction.reply({ content: `❌ Unerwartete Quali-Zahlen: Top=${topCount}, Low=${lowCount}. Erwartet je 4.`, flags: 64 });
         }
+
+        // QF je Bucket erzeugen
+        const qf = createTopLowQuarterfinals(topSeeds, lowSeeds); // mit bucket + groupName
+        daten.kämpfe = qf;
         daten.status = 'ko';
 
-        // Anzeigegruppen (zwei): KO Top & KO Low
-        const koTopMembers = [];
-        const koLowMembers = [];
-        const seenTop = new Set(), seenLow = new Set();
-        for (const f of qf) {
-          const both = [f.playerA, f.playerB];
-          if (f.bucket === 'top') for (const p of both) if (p && !seenTop.has(p.id)) { seenTop.add(p.id); koTopMembers.push(p); }
-          if (f.bucket === 'low') for (const p of both) if (p && !seenLow.has(p.id)) { seenLow.add(p.id); koLowMembers.push(p); }
-        }
+        // Anzeigegruppen (2): KO Top & KO Low
+        const koTop = qf.filter(f => f.bucket === 'top');
+        const koLow = qf.filter(f => f.bucket === 'low');
 
-        const topLabel = `KO ${GROUP_EMOJI.top} Top — Viertelfinale`;
-        const lowLabel = `KO ${GROUP_EMOJI.low} Low — Viertelfinale`;
+        const labelTop = `KO ${GROUP_EMOJI.top} Top — Viertelfinale`;
+        const labelLow = `KO ${GROUP_EMOJI.low} Low — Viertelfinale`;
+
+        const memTop = Array.from(new Map(koTop.flatMap(f => [f.playerA, f.playerB]).map(p => [p.id, p])).values());
+        const memLow = Array.from(new Map(koLow.flatMap(f => [f.playerA, f.playerB]).map(p => [p.id, p])).values());
+
+        // pro Anzeige-Gruppe localId neu vergeben (1..n)
+        const relabel = (arr, name) => arr.map((m, i) => ({ ...m, groupName: name, localId: i + 1 }));
 
         daten.groups = [
-          { name: topLabel, bucket: 'top', displayName: topLabel, members: koTopMembers, matches: qf.filter(f => f.bucket === 'top').map(m => ({ ...m, groupName: topLabel })) },
-          { name: lowLabel, bucket: 'low', displayName: lowLabel, members: koLowMembers, matches: qf.filter(f => f.bucket === 'low').map(m => ({ ...m, groupName: lowLabel })) },
+          { name: labelTop, bucket: 'top', displayName: labelTop, members: memTop, matches: relabel(koTop, labelTop) },
+          { name: labelLow, bucket: 'low', displayName: labelLow, members: memLow, matches: relabel(koLow, labelLow) },
         ];
 
         await speichereTurnier(daten);
@@ -170,92 +148,52 @@ module.exports = {
 
       // KO (Viertelfinale) → KO (Halbfinale)
       if (daten.status === 'ko' && (daten.groups?.[0]?.name || '').includes('Viertelfinale')) {
-        const unfinished = daten.kämpfe.filter(f => f.phase === 'ko' && !f.finished);
+        const unfinished = (daten.kämpfe || []).filter(f => f.phase === 'ko' && !f.finished);
         if (unfinished.length > 0) {
-          return interaction.reply({ content: `⚠️ Es gibt noch ${unfinished.length} offene KO-Kämpfe.`, flags: MessageFlags.Ephemeral });
+          return interaction.reply({ content: `⚠️ Es gibt noch ${unfinished.length} offene KO-Kämpfe.`, flags: 64 });
         }
 
-        // Sieger je Bucket ermitteln
-        const winnersTop = [];
-        const winnersLow = [];
-        for (const f of daten.kämpfe) {
+        const winnersTop = [], winnersLow = [];
+        for (const f of (daten.kämpfe || [])) {
           const winId = f.winnerId ?? (f.scoreA > f.scoreB ? f.playerA.id : f.playerB.id);
           const win = (winId === f.playerA.id) ? f.playerA : f.playerB;
           if (f.bucket === 'top') winnersTop.push(win);
-          else winnersLow.push(win);
+          else                   winnersLow.push(win);
         }
 
-        // Sicherstellen: je Bucket 2 Sieger (für SF)
-        if (!(winnersTop.length === 2 && winnersLow.length === 2)) {
-          return interaction.reply({
-            content: `❌ Für das Halbfinale werden je 2 Sieger pro Bracket benötigt (Top=${winnersTop.length}, Low=${winnersLow.length}).`,
-            flags: MessageFlags.Ephemeral
-          });
+        // Guard: je Bucket genau 2 Sieger erwartet
+        if (winnersTop.length !== 2 || winnersLow.length !== 2) {
+          return interaction.reply({ content: `❌ Für das Halbfinale werden je 2 Sieger pro Bracket benötigt (Top=${winnersTop.length}, Low=${winnersLow.length}).`, flags: 64 });
         }
 
-        // Baue zwei Halbfinals: Top-SF und Low-SF
-        const sf = [];
-        let id = 1;
         const topLabel = `KO ${GROUP_EMOJI.top} Top — Halbfinale`;
         const lowLabel = `KO ${GROUP_EMOJI.low} Low — Halbfinale`;
 
-        if (winnersTop.length === 4) {
-          // klassisch: (Sieger Match1) vs (Sieger Match2)
-          sf.push({
-            id: id++, phase: 'ko', groupName: topLabel, localId: 1,
-            playerA: winnersTop[0], playerB: winnersTop[1],
-            scoreA: 0, scoreB: 0, bestOf: 3, finished: false, timestamp: null, winnerId: null, bucket: 'top',
-          });
-        } else if (winnersTop.length === 2) {
-          sf.push({
-            id: id++, phase: 'ko', groupName: topLabel, localId: 1,
-            playerA: winnersTop[0], playerB: winnersTop[1],
-            scoreA: 0, scoreB: 0, bestOf: 3, finished: false, timestamp: null, winnerId: null, bucket: 'top',
-          });
-        }
-
-        if (winnersLow.length === 4) {
-          sf.push({
-            id: id++, phase: 'ko', groupName: lowLabel, localId: 1,
-            playerA: winnersLow[0], playerB: winnersLow[1],
-            scoreA: 0, scoreB: 0, bestOf: 3, finished: false, timestamp: null, winnerId: null, bucket: 'low',
-          });
-        } else if (winnersLow.length === 2) {
-          sf.push({
-            id: id++, phase: 'ko', groupName: lowLabel, localId: 1,
-            playerA: winnersLow[0], playerB: winnersLow[1],
-            scoreA: 0, scoreB: 0, bestOf: 3, finished: false, timestamp: null, winnerId: null, bucket: 'low',
-          });
-        }
+        const sf = [
+          { id: 1, phase: 'ko', groupName: topLabel, localId: 1, playerA: winnersTop[0], playerB: winnersTop[1], scoreA: 0, scoreB: 0, bestOf: 3, finished: false, timestamp: null, winnerId: null, bucket: 'top' },
+          { id: 2, phase: 'ko', groupName: lowLabel, localId: 1, playerA: winnersLow[0], playerB: winnersLow[1], scoreA: 0, scoreB: 0, bestOf: 3, finished: false, timestamp: null, winnerId: null, bucket: 'low' },
+        ];
 
         daten.kämpfe = sf;
-        const byLabel = new Map();
-        for (const f of daten.kämpfe) {
-          const key = f.groupName;
-          const n = (byLabel.get(key) || 0) + 1;
-          byLabel.set(key, n);
-          f.localId = n;
-        }
 
-        // Anzeigegruppen wieder zwei (Top/Low – Halbfinale)
-        const membersTop = Array.from(new Map((sf.filter(f => f.bucket === 'top').flatMap(f => [f.playerA, f.playerB])).map(p => [p.id, p])).values());
-        const membersLow = Array.from(new Map((sf.filter(f => f.bucket === 'low').flatMap(f => [f.playerA, f.playerB])).map(p => [p.id, p])).values());
+        const membersTop = Array.from(new Map([sf[0].playerA, sf[0].playerB].map(p => [p.id, p])).values());
+        const membersLow = Array.from(new Map([sf[1].playerA, sf[1].playerB].map(p => [p.id, p])).values());
 
         daten.groups = [
-          { name: topLabel, bucket: 'top', displayName: topLabel, members: membersTop, matches: sf.filter(f => f.bucket === 'top') },
-          { name: lowLabel, bucket: 'low', displayName: lowLabel, members: membersLow, matches: sf.filter(f => f.bucket === 'low') },
+          { name: topLabel, bucket: 'top', displayName: topLabel, members: membersTop, matches: [sf[0]] },
+          { name: lowLabel, bucket: 'low', displayName: lowLabel, members: membersLow, matches: [sf[1]] },
         ];
 
         await speichereTurnier(daten);
         const { embeds, components } = buildPagedGroupReply(daten, 1, 10);
-        return interaction.reply({ content: `🔁 K.O.-Halbfinale gestartet (${sf.length} Kämpfe).`, embeds, components });
+        return interaction.reply({ content: `🔁 K.O.-Halbfinale gestartet (2 Kämpfe).`, embeds, components });
       }
 
       // KO (Halbfinale) → Finale (+ Bronze)
       if (daten.status === 'ko' && (daten.groups?.[0]?.name || '').includes('Halbfinale')) {
         const unfinished = daten.kämpfe.filter(f => f.phase === 'ko' && !f.finished);
         if (unfinished.length > 0) {
-          return interaction.reply({ content: `⚠️ Halbfinals nicht beendet.`, flags: MessageFlags.Ephemeral });
+          return interaction.reply({ content: `⚠️ Halbfinale nicht beendet.`, flags: MessageFlags.Ephemeral });
         }
 
         let topWinner, topLoser, lowWinner, lowLoser;
