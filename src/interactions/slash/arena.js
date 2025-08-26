@@ -1,23 +1,48 @@
-const { MessageFlags } = require('discord.js');
+const { MessageFlags, EmbedBuilder } = require('discord.js');
 const { arenaData } = require('../../config/constants');
 
-const ALL_ARENAS = Object.keys(arenaData); // passe an, falls deine Arenen anders definiert sind
+// Normalisiert arenaData → Array<string>
+function getArenaNames() {
+  if (Array.isArray(arenaData)) return arenaData.slice();
+  if (arenaData && typeof arenaData === 'object') {
+    // Legacy: Kategorien-Objekt -> zu Liste flatten
+    return Object.values(arenaData).flat().map(String);
+  }
+  return [];
+}
 
+// eindeutige Einträge aus Array ziehen
 function sampleUnique(arr, k) {
   const a = arr.slice();
   for (let i = a.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [a[i], a[j]] = [a[j], a[i]];
   }
-  return a.slice(0, Math.max(1, Math.min(k, a.length)));
+  const n = Math.max(1, Math.min(k, a.length));
+  return a.slice(0, n);
 }
 
 async function execute(interaction) {
   const n = interaction.options.getInteger('anzahl') ?? 1;
-  const picked = sampleUnique(ALL_ARENAS, n);
+  const names = getArenaNames();
+
+  if (!names.length) {
+    return interaction.reply({
+      content: '❌ Keine Arenen konfiguriert (`arenaData` ist leer).',
+      flags: MessageFlags.Ephemeral,
+    });
+  }
+
+  const picked = sampleUnique(names, n);
+  const embed = new EmbedBuilder()
+    .setColor(0x00AEFF)
+    .setTitle('🎲 Ausgewürfelte Arenen')
+    .setDescription(picked.map(nm => `• **${nm}**`).join('\n'))
+    .setTimestamp();
+
   return interaction.reply({
-    content: `🎲 Arenen:\n• ${picked.join('\n• ')}`,
-    flags: MessageFlags.Ephemeral
+    embeds: [embed],
+    flags: MessageFlags.Ephemeral,
   });
 }
 
