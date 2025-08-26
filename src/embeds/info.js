@@ -1,59 +1,54 @@
-// === Imports ===
 const { EmbedBuilder } = require('discord.js');
 const { KLASSE_LISTE } = require('../config/constants');
 const { formatMK } = require('../utils');
 
-// Wer ist noch "im Rennen"?
-function computeAliveSet(daten) {
-  const alive = new Set();
+// sehr einfache Alive-Heuristik: alle Teilnehmer sind aktiv,
+// Verlierer fertiger KO-Fights gelten als ausgeschieden
+function computeAliveSet(daten = {}) {
+  const alive = new Set(Object.keys(daten.teilnehmer || {}));
   const fights = Array.isArray(daten.kämpfe) ? daten.kämpfe : [];
-
-  switch (daten.status) {
-    case 'ko': {
-      for (const f of fights.filter(x => x.phase === 'ko')) {
-        if (f.finished) {
-          const winnerId = f.winnerId ?? ((f.scoreA > f.scoreB) ? f.playerA.id : f.playerB.id);
-          if (winnerId) alive.add(winnerId);
-        } else {
-          if (f.playerA?.id) alive.add(f.playerA.id);
-          if (f.playerB?.id) alive.add(f.playerB.id);
-        }
-      }
-      break;
-    }
-    case 'finale': {
-      const finals = fights.filter(x => x.phase === 'finale');
-      if (finals.length) {
-        for (const f of finals) {
-          if (!f.finished) {
-            if (f.playerA?.id) alive.add(f.playerA.id);
-            if (f.playerB?.id) alive.add(f.playerB.id);
-          }
-        }
-      } else {
-        // falls "finale" aber keine finale fights (Edge), alle Teilnehmer als dabei
-        Object.keys(daten.teilnehmer || {}).forEach(id => alive.add(id));
-      }
-      break;
-    }
-    case 'abgeschlossen': {
-      // Turnier vorbei → niemand mehr "dabei"
-      break;
-    }
-    default: {
-      // 'offen', 'quali', 'gruppen' → alle sind noch dabei
-      Object.keys(daten.teilnehmer || {}).forEach(id => alive.add(id));
+  if (['ko', 'finale', 'abgeschlossen'].includes(daten.status)) {
+    for (const f of fights) {
+      if (!f.finished || !f.playerA || !f.playerB) continue;
+      const loserId = (f.winnerId === f.playerA.id) ? f.playerB.id
+                    : (f.winnerId === f.playerB.id) ? f.playerA.id
+                    : null;
+      if (loserId) alive.delete(loserId);
     }
   }
   return alive;
 }
-// Übersichtsembed bauen (mit Pott & Teilnehmerstatus)
-function buildTournamentInfoEmbeds(daten) {
+
+function chunk(arr, n) {
+  const out = [];
+  for (let i = 0; i < arr.length; i += n) out.push(arr.slice(i, i + n));
+  return out;
+}
+
+function buildTournamentInfoEmbeds(daten = {}) {
   const title = `🏆 ${daten.name || 'Turnier'} — Übersicht`;
-  const teilnehmerArr = Object.entries(daten.teilnehmer || {}).map(([id, p]) => ({ id, ...p }));
+  const teilnehmerArr = Object.entries(daten.teilnehmer || {})
+    .map(([id, p]) => ({ id, ...p }))
+    .sort((a, b) => (a.name || '').localeCompare(b.name || '', 'de', { sensitivity: 'base' }));
+
   const alive = computeAliveSet(daten);
 
-  // Pott-Block in src/embeds/info.js
+  const fields = [];
+
+  // Phase & Teilnehmerzahl kompakt
+  const phaseLabel = ({
+    offen: 'Offen',
+    quali: 'Qualifikation',
+    gruppen: 'Gruppenphase',
+    ko: 'K.O.-Phase',
+    finale: 'Finale',
+    abgeschlossen: 'Abgeschlossen',
+  })[daten.status] || (daten.status || '—');
+
+  fields.push({ name: '📟 Phase', value: phaseLabel, inline: true });
+  fields.push({ name: '👥 Teilnehmer', value: String(teilnehmerArr.length), inline: true });
+
+  // 💰 Pott-Block (mehrzeilig, wie gewünscht)
   const p = daten.prize;
   const potValue = p
     ? [
@@ -69,45 +64,31 @@ function buildTournamentInfoEmbeds(daten) {
 
   fields.push({ name: '💰 Pott', value: potValue, inline: false });
 
-  // Teilnehmerliste (in mehrere Felder splitten, max. ~25/Liste)
-  // Klasse-Emoji-Mapping
+  // 👤 Teilnehmerliste (immer alphabetisch, mit Klassen-Emoji + Alive/Out)
   const emojiMap = Object.fromEntries(KLASSE_LISTE.map(k => [k.name, k.emoji]));
+  const lines = teilnehmerArr.map(p => {
+    const cls = p.klasse ? ` - ${emojiMap[p.klasse] || ''} ${p.klasse}` : '';
+    return `${alive.has(p.id) ? '🟢' : '🔴'} ${p.name}${cls}`;
+  });
 
-  const lines = teilnehmerArr
-    .sort((a, b) => (a.name || '').localeCompare(b.name || ''))
-    .map(p => {
-      const cls = p.klasse ? ` - ${emojiMap[p.klasse] || ''} ${p.klasse}` : '';
-      return `${alive.has(p.id) ? '🟢' : '🔴'} ${p.name}${cls}`;
+  if (lines.length) {
+    const chunks = chunk(lines, 20); // Discord-Feldgröße im Blick behalten
+    chunks.forEach((c, idx) => {
+      fields.push({
+        name: idx === 0 ? '👤 Teilnehmer (🟢 dabei / 🔴 ausgeschieden)' : ' ',
+        value: c.join('\n'),
+        inline: false,
+      });
     });
-
-  const chunk = (arr, n) => {
-    const out = [];
-    for (let i = 0; i < arr.length; i += n) out.push(arr.slice(i, i + n));
-    return out;
-  };
-  const chunks = chunk(lines, 20);
+  } else {
+    fields.push({ name: '👤 Teilnehmer', value: '—', inline: false });
+  }
 
   const embed = new EmbedBuilder()
     .setColor(0x00AEFF)
     .setTitle(title)
-    .setDescription([
-      `👥 **${teilnehmerArr.length}** Teilnehmer`,
-      `🧭 Phase: **${({offen:'Offen',quali:'Qualifikation',gruppen:'Gruppenphase',ko:'K.O.-Phase',finale:'Finale',abgeschlossen:'Abgeschlossen'})[daten.status] || daten.status}**`,
-      '',
-      `💰 **Preisgeld**\n${potLine}`,
-    ].join('\n'))
+    .addFields(fields)
     .setTimestamp();
-
-  if (lines.length) {
-    chunks.forEach((c, idx) => {
-      embed.addFields({
-        name: idx === 0 ? '👤 Teilnehmer (🟢 dabei / 🔴 ausgeschieden)' : ' ',
-        value: c.join('\n'),
-      });
-    });
-  } else {
-    embed.addFields({ name: '👤 Teilnehmer', value: '—' });
-  }
 
   return [embed];
 }

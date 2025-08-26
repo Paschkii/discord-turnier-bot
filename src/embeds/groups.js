@@ -39,7 +39,7 @@ function buildGroupEmbeds(daten) {
       const extras = [];
       if (tag) extras.push(tag);
       if (pts !== null) extras.push(`${pts} Punkte`);
-      return `- ${classEmoji(m.klasse)} **${m.name}**${extras.length ? ` · ${extras.join(' / ')}` : ''}`;
+      return `- **${m.name}** ${classEmoji(m.klasse)} ${m.klasse || '—'}${extras.length ? ` · ${extras.join(' / ')}` : ''}`;
     });
 
     const groupMatches = phaseKey
@@ -56,7 +56,7 @@ function buildGroupEmbeds(daten) {
       const sA = Number.isInteger(f.scoreA) ? f.scoreA : 0;
       const sB = Number.isInteger(f.scoreB) ? f.scoreB : 0;
       const status = f.finished ? '✅' : '⏳';
-      return `  • ${a} ${classEmoji(pA.klasse)} vs ${b} ${classEmoji(pB.klasse)} — ${sA}:${sB} ${status}`;
+      return `  • **${a}** ${classEmoji(pA.klasse)} ${pA.klasse || '—'} vs **${b}** ${classEmoji(pB.klasse)} ${pB.klasse || '—'} — ${sA}:${sB} ${status}`;
     });
 
     const descParts = [];
