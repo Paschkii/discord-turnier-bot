@@ -1,12 +1,15 @@
-const { PermissionsBitField } = require('discord.js');
+const {
+  MessageFlags,
+  PermissionsBitField
+} = require('discord.js');
 const { getLatestTournamentRow, closeAndClearLatestTournament, ladeTurnier } = require('../../store/turniere');
 
 module.exports = {
   async execute(interaction) {
     const latest = await getLatestTournamentRow();
-    if (!latest) return interaction.reply({ content: '❌ Kein aktives Turnier gefunden.', ephemeral: true });
+    if (!latest) return interaction.reply({ content: '❌ Kein aktives Turnier gefunden.', flags: MessageFlags.Ephemeral });
     if (!interaction.member.permissions.has(PermissionsBitField.Flags.Administrator)) {
-      return interaction.reply({ content: '❌ Nur Admins können das Turnier beenden.', ephemeral: true });
+      return interaction.reply({ content: '❌ Nur Admins können das Turnier beenden.', flags: MessageFlags.Ephemeral });
     }
     try {
       await closeAndClearLatestTournament();
@@ -16,11 +19,10 @@ module.exports = {
         content: ok
           ? '🛑 Turnierdaten wurden **sauber beendet** (Status geschlossen, alle Teilnehmer/Kämpfe gelöscht).'
           : 'ℹ️ Turnier wurde beendet. Falls weiterhin „aktiv“ angezeigt wird, bitte Bot neu starten.',
-        ephemeral: false
       });
     } catch (err) {
       console.error(err);
-      return interaction.reply({ content: '❌ Fehler beim Beenden.', ephemeral: true });
+      return interaction.reply({ content: '❌ Fehler beim Beenden.', flags: MessageFlags.Ephemeral });
     }
   }
 };

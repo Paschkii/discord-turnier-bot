@@ -1,9 +1,16 @@
-const { PermissionsBitField, ModalBuilder, TextInputBuilder, TextInputStyle, ActionRowBuilder } = require('discord.js');
+const {
+  ActionRowBuilder,
+  MessageFlags,
+  ModalBuilder,
+  PermissionsBitField,
+  TextInputBuilder,
+  TextInputStyle
+} = require('discord.js');
 
 module.exports = {
   async execute(interaction) {
     if (!interaction.member.permissions.has(PermissionsBitField.Flags.Administrator)) {
-      return interaction.reply({ content: '⛔ Nur Admins.', ephemeral: true });
+      return interaction.reply({ content: '⛔ Nur Admins.', flags: MessageFlags.Ephemeral });
     }
     const modal = new ModalBuilder()
       .setCustomId('setprize')

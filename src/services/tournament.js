@@ -1,8 +1,28 @@
-// === Imports ===
+// src/services/tournament.js
+
+// Utils & Konstanten
 const { shuffleArray, themedGroupNames } = require('../utils');
 const { ALLOWED_KO_SIZES } = require('../config/constants');
 
+// Emojis für Top/Low-Tag
+const GROUP_EMOJI = { top: '🔼', low: '🔽' };
+
+// Balanced Split in k Gruppen (±1 Differenz)
+function splitIntoGroups(arr, k) {
+  const base = Math.floor(arr.length / k);
+  const extra = arr.length % k; // so viele Gruppen bekommen +1
+  const groups = [];
+  let i = 0;
+  for (let g = 0; g < k; g++) {
+    const size = base + (g < extra ? 1 : 0);
+    groups.push(arr.slice(i, i + size));
+    i += size;
+  }
+  return groups;
+}
+
 // === Turnier-Core ===
+
 // Qualifikation (Bo1)
 function createQualificationFromTeilnehmerMap(teilnehmerMap) {
   const teilnehmerArr = Object.entries(teilnehmerMap).map(([id, p]) => ({ id, name: p.name, klasse: p.klasse }));
@@ -26,7 +46,64 @@ function createQualificationFromTeilnehmerMap(teilnehmerMap) {
   return matches;
 }
 
-// Gruppenaufteilung
+// === NEU: Gruppenphase Top/Low mit alten Namen + Tag am Ende ===
+// Erwartung: nach der Quali steht in teilnehmerMap[id].tag 'Top' oder 'Low' (alles andere = Low)
+function createGroupsPhaseTopLow(teilnehmerMap) {
+  const all = Object.entries(teilnehmerMap).map(([id, p]) => ({
+    id, name: p.name, klasse: p.klasse, tag: (p.tag === 'Top' ? 'Top' : 'Low')
+  }));
+
+  const top = all.filter(p => p.tag === 'Top');
+  const low = all.filter(p => p.tag !== 'Top');
+
+  // 2 Gruppen je Bucket, balanced
+  const [T1 = [], T2 = []] = splitIntoGroups(top, 2);
+  const [L1 = [], L2 = []] = splitIntoGroups(low, 2);
+
+  // Alte Gruppennamen weiterverwenden
+  const names = themedGroupNames(4);
+  const [nameTop1, nameTop2, nameLow1, nameLow2] = names;
+
+  // Gruppenobjekte
+  const groups = [
+    { name: nameTop1, bucket: 'top', emoji: GROUP_EMOJI.top, displayName: `${nameTop1} — ${GROUP_EMOJI.top} Top`, members: T1, matches: [] },
+    { name: nameTop2, bucket: 'top', emoji: GROUP_EMOJI.top, displayName: `${nameTop2} — ${GROUP_EMOJI.top} Top`, members: T2, matches: [] },
+    { name: nameLow1, bucket: 'low', emoji: GROUP_EMOJI.low, displayName: `${nameLow1} — ${GROUP_EMOJI.low} Low`, members: L1, matches: [] },
+    { name: nameLow2, bucket: 'low', emoji: GROUP_EMOJI.low, displayName: `${nameLow2} — ${GROUP_EMOJI.low} Low`, members: L2, matches: [] },
+  ];
+
+  // Round-Robin Matches pro Gruppe (Bo3)
+  const fights = [];
+  let globalId = 1;
+  for (const g of groups) {
+    let localId = 1;
+    for (let i = 0; i < g.members.length; i++) {
+      for (let j = i + 1; j < g.members.length; j++) {
+        const m = {
+          id: globalId++,
+          phase: 'gruppen',
+          groupName: g.name,     // alter Name bleibt als Schlüssel
+          localId,
+          playerA: g.members[i],
+          playerB: g.members[j],
+          scoreA: 0, scoreB: 0,
+          bestOf: 3,
+          finished: false,
+          timestamp: null,
+          winnerId: null,
+          bucket: g.bucket,      // 'top' | 'low' (nützlich in UI/KO)
+        };
+        g.matches.push({ ...m });
+        fights.push(m);
+        localId++;
+      }
+    }
+  }
+
+  return { groups, fights };
+}
+
+// === Legacy: Zufällige Gruppenbildung (bleibt für Rückwärtskompatibilität) ===
 function createGroupsPhase(teilnehmerMap, gruppenAnzahl = 4) {
   const teilnehmerArr = Object.entries(teilnehmerMap).map(([id, p]) => ({ id, name: p.name, klasse: p.klasse }));
   const shuffled = shuffleArray(teilnehmerArr);
@@ -43,7 +120,6 @@ function createGroupsPhase(teilnehmerMap, gruppenAnzahl = 4) {
     groups.push({ name: names[g], members, matches: [] });
   }
 
-  // Round-Robin Matches je Gruppe (Bo3)
   const fights = [];
   let globalId = 1;
   for (const group of groups) {
@@ -83,11 +159,13 @@ function computeGroupStandings(groupFights, groups) {
     table.get(a.id).points += f.scoreA;
     table.get(b.id).points += f.scoreB;
   }
+  // Spieler ohne Spiele mit 0 Punkten ergänzen
   for (const g of groups) {
     for (const p of g.members) {
       if (!table.has(p.id)) table.set(p.id, { id: p.id, name: p.name, groupName: g.name, points: 0 });
     }
   }
+  // nach Gruppen aufteilen und sortieren
   const byGroup = {};
   for (const row of table.values()) {
     byGroup[row.groupName] = byGroup[row.groupName] || [];
@@ -97,7 +175,63 @@ function computeGroupStandings(groupFights, groups) {
   return byGroup;
 }
 
-// Qualifizierte bestimmen (dynamisch)
+// --- Top/Low: Qualified je Gruppe (Top 2) + TieBreaker-Erkennung ---
+function determineQualifiedTopLow(standingsByGroup, groups, takePerGroup = 2) {
+  const topGroups = groups.filter(g => g.bucket === 'top').map(g => g.name);
+  const lowGroups = groups.filter(g => g.bucket === 'low').map(g => g.name);
+
+  const getTopN = (gname) => (standingsByGroup[gname] || []).slice(0, takePerGroup)
+    .map((p, i) => ({ id: p.id, name: p.name, groupName: gname, rank: i + 1 }));
+
+  const topSeeds = Object.fromEntries(topGroups.map(n => [n, getTopN(n)]));
+  const lowSeeds = Object.fromEntries(lowGroups.map(n => [n, getTopN(n)]));
+
+  const tieBreakers = [];
+  for (const g of groups) {
+    const rows = (standingsByGroup[g.name] || []);
+    const cut = takePerGroup - 1;
+    if (rows[cut] && rows[cut + 1] && rows[cut].points === rows[cut + 1].points) {
+      tieBreakers.push({ groupName: g.name, players: [rows[cut], rows[cut + 1]] });
+    }
+  }
+
+  return { topSeeds, lowSeeds, tieBreakers, takePerGroup };
+}
+
+// --- Viertelfinale innerhalb der Buckets: T1#1 vs T2#2, T2#1 vs T1#2 (analog Low) ---
+function createTopLowQuarterfinals(topSeeds, lowSeeds) {
+  const fights = [];
+  let id = 1;
+
+  const pairBucket = (A, B, label, bucket) => {
+    const a1 = A?.[0], a2 = A?.[1], b1 = B?.[0], b2 = B?.[1];
+    if (a1 && b2) fights.push(mkKO(id++, a1, b2, `${label} — Viertelfinale`, bucket));
+    if (b1 && a2) fights.push(mkKO(id++, b1, a2, `${label} — Viertelfinale`, bucket));
+  };
+
+  // Ermittle die zwei Top- und zwei Low-Gruppennamen deterministisch
+  const topNames = Object.keys(topSeeds).sort();
+  const lowNames = Object.keys(lowSeeds).sort();
+
+  pairBucket(topSeeds[topNames[0]] || [], topSeeds[topNames[1]] || [], `KO ${GROUP_EMOJI.top} Top`, 'top');
+  pairBucket(lowSeeds[lowNames[0]] || [], lowSeeds[lowNames[1]] || [], `KO ${GROUP_EMOJI.low} Low`, 'low');
+
+  return fights;
+}
+
+// Hilfsbauer für KO-Fights (mit bucket + groupName)
+function mkKO(id, qa, qb, groupName, bucket, bestOf = 3) {
+  return {
+    id, phase: 'ko', groupName, localId: id,
+    playerA: { id: qa.id, name: qa.name },
+    playerB: { id: qb.id, name: qb.name },
+    scoreA: 0, scoreB: 0, bestOf,
+    finished: false, timestamp: null, winnerId: null,
+    bucket, // 'top' | 'low'
+  };
+}
+
+// Qualifizierte bestimmen (wie gehabt: dynamisch per Teilnehmerzahl)
 function determineQualifiedAdvanced(standingsByGroup, groups, totalParticipants) {
   let takePerGroup = 2;
   if (totalParticipants <= 10) takePerGroup = 1;
@@ -120,7 +254,7 @@ function determineQualifiedAdvanced(standingsByGroup, groups, totalParticipants)
   return { qualified, tieBreakers, takePerGroup };
 }
 
-// Erstellt einen KO-Kampf
+// Hilfskampf (Seeded)
 function mkFight(id, qa, qb, bestOf = 3) {
   return {
     id,
@@ -135,7 +269,7 @@ function mkFight(id, qa, qb, bestOf = 3) {
   };
 }
 
-// Erstellt KO-Kämpfe aus qualifizierten Spielern (gesetzt)
+// KO (gesetzt) aus Gruppen
 function createKOSeeded(qualified, groups, takePerGroup) {
   const qByGroup = new Map();
   for (const g of groups) qByGroup.set(g.name, []);
@@ -146,7 +280,7 @@ function createKOSeeded(qualified, groups, takePerGroup) {
   for (const g of qByGroup.keys()) qByGroup.get(g).sort((a, b) => a.rank - b.rank);
 
   const groupOrder = groups.map(g => g.name);
-  const pairs = [[0,1],[2,3]];
+  const pairs = [[0,1],[2,3]]; // (A vs B), (C vs D)
 
   const fights = [];
   let id = 1;
@@ -197,7 +331,7 @@ function chooseKOSize(n) {
   return 2;
 }
 
-// Erstellt KO-Kämpfe aus Teilnehmerliste (ungerade Teilnehmerzahl nicht erlaubt)
+// KO aus Teilnehmerliste (shuffled)
 function createKOFightsFromParticipants(participants) {
   const n = participants.length;
   if (!ALLOWED_KO_SIZES.includes(n)) throw new Error('Ungültige Teilnehmerzahl für KO: ' + n);
@@ -221,9 +355,13 @@ function createKOFightsFromParticipants(participants) {
 }
 
 module.exports = {
+  GROUP_EMOJI,
   createQualificationFromTeilnehmerMap,
-  createGroupsPhase,
+  createGroupsPhaseTopLow,   // neu (Top/Low, alter Name + Tag)
+  createGroupsPhase,         // legacy
+  createTopLowQuarterfinals,
   computeGroupStandings,
+  determineQualifiedTopLow,
   determineQualifiedAdvanced,
   createKOSeeded,
   createKOFightsFromParticipants,

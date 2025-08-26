@@ -1,4 +1,5 @@
 const { buildPagedGroupReply } = require('../../embeds/groups');
+const { MessageFlags } = require('discord.js');
 
 module.exports = {
   async run(interaction, daten) {
@@ -7,6 +8,6 @@ module.exports = {
     const nextPage = dir === 'prev' ? current - 1 : current + 1;
     const { embeds, components } = buildPagedGroupReply(daten, nextPage, 10);
     try { return interaction.update({ embeds, components }); }
-    catch { return interaction.reply({ embeds, components, ephemeral: true }); }
+    catch { return interaction.reply({ embeds, components, flags: MessageFlags.Ephemeral }); }
   }
 };

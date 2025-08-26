@@ -1,13 +1,17 @@
-const { PermissionsBitField, EmbedBuilder } = require('discord.js');
+const {
+  EmbedBuilder,
+  MessageFlags,
+  PermissionsBitField
+} = require('discord.js');
 const { speichereTurnier } = require('../../store/turniere');
 
 module.exports = {
   async run(interaction, daten) {
     if (!interaction.member.permissions.has(PermissionsBitField.Flags.Administrator)) {
-      return interaction.reply({ content: '⛔ Nur Admins dürfen Tie-Breaker starten.', ephemeral: true });
+      return interaction.reply({ content: '⛔ Nur Admins dürfen Tie-Breaker starten.', flags: MessageFlags.Ephemeral });
     }
     const list = Array.isArray(daten.pendingTieBreakers) ? daten.pendingTieBreakers : [];
-    if (!list.length) return interaction.reply({ content: 'ℹ️ Keine ausstehenden Tie-Breaker.', ephemeral: true });
+    if (!list.length) return interaction.reply({ content: 'ℹ️ Keine ausstehenden Tie-Breaker.', flags: MessageFlags.Ephemeral });
 
     const created = [];
     for (const tb of list) {
@@ -34,6 +38,6 @@ module.exports = {
 
     const desc = created.map(f => `• Kampf: ${f.playerA.name} vs ${f.playerB.name} — ${f.scoreA}:${f.scoreB} ⏳ (Bo1)`).join('\n');
     const embed = new EmbedBuilder().setColor(0xff5555).setTitle('🧮 Tie-Breaker erstellt').setDescription(desc || '—');
-    return interaction.reply({ embeds: [embed], ephemeral: false });
+    return interaction.reply({ embeds: [embed] });
   }
 };

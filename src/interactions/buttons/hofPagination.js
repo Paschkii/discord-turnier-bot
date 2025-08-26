@@ -34,6 +34,6 @@ module.exports = {
     );
 
     try { return interaction.update({ embeds: [embed], components: [row] }); }
-    catch { return interaction.reply({ embeds: [embed], components: [row], ephemeral: false }); }
+    catch { return interaction.reply({ embeds: [embed], components: [row] }); }
   }
 };

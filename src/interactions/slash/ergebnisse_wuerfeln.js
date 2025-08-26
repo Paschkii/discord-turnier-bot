@@ -1,16 +1,19 @@
-const { PermissionsBitField } = require('discord.js');
+const {
+  MessageFlags,
+  PermissionsBitField
+} = require('discord.js');
 const { speichereTurnier } = require('../../store/turniere');
 const { buildPagedGroupReply } = require('../../embeds/groups');
 
 module.exports = {
   async execute(interaction, daten) {
     if (!interaction.member.permissions.has(PermissionsBitField.Flags.Administrator)) {
-      return interaction.reply({ content: '⛔ Nur Admins dürfen das.', ephemeral: true });
+      return interaction.reply({ content: '⛔ Nur Admins dürfen das.', flags: MessageFlags.Ephemeral });
     }
 
     const fights = Array.isArray(daten.kämpfe) ? daten.kämpfe : [];
     if (!fights.length) {
-      return interaction.reply({ content: 'ℹ️ Keine Kämpfe in der aktuellen Phase.', ephemeral: true });
+      return interaction.reply({ content: 'ℹ️ Keine Kämpfe in der aktuellen Phase.', flags: MessageFlags.Ephemeral });
     }
 
     const nurOffene = interaction.options.getBoolean('nur_offene');
@@ -42,7 +45,7 @@ module.exports = {
     const { embeds, components } = buildPagedGroupReply(daten, 1, 10);
     return interaction.reply({
       content: `🎲 Zufalls-Ergebnisse gesetzt: **${changed}** Kampf/Kämpfe aktualisiert.`,
-      embeds, components, ephemeral: false
+      embeds, components
     });
   }
 };

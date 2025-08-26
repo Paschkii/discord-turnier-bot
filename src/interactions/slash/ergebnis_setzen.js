@@ -1,9 +1,16 @@
-const { PermissionsBitField, ModalBuilder, TextInputBuilder, TextInputStyle, ActionRowBuilder } = require('discord.js');
-
+const {
+  ActionRowBuilder,
+  ModalBuilder,
+  MessageFlags,
+  PermissionsBitField,
+  TextInputBuilder,
+  TextInputStyle,
+} = require('discord.js');
+  
 module.exports = {
   async execute(interaction) {
     if (!interaction.member.permissions.has(PermissionsBitField.Flags.Administrator)) {
-      return interaction.reply({ content: '⛔ Nur Admins.', ephemeral: true });
+      return interaction.reply({ content: '⛔ Nur Admins.', flags: MessageFlags.Ephemeral });
     }
     const kampfId = interaction.options.getString('kampf', true); // aus Autocomplete
     const modal = new ModalBuilder().setCustomId(`setscore_${kampfId}`).setTitle(`Ergebnis setzen (#${kampfId})`);

@@ -1,10 +1,13 @@
-const { EmbedBuilder } = require('discord.js');
+const {
+  MessageFlags,
+  EmbedBuilder
+} = require('discord.js');
 
 module.exports = {
   async execute(interaction, daten) {
     const phase = daten?.status || 'offen';
     const fights = (daten?.kämpfe || []).filter(f => (f.phase || '') === phase);
-    if (!fights.length) return interaction.reply({ content: 'ℹ️ In dieser Phase gibt es keine Kämpfe.', ephemeral: true });
+    if (!fights.length) return interaction.reply({ content: 'ℹ️ In dieser Phase gibt es keine Kämpfe.', flags: MessageFlags.Ephemeral });
 
     const perPage = 15;
     const pages = Math.ceil(fights.length / perPage);
@@ -14,6 +17,6 @@ module.exports = {
 
     const embeds = [];
     for (let i = 0; i < fights.length; i += perPage) embeds.push(mk(fights.slice(i, i + perPage), i / perPage));
-    return interaction.reply({ embeds, ephemeral: true });
+    return interaction.reply({ embeds, flags: MessageFlags.Ephemeral });
   }
 };

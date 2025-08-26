@@ -1,10 +1,13 @@
-const { EmbedBuilder } = require('discord.js');
+const {
+  MessageFlags,
+  EmbedBuilder
+} = require('discord.js');
 const { KLASSE_LISTE } = require('../../config/constants');
 
 module.exports = {
   async execute(interaction, daten) {
     const entries = Object.entries(daten.teilnehmer || {});
-    if (!entries.length) return interaction.reply({ content: 'Noch keine Anmeldungen.', ephemeral: true });
+    if (!entries.length) return interaction.reply({ content: 'Noch keine Anmeldungen.', flags: MessageFlags.Ephemeral });
 
     const byClass = new Map();
     for (const [id, p] of entries) {
@@ -21,6 +24,6 @@ module.exports = {
       });
 
     const embed = new EmbedBuilder().setColor(0x00aeff).setTitle('👥 Teilnehmer').addFields(list).setFooter({ text: `${entries.length} Teilnehmer` });
-    return interaction.reply({ embeds: [embed], ephemeral: true });
+    return interaction.reply({ embeds: [embed], flags: MessageFlags.Ephemeral });
   }
 };

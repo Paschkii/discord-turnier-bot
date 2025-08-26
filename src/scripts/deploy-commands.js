@@ -16,52 +16,43 @@ const guildOnly = (b) =>
     .setContexts([InteractionContextType.Guild]);
 
 const commands = [
-  // Public
-  guildOnly(
-    new SlashCommandBuilder()
-      .setName('hilfe')
-      .setDescription('Zeigt die Hilfeseite mit allen Befehlen')
-  ),
-
-  guildOnly(
-    new SlashCommandBuilder()
-      .setName('turnier_start')
-      .setDescription('Startet das Turnier')
-      .setDefaultMemberPermissions(PermissionsBitField.Flags.Administrator)
-  ),
-
-  guildOnly(
-    new SlashCommandBuilder()
-      .setName('turnier_stop')
-      .setDescription('Beendet das Turnier')
-      .setDefaultMemberPermissions(PermissionsBitField.Flags.Administrator)
-  ),
-
+  // === Public ===
+  // /anmelden
   guildOnly(
     new SlashCommandBuilder()
       .setName('anmelden')
       .setDescription('Melde dich für das Turnier an')
   ),
-
-  guildOnly(
-    new SlashCommandBuilder()
-      .setName('teilnehmer')
-      .setDescription('Zeigt alle angemeldeten Teilnehmer')
-  ),
-
+  // /arena
   guildOnly(
     new SlashCommandBuilder()
       .setName('arena')
       .setDescription('Zufällige Arena-Auswahl')
   ),
-
+  // /gruppen
   guildOnly(
     new SlashCommandBuilder()
-      .setName('turnier_advance')
-      .setDescription('Admin: Schaltet die nächste Turnierphase (Quali → Gruppen → KO → Finale)')
-      .setDefaultMemberPermissions(PermissionsBitField.Flags.Administrator)
+      .setName('gruppen')
+      .setDescription('Zeigt die Gruppenübersicht der aktuellen Phase')
   ),
-
+  // Hall of Fame
+  guildOnly(
+    new SlashCommandBuilder()
+      .setName('hall_of_fame')
+      .setDescription('Zeigt vergangene Turniere (Podium)')
+  ),
+  // /hilfe
+  guildOnly(
+    new SlashCommandBuilder()
+      .setName('hilfe')
+      .setDescription('Zeigt die Hilfeseite mit allen Befehlen')
+  ),
+  // /kampfinfo
+  guildOnly(
+    new SlashCommandBuilder()
+      .setName('kampfinfo')
+      .setDescription('Zeigt alle Kämpfe der aktuellen Phase (offen & beendet)')
+  ),
   // /offene_kaempfe (mit optionalem Filter)
   guildOnly(
     new SlashCommandBuilder()
@@ -73,12 +64,31 @@ const commands = [
           .setRequired(false)
       )
   ),
+  // /regeln
+  guildOnly(
+  new SlashCommandBuilder()
+    .setName('regeln')
+    .setDescription('Zeigt die Turnierregeln')
+  ),
+  // /teilnehmer
+  guildOnly(
+    new SlashCommandBuilder()
+      .setName('teilnehmer')
+      .setDescription('Zeigt alle angemeldeten Teilnehmer')
+  ),
+  // /turnier_info
+  guildOnly(
+    new SlashCommandBuilder()
+      .setName('turnier_info')
+      .setDescription('Zeigt eine kompakte Übersicht zum laufenden Turnier')
+  ),
 
-  // ✅ Admin-Setzbefehl: Gruppe → Kampf → Punkte im Modal
+  // === Admin ===
+  // /ergebnis_setzen
   guildOnly(
     new SlashCommandBuilder()
       .setName('ergebnis_setzen')
-      .setDescription('Admin: Setzt/Korrigiert das Ergebnis eines Kampfes')
+      .setDescription('Setzt/Korrigiert das Ergebnis eines Kampfes')
       .addStringOption(opt =>
         opt.setName('gruppe')
           .setDescription('Gruppe auswählen (Autocomplete)')
@@ -98,12 +108,11 @@ const commands = [
       )
       .setDefaultMemberPermissions(PermissionsBitField.Flags.Administrator)
   ),
-
-  // Admin-Helper: zufällige Ergebnisse
+  // /ergebnisse_wuerfeln
   guildOnly(
     new SlashCommandBuilder()
       .setName('ergebnisse_wuerfeln')
-      .setDescription('Admin: Setzt zufällige Ergebnisse für die aktuelle Phase')
+      .setDescription('Setzt zufällige Ergebnisse für die aktuelle Phase')
       .addBooleanOption(opt =>
         opt.setName('nur_offene')
           .setDescription('Nur offene Kämpfe würfeln (empfohlen)')
@@ -111,46 +120,7 @@ const commands = [
       )
       .setDefaultMemberPermissions(PermissionsBitField.Flags.Administrator)
   ),
-
-  guildOnly(
-    new SlashCommandBuilder()
-      .setName('gruppen')
-      .setDescription('Zeigt die Gruppenübersicht der aktuellen Phase')
-  ),
-
-  guildOnly(
-    new SlashCommandBuilder()
-      .setName('kampfinfo')
-      .setDescription('Zeigt alle Kämpfe der aktuellen Phase (offen & beendet)')
-  ),
-  guildOnly(
-    new SlashCommandBuilder()
-      .setName('turnier_info')
-      .setDescription('Zeigt eine kompakte Übersicht zum laufenden Turnier')
-  ),
-
-
-  // Hall of Fame (public)
-  guildOnly(
-    new SlashCommandBuilder()
-      .setName('hall_of_fame')
-      .setDescription('Zeigt vergangene Turniere (Podium)')
-  ),
-
-  // Hall of Fame löschen (Admin)
-  guildOnly(
-    new SlashCommandBuilder()
-      .setName('hof_loeschen')
-      .setDescription('Admin: Löscht einen Hall-of-Fame-Eintrag per Turniernummer')
-      .addIntegerOption(opt =>
-        opt.setName('nummer')
-          .setDescription('Turniernummer (z. B. 3 für Nemesis Turnier #3)')
-          .setRequired(true)
-      )
-      .setDefaultMemberPermissions(PermissionsBitField.Flags.Administrator)
-  ),
-
-  // 🔥 Fake-Anmeldungen (Admin)
+  // /fake_anmeldungen
   guildOnly(
     new SlashCommandBuilder()
       .setName('fake_anmeldungen')
@@ -167,16 +137,26 @@ const commands = [
       )
       .setDefaultMemberPermissions(PermissionsBitField.Flags.Administrator)
   ),
-
-  // 🆕 Pott setzen (Admin, öffnet Modal)
+  // Hall of Fame löschen
+  guildOnly(
+    new SlashCommandBuilder()
+      .setName('hof_loeschen')
+      .setDescription('Admin: Löscht einen Hall-of-Fame-Eintrag per Turniernummer')
+      .addIntegerOption(opt =>
+        opt.setName('nummer')
+          .setDescription('Turniernummer (z. B. 3 für Nemesis Turnier #3)')
+          .setRequired(true)
+      )
+      .setDefaultMemberPermissions(PermissionsBitField.Flags.Administrator)
+  ),
+  // /pott_setzen
   guildOnly(
     new SlashCommandBuilder()
       .setName('pott_setzen')
       .setDescription('Admin: Pott & Aufteilung (Top 3) setzen')
       .setDefaultMemberPermissions(PermissionsBitField.Flags.Administrator)
   ),
-
-  // Teilnehmer ersetzen/umstellen (Admin)
+  // /teilnehmer_ersetzen
   guildOnly(
     new SlashCommandBuilder()
       .setName('teilnehmer_ersetzen')
@@ -203,7 +183,27 @@ const commands = [
       )
       .setDefaultMemberPermissions(PermissionsBitField.Flags.Administrator)
   ),
-
+  // /turnier_start
+  guildOnly(
+    new SlashCommandBuilder()
+      .setName('turnier_start')
+      .setDescription('Startet das Turnier')
+      .setDefaultMemberPermissions(PermissionsBitField.Flags.Administrator)
+  ),
+  // /turnier_stop
+  guildOnly(
+    new SlashCommandBuilder()
+      .setName('turnier_stop')
+      .setDescription('Beendet das Turnier')
+      .setDefaultMemberPermissions(PermissionsBitField.Flags.Administrator)
+  ),
+  // /turnier_advance
+  guildOnly(
+    new SlashCommandBuilder()
+      .setName('turnier_advance')
+      .setDescription('Schaltet in die nächste Turnierphase (Quali → Gruppen → KO → Finale)')
+      .setDefaultMemberPermissions(PermissionsBitField.Flags.Administrator)
+  ),
 ].map(c => c.toJSON());
 
 const rest = new REST({ version: '10' }).setToken(process.env.DISCORD_TOKEN);

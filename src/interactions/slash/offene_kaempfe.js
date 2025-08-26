@@ -1,10 +1,13 @@
-const { EmbedBuilder } = require('discord.js');
+const {
+  MessageFlags,
+  EmbedBuilder
+} = require('discord.js');
 
 module.exports = {
   async execute(interaction, daten) {
     const filter = (interaction.options.getString('filter') || '').toLowerCase();
     const open = (daten.kämpfe || []).filter(f => !f.finished);
-    if (!open.length) return interaction.reply({ content: '🎉 Keine offenen Kämpfe in der aktuellen Phase.', ephemeral: true });
+    if (!open.length) return interaction.reply({ content: '🎉 Keine offenen Kämpfe in der aktuellen Phase.', flags: MessageFlags.Ephemeral });
 
     const fmt = (f) => {
       const a = f.playerA?.name ?? '—';
@@ -23,7 +26,7 @@ module.exports = {
         })
       : open;
 
-    if (!filtered.length) return interaction.reply({ content: `ℹ️ Keine offenen Kämpfe passend zum Filter „${filter}“.`, ephemeral: true });
+    if (!filtered.length) return interaction.reply({ content: `ℹ️ Keine offenen Kämpfe passend zum Filter „${filter}“.`, flags: MessageFlags.Ephemeral });
 
     const pages = Math.ceil(filtered.length / 20);
     const chunks = [];
@@ -34,6 +37,6 @@ module.exports = {
         .setTitle(`⏳ Offene Kämpfe${pages>1?` (Seite ${idx+1}/${pages})`:''}`)
         .setDescription(chunk.map(fmt).join('\n'))
     );
-    return interaction.reply({ embeds, ephemeral: true });
+    return interaction.reply({ embeds, flags: MessageFlags.Ephemeral });
   }
 };

@@ -1,11 +1,17 @@
-const { ActionRowBuilder, ButtonBuilder, ButtonStyle, EmbedBuilder } = require('discord.js');
+const {
+  ActionRowBuilder,
+  ButtonBuilder,
+  ButtonStyle,
+  EmbedBuilder,
+  MessageFlags,
+} = require('discord.js');
 const { listFinishedTournaments } = require('../../store/turniere');
 const { formatMK } = require('../../utils');
 
 module.exports = {
   async execute(interaction) {
     const rows = await listFinishedTournaments();
-    if (!rows.length) return interaction.reply({ content: '📭 Noch keine abgeschlossenen Turniere.', ephemeral: true });
+    if (!rows.length) return interaction.reply({ content: '📭 Noch keine abgeschlossenen Turniere.', flags: MessageFlags.Ephemeral });
 
     const entries = rows.map(r => {
       const name = r.name || 'Turnier';
@@ -39,6 +45,6 @@ module.exports = {
       );
       components.push(row);
     }
-    return interaction.reply({ embeds: [firstPage], components, ephemeral: false });
+    return interaction.reply({ embeds: [firstPage], components });
   }
 };

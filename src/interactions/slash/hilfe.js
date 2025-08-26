@@ -1,4 +1,8 @@
-const { EmbedBuilder, PermissionsBitField } = require('discord.js');
+const {
+  EmbedBuilder,
+  MessageFlags,
+  PermissionsBitField
+} = require('discord.js');
 const { HELP_COMMANDS } = require('../../config/constants');
 
 module.exports = {
@@ -13,6 +17,6 @@ module.exports = {
     const helpEmbed = new EmbedBuilder().setColor(0x00AEFF).setTitle('🤖 Befehlsübersicht')
       .setDescription(isAdmin ? 'Hier sind alle verfügbaren Slash-Befehle (inkl. Admin-Befehle unten):' : 'Hier sind alle verfügbaren Slash-Befehle:')
       .addFields(fields).setFooter({ text: 'Nemesis Turnierbot' }).setTimestamp();
-    return interaction.reply({ embeds: [helpEmbed], ephemeral: true });
+    return interaction.reply({ embeds: [helpEmbed], flags: MessageFlags.Ephemeral });
   }
 };

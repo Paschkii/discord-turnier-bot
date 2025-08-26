@@ -1,6 +1,11 @@
 // === Imports ===
 const { PHASE_LABEL } = require('../config/constants');
-const { EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
+const {
+  ActionRowBuilder,
+  ButtonBuilder,
+  ButtonStyle,
+  EmbedBuilder
+} = require('discord.js');
 const { computeGroupStandings } = require('../services/tournament');
 
 // Gruppen-Embeds für Discord

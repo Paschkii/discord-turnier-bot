@@ -1,10 +1,13 @@
-const { PermissionsBitField } = require('discord.js');
+const {
+  MessageFlags,
+  PermissionsBitField
+} = require('discord.js');
 const { ladeTurnier, speichereTurnier } = require('../../store/turniere');
 
 module.exports = {
   async execute(interaction) {
     if (!interaction.member.permissions.has(PermissionsBitField.Flags.Administrator)) {
-      return interaction.reply({ content: '⛔ Nur Admins.', ephemeral: true });
+      return interaction.reply({ content: '⛔ Nur Admins.', flags: MessageFlags.Ephemeral });
     }
     const oldId = interaction.options.getString('alte_id', true);
     const newId = interaction.options.getString('neue_id', false);
@@ -12,7 +15,7 @@ module.exports = {
     const newClass = interaction.options.getString('klasse', false);
 
     const daten = await ladeTurnier();
-    if (!daten?.teilnehmer?.[oldId]) return interaction.reply({ content: '❌ Alter Teilnehmer nicht gefunden.', ephemeral: true });
+    if (!daten?.teilnehmer?.[oldId]) return interaction.reply({ content: '❌ Alter Teilnehmer nicht gefunden.', flags: MessageFlags.Ephemeral });
 
     const t = daten.teilnehmer[oldId];
     if (newId && newId !== oldId) {
@@ -32,6 +35,6 @@ module.exports = {
     }
 
     await speichereTurnier(daten);
-    return interaction.reply({ content: '✏️ Teilnehmer aktualisiert.', ephemeral: false });
+    return interaction.reply({ content: '✏️ Teilnehmer aktualisiert.' });
   }
 };

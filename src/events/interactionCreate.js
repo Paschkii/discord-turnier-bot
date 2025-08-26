@@ -4,6 +4,7 @@ const handleModals       = require('../interactions/modals');
 const handleSelects      = require('../interactions/selects');
 const handleAutocomplete = require('../interactions/autocomplete');
 const { ladeTurnier }    = require('../store/turniere');
+const { MessageFlags }   = require('discord.js');
 
 async function onInteractionCreate(interaction) {
   if (
@@ -41,7 +42,7 @@ async function onInteractionCreate(interaction) {
 
   } catch (err) {
     console.error('[interactionCreate]', err);
-    const reply = { content: '❌ Unerwarteter Fehler bei der Interaktion.', ephemeral: true };
+    const reply = { content: '❌ Unerwarteter Fehler bei der Interaktion.', flags: MessageFlags.Ephemeral };
     return interaction.replied || interaction.deferred
       ? interaction.followUp(reply)
       : interaction.reply(reply);

@@ -1,14 +1,18 @@
-const { StringSelectMenuBuilder, ActionRowBuilder } = require('discord.js');
+const {
+  ActionRowBuilder,
+  MessageFlags,
+  StringSelectMenuBuilder
+} = require('discord.js');
 const { KLASSE_LISTE } = require('../../config/constants');
 
 module.exports = {
   async execute(interaction, daten) {
     // kein DB-Call hier – wir vertrauen auf den Snapshot aus dem Router
     if (!daten || daten.status !== 'offen') {
-      return interaction.reply({ content: '❌ Keine Anmeldung möglich (Turnier nicht offen).', ephemeral: true });
+      return interaction.reply({ content: '❌ Keine Anmeldung möglich (Turnier nicht offen).', flags: MessageFlags.Ephemeral });
     }
     if (daten.teilnehmer && daten.teilnehmer[interaction.user.id]) {
-      return interaction.reply({ content: '⚠️ Du bist bereits angemeldet.', ephemeral: true });
+      return interaction.reply({ content: '⚠️ Du bist bereits angemeldet.', flags: MessageFlags.Ephemeral });
     }
 
     const select = new StringSelectMenuBuilder()
@@ -19,6 +23,6 @@ module.exports = {
       })));
 
     const row = new ActionRowBuilder().addComponents(select);
-    return interaction.reply({ content: 'Bitte wähle deine Klasse:', components: [row], ephemeral: true });
+    return interaction.reply({ content: 'Bitte wähle deine Klasse:', components: [row], flags: MessageFlags.Ephemeral });
   }
 };

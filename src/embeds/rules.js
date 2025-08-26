@@ -1,8 +1,15 @@
-// === Regeln Embeds ===
-function buildRulesEmbeds(daten) {
-  const name = daten?.name || 'Nemesis Turnier';
+// src/embeds/rules.js
+const { EmbedBuilder } = require('discord.js');
+const { HELP_COMMANDS } = require('../config/constants');
+
+// Eine Zeile pro Command, z. B. "• /anmelden — Meldet dich ..."
+const lineOf = (c) => `• \`/${c.name}\` — ${c.description}`;
+
+function buildRulesEmbeds(daten = {}) {
+  const name  = daten?.name  || 'Nemesis Turnier';
   const modus = daten?.modus || '1v1';
 
+  // 1) Regeln & Ablauf (dein bestehender Ablauf bleibt erhalten)
   const rules = new EmbedBuilder()
     .setColor(0xffd700)
     .setTitle(`🏆 ${name} — Regeln & Ablauf`)
@@ -18,25 +25,20 @@ function buildRulesEmbeds(daten) {
       {
         name: 'Ablauf',
         value: [
-          '• **Quali**: Best-of-1, Paarungen zufällig.',
-          '• **Gruppenphase** (4 Gruppen): Round-Robin, Best-of-3, Alle 3 Kämpfe müssen gespielt werden.',
-          '• **K.O.-Phase** Best-of-3, Eindeutige Ergebnisse reichen (2:0 = 2:1):',
-          '  ‣ 8–10 TN → Top 1 je Gruppe → **Halbfinale**',
-          '  ‣ 12–22 TN → Top 2 je Gruppe → **Viertelfinale**',
-          '  ‣ 24 TN → Top 4 je Gruppe → **Achtelfinale**',
-          '• **Finale** inkl. **Spiel um Platz 3**.',
+          '• **Quali**: Best-of-1, Paarungen zufällig. Markiert Spieler als **Top**/**Low**.',
+          '• **Gruppenphase** (4 Gruppen, 2×Top / 2×Low): Round-Robin, **Best-of-3**, alle 3 Spiele werden erfasst.',
+          '• **K.O.-Phase**: getrennte Brackets **Top** und **Low** (Viertelfinale → Halbfinale, Bo3).',
+          '• **Finale**: Sieger Top vs Sieger Low (Bo3) + **Spiel um Platz 3** (Bo3).',
         ].join('\n'),
       },
       {
         name: 'Ergebnisse',
-        value: [
-          '• Ergebnisse werden von Schuh-fa mit **/ergebnis_setzen** eingetragen.',
-        ].join('\n'),
+        value: '• Ergebnisse werden per **/ergebnis_setzen** eingetragen.',
       },
       {
         name: 'Wertung in Gruppen',
         value: [
-          '• Punkte = Summe der **gewonnenen Kämpfe**.',
+          '• Punkte = Summe der **gewonnenen Spiele**.',
           '• Bei Punktgleichheit am Cut → **Tie-Breaker (Best-of-1)**.',
         ].join('\n'),
       },
@@ -46,41 +48,39 @@ function buildRulesEmbeds(daten) {
           '• **/gruppen** → Mitglieder + Kämpfe je Gruppe (Pagination).',
           '• **/kampfinfo** → alle Kämpfe der aktuellen Phase.',
           '• **/offene_kaempfe** → noch ausstehende Matches.',
-          '• **/turnier_info** → Zeigt die Turnierinfos (Laufendes Turnier, Pott, Spieler mit Status).',
+          '• **/turnier_info** → Laufendes Turnier, Pott, Spieler mit Status.',
         ].join('\n'),
       },
       {
         name: 'Fairplay',
         value: [
           '• Höflicher Umgang, kein Ghosting/Cheating.',
-          '• Wechsel der Klasse nach Beginn des Turniers nicht mehr möglich',
-          '• Eure Sets könnt ihr natürlich tauschen wie ihr wollt.',
+          '• Klassenwechsel nach Turnierstart nicht mehr möglich.',
+          '• Sets dürft ihr beliebig tauschen.',
         ].join('\n'),
       },
       {
         name: 'Hall of Fame',
-        value: [
-          '• Nach Abschluss: Podium in **/hall_of_fame** (🥇🥈🥉).',
-        ].join('\n'),
+        value: '• Nach Abschluss: Podium in **/hall_of_fame** (🥇🥈🥉).',
       },
     )
     .setFooter({ text: `Modus: ${modus}` })
     .setTimestamp();
 
+  // 2) Alle Befehle dynamisch aus HELP_COMMANDS
+  const userCmds  = HELP_COMMANDS.filter(c => !c.admin).map(lineOf);
+  const adminCmds = HELP_COMMANDS.filter(c =>  c.admin).map(lineOf);
+
   const commands = new EmbedBuilder()
     .setColor(0x00aeff)
-    .setTitle('⚙️ Wichtige Befehle')
+    .setTitle('⚙️ Alle Befehle')
     .addFields(
-      { name: 'anmelden', description: 'Meldet dich für das Turnier an.', admin: false },
-      { name: 'arena', description: 'Zufällige Arena-Auswahl.', admin: false },
-      { name: 'gruppen', description: 'Zeigt Gruppen + Kämpfe (Pagination).', admin: false },
-      { name: 'kampfinfo', description: 'Übersicht: Kämpfe der aktuellen Phase (Pagination).', admin: false },
-      { name: 'teilnehmer', description: 'Zeigt alle Teilnehmer an.', admin: false },
-      { name: 'offene_kaempfe', description: 'Listet offene Kämpfe der aktuellen Phase (optional Filter).', admin: false },
-      { name: 'hall_of_fame', description: 'Zeigt vergangene Turniere (Podium).', admin: false },
-      { name: 'turnier_info', description: 'Komplette Turnier-Übersicht (Pott & Status).', admin: false },
+      { name: 'User-Befehle',  value: userCmds.join('\n')  || '—' },
+      { name: 'Admin-Befehle', value: adminCmds.join('\n') || '—' },
     )
     .setTimestamp();
 
   return [rules, commands];
 }
+
+module.exports = { buildRulesEmbeds };

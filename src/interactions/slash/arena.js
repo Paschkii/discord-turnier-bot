@@ -6,6 +6,6 @@ module.exports = {
     const keys = Object.keys(arenaData);
     const kategorie = keys[Math.floor(Math.random() * keys.length)];
     const arena = arenaData[kategorie][Math.floor(Math.random() * arenaData[kategorie].length)];
-    return interaction.reply({ content: `🎲 **Instanz**: ${instanz} | **Kategorie**: ${kategorie} | **Arena**: ${arena}`, ephemeral: false });
+    return interaction.reply({ content: `🎲 **Instanz**: ${instanz} | **Kategorie**: ${kategorie} | **Arena**: ${arena}` });
   }
 };

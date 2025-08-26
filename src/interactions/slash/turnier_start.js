@@ -1,19 +1,24 @@
-const { PermissionsBitField } = require('discord.js');
 const {
-  getLatestTournamentRow, getNextTournamentNumber, insertNewTournamentRow
+  MessageFlags,
+  PermissionsBitField
+} = require('discord.js');
+const {
+  getLatestTournamentRow,
+  getNextTournamentNumber,
+  insertNewTournamentRow
 } = require('../../store/turniere');
 const { buildRulesEmbeds } = require('../../embeds/rules');
 
 module.exports = {
   async execute(interaction) {
     if (!interaction.member.permissions.has(PermissionsBitField.Flags.Administrator)) {
-      await interaction.reply({ content: '⛔ Nur Admins können das Turnier starten.', ephemeral: true });
+      await interaction.reply({ content: '⛔ Nur Admins können das Turnier starten.', flags: MessageFlags.Ephemeral });
       return;
     }
 
     const latest = await getLatestTournamentRow();
     if (latest && ['offen','quali','gruppen','ko','finale'].includes(latest.status)) {
-      await interaction.reply({ content: '⚠️ Es läuft bereits ein Turnier.', ephemeral: true });
+      await interaction.reply({ content: '⚠️ Es läuft bereits ein Turnier.', flags: MessageFlags.Ephemeral });
       return;
     }
 
@@ -24,8 +29,8 @@ module.exports = {
 
     await insertNewTournamentRow(neuesTurnier);
 
-    await interaction.reply({ content: `✅ Neues Turnier gestartet: **${name}** (Modus **${modus}**)`, ephemeral: false });
+    await interaction.reply({ content: `✅ Neues Turnier gestartet: **${name}** (Modus **${modus}**)` });
     const embeds = buildRulesEmbeds(neuesTurnier);
-    await interaction.followUp({ embeds, ephemeral: false });
+    await interaction.followUp({ embeds });
   }
 };
