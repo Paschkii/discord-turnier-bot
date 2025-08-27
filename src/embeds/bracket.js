@@ -6,7 +6,6 @@ const {
   StringSelectMenuBuilder,
   StringSelectMenuOptionBuilder
 } = require('discord.js');
-const { GROUP_EMOJI } = require('../services/tournament');
 const { KLASSE_LISTE } = require('../config/constants');
 
 const ROUND_LABELS = { QF: 'Viertelfinale', SF: 'Halbfinale', F: 'Finale' };
