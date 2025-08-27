@@ -4,30 +4,33 @@ const {
   ButtonBuilder,
   ButtonStyle,
   EmbedBuilder,
-  StringSelectMenuBuilder
+  StringSelectMenuBuilder,
+  StringSelectMenuOptionBuilder
 } = require('discord.js');
 const { GROUP_EMOJI } = require('../services/tournament');
 
-const ROUND_LABELS = {
-  QF: 'Viertelfinale',
-  SF: 'Halbfinale',
-  F:  'Finale',
-};
+const ROUND_LABELS = { QF: 'Viertelfinale', SF: 'Halbfinale', F: 'Finale' };
 
 function pickFights(daten, bucket, roundKey) {
   const fights = Array.isArray(daten.kämpfe) ? daten.kämpfe : [];
+
   if (roundKey === 'F') {
-    // Finale & Bronze liegen bei dir unter phase 'finale'
+    // Finale & Bronze liegen unter phase 'finale'
     return fights.filter(f => f.phase === 'finale');
   }
+
+  // Robuster Filter: erst über f.bucket, dann Fallback über groupName-Strings
+  const byBucket = (f) =>
+    (typeof f.bucket === 'string' && f.bucket === bucket) ||
+    (typeof f.groupName === 'string' && (
+      (bucket === 'top' && (f.groupName.includes('Top') || f.groupName.includes('⬆️'))) ||
+      (bucket === 'low' && (f.groupName.includes('Low') || f.groupName.includes('⬇️')))
+    ));
+
   const roundLabel = ROUND_LABELS[roundKey];
-  const bucketWord = bucket === 'top' ? 'Top' : 'Low';
-  return fights.filter(f =>
-    f.phase === 'ko' &&
-    typeof f.groupName === 'string' &&
-    f.groupName.includes(bucketWord) &&
-    f.groupName.includes(roundLabel)
-  ).sort((a,b) => (a.localId||a.id||0) - (b.localId||b.id||0));
+  return fights
+    .filter(f => f.phase === 'ko' && byBucket(f) && typeof f.groupName === 'string' && f.groupName.includes(roundLabel))
+    .sort((a, b) => (a.localId || a.id || 0) - (b.localId || b.id || 0));
 }
 
 function fmtFight(f) {
@@ -61,15 +64,22 @@ function makeControls(bucket, roundKey) {
   const roundSelect = new StringSelectMenuBuilder()
     .setCustomId(`brkt_round_${bucket}_${roundKey}`)
     .setPlaceholder('Runde wählen')
-    .addOptions([
-      { label: 'Viertelfinale', value: 'QF', emoji: '4️⃣' },
-      { label: 'Halbfinale',    value: 'SF', emoji: '2️⃣' },
-      { label: 'Finale',        value: 'F',  emoji: '🏁' },
-    ])
-    .setMinValues(1).setMaxValues(1).setDefaultValues([roundKey]);
+    .addOptions(
+      new StringSelectMenuOptionBuilder().setLabel('Viertelfinale').setValue('QF').setEmoji('4️⃣').setDefault(roundKey === 'QF'),
+      new StringSelectMenuOptionBuilder().setLabel('Halbfinale').setValue('SF').setEmoji('2️⃣').setDefault(roundKey === 'SF'),
+      new StringSelectMenuOptionBuilder().setLabel('Finale').setValue('F').setEmoji('🏁').setDefault(roundKey === 'F'),
+    )
+    .setMinValues(1)
+    .setMaxValues(1);
 
   const row2 = new ActionRowBuilder().addComponents(roundSelect);
-  return [row1, row2];
+  return roundKey === 'F' ? [row1, row2] : [row1, row2];
+}
+
+function titleOf(bucket, roundKey) {
+  const bucketText = roundKey === 'F' ? '' : (bucket === 'low' ? ' ⬇️ Low' : ' ⬆️ Top');
+  const roundText = ROUND_LABELS[roundKey] || roundKey;
+  return `🏟️ Bracket — ${roundText}${bucketText}`;
 }
 
 function buildBracketEmbed(daten, bucket = 'top', roundKey = 'QF') {
@@ -78,6 +88,7 @@ function buildBracketEmbed(daten, bucket = 'top', roundKey = 'QF') {
 
   const list = pickFights(daten, bucket, roundKey);
   let body = '';
+
   if (roundKey === 'F') {
     const final = list.find(f => f.localId === 1) || list[0];
     const bronze = list.find(f => f.localId === 2) || list[1];
@@ -86,16 +97,15 @@ function buildBracketEmbed(daten, bucket = 'top', roundKey = 'QF') {
     body += '\nBronze:\n';
     body += bronze ? `  • ${fmtFight(bronze)}\n` : '  • —\n';
   } else {
-    // QF / SF kompakt in monospaced Codeblock
     body += list.map((f, i) => {
-      const label = roundKey === 'QF' ? `QF${i+1}` : `SF${i+1}`;
+      const label = roundKey === 'QF' ? `QF${i + 1}` : `SF${i + 1}`;
       return `${label}: ${fmtFight(f)}`;
     }).join('\n');
   }
 
   const embed = new EmbedBuilder()
     .setColor(0x5865F2)
-    .setTitle(title)
+    .setTitle(titleOf(bucket, roundKey))
     .setDescription('```' + (body || '—') + '```');
 
   const components = makeControls(bucket, roundKey);
