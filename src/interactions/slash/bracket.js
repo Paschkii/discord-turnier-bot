@@ -1,14 +1,11 @@
-const { buildBracketEmbed } = require('../../embeds/bracket');
+const { MessageFlags } = require('discord.js');
+const { ladeTurnier } = require('../../store/turniere');
+const { buildDashboard, defaultStateFromData } = require('../../views/dashboard');
 
-module.exports = {
-  async execute(interaction, daten) {
-    // Bestimme sinnvolle Defaults anhand des Status
-    const isFinal = (daten.status === 'finale');
-    const roundKey = isFinal ? 'F'
-                   : (daten.groups?.[0]?.name || '').includes('Halbfinale') ? 'SF'
-                   : 'QF';
-    const bucket = (roundKey === 'F') ? 'top' : 'top'; // Start auf Top; per Button tauschbar
-    const view = buildBracketEmbed(daten, bucket, roundKey);
-    return interaction.reply({ ...view });
-  }
-};
+async function execute(interaction) {
+  const daten = await ladeTurnier();
+  const s = defaultStateFromData(daten, 'b'); // Tab Bracket (QF/SF/F)
+  const view = await buildDashboard(interaction, daten, s);
+  return interaction.reply({ ...view, flags: MessageFlags.Ephemeral });
+}
+module.exports = { execute };

@@ -1,4 +1,3 @@
-// Kompakter Bracket-View als Embed mit Codeblock
 const {
   ActionRowBuilder,
   ButtonBuilder,
@@ -8,18 +7,27 @@ const {
   StringSelectMenuOptionBuilder
 } = require('discord.js');
 const { GROUP_EMOJI } = require('../services/tournament');
+const { KLASSE_LISTE } = require('../config/constants');
 
 const ROUND_LABELS = { QF: 'Viertelfinale', SF: 'Halbfinale', F: 'Finale' };
+const emojiOf = Object.fromEntries(KLASSE_LISTE.map(k => [k.name, k.emoji]));
 
+// Holt aktuelle + archivierte Kämpfe zusammen
+function getAllFights(daten) {
+  const now = Array.isArray(daten.kämpfe) ? daten.kämpfe : [];
+  const old = Array.isArray(daten.kämpfeArchiv) ? daten.kämpfeArchiv : [];
+  return [...old, ...now];
+}
+
+// Fights je Auswahl bestimmen (robust gegen Labels)
 function pickFights(daten, bucket, roundKey) {
-  const fights = Array.isArray(daten.kämpfe) ? daten.kämpfe : [];
+  const fights = getAllFights(daten);
 
   if (roundKey === 'F') {
     // Finale & Bronze liegen unter phase 'finale'
     return fights.filter(f => f.phase === 'finale');
   }
 
-  // Robuster Filter: erst über f.bucket, dann Fallback über groupName-Strings
   const byBucket = (f) =>
     (typeof f.bucket === 'string' && f.bucket === bucket) ||
     (typeof f.groupName === 'string' && (
@@ -27,20 +35,22 @@ function pickFights(daten, bucket, roundKey) {
       (bucket === 'low' && (f.groupName.includes('Low') || f.groupName.includes('⬇️')))
     ));
 
-  const roundLabel = ROUND_LABELS[roundKey];
+  const label = ROUND_LABELS[roundKey];
   return fights
-    .filter(f => f.phase === 'ko' && byBucket(f) && typeof f.groupName === 'string' && f.groupName.includes(roundLabel))
+    .filter(f => f.phase === 'ko' && byBucket(f) && typeof f.groupName === 'string' && f.groupName.includes(label))
     .sort((a, b) => (a.localId || a.id || 0) - (b.localId || b.id || 0));
 }
 
+// Kürzere, handyfreundliche Ausgabe
 function fmtFight(f) {
-  const a = f.playerA?.name ?? '—';
-  const b = f.playerB?.name ?? '—';
-  const done = f.finished ? '✅' : '⏳';
-  const sa = Number.isInteger(f.scoreA) ? f.scoreA : '–';
-  const sb = Number.isInteger(f.scoreB) ? f.scoreB : '–';
-  const bo = f.bestOf ? ` (Bo${f.bestOf})` : '';
-  return `${a}  vs  ${b}   [${sa}:${sb} ${done}]${bo}`;
+  const A = f.playerA || {}, B = f.playerB || {};
+  const aE = A.klasse ? ` ${emojiOf[A.klasse] || ''}` : '';
+  const bE = B.klasse ? ` ${emojiOf[B.klasse] || ''}` : '';
+  const sA = Number.isInteger(f.scoreA) ? f.scoreA : 0;
+  const sB = Number.isInteger(f.scoreB) ? f.scoreB : 0;
+  const title = `• **${A.name || '—'}**${aE} vs **${B.name || '—'}**${bE}`;
+  const score = `  Ergebnis: ${sA}:${sB}`;
+  return `${title}\n${score}`;
 }
 
 function makeControls(bucket, roundKey) {
@@ -73,40 +83,35 @@ function makeControls(bucket, roundKey) {
     .setMaxValues(1);
 
   const row2 = new ActionRowBuilder().addComponents(roundSelect);
-  return roundKey === 'F' ? [row1, row2] : [row1, row2];
+  return roundKey === 'F' ? [row2] : [row1, row2];
 }
 
 function titleOf(bucket, roundKey) {
   const bucketText = roundKey === 'F' ? '' : (bucket === 'low' ? ' ⬇️ Low' : ' ⬆️ Top');
   const roundText = ROUND_LABELS[roundKey] || roundKey;
-  return `🏟️ Bracket — ${roundText}${bucketText}`;
+  return `🏛️ ${roundText}${bucketText}`;
 }
 
 function buildBracketEmbed(daten, bucket = 'top', roundKey = 'QF') {
-  const emoji = bucket === 'top' ? GROUP_EMOJI.top : GROUP_EMOJI.low;
-  const title = `Turnierbaum — ${emoji} ${bucket === 'top' ? 'Top' : 'Low'} — ${ROUND_LABELS[roundKey]}`;
-
-  const list = pickFights(daten, bucket, roundKey);
+  const fights = pickFights(daten, bucket, roundKey);
   let body = '';
 
   if (roundKey === 'F') {
-    const final = list.find(f => f.localId === 1) || list[0];
-    const bronze = list.find(f => f.localId === 2) || list[1];
-    body += 'Finale:\n';
-    body += final ? `  • ${fmtFight(final)}\n` : '  • —\n';
-    body += '\nBronze:\n';
-    body += bronze ? `  • ${fmtFight(bronze)}\n` : '  • —\n';
+    // Erwartet: [Finale, Bronze] mit localId 1/2 (fallback, falls anders)
+    const list = fights.slice().sort((a, b) => (a.localId || a.id || 0) - (b.localId || b.id || 0));
+    const final  = list[0];
+    const bronze = list[1];
+    body += '**Finale**\n' + (final ? fmtFight(final) : '—') + '\n\n';
+    body += '**Bronze**\n' + (bronze ? fmtFight(bronze) : '—');
   } else {
-    body += list.map((f, i) => {
-      const label = roundKey === 'QF' ? `QF${i + 1}` : `SF${i + 1}`;
-      return `${label}: ${fmtFight(f)}`;
-    }).join('\n');
+    body = fights.map(fmtFight).join('\n\n');
   }
 
   const embed = new EmbedBuilder()
     .setColor(0x5865F2)
     .setTitle(titleOf(bucket, roundKey))
-    .setDescription('```' + (body || '—') + '```');
+    .setDescription(body || '—')
+    .setTimestamp();
 
   const components = makeControls(bucket, roundKey);
   return { embeds: [embed], components };
