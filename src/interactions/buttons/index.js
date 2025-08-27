@@ -1,7 +1,7 @@
-const groupsPagination = require('./groupsPagination');
-const hofPagination    = require('./hofPagination');
-const startTieBreakers = require('./startTieBreakers');
-const bracketNav = require('./bracketNav');
+const groupsPagination  = require('./groupsPagination');
+const hofPagination     = require('./hofPagination');
+const startTieBreakers  = require('./startTieBreakers');
+const bracketNav        = require('./bracketNav');
 
 module.exports = async function handleButtons(interaction, daten) {
   const id = interaction.customId || '';

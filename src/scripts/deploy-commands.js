@@ -34,6 +34,12 @@ const commands = [
         .setMinValue(1)
         .setMaxValue(3))
   ),
+  // /bracket
+  guildOnly(
+    new SlashCommandBuilder()
+      .setName('bracket')
+      .setDescription('Zeigt das Bracket der aktuellen Phase')
+  ),
   // /gruppen
   guildOnly(
     new SlashCommandBuilder()
