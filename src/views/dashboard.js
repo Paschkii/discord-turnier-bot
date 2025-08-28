@@ -83,6 +83,15 @@ const phaseLabel = (v) =>
   v === 'ko' ? 'K.O.-Phase' :
   v === 'F' ? 'Finale' : v;
 
+  // Gruppennamen robust vergleichen (ignoriert ⬆️/⬇️-Suffixe)
+function matchGroupName(fGroupName, groupObj) {
+  const strip = (s) => (s || '').trim().replace(/\s*[⬆️⬇️]\s*$/,'');
+  const fg  = strip(fGroupName);
+  const g1  = strip(groupObj.displayName || '');
+  const g2  = strip(groupObj.name || '');
+  return fg && (fg === g1 || fg === g2);
+}
+
 // ===== Tab-Renderer =====
 function buildTabGroups(daten, state) {
   const { phaseOrRound } = state;
@@ -129,17 +138,17 @@ function fmtFight2L(f) {
 function buildTabMatches(daten, state, openOnly = false) {
   const { phaseOrRound, page = 1 } = state;
 
-  // ⬇️ NEU: stabile Reihenfolge
+  // stabile Gruppen-Reihenfolge
   const groupsAll = (daten.groups || [])
     .slice()
     .sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
 
-  // … ab hier wie gehabt, aber überall `groupsAll` statt `daten.groups` verwenden
   const perPageGroups = 2;
   const pages = Math.max(1, Math.ceil(groupsAll.length / perPageGroups));
   const p = Math.min(Math.max(1, page || 1), pages);
   const slice = groupsAll.slice((p - 1) * perPageGroups, p * perPageGroups);
 
+  // fights der gewählten Phase + Archiv
   const all = [ ...(daten.kämpfeArchiv || []), ...(daten.kämpfe || []) ];
   const pool =
     phaseOrRound === 'q'  ? all.filter(f => f.phase === 'quali')   :
@@ -147,16 +156,21 @@ function buildTabMatches(daten, state, openOnly = false) {
     phaseOrRound === 'ko' ? all.filter(f => f.phase === 'ko')      :
     phaseOrRound === 'F'  ? all.filter(f => f.phase === 'finale')  : all;
 
+  // pro Gruppe passende Fights suchen (robust) – fallback: g.matches
   const grouped = slice.map(g => {
-    let gf = pool.filter(f => (f.groupName || '') === (g.name || g.displayName || ''));
+    let gf = pool.filter(f => matchGroupName(f.groupName, g));
+    if (!gf.length && Array.isArray(g.matches)) gf = g.matches.slice();
     if (openOnly) gf = gf.filter(f => !f.finished);
+    // konsistente Sortierung
+    gf.sort((a,b) => (a.localId || a.id || 0) - (b.localId || b.id || 0));
     return { group: g, fights: gf };
   });
 
+  // nur ein einfacher Zeilenabstand (vorher: \n\n fühlte sich „zu viel“ an)
   const embeds = grouped.map(({ group: g, fights: gf }) => new EmbedBuilder()
     .setColor(openOnly ? 0xFFAA00 : 0x5865F2)
     .setTitle(`📜 ${g.displayName || g.name} — ${phaseLabel(phaseOrRound)}`)
-    .setDescription(gf.map(fmtFight2L).join('\n\n') || '—')
+    .setDescription(gf.map(fmtFight2L).join('\n') || '—')
     .setTimestamp()
   );
 
