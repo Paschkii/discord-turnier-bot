@@ -83,52 +83,17 @@ const phaseLabel = (v) =>
   v === 'ko' ? 'K.O.-Phase' :
   v === 'F' ? 'Finale' : v;
 
-  // Gruppennamen hübsch (mit ⬆️/⬇️) anzeigen
-function labelForGroupName(daten, groupName) {
-  const g = (daten.groups || []).find(x => x.name === groupName || x.displayName === groupName);
-  if (!g) return groupName;
-  if (g.displayName) return g.displayName;
-  if (g.bucket === 'top') return `${g.name} ⬆️`;
-  if (g.bucket === 'low') return `${g.name} ⬇️`;
-  return g.name;
-}
-
-// Reihenfolge der Gruppen: möglichst wie im Turnier (daten.groups), sonst in Auftretens-Reihenfolge der Fights
-function orderGroupNames(daten, names, poolFights) {
-  const orderFromGroups = (daten.groups || []).map(g => g.displayName || g.name);
-  const idx = new Map(orderFromGroups.map((n, i) => [n, i]));
-
-  // Auftretens-Reihenfolge aus Fights (stabil anhand localId/id)
-  const seen = new Set();
-  const byAppear = [];
-  poolFights
-    .slice()
-    .sort((a, b) => (a.localId || a.id || 0) - (b.localId || b.id || 0))
-    .forEach(f => {
-      const gn = (f.groupName && String(f.groupName).trim()) || 'Kolossium';
-      if (!seen.has(gn)) { seen.add(gn); byAppear.push(gn); }
-    });
-
-  const posAppear = new Map(byAppear.map((n, i) => [n, i]));
-
-  return names.slice().sort((a, b) => {
-    const ia = idx.has(a) ? idx.get(a) : Infinity;
-    const ib = idx.has(b) ? idx.get(b) : Infinity;
-    if (ia !== ib) return ia - ib;               // zuerst nach daten.groups
-    const pa = posAppear.has(a) ? posAppear.get(a) : Infinity;
-    const pb = posAppear.has(b) ? posAppear.get(b) : Infinity;
-    if (pa !== pb) return pa - pb;               // sonst nach Auftreten in Fights
-    return a.localeCompare(b, 'de', { sensitivity: 'base' }); // letzter Fallback
-  });
-}
-
 // ===== Tab-Renderer =====
 function buildTabGroups(daten, state) {
   const { phaseOrRound } = state;
 
-  const embeds = (daten.groups || []).map(g => {
+  const groupsAll = (daten.groups || [])
+    .slice()
+    .sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
+
+  const embeds = groupsAll.map(g => {
     const lines = (g.members || []).map(m =>
-      `• **${m.name}** ${classEmoji(m.klasse)} ${m.klasse}` // <-- kein tagEmoji mehr
+      `• **${m.name}** ${classEmoji(m.klasse)} ${m.klasse}`
     );
     return new EmbedBuilder()
       .setColor(0x00AEFF)
@@ -136,7 +101,6 @@ function buildTabGroups(daten, state) {
       .setDescription(lines.join('\n') || '—')
       .setTimestamp();
   });
-
   return { embeds, totalPages: 1 };
 }
 
@@ -165,43 +129,36 @@ function fmtFight2L(f) {
 function buildTabMatches(daten, state, openOnly = false) {
   const { phaseOrRound, page = 1 } = state;
 
-  // Pool = alle Kämpfe der gewählten Phase (inkl. Archiv)
-  const pool = fightsForPhase(daten, phaseOrRound);
+  // ⬇️ NEU: stabile Reihenfolge
+  const groupsAll = (daten.groups || [])
+    .slice()
+    .sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
 
-  // Map: groupName -> fights[]
-  const byGroup = new Map();
-  for (const f of pool) {
-    const gName = (f.groupName && String(f.groupName).trim()) || 'Kolossium';
-    if (openOnly && f.finished) continue; // nur offene
-    if (!byGroup.has(gName)) byGroup.set(gName, []);
-    byGroup.get(gName).push(f);
-  }
-
-  // Gruppennamen geordnet (Turnier-Reihenfolge, sonst Auftretens-Reihenfolge)
-  const rawNames = Array.from(byGroup.keys());
-  const groupNames = orderGroupNames(daten, rawNames, pool);
-
-  // Pagination: 2 Gruppen pro Seite (Buttons steuern page)
+  // … ab hier wie gehabt, aber überall `groupsAll` statt `daten.groups` verwenden
   const perPageGroups = 2;
-  const pages = Math.max(1, Math.ceil(groupNames.length / perPageGroups));
+  const pages = Math.max(1, Math.ceil(groupsAll.length / perPageGroups));
   const p = Math.min(Math.max(1, page || 1), pages);
-  const slice = groupNames.slice((p - 1) * perPageGroups, p * perPageGroups);
+  const slice = groupsAll.slice((p - 1) * perPageGroups, p * perPageGroups);
 
-  // Embeds bauen (Titel mit Top/Low-Emoji über displayName)
-  const embeds = slice.map(name => {
-    const gf = (byGroup.get(name) || [])
-      .slice()
-      .sort((a,b) => (a.localId || a.id || 0) - (b.localId || b.id || 0));
+  const all = [ ...(daten.kämpfeArchiv || []), ...(daten.kämpfe || []) ];
+  const pool =
+    phaseOrRound === 'q'  ? all.filter(f => f.phase === 'quali')   :
+    phaseOrRound === 'gr' ? all.filter(f => f.phase === 'gruppen') :
+    phaseOrRound === 'ko' ? all.filter(f => f.phase === 'ko')      :
+    phaseOrRound === 'F'  ? all.filter(f => f.phase === 'finale')  : all;
 
-    // keine doppelte Leerzeile zwischen Fights: 1x \n reicht (jeder Fight ist 2-zeilig)
-    const desc = gf.map(fmtFight2L).join('\n') || '—';
-
-    return new EmbedBuilder()
-      .setColor(openOnly ? 0xFFAA00 : 0x5865F2)
-      .setTitle(`📜 ${labelForGroupName(daten, name)} — ${phaseLabel(phaseOrRound)}`)
-      .setDescription(desc)
-      .setTimestamp();
+  const grouped = slice.map(g => {
+    let gf = pool.filter(f => (f.groupName || '') === (g.displayName || g.name));
+    if (openOnly) gf = gf.filter(f => !f.finished);
+    return { group: g, fights: gf };
   });
+
+  const embeds = grouped.map(({ group: g, fights: gf }) => new EmbedBuilder()
+    .setColor(openOnly ? 0xFFAA00 : 0x5865F2)
+    .setTitle(`📜 ${g.displayName || g.name} — ${phaseLabel(phaseOrRound)}`)
+    .setDescription(gf.map(fmtFight2L).join('\n\n') || '—')
+    .setTimestamp()
+  );
 
   return { embeds, totalPages: pages };
 }
@@ -299,11 +256,11 @@ async function buildDashboard(_interaction, daten, state) {
   }
 
   const rows = [];
-  rows.push(rowTabs(tab, phaseOrRound, 'x', 0, page));
-  rows.push(rowPhaseOrRound(tab, phaseOrRound, 'x', 0, page, daten)); // << immer anzeigen!
+  rows.push(rowTabs(tab, phaseOrRound, page));
+  rows.push(rowPhaseOrRound(tab, phaseOrRound, undefined, undefined, page, daten));
 
   if (tab === 'm' || tab === 'o') {
-    rows.push(rowPager(tab, phaseOrRound, 'x', 0, page, totalPages));
+    rows.push(rowPager(tab, phaseOrRound, page, totalPages));
   }
 
   return { embeds: view.embeds || [], components: rows };

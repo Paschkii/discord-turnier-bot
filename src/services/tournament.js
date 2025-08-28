@@ -71,7 +71,8 @@ function createGroupsPhaseTopLow(teilnehmerMap) {
     { name: nameLow1, bucket: 'low', displayName: `${nameLow1} ${GROUP_EMOJI.low}`, members: L1, matches: [] },
     { name: nameLow2, bucket: 'low', displayName: `${nameLow2} ${GROUP_EMOJI.low}`, members: L2, matches: [] },
   ];
-
+  groups = groups.map((g, i) => ({ ...g, order: i }));
+  
   // Round-Robin Matches pro Gruppe (Bo3)
   const fights = [];
   let globalId = 1;
