@@ -168,7 +168,7 @@ function buildTabMatches(daten, state, openOnly = false) {
     let gf = pool.filter(f => fightBelongsToGroup(f, g));
     if (openOnly) gf = gf.filter(f => !f.finished);
 
-    const desc = gf.map(fmtFight2L).join('\n\n') || '—';
+    const desc = gf.map(fmtFight2L).join('\n') || '—';
 
     return new EmbedBuilder()
       .setColor(openOnly ? 0xFFAA00 : 0x5865F2)

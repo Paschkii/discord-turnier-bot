@@ -1,10 +1,10 @@
-const handleSlash        = require('../interactions/slash');
-const handleButtons      = require('../interactions/buttons');
-const handleModals       = require('../interactions/modals');
-const handleSelects      = require('../interactions/selects');
-const handleAutocomplete = require('../interactions/autocomplete');
-const { ladeTurnier }    = require('../store/turniere');
-const { MessageFlags }   = require('discord.js');
+const handleSlash         = require('../interactions/slash');
+const handleButtons       = require('../interactions/buttons');
+const handleModals        = require('../interactions/modals');
+const handleSelects       = require('../interactions/selects');
+const autocomplete        = require('../interactions/autocomplete');
+const { ladeTurnier }     = require('../store/turniere');
+const { MessageFlags }    = require('discord.js');
 
 async function onInteractionCreate(interaction) {
   if (
@@ -31,7 +31,13 @@ async function onInteractionCreate(interaction) {
       };
     }
 
-    if (interaction.isAutocomplete())     return handleAutocomplete(interaction, daten);
+    if (interaction.isAutocomplete()) {
+      const h = autocomplete.get(interaction.commandName);
+      if (h && typeof h.run === 'function') return h.run(interaction);
+      // Fallback: leere Liste zurückgeben, damit Discord zufrieden ist
+      try { return interaction.respond([]); } catch {}
+      return;
+    }
     if (interaction.isChatInputCommand()) {
       console.log('[slash] cmd =', interaction.commandName);
       return handleSlash(interaction, daten);
