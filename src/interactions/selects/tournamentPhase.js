@@ -6,10 +6,10 @@ module.exports = {
     const id = interaction.customId || '';
     if (!id.startsWith('tnav|phase|')) return;
 
-    // tnav|phase|<tab>|<phaseOrRound>|<bucket>|<groupIx>|<page>
-    const [, , tab, _oldPhase, bucket, groupIx, _page] = id.split('|');
+    // tnav|phase|<tab>|<phaseOrRound>|x|x|<page>
+    const [, , tab, _oldPhase, , , pageStr] = id.split('|');
     const newVal = interaction.values?.[0];
-    const state = { tab, phaseOrRound: newVal, bucket, groupIx, page: 1 };
+    const state  = { tab, phaseOrRound: newVal, page: 1 };
 
     const daten = await ladeTurnier();
     await interaction.deferUpdate();

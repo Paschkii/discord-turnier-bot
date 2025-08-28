@@ -1,48 +1,60 @@
-const { buildDashboard } = require('../../views/dashboard');
+const { MessageFlags } = require('discord.js');
+const { buildDashboard, defaultStateFromData } = require('../../views/dashboard');
 const { ladeTurnier } = require('../../store/turniere');
 
+// Hilfsparser für alle tnav-IDs (tab | page | phase)
+function parseStateFromId(parts, interaction) {
+  const kind = parts[1];
+
+  if (kind === 'tab') {
+    // tnav|tab|<tab>|<phase>|x|x|<page>
+    const tab         = parts[2];
+    const phaseOrRound= parts[3];
+    return { tab, phaseOrRound, page: 1 }; // beim Tabwechsel immer Seite 1
+  }
+
+  if (kind === 'page') {
+    // Lang:  tnav|page|prev|<tab>|<phase>|x|x|<p>
+    // Kurz:  tnav|page|prev|<tab>|<phase>|<p>
+    const dir          = parts[2];                            // prev|next|noop
+    const tab          = parts[3];
+    const phaseOrRound = parts[4];
+    const pStr         = parts[7] || parts[5];                // lang ODER kurz
+    const curr         = parseInt(pStr, 10) || 1;
+    const page         = dir === 'next' ? curr + 1 : dir === 'prev' ? curr - 1 : curr;
+    return { tab, phaseOrRound, page: Math.max(1, page) };
+  }
+
+  if (kind === 'phase') {
+    // tnav|phase|<tab>|<currentPhase>|...|...|<page>
+    const tab          = parts[2] || 'g';
+    // Bei Select-Menüs kommt der neue Wert über interaction.values[0]
+    const selected     = (interaction.values && interaction.values[0]) || parts[3] || 'gr';
+    return { tab, phaseOrRound: selected, page: 1 }; // Phasenwechsel -> Seite 1
+  }
+
+  return null; // Unbekannter Typ
+}
+
 module.exports = {
+  canHandle: (id) => typeof id === 'string' && id.startsWith('tnav|'),
+
   async run(interaction) {
-    const id = interaction.customId || '';
+    const id    = interaction.customId || '';
     if (!id.startsWith('tnav|')) return;
 
-    // Struktur: tnav|<kind>|...
     const parts = id.split('|');
-    const kind = parts[1];
-
-    let state = null;
-
-    if (kind === 'tab') {
-      // tnav|tab|<tab>|<phase>|<bucket>|<groupIx>|<page>
-      const [, , tab, phase, bucket, groupIx, pageStr] = parts;
-      state = { tab, phaseOrRound: phase, bucket, groupIx, page: parseInt(pageStr, 10) || 1 };
-      // Defaults anpassen
-      if (tab === 'b' && !['QF','SF','F'].includes(state.phaseOrRound)) state.phaseOrRound = 'QF';
-      if (tab !== 'b' && ['QF','SF','F'].includes(state.phaseOrRound)) state.phaseOrRound = 'gr';
-      state.page = 1;
-    }
-
-    if (kind === 'page') {
-      // tnav|page|prev|<tab>|<phase>|<bucket>|<groupIx>|<page>
-      const [, , dir, tab, phase, bucket, groupIx, pageStr] = parts;
-      const current = parseInt(pageStr, 10) || 1;
-      state = {
-        tab, phaseOrRound: phase, bucket, groupIx,
-        page: Math.max(1, current + (dir === 'next' ? 1 : dir === 'prev' ? -1 : 0))
-      };
-    }
-
-    if (kind === 'bucket') {
-      // tnav|bucket|<t|l>|b|<round>|<t|l>|<groupIx>|<page>
-      const [, , b, _tab, round, _dupB, groupIx, pageStr] = parts;
-      state = { tab: 'b', phaseOrRound: round, bucket: b, groupIx, page: parseInt(pageStr, 10) || 1 };
-    }
-
-    if (!state) return; // noop (z.B. page|noop)
+    const state = parseStateFromId(parts, interaction);
+    if (!state) return; // noop
 
     const daten = await ladeTurnier();
+    if (!daten) {
+      return interaction.reply({ content: '❌ Kein aktives Turnier.', flags: MessageFlags.Ephemeral });
+    }
+
+    const finalState = state || defaultStateFromData(daten, 'g');
     await interaction.deferUpdate();
-    const view = await buildDashboard(interaction, daten, state);
+    const view = await buildDashboard(interaction, daten, state, finalState);
     return interaction.editReply(view);
   }
 };

@@ -1,7 +1,7 @@
+const bracketNav        = require('./bracketNav');
 const groupsPagination  = require('./groupsPagination');
 const hofPagination     = require('./hofPagination');
 const startTieBreakers  = require('./startTieBreakers');
-const bracketNav        = require('./bracketNav');
 const tournamentNav     = require('./tournamentNav');
 
 module.exports = async function handleButtons(interaction, daten) {
