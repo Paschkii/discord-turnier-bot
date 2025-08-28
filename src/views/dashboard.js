@@ -15,6 +15,24 @@ function rowTabs(tab, phase, page) {
   );
 }
 
+// Matcht Fight → Gruppe robust (DisplayName/Name/mit/ohne "— …")
+function fightBelongsToGroup(f, g) {
+  const fg = (f.groupName || '').trim();
+  const gn = (g.displayName || g.name || '').trim();
+  if (!fg || !gn) return false;
+  if (fg === gn) return true;
+
+  // vor dem Gedankenstrich normalisieren ("Astrub ⬆️ — Viertelfinale")
+  const fgBase = fg.split('—')[0].trim();
+  const gnBase = gn.split('—')[0].trim();
+  if (fgBase === gnBase) return true;
+
+  // letzte Sicherheitsnetze (vorsichtig, aber praktisch)
+  if (fg.includes(gn) || gn.includes(fg)) return true;
+
+  return false;
+}
+
 // Welche Phasen/Runden sind im Turnier überhaupt vertreten?
 function phasesPresent(d) {
   const fights = [ ...(d.kämpfeArchiv || []), ...(d.kämpfe || []) ];
@@ -147,7 +165,6 @@ function buildTabMatches(daten, state, openOnly = false) {
   const pool = fightsForPhase(daten, phaseOrRound);
 
   const embeds = groupsAll.map(g => {
-    // robustes Matching (DisplayName/Name/Subset) – nutzt fightBelongsToGroup()
     let gf = pool.filter(f => fightBelongsToGroup(f, g));
     if (openOnly) gf = gf.filter(f => !f.finished);
 
