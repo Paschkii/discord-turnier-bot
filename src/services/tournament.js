@@ -48,57 +48,82 @@ function createQualificationFromTeilnehmerMap(teilnehmerMap) {
 
 // === Gruppenphase Top/Low mit alten Namen + Pfeil am Ende ===
 // Erwartung: nach der Quali steht in teilnehmerMap[id].tag 'Top' oder 'Low' (alles andere = Low)
+// services/tournament.js
+
 function createGroupsPhaseTopLow(teilnehmerMap) {
-  const all = Object.entries(teilnehmerMap).map(([id, p]) => ({
-    id, name: p.name, klasse: p.klasse, tag: (p.tag === 'Top' ? 'Top' : 'Low')
-  }));
+  const names = themedGroupNames(4); // vorhandene Gruppennamen beibehalten
 
-  const top = all.filter(p => p.tag === 'Top');
-  const low = all.filter(p => p.tag !== 'Top');
+  const top = [];
+  const low = [];
+  for (const [id, p] of Object.entries(teilnehmerMap || {})) {
+    const entry = { id, name: p.name, klasse: p.klasse };
+    (p.tag === 'Top' ? top : low).push(entry);
+  }
 
-  // 2 Gruppen je Bucket, balanced (eine Gruppe wird „überladen“, wenn ungerade)
-  const [T1 = [], T2 = []] = splitIntoGroups(top, 2);
-  const [L1 = [], L2 = []] = splitIntoGroups(low, 2);
+  // deterministisch sortieren
+  const byName = (a, b) => (a.name || '').localeCompare(b.name || '', 'de', { sensitivity: 'base' });
+  top.sort(byName);
+  low.sort(byName);
 
-  // Alte Gruppennamen weiterverwenden
-  const names = themedGroupNames(4);
-  const [nameTop1, nameTop2, nameLow1, nameLow2] = names;
+  // in 2 Buckets splitten (Überlauf automatisch verteilt)
+  const splitInto = (arr, k) =>
+    arr.reduce((acc, cur, i) => { acc[i % k].push(cur); return acc; }, Array.from({ length: k }, () => []));
 
-  // Gruppenobjekte — displayName: "Astrub ⬆️" / "Bonta ⬇️"
-  const groups = [
-    { name: nameTop1, bucket: 'top', displayName: `${nameTop1} ${GROUP_EMOJI.top}`, members: T1, matches: [] },
-    { name: nameTop2, bucket: 'top', displayName: `${nameTop2} ${GROUP_EMOJI.top}`, members: T2, matches: [] },
-    { name: nameLow1, bucket: 'low', displayName: `${nameLow1} ${GROUP_EMOJI.low}`, members: L1, matches: [] },
-    { name: nameLow2, bucket: 'low', displayName: `${nameLow2} ${GROUP_EMOJI.low}`, members: L2, matches: [] },
-  ];
-  groups = groups.map((g, i) => ({ ...g, order: i }));
-  
-  // Round-Robin Matches pro Gruppe (Bo3)
-  const fights = [];
-  let globalId = 1;
-  for (const g of groups) {
-    let localId = 1;
-    for (let i = 0; i < g.members.length; i++) {
-      for (let j = i + 1; j < g.members.length; j++) {
-        const m = {
-          id: globalId++,
+  const [topA, topB] = splitInto(top, 2);
+  const [lowA, lowB] = splitInto(low, 2);
+
+  // Gruppen bauen
+  let order = 0;
+  const groups = [];
+
+  const makeGroup = (members, baseName, bucket) => {
+    const displayName = `${baseName} ${bucket === 'top' ? '⬆️' : '⬇️'}`;
+    // Round-Robin Matches
+    const matches = [];
+    for (let i = 0; i < members.length; i++) {
+      for (let j = i + 1; j < members.length; j++) {
+        matches.push({
+          // id/localId vergeben wir nachher
           phase: 'gruppen',
-          groupName: g.name,     // alter Name als Schlüssel
-          localId,
-          playerA: g.members[i], // enthält klasse
-          playerB: g.members[j],
+          groupName: displayName,   // <<< wichtig für spätere Filter!
+          localId: 0,
+          playerA: members[i],
+          playerB: members[j],
           scoreA: 0, scoreB: 0,
           bestOf: 3,
           finished: false,
           timestamp: null,
           winnerId: null,
-          bucket: g.bucket,      // 'top' | 'low'
-        };
-        g.matches.push({ ...m });
-        fights.push(m);
-        localId++;
+          bucket
+        });
       }
     }
+
+    order += 1;
+    groups.push({
+      name: baseName,
+      displayName,
+      bucket,
+      order,
+      members: members.slice(),
+      matches
+    });
+  };
+
+  makeGroup(topA, names[0], 'top');
+  makeGroup(topB, names[1], 'top');
+  makeGroup(lowA, names[2], 'low');
+  makeGroup(lowB, names[3], 'low');
+
+  // globale Fight-IDs plus lokale Nummern je Gruppe
+  const fights = [];
+  let nextId = 1;
+  for (const g of groups) {
+    g.matches.forEach((m, idx) => {
+      m.id = nextId++;
+      m.localId = idx + 1;
+      fights.push(m);
+    });
   }
 
   return { groups, fights };
