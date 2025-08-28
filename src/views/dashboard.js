@@ -136,45 +136,32 @@ function fmtFight2L(f) {
 
 // Kämpfe je Gruppe (oder alle offenen)
 function buildTabMatches(daten, state, openOnly = false) {
-  const { phaseOrRound, page = 1 } = state;
+  const { phaseOrRound } = state;
 
   // stabile Gruppen-Reihenfolge
   const groupsAll = (daten.groups || [])
     .slice()
     .sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
 
-  const perPageGroups = 2;
-  const pages = Math.max(1, Math.ceil(groupsAll.length / perPageGroups));
-  const p = Math.min(Math.max(1, page || 1), pages);
-  const slice = groupsAll.slice((p - 1) * perPageGroups, p * perPageGroups);
+  // Kämpfe der gewählten Phase (inkl. Archiv)
+  const pool = fightsForPhase(daten, phaseOrRound);
 
-  // fights der gewählten Phase + Archiv
-  const all = [ ...(daten.kämpfeArchiv || []), ...(daten.kämpfe || []) ];
-  const pool =
-    phaseOrRound === 'q'  ? all.filter(f => f.phase === 'quali')   :
-    phaseOrRound === 'gr' ? all.filter(f => f.phase === 'gruppen') :
-    phaseOrRound === 'ko' ? all.filter(f => f.phase === 'ko')      :
-    phaseOrRound === 'F'  ? all.filter(f => f.phase === 'finale')  : all;
-
-  // pro Gruppe passende Fights suchen (robust) – fallback: g.matches
-  const grouped = slice.map(g => {
-    let gf = pool.filter(f => matchGroupName(f.groupName, g));
-    if (!gf.length && Array.isArray(g.matches)) gf = g.matches.slice();
+  const embeds = groupsAll.map(g => {
+    // robustes Matching (DisplayName/Name/Subset) – nutzt fightBelongsToGroup()
+    let gf = pool.filter(f => fightBelongsToGroup(f, g));
     if (openOnly) gf = gf.filter(f => !f.finished);
-    // konsistente Sortierung
-    gf.sort((a,b) => (a.localId || a.id || 0) - (b.localId || b.id || 0));
-    return { group: g, fights: gf };
+
+    const desc = gf.map(fmtFight2L).join('\n\n') || '—';
+
+    return new EmbedBuilder()
+      .setColor(openOnly ? 0xFFAA00 : 0x5865F2)
+      .setTitle(`📜 ${g.displayName || g.name} — ${phaseLabel(phaseOrRound)}`)
+      .setDescription(desc)
+      .setTimestamp();
   });
 
-  // nur ein einfacher Zeilenabstand (vorher: \n\n fühlte sich „zu viel“ an)
-  const embeds = grouped.map(({ group: g, fights: gf }) => new EmbedBuilder()
-    .setColor(openOnly ? 0xFFAA00 : 0x5865F2)
-    .setTitle(`📜 ${g.displayName || g.name} — ${phaseLabel(phaseOrRound)}`)
-    .setDescription(gf.map(fmtFight2L).join('\n') || '—')
-    .setTimestamp()
-  );
-
-  return { embeds, totalPages: pages };
+  // keine Pagination mehr
+  return { embeds, totalPages: 1 };
 }
 
 // K.O.-Bracket (Top/Low/Finale)
@@ -256,15 +243,12 @@ function defaultStateFromData(daten, fallbackTab = 'g') {
 async function buildDashboard(_interaction, daten, state) {
   const { tab, phaseOrRound, bucket = 't', groupIx = 0, page = 1 } = state || defaultStateFromData(daten, 'g');
 
-  let view = { embeds: [] }, totalPages = 1;
   if (tab === 'g') {
     view = buildTabGroups(daten, { phaseOrRound, groupIx });
   } else if (tab === 'm') {
-    view = buildTabMatches(daten, { phaseOrRound, groupIx, page }, false);
-    totalPages = view.totalPages;
+    view = buildTabMatches(daten, { phaseOrRound }, false);
   } else if (tab === 'o') {
-    view = buildTabMatches(daten, { phaseOrRound, groupIx, page }, true);
-    totalPages = view.totalPages;
+    view = buildTabMatches(daten, { phaseOrRound }, true);
   } else {
     view = buildTabBracket(daten, { phaseOrRound, bucket });
   }
@@ -273,8 +257,8 @@ async function buildDashboard(_interaction, daten, state) {
   rows.push(rowTabs(tab, phaseOrRound, page));
   rows.push(rowPhaseOrRound(tab, phaseOrRound, undefined, undefined, page, daten));
 
-  if (tab === 'm' || tab === 'o') {
-    rows.push(rowPager(tab, phaseOrRound, page, totalPages));
+  if ((tab === 'm' || tab === 'o') && (view.totalPages > 1)) {
+    rows.push(rowPager(tab, phaseOrRound, page, view.totalPages));
   }
 
   return { embeds: view.embeds || [], components: rows };
