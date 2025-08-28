@@ -99,7 +99,9 @@ async function execute(interaction) {
         return interaction.reply({ content: `⚠️ Es gibt noch ${unfinished.length} offene Gruppen-Kämpfe.`, flags: MessageFlags.Ephemeral });
       }
 
-      const groupFights = (daten.kämpfe || []).filter(f => f.phase === 'gruppen');
+      const allFights   = [ ...(daten.kämpfeArchiv || []), ...(daten.kämpfe || []) ];
+      const groupFights = allFights.filter(f => f.phase === 'gruppen');
+      
       const standings = computeGroupStandings(groupFights, daten.groups);
       const { topSeeds, lowSeeds, tieBreakers } = determineQualifiedTopLow(standings, daten.groups, 2);
 
