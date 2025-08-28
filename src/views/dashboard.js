@@ -148,7 +148,7 @@ function buildTabMatches(daten, state, openOnly = false) {
     phaseOrRound === 'F'  ? all.filter(f => f.phase === 'finale')  : all;
 
   const grouped = slice.map(g => {
-    let gf = pool.filter(f => (f.groupName || '') === (g.displayName || g.name));
+    let gf = pool.filter(f => (f.groupName || '') === (g.name || g.displayName || ''));
     if (openOnly) gf = gf.filter(f => !f.finished);
     return { group: g, fights: gf };
   });
