@@ -86,9 +86,10 @@ const phaseLabel = (v) =>
 // ===== Tab-Renderer =====
 function buildTabGroups(daten, state) {
   const { phaseOrRound } = state;
+
   const embeds = (daten.groups || []).map(g => {
     const lines = (g.members || []).map(m =>
-      `• **${m.name}** ${classEmoji(m.klasse)} ${m.klasse}${tagEmoji(daten.teilnehmer?.[m.id]) ? ' ' + tagEmoji(daten.teilnehmer?.[m.id]) : ''}`
+      `• **${m.name}** ${classEmoji(m.klasse)} ${m.klasse}` // <-- kein tagEmoji mehr
     );
     return new EmbedBuilder()
       .setColor(0x00AEFF)
@@ -96,6 +97,7 @@ function buildTabGroups(daten, state) {
       .setDescription(lines.join('\n') || '—')
       .setTimestamp();
   });
+
   return { embeds, totalPages: 1 };
 }
 
@@ -123,21 +125,35 @@ function fmtFight2L(f) {
 // Kämpfe je Gruppe (oder alle offenen)
 function buildTabMatches(daten, state, openOnly = false) {
   const { phaseOrRound, page = 1 } = state;
-  const groups = (daten.groups || []);
-  const perPageGroups = 2;
-  const pages = Math.max(1, Math.ceil(groups.length / perPageGroups));
-  const p = Math.min(Math.max(1, page || 1), pages);
-  const slice = groups.slice((p - 1) * perPageGroups, p * perPageGroups);
 
+  // 1) Pool = alle Kämpfe der gewählten Phase (inkl. Archiv)
   const pool = fightsForPhase(daten, phaseOrRound);
 
-  const embeds = slice.map(g => {
-    let gf = pool.filter(f => f.groupName === (g.displayName || g.name));
-    if (openOnly) gf = gf.filter(f => !f.finished);
+  // 2) Map: groupName -> fights[]
+  const byGroup = new Map();
+  for (const f of pool) {
+    const gName = (f.groupName && String(f.groupName).trim()) || 'Kolossium';
+    if (openOnly && f.finished) continue; // nur offene
+    if (!byGroup.has(gName)) byGroup.set(gName, []);
+    byGroup.get(gName).push(f);
+  }
+
+  // 3) Stabile Reihenfolge (alphabetisch nach GroupName)
+  const groupNames = Array.from(byGroup.keys()).sort((a,b) => a.localeCompare(b, 'de', { sensitivity: 'base' }));
+
+  // 4) Pagination: 2 Gruppen pro Seite
+  const perPageGroups = 2;
+  const pages = Math.max(1, Math.ceil(groupNames.length / perPageGroups));
+  const p = Math.min(Math.max(1, page || 1), pages);
+  const slice = groupNames.slice((p - 1) * perPageGroups, p * perPageGroups);
+
+  // 5) Embeds bauen
+  const embeds = slice.map(name => {
+    const gf = (byGroup.get(name) || []).slice().sort((a,b) => (a.localId||a.id||0) - (b.localId||b.id||0));
     const desc = gf.map(fmtFight2L).join('\n\n') || '—';
     return new EmbedBuilder()
       .setColor(openOnly ? 0xFFAA00 : 0x5865F2)
-      .setTitle(`📜 ${g.displayName || g.name} — ${phaseLabel(phaseOrRound)}`)
+      .setTitle(`📜 ${name} — ${phaseLabel(phaseOrRound)}`)
       .setDescription(desc)
       .setTimestamp();
   });
@@ -159,7 +175,7 @@ function buildTabBracket(daten, state) {
     });
     const embed = new EmbedBuilder()
       .setColor(0x5865F2)
-      .setTitle('📜 Kämpfe — Gruppenphase')
+      .setTitle(`📜 Kämpfe — ${phaseLabel(phaseOrRound)}`)
       .setDescription(lines.join('\n') || '—')
       .setTimestamp();
     return { embeds: [embed], totalPages: 1 };
