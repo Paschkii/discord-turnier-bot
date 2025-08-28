@@ -14,15 +14,19 @@ function parseStateFromId(parts, interaction) {
   }
 
   if (kind === 'page') {
-    // Lang:  tnav|page|prev|<tab>|<phase>|x|x|<p>
-    // Kurz:  tnav|page|prev|<tab>|<phase>|<p>
-    const dir          = parts[2];                            // prev|next|noop
-    const tab          = parts[3];
-    const phaseOrRound = parts[4];
-    const pStr         = parts[7] || parts[5];                // lang ODER kurz
-    const curr         = parseInt(pStr, 10) || 1;
-    const page         = dir === 'next' ? curr + 1 : dir === 'prev' ? curr - 1 : curr;
-    return { tab, phaseOrRound, page: Math.max(1, page) };
+  // Kurzform: tnav|page|prev|<tab>|<phase>|<p>
+  // (Optional weiterhin kompatibel mit der alten Langform)
+    const dir   = parts[2];              // prev|next|noop
+    const tab   = parts[3];
+    const phase = parts[4];
+    const pStr  = parts[5] ?? parts[7];  // kurz bevorzugt, sonst lang
+    const curr  = parseInt(pStr, 10) || 1;
+
+    state = {
+      tab,
+      phaseOrRound: phase,
+      page: Math.max(1, curr + (dir === 'next' ? 1 : dir === 'prev' ? -1 : 0)),
+    };
   }
 
   if (kind === 'phase') {

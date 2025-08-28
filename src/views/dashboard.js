@@ -52,36 +52,75 @@ function rowPhaseOrRound(tab, phaseOrRound, _bucket, _groupIx, page, daten) {
 
 function rowPager(tab, phaseOrRound, page, totalPages) {
   const p = Math.min(Math.max(1, page || 1), Math.max(1, totalPages || 1));
-  const prev = new ButtonBuilder()
-    .setCustomId(`tnav|page|prev|${tab}|${phaseOrRound}|${p}`)
-    .setLabel('◀')
-    .setStyle(ButtonStyle.Secondary)
-    .setDisabled(p <= 1);
-  const mid = new ButtonBuilder()
-    .setCustomId('tnav|page|noop|x|x|x|x|x')
-    .setLabel(`Seite ${p}/${Math.max(1, totalPages || 1)}`)
-    .setStyle(ButtonStyle.Secondary)
-    .setDisabled(true);
-  const next = new ButtonBuilder()
-    .setCustomId(`tnav|page|next|${tab}|${phaseOrRound}|${p}`)
-    .setLabel('▶')
-    .setStyle(ButtonStyle.Secondary)
-    .setDisabled(p >= (totalPages || 1));
-  return new ActionRowBuilder().addComponents(prev, mid, next);
+  return new ActionRowBuilder().addComponents(
+    new ButtonBuilder()
+      .setCustomId(`tnav|page|prev|${tab}|${phaseOrRound}|${p}`)
+      .setLabel('◀')
+      .setStyle(ButtonStyle.Secondary)
+      .setDisabled(p <= 1),
+
+    new ButtonBuilder()
+      .setCustomId('tnav|page|noop|x|x|x') // kürzer, konsistent mit Parser
+      .setLabel(`Seite ${p}/${Math.max(1, totalPages || 1)}`)
+      .setStyle(ButtonStyle.Secondary)
+      .setDisabled(true),
+
+    new ButtonBuilder()
+      .setCustomId(`tnav|page|next|${tab}|${phaseOrRound}|${p}`)
+      .setLabel('▶')
+      .setStyle(ButtonStyle.Secondary)
+      .setDisabled(p >= (totalPages || 1)),
+  );
 }
 
 // ===== Helpers für Inhalt =====
 const classEmoji = (k) =>
   KLASSE_LISTE.find(x =>
     x.name === k)?.emoji || '';
-const tagEmoji   = (p) =>
-  p?.tag === 'Top' ? '⬆️' :
-  (p?.tag === 'Low' ? '⬇️' : '');
 const phaseLabel = (v) =>
   v === 'q' ? 'Qualifikation' :
   v === 'gr' ? 'Gruppenphase' :
   v === 'ko' ? 'K.O.-Phase' :
   v === 'F' ? 'Finale' : v;
+
+  // Gruppennamen hübsch (mit ⬆️/⬇️) anzeigen
+function labelForGroupName(daten, groupName) {
+  const g = (daten.groups || []).find(x => x.name === groupName || x.displayName === groupName);
+  if (!g) return groupName;
+  if (g.displayName) return g.displayName;
+  if (g.bucket === 'top') return `${g.name} ⬆️`;
+  if (g.bucket === 'low') return `${g.name} ⬇️`;
+  return g.name;
+}
+
+// Reihenfolge der Gruppen: möglichst wie im Turnier (daten.groups), sonst in Auftretens-Reihenfolge der Fights
+function orderGroupNames(daten, names, poolFights) {
+  const orderFromGroups = (daten.groups || []).map(g => g.displayName || g.name);
+  const idx = new Map(orderFromGroups.map((n, i) => [n, i]));
+
+  // Auftretens-Reihenfolge aus Fights (stabil anhand localId/id)
+  const seen = new Set();
+  const byAppear = [];
+  poolFights
+    .slice()
+    .sort((a, b) => (a.localId || a.id || 0) - (b.localId || b.id || 0))
+    .forEach(f => {
+      const gn = (f.groupName && String(f.groupName).trim()) || 'Kolossium';
+      if (!seen.has(gn)) { seen.add(gn); byAppear.push(gn); }
+    });
+
+  const posAppear = new Map(byAppear.map((n, i) => [n, i]));
+
+  return names.slice().sort((a, b) => {
+    const ia = idx.has(a) ? idx.get(a) : Infinity;
+    const ib = idx.has(b) ? idx.get(b) : Infinity;
+    if (ia !== ib) return ia - ib;               // zuerst nach daten.groups
+    const pa = posAppear.has(a) ? posAppear.get(a) : Infinity;
+    const pb = posAppear.has(b) ? posAppear.get(b) : Infinity;
+    if (pa !== pb) return pa - pb;               // sonst nach Auftreten in Fights
+    return a.localeCompare(b, 'de', { sensitivity: 'base' }); // letzter Fallback
+  });
+}
 
 // ===== Tab-Renderer =====
 function buildTabGroups(daten, state) {
@@ -126,10 +165,10 @@ function fmtFight2L(f) {
 function buildTabMatches(daten, state, openOnly = false) {
   const { phaseOrRound, page = 1 } = state;
 
-  // 1) Pool = alle Kämpfe der gewählten Phase (inkl. Archiv)
+  // Pool = alle Kämpfe der gewählten Phase (inkl. Archiv)
   const pool = fightsForPhase(daten, phaseOrRound);
 
-  // 2) Map: groupName -> fights[]
+  // Map: groupName -> fights[]
   const byGroup = new Map();
   for (const f of pool) {
     const gName = (f.groupName && String(f.groupName).trim()) || 'Kolossium';
@@ -138,22 +177,28 @@ function buildTabMatches(daten, state, openOnly = false) {
     byGroup.get(gName).push(f);
   }
 
-  // 3) Stabile Reihenfolge (alphabetisch nach GroupName)
-  const groupNames = Array.from(byGroup.keys()).sort((a,b) => a.localeCompare(b, 'de', { sensitivity: 'base' }));
+  // Gruppennamen geordnet (Turnier-Reihenfolge, sonst Auftretens-Reihenfolge)
+  const rawNames = Array.from(byGroup.keys());
+  const groupNames = orderGroupNames(daten, rawNames, pool);
 
-  // 4) Pagination: 2 Gruppen pro Seite
+  // Pagination: 2 Gruppen pro Seite (Buttons steuern page)
   const perPageGroups = 2;
   const pages = Math.max(1, Math.ceil(groupNames.length / perPageGroups));
   const p = Math.min(Math.max(1, page || 1), pages);
   const slice = groupNames.slice((p - 1) * perPageGroups, p * perPageGroups);
 
-  // 5) Embeds bauen
+  // Embeds bauen (Titel mit Top/Low-Emoji über displayName)
   const embeds = slice.map(name => {
-    const gf = (byGroup.get(name) || []).slice().sort((a,b) => (a.localId||a.id||0) - (b.localId||b.id||0));
-    const desc = gf.map(fmtFight2L).join('\n\n') || '—';
+    const gf = (byGroup.get(name) || [])
+      .slice()
+      .sort((a,b) => (a.localId || a.id || 0) - (b.localId || b.id || 0));
+
+    // keine doppelte Leerzeile zwischen Fights: 1x \n reicht (jeder Fight ist 2-zeilig)
+    const desc = gf.map(fmtFight2L).join('\n') || '—';
+
     return new EmbedBuilder()
       .setColor(openOnly ? 0xFFAA00 : 0x5865F2)
-      .setTitle(`📜 ${name} — ${phaseLabel(phaseOrRound)}`)
+      .setTitle(`📜 ${labelForGroupName(daten, name)} — ${phaseLabel(phaseOrRound)}`)
       .setDescription(desc)
       .setTimestamp();
   });
