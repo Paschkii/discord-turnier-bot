@@ -22,7 +22,7 @@ function parseStateFromId(parts, interaction) {
     const pStr  = parts[5] ?? parts[7];  // kurz bevorzugt, sonst lang
     const curr  = parseInt(pStr, 10) || 1;
 
-    state = {
+    return {
       tab,
       phaseOrRound: phase,
       page: Math.max(1, curr + (dir === 'next' ? 1 : dir === 'prev' ? -1 : 0)),
@@ -66,8 +66,7 @@ module.exports = {
     }
 
     const finalState = state || defaultStateFromData(daten, 'g');
-    await interaction.deferUpdate();
-    const view = await buildDashboard(interaction, daten, state, finalState);
+    const view = await buildDashboard(interaction, daten, finalState);
     return interaction.editReply(view);
   }
 };

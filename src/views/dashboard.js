@@ -10,7 +10,6 @@ function rowTabs(tab, phase, page) {
   return new ActionRowBuilder().addComponents(
     mk('g','Gruppen'),
     mk('m','Kämpfe'),
-    mk('o','Offene'),
     mk('b','Bracket'),
   );
 }
@@ -41,14 +40,12 @@ function phasesPresent(d) {
   if (fights.some(f => f.phase === 'gruppen')) set.add('gr');
   if (fights.some(f => f.phase === 'ko'))      set.add('ko');
   if (fights.some(f => f.phase === 'finale'))  set.add('F');
-  if (!set.size) {
-    // Fallback: nimm aktuellen Status
-    const s = d.status;
-    if (s === 'quali') set.add('q');
-    else if (s === 'gruppen') set.add('gr');
-    else if (s === 'ko') set.add('ko');
-    else if (s === 'finale') set.add('F');
-  }
+  // Aktuelle Phase immer anzeigen
+  const s = d.status;
+  if (s === 'quali') set.add('q');
+  else if (s === 'gruppen') set.add('gr');
+  else if (s === 'ko') set.add('ko');
+  else if (s === 'finale') set.add('F');
   return Array.from(set);
 }
 
@@ -187,11 +184,13 @@ function buildTabBracket(daten, state) {
 
   // Gruppenphase → Fortschritt je Gruppe
   if (phaseOrRound === 'gr') {
+    const pool = fightsForPhase(daten, 'gr');
     const lines = (daten.groups || []).map(g => {
-      const m = g.matches || [];
-      const done = m.filter(f => f.finished).length;
-      const status = (done === m.length && m.length > 0) ? '✅' : '⏳';
-      return `${g.displayName || g.name}: ${done}/${m.length} Kämpfe ${status}`;
+      const gf = pool.filter(f => fightBelongsToGroup(f, g));
+      const done = gf.filter(f => f.finished).length;
+      const total = gf.length;
+      const status = (done === total && total > 0) ? '✅' : '⏳';
+      return `${g.displayName || g.name}: ${done}/${total} Kämpfe ${status}`;
     });
     const embed = new EmbedBuilder()
       .setColor(0x5865F2)
@@ -264,8 +263,6 @@ async function buildDashboard(_interaction, daten, state) {
     view = buildTabGroups(daten, { phaseOrRound, groupIx });
   } else if (tab === 'm') {
     view = buildTabMatches(daten, { phaseOrRound }, false);
-  } else if (tab === 'o') {
-    view = buildTabMatches(daten, { phaseOrRound }, true);
   } else {
     view = buildTabBracket(daten, { phaseOrRound, bucket });
   }
@@ -274,7 +271,7 @@ async function buildDashboard(_interaction, daten, state) {
   rows.push(rowTabs(tab, phaseOrRound, page));
   rows.push(rowPhaseOrRound(tab, phaseOrRound, undefined, undefined, page, daten));
 
-  if ((tab === 'm' || tab === 'o') && (view.totalPages > 1)) {
+  if (tab === 'm' && (view.totalPages > 1)) {
     rows.push(rowPager(tab, phaseOrRound, page, view.totalPages));
   }
 
