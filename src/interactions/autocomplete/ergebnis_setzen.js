@@ -55,15 +55,14 @@ module.exports = {
     // === Vorschläge für das Feld "kampf"
     if (focused?.name === 'kampf') {
       // gewählte Gruppe (falls gesetzt)
-      const selectedGroupLabel =
-        interaction.options.getString('gruppe') ||
-        (groups[0] ? (groups[0].displayName || groups[0].name) : null);
-
+      const selectedGroupLabel = interaction.options.getString('gruppe') || null;
       const grp = findGroupByLabel(data, selectedGroupLabel);
 
       // Kandidaten poolen: gleiche Gruppe ODER (wenn keine Gruppe gewählt) aktuelle Phase
-      let pool = fights.filter(f => fightBelongsToGroup(f, grp));
-      if (!grp) {
+      let pool;
+      if (grp) {
+        pool = fights.filter(f => fightBelongsToGroup(f, grp));
+      } else {
         const phaseNow = data.status || 'quali';
         pool = fights.filter(f => f.phase === phaseNow);
       }
