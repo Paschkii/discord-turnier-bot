@@ -176,12 +176,19 @@ function createGroupsPhase(teilnehmerMap, gruppenAnzahl = 4) {
 
 // Standings (Punkte = gewonnene Maps)
 function computeGroupStandings(groupFights, groups) {
+  const nameMap = {};
+  for (const g of groups || []) {
+    nameMap[g.name] = g.name;
+    if (g.displayName) nameMap[g.displayName] = g.name;
+  }
+
   const table = new Map();
   for (const f of groupFights) {
     if (!f.finished) continue;
+    const norm = nameMap[f.groupName] || f.groupName;
     const a = f.playerA, b = f.playerB;
-    if (!table.has(a.id)) table.set(a.id, { id: a.id, name: a.name, groupName: f.groupName, points: 0 });
-    if (!table.has(b.id)) table.set(b.id, { id: b.id, name: b.name, groupName: f.groupName, points: 0 });
+    if (!table.has(a.id)) table.set(a.id, { id: a.id, name: a.name, groupName: norm, points: 0 });
+    if (!table.has(b.id)) table.set(b.id, { id: b.id, name: b.name, groupName: norm, points: 0 });
     table.get(a.id).points += f.scoreA;
     table.get(b.id).points += f.scoreB;
   }
@@ -194,8 +201,9 @@ function computeGroupStandings(groupFights, groups) {
   // nach Gruppen aufteilen und sortieren
   const byGroup = {};
   for (const row of table.values()) {
-    byGroup[row.groupName] = byGroup[row.groupName] || [];
-    byGroup[row.groupName].push(row);
+    const key = nameMap[row.groupName] || row.groupName;
+    byGroup[key] = byGroup[key] || [];
+    byGroup[key].push(row);
   }
   for (const g in byGroup) byGroup[g].sort((x, y) => y.points - x.points);
   return byGroup;
