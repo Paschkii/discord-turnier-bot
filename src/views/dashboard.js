@@ -1,12 +1,16 @@
 const { EmbedBuilder, StringSelectMenuBuilder, StringSelectMenuOptionBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
 const { KLASSE_LISTE } = require('../config/constants');
+const { buildBracketEmbed } = require('../embeds/bracket');
 
 // ===== Helpers für Steuer-Elemente =====
-function rowTabs(tab, phase, page) {
-  const mk = (key, label) => new ButtonBuilder()
-    .setCustomId(`tnav|tab|${key}|${phase}|${page}`)
-    .setLabel(label)
-    .setStyle(tab === key ? ButtonStyle.Primary : ButtonStyle.Secondary);
+function rowTabs(tab, phase, page, daten) {
+  const mk = (key, label) => {
+    const def = defaultStateFromData(daten, key).phaseOrRound;
+    return new ButtonBuilder()
+      .setCustomId(`tnav|tab|${key}|${def}|${page}`)
+      .setLabel(label)
+      .setStyle(tab === key ? ButtonStyle.Primary : ButtonStyle.Secondary);
+  };
   return new ActionRowBuilder().addComponents(
     mk('g','Gruppen'),
     mk('m','Kämpfe'),
@@ -49,14 +53,39 @@ function phasesPresent(d) {
   return Array.from(set);
 }
 
+function detectBracketRound(d) {
+  const fights = [ ...(d.kämpfeArchiv || []), ...(d.kämpfe || []) ];
+  if (fights.some(f => f.phase === 'finale')) return 'F';
+  const ko = fights.filter(f => f.phase === 'ko');
+  if (ko.some(f => /(Halbfinale)/i.test(f.groupName || ''))) return 'SF';
+  if (ko.length > 0) return 'QF';
+  return 'gr';
+}
+
+function roundsPresent(d) {
+  const fights = [ ...(d.kämpfeArchiv || []), ...(d.kämpfe || []) ];
+  const set = new Set();
+  if (fights.some(f => f.phase === 'gruppen')) set.add('gr');
+  if (fights.some(f => f.phase === 'ko' && /(Viertelfinale)/i.test(f.groupName || ''))) set.add('QF');
+  if (fights.some(f => f.phase === 'ko' && /(Halbfinale)/i.test(f.groupName || ''))) set.add('SF');
+  if (fights.some(f => f.phase === 'finale')) set.add('F');
+  set.add(detectBracketRound(d));
+  return Array.from(set);
+}
+
 // ein Select – zeigt nur Phasen/Runden, die es wirklich gibt
 function rowPhaseOrRound(tab, phaseOrRound, _bucket, _groupIx, page, daten) {
-  const present = phasesPresent(daten);
-  const label = (v) => v === 'q' ? 'Qualifikation' : v === 'gr' ? 'Gruppenphase' : v === 'ko' ? 'K.O.-Phase' : v === 'F' ? 'Finale' : v;
+  const present = tab === 'b' ? roundsPresent(daten) : phasesPresent(daten);
+  const label = (v) => {
+    if (tab === 'b') {
+      return v === 'gr' ? 'Gruppenphase' : v === 'QF' ? 'Viertelfinale' : v === 'SF' ? 'Halbfinale' : v === 'F' ? 'Finale' : v;
+    }
+    return v === 'q' ? 'Qualifikation' : v === 'gr' ? 'Gruppenphase' : v === 'ko' ? 'K.O.-Phase' : v === 'F' ? 'Finale' : v;
+  };
 
   const sel = new StringSelectMenuBuilder()
     .setCustomId(`tnav|phase|${tab}|${phaseOrRound}|x|x|${page}`)
-    .setPlaceholder('Phase wählen')
+    .setPlaceholder(tab === 'b' ? 'Runde wählen' : 'Phase wählen')
     .addOptions(...present.map(v =>
       new StringSelectMenuOptionBuilder().setLabel(label(v)).setValue(v).setDefault(v === phaseOrRound)
     ))
@@ -180,7 +209,7 @@ function buildTabMatches(daten, state, openOnly = false) {
 
 // K.O.-Bracket (Top/Low/Finale)
 function buildTabBracket(daten, state) {
-  const { phaseOrRound } = state;
+  const { phaseOrRound, bucket = 'top' } = state;
 
   // Gruppenphase → Fortschritt je Gruppe
   if (phaseOrRound === 'gr') {
@@ -201,32 +230,10 @@ function buildTabBracket(daten, state) {
     return { embeds: [embed], totalPages: 1 };
   }
 
-  // K.O.-Phase → zwei Blöcke (Top/Low)
-  if (phaseOrRound === 'ko') {
-    const fights = fightsForPhase(daten, 'ko');
-    const topF = fights.filter(f => (f.bucket === 'top') || /Top|⬆️/.test(f.groupName || ''));
-    const lowF = fights.filter(f => (f.bucket === 'low') || /Low|⬇️/.test(f.groupName || ''));
-    const eTop = new EmbedBuilder().setColor(0x5865F2).setTitle('🏛️ K.O. — Top ⬆️').setDescription(topF.map(fmtFight2L).join('\n\n') || '—').setTimestamp();
-    const eLow = new EmbedBuilder().setColor(0x5865F2).setTitle('🏛️ K.O. — Low ⬇️').setDescription(lowF.map(fmtFight2L).join('\n\n') || '—').setTimestamp();
-    return { embeds: [eTop, eLow], totalPages: 1 };
-  }
-
-  // Finale → Finale + Bronze
-  if (phaseOrRound === 'F') {
-    const fights = fightsForPhase(daten, 'F').slice().sort((a,b)=>(a.localId||a.id||0)-(b.localId||b.id||0));
-    const final  = fights[0], bronze = fights[1];
-    const embed = new EmbedBuilder()
-      .setColor(0x5865F2)
-      .setTitle('🏁 Finale')
-      .setDescription([
-        '**Finale**',
-        final  ? fmtFight2L(final)  : '—',
-        '',
-        '**Bronze**',
-        bronze ? fmtFight2L(bronze) : '—'
-      ].join('\n'))
-      .setTimestamp();
-    return { embeds: [embed], totalPages: 1 };
+  if (['QF','SF','F'].includes(phaseOrRound)) {
+    const view = buildBracketEmbed(daten, bucket, phaseOrRound);
+    const comps = view.components ? view.components.slice(0,1) : [];
+    return { embeds: view.embeds, components: comps, totalPages: 1 };
   }
 
   // Quali / sonst: simple Auflistung
@@ -248,17 +255,16 @@ function defaultStateFromData(daten, fallbackTab = 'g') {
     st === 'ko'      ? 'ko' :
     st === 'finale'  ? 'F'  : 'gr';
 
-  const phaseOrRound =
-    (fallbackTab === 'b')
-      ? (phase === 'F' ? 'F' : (phase === 'ko' ? 'ko' : 'gr'))
-      : phase;
+  const phaseOrRound = (fallbackTab === 'b')
+    ? detectBracketRound(daten)
+    : phase;
 
-  return { tab: fallbackTab, phaseOrRound, bucket: 't', groupIx: 0, page: 1 };
+  return { tab: fallbackTab, phaseOrRound, bucket: 'top', groupIx: 0, page: 1 };
 }
 
 // === Haupt-Builder ===
 async function buildDashboard(_interaction, daten, state) {
-  const { tab, phaseOrRound, bucket = 't', groupIx = 0, page = 1 } = state || defaultStateFromData(daten, 'g');
+  const { tab, phaseOrRound, bucket = 'top', groupIx = 0, page = 1 } = state || defaultStateFromData(daten, 'g');
 
   if (tab === 'g') {
     view = buildTabGroups(daten, { phaseOrRound, groupIx });
@@ -269,12 +275,14 @@ async function buildDashboard(_interaction, daten, state) {
   }
 
   const rows = [];
-  rows.push(rowTabs(tab, phaseOrRound, page));
+  rows.push(rowTabs(tab, phaseOrRound, page, daten));
   rows.push(rowPhaseOrRound(tab, phaseOrRound, undefined, undefined, page, daten));
 
   if (tab === 'm' && (view.totalPages > 1)) {
     rows.push(rowPager(tab, phaseOrRound, page, view.totalPages));
   }
+
+  if (Array.isArray(view.components)) rows.push(...view.components);
 
   return { embeds: view.embeds || [], components: rows };
 }
