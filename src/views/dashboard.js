@@ -189,8 +189,9 @@ function buildTabBracket(daten, state) {
       const gf = pool.filter(f => fightBelongsToGroup(f, g));
       const done = gf.filter(f => f.finished).length;
       const total = gf.length;
-      const status = (done === total && total > 0) ? '✅' : '⏳';
-      return `${g.displayName || g.name}: ${done}/${total} Kämpfe ${status}`;
+      const base = (g.displayName || g.name || '').replace(/\s*[⬆️⬇️]\s*$/, '');
+      const prefix = g.bucket === 'top' ? '⬆️ ' : g.bucket === 'low' ? '⬇️ ' : '';
+      return `${prefix}${base} - ${done}/${total} Kämpfe`;
     });
     const embed = new EmbedBuilder()
       .setColor(0x5865F2)
