@@ -125,7 +125,7 @@ async function execute(interaction) {
       }
 
       // QF je Bucket erzeugen
-      const qf = createTopLowQuarterfinals(topSeeds, lowSeeds); // mit bucket + groupName
+      const qfRaw = createTopLowQuarterfinals(topSeeds, lowSeeds); // mit bucket + groupName
 
       // ✅ Archivieren der Gruppen-Kämpfe, bevor wir überschreiben
       archiveFights(daten);
@@ -133,12 +133,16 @@ async function execute(interaction) {
       daten.kämpfe = qf;
       daten.status = 'ko';
 
-      // Anzeigegruppen (2): KO Top & KO Low
-      const koTop = qf.filter(f => f.bucket === 'top');
-      const koLow = qf.filter(f => f.bucket === 'low');
+      // Anzeigegruppen (2) mit neuen Namen
+      const names = themedGroupNames(2);
+      const baseTop = names[0];
+      const baseLow = names[1];
 
-      const labelTop = `KO ${GROUP_EMOJI.top} Top — Viertelfinale`;
-      const labelLow = `KO ${GROUP_EMOJI.low} Low — Viertelfinale`;
+      const koTop = qfRaw.filter(f => f.bucket === 'top').map((m, i) => ({ ...m, groupName: baseTop, localId: i + 1 }));
+      const koLow = qfRaw.filter(f => f.bucket === 'low').map((m, i) => ({ ...m, groupName: baseLow, localId: i + 1 }));
+
+      const qf = [...koTop, ...koLow];
+      daten.kämpfe = qf;
 
       const memTop = Array.from(new Map(koTop.flatMap(f => [f.playerA, f.playerB]).map(p => [p.id, p])).values());
       const memLow = Array.from(new Map(koLow.flatMap(f => [f.playerA, f.playerB]).map(p => [p.id, p])).values());
@@ -147,17 +151,17 @@ async function execute(interaction) {
       const relabel = (arr, name) => arr.map((m, i) => ({ ...m, groupName: name, localId: i + 1 }));
 
       daten.groups = [
-        { name: labelTop, bucket: 'top', displayName: labelTop, members: memTop, matches: relabel(koTop, labelTop) },
-        { name: labelLow, bucket: 'low', displayName: labelLow, members: memLow, matches: relabel(koLow, labelLow) },
+        { name: baseTop, bucket: 'top', displayName: `${baseTop} ${GROUP_EMOJI.top}`, members: memTop, matches: koTop },
+        { name: baseLow, bucket: 'low', displayName: `${baseLow} ${GROUP_EMOJI.low}`, members: memLow, matches: koLow },
       ];
 
       await speichereTurnier(daten);
       const { embeds, components } = buildPagedGroupReply(daten, 1, 10);
-      return interaction.reply({ content: `⚔️ K.O.-Viertelfinale gestartet (${qf.length} Kämpfe).`, embeds, components });
+        return interaction.reply({ content: `⚔️ K.O.-Viertelfinale gestartet (${qf.length} Kämpfe).`, embeds, components });
     }
 
     // KO (Viertelfinale) → KO (Halbfinale)
-    if (daten.status === 'ko' && (daten.groups?.[0]?.name || '').includes('Viertelfinale')) {
+    if (daten.status === 'ko' && (daten.kämpfe?.length || 0) === 4) {
       const unfinished = (daten.kämpfe || []).filter(f => f.phase === 'ko' && !f.finished);
       if (unfinished.length > 0) {
         return interaction.reply({ content: `⚠️ Es gibt noch ${unfinished.length} offene KO-Kämpfe.`, flags: MessageFlags.Ephemeral });
@@ -176,12 +180,12 @@ async function execute(interaction) {
         return interaction.reply({ content: `❌ Für das Halbfinale werden je 2 Sieger pro Bracket benötigt (Top=${winnersTop.length}, Low=${winnersLow.length}).`, flags: MessageFlags.Ephemeral });
       }
 
-      const topLabel = `KO ${GROUP_EMOJI.top} Top — Halbfinale`;
-      const lowLabel = `KO ${GROUP_EMOJI.low} Low — Halbfinale`;
+      const baseTop = daten.groups.find(g => g.bucket === 'top')?.name || themedGroupNames(2)[0];
+      const baseLow = daten.groups.find(g => g.bucket === 'low')?.name || themedGroupNames(2)[1];
 
       const sf = [
-        { id: 1, phase: 'ko', groupName: topLabel, localId: 1, playerA: winnersTop[0], playerB: winnersTop[1], scoreA: 0, scoreB: 0, bestOf: 3, finished: false, timestamp: null, winnerId: null, bucket: 'top' },
-        { id: 2, phase: 'ko', groupName: lowLabel, localId: 1, playerA: winnersLow[0], playerB: winnersLow[1], scoreA: 0, scoreB: 0, bestOf: 3, finished: false, timestamp: null, winnerId: null, bucket: 'low' },
+        { id: 1, phase: 'ko', groupName: baseTop, localId: 1, playerA: winnersTop[0], playerB: winnersTop[1], scoreA: 0, scoreB: 0, bestOf: 3, finished: false, timestamp: null, winnerId: null, bucket: 'top' },
+        { id: 2, phase: 'ko', groupName: baseLow, localId: 1, playerA: winnersLow[0], playerB: winnersLow[1], scoreA: 0, scoreB: 0, bestOf: 3, finished: false, timestamp: null, winnerId: null, bucket: 'low' },
       ];
 
       // ✅ Archivieren der Viertelfinale vor dem Überschreiben
@@ -193,8 +197,8 @@ async function execute(interaction) {
       const membersLow = Array.from(new Map([sf[1].playerA, sf[1].playerB].map(p => [p.id, p])).values());
 
       daten.groups = [
-        { name: topLabel, bucket: 'top', displayName: topLabel, members: membersTop, matches: [sf[0]] },
-        { name: lowLabel, bucket: 'low', displayName: lowLabel, members: membersLow, matches: [sf[1]] },
+        { name: baseTop, bucket: 'top', displayName: `${baseTop} ${GROUP_EMOJI.top}`, members: membersTop, matches: [sf[0]] },
+        { name: baseLow, bucket: 'low', displayName: `${baseLow} ${GROUP_EMOJI.low}`, members: membersLow, matches: [sf[1]] },
       ];
 
       await speichereTurnier(daten);
@@ -203,7 +207,7 @@ async function execute(interaction) {
     }
 
     // KO (Halbfinale) → Finale (+ Bronze)
-    if (daten.status === 'ko' && (daten.groups?.[0]?.name || '').includes('Halbfinale')) {
+    if (daten.status === 'ko' && (daten.kämpfe?.length || 0) === 2) {
       const unfinished = daten.kämpfe.filter(f => f.phase === 'ko' && !f.finished);
       if (unfinished.length > 0) {
         return interaction.reply({ content: `⚠️ Halbfinale nicht beendet.`, flags: MessageFlags.Ephemeral });

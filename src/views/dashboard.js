@@ -59,12 +59,15 @@ function detectBracketRound(d) {
   const ko = fights.filter(f => f.phase === 'ko');
   if (ko.some(f => /(Halbfinale)/i.test(f.groupName || ''))) return 'SF';
   if (ko.length > 0) return 'QF';
+  if (fights.some(f => f.phase === 'gruppen')) return 'gr';
+  if (fights.some(f => f.phase === 'quali')) return 'q';
   return 'gr';
 }
 
 function roundsPresent(d) {
   const fights = [ ...(d.kämpfeArchiv || []), ...(d.kämpfe || []) ];
   const set = new Set();
+  if (fights.some(f => f.phase === 'quali')) set.add('q');
   if (fights.some(f => f.phase === 'gruppen')) set.add('gr');
   if (fights.some(f => f.phase === 'ko' && /(Viertelfinale)/i.test(f.groupName || ''))) set.add('QF');
   if (fights.some(f => f.phase === 'ko' && /(Halbfinale)/i.test(f.groupName || ''))) set.add('SF');
@@ -80,7 +83,7 @@ function rowPhaseOrRound(tab, phaseOrRound, _bucket, _groupIx, page, daten) {
     if (tab === 'b') {
       return v === 'gr' ? 'Gruppenphase' : v === 'QF' ? 'Viertelfinale' : v === 'SF' ? 'Halbfinale' : v === 'F' ? 'Finale' : v;
     }
-    return v === 'q' ? 'Qualifikation' : v === 'gr' ? 'Gruppenphase' : v === 'ko' ? 'K.O.-Phase' : v === 'F' ? 'Finale' : v;
+    return v === 'q' ? 'Qualifikation' : v === 'gr' ? 'Gruppenphase' : v === 'QF' ? 'Viertelfinale' : v === 'SF' ? 'Halbfinale' : v === 'F' ? 'Finale' : v;
   };
 
   const sel = new StringSelectMenuBuilder()
@@ -209,11 +212,22 @@ function buildTabMatches(daten, state, openOnly = false) {
 
 // K.O.-Bracket (Top/Low/Finale)
 function buildTabBracket(daten, state) {
-  const { phaseOrRound, bucket = 'top' } = state;
+  const { phaseOrRound } = state;
 
   // Gruppenphase → Fortschritt je Gruppe
-  if (phaseOrRound === 'gr') {
-    const pool = fightsForPhase(daten, 'gr');
+  const roundLabel =
+    phaseOrRound === 'q'  ? 'Qualifikation' :
+    phaseOrRound === 'gr' ? 'Gruppenphase' :
+    phaseOrRound === 'QF' ? 'Viertelfinale' :
+    phaseOrRound === 'SF' ? 'Halbfinale' :
+    phaseOrRound === 'F'  ? 'Finale' : phaseOrRound;
+
+  if (['q','gr','QF','SF','F'].includes(phaseOrRound)) {
+    const phaseKey =
+      phaseOrRound === 'q'  ? 'quali' :
+      phaseOrRound === 'F'  ? 'finale' :
+      phaseOrRound === 'gr' ? 'gruppen' : 'ko';
+    const pool = (daten.kämpfe || []).filter(f => f.phase === phaseKey);
     const lines = (daten.groups || []).map(g => {
       const gf = pool.filter(f => fightBelongsToGroup(f, g));
       const done = gf.filter(f => f.finished).length;
@@ -224,23 +238,17 @@ function buildTabBracket(daten, state) {
     });
     const embed = new EmbedBuilder()
       .setColor(0x5865F2)
-      .setTitle(`📜 Kämpfe — ${phaseLabel(phaseOrRound)}`)
+      .setTitle(`📜 Kämpfe — ${roundLabel}`)
       .setDescription(lines.join('\n') || '—')
       .setTimestamp();
     return { embeds: [embed], totalPages: 1 };
   }
 
-  if (['QF','SF','F'].includes(phaseOrRound)) {
-    const view = buildBracketEmbed(daten, bucket, phaseOrRound);
-    const comps = view.components ? view.components.slice(0,1) : [];
-    return { embeds: view.embeds, components: comps, totalPages: 1 };
-  }
-
-  // Quali / sonst: simple Auflistung
+  // Fallback: simple Auflistung
   const fights = fightsForPhase(daten, phaseOrRound);
   const embed = new EmbedBuilder()
     .setColor(0x5865F2)
-    .setTitle(`🏛️ Übersicht — ${phaseLabel(phaseOrRound)}`)
+    .setTitle(`🏛️ Übersicht — ${roundLabel}`)
     .setDescription(fights.map(fmtFight2L).join('\n\n') || '—')
     .setTimestamp();
   return { embeds: [embed], totalPages: 1 };
