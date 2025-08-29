@@ -56,7 +56,10 @@ async function ladeTurnier() {
       modus: daten.modus || '1v1',
       teilnehmer: daten.teilnehmer || {},
       teams: daten.teams || [],
-      kämpfe: daten.kämpfe || [],
+      // Kämpfe können in älteren Turnieren noch unter "kaempfe" gespeichert sein
+      kämpfe: daten.kämpfe || daten.kaempfe || [],
+      // Archivierte Kämpfe ebenfalls robust laden
+      kämpfeArchiv: daten.kämpfeArchiv || daten.kaempfeArchiv || [],
       groups: daten.groups || [],
       pendingTieBreakers: daten.pendingTieBreakers || [],
       kampfLog: daten.kampfLog || [],
