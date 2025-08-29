@@ -85,7 +85,7 @@ function createGroupsPhaseTopLow(teilnehmerMap) {
         matches.push({
           // id/localId vergeben wir nachher
           phase: 'gruppen',
-          groupName: displayName,   // <<< wichtig für spätere Filter!
+          groupName: baseName, // muss mit g.name übereinstimmen
           localId: 0,
           playerA: members[i],
           playerB: members[j],

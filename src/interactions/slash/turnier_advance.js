@@ -42,17 +42,17 @@ async function execute(interaction) {
 
       let fights = createQualificationFromTeilnehmerMap(daten.teilnehmer);
       // Quali-Phase & sichtbare Gruppe setzen
-      const qualiname = `${themedGroupNames(1)[0]} Qualifikation`;
+      const qualiName = `${themedGroupNames(1)[0]} Qualifikation`;
       fights = fights.map((f, i) => ({
         ...f,
         phase: 'quali',
-        groupName: qualiname,
+        groupName: qualiName,
         localId: i + 1
       }));
 
       daten.kämpfe = fights;
       daten.groups = [{
-        name: qualiname,
+        name: qualiName,
         members: teilnehmerArr,
         matches: fights.map((f) => ({ ...f }))
       }];

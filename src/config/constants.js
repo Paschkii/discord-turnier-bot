@@ -33,10 +33,10 @@ const HELP_COMMANDS = [
   // User
   { name: 'anmelden',        description: 'Meldet dich für das Turnier an.', admin: false },
   { name: 'arena',           description: 'Zufällige Arena-Auswahl.', admin: false },
-  { name: 'bracket',         description: 'Zeigt das Bracket der aktuellen Phase (Pagination).', admin: false },
-  { name: 'gruppen',         description: 'Zeigt Gruppen + Kämpfe (Pagination).', admin: false },
+  { name: 'bracket',         description: 'Zeigt das Bracket der aktuellen Phase', admin: false },
+  { name: 'gruppen',         description: 'Zeigt die Gruppenübersicht der aktuellen Phase', admin: false },
   { name: 'hall_of_fame',    description: 'Zeigt vergangene Turniere (Podium).', admin: false },
-  { name: 'kampfinfo',       description: 'Übersicht: Kämpfe der aktuellen Phase (Pagination).', admin: false },
+  { name: 'kampfinfo',       description: 'Zeigt alle Kämpfe der aktuellen Phase (offen & beendet)', admin: false },
   { name: 'offene_kaempfe',  description: 'Listet offene Kämpfe der aktuellen Phase (optional Filter).', admin: false },
   { name: 'regeln',          description: 'Zeigt die Turnierregeln.', admin: false },
   { name: 'teilnehmer',      description: 'Zeigt alle Teilnehmer und ihre gewählten Klassen an.', admin: false },
