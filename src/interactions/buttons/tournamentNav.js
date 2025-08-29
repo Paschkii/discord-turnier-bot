@@ -51,9 +51,18 @@ module.exports = {
     const state = parseStateFromId(parts, interaction);
     if (!state) return; // noop
 
+    // Interaktion sofort bestätigen, um den "Lade..."-Status zu entfernen.
+    try {
+      await interaction.deferUpdate();
+    } catch (err) {
+      // Ignoriere Fehler, wenn die Interaktion bereits beantwortet wurde.
+      if (err?.code === 10062) return;
+      throw err;
+    }
+
     const daten = await ladeTurnier();
     if (!daten) {
-      return interaction.reply({ content: '❌ Kein aktives Turnier.', flags: MessageFlags.Ephemeral });
+      return interaction.followUp({ content: '❌ Kein aktives Turnier.', flags: MessageFlags.Ephemeral });
     }
 
     const finalState = state || defaultStateFromData(daten, 'g');
