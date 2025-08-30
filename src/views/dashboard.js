@@ -82,7 +82,7 @@ const phaseLabel = (v) =>
 
   // Gruppennamen robust vergleichen (ignoriert ⬆️/⬇️-Suffixe)
 function matchGroupName(fGroupName, groupObj) {
-  const strip = (s) => (s || '').trim().replace(/\s*[⬆️⬇️]\s*$/,'');
+  const strip = (s) => (s || '').trim().replace(/\s*[⬆⬇]\uFE0F?\s*$/,'');
   const fg  = strip(fGroupName);
   const g1  = strip(groupObj.displayName || '');
   const g2  = strip(groupObj.name || '');
@@ -102,7 +102,7 @@ function buildTabGroups(daten, state) {
       `• **${m.name}** ${classEmoji(m.klasse)} ${m.klasse}`
     );
     const raw = g.displayName || g.name || '';
-    const base = raw.replace(/\s*[⬆️⬇️]\s*$/, '');
+    const base = raw.replace(/\s*[⬆⬇]\uFE0F?\s*$/, '');
     const prefix = g.bucket === 'top' ? '⬆️ ' : g.bucket === 'low' ? '⬇️ ' : '';
     return new EmbedBuilder()
       .setColor(0x00AEFF)
@@ -153,7 +153,7 @@ function buildTabMatches(daten, state, openOnly = false) {
     const desc = gf.map(fmtFight2L).join('\n') || '—';
 
     const raw = g.displayName || g.name || '';
-    const base = raw.replace(/\s*[⬆️⬇️]\s*$/, '');
+    const base = raw.replace(/\s*[⬆⬇]\uFE0F?\s*$/, '');
     const prefix = g.bucket === 'top' ? '⬆️ ' : g.bucket === 'low' ? '⬇️ ' : '';
     return new EmbedBuilder()
       .setColor(openOnly ? 0xFFAA00 : 0x5865F2)
@@ -188,7 +188,7 @@ function buildTabBracket(daten, state) {
       const gf = pool.filter(f => fightBelongsToGroup(f, g));
       const done = gf.filter(f => f.finished).length;
       const total = gf.length;
-      const base = (g.displayName || g.name || '').replace(/\s*[⬆️⬇️]\s*$/, '');
+      const base = (g.displayName || g.name || '').replace(/\s*[⬆⬇]\uFE0F?\s*$/, '');
       const prefix = g.bucket === 'top' ? '⬆️ ' : g.bucket === 'low' ? '⬇️ ' : '';
       return `${prefix}${base} - ${done}/${total} Kämpfe`;
     });

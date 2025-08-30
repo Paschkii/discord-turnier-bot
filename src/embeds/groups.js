@@ -64,7 +64,7 @@ function buildGroupEmbeds(daten) {
     if (linesMatches.length) descParts.push(linesMatches.join('\n'));
 
     const raw = g.displayName || g.name || '';
-    const base = raw.replace(/\s*[⬆️⬇️]\s*$/, '');
+    const base = raw.replace(/\s*[⬆⬇]\uFE0F?\s*$/, '');
     const prefix = g.bucket === 'top' ? '⬆️ ' : g.bucket === 'low' ? '⬇️ ' : '';
     const title = `${prefix}${base} — ${phaseName}`;
 

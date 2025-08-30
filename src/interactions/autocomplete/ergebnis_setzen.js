@@ -3,7 +3,7 @@ const { ladeTurnier } = require('../../store/turniere');
 // kleine Helfer
 const norm = (s) => (s || '')
   .toLowerCase()
-  .replace(/[⬆️⬇️]/g, '')
+  .replace(/[⬆⬇]\uFE0F?/g, '')
   .replace(/\s+—\s+(viertelfinale|halbfinale|finale)/g, '') // Suffixe weg
   .trim();
 
@@ -43,7 +43,12 @@ module.exports = {
     // === Vorschläge für das Feld "gruppe"
     if (focused?.name === 'gruppe') {
       const list = groups
-        .map(g => g.displayName || g.name)
+        .map(g => {
+          const raw = g.displayName || g.name || '';
+          const base = raw.replace(/\s*[⬆⬇]\uFE0F?\s*$/, '');
+          const prefix = g.bucket === 'top' ? '⬆️ ' : g.bucket === 'low' ? '⬇️ ' : '';
+          return `${prefix}${base}`.trim();
+        })
         .filter(Boolean)
         .filter(n => n.toLowerCase().includes(q))
         .slice(0, 25)

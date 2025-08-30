@@ -10,6 +10,7 @@ const {
 const { themedGroupNames, formatMK } = require('../../utils');
 const { ladeTurnier, speichereTurnier } = require('../../store/turniere');
 const { buildPagedGroupReply } = require('../../embeds/groups');
+const { buildBracketEmbed } = require('../../embeds/bracket');
 const {
   createQualificationFromTeilnehmerMap,
   createGroupsPhaseTopLow,
@@ -130,7 +131,6 @@ async function execute(interaction) {
       // ✅ Archivieren der Gruppen-Kämpfe, bevor wir überschreiben
       archiveFights(daten);
 
-      daten.kämpfe = qf;
       daten.status = 'ko';
 
       // Anzeigegruppen (2) mit neuen Namen
@@ -147,17 +147,14 @@ async function execute(interaction) {
       const memTop = Array.from(new Map(koTop.flatMap(f => [f.playerA, f.playerB]).map(p => [p.id, p])).values());
       const memLow = Array.from(new Map(koLow.flatMap(f => [f.playerA, f.playerB]).map(p => [p.id, p])).values());
 
-      // pro Anzeige-Gruppe localId neu vergeben (1..n)
-      const relabel = (arr, name) => arr.map((m, i) => ({ ...m, groupName: name, localId: i + 1 }));
-
       daten.groups = [
         { name: baseTop, bucket: 'top', displayName: `${baseTop} ${GROUP_EMOJI.top}`, members: memTop, matches: koTop },
         { name: baseLow, bucket: 'low', displayName: `${baseLow} ${GROUP_EMOJI.low}`, members: memLow, matches: koLow },
       ];
 
       await speichereTurnier(daten);
-      const { embeds, components } = buildPagedGroupReply(daten, 1, 10);
-        return interaction.reply({ content: `⚔️ K.O.-Viertelfinale gestartet (${qf.length} Kämpfe).`, embeds, components });
+      const { embeds, components } = buildBracketEmbed(daten, 'top', 'QF');
+      return interaction.reply({ content: `⚔️ K.O.-Viertelfinale gestartet (${qf.length} Kämpfe).`, embeds, components });
     }
 
     // KO (Viertelfinale) → KO (Halbfinale)
@@ -202,7 +199,7 @@ async function execute(interaction) {
       ];
 
       await speichereTurnier(daten);
-      const { embeds, components } = buildPagedGroupReply(daten, 1, 10);
+      const { embeds, components } = buildBracketEmbed(daten, 'top', 'SF');
       return interaction.reply({ content: `🔁 K.O.-Halbfinale gestartet (2 Kämpfe).`, embeds, components });
     }
 
@@ -245,7 +242,7 @@ async function execute(interaction) {
 
       daten.status = 'finale';
       await speichereTurnier(daten);
-      const { embeds, components } = buildPagedGroupReply(daten, 1, 10);
+      const { embeds, components } = buildBracketEmbed(daten, 'top', 'F');
       return interaction.reply({ content: `🏁 Finale & 🥉-Match erstellt.`, embeds, components });
     }
 
