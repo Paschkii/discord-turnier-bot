@@ -9,8 +9,7 @@ const {
 
 const { themedGroupNames, formatMK } = require('../../utils');
 const { ladeTurnier, speichereTurnier } = require('../../store/turniere');
-const { buildPagedGroupReply } = require('../../embeds/groups');
-const { buildTabMatches } = require('../../views/dashboard');
+const { buildDashboard, defaultStateFromData } = require('../../views/dashboard');
 const {
   createQualificationFromTeilnehmerMap,
   createGroupsPhaseTopLow,
@@ -60,10 +59,11 @@ async function execute(interaction) {
       daten.status = 'quali';
 
       await speichereTurnier(daten);
-      const { embeds, components } = buildPagedGroupReply(daten, 1, 10);
+      const view = await buildDashboard(interaction, daten, defaultStateFromData(daten, 'g'));
       return interaction.reply({
         content: `🔰 Qualifikationsrunde gestartet (${fights.length} Kämpfe).`,
-        embeds, components
+        embeds: view.embeds,
+        components: view.components
       });
     }
 
@@ -89,8 +89,8 @@ async function execute(interaction) {
       daten.status = 'gruppen';
 
       await speichereTurnier(daten);
-      const { embeds, components } = buildPagedGroupReply(daten, 1, 10);
-      return interaction.reply({ content: `🟦 Gruppenphase gestartet (${daten.kämpfe.length} Kämpfe).`, embeds, components });
+      const view = await buildDashboard(interaction, daten, defaultStateFromData(daten, 'g'));
+      return interaction.reply({ content: `🟦 Gruppenphase gestartet (${daten.kämpfe.length} Kämpfe).`, embeds: view.embeds, components: view.components });
     }
 
     // Gruppen → KO (Top/Low Viertelfinale)
@@ -153,8 +153,8 @@ async function execute(interaction) {
       ];
 
       await speichereTurnier(daten);
-      const view = buildTabMatches(daten, { phaseOrRound: 'ko' }, false);
-      return interaction.reply({ content: `⚔️ K.O.-Viertelfinale gestartet (${qf.length} Kämpfe).`, embeds: view.embeds });
+      const view = await buildDashboard(interaction, daten, defaultStateFromData(daten, 'g'));
+      return interaction.reply({ content: `⚔️ K.O.-Viertelfinale gestartet (${qf.length} Kämpfe).`, embeds: view.embeds, components: view.components });
     }
 
     // KO (Viertelfinale) → KO (Halbfinale)
@@ -199,8 +199,8 @@ async function execute(interaction) {
       ];
 
       await speichereTurnier(daten);
-      const view = buildTabMatches(daten, { phaseOrRound: 'ko' }, false);
-      return interaction.reply({ content: `🔁 K.O.-Halbfinale gestartet (2 Kämpfe).`, embeds: view.embeds });
+      const view = await buildDashboard(interaction, daten, defaultStateFromData(daten, 'g'));
+      return interaction.reply({ content: `🔁 K.O.-Halbfinale gestartet (2 Kämpfe).`, embeds: view.embeds, components: view.components });
     }
 
     // KO (Halbfinale) → Finale (+ Bronze)
@@ -242,8 +242,8 @@ async function execute(interaction) {
 
       daten.status = 'finale';
       await speichereTurnier(daten);
-      const view = buildTabMatches(daten, { phaseOrRound: 'F' }, false);
-      return interaction.reply({ content: `🏁 Finale & 🥉-Match erstellt.`, embeds: view.embeds });
+      const view = await buildDashboard(interaction, daten, defaultStateFromData(daten, 'g'));
+      return interaction.reply({ content: `🏁 Finale & 🥉-Match erstellt.`, embeds: view.embeds, components: view.components });
     }
 
     // FINALE → Abschluss (+ HoF)
