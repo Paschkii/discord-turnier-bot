@@ -1,4 +1,4 @@
-const { buildBracketEmbed } = require('../../embeds/bracket');
+const { buildDashboard } = require('../../views/dashboard');
 
 function nextRound(k) { return k === 'QF' ? 'SF' : (k === 'SF' ? 'F' : 'QF'); }
 function prevRound(k) { return k === 'F'  ? 'SF' : (k === 'SF' ? 'QF' : 'F'); }
@@ -11,7 +11,9 @@ async function run(interaction, daten) {
   if (action === 'next') roundKey = nextRound(round0);
   if (action === 'prev') roundKey = prevRound(round0);
 
-  const view = buildBracketEmbed(daten, bucket, roundKey);
+  const state = { tab: 'b', phaseOrRound: roundKey, bucket, groupIx: 0, page: 1 };
+  const view = await buildDashboard(interaction, daten, state);
+
   await interaction.deferUpdate();
   return interaction.editReply(view);
 }
