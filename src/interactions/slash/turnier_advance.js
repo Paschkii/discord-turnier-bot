@@ -10,7 +10,7 @@ const {
 const { themedGroupNames, formatMK } = require('../../utils');
 const { ladeTurnier, speichereTurnier } = require('../../store/turniere');
 const { buildPagedGroupReply } = require('../../embeds/groups');
-const { buildBracketEmbed } = require('../../embeds/bracket');
+const { buildTabMatches } = require('../../views/dashboard');
 const {
   createQualificationFromTeilnehmerMap,
   createGroupsPhaseTopLow,
@@ -153,8 +153,8 @@ async function execute(interaction) {
       ];
 
       await speichereTurnier(daten);
-      const { embeds, components } = buildBracketEmbed(daten, 'top', 'QF');
-      return interaction.reply({ content: `⚔️ K.O.-Viertelfinale gestartet (${qf.length} Kämpfe).`, embeds, components });
+      const view = buildTabMatches(daten, { phaseOrRound: 'ko' }, false);
+      return interaction.reply({ content: `⚔️ K.O.-Viertelfinale gestartet (${qf.length} Kämpfe).`, embeds: view.embeds });
     }
 
     // KO (Viertelfinale) → KO (Halbfinale)
@@ -199,8 +199,8 @@ async function execute(interaction) {
       ];
 
       await speichereTurnier(daten);
-      const { embeds, components } = buildBracketEmbed(daten, 'top', 'SF');
-      return interaction.reply({ content: `🔁 K.O.-Halbfinale gestartet (2 Kämpfe).`, embeds, components });
+      const view = buildTabMatches(daten, { phaseOrRound: 'ko' }, false);
+      return interaction.reply({ content: `🔁 K.O.-Halbfinale gestartet (2 Kämpfe).`, embeds: view.embeds });
     }
 
     // KO (Halbfinale) → Finale (+ Bronze)
@@ -242,8 +242,8 @@ async function execute(interaction) {
 
       daten.status = 'finale';
       await speichereTurnier(daten);
-      const { embeds, components } = buildBracketEmbed(daten, 'top', 'F');
-      return interaction.reply({ content: `🏁 Finale & 🥉-Match erstellt.`, embeds, components });
+      const view = buildTabMatches(daten, { phaseOrRound: 'F' }, false);
+      return interaction.reply({ content: `🏁 Finale & 🥉-Match erstellt.`, embeds: view.embeds });
     }
 
     // FINALE → Abschluss (+ HoF)

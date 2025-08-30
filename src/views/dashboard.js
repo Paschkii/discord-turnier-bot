@@ -1,6 +1,5 @@
 const { EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
 const { KLASSE_LISTE } = require('../config/constants');
-const { buildBracketEmbed } = require('../embeds/bracket');
 
 // ===== Helpers für Steuer-Elemente =====
 function rowTabs(tab, phase, page, daten) {
@@ -251,4 +250,4 @@ async function buildDashboard(_interaction, daten, state) {
 }
 
 // ===== Export =====
-module.exports = { buildDashboard, defaultStateFromData };
+module.exports = { buildDashboard, defaultStateFromData, buildTabMatches };
