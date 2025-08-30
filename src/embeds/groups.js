@@ -63,12 +63,10 @@ function buildGroupEmbeds(daten) {
     if (linesMembers.length) descParts.push(linesMembers.join('\n'));
     if (linesMatches.length) descParts.push(linesMatches.join('\n'));
 
-    const base =
-      g.displayName
-        ? g.displayName
-        : (g.bucket ? `${g.name} ${g.bucket === 'top' ? '⬆️' : '⬇️'}` : g.name);
-
-    const title = `📜 ${base} — ${phaseName}`;
+    const raw = g.displayName || g.name || '';
+    const base = raw.replace(/\s*[⬆️⬇️]\s*$/, '');
+    const prefix = g.bucket === 'top' ? '⬆️ ' : g.bucket === 'low' ? '⬇️ ' : '';
+    const title = `${prefix}${base} — ${phaseName}`;
 
     const embed = new EmbedBuilder()
       .setColor(0x00aeff)

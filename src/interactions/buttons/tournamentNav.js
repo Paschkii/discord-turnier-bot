@@ -2,8 +2,8 @@ const { MessageFlags } = require('discord.js');
 const { buildDashboard, defaultStateFromData } = require('../../views/dashboard');
 const { ladeTurnier } = require('../../store/turniere');
 
-// Hilfsparser für alle tnav-IDs (tab | page | phase)
-function parseStateFromId(parts, interaction) {
+// Hilfsparser für alle tnav-IDs (tab | page)
+function parseStateFromId(parts) {
   const kind = parts[1];
 
   if (kind === 'tab') {
@@ -29,14 +29,6 @@ function parseStateFromId(parts, interaction) {
     };
   }
 
-  if (kind === 'phase') {
-    // tnav|phase|<tab>|<currentPhase>|...|...|<page>
-    const tab          = parts[2] || 'g';
-    // Bei Select-Menüs kommt der neue Wert über interaction.values[0]
-    const selected     = (interaction.values && interaction.values[0]) || parts[3] || 'gr';
-    return { tab, phaseOrRound: selected, page: 1 }; // Phasenwechsel -> Seite 1
-  }
-
   return null; // Unbekannter Typ
 }
 
@@ -48,7 +40,7 @@ module.exports = {
     if (!id.startsWith('tnav|')) return;
 
     const parts = id.split('|');
-    const state = parseStateFromId(parts, interaction);
+    const state = parseStateFromId(parts);
     if (!state) return; // noop
 
     // Interaktion sofort bestätigen, um den "Lade..."-Status zu entfernen.

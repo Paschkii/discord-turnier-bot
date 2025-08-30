@@ -1,4 +1,4 @@
-const { EmbedBuilder, StringSelectMenuBuilder, StringSelectMenuOptionBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
+const { EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
 const { KLASSE_LISTE } = require('../config/constants');
 const { buildBracketEmbed } = require('../embeds/bracket');
 
@@ -36,23 +36,6 @@ function fightBelongsToGroup(f, g) {
   return false;
 }
 
-// Welche Phasen/Runden sind im Turnier überhaupt vertreten?
-function phasesPresent(d) {
-  const fights = [ ...(d.kämpfeArchiv || []), ...(d.kämpfe || []) ];
-  const set = new Set();
-  if (fights.some(f => f.phase === 'quali'))   set.add('q');
-  if (fights.some(f => f.phase === 'gruppen')) set.add('gr');
-  if (fights.some(f => f.phase === 'ko'))      set.add('ko');
-  if (fights.some(f => f.phase === 'finale'))  set.add('F');
-  // Aktuelle Phase immer anzeigen
-  const s = d.status;
-  if (s === 'quali') set.add('q');
-  else if (s === 'gruppen') set.add('gr');
-  else if (s === 'ko') set.add('ko');
-  else if (s === 'finale') set.add('F');
-  return Array.from(set);
-}
-
 function detectBracketRound(d) {
   const fights = [ ...(d.kämpfeArchiv || []), ...(d.kämpfe || []) ];
   if (fights.some(f => f.phase === 'finale')) return 'F';
@@ -62,39 +45,6 @@ function detectBracketRound(d) {
   if (fights.some(f => f.phase === 'gruppen')) return 'gr';
   if (fights.some(f => f.phase === 'quali')) return 'q';
   return 'gr';
-}
-
-function roundsPresent(d) {
-  const fights = [ ...(d.kämpfeArchiv || []), ...(d.kämpfe || []) ];
-  const set = new Set();
-  if (fights.some(f => f.phase === 'quali')) set.add('q');
-  if (fights.some(f => f.phase === 'gruppen')) set.add('gr');
-  if (fights.some(f => f.phase === 'ko' && /(Viertelfinale)/i.test(f.groupName || ''))) set.add('QF');
-  if (fights.some(f => f.phase === 'ko' && /(Halbfinale)/i.test(f.groupName || ''))) set.add('SF');
-  if (fights.some(f => f.phase === 'finale')) set.add('F');
-  set.add(detectBracketRound(d));
-  return Array.from(set);
-}
-
-// ein Select – zeigt nur Phasen/Runden, die es wirklich gibt
-function rowPhaseOrRound(tab, phaseOrRound, _bucket, _groupIx, page, daten) {
-  const present = tab === 'b' ? roundsPresent(daten) : phasesPresent(daten);
-  const label = (v) => {
-    if (tab === 'b') {
-      return v === 'gr' ? 'Gruppenphase' : v === 'QF' ? 'Viertelfinale' : v === 'SF' ? 'Halbfinale' : v === 'F' ? 'Finale' : v;
-    }
-    return v === 'q' ? 'Qualifikation' : v === 'gr' ? 'Gruppenphase' : v === 'QF' ? 'Viertelfinale' : v === 'SF' ? 'Halbfinale' : v === 'F' ? 'Finale' : v;
-  };
-
-  const sel = new StringSelectMenuBuilder()
-    .setCustomId(`tnav|phase|${tab}|${phaseOrRound}|x|x|${page}`)
-    .setPlaceholder(tab === 'b' ? 'Runde wählen' : 'Phase wählen')
-    .addOptions(...present.map(v =>
-      new StringSelectMenuOptionBuilder().setLabel(label(v)).setValue(v).setDefault(v === phaseOrRound)
-    ))
-    .setMinValues(1).setMaxValues(1);
-
-  return new ActionRowBuilder().addComponents(sel);
 }
 
 function rowPager(tab, phaseOrRound, page, totalPages) {
@@ -151,9 +101,12 @@ function buildTabGroups(daten, state) {
     const lines = (g.members || []).map(m =>
       `• **${m.name}** ${classEmoji(m.klasse)} ${m.klasse}`
     );
+    const raw = g.displayName || g.name || '';
+    const base = raw.replace(/\s*[⬆️⬇️]\s*$/, '');
+    const prefix = g.bucket === 'top' ? '⬆️ ' : g.bucket === 'low' ? '⬇️ ' : '';
     return new EmbedBuilder()
       .setColor(0x00AEFF)
-      .setTitle(`📜 ${g.displayName || g.name} — ${phaseLabel(phaseOrRound)}`)
+      .setTitle(`${prefix}${base} — ${phaseLabel(phaseOrRound)}`)
       .setDescription(lines.join('\n') || '—')
       .setTimestamp();
   });
@@ -199,9 +152,12 @@ function buildTabMatches(daten, state, openOnly = false) {
 
     const desc = gf.map(fmtFight2L).join('\n') || '—';
 
+    const raw = g.displayName || g.name || '';
+    const base = raw.replace(/\s*[⬆️⬇️]\s*$/, '');
+    const prefix = g.bucket === 'top' ? '⬆️ ' : g.bucket === 'low' ? '⬇️ ' : '';
     return new EmbedBuilder()
       .setColor(openOnly ? 0xFFAA00 : 0x5865F2)
-      .setTitle(`📜 ${g.displayName || g.name} — ${phaseLabel(phaseOrRound)}`)
+      .setTitle(`${prefix}${base} — ${phaseLabel(phaseOrRound)}`)
       .setDescription(desc)
       .setTimestamp();
   });
@@ -238,7 +194,7 @@ function buildTabBracket(daten, state) {
     });
     const embed = new EmbedBuilder()
       .setColor(0x5865F2)
-      .setTitle(`📜 Kämpfe — ${roundLabel}`)
+      .setTitle(`Kämpfe — ${roundLabel}`)
       .setDescription(lines.join('\n') || '—')
       .setTimestamp();
     return { embeds: [embed], totalPages: 1 };
@@ -284,7 +240,6 @@ async function buildDashboard(_interaction, daten, state) {
 
   const rows = [];
   rows.push(rowTabs(tab, phaseOrRound, page, daten));
-  rows.push(rowPhaseOrRound(tab, phaseOrRound, undefined, undefined, page, daten));
 
   if (tab === 'm' && (view.totalPages > 1)) {
     rows.push(rowPager(tab, phaseOrRound, page, view.totalPages));

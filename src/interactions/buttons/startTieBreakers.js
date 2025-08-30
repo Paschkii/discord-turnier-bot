@@ -1,5 +1,4 @@
 const {
-  EmbedBuilder,
   MessageFlags,
   PermissionsBitField
 } = require('discord.js');
@@ -36,8 +35,9 @@ module.exports = {
     daten.pendingTieBreakers = [];
     await speichereTurnier(daten);
 
-    const desc = created.map(f => `• Kampf #${f.id}: ${f.playerA.name} vs ${f.playerB.name} — ${f.scoreA}:${f.scoreB} ⏳ (Bo1)`).join('\n');
-    const embed = new EmbedBuilder().setColor(0xff5555).setTitle('🧮 Tie-Breaker erstellt').setDescription(desc || '—');
-    return interaction.reply({ embeds: [embed] });
+    const desc = created
+      .map(f => `⚠️ Tie-Breaker in ${f.groupName} nötig. Kampf ID: ${f.id}`)
+      .join('\n');
+    return interaction.reply({ content: desc || '—' });
   }
 };
