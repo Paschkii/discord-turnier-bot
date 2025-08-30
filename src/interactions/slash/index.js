@@ -6,15 +6,11 @@ const bracket             = require('./bracket');
 const ergebnis_setzen     = require('./ergebnis_setzen');
 const ergebnisse_wuerfeln = require('./ergebnisse_wuerfeln');
 const fake_anmeldungen    = require('./fake_anmeldungen');
-const gruppen             = require('./gruppen');
 const hall_of_fame        = require('./hall_of_fame');
 const hilfe               = require('./hilfe');
 const hof_loeschen        = require('./hof_loeschen');
-const kampfinfo           = require('./kampfinfo');
-const offene_kaempfe      = require('./offene_kaempfe');
 const pott_setzen         = require('./pott_setzen');
 const regeln              = require('./regeln');
-const teilnehmer          = require('./teilnehmer');
 const teilnehmer_ersetzen = require('./teilnehmer_ersetzen');
 const turnier_advance     = require('./turnier_advance');
 const turnier_info        = require('./turnier_info');
@@ -28,15 +24,11 @@ const map = new Map([
   ['ergebnis_setzen', ergebnis_setzen],
   ['ergebnisse_wuerfeln', ergebnisse_wuerfeln],
   ['fake_anmeldungen', fake_anmeldungen],
-  ['gruppen', gruppen],
   ['hall_of_fame', hall_of_fame],
   ['hilfe', hilfe],
   ['hof_loeschen', hof_loeschen],
-  ['kampfinfo', kampfinfo],
-  ['offene_kaempfe', offene_kaempfe],
   ['pott_setzen', pott_setzen],
   ['regeln', regeln],
-  ['teilnehmer', teilnehmer],
   ['teilnehmer_ersetzen', teilnehmer_ersetzen],
   ['turnier_advance', turnier_advance],
   ['turnier_info', turnier_info],

@@ -40,12 +40,6 @@ const commands = [
       .setName('bracket')
       .setDescription('Zeigt das Bracket der aktuellen Phase')
   ),
-  // /gruppen
-  guildOnly(
-    new SlashCommandBuilder()
-      .setName('gruppen')
-      .setDescription('Zeigt die Gruppenübersicht der aktuellen Phase')
-  ),
   // Hall of Fame
   guildOnly(
     new SlashCommandBuilder()
@@ -58,34 +52,11 @@ const commands = [
       .setName('hilfe')
       .setDescription('Zeigt die Hilfeseite mit allen Befehlen')
   ),
-  // /kampfinfo
-  guildOnly(
-    new SlashCommandBuilder()
-      .setName('kampfinfo')
-      .setDescription('Zeigt alle Kämpfe der aktuellen Phase (offen & beendet)')
-  ),
-  // /offene_kaempfe (mit optionalem Filter)
-  guildOnly(
-    new SlashCommandBuilder()
-      .setName('offene_kaempfe')
-      .setDescription('Listet offene Kämpfe der aktuellen Phase')
-      .addStringOption(opt =>
-        opt.setName('filter')
-          .setDescription('Spieler/Gruppe/ID (optional)')
-          .setRequired(false)
-      )
-  ),
   // /regeln
   guildOnly(
   new SlashCommandBuilder()
     .setName('regeln')
     .setDescription('Zeigt die Turnierregeln')
-  ),
-  // /teilnehmer
-  guildOnly(
-    new SlashCommandBuilder()
-      .setName('teilnehmer')
-      .setDescription('Zeigt alle angemeldeten Teilnehmer')
   ),
   // /turnier_info
   guildOnly(

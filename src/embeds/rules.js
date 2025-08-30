@@ -45,9 +45,7 @@ function buildRulesEmbeds(daten = {}) {
       {
         name: 'Übersichten',
         value: [
-          '• **/gruppen** → Mitglieder + Kämpfe je Gruppe (Pagination).',
-          '• **/kampfinfo** → alle Kämpfe der aktuellen Phase.',
-          '• **/offene_kaempfe** → noch ausstehende Matches.',
+          '• **/bracket** → Gruppen, offene und beendete Kämpfe.',
           '• **/turnier_info** → Laufendes Turnier, Pott, Spieler mit Status.',
         ].join('\n'),
       },
