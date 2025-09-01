@@ -103,7 +103,10 @@ async function closeAndClearLatestTournament() {
 
 // Holt die nächste Turnier-Nummer (für automatische Benennung)
 async function getNextTournamentNumber() {
-  const res = await pool.query('SELECT name FROM turniere');
+  const res = await pool.query(
+    'SELECT name FROM turniere WHERE status = $1 OR status = $2',
+    ['abgeschlossen', 'geschlossen']
+  );
   let maxNum = 0;
   for (const r of res.rows) {
     const m = (r.name || '').match(/#(\d+)/);
@@ -114,7 +117,9 @@ async function getNextTournamentNumber() {
 
 // Löscht ein Turnier aus der Hall of Fame anhand seiner Nummer
 async function deleteHoFByNumber(num) {
-  const res = await pool.query('SELECT id, name, status FROM turniere WHERE status = $1 OR status = $2', ['abgeschlossen', 'geschlossen']);
+  // Suche nun alle Turniere unabhängig vom Status, damit auch offene oder anders
+  // markierte Einträge gefunden und ggf. gelöscht werden können.
+  const res = await pool.query('SELECT id, name, status FROM turniere');
   const rows = res.rows || [];
   let target = null;
   for (const r of rows) {
