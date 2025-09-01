@@ -48,7 +48,7 @@ async function ladeTurnier() {
   try {
     const result = await pool.query('SELECT * FROM turniere ORDER BY created_at DESC LIMIT 1');
     const row = result.rows[0];
-    if (!row) return null;
+    if (!row || row.status === 'geschlossen' || row.status === 'abgeschlossen') return null;
     const daten = row.daten || {};
     return {
       name: row.name || daten.name || 'Turnier',
@@ -114,7 +114,7 @@ async function getNextTournamentNumber() {
 
 // Löscht ein Turnier aus der Hall of Fame anhand seiner Nummer
 async function deleteHoFByNumber(num) {
-  const res = await pool.query('SELECT id, name, status FROM turniere WHERE status = $1', ['abgeschlossen']);
+  const res = await pool.query('SELECT id, name, status FROM turniere WHERE status = $1 OR status = $2', ['abgeschlossen', 'geschlossen']);
   const rows = res.rows || [];
   let target = null;
   for (const r of rows) {
