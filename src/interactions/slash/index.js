@@ -1,5 +1,5 @@
 const { MessageFlags } = require('discord.js');
-
+// Turnier-Befehle
 const anmelden            = require('./anmelden');
 const arena               = require('./arena');
 const bracket             = require('./bracket');
@@ -16,8 +16,12 @@ const turnier_advance     = require('./turnier_advance');
 const turnier_info        = require('./turnier_info');
 const turnier_start       = require('./turnier_start');
 const turnier_stop        = require('./turnier_stop');
+// PvM-Befehle
+const dungeon_setzen      = require('./dungeon_setzen');
+const pvm_start           = require('./pvm_start');
 
 const map = new Map([
+  //Turnier-Befehle
   ['anmelden', anmelden],
   ['arena', arena],
   ['bracket', bracket],
@@ -34,6 +38,9 @@ const map = new Map([
   ['turnier_info', turnier_info],
   ['turnier_start', turnier_start],
   ['turnier_stop', turnier_stop],
+  // PvM-Befehle
+  ['dungeon_setzen', dungeon_setzen],
+  ['pvm_start', pvm_start],
 ]);
 
 module.exports = async function handleSlash(interaction, daten) {

@@ -16,6 +16,7 @@ const guildOnly = (b) =>
     .setContexts([InteractionContextType.Guild]);
 
 const commands = [
+  // === Turnier ===
   // === Public ===
   // /anmelden
   guildOnly(
@@ -184,6 +185,27 @@ const commands = [
     new SlashCommandBuilder()
       .setName('turnier_advance')
       .setDescription('Schaltet in die nächste Turnierphase (Quali → Gruppen → KO → Finale)')
+      .setDefaultMemberPermissions(PermissionsBitField.Flags.Administrator)
+  ),
+
+  // === PvM ===
+  // /pvm_start
+  guildOnly(
+    new SlashCommandBuilder()
+      .setName('pvm_start')
+      .setDescription('Startet ein PvM Event')
+      .setDefaultMemberPermissions(PermissionsBitField.Flags.Administrator)
+  ),
+  // /dungeon_setzen
+  guildOnly(
+    new SlashCommandBuilder()
+      .setName('dungeon_setzen')
+      .setDescription('Fügt einen Dungeon zum PvM Event hinzu')
+      .addStringOption(opt =>
+        opt.setName('name')
+          .setDescription('Name des Dungeons')
+          .setRequired(true)
+      )
       .setDefaultMemberPermissions(PermissionsBitField.Flags.Administrator)
   ),
 ].map(c => c.toJSON());
