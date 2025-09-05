@@ -65,8 +65,6 @@ function buildTournamentInfoEmbeds(daten = {}) {
       ].join('\n')
     : '**Gesamtpott:**\n—\n**Aufteilung:**\n—';
 
-  fields.push({ name: '💰 Pott', value: potValue, inline: false });
-
   // 👤 Teilnehmerliste (immer alphabetisch, mit Klassen-Emoji + Alive/Out)
   const emojiMap = Object.fromEntries(KLASSE_LISTE.map(k => [k.name, k.emoji]));
   const lines = teilnehmerArr.map(p => {
