@@ -45,8 +45,8 @@ function buildRulesEmbeds(daten = {}) {
       {
         name: 'Übersichten',
         value: [
-          '• **/bracket** → Gruppen, offene und beendete Kämpfe.',
-          '• **/turnier_info** → Laufendes Turnier, Pott, Spieler mit Status.',
+          '• **/bracket** → Gruppen, Kämpfe und Bracket-Übersicht.',
+          '• **/turnier_info** → Laufendes Turnier, Pott, Spieler mit Status und Klassen.',
         ].join('\n'),
       },
       {
@@ -81,4 +81,5 @@ function buildRulesEmbeds(daten = {}) {
   return [rules, commands];
 }
 
+// === Exports ===
 module.exports = { buildRulesEmbeds };

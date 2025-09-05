@@ -1,6 +1,4 @@
-// src/services/tournament.js
-
-// Utils & Konstanten
+// === Imports ===
 const { shuffleArray, themedGroupNames } = require('../utils');
 const { ALLOWED_KO_SIZES } = require('../config/constants');
 
@@ -48,8 +46,6 @@ function createQualificationFromTeilnehmerMap(teilnehmerMap) {
 
 // === Gruppenphase Top/Low mit alten Namen + Pfeil am Ende ===
 // Erwartung: nach der Quali steht in teilnehmerMap[id].tag 'Top' oder 'Low' (alles andere = Low)
-// services/tournament.js
-
 function createGroupsPhaseTopLow(teilnehmerMap) {
   const names = themedGroupNames(4); // vorhandene Gruppennamen beibehalten
 
@@ -320,6 +316,7 @@ function mkFight(id, qa, qb, bestOf = 3) {
   };
 }
 
+// KO-Baum mit Setzliste (nur 4 Gruppen, 1, 2 oder 4 pro Gruppe)
 function createKOSeeded(qualified, groups, takePerGroup) {
   const qByGroup = new Map();
   for (const g of groups) qByGroup.set(g.name, []);
@@ -376,11 +373,13 @@ function createKOSeeded(qualified, groups, takePerGroup) {
   return createKOFightsFromParticipants(flat);
 }
 
+// Wähle die größte erlaubte KO-Größe ≤ n (min. 2)
 function chooseKOSize(n) {
   for (const s of ALLOWED_KO_SIZES) if (s <= n) return s;
   return 2;
 }
 
+// KO-Baum aus Teilnehmern (randomisiert, falls keine Setzliste vorhanden)
 function createKOFightsFromParticipants(participants) {
   const n = participants.length;
   if (!ALLOWED_KO_SIZES.includes(n)) throw new Error('Ungültige Teilnehmerzahl für KO: ' + n);
@@ -403,16 +402,17 @@ function createKOFightsFromParticipants(participants) {
   return fights;
 }
 
+// === Exports ===
 module.exports = {
   GROUP_EMOJI,
   createQualificationFromTeilnehmerMap,
-  createGroupsPhaseTopLow,   // neu (Top/Low, alter Name + Pfeil-DisplayName)
-  createGroupsPhase,         // legacy
+  createGroupsPhaseTopLow,
+  createGroupsPhase,
   createTopLowQuarterfinals,
-  computeGroupStandings,
-  determineQualifiedTopLow,
-  determineQualifiedAdvanced,
   createKOSeeded,
   createKOFightsFromParticipants,
   chooseKOSize,
+  computeGroupStandings,
+  determineQualifiedTopLow,
+  determineQualifiedAdvanced,
 };

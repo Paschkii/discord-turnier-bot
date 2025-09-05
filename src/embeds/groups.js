@@ -107,4 +107,8 @@ function buildPagedGroupReply(daten, page = 1, perPage = 10) {
   return { embeds: slice, components };
 }
 
-module.exports = { buildPagedGroupReply, buildGroupEmbeds };
+// === Exports ===
+module.exports = {
+  buildPagedGroupReply,
+  buildGroupEmbeds
+};

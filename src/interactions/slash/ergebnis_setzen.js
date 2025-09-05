@@ -1,4 +1,4 @@
-// src/interactions/slash/ergebnis_setzen.js
+// === Imports ===
 const {
   MessageFlags,
   PermissionsBitField
@@ -6,6 +6,7 @@ const {
 const { ladeTurnier } = require('../../store/turniere');
 const setscore = require('../modals/setscore');
 
+// Ergebnis eines Kampfes setzen
 async function execute(interaction) {
   // Admin-Guard
   if (!interaction.member.permissions.has(PermissionsBitField.Flags.Administrator)) {
@@ -30,4 +31,5 @@ async function execute(interaction) {
   return setscore.open(interaction, fight);
 }
 
+// === Exports ===
 module.exports = { execute };

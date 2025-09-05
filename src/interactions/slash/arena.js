@@ -1,3 +1,4 @@
+// === Imports ===
 const { MessageFlags, EmbedBuilder } = require('discord.js');
 const { arenaData } = require('../../config/constants');
 
@@ -22,6 +23,7 @@ function sampleUnique(arr, k) {
   return a.slice(0, n);
 }
 
+// Würfelt n Arenen aus
 async function execute(interaction) {
   const n = interaction.options.getInteger('anzahl') ?? 1;
   const names = getArenaNames();
@@ -45,4 +47,5 @@ async function execute(interaction) {
   });
 }
 
+// === Exports ===
 module.exports = { execute };

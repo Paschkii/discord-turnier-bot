@@ -1,6 +1,6 @@
 // === Konstanten ===
 // Erlaubte KO-Runden Größen
-const ALLOWED_KO_SIZES = [16, 14, 12, 8, 4, 2];
+const ALLOWED_KO_SIZES = [32, 16, 14, 12, 8, 4, 2];
 
 // Klassen Liste
 const KLASSE_LISTE = [
@@ -10,8 +10,8 @@ const KLASSE_LISTE = [
   { emoji: '💰', name: 'Enutrof' },
   { emoji: '🛡️', name: 'Feca' },
   { emoji: '💣', name: 'Halsabschneider' },
-  { emoji: '🗡',  name: 'Iop' },
-  { emoji: '🎭',  name: 'Maskerador' },
+  { emoji: '🗡', name: 'Iop' },
+  { emoji: '🎭', name: 'Maskerador' },
   { emoji: '🐉', name: 'Osamodas' },
   { emoji: '🐼', name: 'Pandawa' },
   { emoji: '🩸', name: 'Sacrieur' },
@@ -20,6 +20,240 @@ const KLASSE_LISTE = [
   { emoji: '🚂', name: 'Steamer' },
   { emoji: '⏳', name: 'Xelor' },
 ];
+
+// Regionen Liste
+const REGION_LISTE = [
+  { id: 'albuera',    name: { de: 'Albuera-Archipel',         en: 'Albuera Archipelago' } },
+  { id: 'vulkania',   name: { de: 'Vulkania-Archipel',        en: 'Archipelago of Vulkania' } },
+  { id: 'astrub',     name: { de: 'Astrub',                   en: 'Astrub' } },
+  { id: 'bonta',      name: { de: 'Bonta',                    en: 'Bonta' } },
+  { id: 'brakmar',    name: { de: 'Brâkmar',                  en: 'Brakmar' } },
+  { id: 'cania',      name: { de: 'Cania-Ebene',              en: 'Cania Plains' } },
+  { id: 'dopple',     name: { de: 'Doppel-Territorium',       en: 'Dopple Territory' } },
+  { id: 'dungeons',   name: { de: 'Dungeons',                 en: 'Dungeons' } },
+  { id: 'frigost',    name: { de: 'Frigost',                  en: 'Frigost Island' } },
+  { id: 'horrib',     name: { de: 'Horror-Insel',             en: 'Horrib Isle' } },
+  { id: 'koalak',     name: { de: 'Koalak-Berg',              en: 'Koalak Mountain' } },
+  { id: 'kwismas',    name: { de: 'Kwismas-Insel',            en: 'Kwismas Island' } },
+  { id: 'minotoror',  name: { de: 'Minotoror-Insel',          en: 'Minotoror Island' } },
+  { id: 'moon',       name: { de: 'Mond-Insel',               en: 'Moon Island' } },
+  { id: 'orado',      name: { de: 'Orado-Insel',              en: 'Orado Island' } },
+  { id: 'otomai',     name: { de: 'Otomai-Insel',             en: 'Otomai Island' } },
+  { id: 'pandala',    name: { de: 'Pandala-Insel',            en: 'Pandala Island' } },
+  { id: 'sakai',      name: { de: 'Sakai-Insel',              en: 'Sakai Island' } },
+  { id: 'sidimote',   name: { de: 'Sidimote-Moor',            en: 'Sidimote Moors' } },
+  { id: 'dragon_pig', name: { de: 'Schweinedrachen Labyrinth',en: "The Dragon Pig's Maze" } },
+  { id: 'zoth',       name: { de: 'Zoth-Dorf',                en: 'The Zoth Village' } },
+  { id: 'treechnid',  name: { de: 'Treechnid-Wald',           en: 'Treechnid Forest' } },
+  { id: 'wabbit',     name: { de: 'Wabbit-Insel',             en: 'Wabbit Island' } },
+];
+
+// Boss Liste
+const BOSSE_LISTE = [
+  // Level 1 - 50
+  { id: 'belladonna', name: 'Belladonna', defaultLevel: 12 },
+  { id: 'sonnenbluemchen', de: 'Ausgehungertes Sonnenblümchen', defaultLevel: 30 },
+  { id: 'spongemob', name: 'Spongemob Schwammtopf', defaultLevel: 40 },
+  { id: 'scarabiest', name: 'Goldenes Scarabiest', defaultLevel: 40 },
+  { id: 'batofu', name: 'Batofu', defaultLevel: 40 },
+  { id: 'bartaboo', name: 'Bartaboo', defaultLevel: 40 },
+  { id: 'ronin_chafer', name: 'Ronin Chafer', defaultLevel: 40 },
+  { id: 'koeniglicher_fresssack', name: 'Königlicher Fresssack', defaultLevel: 50 },
+  { id: 'bworkette', name: 'Bworkette', defaultLevel: 50 },
+  { id: 'schattenschmiede', name: 'Schatztruhe der Schattenschmiede', defaultLevel: 50 },
+  { id: 'shin_larve', name: 'Shin Larve', defaultLevel: 50 },
+  { id: 'korallator', name: 'Mächtiger Korallator', defaultLevel: 50 },
+  { id: 'kwackatau', name: 'Kwackatau', defaultLevel: 50 },
+  // Level 51 - 100
+  { id: 'wa_wabbit', name: 'Wa Wabbit', defaultLevel: 60 },
+  { id: 'kanniball_ahde', name: 'Kanniball Ahde', defaultLevel: 60 },
+  { id: 'apfel_blob', name: 'Königlicher Apfel Blob', defaultLevel: 60 },
+  { id: 'indigo_blob', name: 'Königlicher Indigo Blob', defaultLevel: 60 },
+  { id: 'kirsch_blob', name: 'Königlicher Kirsch Blob', defaultLevel: 60 },
+  { id: 'kokos_blob', name: 'Königlicher Kokos Blob', defaultLevel: 60 },
+  { id: 'minzgelee', name: 'Königliches Minzgelee', defaultLevel: 60 },
+  { id: 'erdbeergelee', name: 'Königliches Erdbeergelee', defaultLevel: 60 },
+  { id: 'zitronengelee', name: 'Königliches Zitronengelee', defaultLevel: 60 },
+  { id: 'blaubeergelee', name: 'Königliches Blaubeergelee', defaultLevel: 60 },
+  { id: 'nelwynn', name: 'Nelwynn', defaultLevel: 70 },
+  { id: 'gurrlo', name: 'Gurrlo, der Fürchterliche', defaultLevel: 70 },
+  { id: 'mega_krachler', name: 'Legendärer Mega Krachler', defaultLevel: 70 },
+  { id: 'wa_wobot', name: 'Wa Wobot', defaultLevel: 80 },
+  { id: 'ur_astaknyde', name: 'Ur-Astaknyde', defaultLevel: 90 },
+  { id: 'oberstnimb', name: 'Oberstnimb Selim Quarz', defaultLevel: 90 },
+  { id: 'schweinedrachen', name: 'Schweinedrachen', defaultLevel: 100 },
+  { id: 'kuhloss', name: 'Kuhloss', defaultLevel: 100 },
+  { id: 'moon', name: 'Moon', defaultLevel: 100 },
+  { id: 'muwulf', name: 'MuWulf', defaultLevel: 100 },
+  // Level 101 - 150
+  { id: 'gross_shilf', name: 'Groß-Shilf', defaultLevel: 110 },
+  { id: 'meister_rab', name: 'Meister Rab', defaultLevel: 110 },
+  { id: 'weisse_ratte', name: 'Weiße Ratte', defaultLevel: 110 },
+  { id: 'schwarze_ratte', name: 'Schwarze Ratte', defaultLevel: 110 },
+  { id: 'koeniglicher_multiblob', name: 'Königlicher Multiblob', defaultLevel: 120 },
+  { id: 'minotoror', name: 'Minotoror', defaultLevel: 120 },
+  { id: 'koenigliches_fressmut', name: 'Königliches Fressmut', defaultLevel: 120 },
+  { id: 'koeniglicher_tofu', name: 'Königlicher Tofu', defaultLevel: 120 },
+  { id: 'crocabulia', name: 'Crocabulia', defaultLevel: 120 },
+  { id: 'skeunk', name: 'Skeunk', defaultLevel: 120 },
+  { id: 'krakillian_waechter', name: 'Krakillian Wächter', defaultLevel: 130 },
+  { id: 'kanigroula', name: 'Kanigroula', defaultLevel: 140 },
+  { id: 'weich_eich', name: 'Weich Eich', defaultLevel: 140 },
+  { id: 'bestuerzter_tynril', name: 'Bestürzter Tynril', defaultLevel: 140 },
+  { id: 'perfider_tynril', name: 'Perfider Tynril', defaultLevel: 140 },
+  { id: 'verblueffter_tynril', name: 'Verblüffter Tynril', defaultLevel: 140 },
+  { id: 'verdutzter_tynril', name: 'Verdutzter Tynril', defaultLevel: 140 },
+  { id: 'king_ping', name: 'King Ping', defaultLevel: 140 },
+  { id: 'hell_mina', name: 'Hell Mina', defaultLevel: 140 },
+  { id: 'ben_der_ripat', name: 'Ben der Ripat', defaultLevel: 150 },
+  { id: 'sphincter_cell', name: 'Sphincter Cell', defaultLevel: 150 },
+  // Level 151 - 190
+  { id: 'kimbo', name: 'Kimbo', defaultLevel: 160 },
+  { id: 'minotot', name: 'Minotot', defaultLevel: 160 },
+  { id: 'obsidianter', name: 'Obsidianter', defaultLevel: 160 },
+  { id: 'zombrutalist', name: 'Zombrutalist', defaultLevel: 160 },
+  { id: 'tengu_eisfux', name: 'Tengu Eisfux', defaultLevel: 170 },
+  { id: 'fuji_eisfux', name: 'Fuji Eisfux', defaultLevel: 190 },
+  { id: 'nagate', name: 'Nagate', defaultLevel: 170 },
+  { id: 'koenig_skai', name: 'König Skai', defaultLevel: 170 },
+  { id: 'korriander', name: 'Korriander', defaultLevel: 180 },
+  { id: 'riesenkrakamor', name: 'Riesenkrakamor', defaultLevel: 180 },
+  { id: 'bworker', name: 'Bworker', defaultLevel: 180 },
+  { id: 'stinkeling', name: 'Stinkeling', defaultLevel: 180 },
+  { id: 'tanukoui_san', name: 'Tanukouï San', defaultLevel: 180 },
+  { id: 'daxolossus', name: 'Daxolossus', defaultLevel: 190 },
+  { id: 'fuxoroshi', name: 'Fuxoroshi', defaultLevel: 190 },
+  { id: 'grollum', name: 'Grollum', defaultLevel: 190 },
+  { id: 'himmlischer_barbaer', name: 'Himmlischer Barbär', defaultLevel: 190 },
+  { id: 'shihan', name: 'Shihan', defaultLevel: 190 },
+  { id: 'hanshi', name: 'Hanshi', defaultLevel: 190 },
+  // Level 191 - 200
+  { id: 'missiz_frizz', name: 'Missiz Frizz', defaultLevel: 190 },
+  { id: 'sylargh', name: 'Sylargh', defaultLevel: 190 },
+  { id: 'r_klimm', name: 'R.Klimm', defaultLevel: 190 },
+  { id: 'nileza', name: 'Nileza', defaultLevel: 190 },
+  { id: 'graf_primzahl', name: 'Graf Primzahl', defaultLevel: 190 },
+  { id: 'damadrya', name: 'Damadrya', defaultLevel: 190 },
+  { id: 'katamashii', name: 'Katamashii', defaultLevel: 190 },
+];
+
+// Dungeon Liste
+const DUNGEON_LISTE = [
+  // Stufe 1 - 50
+  { dungeonname: 'Belladonnas Schloss', bossname: 'Belladonna', level: 12 },
+  { dungeonname: 'Felder Dungeon', bossname: 'Ausgehungertes Sonnenblümchen', level: 30 },
+  { dungeonname: 'Versandeter Dungeon', bossname: 'Spongemob Schwammtopf', level: 40 },
+  { dungeonname: 'Scarablatt Dungeon', bossname: 'Goldenes Scarabiest', level: 40 },
+  { dungeonname: 'Tofu Dungeon', bossname: 'Batofu', level: 40 },
+  { dungeonname: 'Geisterhaus', bossname: 'Bartaboo', level: 40 },
+  { dungeonname: 'Dungeon der Skelette', bossname: 'Ronin Chafer', level: 40 },
+  { dungeonname: 'Fresssack Dungeon', bossname: 'Königlicher Fresssack', level: 50 },
+  { dungeonname: 'Bwork Dungeon', bossname: 'Bworkette', level: 50 },
+  { dungeonname: 'Dungeon der Schattenschmiede', bossname: 'Schatztruhe der Schattenschmiede', level: 50 },
+  { dungeonname: 'Larven Dungeon', bossname: 'Shin Larve', level: 50 },
+  { dungeonname: 'Aggrotte', bossname: 'Mächtiger Korallator', level: 50 },
+  { dungeonname: 'Nest des Kwackataus', bossname: 'Kwackatau', level: 50 },
+  // Stufe 51 - 100
+  { dungeonname: 'Schloss des Wa Wabbits', bossname: 'Wa Wabbit', level: 60 },
+  { dungeonname: 'Kanniball Dungeon', bossname: 'Kanniball Ahde', level: 60 },
+  { dungeonname: 'Blob Dungeon',
+    bosses: [
+      { bossname: 'Königlicher Apfel Blob', level: 60 },
+      { bossname: 'Königlicher Indigo Blob', level: 60 },
+      { bossname: 'Königlicher Kirsch Blob', level: 60 },
+      { bossname: 'Königlicher Kokos Blob', level: 60 },
+    ],
+  },
+  { dungeonname: 'Königliche Gelee Dimension',
+    bosses: [
+      { bossname: 'Königliches Minzgelee', level: 60 },
+      { bossname: 'Königliches Erdbeergelee', level: 60 },
+      { bossname: 'Königliches Zitronengelee', level: 60 },
+      { bossname: 'Königliches Blaubeergelee', level: 60 },
+    ],
+  },
+  { dungeonname: 'Brumen Tinctorias Laboratorium', bossname: 'Nelwynn', level: 70 },
+  { dungeonname: 'Bilge von Otomais Arche', bossname: 'Gurrlo, der Fürchterliche', level: 70 },
+  { dungeonname: 'Krachler Dungeon', bossname: 'Legendärer Mega Krachler', level: 70 },
+  { dungeonname: 'Wa Wabbit Bau', bossname: 'Wa Wobot', level: 80 },
+  { dungeonname: 'Astaknyden Dungeon', bossname: 'Ur-Astaknyde', level: 90 },
+  { dungeonname: 'Dickschädel Staudamm', bossname: 'Oberstnimb Selim Quarz', level: 90 },
+  { dungeonname: 'Unterschlupf des Schweinedrachens', bossname: 'Schweinedrachen', level: 100 },
+  { dungeonname: 'Höhle des Kuhlosses', bossname: 'Kuhloss', level: 100 },
+  { dungeonname: 'Dungeon von Moon', bossname: 'Moon', level: 100 },
+  { dungeonname: 'Canidae Dungeon', bossname: 'MuWulf', level: 100 },
+  // Stufe 101 - 150
+  { dungeonname: 'Shilf Engpass', bossname: 'Groß-Shilf', level: 110 },
+  { dungeonname: 'Meister Rabs Bibliothek', bossname: 'Meister Rab', level: 110 },
+  { dungeonname: 'Rattendungeon von Bonta', bossname: 'Weiße Ratte', level: 110 },
+  { dungeonname: 'Rattendungeon von Brakmar', bossname: 'Schwarze Ratte', level: 110 },
+  { dungeonname: 'Unterschlupf des Königlichen Multiblobs', bossname: 'Königlicher Multiblob', level: 120 },
+  { dungeonname: 'Herz des Labyrinths des Minotorors', bossname: 'Minotoror', level: 120 },
+  { dungeonname: 'Gewächshaus des Königlichen Fressmuts', bossname: 'Königliches Fressmut', level: 120 },
+  { dungeonname: 'Königlicher Tofustall', bossname: 'Königlicher Tofu', level: 120 },
+  { dungeonname: 'Drachei Dungeon', bossname: 'Crocabulia', level: 120 },
+  { dungeonname: 'Unterschlupf des Skeunks', bossname: 'Skeunk', level: 120 },
+  { dungeonname: 'Erzfelser Heiligtum', bossname: 'Krakillian Wächter', level: 130 },
+  { dungeonname: 'Kanigroulas Unterschlupf', bossname: 'Kanigroula', level: 140 },
+  { dungeonname: 'Weich Eich Dungeon', bossname: 'Weich Eich', level: 140 },
+  { dungeonname: 'Tynril Dungeon',
+    bosses: [
+      { bossname: 'Bestürzter Tynril', level: 140 },
+      { bossname: 'Perfider Tynril', level: 140 },
+      { bossname: 'Verblüffter Tynril', level: 140 },
+      { bossname: 'Verdutzter Tynril', level: 140 },
+    ],
+  },
+  { dungeonname: 'King Ping Grotte', bossname: 'King Ping', level: 140 },
+  { dungeonname: 'Grabhügel des langen Schlafs', bossname: 'Hell Mina', level: 140 },
+  { dungeonname: 'Wrack der Black Rogg', bossname: 'Ben der Ripat', level: 150 },
+  { dungeonname: 'Rattendungeon des Schlosses von Amakna', bossname: 'Sphincter Cell', level: 150 },
+  // Stufe 151 - 190
+  { dungeonname: 'Kimbo Blätterdach', bossname: 'Kimbo', level: 160 },
+  { dungeonname: 'Minotot Raum', bossname: 'Minotot', level: 160 },
+  { dungeonname: 'Grabgewölbe des Obsidianter', bossname: 'Obsidianter', level: 160 },
+  { dungeonname: 'Überflutete Kapelle', bossname: 'Zombrutalist', level: 160 },
+  { dungeonname: 'Eisfux Höhlen',
+    bosses: [
+      { bossname: 'Tengu Eisfux', level: 170 },
+      { bossname: 'Fuji Eisfux', level: 190 },
+    ],
+  },
+  { dungeonname: 'Tal der Herrin über die Gewässer', bossname: 'Nagate', level: 170 },
+  { dungeonname: 'Pyramide von König Skai', bossname: 'König Skai', level: 170 },
+  { dungeonname: 'Unterschlupf des Korrianders', bossname: 'Korriander', level: 180 },
+  { dungeonname: 'Höhle des Riesenkrakamors', bossname: 'Riesenkrakamor', level: 180 },
+  { dungeonname: 'Bworker Dungeon', bossname: 'Bworker', level: 180 },
+  { dungeonname: 'Pilz Dungeon', bossname: 'Stinkeling', level: 180 },
+  { dungeonname: 'Tanukouï Sans Werkstatt', bossname: 'Tanukouï San', level: 180 },
+  { dungeonname: 'Höhlen des Daxolossus', bossname: 'Daxolossus', level: 190 },
+  { dungeonname: 'Feuerwirrk-Fabrik', bossname: 'Fuxoroshi', level: 190 },
+  { dungeonname: 'Mine von Arkal', bossname: 'Grollum', level: 190 },
+  { dungeonname: 'Vorraum des Barbärenstockes', bossname: 'Himmlischer Barbär', level: 190 },
+  { dungeonname: 'Dojo des Windes',
+    bosses: [
+      { bossname: 'Shihan', level: 190 },
+      { bossname: 'Hanshi', level: 190 },
+    ],
+  },
+  // Stufe 191 - 200
+  { dungeonname: 'Missiz Frizz Kaltschmiede', bossname: 'Missiz Frizz', level: 190 },
+  { dungeonname: 'Sylarghs Transport', bossname: 'Sylargh', level: 190 },
+  { dungeonname: 'Die privaten Gesellschaftszimmer R.Klimms', bossname: 'R.Klimm', level: 190 },
+  { dungeonname: 'Nilezas Laboratorium', bossname: 'Nileza', level: 190 },
+  { dungeonname: 'Graf Primzahls Dungeon', bossname: 'Graf Primzahl', level: 190 },
+  { dungeonname: 'Damadryas Bambushain', bossname: 'Damadrya', level: 190 },
+  { dungeonname: 'Heiligtum der verirrten Seelen', bossname: 'Katamashii', level: 190 },
+];
+
+// Dungeon Kategorien (für Filter)
+const DUNGEON_KATEGORIEN = {
+  'Level 1-50'    : d => d.level >= 1   && d.level <= 50,
+  'Level 51-100'  : d => d.level >= 51  && d.level <= 100,
+  'Level 101-150' : d => d.level >= 101 && d.level <= 150,
+  'Level 151-190' : d => d.level >= 151 && d.level <= 190,
+  'Level 191-200' : d => d.level >= 191 && d.level <= 200,
+};
 
 // Arena Daten
 const arenaData = {
@@ -31,12 +265,12 @@ const arenaData = {
 // Alle Commands (für /hilfe, /regeln etc.)
 const HELP_COMMANDS = [
   // User
-  { name: 'anmelden',        description: 'Meldet dich für das Turnier an.', admin: false },
-  { name: 'arena',           description: 'Zufällige Arena-Auswahl.', admin: false },
-  { name: 'bracket',         description: 'Zeigt Gruppen, Kämpfe und Übersicht der aktuellen Phase an', admin: false },
-  { name: 'hall_of_fame',    description: 'Zeigt vergangene Turniere (Podium).', admin: false },
-  { name: 'regeln',          description: 'Zeigt die Turnierregeln.', admin: false },
-  { name: 'turnier_info',    description: 'Komplette Turnier-Übersicht (Pott & Status).', admin: false },
+  { name: 'anmelden',            description: 'Meldet dich für das Turnier an.', admin: false },
+  { name: 'arena',               description: 'Zufällige Arena-Auswahl.', admin: false },
+  { name: 'bracket',             description: 'Zeigt Gruppen, Kämpfe und Übersicht der aktuellen Phase an', admin: false },
+  { name: 'hall_of_fame',        description: 'Zeigt vergangene Turniere (Podium).', admin: false },
+  { name: 'regeln',              description: 'Zeigt die Turnierregeln.', admin: false },
+  { name: 'turnier_info',        description: 'Komplette Turnier-Übersicht (Pott & Status).', admin: false },
 
   // Admin
   { name: 'ergebnis_setzen',     description: 'Admin: Ergebnis eines Kampfes setzen/korrigieren.', admin: true },
@@ -51,13 +285,22 @@ const HELP_COMMANDS = [
 ];
 
 // Phasen Labels
-const PHASE_LABEL = { quali: 'Qualifikation', gruppen: 'Gruppenphase', ko: 'K.O.-Phase', finale: 'Finale' };
+const PHASE_LABEL = {
+  quali: 'Qualifikation',
+  gruppen: 'Gruppenphase',
+  ko: 'K.O.-Phase',
+  finale: 'Finale'
+};
 
-// Export am Ende
+// === Exports ===
 module.exports = {
   ALLOWED_KO_SIZES,
-  KLASSE_LISTE,
   arenaData,
+  BOSSE_LISTE,
+  DUNGEON_KATEGORIEN,
+  DUNGEON_LISTE,
   HELP_COMMANDS,
+  KLASSE_LISTE,
+  REGION_LISTE,
   PHASE_LABEL,
 };

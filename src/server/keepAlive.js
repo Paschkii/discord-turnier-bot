@@ -1,3 +1,4 @@
+// === Webserver wach halten (Render.com) ===
 function keepAlive() {
     const express = require('express');
     // === Webserver (Keep-Alive) ===
@@ -8,4 +9,6 @@ function keepAlive() {
         app.get('/health', (_, res) => res.status(200).send('OK'));
         app.listen(PORT, () => console.log(`Webserver listening on port ${PORT}`));
 }
-module.exports = keepAlive;
+
+// === Exports ===
+module.exports = { keepAlive };

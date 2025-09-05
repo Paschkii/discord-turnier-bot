@@ -1,3 +1,4 @@
+// === Imports ===
 const { MessageFlags } = require('discord.js');
 // Turnier-Befehle
 const anmelden            = require('./anmelden');
@@ -20,6 +21,7 @@ const turnier_stop        = require('./turnier_stop');
 const dungeon_setzen      = require('./dungeon_setzen');
 const pvm_start           = require('./pvm_start');
 
+// Map mit Handlern
 const map = new Map([
   //Turnier-Befehle
   ['anmelden', anmelden],
@@ -43,7 +45,8 @@ const map = new Map([
   ['pvm_start', pvm_start],
 ]);
 
-module.exports = async function handleSlash(interaction, daten) {
+// Slash-Command Handler
+async function handleSlash(interaction, daten) {
   const h = map.get(interaction.commandName);
   if (!h || typeof h.execute !== 'function') {
     return interaction.reply({ content: `❌ Kein Handler für /${interaction.commandName} (noch nicht verdrahtet).`, flags: MessageFlags.Ephemeral });
@@ -55,3 +58,6 @@ module.exports = async function handleSlash(interaction, daten) {
     return interaction.reply({ content: '❌ Fehler beim Ausführen des Befehls.', flags: MessageFlags.Ephemeral });
   }
 };
+
+// === Exports ===
+module.exports = { handleSlash };

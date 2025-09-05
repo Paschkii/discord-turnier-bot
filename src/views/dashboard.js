@@ -1,3 +1,4 @@
+// === Imports ===
 const { EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
 const { KLASSE_LISTE } = require('../config/constants');
 
@@ -250,4 +251,8 @@ async function buildDashboard(_interaction, daten, state) {
 }
 
 // ===== Export =====
-module.exports = { buildDashboard, defaultStateFromData, buildTabMatches };
+module.exports = {
+  buildDashboard,
+  buildTabMatches,
+  defaultStateFromData,
+};

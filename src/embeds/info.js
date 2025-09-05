@@ -1,3 +1,4 @@
+// === Imports ===
 const { EmbedBuilder } = require('discord.js');
 const { KLASSE_LISTE } = require('../config/constants');
 const { formatMK } = require('../utils');
@@ -19,12 +20,14 @@ function computeAliveSet(daten = {}) {
   return alive;
 }
 
+// Hilfsfunktion: Array in Chunks aufteilen
 function chunk(arr, n) {
   const out = [];
   for (let i = 0; i < arr.length; i += n) out.push(arr.slice(i, i + n));
   return out;
 }
 
+// Baut die Turnier-Info-Embeds
 function buildTournamentInfoEmbeds(daten = {}) {
   const title = `🏆 ${daten.name || 'Turnier'} — Übersicht`;
   const teilnehmerArr = Object.entries(daten.teilnehmer || {})
@@ -48,7 +51,7 @@ function buildTournamentInfoEmbeds(daten = {}) {
   fields.push({ name: '📟 Phase', value: phaseLabel, inline: true });
   fields.push({ name: '👥 Teilnehmer', value: String(teilnehmerArr.length), inline: true });
 
-  // 💰 Pott-Block (mehrzeilig, wie gewünscht)
+  // 💰 Pott-Block (mehrzeilig)
   const p = daten.prize;
   const potValue = p
     ? [
@@ -60,7 +63,7 @@ function buildTournamentInfoEmbeds(daten = {}) {
         `🥈 ${p.text?.second ?? formatMK(p.secondMK)}`,
         `🥉 ${p.text?.third  ?? formatMK(p.thirdMK)}`
       ].join('\n')
-    : '**Gesamtpott:** —\n**Aufteilung:** —';
+    : '**Gesamtpott:**\n—\n**Aufteilung:**\n—';
 
   fields.push({ name: '💰 Pott', value: potValue, inline: false });
 
@@ -93,4 +96,5 @@ function buildTournamentInfoEmbeds(daten = {}) {
   return [embed];
 }
 
+// === Exports ===
 module.exports = { buildTournamentInfoEmbeds };

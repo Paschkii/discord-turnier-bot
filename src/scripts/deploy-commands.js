@@ -1,4 +1,4 @@
-// deploy-commands.js
+// === Imports ===
 const {
   REST,
   Routes,

@@ -1,3 +1,4 @@
+// === Imports ===
 const handleSlash         = require('../interactions/slash');
 const handleButtons       = require('../interactions/buttons');
 const handleModals        = require('../interactions/modals');
@@ -6,6 +7,7 @@ const autocomplete        = require('../interactions/autocomplete');
 const { ladeTurnier }     = require('../store/turniere');
 const { MessageFlags }    = require('discord.js');
 
+// Handhabt alle InteractionCreate-Events
 async function onInteractionCreate(interaction) {
   if (
     !interaction.isChatInputCommand() &&
@@ -31,6 +33,8 @@ async function onInteractionCreate(interaction) {
       };
     }
 
+    // Interaction-Typ unterscheiden
+    // Autocomplete, Slash, Modal, Select, Button
     if (interaction.isAutocomplete()) {
       const h = autocomplete.get(interaction.commandName);
       if (h && typeof h.run === 'function') return h.run(interaction);
@@ -55,4 +59,5 @@ async function onInteractionCreate(interaction) {
   }
 }
 
+// === Exports ===
 module.exports = { onInteractionCreate };

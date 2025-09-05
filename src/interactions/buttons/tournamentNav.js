@@ -1,3 +1,4 @@
+// === Imports ===
 const { MessageFlags } = require('discord.js');
 const { buildDashboard, defaultStateFromData } = require('../../views/dashboard');
 const { ladeTurnier } = require('../../store/turniere');
@@ -32,33 +33,39 @@ function parseStateFromId(parts) {
   return null; // Unbekannter Typ
 }
 
-module.exports = {
-  canHandle: (id) => typeof id === 'string' && id.startsWith('tnav|'),
+// Prüft, ob die Interaktion von diesem Handler verarbeitet werden kann.
+function canHandle(id) {
+  return typeof id === 'string' && id.startsWith('tnav|');
+}
 
-  async run(interaction) {
-    const id    = interaction.customId || '';
-    if (!id.startsWith('tnav|')) return;
+// Haupt-Handler für Turnier-Navigation
+async function run(interaction) {
+  const id    = interaction.customId || '';
+  if (!id.startsWith('tnav|')) return;
 
-    const parts = id.split('|');
-    const state = parseStateFromId(parts);
-    if (!state) return; // noop
+  const parts = id.split('|');
+  const state = parseStateFromId(parts);
+  if (!state) return; // unbekannter Typ
 
-    // Interaktion sofort bestätigen, um den "Lade..."-Status zu entfernen.
-    try {
-      await interaction.deferUpdate();
-    } catch (err) {
-      // Ignoriere Fehler, wenn die Interaktion bereits beantwortet wurde.
-      if (err?.code === 10062) return;
-      throw err;
-    }
-
-    const daten = await ladeTurnier();
-    if (!daten) {
-      return interaction.followUp({ content: '❌ Kein aktives Turnier.', flags: MessageFlags.Ephemeral });
-    }
-
-    const finalState = state || defaultStateFromData(daten, 'g');
-    const view = await buildDashboard(interaction, daten, finalState);
-    return interaction.editReply(view);
+  // Interaktion sofort bestätigen, um den "Lade..."-Status zu entfernen.
+  try {
+    await interaction.deferUpdate();
+  } catch (err) {
+    // Ignoriere Fehler, wenn die Interaktion bereits beantwortet wurde.
+    if (err?.code === 10062) return;
+    throw err;
   }
-};
+
+  const daten = await ladeTurnier();
+  if (!daten) {
+    return interaction.followUp({ content: '❌ Kein aktives Turnier.', flags: MessageFlags.Ephemeral });
+  }
+
+// State mit Daten füllen
+const finalState = state || defaultStateFromData(daten, 'g');
+  const view = await buildDashboard(interaction, daten, finalState);
+  return interaction.editReply(view);
+}
+
+// === Exports ===
+module.exports = { canHandle, run };

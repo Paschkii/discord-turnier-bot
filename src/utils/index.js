@@ -4,6 +4,7 @@ const DOFUS_GROUP_NAMES = [
   'Astrub', 'Amakna', 'Bonta', 'Brakmar', 'Sufokia',
   'Pandala', 'Frigost', 'Otomai', 'Albuera', 'Incarnam',
 ];
+// Gruppennamen generieren
 function themedGroupNames(count) {
   const base = DOFUS_GROUP_NAMES.length ? DOFUS_GROUP_NAMES : ['Astrub'];
   const out = [];
@@ -146,9 +147,17 @@ function logToModerator(ctx, text) {
   }
 }
 
+// === Exports ===
 module.exports = {
-  themedGroupNames, shuffleArray,
-  validReportExact, validReportKO,
-  parseMK, formatMK, mkToTokens, tokensToMK, sainteLagueAllocate, splitPrize,
-  logToModerator
+  formatMK,
+  mkToTokens,
+  logToModerator,
+  parseMK,
+  sainteLagueAllocate,
+  shuffleArray,
+  splitPrize,
+  themedGroupNames,
+  tokensToMK,
+  validReportExact,
+  validReportKO,
 };

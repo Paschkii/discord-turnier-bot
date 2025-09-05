@@ -1,3 +1,4 @@
+// === Imports ===
 const {
   ActionRowBuilder,
   ButtonBuilder,
@@ -24,6 +25,7 @@ function archiveFights(d) {
   d.kämpfeArchiv = [ ...(d.kämpfeArchiv || []), ...((d.kämpfe || [])) ];
 }
 
+// Nächste Phase starten
 async function execute(interaction) {
   if (!interaction.member.permissions.has(PermissionsBitField.Flags.Administrator)) {
     return interaction.reply({ content: '⛔ Nur Admins dürfen die nächste Phase starten.', flags: MessageFlags.Ephemeral });
@@ -301,4 +303,5 @@ async function execute(interaction) {
   }
 }
 
+// === Exports ===
 module.exports = { execute };

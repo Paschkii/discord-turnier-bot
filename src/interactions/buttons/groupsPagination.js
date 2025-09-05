@@ -1,7 +1,8 @@
-// src/interactions/buttons/groupsPagination.js
+// === Imports ===
 const { buildPagedGroupReply } = require('../../embeds/groups');
 const { MessageFlags } = require('discord.js');
 
+// === Module-level Variables ===
 async function run(interaction, daten) {
   // customId: pg_groups_prev_<n> / pg_groups_next_<n>
   const [, , dir, n] = (interaction.customId || '').split('_');
@@ -24,4 +25,5 @@ async function run(interaction, daten) {
   }
 }
 
+// === Exports ===
 module.exports = { run };

@@ -1,9 +1,6 @@
 // === Imports ===
 const { pool } = require('../../datenbank');
 
-// === Exports ===
-module.exports = { speichereTurnier, insertNewTournamentRow, ladeTurnier, listFinishedTournaments, getLatestTournamentRow, closeAndClearLatestTournament, getNextTournamentNumber, deleteHoFByNumber };
-
 // === Datenbank-Funktionen ===
 // Speichert das aktuelle Turnier in der DB (aktualisiert die letzte Zeile oder fügt eine neue hinzu)
 async function speichereTurnier(data) {
@@ -130,3 +127,15 @@ async function deleteHoFByNumber(num) {
   await pool.query('DELETE FROM turniere WHERE id = $1', [target.id]);
   return { ok: true };
 }
+
+// === Exports ===
+module.exports = {
+  closeAndClearLatestTournament,
+  deleteHoFByNumber,
+  insertNewTournamentRow,
+  getLatestTournamentRow,
+  getNextTournamentNumber,
+  listFinishedTournaments,
+  ladeTurnier,
+  speichereTurnier
+};
