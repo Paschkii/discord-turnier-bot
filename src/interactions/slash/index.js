@@ -59,7 +59,10 @@ async function handleSlash(interaction, daten) {
     return await h.execute(interaction, daten);
   } catch (err) {
     console.error('[slash]', interaction.commandName, err);
-    return interaction.reply({ content: '❌ Fehler beim Ausführen des Befehls.', flags: MessageFlags.Ephemeral });
+    const errorMsg = { content: '❌ Fehler beim Ausführen des Befehls.', flags: MessageFlags.Ephemeral };
+    return interaction.replied || interaction.deferred
+      ? interaction.followUp(errorMsg)
+      : interaction.reply(errorMsg);
   }
 };
 
