@@ -77,7 +77,7 @@ async function execute(interaction) {
             });
 
             if (!items.length) {
-                const nuxtMatch = html.match(/window\.__NUXT__=(.+?);<\/script>/);
+                const nuxtMatch = html.match(/window\.__NUXT__=(.+?);<\/script>/s);
                 if (nuxtMatch) {
                     try {
                         const data = JSON.parse(nuxtMatch[1]);
