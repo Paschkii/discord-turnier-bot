@@ -1,5 +1,5 @@
 // === Imports ===
-const handleSlash         = require('../interactions/slash');
+const { handleSlash }     = require('../interactions/slash');
 const handleButtons       = require('../interactions/buttons');
 const handleModals        = require('../interactions/modals');
 const handleSelects       = require('../interactions/selects');
