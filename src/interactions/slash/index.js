@@ -20,6 +20,8 @@ const turnier_stop        = require('./turnier_stop');
 // PvM-Befehle
 const dungeon_setzen      = require('./dungeon_setzen');
 const pvm_start           = require('./pvm_start');
+// Hilfs-Befehle
+const set                 = require('./set');
 
 // Map mit Handlern
 const map = new Map([
@@ -43,6 +45,8 @@ const map = new Map([
   // PvM-Befehle
   ['dungeon_setzen', dungeon_setzen],
   ['pvm_start', pvm_start],
+  // Hilfs-Befehle
+  ['set', set],
 ]);
 
 // Slash-Command Handler

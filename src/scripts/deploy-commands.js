@@ -208,6 +208,19 @@ const commands = [
       )
       .setDefaultMemberPermissions(PermissionsBitField.Flags.Administrator)
   ),
+  
+  // === Hilfs-Befehle ===
+  // /set
+  guildOnly(
+    new SlashCommandBuilder()
+      .setName('set')
+      .setDescription('Zeigt ein Dofusbook-Set als Embed')
+      .addStringOption(opt =>
+        opt.setName('link')
+          .setDescription('Dofusbook-Link')
+          .setRequired(true)
+      )
+  ),
 ].map(c => c.toJSON());
 
 const rest = new REST({ version: '10' }).setToken(process.env.DISCORD_TOKEN);
