@@ -6,10 +6,11 @@ async function execute(interaction) {
     await interaction.deferReply();
     const url = interaction.options.getString('link');
     const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 5000);
+    const timeout = setTimeout(() => controller.abort(), 10000);
     try {
         const res = await fetch(url, {
-        headers: { 'User-Agent': 'Mozilla/5.0' },
+        redirect: 'follow',
+        headers: { 'User-Agent': 'Mozilla/5.0', Accept: 'text/html' },
         signal: controller.signal,
         });
         clearTimeout(timeout);
@@ -29,7 +30,7 @@ async function execute(interaction) {
         if (description) embed.setDescription(description);
         return interaction.editReply({ embeds: [embed] });
     } catch (err) {
-        console.error('[set]', err);
+        console.error(err);
         const message = err.name === 'AbortError'
         ? '❌ Anfrage abgebrochen (Timeout).'
         : '❌ Fehler beim Verarbeiten des Links.';
