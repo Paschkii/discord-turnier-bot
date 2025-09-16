@@ -14,6 +14,13 @@ function addDungeon(name) {
   return event;
 }
 
+// Stoppe das aktuelle Event
+function stopEvent() {
+  event = { active: false, dungeons: [] };
+  return event;
+}
+
+
 // Hole das aktuelle Event
 function getEvent() {
   return event;
@@ -24,4 +31,5 @@ module.exports = {
   addDungeon,
   getEvent,
   startEvent,
+  stopEvent
 };

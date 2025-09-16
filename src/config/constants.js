@@ -23,38 +23,104 @@ const KLASSE_LISTE = [
 
 // Regionen Liste
 const REGION_LISTE = [
-  { id: 'albuera',    name: { de: 'Albuera-Archipel',         en: 'Albuera Archipelago' } },
-  { id: 'vulkania',   name: { de: 'Vulkania-Archipel',        en: 'Archipelago of Vulkania' } },
-  { id: 'astrub',     name: { de: 'Astrub',                   en: 'Astrub' } },
-  { id: 'bonta',      name: { de: 'Bonta',                    en: 'Bonta' } },
-  { id: 'brakmar',    name: { de: 'Brâkmar',                  en: 'Brakmar' } },
-  { id: 'cania',      name: { de: 'Cania-Ebene',              en: 'Cania Plains' } },
-  { id: 'dopple',     name: { de: 'Doppel-Territorium',       en: 'Dopple Territory' } },
-  { id: 'dungeons',   name: { de: 'Dungeons',                 en: 'Dungeons' } },
-  { id: 'frigost',    name: { de: 'Frigost',                  en: 'Frigost Island' } },
-  { id: 'horrib',     name: { de: 'Horror-Insel',             en: 'Horrib Isle' } },
-  { id: 'koalak',     name: { de: 'Koalak-Berg',              en: 'Koalak Mountain' } },
-  { id: 'kwismas',    name: { de: 'Kwismas-Insel',            en: 'Kwismas Island' } },
-  { id: 'minotoror',  name: { de: 'Minotoror-Insel',          en: 'Minotoror Island' } },
-  { id: 'moon',       name: { de: 'Mond-Insel',               en: 'Moon Island' } },
-  { id: 'orado',      name: { de: 'Orado-Insel',              en: 'Orado Island' } },
-  { id: 'otomai',     name: { de: 'Otomai-Insel',             en: 'Otomai Island' } },
-  { id: 'pandala',    name: { de: 'Pandala-Insel',            en: 'Pandala Island' } },
-  { id: 'sakai',      name: { de: 'Sakai-Insel',              en: 'Sakai Island' } },
-  { id: 'sidimote',   name: { de: 'Sidimote-Moor',            en: 'Sidimote Moors' } },
-  { id: 'dragon_pig', name: { de: 'Schweinedrachen Labyrinth',en: "The Dragon Pig's Maze" } },
-  { id: 'zoth',       name: { de: 'Zoth-Dorf',                en: 'The Zoth Village' } },
-  { id: 'treechnid',  name: { de: 'Treechnid-Wald',           en: 'Treechnid Forest' } },
-  { id: 'wabbit',     name: { de: 'Wabbit-Insel',             en: 'Wabbit Island' } },
+  { id: 'albuera',        name: { de: 'Albuera-Archipel', en: 'Albuera Archipelago', fr: 'Archipel d\'Albuera', es: 'Archipélago de Albuera' } },
+  { id: 'amakna',         name: { de: 'Amakna', en: 'Amakna', fr: 'Amakna', es: 'Amakna' } },
+  { id: 'astrub',         name: { de: 'Astrub', en: 'Astrub', fr: 'Astrub', es: 'Astrub' } },
+  { id: 'bonta',          name: { de: 'Bonta', en: 'Bonta', fr: 'Bonta', es: 'Bonta' } },
+  { id: 'brakmar',        name: { de: 'Brâkmar', en: 'Brakmar', fr: 'Brâkmar', es: 'Brakmar' } },
+  { id: 'cania',          name: { de: 'Cania-Ebene', en: 'Cania Plains', fr: 'Plaine de Cania', es: 'Llanura de Cania' } },
+  { id: 'dopple',         name: { de: 'Doppel-Territorium', en: 'Dopple Territory', fr: 'Territoire des Dopeuls', es: 'Territorio de los dopeuls' } },
+  { id: 'dragonpigmaze',  name: { de: 'Labyrinth des Schweinedrachens', en: 'The Dragon Pig\'s Maze', fr: 'Le labyrinthe du Dragon Cochon', es: 'El laberinto del Dragocerdo' } },
+  { id: 'dungeons',       name: { de: 'Dungeons', en: 'Dungeons', fr: 'Donjons', es: 'Mazmorras' } },
+  { id: 'frigost',        name: { de: 'Die Insel Frigost', en: 'Frigost Island', fr: 'Île de Frigost', es: 'Isla de Frigost' } },
+  { id: 'horrib',         name: { de: 'Horrorinsel', en: 'Horrib Isle', fr: 'Îlot Rifique', es: 'Islote Rorífico' } },
+  { id: 'koalak',         name: { de: 'Koalak-Gebirge', en: 'Koalak Mountain', fr: 'Montagne des Koalaks', es: 'Montaña de los koalaks' } },
+  { id: 'kwismas',        name: { de: 'Weißnachtsinsel', en: 'Kwismas Island', fr: 'Île de Nowel', es: 'Isla de Nawidad' } },
+  { id: 'minotoror',      name: { de: 'Minotoror-Insel', en: 'Minotoror Island', fr: 'Île du Minotoror', es: 'Isla del Minotauroro' } },
+  { id: 'moon',           name: { de: 'Moon-Insel', en: 'Moon Island', fr: 'Île de Moon', es: 'Isla de Moon' } },
+  { id: 'orado',          name: { de: 'Insel Orado', en: 'Orado Island', fr: 'Île d\'Orado', es: 'Isla de Eldoroda' } },
+  { id: 'otomai',         name: { de: 'Otomaïs Insel', en: 'Otomai Island', fr: 'Île d\'Otomaï', es: 'Isla de Otomai' } },
+  { id: 'pandala',        name: { de: 'Insel Pandala', en: 'Pandala Island', fr: 'Île de Pandala', es: 'Isla de Pandala' } },
+  { id: 'sakai',          name: { de: 'Die Insel Arkal', en: 'Sakai Island', fr: 'Île de Sakaï', es: 'Isla Kéfriho' } },
+  { id: 'sidimote',       name: { de: 'Sidimote-Gebiet', en: 'Sidimote Moors', fr: 'Landes de Sidimote', es: 'Landas de Sidimote' } },
+  { id: 'treechnid',      name: { de: 'Wald der Astaknyden', en: 'Treechnid Forest', fr: 'Forêt des Abraknydes', es: 'Bosque de los abráknidos' } },
+  { id: 'vulkania',       name: { de: 'Vulkania-Archipel', en: 'Archipelago of Vulkania', fr: 'Archipel de Vulkania', es: 'Archipiélago de Vulkania' } },
+  { id: 'wabbit',         name: { de: 'Wabbit-Insel', en: 'Wabbit Island', fr: 'Île des Wabbits', es: 'Isla de los Wabbits' } },
+  { id: 'zoth',           name: { de: 'Zothiges Dorf', en: 'The Zoth Village', fr: 'Village des Zoths', es: 'Pueblo de los zoths' } },
 ];
+
+const FAMILY_LISTE = [
+  { id: 'albuera',        name: { de: 'Albuera-Kreaturen', en: 'Albuera Creatures', fr: 'Créatures d\'Albuera', es: 'Criaturas de Albuera' } },
+];
+
+const ICON_BASE = 'https://paschkii.github.io/dofus-touch-icons/';
+
+const RESISTANCE_TYPES = {
+    neutral: {
+      icon: `${ICON_BASE}/status-icons/Dofus_Neutral.png`,
+      name: {
+        de: 'Neutral', en: 'Neutral', fr: 'Neutre', es: 'Neutral',
+      }
+    },
+    earth: {
+      icon: `${ICON_BASE}/status-icons/Dofus_Strength.png`,
+      name: {
+        de: 'Erde', en: 'Earth', fr: 'Terre', es: 'Tierra',
+      }
+    },
+    fire: {
+      icon: `${ICON_BASE}/status-icons/Dofus_Intelligence.png`,
+      name: {
+        de: 'Feuer', en: 'Fire', fr: 'Feu', es: 'Fuego',
+      }
+    },
+    water: {
+      icon: `${ICON_BASE}/status-icons/Dofus_Chance.png`,
+      name: {
+        de: 'Wasser', en: 'Water', fr: 'Eau', es: 'Agua',
+      }
+    },
+    air: {
+      icon: `${ICON_BASE}/status-icons/Dofus_Agility.png`,
+      name: {
+        de: 'Luft', en: 'Air', fr: 'Air', es: 'Aire',
+      }
+    },
+}
 
 // Boss Liste
 const BOSSE_LISTE = [
   // Level 1 - 50 Dungeons
-  { id: 'belladonna', name: 'Belladonna', imageUrl: 'https://static.ankama.com/dofus-touch/www/game/monsters/200/4227.w200h.png', defaultLevel: 12 },
-  { id: 'sonnenbluemchen', de: 'Ausgehungertes Sonnenblümchen', imageUrl: 'https://static.ankama.com/dofus-touch/www/game/monsters/200/799.w200h.png', defaultLevel: 30 },
+  { id: 'belladonna',
+    name: {
+      de: 'Belladonna', en: 'Belladonna', fr: 'Belladone', es: 'Belladona',
+    },
+    imageUrl: `${ICON_BASE}/boss-icons/belladonna.png`,
+    defaultLevel: 12,
+    region: 'albuera',
+    family: 'albuera',
+    resistances: {
+      neutral: 0,
+      earth: 0,
+      fire: 0,
+      water: 0,
+      air: 0,
+    }
+  },
+  { id: 'famished_sunflower',
+    name: {
+      de: 'Ausgehungertes Sonnenblümchen',
+      en: 'Famished Sunflower',
+      fr: 'Tournesol Affamé',
+      es: 'Girasol Hambriento',
+    },
+    imageUrl: `${ICON_BASE}/boss-icons/famished_sunflower.png`,
+    defaultLevel: 35,
+    resistances: {
+    }
+  },
   { id: 'spongemob', name: 'Spongemob Schwammtopf', imageUrl: 'https://static.ankama.com/dofus-touch/www/game/monsters/200/928.w200h.png', defaultLevel: 40 },
-  { id: 'scarabiest', name: 'Goldenes Scarabiest', imageUrl: 'https://static.ankama.com/dofus-touch/www/game/monsters/200/797.w200h.png', defaultLevel: 40 },
+  { id: 'golden_scarabugly', name: 'Goldenes Scarabiest', imageUrl: 'https://static.ankama.com/dofus-touch/www/game/monsters/200/797.w200h.png', defaultLevel: 40 },
   { id: 'batofu', name: 'Batofu', imageUrl: 'https://static.ankama.com/dofus-touch/www/game/monsters/200/800.w200h.png', defaultLevel: 40 },
   { id: 'bartaboo', name: 'Bartaboo', imageUrl: 'https://static.ankama.com/dofus-touch/www/game/monsters/200/3651.w200h.png', defaultLevel: 40 },
   { id: 'ronin_chafer', name: 'Ronin Chafer', imageUrl: 'https://static.ankama.com/dofus-touch/www/game/monsters/200/3238.w200h.png', defaultLevel: 40 },
