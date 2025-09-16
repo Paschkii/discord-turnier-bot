@@ -59,31 +59,31 @@ const RESISTANCE_TYPES = {
     neutral: {
       icon: `${ICON_BASE}/status-icons/Dofus_Neutral.png`,
       name: {
-        de: 'Neutral', en: 'Neutral', fr: 'Neutre', es: 'Neutral',
+        de: 'Neutral', en: 'Neutral', fr: 'Neutre', es: 'Neutral'
       }
     },
     earth: {
       icon: `${ICON_BASE}/status-icons/Dofus_Strength.png`,
       name: {
-        de: 'Erde', en: 'Earth', fr: 'Terre', es: 'Tierra',
+        de: 'Erde', en: 'Earth', fr: 'Terre', es: 'Tierra'
       }
     },
     fire: {
       icon: `${ICON_BASE}/status-icons/Dofus_Intelligence.png`,
       name: {
-        de: 'Feuer', en: 'Fire', fr: 'Feu', es: 'Fuego',
+        de: 'Feuer', en: 'Fire', fr: 'Feu', es: 'Fuego'
       }
     },
     water: {
       icon: `${ICON_BASE}/status-icons/Dofus_Chance.png`,
       name: {
-        de: 'Wasser', en: 'Water', fr: 'Eau', es: 'Agua',
+        de: 'Wasser', en: 'Water', fr: 'Eau', es: 'Agua'
       }
     },
     air: {
       icon: `${ICON_BASE}/status-icons/Dofus_Agility.png`,
       name: {
-        de: 'Luft', en: 'Air', fr: 'Air', es: 'Aire',
+        de: 'Luft', en: 'Air', fr: 'Air', es: 'Aire'
       }
     },
 }
@@ -92,19 +92,67 @@ const CHARACTERISTIC_TYPES = {
   vitality: {
     icon: `${ICON_BASE}/status-icons/Dofus_Vitality.png`,
     name: {
-      de: 'Vitalität', en: 'Vitality', fr: 'Vitalité', es: 'Vitalidad',
+      de: 'LP', en: 'HP', fr: 'PV', es: 'PdV'
     }
   },
   actionPoints: {
     icon: `${ICON_BASE}/status-icons/Dofus_AP.png`,
     name: {
-      de: 'AP', en: 'AP', fr: 'PA', es: 'PA',
+      de: 'AP', en: 'AP', fr: 'PA', es: 'PA'
     }
   },
   movementPoints: {
-    icon: `${ICON_BASE}/status-icons/Dofus_MP.png`,
+    icon: `${ICON_BASE}/status-icons/Dofus_BP.png`,
     name: {
-      de: 'MP', en: 'MP', fr: 'PM', es: 'PM',
+      de: 'BP', en: 'MP', fr: 'PM', es: 'PM'
+    }
+  },
+  range: {
+    icon: `${ICON_BASE}/status-icons/Dofus_RW.png`,
+    name: {
+      de: 'RW', en: 'RG', fr: 'PO', es: 'AL'
+    }
+  },
+  summons: {
+    icon: `${ICON_BASE}/status-icons/Dofus_Summ.png`,
+    name: {
+      de: 'Beschwörungen', en: 'Summons', fr: 'Invocations', es: 'Invocaciones'
+    }
+  },
+  initiative: {
+    icon: `${ICON_BASE}/status-icons/Dofus_Initiative.png`,
+    name: {
+      de: 'Initiative', en: 'Initiative', fr: 'Initiative', es: 'Iniciativa'
+    }
+  },
+  criticalHit: {
+    icon: `${ICON_BASE}/status-icons/Dofus_Krit.png`,
+    name: {
+      de: 'Kritisch', en: 'Critical', fr: 'Critique', es: 'Crítico'
+    }
+  },
+  strength: {
+    icon: `${ICON_BASE}/status-icons/Dofus_Strength.png`,
+    name: {
+      de: 'Stärke', en: 'Strength', fr: 'Force', es: 'Fuerza'
+    }
+  },
+  intelligence: {
+    icon: `${ICON_BASE}/status-icons/Dofus_Intelligence.png`,
+    name: {
+      de: 'Intelligenz', en: 'Intelligence', fr: 'Intelligence', es: 'Inteligencia'
+    }
+  },
+  chance: {
+    icon: `${ICON_BASE}/status-icons/Dofus_Chance.png`,
+    name: {
+      de: 'Glück', en: 'Chance', fr: 'Chance', es: 'Suerte'
+    }
+  },
+  agility: {
+    icon: `${ICON_BASE}/status-icons/Dofus_Agility.png`,
+    name: {
+      de: 'Flinkheit', en: 'Agility', fr: 'Agilité', es: 'Agilidad'
     }
   }
 }
