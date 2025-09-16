@@ -2,6 +2,7 @@
 // === Imports ===
 // Handhabt Autocomplete-Interaktionen
 const map = new Map([
+  ['boss', require('./boss')],
   ['ergebnis_setzen', require('./ergebnis_setzen')],
 ]);
 // === Getter ===

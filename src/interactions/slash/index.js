@@ -3,6 +3,7 @@ const { MessageFlags } = require('discord.js');
 // Turnier-Befehle
 const anmelden            = require('./anmelden');
 const arena               = require('./arena');
+const boss                = require('./boss');
 const bracket             = require('./bracket');
 const ergebnis_setzen     = require('./ergebnis_setzen');
 const ergebnisse_wuerfeln = require('./ergebnisse_wuerfeln');
@@ -27,6 +28,7 @@ const map = new Map([
   //Turnier-Befehle
   ['anmelden', anmelden],
   ['arena', arena],
+  ['boss', boss],
   ['bracket', bracket],
   ['ergebnis_setzen', ergebnis_setzen],
   ['ergebnisse_wuerfeln', ergebnisse_wuerfeln],

@@ -35,6 +35,18 @@ const commands = [
         .setMinValue(1)
         .setMaxValue(3))
   ),
+  // /boss
+  guildOnly(
+    new SlashCommandBuilder()
+      .setName('boss')
+      .setDescription('Zeigt Infos zu einem Bossmonster')
+      .addStringOption(opt =>
+        opt.setName('name')
+          .setDescription('Bossmonster auswählen')
+          .setRequired(true)
+          .setAutocomplete(true)
+      )
+  ),
   // /bracket
   guildOnly(
     new SlashCommandBuilder()
