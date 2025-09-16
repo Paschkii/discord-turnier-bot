@@ -86,58 +86,87 @@ function getFamilyName(familyId, locale = 'de') {
 }
 
 function createLinkedIcon(meta) {
-  if (!meta || !meta.icon) return '';
+  if (!meta) return '';
+  if (meta.emoji) return meta.emoji;
+  if (!meta.icon) return '';
   const label = meta.emoji || 'Icon';
   return `[${label}](${meta.icon})`;
 }
 
-// Formatiert die Resistenz-Zeilen
-function formatResistances(boss, locale = 'de') {
-  const data = boss?.resistances;
-  if (!data || typeof data !== 'object') return [];
-  const loc = resolveLocale(locale);
-  return Object.entries(data)
-    .filter(([, value]) => value !== undefined && value !== null)
-    .map(([type, value]) => {
-      const meta = RESISTANCE_TYPES[type] || {};
-      const label = getLocalized(meta.name, loc) || type;
-      const val = typeof value === 'number' ? `${value}%` : String(value);
-      const iconLink = createLinkedIcon(meta);
-      const prefix = iconLink ? `${iconLink} ` : '';
-      return `${prefix}${label}: ${val}`.trim();
-    });
-}
-
-// Formatiert die Charakteristik-Zeilen
-function formatCharacteristics(boss, locale = 'de') {
+function getCharacteristicEntries(boss, locale = 'de') {
   const data = boss?.characteristics;
   if (!data || typeof data !== 'object') return [];
   const loc = resolveLocale(locale);
   const order = ['vitality', 'actionPoints', 'movementPoints'];
   const handled = new Set();
 
-  const buildLine = (type, value) => {
+  const buildEntry = (type, value) => {
     const meta = CHARACTERISTIC_TYPES[type] || {};
     const label = getLocalized(meta.name, loc) || type;
-    const iconLink = createLinkedIcon(meta);
-    const prefix = iconLink ? `${iconLink} ` : '';
-    return `${prefix}${label}: ${value}`.trim();
+    return {
+      type,
+      label,
+      value: String(value),
+      icon: meta.icon,
+      emoji: meta.emoji,
+    };
   };
 
-  const lines = [];
+  const entriess = [];
   for (const key of order) {
     if (data[key] !== undefined && data[key] !== null) {
-      lines.push(buildLine(key, data[key]));
+      entries.push(buildEntry(key, data[key]));
       handled.add(key);
     }
   }
 
   for (const [type, value] of Object.entries(data)) {
     if (handled.has(type) || value === undefined || value === null) continue;
-    lines.push(buildLine(type, value));
+    entries.push(buildEntry(type, value));
   }
 
-  return lines;
+  return entries;
+}
+
+function getResistanceEntries(boss, locale = 'de') {
+  const data = boss?.resistances;
+  if (!data || typeof data !== 'object') return [];
+  const loc = resolveLocale(locale);
+
+  return Object.entries(data)
+    .filter(([, value]) => value !== undefined && value !== null)
+    .map(([type, value]) => {
+      const meta = RESISTANCE_TYPES[type] || {};
+      const label = getLocalized(meta.name, loc) || type;
+      const display = typeof value === 'number' ? `${value}%` : String(value);
+      return {
+        type,
+        label,
+        value: display,
+        icon: meta.icon,
+        emoji: meta.emoji,
+      };
+    });
+}
+
+// Formatiert die Resistenz-Zeilen
+function formatResistances(boss, locale = 'de', options = {}) {
+  const { includeIcons = true } = options;
+  return getResistanceEntries(boss, locale).map((entry) => {
+    const iconLink = includeIcons ? createLinkedIcon(entry) : '';
+    const prefix = iconLink ? `${iconLink} ` : '';
+    return `${prefix}${entry.label}: ${entry.value}`.trim();
+  });
+}
+
+// Formatiert die Charakteristik-Zeilen
+function formatCharacteristics(boss, locale = 'de', options = {}) {
+  const { includeIcons = true } = options;
+  return getCharacteristicEntries(boss, locale).map((entry) => {
+    const iconLink = includeIcons ? createLinkedIcon(entry) : '';
+    const prefix = iconLink ? `${iconLink} ` : '';
+    return `${prefix}${entry.label}: ${entry.value}`.trim();
+  });
 }
 
 // Baut die Liste für Autocomplete (max. 25 Einträge)
@@ -165,8 +194,10 @@ module.exports = {
   findBossByName,
   formatCharacteristics,
   formatResistances,
+  getCharacteristicEntries,
   getBossName,
   getFamilyName,
   getRegionName,
+  getResistanceEntries,
   resolveLocale,
 };

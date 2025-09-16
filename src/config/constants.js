@@ -1,24 +1,49 @@
 // === Konstanten ===
+// Hilfsfunktion: Discord-Emojis per ENV (EMOJI_<NAME>) auflösen (ID oder kompletter String)
+function resolveDiscordEmoji(name, fallback = '') {
+  if (!name) return fallback;
+  const envKey = `EMOJI_${String(name).toUpperCase()}`;
+  const raw = process.env[envKey];
+  if (!raw) return fallback;
+
+  const trimmed = String(raw).trim();
+  if (!trimmed) return fallback;
+
+  // Bereits kompletter Emoji-String
+  if (/^<a?:\w{2,}:\d+>$/.test(trimmed)) return trimmed;
+
+  // Nur die ID angegeben → mit Name kombinieren
+  const idOnly = trimmed.match(/^(\d+)$/);
+  if (idOnly) return `<:${name}:${idOnly[1]}>`;
+
+  // Formate wie "name:id" oder ":name:id" unterstützen
+  const tuple = trimmed.match(/^:?([a-zA-Z0-9_]{2,}):(\d+)>?$/);
+  if (tuple) return `<:${tuple[1]}:${tuple[2]}>`;
+
+  // Rohstring zurückgeben (z.B. :emoji:)
+  return trimmed;
+}
+
 // Erlaubte KO-Runden Größen
 const ALLOWED_KO_SIZES = [32, 16, 14, 12, 8, 4, 2];
 
 // Klassen Liste
 const KLASSE_LISTE = [
-  { emoji: '🏹', name: 'Cra' }, // Discord-Emoji :cra:
-  { emoji: '🎲', name: 'Ecaflip' }, // Discord-Emoji :ecaflip:
-  { emoji: '🩹', name: 'Eniripsa' }, // Discord-Emoji :eniripsa:
-  { emoji: '💰', name: 'Enutrof' }, // Discord-Emoji :enutrof:
-  { emoji: '🛡️', name: 'Feca' }, // Discord-Emoji :feca:
-  { emoji: '💣', name: 'Halsabschneider' }, // Discord-Emoji :rogue:
-  { emoji: '🗡', name: 'Iop' }, // Discord-Emoji :iop:
-  { emoji: '🎭', name: 'Maskerador' }, // Discord-Emoji :masqueraider:
-  { emoji: '🐉', name: 'Osamodas' }, // Discord-Emoji :osamodas:
-  { emoji: '🐼', name: 'Pandawa' }, // Discord-Emoji :pandawa:
-  { emoji: '🩸', name: 'Sacrieur' }, // Discord-Emoji :sacrieur:
-  { emoji: '🌱', name: 'Sadida' }, // Discord-Emoji :sadida:
-  { emoji: '💀', name: 'Sram' }, // Discord-Emoji :sram:
-  { emoji: '🚂', name: 'Steamer' }, // Discord-Emoji :foggernaut:
-  { emoji: '⏳', name: 'Xelor' }, // Discord-Emoji :xelor:
+  { emoji: resolveDiscordEmoji('cra', '🏹'), name: 'Cra' }, // Discord-Emoji :cra:
+  { emoji: resolveDiscordEmoji('ecaflip', '🎲'), name: 'Ecaflip' }, // Discord-Emoji :ecaflip:
+  { emoji: resolveDiscordEmoji('eniripsa', '🩹'), name: 'Eniripsa' }, // Discord-Emoji :eniripsa:
+  { emoji: resolveDiscordEmoji('enutrof', '💰'), name: 'Enutrof' }, // Discord-Emoji :enutrof:
+  { emoji: resolveDiscordEmoji('feca', '🛡️'), name: 'Feca' }, // Discord-Emoji :feca:
+  { emoji: resolveDiscordEmoji('rogue', '💣'), name: 'Halsabschneider' }, // Discord-Emoji :rogue:
+  { emoji: resolveDiscordEmoji('iop', '🗡'), name: 'Iop' }, // Discord-Emoji :iop:
+  { emoji: resolveDiscordEmoji('masqueraider', '🎭'), name: 'Maskerador' }, // Discord-Emoji :masqueraider:
+  { emoji: resolveDiscordEmoji('osamodas', '🐉'), name: 'Osamodas' }, // Discord-Emoji :osamodas:
+  { emoji: resolveDiscordEmoji('pandawa', '🐼'), name: 'Pandawa' }, // Discord-Emoji :pandawa:
+  { emoji: resolveDiscordEmoji('sacrieur', '🩸'), name: 'Sacrieur' }, // Discord-Emoji :sacrieur:
+  { emoji: resolveDiscordEmoji('sadida', '🌱'), name: 'Sadida' }, // Discord-Emoji :sadida:
+  { emoji: resolveDiscordEmoji('sram', '💀'), name: 'Sram' }, // Discord-Emoji :sram:
+  { emoji: resolveDiscordEmoji('foggernaut', '🚂'), name: 'Steamer' }, // Discord-Emoji :foggernaut:
+  { emoji: resolveDiscordEmoji('xelor', '⏳'), name: 'Xelor' }, // Discord-Emoji :xelor:
 ];
 
 // Regionen Liste
@@ -51,13 +76,58 @@ const REGION_LISTE = [
 
 const FAMILY_LISTE = [
   { id: 'albuera', name: { de: 'Albuera-Kreaturen', en: 'Albuera Creatures', fr: 'Créatures d\'Albuera', es: 'Criaturas de Albuera' } },
-  { id: 'archmonsters', name: { de: 'Archmonsters', en: 'Astrub', fr: 'Astrub', es: 'Astrub'} },
-  { id: 'ascension', name: { de: '', en: '', fr: '', es: ''} },
-  { id: 'beach', name: { de: '', en: '', fr: '', es: ''} },
-  { id: 'breeder', name: { de: '', en: '', fr: '', es: ''} },
-  { id: '', name: { de: '', en: '', fr: '', es: ''} },
-  { id: '', name: { de: '', en: '', fr: '', es: ''} },
-  { id: '', name: { de: '', en: '', fr: '', es: ''} },
+  // Belladonna Kreaturen, Kreaturen der Wälder, Kreaturen des Strandes
+  { id: 'archmonsters', name: { de: 'Namensmonster', en: 'Archmonsters', fr: 'Archi-monstres', es: 'archi-monstruo'} },
+  // Namensmonster
+  { id: 'ascension', name: { de: 'Insel der Ersteigung', en: 'Ascension Island', fr: 'Île de l\'Ascension', es: 'Isla de la Ascensión'} },
+  // Breschenwürmer, Dodu, Shushus, Shushutierte Fresssäcke, Verschuppung
+  { id: 'beach', name: { de: 'Strandkreaturen', en: '', fr: '', es: ''} },
+  // Strandmonster
+  { id: 'breeder', name: { de: 'Kreaturen des Dorfes der Züchter', en: 'Breeder Village', fr: '', es: ''} },
+  // Höhlenmonster, Koalaks
+  { id: 'cania', name: { de: 'Kreaturen der Ebenen von Cania', en: 'Cania Plains', fr: 'plaines de Cania', es: ''} },
+  // Blobs, Dickschädel Nimbos, Erzfelser, Gliglis, Haubworks, Kanigs, Landfinger, Rablinge, Schweinepriester, Wuwülfe, Zombiebesessene
+  { id: 'city', name: { de: 'Kreaturen der Städte', en: 'City', fr: '', es: ''} },
+  // Monster der Kanalisation, Piepmätze
+  { id: 'field', name: { de: 'Kreaturen der Felder', en: 'Field', fr: '', es: ''} },
+  // Felder, Fresssäcke, Larven, Moskitos, Pflanzen der Wiesen und Felder, Pilz, Tofus
+  { id: 'forest', name: { de: 'Kreaturen der Wälder', en: '', fr: '', es: ''} },
+  // Arach-Hai, Arachneen, Astaknyden, Dracheier, Gelees, Scarablätter, Tiere der Wälder
+  { id: 'frigost', name: { de: 'Kreaturen von Frigost', en: 'Frigost', fr: 'Frigost', es: 'Frigost'} },
+  // Alchillusionisten, Barbären, Bastjährzörner, Eisfüxe, Fressmuts, Gelederte, Monster aus Almas Wiege,
+  // Monster aus dem Wald der verlorenen Kiefern, Monster aus Ouronigrids Tränen, Monster der Arkal Insel, Monster der gläsernen Fangzähne,
+  // Monster des stillen Örtchens, Monster des  versteinerten Waldes, Pings, Rüstebellen, Sinistros
+  { id: 'humanoid', name: { de: 'Humanoide Kreaturen', en: '', fr: '', es: ''} },
+  // Banditen
+  { id: 'kwismas', name: { de: 'Monster der Weißnachtsinsel', en: '', fr: '', es: ''} },
+  // Weißnachtsmonster
+  { id: 'lair', name: { de: 'Wächter der Unterschlüpfe', en: '', fr: '', es: ''} },
+  // Wächter der Unterschlüpfe
+  { id: 'minotoror', name: { de: 'Kreaturen der Minotoror Insel', en: '', fr: '', es: ''} },
+  // Minos
+  { id: 'moon', name: { de: 'Kreaturen der Moon Insel', en: '', fr: '', es: ''} },
+  // Kannibälle der Moon Insel, Monster von Moon, Pflanzen von Moon, Piraten von Moon, Schildkröten von Moon
+  { id: 'moor', name: { de: 'Kreaturen der Heide', en: '', fr: '', es: ''} },
+  // Monster des Heidelandes
+  { id: 'mountain', name: { de: 'Kreaturen der Berge', en: '', fr: '', es: ''} },
+  // Bworks, Dracotruter, Goblins, Krachler, Kwacks, Schweinemonster
+  { id: 'night', name: { de: 'Kreaturen der Nacht', en: '', fr: '', es: ''} },
+  //Chafer, Geister, Geister der Vertrauten, Ghule, Höllofeen Monster, Monster der Nacht
+  { id: 'otomai', name: { de: 'Kreaturen auf Otomaïs Insel', en: 'Otomai Island', fr: 'l\'île d\'Otomaï', es: ''} },
+  // Monster der Grasebene, Monster des dichten Dschungels, Monster des Korallenstrandes, Monster des Stammbaumes, Monster des Zoth Dorfes, Monster von Otomais Arche, Moor-Monster
+  { id: 'pandala', name: { de: 'Kreaturen von Pandala', en: 'Pandala', fr: 'Pandala', es: 'Pandala'} },
+  // Erd-Korunder, Feuer-Korunder, Wasser-Korunder, Luft-Korunder, Feuerfux, Kozaru, Kwappa, Pflanzen von Pandala,
+  // Tanuki, Verdorbene Pflanzen von Pandala, Verlorene Seelen
+  { id: 'raid', name: { de: 'Überfälle', en: 'Raids', fr: '', es: '' } },
+  // Belladonnas Raid, Dark Vlads Raid
+  { id: 'resource', name: { de: 'Beschützer der Ressourcen', en: '', fr: '', es: ''} },
+  // Beschützer der Bäume, Erze, Fische, Getreide, Nutzpflanzen
+  { id: 'swamp', name: { de: 'Kreaturen der Sümpfe', en: '', fr: '', es: ''} },
+  // Crocodylls, Monster der Sümpfe
+  { id: 'wabbit', name: { de: 'Kreaturen der Wabbit Insel', en: '', fr: '', es: ''} },
+  // Wabbits
+  { id: 'vulkania', name: { de: 'Kreaturen des Vulkania Archipels', en: '', fr: '', es: ''} },
+  // Monster von Vulkania
 ];
 
 const ICON_BASE = 'https://paschkii.github.io/dofus-touch-icons/';
@@ -65,30 +135,35 @@ const ICON_BASE = 'https://paschkii.github.io/dofus-touch-icons/';
 const RESISTANCE_TYPES = {
     neutral: {
       icon: `${ICON_BASE}/status-icons/Dofus_Neutral.png`, // Discord-Emoji :neutral:
+      emoji: resolveDiscordEmoji('neutral'),
       name: {
         de: 'Neutral', en: 'Neutral', fr: 'Neutre', es: 'Neutral'
       }
     },
     earth: {
       icon: `${ICON_BASE}/status-icons/Dofus_Strength.png`, // Discord-Emoji :strength:
+      emoji: resolveDiscordEmoji('strength'),
       name: {
         de: 'Erde', en: 'Earth', fr: 'Terre', es: 'Tierra'
       }
     },
     fire: {
       icon: `${ICON_BASE}/status-icons/Dofus_Intelligence.png`, // Discord-Emoji :intelligence:
+      emoji: resolveDiscordEmoji('intelligence'),
       name: {
         de: 'Feuer', en: 'Fire', fr: 'Feu', es: 'Fuego'
       }
     },
     water: {
       icon: `${ICON_BASE}/status-icons/Dofus_Chance.png`, // Discord-Emoji :chance:
+      emoji: resolveDiscordEmoji('chance'),
       name: {
         de: 'Wasser', en: 'Water', fr: 'Eau', es: 'Agua'
       }
     },
     air: {
       icon: `${ICON_BASE}/status-icons/Dofus_Agility.png`, // Discord-Emoji :agility:
+      emoji: resolveDiscordEmoji('agility'),
       name: {
         de: 'Luft', en: 'Air', fr: 'Air', es: 'Aire'
       }
@@ -98,66 +173,77 @@ const RESISTANCE_TYPES = {
 const CHARACTERISTIC_TYPES = {
   vitality: {
     icon: `${ICON_BASE}/status-icons/Dofus_Vitality.png`,
+    emoji: resolveDiscordEmoji('vitality'),
     name: {
       de: 'LP', en: 'HP', fr: 'PV', es: 'PdV' // Discord-Emoji :vitality:
     }
   },
   actionPoints: {
     icon: `${ICON_BASE}/status-icons/Dofus_AP.png`,
+    emoji: resolveDiscordEmoji('ap'),
     name: {
       de: 'AP', en: 'AP', fr: 'PA', es: 'PA' // Discord-Emoji :ap:
     }
   },
   movementPoints: {
     icon: `${ICON_BASE}/status-icons/Dofus_BP.png`,
+    emoji: resolveDiscordEmoji('mp'),
     name: {
       de: 'BP', en: 'MP', fr: 'PM', es: 'PM' // Discord-Emoji :mp:
     }
   },
   range: {
     icon: `${ICON_BASE}/status-icons/Dofus_RW.png`,
+    emoji: resolveDiscordEmoji('range'),
     name: {
       de: 'RW', en: 'RG', fr: 'PO', es: 'AL' // Discord-Emoji :range:
     }
   },
   summons: {
     icon: `${ICON_BASE}/status-icons/Dofus_Summ.png`,
+    emoji: resolveDiscordEmoji('summons'),
     name: {
       de: 'Beschwörungen', en: 'Summons', fr: 'Invocations', es: 'Invocaciones' // Discord-Emoji :summon:
     }
   },
   initiative: {
     icon: `${ICON_BASE}/status-icons/Dofus_Initiative.png`,
+    emoji: resolveDiscordEmoji('initiative'),
     name: {
       de: 'Initiative', en: 'Initiative', fr: 'Initiative', es: 'Iniciativa' // Discord-Emoji :initiative:
     }
   },
   criticalHit: {
     icon: `${ICON_BASE}/status-icons/Dofus_Krit.png`,
+    emoji: resolveDiscordEmoji('krit'),
     name: {
       de: 'Kritisch', en: 'Critical', fr: 'Critique', es: 'Crítico' // Discord-Emoji :krit:
     }
   },
   strength: {
     icon: `${ICON_BASE}/status-icons/Dofus_Strength.png`,
+    emoji: resolveDiscordEmoji('strength'),
     name: {
       de: 'Stärke', en: 'Strength', fr: 'Force', es: 'Fuerza' // Discord-Emoji :strength:
     }
   },
   intelligence: {
     icon: `${ICON_BASE}/status-icons/Dofus_Intelligence.png`,
+    emoji: resolveDiscordEmoji('intelligence'),
     name: {
       de: 'Intelligenz', en: 'Intelligence', fr: 'Intelligence', es: 'Inteligencia' // Discord-Emoji :intelligence:
     }
   },
   chance: {
     icon: `${ICON_BASE}/status-icons/Dofus_Chance.png`,
+    emoji: resolveDiscordEmoji('chance'),
     name: {
       de: 'Glück', en: 'Chance', fr: 'Chance', es: 'Suerte' // Discord-Emoji :chance:
     }
   },
   agility: {
     icon: `${ICON_BASE}/status-icons/Dofus_Agility.png`,
+    emoji: resolveDiscordEmoji('agility'),
     name: {
       de: 'Flinkheit', en: 'Agility', fr: 'Agilité', es: 'Agilidad' // Discord-Emoji :agility:
     }
