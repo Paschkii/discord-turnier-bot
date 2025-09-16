@@ -122,6 +122,8 @@ async function execute(interaction) {
     });
   }
 
+  await interaction.deferReply();
+
   const bossName = getBossName(boss, locale) || '—';
   const level = boss.defaultLevel != null ? String(boss.defaultLevel) : '—';
   const region = getRegionName(boss.region, locale) || '—';
@@ -156,7 +158,7 @@ async function execute(interaction) {
     embed.setImage('attachment://boss-stats.png');
   }
 
-  return interaction.reply({
+  return interaction.editReply({
     embeds: [embed],
     files: statsAttachment ? [statsAttachment] : undefined,
   });
