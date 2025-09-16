@@ -88,6 +88,27 @@ const RESISTANCE_TYPES = {
     },
 }
 
+const CHARACTERISTIC_TYPES = {
+  vitality: {
+    icon: `${ICON_BASE}/status-icons/Dofus_Vitality.png`,
+    name: {
+      de: 'Vitalität', en: 'Vitality', fr: 'Vitalité', es: 'Vitalidad',
+    }
+  },
+  actionPoints: {
+    icon: `${ICON_BASE}/status-icons/Dofus_AP.png`,
+    name: {
+      de: 'AP', en: 'AP', fr: 'PA', es: 'PA',
+    }
+  },
+  movementPoints: {
+    icon: `${ICON_BASE}/status-icons/Dofus_MP.png`,
+    name: {
+      de: 'MP', en: 'MP', fr: 'PM', es: 'PM',
+    }
+  }
+}
+
 // Boss Liste
 const BOSSE_LISTE = [
   // Level 1 - 50 Dungeons
@@ -99,6 +120,11 @@ const BOSSE_LISTE = [
     defaultLevel: 12,
     region: 'albuera',
     family: 'albuera',
+    characteristics: {
+      vitality: 120,
+      actionPoints: 7,
+      movementPoints: 3
+    },
     resistances: {
       neutral: 0,
       earth: 0,
@@ -447,6 +473,7 @@ module.exports = {
   ALLOWED_KO_SIZES,
   arenaData,
   BOSSE_LISTE,
+  CHARACTERISTIC_TYPES,
   DUNGEON_KATEGORIEN,
   DUNGEON_LISTE,
   FAMILY_LISTE,
