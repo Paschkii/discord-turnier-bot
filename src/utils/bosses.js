@@ -112,7 +112,7 @@ function getCharacteristicEntries(boss, locale = 'de') {
     };
   };
 
-  const entriess = [];
+  const entries = [];
   for (const key of order) {
     if (data[key] !== undefined && data[key] !== null) {
       entries.push(buildEntry(key, data[key]));
