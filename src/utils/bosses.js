@@ -1,6 +1,7 @@
 // === Boss Utilities ===
 const {
   BOSSE_LISTE,
+  CHARACTERISTIC_TYPES,
   FAMILY_LISTE,
   REGION_LISTE,
   RESISTANCE_TYPES,
@@ -84,6 +85,12 @@ function getFamilyName(familyId, locale = 'de') {
   return getLocalized(entry?.name, locale);
 }
 
+function createLinkedIcon(meta) {
+  if (!meta || !meta.icon) return '';
+  const label = meta.emoji || 'Icon';
+  return `[${label}](${meta.icon})`;
+}
+
 // Formatiert die Resistenz-Zeilen
 function formatResistances(boss, locale = 'de') {
   const data = boss?.resistances;
@@ -95,8 +102,42 @@ function formatResistances(boss, locale = 'de') {
       const meta = RESISTANCE_TYPES[type] || {};
       const label = getLocalized(meta.name, loc) || type;
       const val = typeof value === 'number' ? `${value}%` : String(value);
-      return `${label}: ${val}`;
+      const iconLink = createLinkedIcon(meta);
+      const prefix = iconLink ? `${iconLink} ` : '';
+      return `${prefix}${label}: ${val}`.trim();
     });
+}
+
+// Formatiert die Charakteristik-Zeilen
+function formatCharacteristics(boss, locale = 'de') {
+  const data = boss?.characteristics;
+  if (!data || typeof data !== 'object') return [];
+  const loc = resolveLocale(locale);
+  const order = ['vitality', 'actionPoints', 'movementPoints'];
+  const handled = new Set();
+
+  const buildLine = (type, value) => {
+    const meta = CHARACTERISTIC_TYPES[type] || {};
+    const label = getLocalized(meta.name, loc) || type;
+    const iconLink = createLinkedIcon(meta);
+    const prefix = iconLink ? `${iconLink} ` : '';
+    return `${prefix}${label}: ${value}`.trim();
+  };
+
+  const lines = [];
+  for (const key of order) {
+    if (data[key] !== undefined && data[key] !== null) {
+      lines.push(buildLine(key, data[key]));
+      handled.add(key);
+    }
+  }
+
+  for (const [type, value] of Object.entries(data)) {
+    if (handled.has(type) || value === undefined || value === null) continue;
+    lines.push(buildLine(type, value));
+  }
+
+  return lines;
 }
 
 // Baut die Liste für Autocomplete (max. 25 Einträge)
@@ -122,6 +163,7 @@ module.exports = {
   buildBossChoices,
   findBossById,
   findBossByName,
+  formatCharacteristics,
   formatResistances,
   getBossName,
   getFamilyName,

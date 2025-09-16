@@ -3,6 +3,7 @@ const { EmbedBuilder, MessageFlags } = require('discord.js');
 const {
   findBossById,
   findBossByName,
+  formatCharacteristics,
   formatResistances,
   getBossName,
   getFamilyName,
@@ -33,19 +34,22 @@ async function execute(interaction) {
   const level = boss.defaultLevel != null ? String(boss.defaultLevel) : '—';
   const region = getRegionName(boss.region, locale) || '—';
   const family = getFamilyName(boss.family, locale) || '—';
+  const characteristics = formatCharacteristics(boss, locale);
   const resistances = formatResistances(boss, locale);
 
   const descriptionLines = [
-    `Bossmonster: ${bossName}`,
-    `Level: ${level}`,
-    `Region: ${region}`,
-    `Familie: ${family}`,
-    'Resistenzen:',
+    `**Level:** ${level}`,
+    `**Region:** ${region}`,
+    `**Familie:** ${family}`,
+    '**Charakteristiken:**',
+    characteristics.length ? characteristics.join('\n') : '—',
+    '**Resistenzen:**',
     resistances.length ? resistances.join('\n') : '—',
   ];
 
   const embed = new EmbedBuilder()
     .setColor(0x00AEFF)
+    .setTitle(bossName)
     .setDescription(descriptionLines.join('\n'))
     .setTimestamp();
 

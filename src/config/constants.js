@@ -4,21 +4,21 @@ const ALLOWED_KO_SIZES = [32, 16, 14, 12, 8, 4, 2];
 
 // Klassen Liste
 const KLASSE_LISTE = [
-  { emoji: '🏹', name: 'Cra' },
-  { emoji: '🎲', name: 'Ecaflip' },
-  { emoji: '🩹', name: 'Eniripsa' },
-  { emoji: '💰', name: 'Enutrof' },
-  { emoji: '🛡️', name: 'Feca' },
-  { emoji: '💣', name: 'Halsabschneider' },
-  { emoji: '🗡', name: 'Iop' },
-  { emoji: '🎭', name: 'Maskerador' },
-  { emoji: '🐉', name: 'Osamodas' },
-  { emoji: '🐼', name: 'Pandawa' },
-  { emoji: '🩸', name: 'Sacrieur' },
-  { emoji: '🌱', name: 'Sadida' },
-  { emoji: '💀', name: 'Sram' },
-  { emoji: '🚂', name: 'Steamer' },
-  { emoji: '⏳', name: 'Xelor' },
+  { emoji: '🏹', name: 'Cra' }, // Discord-Emoji :cra:
+  { emoji: '🎲', name: 'Ecaflip' }, // Discord-Emoji :ecaflip:
+  { emoji: '🩹', name: 'Eniripsa' }, // Discord-Emoji :eniripsa:
+  { emoji: '💰', name: 'Enutrof' }, // Discord-Emoji :enutrof:
+  { emoji: '🛡️', name: 'Feca' }, // Discord-Emoji :feca:
+  { emoji: '💣', name: 'Halsabschneider' }, // Discord-Emoji :rogue:
+  { emoji: '🗡', name: 'Iop' }, // Discord-Emoji :iop:
+  { emoji: '🎭', name: 'Maskerador' }, // Discord-Emoji :masqueraider:
+  { emoji: '🐉', name: 'Osamodas' }, // Discord-Emoji :osamodas:
+  { emoji: '🐼', name: 'Pandawa' }, // Discord-Emoji :pandawa:
+  { emoji: '🩸', name: 'Sacrieur' }, // Discord-Emoji :sacrieur:
+  { emoji: '🌱', name: 'Sadida' }, // Discord-Emoji :sadida:
+  { emoji: '💀', name: 'Sram' }, // Discord-Emoji :sram:
+  { emoji: '🚂', name: 'Steamer' }, // Discord-Emoji :foggernaut:
+  { emoji: '⏳', name: 'Xelor' }, // Discord-Emoji :xelor:
 ];
 
 // Regionen Liste
@@ -50,38 +50,45 @@ const REGION_LISTE = [
 ];
 
 const FAMILY_LISTE = [
-  { id: 'albuera',        name: { de: 'Albuera-Kreaturen', en: 'Albuera Creatures', fr: 'Créatures d\'Albuera', es: 'Criaturas de Albuera' } },
+  { id: 'albuera', name: { de: 'Albuera-Kreaturen', en: 'Albuera Creatures', fr: 'Créatures d\'Albuera', es: 'Criaturas de Albuera' } },
+  { id: 'archmonsters', name: { de: 'Archmonsters', en: 'Astrub', fr: 'Astrub', es: 'Astrub'} },
+  { id: 'ascension', name: { de: '', en: '', fr: '', es: ''} },
+  { id: 'beach', name: { de: '', en: '', fr: '', es: ''} },
+  { id: 'breeder', name: { de: '', en: '', fr: '', es: ''} },
+  { id: '', name: { de: '', en: '', fr: '', es: ''} },
+  { id: '', name: { de: '', en: '', fr: '', es: ''} },
+  { id: '', name: { de: '', en: '', fr: '', es: ''} },
 ];
 
 const ICON_BASE = 'https://paschkii.github.io/dofus-touch-icons/';
 
 const RESISTANCE_TYPES = {
     neutral: {
-      icon: `${ICON_BASE}/status-icons/Dofus_Neutral.png`,
+      icon: `${ICON_BASE}/status-icons/Dofus_Neutral.png`, // Discord-Emoji :neutral:
       name: {
         de: 'Neutral', en: 'Neutral', fr: 'Neutre', es: 'Neutral'
       }
     },
     earth: {
-      icon: `${ICON_BASE}/status-icons/Dofus_Strength.png`,
+      icon: `${ICON_BASE}/status-icons/Dofus_Strength.png`, // Discord-Emoji :strength:
       name: {
         de: 'Erde', en: 'Earth', fr: 'Terre', es: 'Tierra'
       }
     },
     fire: {
-      icon: `${ICON_BASE}/status-icons/Dofus_Intelligence.png`,
+      icon: `${ICON_BASE}/status-icons/Dofus_Intelligence.png`, // Discord-Emoji :intelligence:
       name: {
         de: 'Feuer', en: 'Fire', fr: 'Feu', es: 'Fuego'
       }
     },
     water: {
-      icon: `${ICON_BASE}/status-icons/Dofus_Chance.png`,
+      icon: `${ICON_BASE}/status-icons/Dofus_Chance.png`, // Discord-Emoji :chance:
       name: {
         de: 'Wasser', en: 'Water', fr: 'Eau', es: 'Agua'
       }
     },
     air: {
-      icon: `${ICON_BASE}/status-icons/Dofus_Agility.png`,
+      icon: `${ICON_BASE}/status-icons/Dofus_Agility.png`, // Discord-Emoji :agility:
       name: {
         de: 'Luft', en: 'Air', fr: 'Air', es: 'Aire'
       }
@@ -92,67 +99,67 @@ const CHARACTERISTIC_TYPES = {
   vitality: {
     icon: `${ICON_BASE}/status-icons/Dofus_Vitality.png`,
     name: {
-      de: 'LP', en: 'HP', fr: 'PV', es: 'PdV'
+      de: 'LP', en: 'HP', fr: 'PV', es: 'PdV' // Discord-Emoji :vitality:
     }
   },
   actionPoints: {
     icon: `${ICON_BASE}/status-icons/Dofus_AP.png`,
     name: {
-      de: 'AP', en: 'AP', fr: 'PA', es: 'PA'
+      de: 'AP', en: 'AP', fr: 'PA', es: 'PA' // Discord-Emoji :ap:
     }
   },
   movementPoints: {
     icon: `${ICON_BASE}/status-icons/Dofus_BP.png`,
     name: {
-      de: 'BP', en: 'MP', fr: 'PM', es: 'PM'
+      de: 'BP', en: 'MP', fr: 'PM', es: 'PM' // Discord-Emoji :mp:
     }
   },
   range: {
     icon: `${ICON_BASE}/status-icons/Dofus_RW.png`,
     name: {
-      de: 'RW', en: 'RG', fr: 'PO', es: 'AL'
+      de: 'RW', en: 'RG', fr: 'PO', es: 'AL' // Discord-Emoji :range:
     }
   },
   summons: {
     icon: `${ICON_BASE}/status-icons/Dofus_Summ.png`,
     name: {
-      de: 'Beschwörungen', en: 'Summons', fr: 'Invocations', es: 'Invocaciones'
+      de: 'Beschwörungen', en: 'Summons', fr: 'Invocations', es: 'Invocaciones' // Discord-Emoji :summon:
     }
   },
   initiative: {
     icon: `${ICON_BASE}/status-icons/Dofus_Initiative.png`,
     name: {
-      de: 'Initiative', en: 'Initiative', fr: 'Initiative', es: 'Iniciativa'
+      de: 'Initiative', en: 'Initiative', fr: 'Initiative', es: 'Iniciativa' // Discord-Emoji :initiative:
     }
   },
   criticalHit: {
     icon: `${ICON_BASE}/status-icons/Dofus_Krit.png`,
     name: {
-      de: 'Kritisch', en: 'Critical', fr: 'Critique', es: 'Crítico'
+      de: 'Kritisch', en: 'Critical', fr: 'Critique', es: 'Crítico' // Discord-Emoji :krit:
     }
   },
   strength: {
     icon: `${ICON_BASE}/status-icons/Dofus_Strength.png`,
     name: {
-      de: 'Stärke', en: 'Strength', fr: 'Force', es: 'Fuerza'
+      de: 'Stärke', en: 'Strength', fr: 'Force', es: 'Fuerza' // Discord-Emoji :strength:
     }
   },
   intelligence: {
     icon: `${ICON_BASE}/status-icons/Dofus_Intelligence.png`,
     name: {
-      de: 'Intelligenz', en: 'Intelligence', fr: 'Intelligence', es: 'Inteligencia'
+      de: 'Intelligenz', en: 'Intelligence', fr: 'Intelligence', es: 'Inteligencia' // Discord-Emoji :intelligence:
     }
   },
   chance: {
     icon: `${ICON_BASE}/status-icons/Dofus_Chance.png`,
     name: {
-      de: 'Glück', en: 'Chance', fr: 'Chance', es: 'Suerte'
+      de: 'Glück', en: 'Chance', fr: 'Chance', es: 'Suerte' // Discord-Emoji :chance:
     }
   },
   agility: {
     icon: `${ICON_BASE}/status-icons/Dofus_Agility.png`,
     name: {
-      de: 'Flinkheit', en: 'Agility', fr: 'Agilité', es: 'Agilidad'
+      de: 'Flinkheit', en: 'Agility', fr: 'Agilité', es: 'Agilidad' // Discord-Emoji :agility:
     }
   }
 }
