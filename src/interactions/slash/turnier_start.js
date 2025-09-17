@@ -16,10 +16,13 @@ async function execute(interaction) {
     await interaction.reply({ content: '⛔ Nur Admins können das Turnier starten.', flags: MessageFlags.Ephemeral });
     return;
   }
+  // Interaktion bestätigen, damit Discord die Anfrage nicht verwirft
+  await interaction.deferReply({ ephemeral: true });
+
   // Prüfen, ob bereits ein Turnier läuft
   const latest = await getLatestTournamentRow();
   if (latest && ['offen','quali','gruppen','ko','finale'].includes(latest.status)) {
-    await interaction.reply({ content: '⚠️ Es läuft bereits ein Turnier.', flags: MessageFlags.Ephemeral });
+    await interaction.editReply({ content: '⚠️ Es läuft bereits ein Turnier.', flags: MessageFlags.Ephemeral });
     return;
   }
   // Neues Turnier anlegen
@@ -31,7 +34,7 @@ async function execute(interaction) {
   await insertNewTournamentRow(neuesTurnier);
 
   // Rückmeldung
-  await interaction.reply({ content: `✅ Neues Turnier gestartet: **${name}** (Modus **${modus}**)` });
+  await interaction.editReply({ content: `✅ Neues Turnier gestartet: **${name}** (Modus **${modus}**)` });
   const embeds = buildRulesEmbeds(neuesTurnier);
   await interaction.followUp({ embeds });
 }
