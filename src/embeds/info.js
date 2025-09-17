@@ -48,8 +48,8 @@ function buildTournamentInfoEmbeds(daten = {}) {
     abgeschlossen: 'Abgeschlossen',
   })[daten.status] || (daten.status || '—');
 
-  fields.push({ name: '📟 Phase', value: phaseLabel, inline: true });
-  fields.push({ name: '👥 Teilnehmer', value: String(teilnehmerArr.length), inline: true });
+  fields.push({ name: '📟 Phase', value: phaseLabel, inline: false });
+  fields.push({ name: '📝 Anmeldungen', value: String(teilnehmerArr.length), inline: false });
 
   // 💰 Pott-Block (mehrzeilig)
   const p = daten.prize;
@@ -76,7 +76,7 @@ function buildTournamentInfoEmbeds(daten = {}) {
     const chunks = chunk(lines, 20); // Discord-Feldgröße im Blick behalten
     chunks.forEach((c, idx) => {
       fields.push({
-        name: idx === 0 ? '👤 Teilnehmer (🟢 dabei / 🔴 ausgeschieden)' : ' ',
+        name: idx === 0 ? '👥 Teilnehmer (🟢 dabei / 🔴 ausgeschieden)' : ' ',
         value: c.join('\n'),
         inline: false,
       });
