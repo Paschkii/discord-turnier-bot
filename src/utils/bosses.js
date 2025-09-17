@@ -85,12 +85,11 @@ function getFamilyName(familyId, locale = 'de') {
   return getLocalized(entry?.name, locale);
 }
 
-function createLinkedIcon(meta) {
+// Nur Emojis zurückgeben (Custom-Emoji oder Unicode).
+// Keine URL-Links mehr, weil Discord die in Feldern nicht als Bild rendert.
+function createInlineIcon(meta) {
   if (!meta) return '';
-  if (meta.emoji) return meta.emoji;
-  if (!meta.icon) return '';
-  const label = meta.emoji || 'Icon';
-  return `[${label}](${meta.icon})`;
+  return meta.emoji || '';
 }
 
 function getCharacteristicEntries(boss, locale = 'de') {
@@ -153,7 +152,7 @@ function getResistanceEntries(boss, locale = 'de') {
 function formatResistances(boss, locale = 'de', options = {}) {
   const { includeIcons = true } = options;
   return getResistanceEntries(boss, locale).map((entry) => {
-    const iconLink = includeIcons ? createLinkedIcon(entry) : '';
+    const iconLink = includeIcons ? createInlineIcon(entry) : '';
     const prefix = iconLink ? `${iconLink} ` : '';
     return `${prefix}${entry.label}: ${entry.value}`.trim();
   });
@@ -163,7 +162,7 @@ function formatResistances(boss, locale = 'de', options = {}) {
 function formatCharacteristics(boss, locale = 'de', options = {}) {
   const { includeIcons = true } = options;
   return getCharacteristicEntries(boss, locale).map((entry) => {
-    const iconLink = includeIcons ? createLinkedIcon(entry) : '';
+    const iconLink = includeIcons ? createInlineIcon(entry) : '';
     const prefix = iconLink ? `${iconLink} ` : '';
     return `${prefix}${entry.label}: ${entry.value}`.trim();
   });
