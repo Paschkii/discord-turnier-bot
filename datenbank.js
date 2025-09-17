@@ -17,11 +17,26 @@ async function initDB() {
     await pool.query(`
       CREATE TABLE IF NOT EXISTS turniere (
         id SERIAL PRIMARY KEY,
+        guild_id TEXT NOT NULL,
         name TEXT NOT NULL,
         status TEXT NOT NULL,
         created_at TIMESTAMP DEFAULT NOW(),
         daten JSONB DEFAULT '{}'
       );
+    `);
+
+    // Falls "guild_id" aus alten Deploys fehlt (idempotent)
+    await pool.query(`
+      DO $$
+      BEGIN
+        IF NOT EXISTS (
+          SELECT 1 FROM information_schema.columns
+          WHERE table_name = 'turniere' AND column_name = 'guild_id'
+        ) THEN
+          ALTER TABLE turniere ADD COLUMN guild_id TEXT NOT NULL DEFAULT '0';
+        END IF;
+      END
+      $$;
     `);
 
     // Falls "daten" aus alten Deploys fehlen sollte (idempotent)
@@ -71,6 +86,7 @@ async function initDB() {
     // Indizes
     await pool.query(`CREATE INDEX IF NOT EXISTS turniere_created_at_desc_idx ON turniere (created_at DESC);`);
     await pool.query(`CREATE INDEX IF NOT EXISTS turniere_status_created_idx ON turniere (status, created_at DESC);`);
+    await pool.query(`CREATE INDEX IF NOT EXISTS turniere_guild_status_created_idx ON turniere (guild_id, status, created_at DESC);`);
 
     console.log('✅ Datenbank-Initialisierung abgeschlossen');
   } catch (err) {

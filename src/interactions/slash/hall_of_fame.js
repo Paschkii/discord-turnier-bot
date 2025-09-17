@@ -11,7 +11,7 @@ const { formatMK } = require('../../utils');
 
 // Hall of Fame anzeigen
 async function execute(interaction) {
-  const rows = await listFinishedTournaments();
+  const rows = await listFinishedTournaments(interaction.guildId);
   if (!rows.length) return interaction.reply({ content: '📭 Noch keine abgeschlossenen Turniere.', flags: MessageFlags.Ephemeral });
 
   const entries = rows.map(r => {
