@@ -1,8 +1,8 @@
 // === Imports ===
 const { handleSlash }     = require('../interactions/slash');
-const handleButtons       = require('../interactions/buttons');
-const handleModals        = require('../interactions/modals');
-const handleSelects       = require('../interactions/selects');
+const { handleButtons }   = require('../interactions/buttons');
+const { handleModals }    = require('../interactions/modals');
+const { handleSelects }   = require('../interactions/selects');
 const autocomplete        = require('../interactions/autocomplete');
 const { ladeTurnier }     = require('../store/turniere');
 const { MessageFlags }    = require('discord.js');
