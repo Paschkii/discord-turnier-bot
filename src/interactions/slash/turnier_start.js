@@ -17,7 +17,7 @@ async function execute(interaction) {
     return;
   }
   // Interaktion bestätigen, damit Discord die Anfrage nicht verwirft
-  await interaction.deferReply({ ephemeral: true });
+  await interaction.deferReply({ flags: MessageFlags.Ephemeral });
 
   // Prüfen, ob bereits ein Turnier läuft
   const latest = await getLatestTournamentRow();
