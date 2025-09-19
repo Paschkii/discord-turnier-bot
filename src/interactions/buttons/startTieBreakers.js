@@ -11,6 +11,10 @@ async function run(interaction, daten) {
   if (!interaction.member.permissions.has(PermissionsBitField.Flags.Administrator)) {
     return interaction.reply({ content: '⛔ Nur Admins dürfen Tie-Breaker starten.', flags: MessageFlags.Ephemeral });
   }
+  const guildId = interaction.guildId;
+  if (!guildId) {
+    return interaction.reply({ content: '❌ Diese Aktion ist nur innerhalb eines Servers möglich.', flags: MessageFlags.Ephemeral });
+  }
   const list = Array.isArray(daten.pendingTieBreakers) ? daten.pendingTieBreakers : [];
   if (!list.length) return interaction.reply({ content: 'ℹ️ Keine ausstehenden Tie-Breaker.', flags: MessageFlags.Ephemeral });
 
@@ -36,7 +40,7 @@ async function run(interaction, daten) {
   }
   // Alle Tie-Breaker wurden erstellt
   daten.pendingTieBreakers = [];
-  await speichereTurnier(daten);
+  await speichereTurnier(guildId, daten);
 
   // Rückmeldung
   const desc = created

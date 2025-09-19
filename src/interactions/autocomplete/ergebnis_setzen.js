@@ -37,7 +37,12 @@ function labelFightShort(f) {
 // === Autocomplete-Handler ===
 async function run(interaction) {
   const focused = interaction.options.getFocused(true);
-  const data = (await ladeTurnier()) || {};
+  const guildId = interaction.guildId;
+  if (!guildId) {
+    try { await interaction.respond([]); } catch {}
+    return;
+  }
+  const data = (await ladeTurnier(guildId)) || {};
   const fightsNow  = Array.isArray(data.kämpfe) ? data.kämpfe : [];
   const fightsOld  = Array.isArray(data.kämpfeArchiv) ? data.kämpfeArchiv : [];
   const fights     = [...fightsOld, ...fightsNow]; // ⬅️ auch archivierte Kämpfe einbeziehen

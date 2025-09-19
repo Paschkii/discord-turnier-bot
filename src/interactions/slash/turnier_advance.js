@@ -31,7 +31,12 @@ async function execute(interaction) {
     return interaction.reply({ content: '⛔ Nur Admins dürfen die nächste Phase starten.', flags: MessageFlags.Ephemeral });
   }
 
-  const daten = await ladeTurnier();
+  const guildId = interaction.guildId;
+  if (!guildId) {
+    return interaction.reply({ content: '❌ Dieser Befehl kann nur in einem Server verwendet werden.', flags: MessageFlags.Ephemeral });
+  }
+
+  const daten = await ladeTurnier(guildId);
   if (!daten) return interaction.reply({ content: '❌ Kein aktives Turnier.', flags: MessageFlags.Ephemeral });
 
   try {
@@ -60,7 +65,7 @@ async function execute(interaction) {
       }];
       daten.status = 'quali';
 
-      await speichereTurnier(daten);
+      await speichereTurnier(guildId, daten);
       const view = await buildDashboard(interaction, daten, defaultStateFromData(daten, 'g'));
       return interaction.reply({
         content: `🔰 Qualifikationsrunde gestartet (${fights.length} Kämpfe).`,
@@ -90,7 +95,7 @@ async function execute(interaction) {
       daten.kämpfe = fights;        // ALLE Gruppen-Matches
       daten.status = 'gruppen';
 
-      await speichereTurnier(daten);
+      await speichereTurnier(guildId, daten);
       const view = await buildDashboard(interaction, daten, defaultStateFromData(daten, 'g'));
       return interaction.reply({ content: `🟦 Gruppenphase gestartet (${daten.kämpfe.length} Kämpfe).`, embeds: view.embeds, components: view.components });
     }
@@ -110,7 +115,7 @@ async function execute(interaction) {
 
       if (tieBreakers.length > 0) {
         daten.pendingTieBreakers = tieBreakers;
-        await speichereTurnier(daten);
+        await speichereTurnier(guildId, daten);
         const row = new ActionRowBuilder().addComponents(
           new ButtonBuilder().setCustomId('start_tiebreakers').setLabel('Tie-Breaker starten').setStyle(ButtonStyle.Danger)
         );
@@ -154,7 +159,7 @@ async function execute(interaction) {
         { name: baseLow, bucket: 'low', displayName: `${baseLow} ${GROUP_EMOJI.low}`, members: memLow, matches: koLow },
       ];
 
-      await speichereTurnier(daten);
+      await speichereTurnier(guildId, daten);
       const view = await buildDashboard(interaction, daten, defaultStateFromData(daten, 'g'));
       return interaction.reply({ content: `⚔️ K.O.-Viertelfinale gestartet (${qf.length} Kämpfe).`, embeds: view.embeds, components: view.components });
     }
@@ -200,7 +205,7 @@ async function execute(interaction) {
         { name: baseLow, bucket: 'low', displayName: `${baseLow} ${GROUP_EMOJI.low}`, members: membersLow, matches: [sf[1]] },
       ];
 
-      await speichereTurnier(daten);
+      await speichereTurnier(guildId, daten);
       const view = await buildDashboard(interaction, daten, defaultStateFromData(daten, 'g'));
       return interaction.reply({ content: `🔁 K.O.-Halbfinale gestartet (2 Kämpfe).`, embeds: view.embeds, components: view.components });
     }
@@ -243,7 +248,7 @@ async function execute(interaction) {
       daten.groups = [{ name: 'Turnierfinale', displayName: 'Turnierfinale', members, matches: daten.kämpfe }];
 
       daten.status = 'finale';
-      await speichereTurnier(daten);
+      await speichereTurnier(guildId, daten);
       const view = await buildDashboard(interaction, daten, defaultStateFromData(daten, 'g'));
       return interaction.reply({ content: `🏁 Finale & 🥉-Match erstellt.`, embeds: view.embeds, components: view.components });
     }
@@ -274,7 +279,7 @@ async function execute(interaction) {
       };
       daten.status = 'abgeschlossen';
 
-      await speichereTurnier(daten);
+      await speichereTurnier(guildId, daten);
 
       const prize = daten.prize || null;
       const embed = new EmbedBuilder()

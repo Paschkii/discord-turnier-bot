@@ -9,7 +9,11 @@ async function run(interaction) {
   const dir   = parts[2];
   const curr  = parseInt(parts[3], 10) || 1;
 
-  const rows = await listFinishedTournaments();
+  const guildId = interaction.guildId;
+  if (!guildId) {
+    return interaction.reply({ content: '❌ Aktion nur innerhalb eines Servers möglich.', ephemeral: true });
+  }
+  const rows = await listFinishedTournaments(guildId);
   const entries = rows.map(r => {
     const name = r.name || 'Turnier';
     const podium = r.daten?.podium || null;

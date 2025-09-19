@@ -47,7 +47,11 @@ async function run(interaction) {
 
   // Kampf laden
   const kampfId = parseInt((interaction.customId || '').split('_')[1], 10);
-  const data = await ladeTurnier();
+  const guildId = interaction.guildId;
+  if (!guildId) {
+    return interaction.reply({ content: '❌ Dieser Befehl kann nur in einem Server verwendet werden.', flags: MessageFlags.Ephemeral });
+  }
+  const data = await ladeTurnier(guildId);
   const fight = (data?.kämpfe || []).find(f => f.id === kampfId);
   if (!fight) {
     return interaction.reply({ content: `❌ Kampf #${kampfId} nicht gefunden.`, flags: MessageFlags.Ephemeral });
@@ -86,7 +90,7 @@ async function run(interaction) {
   }
   fight.timestamp = new Date().toISOString();
 
-  await speichereTurnier(data);
+  await speichereTurnier(guildId, data);
 
   const grpInfo = fight.groupName ? ` · Gruppe **${fight.groupName}**` : '';
   return interaction.reply({

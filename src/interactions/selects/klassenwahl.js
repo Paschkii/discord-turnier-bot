@@ -10,10 +10,14 @@ async function run(interaction) {
   if (interaction.user.id !== userId) {
     return interaction.reply({ content: '⛔ Nur du darfst deine Klasse auswählen!', flags: MessageFlags.Ephemeral });
   }
+  const guildId = interaction.guildId;
+  if (!guildId) {
+    return interaction.reply({ content: '❌ Diese Aktion ist nur innerhalb eines Servers möglich.', flags: MessageFlags.Ephemeral });
+  }
   await interaction.deferUpdate();
   const selectedClass = interaction.values?.[0];
 
-  const db2 = await ladeTurnier();
+  const db2 = await ladeTurnier(guildId);
   if (!db2) return interaction.followUp({ content: '❌ Kein aktives Turnier gefunden.', flags: MessageFlags.Ephemeral });
   if (db2.status !== 'offen') return interaction.followUp({ content: '❌ Das Turnier ist nicht mehr offen.', flags: MessageFlags.Ephemeral });
   if (db2.teilnehmer?.[interaction.user.id]) {
@@ -27,7 +31,7 @@ async function run(interaction) {
 
   db2.teilnehmer = db2.teilnehmer || {};
   db2.teilnehmer[interaction.user.id] = { name: nickname, klasse: selectedClass };
-  await speichereTurnier(db2);
+  await speichereTurnier(guildId, db2);
 
   return interaction.followUp({ content: `✅ ${nickname} wurde als **${selectedClass}** erfolgreich angemeldet!` });
 }

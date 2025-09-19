@@ -11,7 +11,11 @@ const { formatMK } = require('../../utils');
 
 // Hall of Fame anzeigen
 async function execute(interaction) {
-  const rows = await listFinishedTournaments(interaction.guildId);
+  const guildId = interaction.guildId;
+  if (!guildId) {
+    return interaction.reply({ content: '❌ Dieses Kommando steht nur auf Servern zur Verfügung.', flags: MessageFlags.Ephemeral });
+  }
+  const rows = await listFinishedTournaments(guildId);
   if (!rows.length) return interaction.reply({ content: '📭 Noch keine abgeschlossenen Turniere.', flags: MessageFlags.Ephemeral });
 
   const entries = rows.map(r => {

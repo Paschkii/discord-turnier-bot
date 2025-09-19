@@ -56,7 +56,11 @@ async function run(interaction) {
     throw err;
   }
 
-  const daten = await ladeTurnier();
+  const guildId = interaction.guildId;
+  if (!guildId) {
+    return interaction.reply({ content: '❌ Aktion nur innerhalb eines Servers möglich.', flags: MessageFlags.Ephemeral });
+  }
+  const daten = await ladeTurnier(guildId);
   if (!daten) {
     return interaction.followUp({ content: '❌ Kein aktives Turnier.', flags: MessageFlags.Ephemeral });
   }

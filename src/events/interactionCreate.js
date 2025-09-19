@@ -21,7 +21,10 @@ async function onInteractionCreate(interaction) {
     // DB laden – aber Ausfälle abfangen!
     let daten = null;
     try {
-      daten = await ladeTurnier();
+      const guildId = interaction.guildId;
+      if (guildId) {
+        daten = await ladeTurnier(guildId);
+      }
     } catch (e) {
       console.error('[ladeTurnier] failed:', e?.message || e);
     }

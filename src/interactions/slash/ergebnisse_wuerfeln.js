@@ -11,6 +11,10 @@ async function execute(interaction, daten) {
   if (!interaction.member.permissions.has(PermissionsBitField.Flags.Administrator)) {
     return interaction.reply({ content: '⛔ Nur Admins dürfen das.', flags: MessageFlags.Ephemeral });
   }
+  const guildId = interaction.guildId;
+  if (!guildId) {
+    return interaction.reply({ content: '❌ Dieser Befehl kann nur in einem Server verwendet werden.', flags: MessageFlags.Ephemeral });
+  }
 
   const fights = Array.isArray(daten.kämpfe) ? daten.kämpfe : [];
   if (!fights.length) {
@@ -41,7 +45,7 @@ async function execute(interaction, daten) {
     f.timestamp = new Date().toISOString();
     changed++;
   }
-await speichereTurnier(daten);
+  await speichereTurnier(guildId, daten);
   const { embeds, components } = buildPagedGroupReply(daten, 1, 10);
   return interaction.reply({
     content: `🎲 Zufalls-Ergebnisse gesetzt: **${changed}** Kampf/Kämpfe aktualisiert.`,

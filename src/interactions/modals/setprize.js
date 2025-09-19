@@ -11,7 +11,11 @@ async function run(interaction) {
   if (!interaction.member.permissions.has(PermissionsBitField.Flags.Administrator)) {
     return interaction.reply({ content: '⛔ Nur Admins dürfen den Pott setzen.', flags: MessageFlags.Ephemeral });
   }
-const cur = await ladeTurnier();
+  const guildId = interaction.guildId;
+  if (!guildId) {
+    return interaction.reply({ content: '❌ Dieser Befehl kann nur in einem Server verwendet werden.', flags: MessageFlags.Ephemeral });
+  }
+  const cur = await ladeTurnier(guildId);
   if (!cur) return interaction.reply({ content: '❌ Kein aktives Turnier gefunden.', flags: MessageFlags.Ephemeral });
 
   const totalIn  = (interaction.fields.getTextInputValue('total_pot') || '').trim();
@@ -50,7 +54,7 @@ const cur = await ladeTurnier();
     updatedAt: new Date().toISOString(),
   };
 
-  await speichereTurnier(cur);
+  await speichereTurnier(guildId, cur);
   const msg = `💰 Pott gesetzt: **${cur.prize.text.total}** · 🥇 ${cur.prize.text.first} · 🥈 ${cur.prize.text.second} · 🥉 ${cur.prize.text.third}`;
   return interaction.reply({ content: msg });
 }
