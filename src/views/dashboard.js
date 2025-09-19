@@ -202,12 +202,69 @@ function buildTabBracket(daten, state) {
 
   // Fallback: simple Auflistung
   const fights = fightsForPhase(daten, phaseOrRound);
-  const embed = new EmbedBuilder()
-    .setColor(0x5865F2)
-    .setTitle(`🏛️ Übersicht — ${roundLabel}`)
-    .setDescription(fights.map(fmtFight2L).join('\n\n') || '—')
-    .setTimestamp();
-  return { embeds: [embed], totalPages: 1 };
+  const entries = fights.map(fmtFight2L);
+
+  const MAX_EMBEDS = 10;
+  const DESC_LIMIT = 3900; // etwas Sicherheitsabstand zu Discords 4096-Grenze
+
+  const chunks = [];
+  let current = '';
+  const pushCurrent = () => {
+    if (current) {
+      chunks.push(current);
+      current = '';
+    }
+  };
+
+  const tryAppend = (base, addition) => {
+    return base ? `${base}\n\n${addition}` : addition;
+  };
+
+  entries.forEach((entry) => {
+    let candidate = tryAppend(current, entry);
+    if (candidate.length > DESC_LIMIT && current) {
+      pushCurrent();
+      candidate = tryAppend(current, entry);
+    }
+    if (candidate.length > DESC_LIMIT) {
+      chunks.push(entry.slice(0, DESC_LIMIT - 30) + '\n\n… Kampf gekürzt …');
+      current = '';
+    } else {
+      current = candidate;
+    }
+  });
+  pushCurrent();
+
+  if (chunks.length === 0) {
+    chunks.push('—');
+  }
+
+  if (chunks.length > MAX_EMBEDS) {
+    const head = chunks.slice(0, MAX_EMBEDS - 1);
+    const tailCombined = chunks.slice(MAX_EMBEDS - 1).join('\n\n');
+    const final =
+      tailCombined.length > DESC_LIMIT
+        ? tailCombined.slice(0, DESC_LIMIT - 30) + '\n\n… weitere Kämpfe gekürzt …'
+        : tailCombined;
+    chunks.length = 0;
+    chunks.push(...head, final);
+  }
+
+  const totalPages = chunks.length;
+  const embeds = chunks.map((desc, ix) => {
+    const titleBase = `🏛️ Übersicht — ${roundLabel}`;
+    const title =
+      totalPages > 1
+        ? `${titleBase} (Seite ${ix + 1}/${totalPages})`
+        : titleBase;
+    return new EmbedBuilder()
+      .setColor(0x5865F2)
+      .setTitle(title)
+      .setDescription(desc)
+      .setTimestamp();
+  });
+
+  return { embeds, totalPages };
 }
 
 // ===== Default-State + Builder =====
