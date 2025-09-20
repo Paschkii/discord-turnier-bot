@@ -9,6 +9,7 @@ const {
   insertNewTournamentRow
 } = require('../../store/turniere');
 const { buildRulesEmbeds } = require('../../embeds/rules');
+const { resolveInteractionLocale } = require('../../utils/interactionLocale');
 
 // Turnier starten
 async function execute(interaction) {
@@ -40,7 +41,8 @@ async function execute(interaction) {
 
   // Rückmeldung
   await interaction.editReply({ content: `✅ Neues Turnier gestartet: **${name}** (Modus **${modus}**)` });
-  const embeds = buildRulesEmbeds(neuesTurnier);
+  const locale = await resolveInteractionLocale(interaction);
+  const embeds = buildRulesEmbeds(neuesTurnier, locale);
   await interaction.followUp({ embeds });
 }
 

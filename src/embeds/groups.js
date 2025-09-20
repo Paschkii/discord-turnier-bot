@@ -1,7 +1,7 @@
 // === Imports ===
 const {
   KLASSE_LISTE,
-  PHASE_LABEL
+  getPhaseLabel
 } = require('../config/constants');
 const {
   ActionRowBuilder,
@@ -26,7 +26,7 @@ function buildGroupPointsMap(daten) {
 function buildGroupEmbeds(daten) {
   const pointsMap = buildGroupPointsMap(daten);
   
-  const phaseName = PHASE_LABEL[daten.status] || daten.status || '—';
+  const phaseName = getPhaseLabel(daten.status) || daten.status || '—';
 
   const phaseKey = ['quali', 'gruppen', 'ko', 'finale'].includes(daten.status) ? daten.status : null;
   const allFights = Array.isArray(daten.kämpfe) ? daten.kämpfe : [];

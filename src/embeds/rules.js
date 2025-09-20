@@ -1,15 +1,15 @@
 // src/embeds/rules.js
 const { EmbedBuilder } = require('discord.js');
-const { HELP_COMMANDS } = require('../config/constants');
+const { HELP_COMMANDS, getLocalizedText } = require('../config/constants');
 
 // Eine Zeile pro Command, z. B. "• /anmelden — Meldet dich ..."
-const lineOf = (c) => `• \`/${c.name}\` — ${c.description}`;
+const lineOf = (c, locale = 'de') => `• \`/${c.name}\` — ${getLocalizedText(c.descriptionLocalized, locale) || c.description}`;
 
-function buildRulesEmbeds(daten = {}) {
+function buildRulesEmbeds(daten = {}, locale = 'de') {
   const name  = daten?.name  || 'Nemesis Turnier';
   const modus = daten?.modus || '1v1';
 
-  // 1) Regeln & Ablauf (dein bestehender Ablauf bleibt erhalten)
+  // 1) Regeln & Ablauf
   const rules = new EmbedBuilder()
     .setColor(0xffd700)
     .setTitle(`🏆 ${name} — Regeln & Ablauf`)
@@ -66,8 +66,8 @@ function buildRulesEmbeds(daten = {}) {
     .setTimestamp();
 
   // 2) Alle Befehle dynamisch aus HELP_COMMANDS
-  const userCmds  = HELP_COMMANDS.filter(c => !c.admin).map(lineOf);
-  const adminCmds = HELP_COMMANDS.filter(c =>  c.admin).map(lineOf);
+  const userCmds  = HELP_COMMANDS.filter(c => !c.admin).map((c) => lineOf(c, locale));
+  const adminCmds = HELP_COMMANDS.filter(c =>  c.admin).map((c) => lineOf(c, locale));
 
   const commands = new EmbedBuilder()
     .setColor(0x00aeff)

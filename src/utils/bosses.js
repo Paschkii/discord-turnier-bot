@@ -5,18 +5,13 @@ const {
   FAMILY_LISTE,
   REGION_LISTE,
   RESISTANCE_TYPES,
+  getLocalizedText,
+  resolveLocaleKey,
 } = require('../config/constants');
-
-const SUPPORTED_LOCALES = ['de', 'en', 'fr', 'es', 'it', 'pt'];
 
 // Sucht den besten passenden Locale-Key ("de", "en" …)
 function resolveLocale(inputLocale) {
-  const raw = typeof inputLocale === 'string' ? inputLocale.toLowerCase() : '';
-  if (!raw) return 'de';
-  for (const loc of SUPPORTED_LOCALES) {
-    if (raw === loc || raw.startsWith(`${loc}-`)) return loc;
-  }
-  return 'de';
+  return resolveLocaleKey(inputLocale);
 }
 
 // Normalisiert Strings für Such-/Vergleichszwecke (ohne Akzente, Kleinbuchstaben)
@@ -31,23 +26,7 @@ function normalize(str, locale = 'de') {
 
 // Holt einen lokalisierten Text (oder fällt auf andere Sprachen zurück)
 function getLocalized(entry, locale = 'de') {
-  if (!entry) return '';
-  if (typeof entry === 'string') return entry;
-  if (typeof entry === 'object') {
-    const loc = resolveLocale(locale);
-    return (
-      entry[loc] ||
-      entry.de ||
-      entry.en ||
-      entry.fr ||
-      entry.es ||
-      entry.it ||
-      entry.pt ||
-      Object.values(entry).find(Boolean) ||
-      ''
-    );
-  }
-  return '';
+  return getLocalizedText(entry, locale);
 }
 
 // Lokalisierten Bossnamen ermitteln

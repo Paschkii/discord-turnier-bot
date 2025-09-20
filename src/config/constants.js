@@ -24,26 +24,139 @@ function resolveDiscordEmoji(name, fallback = '') {
   return trimmed;
 }
 
+// Verfügbare Sprachen
+const SUPPORTED_LOCALES = ['de', 'en', 'fr', 'es', 'it', 'pt'];
+
+function resolveLocaleKey(locale = 'de') {
+  const raw = typeof locale === 'string' ? locale.toLowerCase() : '';
+  if (!raw) return 'de';
+  for (const loc of SUPPORTED_LOCALES) {
+    if (raw === loc || raw.startsWith(`${loc}-`)) return loc;
+  }
+  return 'de';
+}
+
+function getLocalizedText(entry, locale = 'de') {
+  if (!entry) return '';
+  if (typeof entry === 'string') return entry;
+  if (typeof entry === 'object') {
+    const key = resolveLocaleKey(locale);
+    return (
+      entry[key] ||
+      entry.de ||
+      entry.en ||
+      entry.fr ||
+      entry.es ||
+      entry.it ||
+      entry.pt ||
+      Object.values(entry).find(Boolean) ||
+      ''
+    );
+  }
+  return '';
+}
+
+function getPhaseLabel(phase, locale = 'de') {
+  const entry = PHASE_LABEL[phase];
+  if (!entry) return '';
+  return getLocalizedText(entry, locale) || phase;
+}
+
 // Erlaubte KO-Runden Größen
 const ALLOWED_KO_SIZES = [32, 16, 14, 12, 8, 4, 2];
 
 // Klassen Liste
 const KLASSE_LISTE = [
-  { emoji: resolveDiscordEmoji('cra', '🏹'), name: 'Cra' }, // Discord-Emoji :cra:
-  { emoji: resolveDiscordEmoji('ecaflip', '🎲'), name: 'Ecaflip' }, // Discord-Emoji :ecaflip:
-  { emoji: resolveDiscordEmoji('eniripsa', '🩹'), name: 'Eniripsa' }, // Discord-Emoji :eniripsa:
-  { emoji: resolveDiscordEmoji('enutrof', '💰'), name: 'Enutrof' }, // Discord-Emoji :enutrof:
-  { emoji: resolveDiscordEmoji('feca', '🛡️'), name: 'Feca' }, // Discord-Emoji :feca:
-  { emoji: resolveDiscordEmoji('rogue', '💣'), name: 'Halsabschneider' }, // Discord-Emoji :rogue:
-  { emoji: resolveDiscordEmoji('iop', '🗡'), name: 'Iop' }, // Discord-Emoji :iop:
-  { emoji: resolveDiscordEmoji('masqueraider', '🎭'), name: 'Maskerador' }, // Discord-Emoji :masqueraider:
-  { emoji: resolveDiscordEmoji('osamodas', '🐉'), name: 'Osamodas' }, // Discord-Emoji :osamodas:
-  { emoji: resolveDiscordEmoji('pandawa', '🐼'), name: 'Pandawa' }, // Discord-Emoji :pandawa:
-  { emoji: resolveDiscordEmoji('sacrieur', '🩸'), name: 'Sacrieur' }, // Discord-Emoji :sacrieur:
-  { emoji: resolveDiscordEmoji('sadida', '🌱'), name: 'Sadida' }, // Discord-Emoji :sadida:
-  { emoji: resolveDiscordEmoji('sram', '💀'), name: 'Sram' }, // Discord-Emoji :sram:
-  { emoji: resolveDiscordEmoji('foggernaut', '🚂'), name: 'Steamer' }, // Discord-Emoji :foggernaut:
-  { emoji: resolveDiscordEmoji('xelor', '⏳'), name: 'Xelor' }, // Discord-Emoji :xelor:
+  {
+    id: 'cra',
+    emoji: resolveDiscordEmoji('cra', '🏹'),
+    name: 'Cra',
+    nameLocalized: { de: 'Cra', en: 'Cra', fr: 'Crâ', es: 'Cra', it: 'Cra', pt: 'Cra' },
+  }, // Discord-Emoji :cra:
+  {
+    id: 'ecaflip',
+    emoji: resolveDiscordEmoji('ecaflip', '🎲'),
+    name: 'Ecaflip',
+    nameLocalized: { de: 'Ecaflip', en: 'Ecaflip', fr: 'Ecaflip', es: 'Ecaflip', it: 'Ecaflip', pt: 'Ecaflip' },
+  }, // Discord-Emoji :ecaflip:
+  {
+    id: 'eniripsa',
+    emoji: resolveDiscordEmoji('eniripsa', '🩹'),
+    name: 'Eniripsa',
+    nameLocalized: { de: 'Eniripsa', en: 'Eniripsa', fr: 'Eniripsa', es: 'Eniripsa', it: 'Eniripsa', pt: 'Eniripsa' },
+  }, // Discord-Emoji :eniripsa:
+  {
+    id: 'enutrof',
+    emoji: resolveDiscordEmoji('enutrof', '💰'),
+    name: 'Enutrof',
+    nameLocalized: { de: 'Enutrof', en: 'Enutrof', fr: 'Enutrof', es: 'Enutrof', it: 'Enutrof', pt: 'Enutrof' },
+  }, // Discord-Emoji :enutrof:
+  {
+    id: 'feca',
+    emoji: resolveDiscordEmoji('feca', '🛡️'),
+    name: 'Feca',
+    nameLocalized: { de: 'Feca', en: 'Feca', fr: 'Féca', es: 'Feca', it: 'Feca', pt: 'Feca' },
+  }, // Discord-Emoji :feca:
+  {
+    id: 'rogue',
+    emoji: resolveDiscordEmoji('rogue', '💣'),
+    name: 'Halsabschneider',
+    nameLocalized: { de: 'Halsabschneider', en: 'Rogue', fr: 'Roublard', es: 'Rogue', it: 'Rogue', pt: 'Rogue' },
+  }, // Discord-Emoji :rogue:
+  {
+    id: 'iop',
+    emoji: resolveDiscordEmoji('iop', '🗡'),
+    name: 'Iop',
+    nameLocalized: { de: 'Iop', en: 'Iop', fr: 'Iop', es: 'Iop', it: 'Iop', pt: 'Iop' },
+  }, // Discord-Emoji :iop:
+  {
+    id: 'masqueraider',
+    emoji: resolveDiscordEmoji('masqueraider', '🎭'),
+    name: 'Maskerador',
+    nameLocalized: { de: 'Maskerador', en: 'Masqueraider', fr: 'Zobal', es: 'Masqueraider', it: 'Masqueraider', pt: 'Masqueraider' },
+  }, // Discord-Emoji :masqueraider:
+  {
+    id: 'osamodas',
+    emoji: resolveDiscordEmoji('osamodas', '🐉'),
+    name: 'Osamodas',
+    nameLocalized: { de: 'Osamodas', en: 'Osamodas', fr: 'Osamodas', es: 'Osamodas', it: 'Osamodas', pt: 'Osamodas' },
+  }, // Discord-Emoji :osamodas:
+  {
+    id: 'pandawa',
+    emoji: resolveDiscordEmoji('pandawa', '🐼'),
+    name: 'Pandawa',
+    nameLocalized: { de: 'Pandawa', en: 'Pandawa', fr: 'Pandawa', es: 'Pandawa', it: 'Pandawa', pt: 'Pandawa' },
+  }, // Discord-Emoji :pandawa:
+  {
+    id: 'sacrieur',
+    emoji: resolveDiscordEmoji('sacrieur', '🩸'),
+    name: 'Sacrieur',
+    nameLocalized: { de: 'Sacrieur', en: 'Sacrier', fr: 'Sacrieur', es: 'Sacrier', it: 'Sacrier', pt: 'Sacrier' },
+  }, // Discord-Emoji :sacrieur:
+  {
+    id: 'sadida',
+    emoji: resolveDiscordEmoji('sadida', '🌱'),
+    name: 'Sadida',
+    nameLocalized: { de: 'Sadida', en: 'Sadida', fr: 'Sadida', es: 'Sadida', it: 'Sadida', pt: 'Sadida' },
+  }, // Discord-Emoji :sadida:
+  {
+    id: 'sram',
+    emoji: resolveDiscordEmoji('sram', '💀'),
+    name: 'Sram',
+    nameLocalized: { de: 'Sram', en: 'Sram', fr: 'Sram', es: 'Sram', it: 'Sram', pt: 'Sram' },
+  }, // Discord-Emoji :sram:
+  {
+    id: 'foggernaut',
+    emoji: resolveDiscordEmoji('foggernaut', '🚂'),
+    name: 'Steamer',
+    nameLocalized: { de: 'Steamer', en: 'Foggernaut', fr: 'Steamer', es: 'Steamer', it: 'Steamer', pt: 'Steamer' },
+  }, // Discord-Emoji :foggernaut:
+  {
+    id: 'xelor',
+    emoji: resolveDiscordEmoji('xelor', '⏳'),
+    name: 'Xelor',
+    nameLocalized: { de: 'Xelor', en: 'Xelor', fr: 'Xelor', es: 'Xelor', it: 'Xelor', pt: 'Xelor' },
+  }, // Discord-Emoji :xelor:
 ];
 
 // Regionen Liste
@@ -581,33 +694,265 @@ const arenaData = {
 // Alle Commands (für /hilfe, /regeln etc.)
 const HELP_COMMANDS = [
   // User
-  { name: 'anmelden',            description: 'Meldet dich für das Turnier an.', admin: false },
-  { name: 'arena',               description: 'Zufällige Arena-Auswahl.', admin: false },
-  { name: 'boss',                description: 'Zeigt Infos zu einem Bossmonster.', admin: false },
-  { name: 'bracket',             description: 'Zeigt Gruppen, Kämpfe und Übersicht der aktuellen Phase an', admin: false },
-  { name: 'hall_of_fame',        description: 'Zeigt vergangene Turniere (Podium).', admin: false },
-  { name: 'regeln',              description: 'Zeigt die Turnierregeln.', admin: false },
-  { name: 'turnier_info',        description: 'Komplette Turnier-Übersicht (Pott & Status).', admin: false },
+  {
+    name: 'anmelden',
+    description: 'Meldet dich für das Turnier an.',
+    descriptionLocalized: {
+      de: 'Meldet dich für das Turnier an.',
+      en: 'Registers you for the tournament.',
+      fr: 'Inscrit ton compte au tournoi.',
+      es: 'Te registra en el torneo.',
+      it: 'Ti registra al torneo.',
+      pt: 'Registra você no torneio.',
+    },
+    admin: false,
+  },
+  {
+    name: 'arena',
+    description: 'Zufällige Arena-Auswahl.',
+    descriptionLocalized: {
+      de: 'Zufällige Arena-Auswahl.',
+      en: 'Picks a random arena.',
+      fr: 'Sélectionne une arène aléatoire.',
+      es: 'Elige una arena aleatoria.',
+      it: 'Seleziona un’arena casuale.',
+      pt: 'Seleciona uma arena aleatória.',
+    },
+    admin: false,
+  },
+  {
+    name: 'boss',
+    description: 'Zeigt Infos zu einem Bossmonster.',
+    descriptionLocalized: {
+      de: 'Zeigt Infos zu einem Bossmonster.',
+      en: 'Shows information about a boss monster.',
+      fr: 'Affiche les informations d’un boss.',
+      es: 'Muestra información de un jefe.',
+      it: 'Mostra le informazioni di un boss.',
+      pt: 'Mostra informações sobre um chefe.',
+    },
+    admin: false,
+  },
+  {
+    name: 'bracket',
+    description: 'Zeigt Gruppen, Kämpfe und Übersicht der aktuellen Phase an',
+    descriptionLocalized: {
+      de: 'Zeigt Gruppen, Kämpfe und Übersicht der aktuellen Phase an.',
+      en: 'Displays groups, matches and the current phase overview.',
+      fr: 'Affiche les groupes, les combats et la phase actuelle.',
+      es: 'Muestra los grupos, combates y la fase actual.',
+      it: 'Mostra gruppi, incontri e panoramica della fase attuale.',
+      pt: 'Mostra grupos, lutas e a fase atual.',
+    },
+    admin: false,
+  },
+  {
+    name: 'hall_of_fame',
+    description: 'Zeigt vergangene Turniere (Podium).',
+    descriptionLocalized: {
+      de: 'Zeigt vergangene Turniere (Podium).',
+      en: 'Shows past tournaments (podium).',
+      fr: 'Affiche les anciens tournois (podium).',
+      es: 'Muestra torneos anteriores (podio).',
+      it: 'Mostra i tornei passati (podio).',
+      pt: 'Mostra torneios anteriores (pódio).',
+    },
+    admin: false,
+  },
+  {
+    name: 'regeln',
+    description: 'Zeigt die Turnierregeln.',
+    descriptionLocalized: {
+      de: 'Zeigt die Turnierregeln.',
+      en: 'Displays the tournament rules.',
+      fr: 'Affiche les règles du tournoi.',
+      es: 'Muestra las reglas del torneo.',
+      it: 'Mostra le regole del torneo.',
+      pt: 'Mostra as regras do torneio.',
+    },
+    admin: false,
+  },
+  {
+    name: 'turnier_info',
+    description: 'Komplette Turnier-Übersicht (Pott & Status).',
+    descriptionLocalized: {
+      de: 'Komplette Turnier-Übersicht (Pott & Status).',
+      en: 'Complete tournament overview (prize pool & status).',
+      fr: 'Vue d’ensemble du tournoi (cagnotte & statut).',
+      es: 'Resumen completo del torneo (bote y estado).',
+      it: 'Panoramica completa del torneo (montepremi e stato).',
+      pt: 'Visão geral completa do torneio (prêmio e status).',
+    },
+    admin: false,
+  },
 
   // Admin
-  { name: 'ergebnis_setzen',     description: 'Admin: Ergebnis eines Kampfes setzen/korrigieren.', admin: true },
-  { name: 'ergebnisse_wuerfeln', description: 'Admin: Zufalls-Ergebnisse für die aktuelle Phase setzen. (Zum Testen)', admin: true },
-  { name: 'fake_anmeldungen',    description: 'Admin: Fügt N fiktive Teilnehmer (zum Testen) hinzu.', admin: true },
-  { name: 'language',            description: 'Admin: Bot-Sprache für diesen Server einstellen.', admin: true },
-  { name: 'hof_loeschen',        description: 'Admin: Löscht einen Hall-of-Fame-Eintrag per Turniernummer. (Zum Testen)', admin: true },
-  { name: 'pott_setzen',         description: 'Admin: Pott & Aufteilung (Top 3) setzen.', admin: true },
-  { name: 'teilnehmer_ersetzen', description: 'Admin: Teilnehmer (ID/Name) auf anderen User umstellen und/oder Klasse/Name ändern.', admin: true },
-  { name: 'turnier_advance',     description: 'Admin: Nächste Phase (Quali → Gruppen → KO → Finale) auslösen.', admin: true },
-  { name: 'turnier_start',       description: 'Admin: Startet ein Turnier (immer 1v1).', admin: true },
-  { name: 'turnier_stop',        description: 'Admin: Beendet das Turnier & leert Daten.', admin: true },
+  {
+    name: 'ergebnis_setzen',
+    description: 'Admin: Ergebnis eines Kampfes setzen/korrigieren.',
+    descriptionLocalized: {
+      de: 'Admin: Ergebnis eines Kampfes setzen/korrigieren.',
+      en: 'Admin: Set or correct a match result.',
+      fr: 'Admin : Définir ou corriger le résultat d’un combat.',
+      es: 'Admin: Establece o corrige el resultado de un combate.',
+      it: 'Admin: Imposta o corregge il risultato di un incontro.',
+      pt: 'Admin: Define ou corrige o resultado de uma luta.',
+    },
+    admin: true,
+  },
+  {
+    name: 'ergebnisse_wuerfeln',
+    description: 'Admin: Zufalls-Ergebnisse für die aktuelle Phase setzen. (Zum Testen)',
+    descriptionLocalized: {
+      de: 'Admin: Zufalls-Ergebnisse für die aktuelle Phase setzen. (Zum Testen)',
+      en: 'Admin: Fill the current phase with random results (testing).',
+      fr: 'Admin : Génère des résultats aléatoires pour la phase actuelle (tests).',
+      es: 'Admin: Genera resultados aleatorios para la fase actual (pruebas).',
+      it: 'Admin: Genera risultati casuali per la fase attuale (test).',
+      pt: 'Admin: Gera resultados aleatórios para a fase atual (teste).',
+    },
+    admin: true,
+  },
+  {
+    name: 'fake_anmeldungen',
+    description: 'Admin: Fügt N fiktive Teilnehmer (zum Testen) hinzu.',
+    descriptionLocalized: {
+      de: 'Admin: Fügt N fiktive Teilnehmer (zum Testen) hinzu.',
+      en: 'Admin: Adds N fake participants (testing).',
+      fr: 'Admin : Ajoute N participants fictifs (tests).',
+      es: 'Admin: Añade N participantes ficticios (pruebas).',
+      it: 'Admin: Aggiunge N partecipanti fittizi (test).',
+      pt: 'Admin: Adiciona N participantes fictícios (teste).',
+    },
+    admin: true,
+  },
+  {
+    name: 'language',
+    description: 'Admin: Bot-Sprache für diesen Server einstellen.',
+    descriptionLocalized: {
+      de: 'Admin: Bot-Sprache für diesen Server einstellen.',
+      en: 'Admin: Set the bot language for this server.',
+      fr: 'Admin : Définit la langue du bot pour ce serveur.',
+      es: 'Admin: Configura el idioma del bot en este servidor.',
+      it: 'Admin: Imposta la lingua del bot per questo server.',
+      pt: 'Admin: Define o idioma do bot para este servidor.',
+    },
+    admin: true,
+  },
+  {
+    name: 'hof_loeschen',
+    description: 'Admin: Löscht einen Hall-of-Fame-Eintrag per Turniernummer. (Zum Testen)',
+    descriptionLocalized: {
+      de: 'Admin: Löscht einen Hall-of-Fame-Eintrag per Turniernummer. (Zum Testen)',
+      en: 'Admin: Deletes a hall-of-fame entry by tournament number (testing).',
+      fr: 'Admin : Supprime une entrée du panthéon par numéro de tournoi (tests).',
+      es: 'Admin: Elimina una entrada del salón de la fama por número de torneo (pruebas).',
+      it: 'Admin: Elimina una voce della hall of fame tramite numero del torneo (test).',
+      pt: 'Admin: Remove uma entrada do hall da fama pelo número do torneio (teste).',
+    },
+    admin: true,
+  },
+  {
+    name: 'pott_setzen',
+    description: 'Admin: Pott & Aufteilung (Top 3) setzen.',
+    descriptionLocalized: {
+      de: 'Admin: Pott & Aufteilung (Top 3) setzen.',
+      en: 'Admin: Set prize pool & payout for the top 3.',
+      fr: 'Admin : Définit la cagnotte et la répartition du top 3.',
+      es: 'Admin: Define el bote y el reparto del top 3.',
+      it: 'Admin: Imposta il montepremi e la ripartizione della top 3.',
+      pt: 'Admin: Define o prêmio e a divisão do top 3.',
+    },
+    admin: true,
+  },
+  {
+    name: 'teilnehmer_ersetzen',
+    description: 'Admin: Teilnehmer (ID/Name) auf anderen User umstellen und/oder Klasse/Name ändern.',
+    descriptionLocalized: {
+      de: 'Admin: Teilnehmer (ID/Name) auf anderen User umstellen und/oder Klasse/Name ändern.',
+      en: 'Admin: Reassign a participant (ID/name) and optionally update class/name.',
+      fr: 'Admin : Réassigne un participant (ID/nom) et met à jour classe/nom.',
+      es: 'Admin: Reasigna un participante (ID/nombre) y actualiza clase/nombre.',
+      it: 'Admin: Riassegna un partecipante (ID/nome) e aggiorna classe/nome.',
+      pt: 'Admin: Reatribui um participante (ID/nome) e atualiza classe/nome.',
+    },
+    admin: true,
+  },
+  {
+    name: 'turnier_advance',
+    description: 'Admin: Nächste Phase (Quali → Gruppen → KO → Finale) auslösen.',
+    descriptionLocalized: {
+      de: 'Admin: Nächste Phase (Quali → Gruppen → KO → Finale) auslösen.',
+      en: 'Admin: Advance to the next phase (qualifiers → groups → KO → final).',
+      fr: 'Admin : Passe à la prochaine phase (qualifs → groupes → élimination → finale).',
+      es: 'Admin: Avanza a la siguiente fase (clasificatoria → grupos → KO → final).',
+      it: 'Admin: Avanza alla fase successiva (qualifiche → gironi → KO → finale).',
+      pt: 'Admin: Avança para a próxima fase (classificatória → grupos → mata-mata → final).',
+    },
+    admin: true,
+  },
+  {
+    name: 'turnier_start',
+    description: 'Admin: Startet ein Turnier (immer 1v1).',
+    descriptionLocalized: {
+      de: 'Admin: Startet ein Turnier (immer 1v1).',
+      en: 'Admin: Starts a tournament (always 1v1).',
+      fr: 'Admin : Lance un tournoi (toujours 1v1).',
+      es: 'Admin: Inicia un torneo (siempre 1v1).',
+      it: 'Admin: Avvia un torneo (sempre 1v1).',
+      pt: 'Admin: Inicia um torneio (sempre 1x1).',
+    },
+    admin: true,
+  },
+  {
+    name: 'turnier_stop',
+    description: 'Admin: Beendet das Turnier & leert Daten.',
+    descriptionLocalized: {
+      de: 'Admin: Beendet das Turnier & leert Daten.',
+      en: 'Admin: Stops the tournament and clears all data.',
+      fr: 'Admin : Arrête le tournoi et vide les données.',
+      es: 'Admin: Detiene el torneo y borra los datos.',
+      it: 'Admin: Ferma il torneo e cancella i dati.',
+      pt: 'Admin: Encerra o torneio e limpa os dados.',
+    },
+    admin: true,
+  },
 ];
 
 // Phasen Labels
 const PHASE_LABEL = {
-  quali: 'Qualifikation',
-  gruppen: 'Gruppenphase',
-  ko: 'K.O.-Phase',
-  finale: 'Finale'
+  quali: {
+    de: 'Qualifikation',
+    en: 'Qualifiers',
+    fr: 'Phase de qualification',
+    es: 'Fase de clasificación',
+    it: 'Qualificazioni',
+    pt: 'Qualificatória',
+  },
+  gruppen: {
+    de: 'Gruppenphase',
+    en: 'Group Stage',
+    fr: 'Phase de groupes',
+    es: 'Fase de grupos',
+    it: 'Fase a gironi',
+    pt: 'Fase de grupos',
+  },
+  ko: {
+    de: 'K.O.-Phase',
+    en: 'Knockout Stage',
+    fr: 'Phase à élimination',
+    es: 'Eliminatorias',
+    it: 'Eliminazione diretta',
+    pt: 'Eliminatórias',
+  },
+  finale: {
+    de: 'Finale',
+    en: 'Final',
+    fr: 'Finale',
+    es: 'Final',
+    it: 'Finale',
+    pt: 'Final',
+  },
 };
 
 // === Exports ===
@@ -624,4 +969,8 @@ module.exports = {
   REGION_LISTE,
   RESISTANCE_TYPES,
   PHASE_LABEL,
+  SUPPORTED_LOCALES,
+  resolveLocaleKey,
+  getLocalizedText,
+  getPhaseLabel,
 };
