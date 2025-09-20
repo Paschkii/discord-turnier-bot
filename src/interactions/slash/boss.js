@@ -9,23 +9,111 @@ const {
   getFamilyName,
   getRegionName,
 } = require('../../utils/bosses');
+const { resolveInteractionLocale } = require('../../utils/interactionLocale');
+
+const MESSAGES = {
+  de: {
+    missingName: '❌ Bitte wähle ein Bossmonster aus.',
+    notFound: '❌ Dieses Bossmonster konnte nicht gefunden werden.',
+    description: {
+      level: 'Level',
+      region: 'Region',
+      family: 'Familie',
+    },
+    fields: {
+      characteristics: 'Charakteristiken',
+      resistances: 'Resistenzen',
+    },
+  },
+  en: {
+    missingName: '❌ Please choose a boss monster.',
+    notFound: '❌ This boss monster could not be found.',
+    description: {
+      level: 'Level',
+      region: 'Region',
+      family: 'Family',
+    },
+    fields: {
+      characteristics: 'Characteristics',
+      resistances: 'Resistances',
+    },
+  },
+  fr: {
+    missingName: '❌ Veuillez choisir un boss.',
+    notFound: '❌ Ce boss est introuvable.',
+    description: {
+      level: 'Niveau',
+      region: 'Région',
+      family: 'Famille',
+    },
+    fields: {
+      characteristics: 'Caractéristiques',
+      resistances: 'Résistances',
+    },
+  },
+  es: {
+    missingName: '❌ Selecciona un monstruo jefe.',
+    notFound: '❌ No se encontró este monstruo jefe.',
+    description: {
+      level: 'Nivel',
+      region: 'Región',
+      family: 'Familia',
+    },
+    fields: {
+      characteristics: 'Características',
+      resistances: 'Resistencias',
+    },
+  },
+  it: {
+    missingName: '❌ Seleziona un boss.',
+    notFound: '❌ Questo boss non è stato trovato.',
+    description: {
+      level: 'Livello',
+      region: 'Regione',
+      family: 'Famiglia',
+    },
+    fields: {
+      characteristics: 'Caratteristiche',
+      resistances: 'Resistenze',
+    },
+  },
+  pt: {
+    missingName: '❌ Escolha um chefe.',
+    notFound: '❌ Esse chefe não foi encontrado.',
+    description: {
+      level: 'Nível',
+      region: 'Região',
+      family: 'Família',
+    },
+    fields: {
+      characteristics: 'Características',
+      resistances: 'Resistências',
+    },
+  },
+};
+
+function getMessages(locale) {
+  return MESSAGES[locale] || MESSAGES.en || MESSAGES.de;
+}
 
 // Antwort für /boss erzeugen
 async function execute(interaction) {
   const rawValue = interaction.options.getString('name');
+  const locale = await resolveInteractionLocale(interaction);
+  const t = getMessages(locale);
+
   if (!rawValue) {
     return interaction.reply({
-      content: '❌ Bitte wähle ein Bossmonster aus.',
+      content: t.missingName,
       flags: MessageFlags.Ephemeral,
     });
   }
 
-  const locale = 'de'; // aktuell nur deutsche Ausgabe unterstützt
   const boss = findBossById(rawValue) || findBossByName(rawValue, locale);
 
   if (!boss) {
     return interaction.reply({
-      content: '❌ Dieses Bossmonster konnte nicht gefunden werden.',
+      content: t.notFound,
       flags: MessageFlags.Ephemeral,
     });
   }
@@ -40,9 +128,9 @@ async function execute(interaction) {
   const resistances = formatResistances(boss, locale, { includeIcons: true });
 
   const descriptionLines = [
-    `**Level:** ${level}`,
-    `**Region:** ${region}`,
-    `**Familie:** ${family}`
+    `**${t.description.level}:** ${level}`,
+    `**${t.description.region}:** ${region}`,
+    `**${t.description.family}:** ${family}`,
   ];
 
   const embed = new EmbedBuilder()
@@ -59,12 +147,12 @@ async function execute(interaction) {
 
   embed.addFields(
     {
-      name: `**Charakteristiken**`,
+      name: `**${t.fields.characteristics}**`,
       value: characteristics.length ? characteristics.join('\n') : '—',
       inline: false,
     },
     {
-      name: `**Resistenzen**`,
+      name: `**${t.fields.resistances}**`,
       value: resistances.length ? resistances.join('\n') : '—',
       inline: false,
     }

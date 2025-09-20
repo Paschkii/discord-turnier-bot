@@ -7,7 +7,7 @@ const {
   RESISTANCE_TYPES,
 } = require('../config/constants');
 
-const SUPPORTED_LOCALES = ['de', 'en', 'fr', 'es'];
+const SUPPORTED_LOCALES = ['de', 'en', 'fr', 'es', 'it', 'pt'];
 
 // Sucht den besten passenden Locale-Key ("de", "en" …)
 function resolveLocale(inputLocale) {
@@ -41,6 +41,8 @@ function getLocalized(entry, locale = 'de') {
       entry.en ||
       entry.fr ||
       entry.es ||
+      entry.it ||
+      entry.pt ||
       Object.values(entry).find(Boolean) ||
       ''
     );
