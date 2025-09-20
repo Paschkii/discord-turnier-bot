@@ -8,7 +8,7 @@ const {
   InteractionContextType,
 } = require('discord.js');
 require('dotenv').config();
-const languages = require('../config/languages');
+const languages = require('../config/languages/index');
 
 const DEFAULT_LANGUAGE = 'de';
 const LOCALE_MAP = {
