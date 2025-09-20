@@ -8,6 +8,7 @@ const {
   InteractionContextType,
 } = require('discord.js');
 require('dotenv').config();
+const commandsDe = require('../config/languages/commands.de')
 
 // kleine Helper-Funktion: macht den Command "Guild-only"
 const guildOnly = (b) =>
@@ -21,28 +22,28 @@ const commands = [
   // /anmelden
   guildOnly(
     new SlashCommandBuilder()
-      .setName('anmelden')
-      .setDescription('Melde dich für das Turnier an')
+      .setName(commandsDe.anmelden.name)
+      .setDescription(commandsDe.anmelden.description)
   ),
   // /arena
   guildOnly(
     new SlashCommandBuilder()
-      .setName('arena')
-      .setDescription('Zufällige Arena-Auswahl')
+      .setName(commandsDe.arena.name)
+      .setDescription(commandsDe.arena.description)
       .addIntegerOption(o=>o
-        .setName('anzahl')
-        .setDescription('1–3 unterschiedliche Arenen')
+        .setName(commandsDe.arena.options.anzahl.name)
+        .setDescription(commandsDe.arena.options.anzahl.description)
         .setMinValue(1)
         .setMaxValue(3))
   ),
   // /boss
   guildOnly(
     new SlashCommandBuilder()
-      .setName('boss')
-      .setDescription('Zeigt Infos zu einem Bossmonster')
+      .setName(commandsDe.boss.name)
+      .setDescription(commandsDe.boss.description)
       .addStringOption(opt =>
-        opt.setName('name')
-          .setDescription('Bossmonster auswählen')
+        opt.setName(commandsDe.boss.options.name.name)
+          .setDescription(commandsDe.boss.options.name.description)
           .setRequired(true)
           .setAutocomplete(true)
       )
@@ -50,55 +51,55 @@ const commands = [
   // /bracket
   guildOnly(
     new SlashCommandBuilder()
-      .setName('bracket')
-      .setDescription('Zeigt das Bracket der aktuellen Phase')
+      .setName(commandsDe.bracket.name)
+      .setDescription(commandsDe.bracket.description)
   ),
   // Hall of Fame
   guildOnly(
     new SlashCommandBuilder()
-      .setName('hall_of_fame')
-      .setDescription('Zeigt vergangene Turniere (Podium)')
+      .setName(commandsDe.hallOfFame.name)
+      .setDescription(commandsDe.hallOfFame.description)
   ),
   // /hilfe
   guildOnly(
     new SlashCommandBuilder()
-      .setName('hilfe')
-      .setDescription('Zeigt die Hilfeseite mit allen Befehlen')
+      .setName(commandsDe.hilfe.name)
+      .setDescription(commandsDe.hilfe.description)
   ),
   // /regeln
   guildOnly(
   new SlashCommandBuilder()
-    .setName('regeln')
-    .setDescription('Zeigt die Turnierregeln')
+    .setName(commandsDe.regeln.name)
+    .setDescription(commandsDe.regeln.description)
   ),
   // /turnier_info
   guildOnly(
     new SlashCommandBuilder()
-      .setName('turnier_info')
-      .setDescription('Zeigt eine kompakte Übersicht zum laufenden Turnier')
+      .setName(commandsDe.turnierInfo.name)
+      .setDescription(commandsDe.turnierInfo.description)
   ),
 
   // === Admin ===
   // /ergebnis_setzen
   guildOnly(
     new SlashCommandBuilder()
-      .setName('ergebnis_setzen')
-      .setDescription('Setzt/Korrigiert das Ergebnis eines Kampfes')
+      .setName(commandsDe.ergebnisSetzen.name)
+      .setDescription(commandsDe.ergebnisSetzen.description)
       .addStringOption(opt =>
-        opt.setName('gruppe')
-          .setDescription('Gruppe auswählen (Autocomplete)')
+        opt.setName(commandsDe.ergebnisSetzen.options.gruppe.name)
+          .setDescription(commandsDe.ergebnisSetzen.options.gruppe.description)
           .setRequired(true)
           .setAutocomplete(true)
       )
       .addStringOption(opt =>
-        opt.setName('kampf')
-          .setDescription('Kampf in der gewählten Gruppe (Autocomplete)')
+        opt.setName(commandsDe.ergebnisSetzen.options.kampf.name)
+          .setDescription(commandsDe.ergebnisSetzen.options.kampf.description)
           .setRequired(true)
           .setAutocomplete(true)
       )
       .addIntegerOption(opt =>
-        opt.setName('kampf_id')
-          .setDescription('ID des Kampfes (Fallback)')
+        opt.setName(commandsDe.ergebnisSetzen.options.kampfId.name)
+          .setDescription(commandsDe.ergebnisSetzen.options.kampfId.description)
           .setRequired(false)
       )
       .setDefaultMemberPermissions(PermissionsBitField.Flags.Administrator)
@@ -106,11 +107,11 @@ const commands = [
   // /ergebnisse_wuerfeln
   guildOnly(
     new SlashCommandBuilder()
-      .setName('ergebnisse_wuerfeln')
-      .setDescription('Setzt zufällige Ergebnisse für die aktuelle Phase')
+      .setName(commandsDe.ergebnisseWuerfeln.name)
+      .setDescription(commandsDe.ergebnisseWuerfeln.description)
       .addBooleanOption(opt =>
-        opt.setName('nur_offene')
-          .setDescription('Nur offene Kämpfe würfeln (empfohlen)')
+        opt.setName(commandsDe.ergebnisseWuerfeln.options.nurOffene.name)
+          .setDescription(commandsDe.ergebnisseWuerfeln.options.nurOffene.description)
           .setRequired(false)
       )
       .setDefaultMemberPermissions(PermissionsBitField.Flags.Administrator)
@@ -118,16 +119,16 @@ const commands = [
   // /fake_anmeldungen
   guildOnly(
     new SlashCommandBuilder()
-      .setName('fake_anmeldungen')
-      .setDescription('Admin: Fügt N fiktive Teilnehmer (zum Testen) hinzu')
+      .setName(commandsDe.fakeAnmeldungen.name)
+      .setDescription(commandsDe.fakeAnmeldungen.description)
       .addIntegerOption(opt =>
-        opt.setName('anzahl')
-          .setDescription('Wie viele Fake-Teilnehmer hinzufügen (wird ggf. auf gerade Gesamtzahl korrigiert)')
+        opt.setName(commandsDe.fakeAnmeldungen.options.anzahl.name)
+          .setDescription(commandsDe.fakeAnmeldungen.options.anzahl.description)
           .setRequired(true)
       )
       .addBooleanOption(opt =>
-        opt.setName('reset')
-          .setDescription('Vorherige Anmeldungen löschen und nur Fake-Teilnehmer behalten?')
+        opt.setName(commandsDe.fakeAnmeldungen.options.reset.name)
+          .setDescription(commandsDe.fakeAnmeldungen.options.reset.description)
           .setRequired(false)
       )
       .setDefaultMemberPermissions(PermissionsBitField.Flags.Administrator)
@@ -135,11 +136,11 @@ const commands = [
   // Hall of Fame löschen
   guildOnly(
     new SlashCommandBuilder()
-      .setName('hof_loeschen')
-      .setDescription('Admin: Löscht einen Hall-of-Fame-Eintrag per Turniernummer')
+      .setName(commandsDe.hofLoeschen.name)
+      .setDescription(commandsDe.hofLoeschen.description)
       .addIntegerOption(opt =>
-        opt.setName('nummer')
-          .setDescription('Turniernummer (z. B. 3 für Nemesis Turnier #3)')
+        opt.setName(commandsDe.hofLoeschen.options.nummer.name)
+          .setDescription(commandsDe.hofLoeschen.options.nummer.description)
           .setRequired(true)
       )
       .setDefaultMemberPermissions(PermissionsBitField.Flags.Administrator)
@@ -147,33 +148,33 @@ const commands = [
   // /pott_setzen
   guildOnly(
     new SlashCommandBuilder()
-      .setName('pott_setzen')
-      .setDescription('Admin: Pott & Aufteilung (Top 3) setzen')
+      .setName(commandsDe.pottSetzen.name)
+      .setDescription(commandsDe.pottSetzen.description)
       .setDefaultMemberPermissions(PermissionsBitField.Flags.Administrator)
   ),
   // /teilnehmer_ersetzen
   guildOnly(
     new SlashCommandBuilder()
-      .setName('teilnehmer_ersetzen')
-      .setDescription('Admin: Teilnehmer (ID/Name) auf anderen User umstellen und/oder Klasse/Name ändern')
+      .setName(commandsDe.teilnehmerErsetzen.name)
+      .setDescription(commandsDe.teilnehmerErsetzen.description)
       .addStringOption(opt =>
-        opt.setName('teilnehmer')
-          .setDescription('ID oder exakter Name des vorhandenen Teilnehmers')
+        opt.setName(commandsDe.teilnehmerErsetzen.options.teilnehmer.name)
+          .setDescription(commandsDe.teilnehmerErsetzen.options.teilnehmer.description)
           .setRequired(true)
       )
       .addUserOption(opt =>
-        opt.setName('user')
-          .setDescription('Ziel-Discord-User (wenn leer: nur Klasse/Name ändern)')
+        opt.setName(commandsDe.teilnehmerErsetzen.options.user.name)
+          .setDescription(commandsDe.teilnehmerErsetzen.options.user.description)
           .setRequired(false)
       )
       .addStringOption(opt =>
-        opt.setName('klasse')
-          .setDescription('Neue Klasse (wenn leer: alte Klasse bleibt)')
+        opt.setName(commandsDe.teilnehmerErsetzen.options.klasse.name)
+          .setDescription(commandsDe.teilnehmerErsetzen.options.klasse.description)
           .setRequired(false)
       )
       .addStringOption(opt =>
-        opt.setName('name')
-          .setDescription('Neuer Anzeigename (optional)')
+        opt.setName(commandsDe.teilnehmerErsetzen.options.name.name)
+          .setDescription(commandsDe.teilnehmerErsetzen.options.name.description)
           .setRequired(false)
       )
       .setDefaultMemberPermissions(PermissionsBitField.Flags.Administrator)
@@ -181,22 +182,22 @@ const commands = [
   // /turnier_start
   guildOnly(
     new SlashCommandBuilder()
-      .setName('turnier_start')
-      .setDescription('Startet das Turnier')
+      .setName(commandsDe.turnierStart.name)
+      .setDescription(commandsDe.turnierStart.description)
       .setDefaultMemberPermissions(PermissionsBitField.Flags.Administrator)
   ),
   // /turnier_stop
   guildOnly(
     new SlashCommandBuilder()
-      .setName('turnier_stop')
-      .setDescription('Beendet das Turnier')
+      .setName(commandsDe.turnierStop.name)
+      .setDescription(commandsDe.turnierStop.description)
       .setDefaultMemberPermissions(PermissionsBitField.Flags.Administrator)
   ),
   // /turnier_advance
   guildOnly(
     new SlashCommandBuilder()
-      .setName('turnier_advance')
-      .setDescription('Schaltet in die nächste Turnierphase (Quali → Gruppen → KO → Finale)')
+      .setName(commandsDe.turnierAdvance.name)
+      .setDescription(commandsDe.turnierAdvance.description)
       .setDefaultMemberPermissions(PermissionsBitField.Flags.Administrator)
   ),
 
@@ -204,25 +205,25 @@ const commands = [
   // /pvm_start
   guildOnly(
     new SlashCommandBuilder()
-      .setName('pvm_start')
-      .setDescription('Startet ein PvM Event')
+      .setName(commandsDe.pvmStart.name)
+      .setDescription(commandsDe.pvmStart.description)
       .setDefaultMemberPermissions(PermissionsBitField.Flags.Administrator)
   ),
   // /pvm_stop
   guildOnly(
     new SlashCommandBuilder()
-      .setName('pvm_stop')
-      .setDescription('Beendet das PvM Event')
+      .setName(commandsDe.pvmStop.name)
+      .setDescription(commandsDe.pvmStop.description)
       .setDefaultMemberPermissions(PermissionsBitField.Flags.Administrator)
   ),
   // /dungeon_setzen
   guildOnly(
     new SlashCommandBuilder()
-      .setName('dungeon_setzen')
-      .setDescription('Fügt einen Dungeon zum PvM Event hinzu')
+      .setName(commandsDe.dungeonSetzen.name)
+      .setDescription(commandsDe.dungeonSetzen.description)
       .addStringOption(opt =>
-        opt.setName('name')
-          .setDescription('Name des Dungeons')
+        opt.setName(commandsDe.dungeonSetzen.options.name.name)
+          .setDescription(commandsDe.dungeonSetzen.options.name.description)
           .setRequired(true)
       )
       .setDefaultMemberPermissions(PermissionsBitField.Flags.Administrator)
