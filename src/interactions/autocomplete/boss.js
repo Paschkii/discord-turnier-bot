@@ -1,5 +1,6 @@
 // === Imports ===
 const { buildBossChoices } = require('../../utils/bosses');
+const { resolveInteractionLocale } = require('../../utils/interactionLocale');
 
 // Autocomplete für /boss
 async function run(interaction) {
