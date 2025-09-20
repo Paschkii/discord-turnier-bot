@@ -1,0 +1,156 @@
+const commands = {
+  anmelden: {
+    name: 'register',
+    description: 'Register for the tournament',
+  },
+  arena: {
+    name: 'arena',
+    description: 'Random arena selection',
+    options: {
+      anzahl: {
+        name: 'count',
+        description: '1-3 different arenas',
+      },
+    },
+  },
+  boss: {
+    name: 'boss',
+    description: 'Show information about a boss monster',
+    options: {
+      name: {
+        name: 'name',
+        description: 'Select a boss monster',
+      },
+    },
+  },
+  bracket: {
+    name: 'bracket',
+    description: 'Show the bracket of the current phase',
+  },
+  hallOfFame: {
+    name: 'hall_of_fame',
+    description: 'Show past tournaments (podium)',
+  },
+  hilfe: {
+    name: 'help',
+    description: 'Show the help page with all commands',
+  },
+  regeln: {
+    name: 'rules',
+    description: 'Show the tournament rules',
+  },
+  turnierInfo: {
+    name: 'tournament_info',
+    description: 'Show a compact overview of the current tournament',
+  },
+  ergebnisSetzen: {
+    name: 'set_result',
+    description: 'Set or correct the result of a match',
+    options: {
+      gruppe: {
+        name: 'group',
+        description: 'Select group (autocomplete)',
+      },
+      kampf: {
+        name: 'match',
+        description: 'Match in the selected group (autocomplete)',
+      },
+      kampfId: {
+        name: 'match_id',
+        description: 'ID of the match (fallback)',
+      },
+    },
+  },
+  ergebnisseWuerfeln: {
+    name: 'roll_results',
+    description: 'Roll random results for the current phase',
+    options: {
+      nurOffene: {
+        name: 'open_only',
+        description: 'Roll only open matches (recommended)',
+      },
+    },
+  },
+  fakeAnmeldungen: {
+    name: 'fake_registrations',
+    description: 'Admin: Add N fictitious participants (for testing)',
+    options: {
+      anzahl: {
+        name: 'amount',
+        description: 'How many fake participants to add (may adjust to an even total)',
+      },
+      reset: {
+        name: 'reset',
+        description: 'Delete previous registrations and keep only fake participants?',
+      },
+    },
+  },
+  hofLoeschen: {
+    name: 'delete_hof',
+    description: 'Admin: Delete a hall of fame entry by tournament number',
+    options: {
+      nummer: {
+        name: 'number',
+        description: 'Tournament number (e.g. 3 for Nemesis Tournament #3)',
+      },
+    },
+  },
+  pottSetzen: {
+    name: 'set_pot',
+    description: 'Admin: Set prize pot and distribution (top 3)',
+  },
+  teilnehmerErsetzen: {
+    name: 'replace_participant',
+    description: 'Admin: Reassign a participant (ID/name) to another user and/or change class/name',
+    options: {
+      teilnehmer: {
+        name: 'participant',
+        description: 'ID or exact name of the existing participant',
+      },
+      user: {
+        name: 'user',
+        description: 'Target Discord user (leave empty to only change class/name)',
+      },
+      klasse: {
+        name: 'class',
+        description: 'New class (leave empty to keep the current one)',
+      },
+      name: {
+        name: 'name',
+        description: 'New display name (optional)',
+      },
+    },
+  },
+  turnierStart: {
+    name: 'start_tournament',
+    description: 'Start the tournament',
+  },
+  turnierStop: {
+    name: 'stop_tournament',
+    description: 'Stop the tournament',
+  },
+  turnierAdvance: {
+    name: 'advance_tournament',
+    description: 'Advance to the next tournament phase (Qualifiers -> Groups -> KO -> Finals)',
+  },
+  pvmStart: {
+    name: 'start_pvm',
+    description: 'Start a PvM event',
+  },
+  pvmStop: {
+    name: 'stop_pvm',
+    description: 'End the PvM event',
+  },
+  dungeonSetzen: {
+    name: 'add_dungeon',
+    description: 'Add a dungeon to the PvM event',
+    options: {
+      name: {
+        name: 'name',
+        description: 'Name of the dungeon',
+      },
+    },
+  },
+};
+
+module.exports = commands;

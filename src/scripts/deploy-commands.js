@@ -8,7 +8,72 @@ const {
   InteractionContextType,
 } = require('discord.js');
 require('dotenv').config();
-const commandsDe = require('../config/languages/commands.de')
+const languages = require('../config/languages');
+
+const DEFAULT_LANGUAGE = 'de';
+const LOCALE_MAP = {
+  de: 'de',
+  en: 'en-US',
+  fr: 'fr',
+  es: 'es-ES',
+  it: 'it',
+  pt: 'pt-BR',
+};
+
+const commandsDe = languages[DEFAULT_LANGUAGE];
+
+const getNestedValue = (obj, path) =>
+  path.reduce((acc, key) => (acc && acc[key] !== undefined ? acc[key] : undefined), obj);
+
+const buildLocalizations = (commandKey, path) => {
+  const localizations = {};
+  for (const [languageKey, commandSet] of Object.entries(languages)) {
+    if (languageKey === DEFAULT_LANGUAGE) continue;
+    const locale = LOCALE_MAP[languageKey];
+    if (!locale) continue;
+    const value = getNestedValue(commandSet?.[commandKey], path);
+    if (value) {
+      localizations[locale] = value;
+    }
+  }
+  return localizations;
+};
+
+const applyLocalizations = (target, method, data) => {
+  if (Object.keys(data).length > 0 && typeof target[method] === 'function') {
+    target[method](data);
+  }
+};
+
+const applyCommandLocalization = (builder, commandKey) => {
+  const command = commandsDe[commandKey];
+  if (!command) {
+    throw new Error(`Unknown command key: ${commandKey}`);
+  }
+  builder
+    .setName(command.name)
+    .setDescription(command.description);
+
+  applyLocalizations(builder, 'setNameLocalizations', buildLocalizations(commandKey, ['name']));
+  applyLocalizations(builder, 'setDescriptionLocalizations', buildLocalizations(commandKey, ['description']));
+
+  return builder;
+};
+
+const applyOptionLocalization = (option, commandKey, optionKey) => {
+  const optionData = commandsDe[commandKey]?.options?.[optionKey];
+  if (!optionData) {
+    throw new Error(`Unknown option ${optionKey} for command ${commandKey}`);
+  }
+  option
+    .setName(optionData.name)
+    .setDescription(optionData.description);
+
+  applyLocalizations(option, 'setNameLocalizations', buildLocalizations(commandKey, ['options', optionKey, 'name']));
+  applyLocalizations(option, 'setDescriptionLocalizations', buildLocalizations(commandKey, ['options', optionKey, 'description']));
+
+  return option;
+};
 
 // kleine Helper-Funktion: macht den Command "Guild-only"
 const guildOnly = (b) =>
@@ -21,192 +86,144 @@ const commands = [
   // === Public ===
   // /anmelden
   guildOnly(
-    new SlashCommandBuilder()
-      .setName(commandsDe.anmelden.name)
-      .setDescription(commandsDe.anmelden.description)
+    applyCommandLocalization(new SlashCommandBuilder(), 'anmelden')
   ),
   // /arena
   guildOnly(
-    new SlashCommandBuilder()
-      .setName(commandsDe.arena.name)
-      .setDescription(commandsDe.arena.description)
-      .addIntegerOption(o=>o
-        .setName(commandsDe.arena.options.anzahl.name)
-        .setDescription(commandsDe.arena.options.anzahl.description)
-        .setMinValue(1)
-        .setMaxValue(3))
+    applyCommandLocalization(new SlashCommandBuilder(), 'arena')
+      .addIntegerOption(o =>
+        applyOptionLocalization(o, 'arena', 'anzahl')
+          .setMinValue(1)
+          .setMaxValue(3)
+      )
   ),
   // /boss
   guildOnly(
-    new SlashCommandBuilder()
-      .setName(commandsDe.boss.name)
-      .setDescription(commandsDe.boss.description)
+    applyCommandLocalization(new SlashCommandBuilder(), 'boss')
       .addStringOption(opt =>
-        opt.setName(commandsDe.boss.options.name.name)
-          .setDescription(commandsDe.boss.options.name.description)
+        applyOptionLocalization(opt, 'boss', 'name')
           .setRequired(true)
           .setAutocomplete(true)
       )
   ),
   // /bracket
   guildOnly(
-    new SlashCommandBuilder()
-      .setName(commandsDe.bracket.name)
-      .setDescription(commandsDe.bracket.description)
+    applyCommandLocalization(new SlashCommandBuilder(), 'bracket')
   ),
   // Hall of Fame
   guildOnly(
-    new SlashCommandBuilder()
-      .setName(commandsDe.hallOfFame.name)
-      .setDescription(commandsDe.hallOfFame.description)
+    applyCommandLocalization(new SlashCommandBuilder(), 'hallOfFame')
   ),
   // /hilfe
   guildOnly(
-    new SlashCommandBuilder()
-      .setName(commandsDe.hilfe.name)
-      .setDescription(commandsDe.hilfe.description)
+    applyCommandLocalization(new SlashCommandBuilder(), 'hilfe')
   ),
   // /regeln
   guildOnly(
-  new SlashCommandBuilder()
-    .setName(commandsDe.regeln.name)
-    .setDescription(commandsDe.regeln.description)
+    applyCommandLocalization(new SlashCommandBuilder(), 'regeln')
   ),
   // /turnier_info
   guildOnly(
-    new SlashCommandBuilder()
-      .setName(commandsDe.turnierInfo.name)
-      .setDescription(commandsDe.turnierInfo.description)
+    applyCommandLocalization(new SlashCommandBuilder(), 'turnierInfo')
   ),
 
   // === Admin ===
   // /ergebnis_setzen
   guildOnly(
-    new SlashCommandBuilder()
-      .setName(commandsDe.ergebnisSetzen.name)
-      .setDescription(commandsDe.ergebnisSetzen.description)
+    applyCommandLocalization(new SlashCommandBuilder(), 'ergebnisSetzen')
       .addStringOption(opt =>
-        opt.setName(commandsDe.ergebnisSetzen.options.gruppe.name)
-          .setDescription(commandsDe.ergebnisSetzen.options.gruppe.description)
+        applyOptionLocalization(opt, 'ergebnisSetzen', 'gruppe')
           .setRequired(true)
           .setAutocomplete(true)
       )
       .addStringOption(opt =>
-        opt.setName(commandsDe.ergebnisSetzen.options.kampf.name)
-          .setDescription(commandsDe.ergebnisSetzen.options.kampf.description)
+        applyOptionLocalization(opt, 'ergebnisSetzen', 'kampf')
           .setRequired(true)
           .setAutocomplete(true)
       )
       .addIntegerOption(opt =>
-        opt.setName(commandsDe.ergebnisSetzen.options.kampfId.name)
-          .setDescription(commandsDe.ergebnisSetzen.options.kampfId.description)
+        applyOptionLocalization(opt, 'ergebnisSetzen', 'kampfId')
           .setRequired(false)
       )
       .setDefaultMemberPermissions(PermissionsBitField.Flags.Administrator)
   ),
   // /ergebnisse_wuerfeln
   guildOnly(
-    new SlashCommandBuilder()
-      .setName(commandsDe.ergebnisseWuerfeln.name)
-      .setDescription(commandsDe.ergebnisseWuerfeln.description)
+    applyCommandLocalization(new SlashCommandBuilder(), 'ergebnisseWuerfeln')
       .addBooleanOption(opt =>
-        opt.setName(commandsDe.ergebnisseWuerfeln.options.nurOffene.name)
-          .setDescription(commandsDe.ergebnisseWuerfeln.options.nurOffene.description)
+        applyOptionLocalization(opt, 'ergebnisseWuerfeln', 'nurOffene')
           .setRequired(false)
       )
       .setDefaultMemberPermissions(PermissionsBitField.Flags.Administrator)
   ),
   // /fake_anmeldungen
   guildOnly(
-    new SlashCommandBuilder()
-      .setName(commandsDe.fakeAnmeldungen.name)
-      .setDescription(commandsDe.fakeAnmeldungen.description)
+    applyCommandLocalization(new SlashCommandBuilder(), 'fakeAnmeldungen')
       .addIntegerOption(opt =>
-        opt.setName(commandsDe.fakeAnmeldungen.options.anzahl.name)
-          .setDescription(commandsDe.fakeAnmeldungen.options.anzahl.description)
+        applyOptionLocalization(opt, 'fakeAnmeldungen', 'anzahl')
           .setRequired(true)
       )
       .addBooleanOption(opt =>
-        opt.setName(commandsDe.fakeAnmeldungen.options.reset.name)
-          .setDescription(commandsDe.fakeAnmeldungen.options.reset.description)
+        applyOptionLocalization(opt, 'fakeAnmeldungen', 'reset')
           .setRequired(false)
       )
       .setDefaultMemberPermissions(PermissionsBitField.Flags.Administrator)
   ),
   // Hall of Fame löschen
   guildOnly(
-    new SlashCommandBuilder()
-      .setName(commandsDe.hofLoeschen.name)
-      .setDescription(commandsDe.hofLoeschen.description)
+    applyCommandLocalization(new SlashCommandBuilder(), 'hofLoeschen')
       .addIntegerOption(opt =>
-        opt.setName(commandsDe.hofLoeschen.options.nummer.name)
-          .setDescription(commandsDe.hofLoeschen.options.nummer.description)
+        applyOptionLocalization(opt, 'hofLoeschen', 'nummer')
           .setRequired(true)
       )
       .setDefaultMemberPermissions(PermissionsBitField.Flags.Administrator)
   ),
   // /pott_setzen
   guildOnly(
-    new SlashCommandBuilder()
-      .setName(commandsDe.pottSetzen.name)
-      .setDescription(commandsDe.pottSetzen.description)
+    applyCommandLocalization(new SlashCommandBuilder(), 'pottSetzen')
       .setDefaultMemberPermissions(PermissionsBitField.Flags.Administrator)
   ),
   // /teilnehmer_ersetzen
   guildOnly(
-    new SlashCommandBuilder()
-      .setName(commandsDe.teilnehmerErsetzen.name)
-      .setDescription(commandsDe.teilnehmerErsetzen.description)
+    applyCommandLocalization(new SlashCommandBuilder(), 'teilnehmerErsetzen')
       .addStringOption(opt =>
-        opt.setName(commandsDe.teilnehmerErsetzen.options.teilnehmer.name)
-          .setDescription(commandsDe.teilnehmerErsetzen.options.teilnehmer.description)
+        applyOptionLocalization(opt, 'teilnehmerErsetzen', 'teilnehmer')
           .setRequired(true)
       )
       .addUserOption(opt =>
-        opt.setName(commandsDe.teilnehmerErsetzen.options.user.name)
-          .setDescription(commandsDe.teilnehmerErsetzen.options.user.description)
+        applyOptionLocalization(opt, 'teilnehmerErsetzen', 'user')
           .setRequired(false)
       )
       .addStringOption(opt =>
-        opt.setName(commandsDe.teilnehmerErsetzen.options.klasse.name)
-          .setDescription(commandsDe.teilnehmerErsetzen.options.klasse.description)
+        applyOptionLocalization(opt, 'teilnehmerErsetzen', 'klasse')
           .setRequired(false)
       )
       .addStringOption(opt =>
-        opt.setName(commandsDe.teilnehmerErsetzen.options.name.name)
-          .setDescription(commandsDe.teilnehmerErsetzen.options.name.description)
+        applyOptionLocalization(opt, 'teilnehmerErsetzen', 'name')
           .setRequired(false)
       )
       .setDefaultMemberPermissions(PermissionsBitField.Flags.Administrator)
   ),
   // /turnier_start
   guildOnly(
-    new SlashCommandBuilder()
-      .setName(commandsDe.turnierStart.name)
-      .setDescription(commandsDe.turnierStart.description)
+    applyCommandLocalization(new SlashCommandBuilder(), 'turnierStart')
       .setDefaultMemberPermissions(PermissionsBitField.Flags.Administrator)
   ),
   // /turnier_stop
   guildOnly(
-    new SlashCommandBuilder()
-      .setName(commandsDe.turnierStop.name)
-      .setDescription(commandsDe.turnierStop.description)
+    applyCommandLocalization(new SlashCommandBuilder(), 'turnierStop')
       .setDefaultMemberPermissions(PermissionsBitField.Flags.Administrator)
   ),
   // /turnier_advance
   guildOnly(
-    new SlashCommandBuilder()
-      .setName(commandsDe.turnierAdvance.name)
-      .setDescription(commandsDe.turnierAdvance.description)
+    applyCommandLocalization(new SlashCommandBuilder(), 'turnierAdvance')
       .setDefaultMemberPermissions(PermissionsBitField.Flags.Administrator)
   ),
 
   // === PvM ===
   // /pvm_start
   guildOnly(
-    new SlashCommandBuilder()
-      .setName(commandsDe.pvmStart.name)
-      .setDescription(commandsDe.pvmStart.description)
+    applyCommandLocalization(new SlashCommandBuilder(), 'pvmStart')
       .setDefaultMemberPermissions(PermissionsBitField.Flags.Administrator)
   ),
   // /pvm_stop
@@ -218,12 +235,9 @@ const commands = [
   ),
   // /dungeon_setzen
   guildOnly(
-    new SlashCommandBuilder()
-      .setName(commandsDe.dungeonSetzen.name)
-      .setDescription(commandsDe.dungeonSetzen.description)
+    applyCommandLocalization(new SlashCommandBuilder(), 'dungeonSetzen')
       .addStringOption(opt =>
-        opt.setName(commandsDe.dungeonSetzen.options.name.name)
-          .setDescription(commandsDe.dungeonSetzen.options.name.description)
+        applyOptionLocalization(opt, 'dungeonSetzen', 'name')
           .setRequired(true)
       )
       .setDefaultMemberPermissions(PermissionsBitField.Flags.Administrator)
