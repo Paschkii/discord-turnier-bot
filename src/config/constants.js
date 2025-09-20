@@ -593,6 +593,7 @@ const HELP_COMMANDS = [
   { name: 'ergebnis_setzen',     description: 'Admin: Ergebnis eines Kampfes setzen/korrigieren.', admin: true },
   { name: 'ergebnisse_wuerfeln', description: 'Admin: Zufalls-Ergebnisse für die aktuelle Phase setzen. (Zum Testen)', admin: true },
   { name: 'fake_anmeldungen',    description: 'Admin: Fügt N fiktive Teilnehmer (zum Testen) hinzu.', admin: true },
+  { name: 'language',            description: 'Admin: Bot-Sprache für diesen Server einstellen.', admin: true },
   { name: 'hof_loeschen',        description: 'Admin: Löscht einen Hall-of-Fame-Eintrag per Turniernummer. (Zum Testen)', admin: true },
   { name: 'pott_setzen',         description: 'Admin: Pott & Aufteilung (Top 3) setzen.', admin: true },
   { name: 'teilnehmer_ersetzen', description: 'Admin: Teilnehmer (ID/Name) auf anderen User umstellen und/oder Klasse/Name ändern.', admin: true },

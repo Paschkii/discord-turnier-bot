@@ -85,6 +85,16 @@ const commands = {
       },
     },
   },
+  language: {
+    name: 'language',
+    description: 'Admin: Set the bot language for this server',
+    options: {
+      language: {
+        name: 'language',
+        description: 'Select the language for the bot',
+      },
+    },
+  },
   hofLoeschen: {
     name: 'delete_hof',
     description: 'Admin: Delete a hall of fame entry by tournament number',

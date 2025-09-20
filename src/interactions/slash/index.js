@@ -10,6 +10,7 @@ const ergebnisse_wuerfeln = require('./ergebnisse_wuerfeln');
 const fake_anmeldungen    = require('./fake_anmeldungen');
 const hall_of_fame        = require('./hall_of_fame');
 const hilfe               = require('./hilfe');
+const language            = require('./language');
 const hof_loeschen        = require('./hof_loeschen');
 const pott_setzen         = require('./pott_setzen');
 const regeln              = require('./regeln');
@@ -35,6 +36,7 @@ const map = new Map([
   ['fake_anmeldungen', fake_anmeldungen],
   ['hall_of_fame', hall_of_fame],
   ['hilfe', hilfe],
+  ['language', language],
   ['hof_loeschen', hof_loeschen],
   ['pott_setzen', pott_setzen],
   ['regeln', regeln],

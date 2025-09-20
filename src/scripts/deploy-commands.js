@@ -22,6 +22,15 @@ const LOCALE_MAP = {
 
 const commandsDe = languages[DEFAULT_LANGUAGE];
 
+const LANGUAGE_CHOICES = [
+  { name: 'Deutsch', value: 'de' },
+  { name: 'English', value: 'en' },
+  { name: 'Français', value: 'fr' },
+  { name: 'Español', value: 'es' },
+  { name: 'Italiano', value: 'it' },
+  { name: 'Português (Brasil)', value: 'pt' },
+];
+
 const getNestedValue = (obj, path) =>
   path.reduce((acc, key) => (acc && acc[key] !== undefined ? acc[key] : undefined), obj);
 
@@ -166,6 +175,16 @@ const commands = [
       .addBooleanOption(opt =>
         applyOptionLocalization(opt, 'fakeAnmeldungen', 'reset')
           .setRequired(false)
+      )
+      .setDefaultMemberPermissions(PermissionsBitField.Flags.Administrator)
+  ),
+  // /language
+  guildOnly(
+    applyCommandLocalization(new SlashCommandBuilder(), 'language')
+      .addStringOption(opt =>
+        applyOptionLocalization(opt, 'language', 'language')
+          .setRequired(false)
+          .addChoices(...LANGUAGE_CHOICES)
       )
       .setDefaultMemberPermissions(PermissionsBitField.Flags.Administrator)
   ),

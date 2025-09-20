@@ -85,6 +85,16 @@ const commands = {
       },
     },
   },
+  language: {
+    name: 'language',
+    description: 'Admin : définir la langue du bot pour ce serveur',
+    options: {
+      language: {
+        name: 'language',
+        description: 'Choisir la langue du bot',
+      },
+    },
+  },
   hofLoeschen: {
     name: 'supprimer_pantheon',
     description: 'Admin : supprime une entrée du panthéon par numéro de tournoi',

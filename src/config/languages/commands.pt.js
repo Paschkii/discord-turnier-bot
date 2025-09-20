@@ -85,6 +85,16 @@ const commands = {
       },
     },
   },
+  language: {
+    name: 'language',
+    description: 'Admin: define o idioma do bot para este servidor',
+    options: {
+      language: {
+        name: 'language',
+        description: 'Selecione o idioma do bot',
+      },
+    },
+  },
   hofLoeschen: {
     name: 'apagar_hall',
     description: 'Admin: remove uma entrada do hall da fama pelo número do torneio',

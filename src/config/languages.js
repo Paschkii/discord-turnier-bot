@@ -88,6 +88,16 @@ const SLASH_COMMAND_LANGUAGE_CONFIG = [
           },
         },
       },
+       language: {
+        name: 'language',
+        description: 'Set the bot language for this server',
+        options: {
+          language: {
+            name: 'language',
+            description: 'Select the language for the bot',
+          },
+        },
+      },
       hof_loeschen: {
         name: 'delete_hof',
         description: 'Delete a hall of fame entry by tournament number',

@@ -85,6 +85,16 @@ const commands = {
       },
     },
   },
+  language: {
+    name: 'language',
+    description: 'Admin: imposta la lingua del bot per questo server',
+    options: {
+      language: {
+        name: 'language',
+        description: 'Seleziona la lingua del bot',
+      },
+    },
+  },
   hofLoeschen: {
     name: 'elimina_albo',
     description: "Admin: elimina una voce dell'albo d'oro per numero di torneo",
