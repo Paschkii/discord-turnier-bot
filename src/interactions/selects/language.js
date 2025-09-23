@@ -3,15 +3,17 @@ const { MessageFlags, PermissionsBitField } = require('discord.js');
 const { getGuildLanguage, setGuildLanguage } = require('../../store/guildSettings');
 const { resolveInteractionLocale } = require('../../utils/interactionLocale');
 const {
+  LANGUAGE_SELECT_CUSTOM_ID,
+  MANUAL_LANGUAGE_VALUE,
   buildInlineLanguageList,
   buildLanguageView,
+  buildManualModal,
   getErrorMessage,
   isSupportedLanguage,
   normalizeLanguage,
 } = require('../language/helpers');
 
-// Sprache für den Bot setzen
-async function execute(interaction) {
+async function run(interaction) {
   const locale = await resolveInteractionLocale(interaction);
 
   if (!interaction.member?.permissions?.has(PermissionsBitField.Flags.Administrator)) {
@@ -23,14 +25,17 @@ async function execute(interaction) {
     return interaction.reply({ content: getErrorMessage(locale, 'guildOnly'), flags: MessageFlags.Ephemeral });
   }
 
-  const requestedLanguage = normalizeLanguage(interaction.options.getString('language'));
-  const currentLanguage = await getGuildLanguage(guildId);
-
-  if (!requestedLanguage) {
-    const view = buildLanguageView(locale, currentLanguage, 'overview');
-    return interaction.reply({ ...view, flags: MessageFlags.Ephemeral });
+  const selected = interaction.values?.[0];
+  if (!selected) {
+    const message = getErrorMessage(locale, 'noSelection');
+    return interaction.reply({ content: message, flags: MessageFlags.Ephemeral });
   }
 
+  if (selected === MANUAL_LANGUAGE_VALUE) {
+    return interaction.showModal(buildManualModal(locale));
+  }
+
+  const requestedLanguage = normalizeLanguage(selected);
   if (!isSupportedLanguage(requestedLanguage)) {
     const message = getErrorMessage(locale, 'unknownLanguage', {
       languages: buildInlineLanguageList(locale),
@@ -38,21 +43,22 @@ async function execute(interaction) {
     return interaction.reply({ content: message, flags: MessageFlags.Ephemeral });
   }
 
+  const currentLanguage = await getGuildLanguage(guildId);
   if (currentLanguage === requestedLanguage) {
     const view = buildLanguageView(locale, currentLanguage, 'unchanged');
-    return interaction.reply({ ...view, flags: MessageFlags.Ephemeral });
+    return interaction.update(view);
   }
 
   try {
     await setGuildLanguage(guildId, requestedLanguage);
   } catch (err) {
-    console.error('[language] setGuildLanguage failed', err);
+    console.error('[language/select] setGuildLanguage failed', err);
     const message = getErrorMessage(locale, 'setFailed');
     return interaction.reply({ content: message, flags: MessageFlags.Ephemeral });
   }
 
   const view = buildLanguageView(locale, requestedLanguage, 'success');
-  return interaction.reply({ ...view, flags: MessageFlags.Ephemeral });
+  return interaction.update(view);
 }
 
-module.exports = { execute };
+module.exports = { LANGUAGE_SELECT_CUSTOM_ID, run };

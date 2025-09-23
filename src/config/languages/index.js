@@ -1,8 +1,8 @@
 module.exports = {
-  de: require('./commands.de'),
-  en: require('./commands.en'),
-  fr: require('./commands.fr'),
-  es: require('./commands.es'),
-  it: require('./commands.it'),
-  pt: require('./commands.pt'),
+  de: require('./de'),
+  en: require('./en'),
+  fr: require('./fr'),
+  es: require('./es'),
+  it: require('./it'),
+  pt: require('./pt'),
 };
