@@ -134,6 +134,12 @@ const commands = {
   turnierStart: {
     name: 'iniciar_torneio',
     description: 'Inicia o torneio',
+    options: {
+      name: {
+        name: 'nome',
+        description: 'Nome do torneio (opcional, deixe vazio para nome automático)',
+      },
+    },
   },
   turnierStop: {
     name: 'parar_torneio',

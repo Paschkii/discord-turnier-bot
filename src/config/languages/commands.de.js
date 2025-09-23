@@ -136,6 +136,12 @@ const commands = {
   turnierStart: {
     name: 'turnier_start',
     description: 'Startet das Turnier',
+    options: {
+      name: {
+        name: 'name',
+        description: 'Optionaler Turniername (leer = automatische Benennung)',
+      },
+    },
   },
   turnierStop: {
     name: 'turnier_stop',

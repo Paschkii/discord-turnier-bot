@@ -13,7 +13,7 @@ const languages = require('../config/languages/index');
 const DEFAULT_LANGUAGE = 'de';
 const LOCALE_MAP = {
   de: 'de',
-  en: 'en-US',
+  en: ['en-US', 'en-GB'],
   fr: 'fr',
   es: 'es-ES',
   it: 'it',
@@ -38,11 +38,14 @@ const buildLocalizations = (commandKey, path) => {
   const localizations = {};
   for (const [languageKey, commandSet] of Object.entries(languages)) {
     if (languageKey === DEFAULT_LANGUAGE) continue;
-    const locale = LOCALE_MAP[languageKey];
-    if (!locale) continue;
+    const locales = LOCALE_MAP[languageKey];
+    if (!locales) continue;
     const value = getNestedValue(commandSet?.[commandKey], path);
     if (value) {
-      localizations[locale] = value;
+      const localeList = Array.isArray(locales) ? locales : [locales];
+      for (const locale of localeList) {
+        localizations[locale] = value;
+      }
     }
   }
   return localizations;
@@ -226,6 +229,10 @@ const commands = [
   // /turnier_start
   guildOnly(
     applyCommandLocalization(new SlashCommandBuilder(), 'turnierStart')
+      .addStringOption(opt =>
+        applyOptionLocalization(opt, 'turnierStart', 'name')
+          .setRequired(false)
+      )
       .setDefaultMemberPermissions(PermissionsBitField.Flags.Administrator)
   ),
   // /turnier_stop
@@ -247,9 +254,7 @@ const commands = [
   ),
   // /pvm_stop
   guildOnly(
-    new SlashCommandBuilder()
-      .setName(commandsDe.pvmStop.name)
-      .setDescription(commandsDe.pvmStop.description)
+    applyCommandLocalization(new SlashCommandBuilder(), 'pvmStop')
       .setDefaultMemberPermissions(PermissionsBitField.Flags.Administrator)
   ),
   // /dungeon_setzen

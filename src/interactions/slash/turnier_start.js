@@ -33,8 +33,13 @@ async function execute(interaction) {
   }
   // Neues Turnier anlegen
   const modus = '1v1'; // Derzeit nur 1v1 unterstützt
-  const num = await getNextTournamentNumber(guildId);
-  const name = `Nemesis Turnier #${num}`; // Zukünftig evtl. anpassbar machen
+  const requestedName = interaction.options.getString('name');
+  const trimmedName = typeof requestedName === 'string' ? requestedName.trim() : '';
+  let name = trimmedName;
+  if (!name) {
+    const num = await getNextTournamentNumber(guildId);
+    name = `Nemesis Turnier #${num}`; // Fallback auf automatische Benennung
+  }
   const neuesTurnier = { name, status: 'offen', modus, teilnehmer: {}, teams: [], kämpfe: [], groups: [], kampfLog: [] };
 
   await insertNewTournamentRow(guildId, neuesTurnier);
