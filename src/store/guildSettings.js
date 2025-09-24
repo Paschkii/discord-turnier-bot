@@ -1,7 +1,7 @@
 // === Imports ===
 const { pool } = require('../../datenbank');
 
-const DEFAULT_LANGUAGE = 'de';
+const DEFAULT_LANGUAGE = 'en';
 
 const SUPPORTED_LANGUAGES = new Set(['de', 'en', 'fr', 'es', 'it', 'pt']);
 

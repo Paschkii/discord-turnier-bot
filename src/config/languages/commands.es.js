@@ -1,5 +1,5 @@
 const commands = {
-  anmelden: {
+  registrieren: {
     name: 'registrar',
     description: 'Inscríbete en el torneo',
   },
@@ -14,7 +14,7 @@ const commands = {
     },
   },
   boss: {
-    name: 'jefe',
+    name: 'boss',
     description: 'Muestra información sobre un jefe',
     options: {
       name: {
@@ -24,11 +24,11 @@ const commands = {
     },
   },
   bracket: {
-    name: 'cuadro',
+    name: 'bracket',
     description: 'Muestra el cuadro de la fase actual',
   },
   hallOfFame: {
-    name: 'salon_de_la_fama',
+    name: 'hall_of_fame',
     description: 'Muestra torneos anteriores (podio)',
   },
   hilfe: {
@@ -39,8 +39,8 @@ const commands = {
     name: 'reglas',
     description: 'Muestra las reglas del torneo',
   },
-  turnierInfo: {
-    name: 'info_torneo',
+  pvpInfo: {
+    name: 'pvp_info',
     description: 'Muestra un resumen del torneo en curso',
   },
   ergebnisSetzen: {
@@ -131,8 +131,8 @@ const commands = {
       },
     },
   },
-  turnierStart: {
-    name: 'iniciar_torneo',
+  pvpStart: {
+    name: 'pvp_start',
     description: 'Inicia el torneo',
     options: {
       name: {
@@ -141,29 +141,29 @@ const commands = {
       },
     },
   },
-  turnierStop: {
-    name: 'detener_torneo',
+  pvpStop: {
+    name: 'pvp_stop',
     description: 'Detiene el torneo',
   },
-  turnierAdvance: {
-    name: 'avanzar_torneo',
+  pvpNext: {
+    name: 'pvp_next',
     description: 'Avanza a la siguiente fase del torneo (Clasificatorias -> Grupos -> Eliminación -> Final)',
   },
   pvmStart: {
-    name: 'iniciar_pvm',
+    name: 'pvm_start',
     description: 'Inicia un evento PvM',
   },
   pvmStop: {
-    name: 'detener_pvm',
+    name: 'pvm_stop',
     description: 'Finaliza el evento PvM',
   },
-  dungeonSetzen: {
-    name: 'agregar_calabozo',
-    description: 'Agrega un calabozo al evento PvM',
+  addDungeon: {
+    name: 'add_dungeon',
+    description: 'Agrega un mazmorra al evento PvM',
     options: {
       name: {
         name: 'nombre',
-        description: 'Nombre del calabozo',
+        description: 'Nombre del mazmorra',
       },
     },
   },

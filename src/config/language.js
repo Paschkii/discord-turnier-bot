@@ -42,8 +42,8 @@ const SLASH_COMMAND_LANGUAGE_CONFIG = [
         name: 'rules',
         description: 'Show the tournament rules',
       },
-      turnier_info: {
-        name: 'tournament_info',
+      pvp_info: {
+        name: 'pvp_info',
         description: 'Show a compact overview of the ongoing tournament',
       },
       ergebnis_setzen: {
@@ -134,27 +134,27 @@ const SLASH_COMMAND_LANGUAGE_CONFIG = [
           },
         },
       },
-      turnier_start: {
-        name: 'start_tournament',
+      pvp_start: {
+        name: 'pvp_start',
         description: 'Start the tournament',
       },
-      turnier_stop: {
-        name: 'stop_tournament',
+      pvp_stop: {
+        name: 'pvp_stop',
         description: 'End the tournament',
       },
-      turnier_advance: {
-        name: 'advance_tournament',
+      pvp_next: {
+        name: 'pvp_next',
         description: 'Advance to the next tournament phase (Qualification → Groups → KO → Finals)',
       },
       pvm_start: {
-        name: 'start_pvm',
+        name: 'pvm_start',
         description: 'Start a PvM event',
       },
       pvm_stop: {
-        name: 'stop_pvm',
+        name: 'pvm_stop',
         description: 'End the PvM event',
       },
-      dungeon_setzen: {
+      add_dungeon: {
         name: 'add_dungeon',
         description: 'Add a dungeon to the PvM event',
         options: {

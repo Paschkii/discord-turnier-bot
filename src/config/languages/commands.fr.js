@@ -1,6 +1,6 @@
 const commands = {
-  anmelden: {
-    name: 'inscription',
+  registrieren: {
+    name: 'registre',
     description: 'Inscris-toi au tournoi',
   },
   arena: {
@@ -39,8 +39,8 @@ const commands = {
     name: 'regles',
     description: 'Affiche les règles du tournoi',
   },
-  turnierInfo: {
-    name: 'infos_tournoi',
+  pvpInfo: {
+    name: 'pvp_info',
     description: 'Affiche un aperçu du tournoi en cours',
   },
   ergebnisSetzen: {
@@ -131,8 +131,8 @@ const commands = {
       },
     },
   },
-  turnierStart: {
-    name: 'demarrer_tournoi',
+  pvpStart: {
+    name: 'pvp_start',
     description: 'Démarrer le tournoi',
     options: {
       name: {
@@ -141,24 +141,24 @@ const commands = {
       },
     },
   },
-  turnierStop: {
-    name: 'arreter_tournoi',
+  pvpStop: {
+    name: 'pvp_stop',
     description: 'Arrêter le tournoi',
   },
-  turnierAdvance: {
-    name: 'avancer_tournoi',
+  pvpNext: {
+    name: 'pvp_next',
     description: 'Passer à la phase suivante (Qualifs -> Groupes -> KO -> Finale)',
   },
   pvmStart: {
-    name: 'demarrer_pvm',
+    name: 'pvm_start',
     description: 'Démarrer un événement PvM',
   },
   pvmStop: {
-    name: 'arreter_pvm',
+    name: 'pvm_stop',
     description: 'Arrêter l\'événement PvM',
   },
-  dungeonSetzen: {
-    name: 'ajouter_donjon',
+  addDungeon: {
+    name: 'add_dungeon',
     description: 'Ajouter un donjon à l\'événement PvM',
     options: {
       name: {

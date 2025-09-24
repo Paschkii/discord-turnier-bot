@@ -1,7 +1,6 @@
 // === Imports ===
 const { MessageFlags } = require('discord.js');
 // Turnier-Befehle
-const anmelden            = require('./anmelden');
 const arena               = require('./arena');
 const boss                = require('./boss');
 const bracket             = require('./bracket');
@@ -13,21 +12,21 @@ const hilfe               = require('./hilfe');
 const language            = require('./language');
 const hof_loeschen        = require('./hof_loeschen');
 const pott_setzen         = require('./pott_setzen');
+const pvp_info            = require('./pvp_info');
+const pvp_next            = require('./pvp_next');
+const pvp_start           = require('./pvp_start');
+const pvp_stop            = require('./pvp_stop');
 const regeln              = require('./regeln');
+const registrieren        = require('./registrieren')
 const teilnehmer_ersetzen = require('./teilnehmer_ersetzen');
-const turnier_advance     = require('./turnier_advance');
-const turnier_info        = require('./turnier_info');
-const turnier_start       = require('./turnier_start');
-const turnier_stop        = require('./turnier_stop');
 // PvM-Befehle
-const dungeon_setzen      = require('./dungeon_setzen');
+const add_dungeon         = require('./add_dungeon');
 const pvm_start           = require('./pvm_start');
 const pvm_stop            = require('./pvm_stop');
 
 // Map mit Handlern
 const map = new Map([
   //Turnier-Befehle
-  ['anmelden', anmelden],
   ['arena', arena],
   ['boss', boss],
   ['bracket', bracket],
@@ -40,13 +39,14 @@ const map = new Map([
   ['hof_loeschen', hof_loeschen],
   ['pott_setzen', pott_setzen],
   ['regeln', regeln],
+  ['registrieren', registrieren]
   ['teilnehmer_ersetzen', teilnehmer_ersetzen],
-  ['turnier_advance', turnier_advance],
-  ['turnier_info', turnier_info],
-  ['turnier_start', turnier_start],
-  ['turnier_stop', turnier_stop],
+  ['pvp_info', pvp_info],
+  ['pvp_next', pvp_next],
+  ['pvp_start', pvp_start],
+  ['pvp_stop', pvp_stop],
   // PvM-Befehle
-  ['dungeon_setzen', dungeon_setzen],
+  ['add_dungeon', add_dungeon],
   ['pvm_start', pvm_start],
   ['pvm_stop', pvm_stop]
 ]);

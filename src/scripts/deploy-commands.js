@@ -96,9 +96,9 @@ const guildOnly = (b) =>
 const commands = [
   // === Turnier ===
   // === Public ===
-  // /anmelden
+  // /registrieren
   guildOnly(
-    applyCommandLocalization(new SlashCommandBuilder(), 'anmelden')
+    applyCommandLocalization(new SlashCommandBuilder(), 'registrieren')
   ),
   // /arena
   guildOnly(
@@ -134,9 +134,9 @@ const commands = [
   guildOnly(
     applyCommandLocalization(new SlashCommandBuilder(), 'regeln')
   ),
-  // /turnier_info
+  // /pvp_info
   guildOnly(
-    applyCommandLocalization(new SlashCommandBuilder(), 'turnierInfo')
+    applyCommandLocalization(new SlashCommandBuilder(), 'pvpInfo')
   ),
 
   // === Admin ===
@@ -226,23 +226,23 @@ const commands = [
       )
       .setDefaultMemberPermissions(PermissionsBitField.Flags.Administrator)
   ),
-  // /turnier_start
+  // /pvp_start
   guildOnly(
-    applyCommandLocalization(new SlashCommandBuilder(), 'turnierStart')
+    applyCommandLocalization(new SlashCommandBuilder(), 'pvpStart')
       .addStringOption(opt =>
-        applyOptionLocalization(opt, 'turnierStart', 'name')
+        applyOptionLocalization(opt, 'pvpStart', 'name')
           .setRequired(false)
       )
       .setDefaultMemberPermissions(PermissionsBitField.Flags.Administrator)
   ),
-  // /turnier_stop
+  // /pvp_stop
   guildOnly(
-    applyCommandLocalization(new SlashCommandBuilder(), 'turnierStop')
+    applyCommandLocalization(new SlashCommandBuilder(), 'pvpStop')
       .setDefaultMemberPermissions(PermissionsBitField.Flags.Administrator)
   ),
-  // /turnier_advance
+  // /pvp_next
   guildOnly(
-    applyCommandLocalization(new SlashCommandBuilder(), 'turnierAdvance')
+    applyCommandLocalization(new SlashCommandBuilder(), 'pvpNext')
       .setDefaultMemberPermissions(PermissionsBitField.Flags.Administrator)
   ),
 
@@ -257,11 +257,11 @@ const commands = [
     applyCommandLocalization(new SlashCommandBuilder(), 'pvmStop')
       .setDefaultMemberPermissions(PermissionsBitField.Flags.Administrator)
   ),
-  // /dungeon_setzen
+  // /add_dungeon
   guildOnly(
-    applyCommandLocalization(new SlashCommandBuilder(), 'dungeonSetzen')
+    applyCommandLocalization(new SlashCommandBuilder(), 'addDungeon')
       .addStringOption(opt =>
-        applyOptionLocalization(opt, 'dungeonSetzen', 'name')
+        applyOptionLocalization(opt, 'addDungeon', 'name')
           .setRequired(true)
       )
       .setDefaultMemberPermissions(PermissionsBitField.Flags.Administrator)

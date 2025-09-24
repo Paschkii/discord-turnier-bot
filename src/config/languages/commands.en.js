@@ -1,5 +1,5 @@
 const commands = {
-  anmelden: {
+  registrieren: {
     name: 'register',
     description: 'Register for the tournament',
   },
@@ -39,8 +39,8 @@ const commands = {
     name: 'rules',
     description: 'Show the tournament rules',
   },
-  turnierInfo: {
-    name: 'tournament_info',
+  pvpInfo: {
+    name: 'pvp_info',
     description: 'Show a compact overview of the current tournament',
   },
   ergebnisSetzen: {
@@ -131,7 +131,7 @@ const commands = {
       },
     },
   },
-  turnierStart: {
+  pvpStart: {
     name: 'start_tournament',
     description: 'Start the tournament',
     options: {
@@ -141,23 +141,23 @@ const commands = {
       },
     },
   },
-  turnierStop: {
-    name: 'stop_tournament',
+  pvpStop: {
+    name: 'pvp_stop',
     description: 'Stop the tournament',
   },
-  turnierAdvance: {
-    name: 'advance_tournament',
+  pvpNext: {
+    name: 'pvp_next',
     description: 'Advance to the next tournament phase (Qualifiers -> Groups -> KO -> Finals)',
   },
   pvmStart: {
-    name: 'start_pvm',
+    name: 'pvm_start',
     description: 'Start a PvM event',
   },
   pvmStop: {
-    name: 'stop_pvm',
+    name: 'pvm_stop',
     description: 'End the PvM event',
   },
-  dungeonSetzen: {
+  addDungeon: {
     name: 'add_dungeon',
     description: 'Add a dungeon to the PvM event',
     options: {

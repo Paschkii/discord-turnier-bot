@@ -52,8 +52,8 @@ const MESSAGES = {
     },
   },
   es: {
-    missingName: '❌ Selecciona un monstruo jefe.',
-    notFound: '❌ No se encontró este monstruo jefe.',
+    missingName: '❌ Selecciona un boss.',
+    notFound: '❌ No se encontró este boss.',
     description: {
       level: 'Nivel',
       region: 'Región',
@@ -78,8 +78,8 @@ const MESSAGES = {
     },
   },
   pt: {
-    missingName: '❌ Escolha um chefe.',
-    notFound: '❌ Esse chefe não foi encontrado.',
+    missingName: '❌ Escolha um boss.',
+    notFound: '❌ Esse boss não foi encontrado.',
     description: {
       level: 'Nível',
       region: 'Região',
