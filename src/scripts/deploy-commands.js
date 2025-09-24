@@ -11,6 +11,7 @@ require('dotenv').config();
 const languages = require('../config/languages/index');
 
 const DEFAULT_LANGUAGE = 'de';
+
 const LOCALE_MAP = {
   de: 'de',
   en: ['en-US', 'en-GB'],
@@ -20,7 +21,11 @@ const LOCALE_MAP = {
   pt: 'pt-BR',
 };
 
-const commandsDe = languages[DEFAULT_LANGUAGE];
+const commandsDe = languages[DEFAULT_LANGUAGE]?.commands;
+
+if (!commandsDe) {
+  throw new Error(`Missing command definitions for default language "${DEFAULT_LANGUAGE}"`);
+}
 
 const LANGUAGE_CHOICES = [
   { name: 'Deutsch', value: 'de' },
@@ -40,7 +45,7 @@ const buildLocalizations = (commandKey, path) => {
     if (languageKey === DEFAULT_LANGUAGE) continue;
     const locales = LOCALE_MAP[languageKey];
     if (!locales) continue;
-    const value = getNestedValue(commandSet?.[commandKey], path);
+    const value = getNestedValue(commandSet?.commands?.[commandKey], path);
     if (value) {
       const localeList = Array.isArray(locales) ? locales : [locales];
       for (const locale of localeList) {
