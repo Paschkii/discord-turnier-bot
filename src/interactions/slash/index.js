@@ -39,7 +39,7 @@ const map = new Map([
   ['hof_loeschen', hof_loeschen],
   ['pott_setzen', pott_setzen],
   ['regeln', regeln],
-  ['registrieren', registrieren]
+  ['registrieren', registrieren],
   ['teilnehmer_ersetzen', teilnehmer_ersetzen],
   ['pvp_info', pvp_info],
   ['pvp_next', pvp_next],
