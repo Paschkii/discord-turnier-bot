@@ -7,14 +7,20 @@ const { formatMK } = require('../utils');
 // Verlierer fertiger KO-Fights gelten als ausgeschieden
 function computeAliveSet(daten = {}) {
   const alive = new Set(Object.keys(daten.teilnehmer || {}));
-  const fights = Array.isArray(daten.kämpfe) ? daten.kämpfe : [];
+  const fightsAktiv = Array.isArray(daten.kämpfe) ? daten.kämpfe : [];
+  const fightsArchiv = Array.isArray(daten.kämpfeArchiv) ? daten.kämpfeArchiv : [];
+  const fights = [...fightsArchiv, ...fightsAktiv];
   if (['ko', 'finale', 'abgeschlossen'].includes(daten.status)) {
     for (const f of fights) {
       if (!f.finished || !f.playerA || !f.playerB) continue;
-      const loserId = (f.winnerId === f.playerA.id) ? f.playerB.id
-                    : (f.winnerId === f.playerB.id) ? f.playerA.id
+      const winnerId = f.winnerId
+        || ((Number.isInteger(f.scoreA) && Number.isInteger(f.scoreB))
+          ? (f.scoreA > f.scoreB ? f.playerA.id : f.playerB.id)
+          : null);
+      const loserId = (winnerId === f.playerA.id) ? f.playerB.id
+                    : (winnerId === f.playerB.id) ? f.playerA.id
                     : null;
-      if (loserId) alive.delete(loserId);
+      if (loserId != null) alive.delete(String(loserId));
     }
   }
   return alive;
@@ -29,7 +35,7 @@ function chunk(arr, n) {
 
 // Baut die Turnier-Info-Embeds
 function buildTournamentInfoEmbeds(daten = {}) {
-  const title = `🏆 ${daten.name || 'Turnier'} — Übersicht`;
+  const title = `🏆 ${daten.name || 'Turnier'}`;
   const teilnehmerArr = Object.entries(daten.teilnehmer || {})
     .map(([id, p]) => ({ id, ...p }))
     .sort((a, b) => (a.name || '').localeCompare(b.name || '', 'de', { sensitivity: 'base' }));
@@ -51,19 +57,24 @@ function buildTournamentInfoEmbeds(daten = {}) {
   fields.push({ name: '📟 Phase', value: phaseLabel, inline: false });
   fields.push({ name: '📝 Anmeldungen', value: String(teilnehmerArr.length), inline: false });
 
-  // 💰 Pott-Block (mehrzeilig)
-  const p = daten.prize;
-  const potValue = p
-    ? [
-        '**Gesamtpott:**',
-        `💰 ${p.text?.total ?? formatMK(p.totalMK)}`,
-        '',
-        '**Aufteilung:**',
-        `🥇 ${p.text?.first  ?? formatMK(p.firstMK)}`,
-        `🥈 ${p.text?.second ?? formatMK(p.secondMK)}`,
-        `🥉 ${p.text?.third  ?? formatMK(p.thirdMK)}`
-      ].join('\n')
-    : '**Gesamtpott:**\n—\n**Aufteilung:**\n—';
+  // 💰 Pott-Block (🥇🥈🥉 untereinander)
+  const p = daten.prize || null;
+  const prizeLine = (emoji, textValue, numericValue) => {
+    if (typeof textValue === 'string' && textValue.trim()) return `${emoji} ${textValue.trim()}`;
+    if (typeof numericValue === 'number' && Number.isFinite(numericValue)) {
+      return `${emoji} ${formatMK(numericValue)}`;
+    }
+    return `${emoji} -`;
+  };
+  fields.push({
+    name: '💰 Pott',
+    value: [
+      prizeLine('🥇', p?.text?.first, p?.firstMK),
+      prizeLine('🥈', p?.text?.second, p?.secondMK),
+      prizeLine('🥉', p?.text?.third, p?.thirdMK),
+    ].join('\n'),
+    inline: false,
+  });
 
   // 👤 Teilnehmerliste (immer alphabetisch, mit Klassen-Emoji + Alive/Out)
   const emojiMap = Object.fromEntries(KLASSE_LISTE.map(k => [k.name, k.emoji]));
@@ -76,7 +87,7 @@ function buildTournamentInfoEmbeds(daten = {}) {
     const chunks = chunk(lines, 20); // Discord-Feldgröße im Blick behalten
     chunks.forEach((c, idx) => {
       fields.push({
-        name: idx === 0 ? '👥 Teilnehmer (🟢 dabei / 🔴 ausgeschieden)' : ' ',
+        name: idx === 0 ? '👥 Teilnehmer (🟢 / 🔴)' : ' ',
         value: c.join('\n'),
         inline: false,
       });

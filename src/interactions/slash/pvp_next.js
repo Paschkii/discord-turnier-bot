@@ -119,8 +119,10 @@ async function execute(interaction) {
         const row = new ActionRowBuilder().addComponents(
           new ButtonBuilder().setCustomId('start_tiebreakers').setLabel('Tie-Breaker starten').setStyle(ButtonStyle.Danger)
         );
+
+        const groupList = tieBreakers.map(tb => tb.groupName).join(', ');
         return interaction.reply({
-          content: `⚠️ Tie-Breaker nötig in ${tieBreakers.length} Gruppe(n) (Cut = Top2 je Gruppe).`,
+          content: `⚠️ Tie-Breaker (Bo1) nötig: ${groupList || '—'}.`,
           components: [row]
         });
       }
@@ -226,13 +228,16 @@ async function execute(interaction) {
         else { lowWinner = win; lowLoser = lose; }
       }
 
+      const finalGroupName = 'Kampf um Platz 1 und 2';
+      const bronzeGroupName = 'Kampf um Platz 3 und 4';
+
       const finalFight = {
-        id: 1, phase: 'finale', groupName: 'Turnierfinale', localId: 1,
+        id: 1, phase: 'finale', groupName: finalGroupName, localId: 1,
         playerA: topWinner, playerB: lowWinner,
         scoreA: 0, scoreB: 0, bestOf: 3, finished: false, timestamp: null, winnerId: null,
       };
       const bronzeFight = {
-        id: 2, phase: 'finale', groupName: 'Turnierfinale', localId: 2,
+        id: 2, phase: 'finale', groupName: bronzeGroupName, localId: 2,
         playerA: topLoser, playerB: lowLoser,
         scoreA: 0, scoreB: 0, bestOf: 3, finished: false, timestamp: null, winnerId: null,
       };
@@ -242,10 +247,13 @@ async function execute(interaction) {
 
       daten.kämpfe = [finalFight, bronzeFight];
 
-      const members = [];
-      const seen = new Set();
-      for (const f of daten.kämpfe) [f.playerA, f.playerB].forEach(p => { if (p && !seen.has(p.id)) { seen.add(p.id); members.push(p); } });
-      daten.groups = [{ name: 'Turnierfinale', displayName: 'Turnierfinale', members, matches: daten.kämpfe }];
+      const finalMembers = Array.from(new Map([finalFight.playerA, finalFight.playerB].map(p => [p.id, p])).values());
+      const bronzeMembers = Array.from(new Map([bronzeFight.playerA, bronzeFight.playerB].map(p => [p.id, p])).values());
+
+      daten.groups = [
+        { name: finalGroupName, displayName: finalGroupName, order: 1, members: finalMembers, matches: [finalFight] },
+        { name: bronzeGroupName, displayName: bronzeGroupName, order: 2, members: bronzeMembers, matches: [bronzeFight] },
+      ];
 
       daten.status = 'finale';
       await speichereTurnier(guildId, daten);

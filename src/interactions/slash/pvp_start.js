@@ -47,8 +47,10 @@ async function execute(interaction) {
   // Rückmeldung
   await interaction.editReply({ content: `✅ Neues Turnier gestartet: **${name}** (Modus **${modus}**)` });
   const locale = await resolveInteractionLocale(interaction);
-  const embeds = buildRulesEmbeds(neuesTurnier, locale);
-  await interaction.followUp({ embeds });
+  const [rulesEmbed] = buildRulesEmbeds(neuesTurnier, locale);
+  if (rulesEmbed) {
+    await interaction.followUp({ embeds: [rulesEmbed] });
+  }
 }
 
 // === Exports ===

@@ -18,24 +18,39 @@ async function run(interaction, daten) {
   const list = Array.isArray(daten.pendingTieBreakers) ? daten.pendingTieBreakers : [];
   if (!list.length) return interaction.reply({ content: 'ℹ️ Keine ausstehenden Tie-Breaker.', flags: MessageFlags.Ephemeral });
 
-    const created = [];
-    for (const tb of list) {
-      const g = (daten.groups || []).find(gr => gr.name === tb.groupName);
-      const localId = (g?.matches?.length || 0) + 1;
-      const [pA, pB] = tb.players;
+  const created = [];
+  let nextId = Array.isArray(daten.kämpfe) && daten.kämpfe.length
+    ? Math.max(...daten.kämpfe.map(x => x.id)) + 1
+    : 1;
+
+  for (const tb of list) {
+    const g = (daten.groups || []).find(gr => gr.name === tb.groupName);
+    const localId = (g?.matches?.length || 0) + 1;
+    const [pA, pB] = tb.players;
 
     const ta = daten.teilnehmer[pA.id] || { name: pA.name };
     const tbp = daten.teilnehmer[pB.id] || { name: pB.name };
 
-    const id = (Array.isArray(daten.kämpfe) && daten.kämpfe.length ? Math.max(...daten.kämpfe.map(x => x.id)) + 1 : 1);
     const fight = {
-      id, phase: 'gruppen', groupName: tb.groupName, localId,
+      id: nextId++,
+      phase: 'gruppen',
+      groupName: tb.groupName,
+      localId,
       playerA: { id: pA.id, name: pA.name, klasse: ta.klasse },
       playerB: { id: pB.id, name: pB.name, klasse: tbp.klasse },
-      scoreA: 0, scoreB: 0, bestOf: 1, finished: false, timestamp: null, winnerId: null,
+      scoreA: 0,
+      scoreB: 0,
+      bestOf: 1,
+      finished: false,
+      timestamp: null,
+      winnerId: null,
     };
+
     daten.kämpfe.push(fight);
-    if (g) { g.matches = g.matches || []; g.matches.push({ ...fight }); }
+    if (g) {
+      g.matches = g.matches || [];
+      g.matches.push({ ...fight });
+    }
     created.push(fight);
   }
   // Alle Tie-Breaker wurden erstellt
@@ -43,10 +58,11 @@ async function run(interaction, daten) {
   await speichereTurnier(guildId, daten);
 
   // Rückmeldung
-  const desc = created
-    .map(f => `⚠️ Tie-Breaker in ${f.groupName} nötig. Kampf ID: ${f.id}`)
-    .join('\n');
-  return interaction.reply({ content: desc || '—' });
+  const lines = created.map(f => `• ${f.groupName}: ${f.playerA.name} vs ${f.playerB.name} (ID #${f.id})`);
+  const content = created.length
+    ? ['⚔️ Tie-Breaker (Bo1) erstellt:', ...lines].join('\n')
+    : '—';
+  return interaction.reply({ content });
 }
 
 // === Exports ===

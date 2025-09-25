@@ -80,7 +80,17 @@ const phaseLabel = (v) =>
   v === 'ko' ? 'K.O.-Phase' :
   v === 'F' ? 'Finale' : v;
 
-  // Gruppennamen robust vergleichen (ignoriert ⬆️/⬇️-Suffixe)
+function withPhaseSuffix(title, label) {
+  const base = (title || '').trim();
+  const suffix = (label || '').trim();
+  if (!suffix) return base;
+  const normalizedBase = base.toLowerCase();
+  const normalizedLabel = suffix.toLowerCase();
+  if (normalizedBase.includes(normalizedLabel)) return base;
+  return `${base} — ${suffix}`;
+}
+
+// Gruppennamen robust vergleichen (ignoriert ⬆️/⬇️-Suffixe)
 function matchGroupName(fGroupName, groupObj) {
   const strip = (s) => (s || '').trim().replace(/\s*[⬆⬇]\uFE0F?\s*$/,'');
   const fg  = strip(fGroupName);
@@ -104,9 +114,10 @@ function buildTabGroups(daten, state) {
     const raw = g.displayName || g.name || '';
     const base = raw.replace(/\s*[⬆⬇]\uFE0F?\s*$/, '');
     const prefix = g.bucket === 'top' ? '⬆️ ' : g.bucket === 'low' ? '⬇️ ' : '';
+    const title = withPhaseSuffix(`${prefix}${base}`.trim(), phaseLabel(phaseOrRound));
     return new EmbedBuilder()
       .setColor(0x00AEFF)
-      .setTitle(`${prefix}${base} — ${phaseLabel(phaseOrRound)}`)
+      .setTitle(title)
       .setDescription(lines.join('\n') || '—')
       .setTimestamp();
   });
@@ -155,9 +166,11 @@ function buildTabMatches(daten, state, openOnly = false) {
     const raw = g.displayName || g.name || '';
     const base = raw.replace(/\s*[⬆⬇]\uFE0F?\s*$/, '');
     const prefix = g.bucket === 'top' ? '⬆️ ' : g.bucket === 'low' ? '⬇️ ' : '';
+    const title = withPhaseSuffix(`${prefix}${base}`.trim(), phaseLabel(phaseOrRound));
+
     return new EmbedBuilder()
       .setColor(openOnly ? 0xFFAA00 : 0x5865F2)
-      .setTitle(`${prefix}${base} — ${phaseLabel(phaseOrRound)}`)
+      .setTitle(title)
       .setDescription(desc)
       .setTimestamp();
   });

@@ -9,6 +9,43 @@ const {
 } = require('discord.js');
 const { ladeTurnier, speichereTurnier } = require('../../store/turniere');
 const { validReportExact, validReportKO } = require('../../utils');
+const { resolveInteractionLocale } = require('../../utils/interactionLocale');
+const { getPhaseLabel } = require('../../config/constants');
+
+const MESSAGE_BUNDLE = {
+  de: {
+    invalid: (bestOf) => `❌ Unklares Ergebnis, in dieser Phase gilt Best of ${bestOf}.`,
+    groupFinished: (group) => `✅ Alle Kämpfe in ${group} fertig!`,
+    phaseFinished: (phase) => `✅ Alle Kämpfe in der ${phase} fertig! Das Turnier kann in die nächste Phase übergeleitet werden.`,
+  },
+  en: {
+    invalid: (bestOf) => `❌ Unclear result, this phase is played as Best of ${bestOf}.`,
+    groupFinished: (group) => `✅ All matches in ${group} finished!`,
+    phaseFinished: (phase) => `✅ All matches in the ${phase} are finished! The tournament can advance to the next phase.`,
+  },
+  fr: {
+    invalid: (bestOf) => `❌ Résultat incertain, cette phase se joue en Best of ${bestOf}.`,
+    groupFinished: (group) => `✅ Tous les matchs de ${group} sont terminés !`,
+    phaseFinished: (phase) => `✅ Tous les matchs de la ${phase} sont terminés ! Le tournoi peut passer à la phase suivante.`,
+  },
+  es: {
+    invalid: (bestOf) => `❌ Resultado poco claro, esta fase se juega al mejor de ${bestOf}.`,
+    groupFinished: (group) => `✅ ¡Todos los combates en ${group} están terminados!`,
+    phaseFinished: (phase) => `✅ ¡Todos los combates de la ${phase} han terminado! El torneo puede pasar a la siguiente fase.`,
+  },
+  it: {
+    invalid: (bestOf) => `❌ Risultato non chiaro, in questa fase si gioca al meglio delle ${bestOf}.`,
+    groupFinished: (group) => `✅ Tutti gli incontri in ${group} sono terminati!`,
+    phaseFinished: (phase) => `✅ Tutti gli incontri della ${phase} sono terminati! Il torneo può passare alla fase successiva.`,
+  },
+  pt: {
+    invalid: (bestOf) => `❌ Resultado indefinido, esta fase é disputada em Melhor de ${bestOf}.`,
+    groupFinished: (group) => `✅ Todas as partidas em ${group} foram concluídas!`,
+    phaseFinished: (phase) => `✅ Todas as partidas da ${phase} terminaram! O torneio pode avançar para a próxima fase.`,
+  },
+};
+
+const getMessages = (locale = 'de') => MESSAGE_BUNDLE[locale] || MESSAGE_BUNDLE.de;
 
 // Modal anzeigen (Labels = Spielernamen)
 function open(interaction, fight) {
@@ -57,6 +94,10 @@ async function run(interaction) {
     return interaction.reply({ content: `❌ Kampf #${kampfId} nicht gefunden.`, flags: MessageFlags.Ephemeral });
   }
 
+  const locale = await resolveInteractionLocale(interaction);
+  const messages = getMessages(locale);
+  const phaseLabel = getPhaseLabel(fight.phase, locale) || fight.phase;
+
   // Eingaben parsen
   const a = parseInt((interaction.fields.getTextInputValue('score_a') || '').trim(), 10);
   const b = parseInt((interaction.fields.getTextInputValue('score_b') || '').trim(), 10);
@@ -72,11 +113,8 @@ async function run(interaction) {
   // Validierung
   const ok = isKO ? validReportKO(bestOf, a, b) : validReportExact(bestOf, a, b);
   if (!ok) {
-    const need = Math.floor(bestOf / 2) + 1;
     return interaction.reply({
-      content: isKO
-        ? `❌ Für K.O. gilt echtes Best-of-${bestOf}: Der Kampf endet, sobald jemand **${need}** Siege hat (z. B. 2:0 oder 2:1).`
-        : `❌ Für diese Phase müssen **alle ${bestOf} Spiele** erfasst werden (Summe = ${bestOf}).`,
+      content: messages.invalid(bestOf),
       flags: MessageFlags.Ephemeral
     });
   }
@@ -93,9 +131,28 @@ async function run(interaction) {
   await speichereTurnier(guildId, data);
 
   const grpInfo = fight.groupName ? ` · Gruppe **${fight.groupName}**` : '';
-  return interaction.reply({
+  const followUps = [];
+  const activeFights = Array.isArray(data.kämpfe) ? data.kämpfe : [];
+
+  if (fight.groupName) {
+    const groupFights = activeFights.filter(f => f.phase === fight.phase && f.groupName === fight.groupName);
+    if (groupFights.length > 0 && groupFights.every(f => f.finished)) {
+      followUps.push(messages.groupFinished(fight.groupName));
+    }
+  }
+
+  const phaseFights = activeFights.filter(f => f.phase === fight.phase);
+  if (phaseFights.length > 0 && phaseFights.every(f => f.finished)) {
+    followUps.push(messages.phaseFinished(phaseLabel));
+  }
+
+  await interaction.reply({
     content: `🛠️ Ergebnis gesetzt: **#${kampfId}**${grpInfo} — ${fight.playerA?.name ?? 'A'} ${a} : ${b} ${fight.playerB?.name ?? 'B'}`
   });
+
+  for (const msg of followUps) {
+    await interaction.followUp({ content: msg });
+  }
 }
 
 // === Exports ===
