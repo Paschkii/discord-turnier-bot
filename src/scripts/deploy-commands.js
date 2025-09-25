@@ -201,7 +201,11 @@ const commands = [
     applyCommandLocalization(new SlashCommandBuilder(), 'hofLoeschen')
       .addIntegerOption(opt =>
         applyOptionLocalization(opt, 'hofLoeschen', 'nummer')
-          .setRequired(true)
+          .setRequired(false)
+      )
+      .addStringOption(opt =>
+        applyOptionLocalization(opt, 'hofLoeschen', 'name')
+          .setRequired(false)
       )
       .setDefaultMemberPermissions(PermissionsBitField.Flags.Administrator)
   ),

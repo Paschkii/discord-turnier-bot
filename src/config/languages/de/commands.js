@@ -98,11 +98,15 @@ const commands = {
   },
   hofLoeschen: {
     name: 'hof_loeschen',
-    description: 'Admin: Löscht einen Hall-of-Fame-Eintrag per Turniernummer',
+    description: 'Admin: Löscht einen Hall-of-Fame-Eintrag per Turniernummer oder Namen',
     options: {
       nummer: {
         name: 'nummer',
         description: 'Turniernummer (z. B. 3 für Nemesis Turnier #3)',
+      },
+      name: {
+        name: 'name',
+        description: 'Exakter Turniername (z. B. „Test“)',
       },
     },
   },

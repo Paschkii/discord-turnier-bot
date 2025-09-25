@@ -97,11 +97,15 @@ const commands = {
   },
   hofLoeschen: {
     name: 'eliminar_salon',
-    description: 'Admin: elimina una entrada del salón de la fama por número de torneo',
+    description: 'Admin: elimina una entrada del salón de la fama por número o nombre del torneo',
     options: {
       nummer: {
         name: 'numero',
         description: 'Número del torneo (p. ej. 3 para Nemesis Torneo #3)',
+      },
+      name: {
+        name: 'nombre',
+        description: 'Admin: elimina una entrada del salón de la fama por número o nombre del torneo',
       },
     },
   },

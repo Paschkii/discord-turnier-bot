@@ -97,11 +97,15 @@ const commands = {
   },
   hofLoeschen: {
     name: 'delete_hof',
-    description: 'Admin: Delete a hall of fame entry by tournament number',
+    description: 'Admin: Delete a hall of fame entry by tournament number or name',
     options: {
       nummer: {
         name: 'number',
         description: 'Tournament number (e.g. 3 for Nemesis Tournament #3)',
+      },
+      name: {
+        name: 'name',
+        description: 'Exact tournament name (e.g. "Test")',
       },
     },
   },

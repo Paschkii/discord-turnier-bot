@@ -97,11 +97,15 @@ const commands = {
   },
   hofLoeschen: {
     name: 'elimina_albo',
-    description: "Admin: elimina una voce dell'albo d'oro per numero di torneo",
+    description: "Admin: elimina una voce dell'albo d'oro per numero o nome del torneo",
     options: {
       nummer: {
         name: 'numero',
         description: "Numero del torneo (es. 3 per Nemesis Torneo #3)",
+      },
+      name: {
+        name: 'nome',
+        description: 'Nome esatto del torneo (es. "Test")',
       },
     },
   },

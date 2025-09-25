@@ -3,7 +3,7 @@ const {
   MessageFlags,
   PermissionsBitField
 } = require('discord.js');
-const { deleteHoFByNumber } = require('../../store/turniere');
+const { deleteHoFEntry } = require('../../store/turniere');
 
 // Hall of Fame-Eintrag löschen
 async function execute(interaction) {
@@ -14,12 +14,22 @@ async function execute(interaction) {
   if (!guildId) {
     return interaction.reply({ content: '❌ Dieser Befehl kann nur in einem Server verwendet werden.', flags: MessageFlags.Ephemeral });
   }
-  const nr = interaction.options.getInteger('nummer', true);
-  const { ok, reason } = await deleteHoFByNumber(guildId, nr);
+  const nr = interaction.options.getInteger('nummer');
+  const name = interaction.options.getString('name');
+
+  if (nr == null && (!name || !name.trim())) {
+    return interaction.reply({
+      content: '❌ Bitte gib entweder eine Nummer oder einen exakten Namen an.',
+      flags: MessageFlags.Ephemeral
+    });
+  }
+
+  const { ok, reason, deleted } = await deleteHoFEntry(guildId, { number: nr ?? undefined, name: name ?? undefined });
+  const identifier = deleted?.name || (name ? `„${name}“` : `#${nr}`);
   return interaction.reply({
     content: ok
-      ? `🗑️ HoF-Eintrag #${nr} gelöscht.`
-      : `❌ Eintrag #${nr} nicht gefunden${reason ? `: ${reason}` : ''}.`
+      ? `🗑️ HoF-Eintrag ${identifier ? `(${identifier}) ` : ''}gelöscht.`
+      : `❌ Eintrag ${identifier} nicht gefunden${reason ? `: ${reason}` : ''}.`
   });
 }
 

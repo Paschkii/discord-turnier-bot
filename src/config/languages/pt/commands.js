@@ -97,11 +97,15 @@ const commands = {
   },
   hofLoeschen: {
     name: 'apagar_hall',
-    description: 'Admin: remove uma entrada do hall da fama pelo número do torneio',
+    description: 'Admin: remove uma entrada do hall da fama pelo número ou nome do torneio',
     options: {
       nummer: {
         name: 'numero',
         description: 'Número do torneio (ex.: 3 para Nemesis Torneio #3)',
+      },
+      name: {
+        name: 'nome',
+        description: 'Nome exato do torneio (ex.: "Test")',
       },
     },
   },

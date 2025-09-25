@@ -126,27 +126,44 @@ async function getNextTournamentNumber(guildId) {
   return maxNum + 1;
 }
 
-// Löscht einen HoF-Eintrag anhand seiner Nummer (nur in dieser Guild)
-async function deleteHoFByNumber(guildId, num) {
+// Löscht einen HoF-Eintrag anhand seiner Nummer oder seines Namens (nur in dieser Guild)
+async function deleteHoFEntry(guildId, { number, name }) {
+  if (number == null && (!name || !name.trim())) {
+    return { ok: false, reason: 'Nummer oder Name erforderlich' };
+  }
   const res = await pool.query(
     'SELECT id, name, status FROM turniere WHERE guild_id = $1',
     [guildId]
   );
   const rows = res.rows || [];
+
+  const normalizedName = name ? name.trim().toLowerCase() : null;
+
   let target = null;
-  for (const r of rows) {
-    const m = (r.name || '').match(/#(\d+)/);
-    if (m && parseInt(m[1], 10) === num) { target = r; break; }
+  if (number != null) {
+    for (const r of rows) {
+      const m = (r.name || '').match(/#(\d+)/);
+      if (m && parseInt(m[1], 10) === number) {
+        target = r;
+        break;
+      }
+    }
   }
+
+  if (!target && normalizedName) {
+    target = rows.find(r => (r.name || '').trim().toLowerCase() === normalizedName) || null;
+  }
+
   if (!target) return { ok: false, reason: 'Nicht gefunden' };
+
   await pool.query('DELETE FROM turniere WHERE id = $1 AND guild_id = $2', [target.id, guildId]);
-  return { ok: true };
+  return { ok: true, deleted: { id: target.id, name: target.name, status: target.status } };
 }
 
 // === Exports ===
 module.exports = {
   closeAndClearLatestTournament,
-  deleteHoFByNumber,
+  deleteHoFEntry,
   insertNewTournamentRow,
   getLatestTournamentRow,
   getNextTournamentNumber,

@@ -97,11 +97,15 @@ const commands = {
   },
   hofLoeschen: {
     name: 'supprimer_pantheon',
-    description: 'Admin : supprime une entrée du panthéon par numéro de tournoi',
+    description: 'Admin : supprime une entrée du panthéon par numéro ou nom de tournoi',
     options: {
       nummer: {
         name: 'numero',
         description: 'Numéro du tournoi (ex. 3 pour Nemesis Tournoi #3)',
+      },
+      name: {
+        name: 'nom',
+        description: 'Nom exact du tournoi (ex. "Test")',
       },
     },
   },
