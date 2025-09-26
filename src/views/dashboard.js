@@ -126,11 +126,19 @@ function buildTabGroups(daten, state) {
 
 // Alle Kämpfe für eine Phase/Runde
 function fightsForPhase(daten, phaseOrRound) {
-  const all = [ ...(daten.kämpfeArchiv || []), ...(daten.kämpfe || []) ];
+  const active = Array.isArray(daten.kämpfe) ? daten.kämpfe : [];
+  const archive = Array.isArray(daten.kämpfeArchiv) ? daten.kämpfeArchiv : [];
+  const all = [...archive, ...active];
   if (phaseOrRound === 'q')  return all.filter(f => f.phase === 'quali');
   if (phaseOrRound === 'gr') return all.filter(f => f.phase === 'gruppen');
-  if (phaseOrRound === 'ko') return all.filter(f => f.phase === 'ko');
-  if (phaseOrRound === 'F')  return all.filter(f => f.phase === 'finale');
+  if (phaseOrRound === 'ko') {
+    const current = active.filter(f => f.phase === 'ko');
+    return current.length ? current : all.filter(f => f.phase === 'ko');
+  }
+  if (phaseOrRound === 'F') {
+    const current = active.filter(f => f.phase === 'finale');
+    return current.length ? current : all.filter(f => f.phase === 'finale');
+  }
   return all;
 }
 

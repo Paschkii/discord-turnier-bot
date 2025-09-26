@@ -25,6 +25,11 @@ function archiveFights(d) {
   d.kämpfeArchiv = [ ...(d.kämpfeArchiv || []), ...((d.kämpfe || [])) ];
 }
 
+function nextFightId(d) {
+  const fights = [ ...(d.kämpfeArchiv || []), ...(d.kämpfe || []) ];
+  return fights.reduce((max, f) => Math.max(max, Number(f?.id) || 0), 0) + 1;
+}
+
 // Nächste Phase starten
 async function execute(interaction) {
   if (!interaction.member.permissions.has(PermissionsBitField.Flags.Administrator)) {
@@ -135,7 +140,8 @@ async function execute(interaction) {
       }
 
       // QF je Bucket erzeugen
-      const qfRaw = createTopLowQuarterfinals(topSeeds, lowSeeds); // mit bucket + groupName
+      const startId = nextFightId(daten);
+      const qfRaw = createTopLowQuarterfinals(topSeeds, lowSeeds, startId); // mit bucket + groupName
 
       // ✅ Archivieren der Gruppen-Kämpfe, bevor wir überschreiben
       archiveFights(daten);
@@ -189,9 +195,18 @@ async function execute(interaction) {
       const baseTop = daten.groups.find(g => g.bucket === 'top')?.name || themedGroupNames(2)[0];
       const baseLow = daten.groups.find(g => g.bucket === 'low')?.name || themedGroupNames(2)[1];
 
+      const startId = nextFightId(daten);
       const sf = [
-        { id: 1, phase: 'ko', groupName: baseTop, localId: 1, playerA: winnersTop[0], playerB: winnersTop[1], scoreA: 0, scoreB: 0, bestOf: 3, finished: false, timestamp: null, winnerId: null, bucket: 'top' },
-        { id: 2, phase: 'ko', groupName: baseLow, localId: 1, playerA: winnersLow[0], playerB: winnersLow[1], scoreA: 0, scoreB: 0, bestOf: 3, finished: false, timestamp: null, winnerId: null, bucket: 'low' },
+        {
+          id: startId, phase: 'ko', groupName: baseTop, localId: 1,
+          playerA: winnersTop[0], playerB: winnersTop[1], scoreA: 0, scoreB: 0,
+          bestOf: 3, finished: false, timestamp: null, winnerId: null, bucket: 'top'
+        },
+        {
+          id: startId + 1, phase: 'ko', groupName: baseLow, localId: 1,
+          playerA: winnersLow[0], playerB: winnersLow[1], scoreA: 0, scoreB: 0,
+          bestOf: 3, finished: false, timestamp: null, winnerId: null, bucket: 'low'
+        },
       ];
 
       // ✅ Archivieren der Viertelfinale vor dem Überschreiben
@@ -231,13 +246,14 @@ async function execute(interaction) {
       const finalGroupName = 'Kampf um Platz 1 und 2';
       const bronzeGroupName = 'Kampf um Platz 3 und 4';
 
+      const startId = nextFightId(daten);
       const finalFight = {
-        id: 1, phase: 'finale', groupName: finalGroupName, localId: 1,
+        id: startId, phase: 'finale', groupName: finalGroupName, localId: 1,
         playerA: topWinner, playerB: lowWinner,
         scoreA: 0, scoreB: 0, bestOf: 3, finished: false, timestamp: null, winnerId: null,
       };
       const bronzeFight = {
-        id: 2, phase: 'finale', groupName: bronzeGroupName, localId: 2,
+        id: startId + 1, phase: 'finale', groupName: bronzeGroupName, localId: 2,
         playerA: topLoser, playerB: lowLoser,
         scoreA: 0, scoreB: 0, bestOf: 3, finished: false, timestamp: null, winnerId: null,
       };

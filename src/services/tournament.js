@@ -241,9 +241,9 @@ function determineQualifiedTopLow(standingsByGroup, groups, takePerGroup = 2) {
 }
 
 // --- Viertelfinale innerhalb der Buckets: T1#1 vs T2#2, T2#1 vs T1#2 (analog Low) ---
-function createTopLowQuarterfinals(topSeeds, lowSeeds) {
+function createTopLowQuarterfinals(topSeeds, lowSeeds, startId = 1) {
   const fights = [];
-  let id = 1;
+  let id = startId;
 
   // Seeds liegen als Arrays pro Gruppenname vor (mit klasse)
   const pairBucket = (A, B, bucketLabel, bucket) => {

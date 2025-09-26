@@ -36,9 +36,9 @@ function validReportKO(bestOf, a, b) {
   const maxW = Math.max(a, b);
   const minW = Math.min(a, b);
 
-  // Gewinner hat GENAU die nötigen Siege; Verlierer weniger
-  // -> erlaubt 2:0 oder 2:1 bei Bo3; verhindert 3:0 bei Bo3
-  return maxW === winsToWin && minW < winsToWin;
+  // Gewinner hat mindestens die nötigen Siege; Verlierer weniger
+  // -> erlaubt z. B. 3:0 in Bo3 (alle Maps gespielt) bleibt aber bei max. bestOf Spielen
+  return maxW >= winsToWin && minW < winsToWin;
 }
 
 // === Kamas-Parsing ===

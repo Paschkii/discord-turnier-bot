@@ -9,7 +9,9 @@ function computeAliveSet(daten = {}) {
   const alive = new Set(Object.keys(daten.teilnehmer || {}));
   const fightsAktiv = Array.isArray(daten.kämpfe) ? daten.kämpfe : [];
   const fightsArchiv = Array.isArray(daten.kämpfeArchiv) ? daten.kämpfeArchiv : [];
-  const fights = [...fightsArchiv, ...fightsAktiv];
+  const fights = [...fightsArchiv, ...fightsAktiv]
+    .filter(f => f && (f.phase === 'ko' || f.phase === 'finale'));
+  
   if (['ko', 'finale', 'abgeschlossen'].includes(daten.status)) {
     for (const f of fights) {
       if (!f.finished || !f.playerA || !f.playerB) continue;
