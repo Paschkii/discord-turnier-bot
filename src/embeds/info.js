@@ -4,16 +4,45 @@ const { KLASSE_LISTE } = require('../config/constants');
 const { formatMK } = require('../utils');
 
 // sehr einfache Alive-Heuristik: alle Teilnehmer sind aktiv,
-// Verlierer fertiger KO-Fights gelten als ausgeschieden
+// Verlierer fertiger KO-Fights gelten als ausgeschieden. Ab der KO-Phase
+// werden jedoch nur jene Spieler als „🟢“ markiert, die noch Teil der
+// laufenden Brackets sind.
 function computeAliveSet(daten = {}) {
-  const alive = new Set(Object.keys(daten.teilnehmer || {}));
+  const teilnehmerIds = Object.keys(daten.teilnehmer || {});
   const fightsAktiv = Array.isArray(daten.kämpfe) ? daten.kämpfe : [];
   const fightsArchiv = Array.isArray(daten.kämpfeArchiv) ? daten.kämpfeArchiv : [];
-  const fights = [...fightsArchiv, ...fightsAktiv]
+  const relevantFights = [...fightsArchiv, ...fightsAktiv]
     .filter(f => f && (f.phase === 'ko' || f.phase === 'finale'));
   
-  if (['ko', 'finale', 'abgeschlossen'].includes(daten.status)) {
+  const gatherPlayers = (fights) => {
+    const set = new Set();
     for (const f of fights) {
+      if (!f || !(f.phase === 'ko' || f.phase === 'finale')) continue;
+      if (f.playerA?.id != null) set.add(String(f.playerA.id));
+      if (f.playerB?.id != null) set.add(String(f.playerB.id));
+    }
+    return set;
+  };
+
+  let alive;
+  if (['ko', 'finale', 'abgeschlossen'].includes(daten.status)) {
+    const currentKOPlayers = gatherPlayers(fightsAktiv.filter(f => f && (f.phase === 'ko' || f.phase === 'finale')));
+    if (currentKOPlayers.size > 0) {
+      alive = currentKOPlayers;
+    } else {
+      // Fallback: wenn keine aktiven Kämpfe vorhanden sind, Mitglieder der
+      // aktuellen Gruppen verwenden (z. B. Bronze-/Final-Gruppen) oder als
+      // letzte Option alle Teilnehmer.
+      const groupSet = new Set();
+      for (const g of daten.groups || []) {
+        for (const m of g.members || []) {
+          if (m?.id != null) groupSet.add(String(m.id));
+        }
+      }
+      alive = groupSet.size > 0 ? groupSet : new Set(teilnehmerIds);
+    }
+
+    for (const f of relevantFights) {
       if (!f.finished || !f.playerA || !f.playerB) continue;
       const winnerId = f.winnerId
         || ((Number.isInteger(f.scoreA) && Number.isInteger(f.scoreB))
@@ -24,6 +53,8 @@ function computeAliveSet(daten = {}) {
                     : null;
       if (loserId != null) alive.delete(String(loserId));
     }
+  } else {
+    alive = new Set(teilnehmerIds);
   }
   return alive;
 }

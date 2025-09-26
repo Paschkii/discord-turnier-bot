@@ -33,7 +33,7 @@ function buildRulesEmbeds(daten = {}, locale = 'de') {
       },
       {
         name: 'Ergebnisse',
-        value: '• Ergebnisse werden per **/ergebnis_setzen** eingetragen.',
+        value: '• Ergebnisse werden per **`/ergebnis_setzen`** eingetragen.',
       },
       {
         name: 'Wertung in Gruppen',
@@ -58,7 +58,7 @@ function buildRulesEmbeds(daten = {}, locale = 'de') {
       },
       {
         name: 'Hall of Fame',
-        value: '• Nach Abschluss: Podium in **/hall_of_fame** (🥇🥈🥉).',
+        value: '• Nach Abschluss: Podium in **`/hall_of_fame`** (🥇🥈🥉).',
       },
     )
     .setFooter({ text: `Modus: ${modus}` })

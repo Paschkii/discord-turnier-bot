@@ -17,19 +17,21 @@ async function execute(interaction) {
   }
 
   const latest = await getLatestTournamentRow(guildId);
-  if (!latest) return interaction.reply({ content: '❌ Kein aktives Turnier gefunden.', flags: MessageFlags.Ephemeral });
+  if (!latest || latest.status === 'geschlossen' || latest.status === 'abgeschlossen') {
+    return interaction.reply({ content: '❌ Kein laufendes Turnier gefunden.', flags: MessageFlags.Ephemeral });
+  }
   if (!interaction.member.permissions.has(PermissionsBitField.Flags.Administrator)) {
     return interaction.reply({ content: '❌ Nur Admins können das Turnier beenden.', flags: MessageFlags.Ephemeral });
   }
   try {
+    const rawDaten = latest.daten ? (() => { try { return JSON.parse(latest.daten); } catch { return {}; } })() : {};
+    const turnierName = latest.name || rawDaten.name || 'Turnier';
     await closeAndClearLatestTournament(guildId);
     const check = await ladeTurnier(guildId);
-    const ok = check && check.status !== 'offen' && Object.keys(check.teilnehmer || {}).length === 0;
-    return interaction.reply({
-      content: ok
-        ? '🛑 Turnierdaten wurden **sauber beendet** (Status geschlossen, alle Teilnehmer/Kämpfe gelöscht).'
-        : 'ℹ️ Turnier wurde beendet. Falls weiterhin „aktiv“ angezeigt wird, bitte Bot neu starten.',
-    });
+    
+    const ok = !check || check.status === 'geschlossen';
+    const suffix = ok ? '' : ' (Bitte Bot neu starten, falls weiterhin „aktiv“ angezeigt wird.)';
+    return interaction.reply({ content: `🏆 ${turnierName} wurde beendet${suffix}` });
   } catch (err) {
     console.error(err);
     return interaction.reply({ content: '❌ Fehler beim Beenden.', flags: MessageFlags.Ephemeral });
