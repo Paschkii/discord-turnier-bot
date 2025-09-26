@@ -695,7 +695,7 @@ const arenaData = {
 const HELP_COMMANDS = [
   // User
   {
-    name: 'anmelden',
+    name: 'registrieren',
     description: 'Meldet dich für das Turnier an.',
     descriptionLocalized: {
       de: 'Meldet dich für das Turnier an.',
@@ -773,7 +773,7 @@ const HELP_COMMANDS = [
     admin: false,
   },
   {
-    name: 'turnier_info',
+    name: 'pvp_info',
     description: 'Komplette Turnier-Übersicht (Pott & Status).',
     descriptionLocalized: {
       de: 'Komplette Turnier-Übersicht (Pott & Status).',
@@ -879,7 +879,7 @@ const HELP_COMMANDS = [
     admin: true,
   },
   {
-    name: 'turnier_advance',
+    name: 'pvp_next',
     description: 'Admin: Nächste Phase (Quali → Gruppen → KO → Finale) auslösen.',
     descriptionLocalized: {
       de: 'Admin: Nächste Phase (Quali → Gruppen → KO → Finale) auslösen.',
@@ -892,7 +892,7 @@ const HELP_COMMANDS = [
     admin: true,
   },
   {
-    name: 'turnier_start',
+    name: 'pvp_start',
     description: 'Admin: Startet ein Turnier (immer 1v1).',
     descriptionLocalized: {
       de: 'Admin: Startet ein Turnier (immer 1v1).',
@@ -905,7 +905,7 @@ const HELP_COMMANDS = [
     admin: true,
   },
   {
-    name: 'turnier_stop',
+    name: 'pvp_stop',
     description: 'Admin: Beendet das Turnier & leert Daten.',
     descriptionLocalized: {
       de: 'Admin: Beendet das Turnier & leert Daten.',

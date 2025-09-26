@@ -17,7 +17,7 @@ function buildRulesEmbeds(daten = {}, locale = 'de') {
       {
         name: 'Teilnahme',
         value: [
-          '• Anmeldung mit **/anmelden** (Klasse wählen).',
+          '• Anmeldung mit **`/registrieren`** (Klasse wählen).',
           '• Gerade Teilnehmerzahl erforderlich, um das Turnier zu starten.',
           '• Nach Start der Qualifikation ist keine Anmeldung mehr möglich.',
         ].join('\n'),
@@ -25,8 +25,8 @@ function buildRulesEmbeds(daten = {}, locale = 'de') {
       {
         name: 'Ablauf',
         value: [
-          '• **Quali**: Best-of-1, Paarungen zufällig. Markiert Spieler als **Top**/**Low**.',
-          '• **Gruppenphase** (4 Gruppen, 2×Top / 2×Low): Round-Robin, **Best-of-3**, alle 3 Spiele werden erfasst.',
+          '• **Quali**: Bo1, Paarungen zufällig. Markiert Spieler als **Top**/**Low**.',
+          '• **Gruppenphase** (4 Gruppen, 2x Top / 2x Low): Round-Robin, **Best-of-3**, alle 3 Spiele werden erfasst.',
           '• **K.O.-Phase**: getrennte Brackets **Top** und **Low** (Viertelfinale → Halbfinale, Bo3).',
           '• **Finale**: Sieger Top vs Sieger Low (Bo3) + **Spiel um Platz 3** (Bo3).',
         ].join('\n'),
@@ -45,14 +45,13 @@ function buildRulesEmbeds(daten = {}, locale = 'de') {
       {
         name: 'Übersichten',
         value: [
-          '• **/bracket** → Gruppen, Kämpfe und Bracket-Übersicht.',
-          '• **/turnier_info** → Laufendes Turnier, Pott, Spieler mit Status und Klassen.',
+          '• **`/bracket`** → Gruppen, Kämpfe und Bracket-Übersicht.',
+          '• **`/pvp_info`** → Laufendes Turnier, Pott, Spieler mit Status und Klassen.',
         ].join('\n'),
       },
       {
         name: 'Fairplay',
         value: [
-          '• Höflicher Umgang, kein Ghosting/Cheating.',
           '• Klassenwechsel nach Turnierstart nicht mehr möglich.',
           '• Sets dürft ihr beliebig tauschen.',
         ].join('\n'),
