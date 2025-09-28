@@ -4,6 +4,7 @@
 const map = new Map([
   ['boss', require('./boss')],
   ['ergebnis_setzen', require('./ergebnis_setzen')],
+  ['pvp_start', require('./pvp_start')],
 ]);
 // === Getter ===
 // Holt den Handler für den gegebenen Befehl

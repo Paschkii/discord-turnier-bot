@@ -147,8 +147,12 @@ const commands = {
   },
   pvpStart: {
     name: 'start_tournament',
-    description: 'Start the tournament',
+    description: 'Start the tournament (choose the mode)',
     options: {
+      modus: {
+        name: 'mode',
+        description: 'Tournament mode (1v1, 2v2, 3v3, 4v4)',
+      },
       name: {
         name: 'name',
         description: 'Optional tournament name (leave empty for automatic naming)',

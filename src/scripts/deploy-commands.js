@@ -253,6 +253,11 @@ const commands = [
       .addStringOption(opt =>
         applyOptionLocalization(opt, 'pvpStart', 'name')
           .setRequired(false)
+          .setAutocomplete(true)
+      )
+      .addStringOption(opt =>
+        applyOptionLocalization(opt, 'pvpStart', 'name')
+          .setRequired(false)
       )
       .setDefaultMemberPermissions(PermissionsBitField.Flags.Administrator)
   ),

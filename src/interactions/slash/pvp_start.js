@@ -12,6 +12,9 @@ const { getGuildCustomName } = require('../../store/guildSettings');
 const { buildRulesEmbeds } = require('../../embeds/rules');
 const { resolveInteractionLocale } = require('../../utils/interactionLocale');
 
+const AVAILABLE_MODES = ['1v1', '2v2', '3v3', '4v4'];
+
+// === Funktionen ===
 // Turnier starten
 async function execute(interaction) {
   const guildId = interaction.guildId;
@@ -23,6 +26,16 @@ async function execute(interaction) {
     await interaction.reply({ content: '⛔ Nur Admins können das Turnier starten.', flags: MessageFlags.Ephemeral });
     return;
   }
+  const rawModus = interaction.options.getString('modus');
+  let modus = '1v1';
+  if (typeof rawModus === 'string' && rawModus.trim()) {
+    const normalized = AVAILABLE_MODES.find(m => m.toLowerCase() === rawModus.trim().toLowerCase());
+    if (!normalized) {
+      await interaction.reply({ content: `❌ Ungültiger Modus. Verfügbare Modi: ${AVAILABLE_MODES.join(', ')}`, flags: MessageFlags.Ephemeral });
+      return;
+    }
+    modus = normalized;
+  }
   // Interaktion bestätigen, damit Discord die Anfrage nicht verwirft
   await interaction.deferReply({ flags: MessageFlags.Ephemeral });
 
@@ -33,7 +46,6 @@ async function execute(interaction) {
     return;
   }
   // Neues Turnier anlegen
-  const modus = '1v1'; // Derzeit nur 1v1 unterstützt
   const requestedName = interaction.options.getString('name');
   const trimmedName = typeof requestedName === 'string' ? requestedName.trim() : '';
   const guildName = interaction.guild?.name?.trim();
@@ -45,9 +57,8 @@ async function execute(interaction) {
     name = `${baseName} Turnier #${num}`; // Automatische Benennung anhand des Servernamens
   }
   const neuesTurnier = { name, status: 'offen', modus, teilnehmer: {}, teams: [], kämpfe: [], groups: [], kampfLog: [] };
-
+  // In DB speichern
   await insertNewTournamentRow(guildId, neuesTurnier);
-
   // Rückmeldung
   await interaction.editReply({ content: `✅ Neues Turnier gestartet: **${name}** (Modus **${modus}**)` });
   const locale = await resolveInteractionLocale(interaction);
