@@ -35,10 +35,12 @@ async function execute(interaction) {
   const modus = '1v1'; // Derzeit nur 1v1 unterstützt
   const requestedName = interaction.options.getString('name');
   const trimmedName = typeof requestedName === 'string' ? requestedName.trim() : '';
+  const guildName = interaction.guild?.name?.trim();
   let name = trimmedName;
   if (!name) {
     const num = await getNextTournamentNumber(guildId);
-    name = `Nemesis Turnier #${num}`; // Fallback auf automatische Benennung
+    const baseName = guildName || 'Nemesis';
+    name = `${baseName} PvP #${num}`; // Automatische Benennung anhand des Servernamens
   }
   const neuesTurnier = { name, status: 'offen', modus, teilnehmer: {}, teams: [], kämpfe: [], groups: [], kampfLog: [] };
 
