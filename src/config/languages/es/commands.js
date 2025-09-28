@@ -95,6 +95,16 @@ const commands = {
       },
     },
   },
+  guildName: {
+    name: 'guild_name',
+    description: 'Admin: establece un nombre de gremio personalizado para nombrar torneos',
+    options: {
+      name: {
+        name: 'nombre',
+        description: 'Déjalo vacío para quitarlo y usar nuevamente el nombre del servidor',
+      },
+    },
+  },
   hofLoeschen: {
     name: 'eliminar_salon',
     description: 'Admin: elimina una entrada del salón de la fama por número o nombre del torneo',

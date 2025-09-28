@@ -10,6 +10,7 @@ const fake_anmeldungen    = require('./fake_anmeldungen');
 const hall_of_fame        = require('./hall_of_fame');
 const hilfe               = require('./hilfe');
 const language            = require('./language');
+const guild_name          = require('./guild_name');
 const hof_loeschen        = require('./hof_loeschen');
 const pott_setzen         = require('./pott_setzen');
 const pvp_info            = require('./pvp_info');
@@ -36,6 +37,7 @@ const map = new Map([
   ['hall_of_fame', hall_of_fame],
   ['hilfe', hilfe],
   ['language', language],
+  ['guild_name', guild_name],
   ['hof_loeschen', hof_loeschen],
   ['pott_setzen', pott_setzen],
   ['regeln', regeln],

@@ -96,6 +96,16 @@ const commands = {
       },
     },
   },
+  guildName: {
+    name: 'guild_name',
+    description: 'Admin: Setzt einen benutzerdefinierten Gildennamen für die Turnier-Benennung',
+    options: {
+      name: {
+        name: 'name',
+        description: 'Leer lassen, um den Eintrag zu löschen und wieder den Servernamen zu verwenden',
+      },
+    },
+  },
   hofLoeschen: {
     name: 'hof_loeschen',
     description: 'Admin: Löscht einen Hall-of-Fame-Eintrag per Turniernummer oder Namen',

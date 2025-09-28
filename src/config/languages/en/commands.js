@@ -95,6 +95,16 @@ const commands = {
       },
     },
   },
+  guildName: {
+    name: 'guild_name',
+    description: 'Admin: Set the guild name override used when naming tournaments',
+    options: {
+      name: {
+        name: 'name',
+        description: 'Leave empty to remove the override and use the server name again',
+      },
+    },
+  },
   hofLoeschen: {
     name: 'delete_hof',
     description: 'Admin: Delete a hall of fame entry by tournament number or name',

@@ -31,8 +31,23 @@ async function initDB() {
         id SERIAL PRIMARY KEY,
         guild_id TEXT NOT NULL UNIQUE,
         language TEXT NOT NULL DEFAULT 'de',
+        guild_name TEXT,
         updated_at TIMESTAMP DEFAULT NOW()
       );
+    `);
+
+    // Guild name hinzufügen, falls aus alten Deploys fehlt (idempotent)
+    await pool.query(`
+      DO $$
+      BEGIN
+        IF NOT EXISTS (
+          SELECT 1 FROM information_schema.columns
+          WHERE table_name = 'guild_settings' AND column_name = 'guild_name'
+        ) THEN
+          ALTER TABLE guild_settings ADD COLUMN guild_name TEXT;
+        END IF;
+      END
+      $$;
     `);
 
     // Falls "guild_id" aus alten Deploys fehlt (idempotent)

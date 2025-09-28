@@ -95,6 +95,16 @@ const commands = {
       },
     },
   },
+  guildName: {
+    name: 'guild_name',
+    description: 'Admin: imposta un nome gilda personalizzato per nominare i tornei',
+    options: {
+      name: {
+        name: 'nome',
+        description: 'Lascia vuoto per rimuoverlo e usare di nuovo il nome del server',
+      },
+    },
+  },
   hofLoeschen: {
     name: 'elimina_albo',
     description: "Admin: elimina una voce dell'albo d'oro per numero o nome del torneo",

@@ -95,6 +95,16 @@ const commands = {
       },
     },
   },
+  guildName: {
+    name: 'guild_name',
+    description: 'Admin : définir un nom de guilde personnalisé pour nommer les tournois',
+    options: {
+      name: {
+        name: 'nom',
+        description: 'Laisser vide pour supprimer et réutiliser le nom du serveur',
+      },
+    },
+  },
   hofLoeschen: {
     name: 'supprimer_pantheon',
     description: 'Admin : supprime une entrée du panthéon par numéro ou nom de tournoi',

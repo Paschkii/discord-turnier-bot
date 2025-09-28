@@ -95,6 +95,16 @@ const commands = {
       },
     },
   },
+  guildName: {
+    name: 'guild_name',
+    description: 'Admin: define um nome de guilda personalizado para nomear os torneios',
+    options: {
+      name: {
+        name: 'nome',
+        description: 'Deixe vazio para remover e usar novamente o nome do servidor',
+      },
+    },
+  },
   hofLoeschen: {
     name: 'apagar_hall',
     description: 'Admin: remove uma entrada do hall da fama pelo número ou nome do torneio',

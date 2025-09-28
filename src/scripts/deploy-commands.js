@@ -10,8 +10,10 @@ const {
 require('dotenv').config();
 const languages = require('../config/languages/index');
 
+// === Constants & Variables ===
+// Standard-Sprache
 const DEFAULT_LANGUAGE = 'de';
-
+// Unterstützte Sprachen und ihre Locale-Codes (in sync mit src/config/languages/*)
 const LOCALE_MAP = {
   de: 'de',
   en: ['en-US', 'en-GB'],
@@ -20,13 +22,12 @@ const LOCALE_MAP = {
   it: 'it',
   pt: 'pt-BR',
 };
-
 const commandsDe = languages[DEFAULT_LANGUAGE]?.commands;
-
+// Sicherheits-Check
 if (!commandsDe) {
   throw new Error(`Missing command definitions for default language "${DEFAULT_LANGUAGE}"`);
 }
-
+// Sprach-Auswahl für /language
 const LANGUAGE_CHOICES = [
   { name: 'Deutsch', value: 'de' },
   { name: 'English', value: 'en' },
@@ -35,10 +36,10 @@ const LANGUAGE_CHOICES = [
   { name: 'Italiano', value: 'it' },
   { name: 'Português (Brasil)', value: 'pt' },
 ];
-
+// Helper: sicher auf verschachtelte Objekte zugreifen
 const getNestedValue = (obj, path) =>
   path.reduce((acc, key) => (acc && acc[key] !== undefined ? acc[key] : undefined), obj);
-
+// Lokalisierungen für Namen/Beschreibungen bauen
 const buildLocalizations = (commandKey, path) => {
   const localizations = {};
   for (const [languageKey, commandSet] of Object.entries(languages)) {
@@ -55,13 +56,13 @@ const buildLocalizations = (commandKey, path) => {
   }
   return localizations;
 };
-
+// Helper: Lokalisierungen anwenden
 const applyLocalizations = (target, method, data) => {
   if (Object.keys(data).length > 0 && typeof target[method] === 'function') {
     target[method](data);
   }
 };
-
+// Command mit Lokalisierungen versehen
 const applyCommandLocalization = (builder, commandKey) => {
   const command = commandsDe[commandKey];
   if (!command) {
@@ -76,7 +77,7 @@ const applyCommandLocalization = (builder, commandKey) => {
 
   return builder;
 };
-
+// Option mit Lokalisierungen versehen
 const applyOptionLocalization = (option, commandKey, optionKey) => {
   const optionData = commandsDe[commandKey]?.options?.[optionKey];
   if (!optionData) {
@@ -98,6 +99,7 @@ const guildOnly = (b) =>
     .setIntegrationTypes([ApplicationIntegrationType.GuildInstall])
     .setContexts([InteractionContextType.Guild]);
 
+// === Commands ===
 const commands = [
   // === Turnier ===
   // === Public ===
@@ -196,6 +198,16 @@ const commands = [
       )
       .setDefaultMemberPermissions(PermissionsBitField.Flags.Administrator)
   ),
+  // /guild_name
+  guildOnly(
+    applyCommandLocalization(new SlashCommandBuilder(), 'guildName')
+      .addStringOption(opt =>
+        applyOptionLocalization(opt, 'guildName', 'name')
+          .setRequired(false)
+          .setMaxLength(100)
+      )
+      .setDefaultMemberPermissions(PermissionsBitField.Flags.Administrator)
+  ),
   // Hall of Fame löschen
   guildOnly(
     applyCommandLocalization(new SlashCommandBuilder(), 'hofLoeschen')
@@ -277,9 +289,10 @@ const commands = [
   ),
   
 ].map(c => c.toJSON());
-
+// === Deployment ===
+// Discord-REST-Client initialisieren
 const rest = new REST({ version: '10' }).setToken(process.env.DISCORD_TOKEN);
-
+// Sofort ausführen
 (async () => {
   try {
     const clientId = process.env.CLIENT_ID;

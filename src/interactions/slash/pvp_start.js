@@ -8,6 +8,7 @@ const {
   getNextTournamentNumber,
   insertNewTournamentRow
 } = require('../../store/turniere');
+const { getGuildCustomName } = require('../../store/guildSettings');
 const { buildRulesEmbeds } = require('../../embeds/rules');
 const { resolveInteractionLocale } = require('../../utils/interactionLocale');
 
@@ -36,10 +37,11 @@ async function execute(interaction) {
   const requestedName = interaction.options.getString('name');
   const trimmedName = typeof requestedName === 'string' ? requestedName.trim() : '';
   const guildName = interaction.guild?.name?.trim();
+  const customGuildName = await getGuildCustomName(guildId);
   let name = trimmedName;
   if (!name) {
     const num = await getNextTournamentNumber(guildId);
-    const baseName = guildName || 'Nemesis';
+    const baseName = customGuildName || guildName || 'Nemesis';
     name = `${baseName} PvP #${num}`; // Automatische Benennung anhand des Servernamens
   }
   const neuesTurnier = { name, status: 'offen', modus, teilnehmer: {}, teams: [], kämpfe: [], groups: [], kampfLog: [] };
