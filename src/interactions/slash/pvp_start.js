@@ -42,7 +42,7 @@ async function execute(interaction) {
   if (!name) {
     const num = await getNextTournamentNumber(guildId);
     const baseName = customGuildName || guildName || 'Nemesis';
-    name = `${baseName} PvP #${num}`; // Automatische Benennung anhand des Servernamens
+    name = `${baseName} Turnier #${num}`; // Automatische Benennung anhand des Servernamens
   }
   const neuesTurnier = { name, status: 'offen', modus, teilnehmer: {}, teams: [], kämpfe: [], groups: [], kampfLog: [] };
 
