@@ -251,7 +251,7 @@ const commands = [
   guildOnly(
     applyCommandLocalization(new SlashCommandBuilder(), 'pvpStart')
       .addStringOption(opt =>
-        applyOptionLocalization(opt, 'pvpStart', 'name')
+        applyOptionLocalization(opt, 'pvpStart', 'modus')
           .setRequired(false)
           .setAutocomplete(true)
       )

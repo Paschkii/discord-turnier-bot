@@ -1,0 +1,28 @@
+const REGION_LISTE = [
+  { id: 'albuera',        name: { de: 'Albuera-Archipel', en: 'Albuera Archipelago', fr: "Archipel d'Albuera", es: 'Archipiélago de Albuera' } },
+  { id: 'amakna',         name: { de: 'Amakna', en: 'Amakna', fr: 'Amakna', es: 'Amakna' } },
+  { id: 'astrub',         name: { de: 'Astrub', en: 'Astrub', fr: 'Astrub', es: 'Astrub' } },
+  { id: 'bonta',          name: { de: 'Bonta', en: 'Bonta', fr: 'Bonta', es: 'Bonta' } },
+  { id: 'brakmar',        name: { de: 'Brâkmar', en: 'Brakmar', fr: 'Brâkmar', es: 'Brakmar' } },
+  { id: 'cania',          name: { de: 'Cania-Ebene', en: 'Cania Plains', fr: 'Plaine de Cania', es: 'Llanura de Cania' } },
+  { id: 'dopple',         name: { de: 'Doppel-Territorium', en: 'Dopple Territory', fr: 'Territoire des Dopeuls', es: 'Territorio de los dopeuls' } },
+  { id: 'dragonpigmaze',  name: { de: 'Labyrinth des Schweinedrachens', en: "The Dragon Pig's Maze", fr: 'Le labyrinthe du Dragon Cochon', es: 'El laberinto del Dragocerdo' } },
+  { id: 'dungeons',       name: { de: 'Dungeons', en: 'Dungeons', fr: 'Donjons', es: 'Mazmorras' } },
+  { id: 'frigost',        name: { de: 'Die Insel Frigost', en: 'Frigost Island', fr: 'Île de Frigost', es: 'Isla de Frigost' } },
+  { id: 'horrib',         name: { de: 'Horrorinsel', en: 'Horrib Isle', fr: 'Îlot Rifique', es: 'Islote Rorífico' } },
+  { id: 'koalak',         name: { de: 'Koalak-Gebirge', en: 'Koalak Mountain', fr: 'Montagne des Koalaks', es: 'Montaña de los koalaks' } },
+  { id: 'kwismas',        name: { de: 'Weißnachtsinsel', en: 'Kwismas Island', fr: 'Île de Nowel', es: 'Isla de Nawidad' } },
+  { id: 'minotoror',      name: { de: 'Minotoror-Insel', en: 'Minotoror Island', fr: 'Île du Minotoror', es: 'Isla del Minotororo' } },
+  { id: 'moon',           name: { de: 'Moon-Insel', en: 'Moon Island', fr: 'Île de Moon', es: 'Isla de Moon' } },
+  { id: 'orado',          name: { de: 'Insel Orado', en: 'Orado Island', fr: "Île d'Orado", es: 'Isla de Eldoroda' } },
+  { id: 'otomai',         name: { de: 'Otomaïs Insel', en: 'Otomai Island', fr: "Île d'Otomaï", es: 'Isla de Otomai' } },
+  { id: 'pandala',        name: { de: 'Insel Pandala', en: 'Pandala Island', fr: 'Île de Pandala', es: 'Isla de Pandala' } },
+  { id: 'sakai',          name: { de: 'Die Insel Arkal', en: 'Sakai Island', fr: 'Île de Sakaï', es: 'Isla Kéfriho' } },
+  { id: 'sidimote',       name: { de: 'Sidimote-Gebiet', en: 'Sidimote Moors', fr: 'Landes de Sidimote', es: 'Landas de Sidimote' } },
+  { id: 'treechnid',      name: { de: 'Wald der Astaknyden', en: 'Treechnid Forest', fr: 'Forêt des Abraknydes', es: 'Bosque de los abráknidos' } },
+  { id: 'vulkania',       name: { de: 'Vulkania-Archipel', en: 'Archipelago of Vulkania', fr: 'Archipel de Vulkania', es: 'Archipiélago de Vulkania' } },
+  { id: 'wabbit',         name: { de: 'Wabbit-Insel', en: 'Wabbit Island', fr: 'Île des Wabbits', es: 'Isla de los Wabbits' } },
+  { id: 'zoth',           name: { de: 'Zothiges Dorf', en: 'The Zoth Village', fr: 'Village des Zoths', es: 'Pueblo de los zoths' } },
+];
+
+module.exports = { REGION_LISTE };
