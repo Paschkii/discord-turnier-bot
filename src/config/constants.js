@@ -1,21 +1,21 @@
 const {
+  getLocalizedText,
   ICON_BASE,
   SUPPORTED_LOCALES,
-  getLocalizedText,
   resolveDiscordEmoji,
   resolveLocaleKey,
 } = require('./constants/shared');
-const { KLASSE_LISTE } = require('./constants/classes');
-const { REGION_LISTE } = require('./constants/regions');
-const { FAMILY_LISTE } = require('./constants/families');
-const { RESISTANCE_TYPES } = require('./constants/resistances');
-const { CHARACTERISTIC_TYPES } = require('./constants/characteristics');
-const { BOSSE_LISTE } = require('./constants/bosses');
-const { DUNGEON_LISTE, DUNGEON_KATEGORIEN } = require('./constants/dungeons');
-const { HELP_COMMANDS } = require('./constants/helpCommands');
-const { arenaData } = require('./constants/arena');
 const { ALLOWED_KO_SIZES } = require('./constants/tournament');
+const { arenaData } = require('./constants/arena');
+const { BOSSE_LISTE } = require('./constants/bosses');
+const { CHARACTERISTIC_TYPES } = require('./constants/characteristics');
+const { DUNGEON_LISTE, DUNGEON_KATEGORIEN } = require('./constants/dungeons');
+const { FAMILY_LISTE } = require('./constants/families');
+const { HELP_COMMANDS } = require('./constants/helpCommands');
+const { KLASSE_LISTE } = require('./constants/classes');
 const { PHASE_LABEL } = require('./constants/phases');
+const { REGION_LISTE } = require('./constants/regions');
+const { RESISTANCE_TYPES } = require('./constants/resistances');
 
 function getPhaseLabel(phase, locale = 'de') {
   const entry = PHASE_LABEL[phase];
