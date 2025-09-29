@@ -1,5 +1,6 @@
 // === Imports ===
 const { shuffleArray, themedGroupNames } = require('../utils');
+const { FORMAT_TEAM_SIZE } = require('./planner/validation');
 const { ALLOWED_KO_SIZES } = require('../config/constants');
 
 // Emojis für Top/Low-Tag (nur Pfeile)
@@ -19,8 +20,84 @@ function splitIntoGroups(arr, k) {
   return groups;
 }
 
-// === Turnier-Core ===
+// === Helper für Team-Modi ===
+// Normalisiere den Modus (z. B. "2v2" → "2v2", ungültig → "1v1")
+function normalizeMode(mode) {
+  if (typeof mode !== 'string') return '1v1';
+  const trimmed = mode.trim().toLowerCase();
+  return Object.keys(FORMAT_TEAM_SIZE).find(m => m.toLowerCase() === trimmed) || '1v1';
+}
+// Erzeuge einen Team-Namen aus den Anfangsbuchstaben der Mitglieder
+function makeTeamName(members, fallbackIndex) {
+  const parts = (members || []).map(m => {
+    const raw = (m?.name || '').trim();
+    if (!raw) return '';
+    const collapsed = raw.replace(/\s+/g, '');
+    if (!collapsed) return '';
+    const slice = collapsed.slice(0, 3);
+    if (!slice) return '';
+    return slice.charAt(0).toUpperCase() + slice.slice(1);
+  }).filter(Boolean);
+  const combined = parts.join('');
+  if (combined) return combined;
+  const idx = typeof fallbackIndex === 'number' && fallbackIndex >= 0
+    ? String(fallbackIndex + 1).padStart(2, '0')
+    : '01';
+  return `Team${idx}`;
+}
+// Erzeuge Teams aus Teilnehmern (randomisiert), vermeide doppelte Namen
+function createTeamsFromParticipants(participants, teamSize, existing = new Set()) {
+  if (teamSize <= 1) {
+    const map = Object.fromEntries(participants.map(p => [p.id, { ...p }]));
+    return { teams: [], map };
+  }
+  const shuffled = shuffleArray(participants);
+  const teams = [];
+  const map = {};
 
+  for (let i = 0; i < shuffled.length; i += teamSize) {
+    const members = shuffled.slice(i, i + teamSize).map(m => ({ ...m }));
+    const id = `team-${teams.length + 1}`;
+    const baseName = makeTeamName(members, teams.length);
+    let name = baseName;
+    let counter = 2;
+    while (existing.has(name)) {
+      name = `${baseName}${counter}`;
+      counter += 1;
+    }
+    existing.add(name);
+    const team = {
+      id,
+      name,
+      members,
+      memberIds: members.map(m => m.id),
+    };
+    teams.push(team);
+    map[id] = { name, klasse: null, members, memberIds: team.memberIds };
+  }
+
+  return { teams, map };
+}
+// Bereite Teilnehmer für den gewählten Modus vor (1v1, 2v2, 3v3, 4v4)
+function prepareParticipantsForMode(teilnehmerMap = {}, mode = '1v1') {
+  const normalizedMode = normalizeMode(mode);
+  const teamSize = FORMAT_TEAM_SIZE[normalizedMode] || 1;
+  const participants = Object.entries(teilnehmerMap || {})
+    .map(([id, p]) => ({ id, name: p.name, klasse: p.klasse }));
+
+  if (teamSize <= 1) {
+    return {
+      teamSize,
+      map: { ...teilnehmerMap },
+      teams: [],
+    };
+  }
+
+  const { teams, map } = createTeamsFromParticipants(participants, teamSize);
+  return { teamSize, map, teams };
+}
+
+// === Turnier-Core ===
 // Qualifikation (Bo1)
 function createQualificationFromTeilnehmerMap(teilnehmerMap) {
   const teilnehmerArr = Object.entries(teilnehmerMap).map(([id, p]) => ({ id, name: p.name, klasse: p.klasse }));
@@ -409,10 +486,12 @@ module.exports = {
   createGroupsPhaseTopLow,
   createGroupsPhase,
   createTopLowQuarterfinals,
+  createTeamsFromParticipants,
   createKOSeeded,
   createKOFightsFromParticipants,
   chooseKOSize,
   computeGroupStandings,
   determineQualifiedTopLow,
   determineQualifiedAdvanced,
+  prepareParticipantsForMode,
 };

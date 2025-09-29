@@ -14,11 +14,13 @@ const { buildDashboard, defaultStateFromData } = require('../../views/dashboard'
 const {
   createQualificationFromTeilnehmerMap,
   createGroupsPhaseTopLow,
-  computeGroupStandings,
   createTopLowQuarterfinals,
+  computeGroupStandings,
   determineQualifiedTopLow,
-  GROUP_EMOJI
+  GROUP_EMOJI,
+  prepareParticipantsForMode
 } = require('../../services/tournament');
+const { validateFormat } = require('../../services/planner/validation');
 
 // === Alte Kämpfe vor dem Überschreiben archivieren ===
 function archiveFights(d) {
@@ -47,12 +49,25 @@ async function execute(interaction) {
   try {
     // Start/Offen → QUALI
     if (!daten.status || daten.status === 'offen' || daten.status === 'idle') {
+      const format = typeof daten.modus === 'string' ? daten.modus : '1v1';
       const teilnehmerArr = Object.entries(daten.teilnehmer || {})
         .map(([id, p]) => ({ id, name: p.name, klasse: p.klasse }));
-      if (teilnehmerArr.length < 2) return interaction.reply({ content: '❌ Mindestens 2 Teilnehmer erforderlich.', flags: MessageFlags.Ephemeral });
-      if (teilnehmerArr.length % 2 !== 0) return interaction.reply({ content: '❌ Teilnehmerzahl muss gerade sein!', flags: MessageFlags.Ephemeral });
+      if (teilnehmerArr.length < 2) {
+        return interaction.reply({ content: '❌ Mindestens 2 Teilnehmer erforderlich.', flags: MessageFlags.Ephemeral });
+      }
+      const validation = validateFormat(teilnehmerArr.length, format);
+      if (!validation.ok) {
+        return interaction.reply({ content: `❌ ${validation.reason || 'Ungültige Teilnehmerkonstellation.'}`, flags: MessageFlags.Ephemeral });
+      }
 
-      let fights = createQualificationFromTeilnehmerMap(daten.teilnehmer);
+      const { map: participantMap, teams } = prepareParticipantsForMode(daten.teilnehmer, format);
+      daten.teams = teams || [];
+      daten.teilnehmer = participantMap;
+
+      const preparedArr = Object.entries(participantMap || {})
+        .map(([id, p]) => ({ id, name: p.name, klasse: p.klasse, members: p.members, memberIds: p.memberIds }));
+
+      let fights = createQualificationFromTeilnehmerMap(participantMap);
       // Quali-Phase & sichtbare Gruppe setzen
       const qualiName = `${themedGroupNames(1)[0]} Qualifikation`;
       fights = fights.map((f, i) => ({
@@ -65,7 +80,7 @@ async function execute(interaction) {
       daten.kämpfe = fights;
       daten.groups = [{
         name: qualiName,
-        members: teilnehmerArr,
+        members: preparedArr,
         matches: fights.map((f) => ({ ...f }))
       }];
       daten.status = 'quali';

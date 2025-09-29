@@ -112,8 +112,12 @@ function buildTournamentInfoEmbeds(daten = {}) {
   // 👤 Teilnehmerliste (immer alphabetisch, mit Klassen-Emoji + Alive/Out)
   const emojiMap = Object.fromEntries(KLASSE_LISTE.map(k => [k.name, k.emoji]));
   const lines = teilnehmerArr.map(p => {
-    const cls = p.klasse ? ` - ${emojiMap[p.klasse] || ''} ${p.klasse}` : '';
-    return `${alive.has(p.id) ? '🟢' : '🔴'} ${p.name}${cls}`;
+    const isTeam = Array.isArray(p.members) && p.members.length > 0;
+    const cls = (!isTeam && p.klasse) ? ` - ${emojiMap[p.klasse] || ''} ${p.klasse}` : '';
+    const members = isTeam
+      ? ` (${p.members.map(m => m.name).join(', ')})`
+      : '';
+    return `${alive.has(p.id) ? '🟢' : '🔴'} ${p.name}${cls}${members}`;
   });
 
   if (lines.length) {
