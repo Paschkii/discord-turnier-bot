@@ -1,7 +1,7 @@
 const { ICON_BASE } = require('./shared');
 
 const BOSSE_LISTE = [
-  // Level 1 - 50 Dungeons
+  // === Level 1 - 50 Dungeons ===
   // Belladonna
   { id: 'belladonna',
     name: {
@@ -353,7 +353,7 @@ const BOSSE_LISTE = [
       air: 40,
     }
   },
-  // Level 51 - 100 Dungeons
+  // === Level 51 - 100 Dungeons ===
   // Wa Wabbit
   { id: 'wa_wabbit',
     name: {
@@ -408,7 +408,7 @@ const BOSSE_LISTE = [
       air: 23,
     }
   },
-  // Blops
+  // -- Blops --
   // Royal Pippin Blop
   { id: 'royal_pippin_blop',
     name: {
@@ -517,7 +517,7 @@ const BOSSE_LISTE = [
       air: 94,
     }
   },
-  // Jellys
+  // -- Jellys --
   // Royal Strawberry Jelly
   { id: 'royal_strawberry_jelly',
     name: {
@@ -896,7 +896,7 @@ const BOSSE_LISTE = [
       air: 42,
     }
   },
-  // Level 101 - 150 Dungeons
+  // === Level 101 - 150 Dungeons ===
   // Silf the Greater Berb
   { id: 'silf',
     name: {
@@ -1153,7 +1153,7 @@ const BOSSE_LISTE = [
     level: 120,
     region: '',
     family: '',
-    dungeon: 'skeunks_hideoutmoon_dungeon',
+    dungeon: 'skeunks_hideout',
     characteristics: {
       vitality: 4700,
       actionPoints: 12,
@@ -1167,66 +1167,1553 @@ const BOSSE_LISTE = [
       air: 38,
     }
   },
-  { id: 'skeunk', name: 'Skeunk', imageUrl: 'https://static.ankama.com/dofus-touch/www/game/monsters/200/780.w200h.png', defaultLevel: 120 },
-  { id: 'krakillian', name: 'Krakillian Wächter', imageUrl: 'https://static.ankama.com/dofus-touch/www/game/monsters/200/3794.w200h.png', defaultLevel: 130 },
-  { id: 'kanigroula', name: 'Kanigroula', imageUrl: 'https://static.ankama.com/dofus-touch/www/game/monsters/200/3774.w200h.png', defaultLevel: 140 },
-  { id: 'weicheich', name: 'Weich Eich', imageUrl: 'https://static.ankama.com/dofus-touch/www/game/monsters/200/257.w200h.png', defaultLevel: 140 },
-  { id: 'tynril_best', name: 'Bestürzter Tynril', imageUrl: 'https://static.ankama.com/dofus-touch/www/game/monsters/200/1072.w200h.png', defaultLevel: 140 },
-  { id: 'tynril_perf', name: 'Perfider Tynril', imageUrl: 'https://static.ankama.com/dofus-touch/www/game/monsters/200/1086.w200h.png', defaultLevel: 140 },
-  { id: 'tynril_verb', name: 'Verblüffter Tynril', imageUrl: 'https://static.ankama.com/dofus-touch/www/game/monsters/200/1087.w200h.png', defaultLevel: 140 },
-  { id: 'tynril_verd', name: 'Verdutzter Tynril', imageUrl: 'https://static.ankama.com/dofus-touch/www/game/monsters/200/1085.w200h.png', defaultLevel: 140 },
-  { id: 'ping', name: 'King Ping', imageUrl: 'https://static.ankama.com/dofus-touch/www/game/monsters/200/2848.w200h.png', defaultLevel: 162 },
-  { id: 'mina', name: 'Hell Mina', imageUrl: 'https://static.ankama.com/dofus-touch/www/game/monsters/200/4318.w200h.png', defaultLevel: 140 },
-  { id: 'ben', name: 'Ben der Ripat', imageUrl: 'https://static.ankama.com/dofus-touch/www/game/monsters/200/2877.w200h.png', defaultLevel: 150 },
-  { id: 'sphincter', name: 'Sphincter Cell', imageUrl: 'https://static.ankama.com/dofus-touch/www/game/monsters/200/943.w200h.png', defaultLevel: 150 },
-  // Level 151 - 190 Dungeons
-  { id: 'kimbo', name: 'Kimbo', imageUrl: 'https://static.ankama.com/dofus-touch/www/game/monsters/200/1045.w200h.png', defaultLevel: 160 },
-  { id: 'minotot', name: 'Minotot', imageUrl: 'https://static.ankama.com/dofus-touch/www/game/monsters/200/827.w200h.png', defaultLevel: 160 },
-  { id: 'obsi', name: 'Obsidianter', imageUrl: 'https://static.ankama.com/dofus-touch/www/game/monsters/200/2924.w200h.png', defaultLevel: 160 },
-  { id: 'zombrute', name: 'Zombrutalist', imageUrl: 'https://static.ankama.com/dofus-touch/www/game/monsters/200/3772.w200h.png', defaultLevel: 160 },
-  { id: 'tengu', name: 'Tengu Eisfux', imageUrl: 'https://static.ankama.com/dofus-touch/www/game/monsters/200/2967.w200h.png', defaultLevel: 170 },
-  { id: 'fuji', name: 'Fuji Eisfux', imageUrl: 'https://static.ankama.com/dofus-touch/www/game/monsters/200/3234.w200h.png', defaultLevel: 190 },
-  { id: 'nagate', name: 'Nagate', imageUrl: 'https://static.ankama.com/dofus-touch/www/game/monsters/200/3944.w200h.png', defaultLevel: 170 },
-  { id: 'skai', name: 'König Skai', imageUrl: 'https://static.ankama.com/dofus-touch/www/game/monsters/200/3671.w200h.png', defaultLevel: 170 },
-  { id: 'korri', name: 'Korriander', imageUrl: 'https://static.ankama.com/dofus-touch/www/game/monsters/200/2968.w200h.png', defaultLevel: 180 },
-  { id: 'krakamor', name: 'Riesenkrakamor', imageUrl: 'https://static.ankama.com/dofus-touch/www/game/monsters/200/423.w200h.png', defaultLevel: 180 },
-  { id: 'bworker', name: 'Bworker', imageUrl: 'https://static.ankama.com/dofus-touch/www/game/monsters/200/478.w200h.png', defaultLevel: 180 },
-  { id: 'stinker', name: 'Stinkeling', imageUrl: 'https://static.ankama.com/dofus-touch/www/game/monsters/200/1159.w200h.png', defaultLevel: 180 },
-  { id: 'tanuki', name: 'Tanukouï San', imageUrl: 'https://static.ankama.com/dofus-touch/www/game/monsters/200/3990.w200h.png', defaultLevel: 180 },
-  { id: 'daxolossus', name: 'Daxolossus', imageUrl: 'https://static.ankama.com/dofus-touch/www/game/monsters/200/2986.w200h.png', defaultLevel: 190 },
-  { id: 'professor', name: 'Professor Xa', imageUrl: 'https://static.ankama.com/dofus-touch/www/game/monsters/200/2992.w200h.png', defaultLevel: 190 },
-  { id: 'fuxoroshi', name: 'Fuxoroshi', imageUrl: 'https://static.ankama.com/dofus-touch/www/game/monsters/200/3954.w200h.png', defaultLevel: 190 },
-  { id: 'grollum', name: 'Grollum', imageUrl: 'https://static.ankama.com/dofus-touch/www/game/monsters/200/2942.w200h.png', defaultLevel: 190 },
-  { id: 'barbaer', name: 'Himmlischer Barbär', imageUrl: 'https://static.ankama.com/dofus-touch/www/game/monsters/200/4347.w200h.png', defaultLevel: 200 },
-  { id: 'shihan', name: 'Shihan', imageUrl: 'https://static.ankama.com/dofus-touch/www/game/monsters/200/3932.w200h.png', defaultLevel: 200 },
-  { id: 'hanshi', name: 'Hanshi', imageUrl: 'https://static.ankama.com/dofus-touch/www/game/monsters/200/3924.w200h.png', defaultLevel: 200 },
-  // Level 191 - 200 Dungeons
-  { id: 'frizz', name: 'Missiz Frizz', imageUrl: 'https://static.ankama.com/dofus-touch/www/game/monsters/200/3391.w200h.png', defaultLevel: 220 },
-  { id: 'sylargh', name: 'Sylargh', imageUrl: 'https://static.ankama.com/dofus-touch/www/game/monsters/200/3409.w200h.png', defaultLevel: 220 },
-  { id: 'klimm', name: 'R.Klimm', imageUrl: 'https://static.ankama.com/dofus-touch/www/game/monsters/200/3384.w200h.png', defaultLevel: 220 },
-  { id: 'nileza', name: 'Nileza', imageUrl: 'https://static.ankama.com/dofus-touch/www/game/monsters/200/3397.w200h.png', defaultLevel: 220 },
-  { id: 'primzahl', name: 'Graf Primzahl', imageUrl: 'https://static.ankama.com/dofus-touch/www/game/monsters/200/3416.w200h.png', defaultLevel: 220 },
-  { id: 'damadrya', name: 'Damadrya', imageUrl: 'https://static.ankama.com/dofus-touch/www/game/monsters/200/3972.w200h.png', defaultLevel: 200 },
-  { id: 'katamashii', name: 'Katamashii', imageUrl: 'https://static.ankama.com/dofus-touch/www/game/monsters/200/4411.w200h.png', defaultLevel: 220 },
-  // Saisonale Bosse
-  { id: 'mucane', name: 'Mucane', imageUrl: 'https://static.ankama.com/dofus-touch/www/game/monsters/200/3652.w200h.png', defaultLevel: 150 },
-  { id: 'ulkhan', name: 'Ul-Khan', imageUrl: 'https://static.ankama.com/dofus-touch/www/game/monsters/200/3647.w200h.png', defaultLevel: 200 },
-  { id: 'grasmera_schlaf', name: 'Schlafwandelnder Grasmera', imageUrl: 'https://static.ankama.com/dofus-touch/www/game/monsters/200/3298.w200h.png', defaultLevel: 100 },
-  { id: 'grozilla_schlaf', name: 'Schlafwandelnder Grozilla', imageUrl: 'https://static.ankama.com/dofus-touch/www/game/monsters/200/3295.w200h.png', defaultLevel: 100 },
-  { id: 'grasmera_ersch', name: 'Erschöpfter Grasmera', imageUrl: 'https://static.ankama.com/dofus-touch/www/game/monsters/200/3297.w200h.png', defaultLevel: 200 },
-  { id: 'grozilla_ersch', name: 'Erschöpfter Grozilla', imageUrl: 'https://static.ankama.com/dofus-touch/www/game/monsters/200/3294.w200h.png', defaultLevel: 200 },
-  { id: 'grasmera_mued', name: 'Müder Grasmera', imageUrl: 'https://static.ankama.com/dofus-touch/www/game/monsters/200/3296.w200h.png', defaultLevel: 300 },
-  { id: 'grozilla_mued', name: 'Müder Grozilla', imageUrl: 'https://static.ankama.com/dofus-touch/www/game/monsters/200/3293.w200h.png', defaultLevel: 300 },
-  { id: 'grasmera', name: 'Grasmera', imageUrl: 'https://static.ankama.com/dofus-touch/www/game/monsters/200/3143.w200h.png', defaultLevel: 400 },
-  { id: 'grozilla', name: 'Grozilla', imageUrl: 'https://static.ankama.com/dofus-touch/www/game/monsters/200/3142.w200h.png', defaultLevel: 400 },
-  { id: 'sauger', name: 'Mark Sauger', imageUrl: 'https://static.ankama.com/dofus-touch/www/game/monsters/200/3650.w200h.png', defaultLevel: 60 },
-  { id: 'hoellofeen', name: 'Höll OFeen', imageUrl: 'https://static.ankama.com/dofus-touch/www/game/monsters/200/3306.w200h.png', defaultLevel: 100 },
-  { id: 'deleghul', name: 'Personal Deleghul', imageUrl: 'https://static.ankama.com/dofus-touch/www/game/monsters/200/3557.w200h.png', defaultLevel: 220 },
-  { id: 'pisack', name: 'Pi_Sack', imageUrl: 'https://static.ankama.com/dofus-touch/www/game/monsters/200/1179.w200h.png', defaultLevel: 50 },
-  { id: 'weissnachtsmann', name: 'Weißnachtsmann', imageUrl: 'https://static.ankama.com/dofus-touch/www/game/monsters/200/872.w200h.png', defaultLevel: 110 },
-  { id: 'rubraecher', name: 'Rubrächer, der Knechter', imageUrl: 'https://static.ankama.com/dofus-touch/www/game/monsters/200/1194.w200h.png', defaultLevel: 180 },
-  { id: 'minotoball', name: 'Weißnachts-Minotoball', imageUrl: 'https://static.ankama.com/dofus-touch/www/game/monsters/200/2819.w200h.png', defaultLevel: 1000 },
-  { id: 'vlad', name: 'Dark Vlad', imageUrl: 'https://static.ankama.com/dofus-touch/www/game/monsters/200/4631.w200h.png', defaultLevel: 300 },
+  // Crakillian Guardian
+  { id: 'crakillian_guardian',
+    name: {
+      de: 'Krakillian Wächter',
+      en: 'Crakillian Guardian',
+      es: 'Guardián Crujakillian',
+      fr: 'Gardien Crakillian',
+      pt: 'Guardião Smagakillian',
+    },
+    imageUrl: `${ICON_BASE}/boss-icons/crakillian_guardian.png`,
+    level: 130,
+    region: '',
+    family: '',
+    dungeon: 'minerock_sanctuary',
+    characteristics: {
+      vitality: 5700,
+      actionPoints: 12,
+      movementPoints: 5
+    },
+    resistances: {
+      neutral: 5,
+      earth: 13,
+      fire: 7,
+      water: -8,
+      air: 23,
+    }
+  },
+  // Kanigrula
+  { id: 'kanigrula',
+    name: {
+      de: 'Kanigroula',
+      en: 'Kanigrula',
+      es: 'Kanigrula',
+      fr: 'Kanigroula',
+      pt: 'Kanigrula',
+    },
+    imageUrl: `${ICON_BASE}/boss-icons/kanigrula.png`,
+    level: 140,
+    region: '',
+    family: '',
+    dungeon: 'kanigrulas_hideout',
+    characteristics: {
+      vitality: 6500,
+      actionPoints: 12,
+      movementPoints: 6
+    },
+    resistances: {
+      neutral: 6,
+      earth: 12,
+      fire: 8,
+      water: -6,
+      air: 20,
+    }
+  },
+  // Soft Oak
+  { id: 'soft_oak',
+    name: {
+      de: 'Weich Eich',
+      en: 'Soft Oak',
+      es: 'Roble Blando',
+      fr: 'Chêne Mou',
+      pt: 'Carvalho Mole',
+    },
+    imageUrl: `${ICON_BASE}/boss-icons/soft_oak.png`,
+    level: 140,
+    region: '',
+    family: '',
+    dungeon: 'soft_oak_dungeon',
+    characteristics: {
+      vitality: 6500,
+      actionPoints: 15,
+      movementPoints: 2
+    },
+    resistances: {
+      neutral: 82,
+      earth: 52,
+      fire: 52,
+      water: -5,
+      air: -5,
+    }
+  },
+  // Disconcerted Tynril
+  { id: 'disconcerted_tynril',
+    name: {
+      de: 'Verdutzter Tynril',
+      en: 'Disconcerted Tynril',
+      es: 'Tynril Absorto',
+      fr: 'Tynril Déconcerté',
+      pt: 'Tynril Desconcertado',
+    },
+    imageUrl: `${ICON_BASE}/boss-icons/tynril.png`,
+    level: 140,
+    region: '',
+    family: '',
+    dungeon: 'the_tynril_lab',
+    characteristics: {
+      vitality: 3800,
+      actionPoints: 10,
+      movementPoints: 2
+    },
+    resistances: {
+      neutral: 200,
+      earth: 200,
+      fire: 200,
+      water: 0,
+      air: 200,
+    }
+  },
+  // Dismayed Tynril
+  { id: 'dismayed_tynril',
+    name: {
+      de: 'Bestürzter Tynril',
+      en: 'Dismayed Tynril',
+      es: 'Tynril Estupefacto',
+      fr: 'Tynril Consterné',
+      pt: 'Tynril Consternado',
+    },
+    imageUrl: `${ICON_BASE}/boss-icons/tynril.png`,
+    level: 140,
+    region: '',
+    family: '',
+    dungeon: 'the_tynril_lab',
+    characteristics: {
+      vitality: 3800,
+      actionPoints: 10,
+      movementPoints: 2
+    },
+    resistances: {
+      neutral: 200,
+      earth: 200,
+      fire: 200,
+      water: 200,
+      air: 0,
+    }
+  },
+  // Perfidious Tynril
+  { id: 'perfidious_tynril',
+    name: {
+      de: 'Perfider Tynril',
+      en: 'Perfidious Tynril',
+      es: 'Tynril Pérfido',
+      fr: 'Tynril Perfide',
+      pt: 'Tynril Pérfido',
+    },
+    imageUrl: `${ICON_BASE}/boss-icons/tynril.png`,
+    level: 140,
+    region: '',
+    family: '',
+    dungeon: 'the_tynril_lab',
+    characteristics: {
+      vitality: 3800,
+      actionPoints: 10,
+      movementPoints: 2
+    },
+    resistances: {
+      neutral: 200,
+      earth: 200,
+      fire: 0,
+      water: 200,
+      air: 200,
+    }
+  },
+  // Stunned Tynril
+  { id: 'stunned_tynril',
+    name: {
+      de: 'Verblüffter Tynril',
+      en: 'Stunned Tynril',
+      es: 'Tynril Atónito',
+      fr: 'Tynril Ahuri',
+      pt: 'Tynril Chocado',
+    },
+    imageUrl: `${ICON_BASE}/boss-icons/tynril.png`,
+    level: 140,
+    region: '',
+    family: '',
+    dungeon: 'the_tynril_lab',
+    characteristics: {
+      vitality: 3800,
+      actionPoints: 10,
+      movementPoints: 2
+    },
+    resistances: {
+      neutral: 200,
+      earth: 0,
+      fire: 200,
+      water: 200,
+      air: 200,
+    }
+  },
+  // Royal Pingwin
+  { id: 'royal_pingwin',
+    name: {
+      de: 'King Ping',
+      en: 'Royal Pingwin',
+      es: 'Morsagūino Real',
+      fr: 'Mansot Royal',
+      pt: 'Pingwin Real',
+    },
+    imageUrl: `${ICON_BASE}/boss-icons/royal_pingwin.png`,
+    level: 162,
+    region: '',
+    family: '',
+    dungeon: 'royal_pingwins_excavation',
+    characteristics: {
+      vitality: 4900,
+      actionPoints: 15,
+      movementPoints: 4
+    },
+    resistances: {
+      neutral: 29,
+      earth: 25,
+      fire: 24,
+      water: 34,
+      air: 22,
+    }
+  },
+  // Hell Mina
+  { id: 'hell_mina',
+    name: {
+      de: 'Hell Mina',
+      en: 'Hell Mina',
+      es: 'Hell Mina',
+      fr: 'Hell Mina',
+      pt: 'Hell Mina',
+    },
+    imageUrl: `${ICON_BASE}/boss-icons/hell_mina.png`,
+    level: 140,
+    region: '',
+    family: '',
+    dungeon: 'long_slumbers_barrow',
+    characteristics: {
+      vitality: 6500,
+      actionPoints: 12,
+      movementPoints: 5
+    },
+    resistances: {
+      neutral: 10,
+      earth: -4,
+      fire: 20,
+      water: 5,
+      air: 15,
+    }
+  },
+  // Buck Anear
+  { id: 'buck_anear',
+    name: {
+      de: 'Ben der Ripat',
+      en: 'Buck Anear',
+      es: 'Ben el Ripata',
+      fr: 'Ben le Ripate',
+      pt: 'Ben o Ripata',
+    },
+    imageUrl: `${ICON_BASE}/boss-icons/buck_anear.png`,
+    level: 150,
+    region: '',
+    family: '',
+    dungeon: 'the_wreck_of_the_hesperus',
+    characteristics: {
+      vitality: 6200,
+      actionPoints: 16,
+      movementPoints: 5
+    },
+    resistances: {
+      neutral: 24,
+      earth: 16,
+      fire: 17,
+      water: 20,
+      air: 26,
+    }
+  },
+  // Sphincter Cell
+  { id: 'sphincter_cell',
+    name: {
+      de: 'Sphincter Cell',
+      en: 'Sphincter Cell',
+      es: 'Sfincter Cell',
+      fr: 'Sphincter Cell',
+      pt: 'Sphincter Cell',
+    },
+    imageUrl: `${ICON_BASE}/boss-icons/sphincter_cell.png`,
+    level: 150,
+    region: '',
+    family: '',
+    dungeon: 'amakna_castle_rat_dungeon',
+    characteristics: {
+      vitality: 6400,
+      actionPoints: 8,
+      movementPoints: 5
+    },
+    resistances: {
+      neutral: 200,
+      earth: 200,
+      fire: 200,
+      water: 200,
+      air: 200,
+    }
+  },
+  // === Level 151 - 190 Dungeons ===
+  // Kimbo
+  { id: 'kimbo',
+    name: {
+      de: 'Kimbo',
+      en: 'Kimbo',
+      es: 'Kimbo',
+      fr: 'Kimbo',
+      pt: 'Kimbo',
+    },
+    imageUrl: `${ICON_BASE}/boss-icons/kimbo.png`,
+    level: 160,
+    region: '',
+    family: '',
+    dungeon: 'kimbos_canopy',
+    characteristics: {
+      vitality: 6900,
+      actionPoints: 10,
+      movementPoints: 7
+    },
+    resistances: {
+      neutral: 400,
+      earth: 400,
+      fire: 400,
+      water: 400,
+      air: 400,
+    }
+  },
+  // Minotot
+  { id: 'minotot',
+    name: {
+      de: 'Minotot',
+      en: 'Minotot',
+      es: 'Minotot',
+      fr: 'Minotot',
+      pt: 'Minotot',
+    },
+    imageUrl: `${ICON_BASE}/boss-icons/minotot.png`,
+    level: 160,
+    region: '',
+    family: '',
+    dungeon: 'minotot_room',
+    characteristics: {
+      vitality: 10000,
+      actionPoints: 10,
+      movementPoints: 5
+    },
+    resistances: {
+      neutral: 35,
+      earth: 35,
+      fire: 35,
+      water: -5,
+      air: -5,
+    }
+  },
+  // Obsidemon
+  { id: 'obsidemon',
+    name: {
+      de: 'Obsidianter',
+      en: 'Obsidemon',
+      es: 'Obsidiantre',
+      fr: 'Obsidiantre',
+      pt: 'Obsidemõnio',
+    },
+    imageUrl: `${ICON_BASE}/boss-icons/obsidemon.png`,
+    level: 160,
+    region: '',
+    family: '',
+    dungeon: 'the_obsidemons_hypogeum',
+    characteristics: {
+      vitality: 7000,
+      actionPoints: 16,
+      movementPoints: 6
+    },
+    resistances: {
+      neutral: 25,
+      earth: 23,
+      fire: 27,
+      water: 21,
+      air: 26,
+    }
+  },
+  // Zombrute
+  { id: 'zombrute',
+    name: {
+      de: 'Zombrutalist',
+      en: 'Zombrute',
+      es: 'Zombruto',
+      fr: 'Zombrute',
+      pt: 'Zombruto',
+    },
+    imageUrl: `${ICON_BASE}/boss-icons/zombrute.png`,
+    level: 160,
+    region: '',
+    family: '',
+    dungeon: 'the_flooded_chapel',
+    characteristics: {
+      vitality: 8000,
+      actionPoints: 14,
+      movementPoints: 4
+    },
+    resistances: {
+      neutral: 8,
+      earth: -5,
+      fire: 11,
+      water: 40,
+      air: -12,
+    }
+  },
+  // Tengu Snowfoux
+  { id: 'tengu_snowfoux',
+    name: {
+      de: 'Tengu Eisfux',
+      en: 'Tengu Snowfoux',
+      es: 'Tengu Gélifux',
+      fr: 'Tengu Givrefoux',
+      pt: 'Tengu Gelifox',
+    },
+    imageUrl: `${ICON_BASE}/boss-icons/tengu_snowfoux.png`,
+    level: 170,
+    region: '',
+    family: '',
+    dungeon: 'snowfoux_caverns',
+    characteristics: {
+      vitality: 7900,
+      actionPoints: 15,
+      movementPoints: 5
+    },
+    resistances: {
+      neutral: 33,
+      earth: 13,
+      fire: 19,
+      water: 28,
+      air: 21,
+    }
+  },
+  // Nagate
+  { id: 'nagate',
+    name: {
+      de: 'Nagate',
+      en: 'Nagate',
+      es: 'Nagate',
+      fr: 'Nagate',
+      pt: 'Nagate',
+    },
+    imageUrl: `${ICON_BASE}/boss-icons/nagate.png`,
+    level: 170,
+    region: '',
+    family: '',
+    dungeon: 'valley_of_the_lady_of_the_water',
+    characteristics: {
+      vitality: 8800,
+      actionPoints: 14,
+      movementPoints: 0
+    },
+    resistances: {
+      neutral: 20,
+      earth: 31,
+      fire: 20,
+      water: 35,
+      air: 20,
+    }
+  },
+  // Scale King
+  { id: 'scale_king',
+    name: {
+      de: 'König Skai',
+      en: 'Scale King',
+      es: 'Rey Eskamoso',
+      fr: 'Roi Skaille',
+      pt: 'Rei Skama',
+    },
+    imageUrl: `${ICON_BASE}/boss-icons/scale_king.png`,
+    level: 170,
+    region: '',
+    family: '',
+    dungeon: 'scale_kings_pyramid',
+    characteristics: {
+      vitality: 8800,
+      actionPoints: 14,
+      movementPoints: 6
+    },
+    resistances: {
+      neutral: 10,
+      earth: 10,
+      fire: 7,
+      water: 21,
+      air: -8,
+    }
+  },
+  // Korriander
+  { id: 'Korriander',
+    name: {
+      de: 'Korriander',
+      en: 'Korriander',
+      es: 'Cil',
+      fr: 'Korriandre',
+      pt: 'Kwentro',
+    },
+    imageUrl: `${ICON_BASE}/boss-icons/korriander.png`,
+    level: 180,
+    region: '',
+    family: '',
+    dungeon: 'korrianders_lair',
+    characteristics: {
+      vitality: 8900,
+      actionPoints: 15,
+      movementPoints: 6
+    },
+    resistances: {
+      neutral: 45,
+      earth: 9,
+      fire: 15,
+      water: 5,
+      air: 17,
+    }
+  },
+  // Giant Kralove
+  { id: 'giant_kralove',
+    name: {
+      de: 'Riesenkrakamor',
+      en: 'Giant Kralove',
+      es: 'Kralamar Gigante',
+      fr: 'Kralamoure Géant',
+      pt: 'Kralamore Gigante',
+    },
+    imageUrl: `${ICON_BASE}/boss-icons/giant_kralove.png`,
+    level: 180,
+    region: '',
+    family: '',
+    dungeon: 'lair_of_the_giant_kralove',
+    characteristics: {
+      vitality: 3700,
+      actionPoints: 18,
+      movementPoints: -1
+    },
+    resistances: {
+      neutral: 900,
+      earth: 900,
+      fire: 900,
+      water: 900,
+      air: 900,
+    }
+  },
+  // Bworker
+  { id: 'bworker',
+    name: {
+      de: 'Bworker',
+      en: 'Bworker',
+      es: 'Bworker',
+      fr: 'Bworker',
+      pt: 'Bworker',
+    },
+    imageUrl: `${ICON_BASE}/boss-icons/bworker.png`,
+    level: 180,
+    region: '',
+    family: '',
+    dungeon: 'bworker_dungeon',
+    characteristics: {
+      vitality: 9600,
+      actionPoints: 12,
+      movementPoints: 9
+    },
+    resistances: {
+      neutral: 18,
+      earth: 28,
+      fire: 28,
+      water: 18,
+      air: -13,
+    }
+  },
+  // Ougaa
+  { id: 'ougaa',
+    name: {
+      de: 'Stinkeling',
+      en: 'Ougaa',
+      es: 'Ugah',
+      fr: 'Ougah',
+      pt: 'Ugah',
+    },
+    imageUrl: `${ICON_BASE}/boss-icons/ougaa.png`,
+    level: 180,
+    region: '',
+    family: '',
+    dungeon: 'fungus_dungeon',
+    characteristics: {
+      vitality: 8500,
+      actionPoints: 18,
+      movementPoints: 6
+    },
+    resistances: {
+      neutral: 18,
+      earth: 13,
+      fire: 11,
+      water: 35,
+      air: 18,
+    }
+  },
+  // Tanukoui San
+  { id: 'tanukoui_san',
+    name: {
+      de: 'Tanukouï San',
+      en: 'Tanukoui San',
+      es: 'Tanukui San',
+      fr: 'Tanukouï San',
+      pt: 'Tanukui San',
+    },
+    imageUrl: `${ICON_BASE}/boss-icons/tanukoui_san.png`,
+    level: 180,
+    region: '',
+    family: '',
+    dungeon: 'tanukoui_sans_workshop',
+    characteristics: {
+      vitality: 8900,
+      actionPoints: 16,
+      movementPoints: 6
+    },
+    resistances: {
+      neutral: 14,
+      earth: 28,
+      fire: 7,
+      water: -8,
+      air: 5,
+    }
+  },
+  // Kolosso
+  { id: 'kolosso',
+    name: {
+      de: 'Daxolossus',
+      en: 'Kolosso',
+      es: 'Tejossus',
+      fr: 'Kolosso',
+      pt: 'Kolosso',
+    },
+    imageUrl: `${ICON_BASE}/boss-icons/kolosso.png`,
+    level: 190,
+    region: '',
+    family: '',
+    dungeon: 'kolossos_cavern',
+    characteristics: {
+      vitality: 8000,
+      actionPoints: 15,
+      movementPoints: 6
+    },
+    resistances: {
+      neutral: 25,
+      earth: 16,
+      fire: 22,
+      water: 10,
+      air: 29,
+    }
+  },
+  // Professor Xa
+  { id: 'professor_xa',
+    name: {
+      de: 'Professor Xa',
+      en: 'Professor Xa',
+      es: 'Profesor Xa',
+      fr: 'Professeur Xa',
+      pt: 'Professor Xa',
+    },
+    imageUrl: `${ICON_BASE}/boss-icons/professor_xa.png`,
+    level: 190,
+    region: '',
+    family: '',
+    dungeon: 'kolossos_cavern',
+    characteristics: {
+      vitality: 8000,
+      actionPoints: 15,
+      movementPoints: 6
+    },
+    resistances: {
+      neutral: 18,
+      earth: 24,
+      fire: 29,
+      water: 16,
+      air: 9,
+    }
+  },
+  // Founoroshi
+  { id: 'founoroshi',
+    name: {
+      de: 'Fuxoroshi',
+      en: 'Founoroshi',
+      es: 'Funoroshi',
+      fr: 'Founoroshi',
+      pt: 'Foxnoroshi',
+    },
+    imageUrl: `${ICON_BASE}/boss-icons/founoroshi.png`,
+    level: 190,
+    region: '',
+    family: '',
+    dungeon: 'fouxwork_factory',
+    characteristics: {
+      vitality: 11000,
+      actionPoints: 18,
+      movementPoints: 7
+    },
+    resistances: {
+      neutral: 15,
+      earth: 23,
+      fire: 10,
+      water: 17,
+      air: 20,
+    }
+  },
+  // Foster Fuji Snowfoux
+  { id: 'fuji_snowfoux',
+    name: {
+      de: 'Fuji Eisfux Ziehmutter',
+      en: 'Foster Fuji Snowfoux',
+      es: 'Fuji Gélifux Nodriza',
+      fr: 'Fuji Givrefoux Nourricière',
+      pt: 'Fuji Gelifox Maternal',
+    },
+    imageUrl: `${ICON_BASE}/boss-icons/fuji_snowfoux.png`,
+    level: 190,
+    region: '',
+    family: '',
+    dungeon: 'foster_caverns',
+    characteristics: {
+      vitality: 10000,
+      actionPoints: 12,
+      movementPoints: 4
+    },
+    resistances: {
+      neutral: -6,
+      earth: 6,
+      fire: 14,
+      water: 12,
+      air: -11,
+    }
+  },
+  // Grohlum
+  { id: 'grohlum',
+    name: {
+      de: 'Grollum',
+      en: 'Grohlum',
+      es: 'Esmigol',
+      fr: 'Grolloum',
+      pt: 'Gordum',
+    },
+    imageUrl: `${ICON_BASE}/boss-icons/grohlum.png`,
+    level: 190,
+    region: '',
+    family: '',
+    dungeon: 'sakai_mine',
+    characteristics: {
+      vitality: 11000,
+      actionPoints: 20,
+      movementPoints: 6
+    },
+    resistances: {
+      neutral: 34,
+      earth: 21,
+      fire: 31,
+      water: -5,
+      air: 24,
+    }
+  },
+  // Celestial Bearbarian
+  { id: 'celestial_bearbarian',
+    name: {
+      de: 'Himmlischer Barbär',
+      en: 'Celestial Bearbarian',
+      es: 'Golosotrón Real',
+      fr: 'Glourséleste',
+      pt: 'Glurseleste',
+    },
+    imageUrl: `${ICON_BASE}/boss-icons/celestial_bearbarian.png`,
+    level: 200,
+    region: '',
+    family: '',
+    dungeon: 'bearbarian_antichamber',
+    characteristics: {
+      vitality: 11000,
+      actionPoints: 20,
+      movementPoints: 8
+    },
+    resistances: {
+      neutral: 25,
+      earth: 21,
+      fire: 16,
+      water: 24,
+      air: 23,
+    }
+  },
+  // Shihan
+  { id: 'shihan',
+    name: {
+      de: 'Shihan',
+      en: 'Shihan',
+      es: 'Shihan',
+      fr: 'Shihan',
+      pt: 'Shihan',
+    },
+    imageUrl: `${ICON_BASE}/boss-icons/shihan.png`,
+    level: 200,
+    region: '',
+    family: '',
+    dungeon: 'wind_dojo',
+    characteristics: {
+      vitality: 11000,
+      actionPoints: 18,
+      movementPoints: 5
+    },
+    resistances: {
+      neutral: 23,
+      earth: 12,
+      fire: 24,
+      water: 16,
+      air: 28,
+    }
+  },
+  // Hanshi
+  { id: 'hanshi',
+    name: {
+      de: 'Hanshi',
+      en: 'Hanshi',
+      es: 'Hanshi',
+      fr: 'Hanshi',
+      pt: 'Hanshi',
+    },
+    imageUrl: `${ICON_BASE}/boss-icons/hanshi.png`,
+    level: 200,
+    region: '',
+    family: '',
+    dungeon: 'wind_dojo',
+    characteristics: {
+      vitality: 9900,
+      actionPoints: 18,
+      movementPoints: 5
+    },
+    resistances: {
+      neutral: 12,
+      earth: 23,
+      fire: 16,
+      water: 28,
+      air: 19,
+    }
+  },
+  // === Level 191 - 200 Dungeons ===
+  // Missiz Freezz
+  { id: 'missiz_freezz',
+    name: {
+      de: 'Missiz Frizz',
+      en: 'Missiz Freezz',
+      es: 'Mizz Frizz',
+      fr: 'Missiz Frizz',
+      pt: 'Missiz Frizz',
+    },
+    imageUrl: `${ICON_BASE}/boss-icons/missiz_freezz.png`,
+    level: 220,
+    region: '',
+    family: '',
+    dungeon: 'missiz_freezzs_frostforge',
+    characteristics: {
+      vitality: 13000,
+      actionPoints: 20,
+      movementPoints: 6
+    },
+    resistances: {
+      neutral: 14,
+      earth: 27,
+      fire: 16,
+      water: 21,
+      air: 25,
+    }
+  },
+  // Sylargh
+  { id: 'sylargh',
+    name: {
+      de: 'Sylargh',
+      en: 'Sylargh',
+      es: 'Sylargh',
+      fr: 'Sylargh',
+      pt: 'Sylargh',
+    },
+    imageUrl: `${ICON_BASE}/boss-icons/sylargh.png`,
+    level: 220,
+    region: '',
+    family: '',
+    dungeon: 'sylarghs_carrier',
+    characteristics: {
+      vitality: 13000,
+      actionPoints: 20,
+      movementPoints: 6
+    },
+    resistances: {
+      neutral: 14,
+      earth: 27,
+      fire: 16,
+      water: 22,
+      air: 12,
+    }
+  },
+  // Klime
+  { id: 'klime',
+    name: {
+      de: 'R.Klimm',
+      en: 'Klime',
+      es: 'Klim',
+      fr: 'Klime',
+      pt: 'Klim',
+    },
+    imageUrl: `${ICON_BASE}/boss-icons/klime.png`,
+    level: 220,
+    region: '',
+    family: '',
+    dungeon: 'klimes_private_suite',
+    characteristics: {
+      vitality: 13000,
+      actionPoints: 20,
+      movementPoints: 6
+    },
+    resistances: {
+      neutral: 14,
+      earth: 27,
+      fire: 16,
+      water: 9,
+      air: 25,
+    }
+  },
+  // Nileza
+  { id: 'nileza',
+    name: {
+      de: 'Nileza',
+      en: 'Nileza',
+      es: 'Nileza',
+      fr: 'Nileza',
+      pt: 'Nileza',
+    },
+    imageUrl: `${ICON_BASE}/boss-icons/nileza.png`,
+    level: 220,
+    region: '',
+    family: '',
+    dungeon: 'nilezas_laboratory',
+    characteristics: {
+      vitality: 13000,
+      actionPoints: 20,
+      movementPoints: 7
+    },
+    resistances: {
+      neutral: 14,
+      earth: 15,
+      fire: 16,
+      water: 32,
+      air: 25,
+    }
+  },
+  // Count Harebourg
+  { id: 'count_harebourg',
+    name: {
+      de: 'Graf Primzahl',
+      en: 'Count Harebourg',
+      es: 'Conde Kontatrás',
+      fr: 'Comte Harebourg',
+      pt: 'Conde Traspafrent',
+    },
+    imageUrl: `${ICON_BASE}/boss-icons/count_harebourg.png`,
+    level: 220,
+    region: '',
+    family: '',
+    dungeon: 'the_counts_dungeon',
+    characteristics: {
+      vitality: 13000,
+      actionPoints: 20,
+      movementPoints: 7
+    },
+    resistances: {
+      neutral: 14,
+      earth: 17,
+      fire: 16,
+      water: 29,
+      air: 25,
+    }
+  },
+  // Damadrya
+  { id: 'damadrya',
+    name: {
+      de: 'Damadrya',
+      en: 'Damadrya',
+      es: 'Kodámade',
+      fr: 'Damadrya',
+      pt: 'Damadriade',
+    },
+    imageUrl: `${ICON_BASE}/boss-icons/damadrya.png`,
+    level: 200,
+    region: 'pandala',
+    family: '',
+    dungeon: 'damadryas_bamboo_grove',
+    characteristics: {
+      vitality: 12000,
+      actionPoints: 20,
+      movementPoints: 0
+    },
+    resistances: {
+      neutral: 20,
+      earth: 23,
+      fire: 17,
+      water: 25,
+      air: 24,
+    }
+  },
+  // Katamashii
+  { id: 'katamashii',
+    name: {
+      de: 'Katamashii',
+      en: 'Katamashii',
+      es: 'Katamashii',
+      fr: 'Katamashii',
+      pt: 'Katamashii',
+    },
+    imageUrl: `${ICON_BASE}/boss-icons/katamashii.png`,
+    level: 200,
+    region: '',
+    family: '',
+    dungeon: 'lost_souls_sanctuary',
+    characteristics: {
+      vitality: 13000,
+      actionPoints: 20,
+      movementPoints: 6
+    },
+    resistances: {
+      neutral: 25,
+      earth: 17,
+      fire: 13,
+      water: 21,
+      air: 26,
+    }
+  },
+  // === Saisonale Bosse ===
+  // -- Ascension --
+  // Mucane
+  { id: 'mucane',
+    name: {
+      de: 'Mucane',
+      en: 'Mucane',
+      es: 'Mucane',
+      fr: 'Mucane',
+      pt: 'Mucane',
+    },
+    imageUrl: `${ICON_BASE}/boss-icons/mucane.png`,
+    level: 137,
+    region: '',
+    family: '',
+    dungeon: ['ascension_25', 'ascension_75'],
+    characteristics: {
+      vitality: 9318,
+      actionPoints: 14,
+      movementPoints: 6
+    },
+    resistances: {
+      neutral: 10,
+      earth: 12,
+      fire: 5,
+      water: 22,
+      air: -9,
+    }
+  },
+  // Ul-Khan
+  { id: 'ul_khan',
+    name: {
+      de: 'Ul\'Khan',
+      en: 'Ul\'Khan',
+      es: 'Ul\'Khan',
+      fr: 'Ul\'Khan',
+      pt: 'Ul\'Khan',
+    },
+    imageUrl: `${ICON_BASE}/boss-icons/ul_khan.png`,
+    level: 200,
+    region: '',
+    family: '',
+    dungeon: ['ascension_50', 'ascension_100'],
+    characteristics: {
+      vitality: 17790,
+      actionPoints: 12,
+      movementPoints: 6
+    },
+    resistances: {
+      neutral: 8,
+      earth: 14,
+      fire: -13,
+      water: 11,
+      air: 35,
+    }
+  },
+  // -- Vulkania --
+  // Sleepwalking Grozilla
+  { id: 'sleepwalking_grozilla',
+    name: {
+      de: 'Schlafwandelnder Grozilla',
+      en: 'Sleepwalking Grozilla',
+      es: 'Grozilla sonámbulo',
+      fr: 'Grozilla Somnambule',
+      pt: 'Grozilla Sonâmbulo',
+    },
+    imageUrl: `${ICON_BASE}/boss-icons/grozilla.png`,
+    level: 100,
+    region: '',
+    family: '',
+    dungeon: 'sleepwalking_pinki_crater',
+    characteristics: {
+      vitality: 1600,
+      actionPoints: 12,
+      movementPoints: 4
+    },
+    resistances: {
+      neutral: 20,
+      earth: 20,
+      fire: 50,
+      water: 20,
+      air: 20,
+    }
+  },
+  // Sleepwalking Grasmera
+  { id: 'sleepwalking_grasmera',
+    name: {
+      de: 'Schlafwandelnde Grasmera',
+      en: 'Sleepwalking Grasmera',
+      es: 'Grasmera sonámbulo',
+      fr: 'Grasmera Somnambule',
+      pt: 'Grasmera Sonâmbulo',
+    },
+    imageUrl: `${ICON_BASE}/boss-icons/grasmera.png`,
+    level: 100,
+    region: '',
+    family: '',
+    dungeon: 'sleepwalking_pinki_crater',
+    characteristics: {
+      vitality: 1600,
+      actionPoints: 12,
+      movementPoints: 4
+    },
+    resistances: {
+      neutral: 50,
+      earth: 30,
+      fire: 30,
+      water: 30,
+      air: 30,
+    }
+  },
+  // Exhausted Grozilla
+  { id: 'exhausted_grozilla',
+    name: {
+      de: 'Erschöpfter Grozilla',
+      en: 'Exhausted Grozilla',
+      es: 'Grozilla agotado',
+      fr: 'Grozilla Épuisé',
+      pt: 'Grozilla Exausto',
+    },
+    imageUrl: `${ICON_BASE}/boss-icons/grozilla.png`,
+    level: 200,
+    region: '',
+    family: '',
+    dungeon: 'exhausted_pinki_crater',
+    characteristics: {
+      vitality: 4800,
+      actionPoints: 12,
+      movementPoints: 5
+    },
+    resistances: {
+      neutral: 20,
+      earth: 20,
+      fire: 50,
+      water: 20,
+      air: 20,
+    }
+  },
+  // Exhausted Grasmera
+  { id: 'exhausted_grasmera',
+    name: {
+      de: 'Erschöpfte Grasmera',
+      en: 'Exhausted Grasmera',
+      es: 'Grasmera agotado',
+      fr: 'Grasmera Épuisé',
+      pt: 'Grasmera Exausto',
+    },
+    imageUrl: `${ICON_BASE}/boss-icons/grasmera.png`,
+    level: 200,
+    region: '',
+    family: '',
+    dungeon: 'exhausted_pinki_crater',
+    characteristics: {
+      vitality: 4800,
+      actionPoints: 12,
+      movementPoints: 5
+    },
+    resistances: {
+      neutral: 50,
+      earth: 30,
+      fire: 30,
+      water: 30,
+      air: 30,
+    }
+  },
+  // Tired Grozilla
+  { id: 'tired_grozilla',
+    name: {
+      de: 'Müder Grozilla',
+      en: 'Tired Grozilla',
+      es: 'Grozilla cansado',
+      fr: 'Grozilla Fatigué',
+      pt: 'Grozilla Cansado',
+    },
+    imageUrl: `${ICON_BASE}/boss-icons/grozilla.png`,
+    level: 300,
+    region: '',
+    family: '',
+    dungeon: 'tired_pinki_crater',
+    characteristics: {
+      vitality: 10000,
+      actionPoints: 12,
+      movementPoints: 5
+    },
+    resistances: {
+      neutral: 20,
+      earth: 20,
+      fire: 50,
+      water: 20,
+      air: 20,
+    }
+  },
+  // Tired Grasmera
+  { id: 'tired_grasmera',
+    name: {
+      de: 'Müde Grasmera',
+      en: 'Tired Grasmera',
+      es: 'Grasmera cansado',
+      fr: 'Grasmera Fatigué',
+      pt: 'Grasmera Cansado',
+    },
+    imageUrl: `${ICON_BASE}/boss-icons/grasmera.png`,
+    level: 300,
+    region: '',
+    family: '',
+    dungeon: 'tiredpinki_crater',
+    characteristics: {
+      vitality: 10000,
+      actionPoints: 12,
+      movementPoints: 5
+    },
+    resistances: {
+      neutral: 50,
+      earth: 30,
+      fire: 30,
+      water: 30,
+      air: 30,
+    }
+  },
+  // Grozilla
+  { id: 'grozilla',
+    name: {
+      de: 'Grozilla',
+      en: 'Grozilla',
+      es: 'Grozilla',
+      fr: 'Grozilla',
+      pt: 'Grozilla',
+    },
+    imageUrl: `${ICON_BASE}/boss-icons/grozilla.png`,
+    level: 400,
+    region: '',
+    family: '',
+    dungeon: 'pinki_crater',
+    characteristics: {
+      vitality: 16000,
+      actionPoints: 12,
+      movementPoints: 6
+    },
+    resistances: {
+      neutral: 20,
+      earth: 20,
+      fire: 50,
+      water: 20,
+      air: 20,
+    }
+  },
+  // Grasmera
+  { id: 'grasmera',
+    name: {
+      de: 'Grasmera',
+      en: 'Grasmera',
+      es: 'Grasmera',
+      fr: 'Grasmera',
+      pt: 'Grasmera',
+    },
+    imageUrl: `${ICON_BASE}/boss-icons/grasmera.png`,
+    level: 400,
+    region: '',
+    family: '',
+    dungeon: 'pinki_crater',
+    characteristics: {
+      vitality: 16000,
+      actionPoints: 12,
+      movementPoints: 6
+    },
+    resistances: {
+      neutral: 50,
+      earth: 30,
+      fire: 30,
+      water: 30,
+      air: 30,
+    }
+  },
+  // -- Horrob Isle
+  // B'one Shot
+  { id: 'bone_shot',
+    name: {
+      de: 'Mark Sauger',
+      en: 'B\'one Shot',
+      es: 'Hueso Pesado',
+      fr: 'Os Andeuk\'Hou',
+      pt: 'Osso Sinato',
+    },
+    imageUrl: `${ICON_BASE}/boss-icons/bone_shot.png`,
+    level: 60,
+    region: '',
+    family: '',
+    dungeon: '',
+    characteristics: {
+      vitality: 1200,
+      actionPoints: 10,
+      movementPoints: 5
+    },
+    resistances: {
+      neutral: -10,
+      earth: -3,
+      fire: 15,
+      water: 0,
+      air: 12,
+    }
+  },
+  // Al Howin
+  { id: 'al_howin',
+    name: {
+      de: 'Höll O\'Feen',
+      en: 'Al Howin',
+      es: 'Haluin',
+      fr: 'Halouine',
+      pt: 'Relouin',
+    },
+    imageUrl: `${ICON_BASE}/boss-icons/al_howin.png`,
+    level: 100,
+    region: '',
+    family: '',
+    dungeon: '',
+    characteristics: {
+      vitality: 3300,
+      actionPoints: 12,
+      movementPoints: 5
+    },
+    resistances: {
+      neutral: 13,
+      earth: 15,
+      fire: 0,
+      water: 18,
+      air: 5,
+    }
+  },
+  // Staff Deleghoul
+  { id: 'staff_deleghoul',
+    name: {
+      de: 'Personal Deleghul',
+      en: 'Staff Deleghul',
+      es: 'Deleghuaedo de Personal',
+      fr: 'Délégoule du Personnel',
+      pt: 'Carniçátiro',
+    },
+    imageUrl: `${ICON_BASE}/boss-icons/staff_deleghoul.png`,
+    level: 220,
+    region: '',
+    family: '',
+    dungeon: '',
+    characteristics: {
+      vitality: 18000,
+      actionPoints: 20,
+      movementPoints: 5
+    },
+    resistances: {
+      neutral: 130,
+      earth: 130,
+      fire: 130,
+      water: 130,
+      air: 130,
+    }
+  },
+  // -- Kwismas --
+  // Itzing
+  { id: 'itzing',
+    name: {
+      de: 'Pisack',
+      en: 'Itzing',
+      es: 'Pikabeto',
+      fr: 'Sapik',
+      pt: 'Spinho',
+    },
+    imageUrl: `${ICON_BASE}/boss-icons/itzing.png`,
+    level: 50,
+    region: '',
+    family: '',
+    dungeon: '',
+    characteristics: {
+      vitality: 1300,
+      actionPoints: 10,
+      movementPoints: 0
+    },
+    resistances: {
+      neutral: -20,
+      earth: 20,
+      fire: 20,
+      water: 20,
+      air: 20,
+    }
+  },
+  // Father Kwismas
+  { id: 'father_kwismas',
+    name: {
+      de: 'Weißnachtsmann',
+      en: 'Father Kwismas',
+      es: 'Chanta Klaus',
+      fr: 'Papa Nowel',
+      pt: 'Papai Nowel',
+    },
+    imageUrl: `${ICON_BASE}/boss-icons/father_kwismas.png`,
+    level: 110,
+    region: '',
+    family: '',
+    dungeon: '',
+    characteristics: {
+      vitality: 3900,
+      actionPoints: 10,
+      movementPoints: 2
+    },
+    resistances: {
+      neutral: -2,
+      earth: -2,
+      fire: 40,
+      water: 40,
+      air: 40,
+    }
+  },
+  // Father Whupper
+  { id: 'father_whupper',
+    name: {
+      de: 'Rubrächer der Knechter',
+      en: 'Father Whupper',
+      es: 'Papa No-es',
+      fr: 'Père Fwetar',
+      pt: 'Gwinch',
+    },
+    imageUrl: `${ICON_BASE}/boss-icons/father_whupper.png`,
+    level: 180,
+    region: '',
+    family: '',
+    dungeon: '',
+    characteristics: {
+      vitality: 9600,
+      actionPoints: 10,
+      movementPoints: 2
+    },
+    resistances: {
+      neutral: -2,
+      earth: -2,
+      fire: 30,
+      water: 30,
+      air: 30,
+    }
+  },
+  // Minotoball
+  { id: '',
+    name: {
+      de: '',
+      en: '',
+      es: '',
+      fr: '',
+      pt: '',
+    },
+    imageUrl: `${ICON_BASE}/boss-icons/.png`,
+    level: 0,
+    region: '',
+    family: '',
+    dungeon: '',
+    characteristics: {
+      vitality: 0,
+      actionPoints: 12,
+      movementPoints: 5
+    },
+    resistances: {
+      neutral: 0,
+      earth: 0,
+      fire: 0,
+      water: 0,
+      air: 0,
+    }
+  },
+  // -- Raid --
+  // Belladonna (Raid)
+  { id: 'exalted_belladonna',
+    name: {
+      de: 'Begeisterte Belladonna',
+      en: 'Exalted Belladonna',
+      es: 'Belladona Exaltada',
+      fr: 'Belladone Exaltée',
+      pt: 'Beladona Exaltada',
+    },
+    imageUrl: `${ICON_BASE}/boss-icons/belladonna.png`,
+    level: 300,
+    region: '',
+    family: '',
+    dungeon: '',
+    characteristics: {
+      vitality: 32000,
+      actionPoints: 20,
+      movementPoints: 6
+    },
+    resistances: {
+      neutral: 5,
+      earth: 21,
+      fire: 12,
+      water: 10,
+      air: 6,
+    }
+  },
+  // Dark Vlad
+  { id: 'dark_vlad',
+    name: {
+      de: 'Dark Vlad',
+      en: 'Dark Vlad',
+      es: 'Dark Vlad',
+      fr: 'Dark Vlad',
+      pt: 'Dark Vlad',
+    },
+    imageUrl: `${ICON_BASE}/boss-icons/dark_vlad.png`,
+    level: 300,
+    region: '',
+    family: '',
+    dungeon: '',
+    characteristics: {
+      vitality: 35000,
+      actionPoints: 20,
+      movementPoints: 7
+    },
+    resistances: {
+      neutral: 7,
+      earth: 0,
+      fire: 26,
+      water: -6,
+      air: 13,
+    }
+  },
 ];
 
 module.exports = { BOSSE_LISTE };

@@ -529,403 +529,600 @@ const DUNGEON_LISTE = [
       pt: '',
     },
     sidemobs: ['', '', ''],
-    challenges: ['statue', 'blitzkrieg', 'duo(20)'],
+    challenges: ['statue', 'blitzkrieg', 'duo(26)'],
     bossid: 'skeunk',
     dungeonLevel: 120
   },
-
-  { dungeonid: '',
+  // Minerock Sanctuary
+  { dungeonid: 'minerock_sanctuary',
     dungeonname: {
-      de: '',
-      en: '',
+      de: 'Erzfelser Heiligtum',
+      en: 'Minerock Sanctuary',
       es: '',
       fr: '',
       pt: '',
     },
     sidemobs: ['', '', ''],
-    challenges: ['', '', 'Duo(20)'],
-    bossid: '',
-    dungeonLevel: 0
+    challenges: ['last', 'zombie', 'duo(20)'],
+    bossid: 'crakillian_guardian',
+    dungeonLevel: 130
   },
-  // de: '', en: 'Minerock Sanctuary', es: '', fr: '', pt: ''
-  // de: / en: Last, Zombie, Duo(20) / es: / fr: / pt: 
-  { dungeonid: '',
+  // Kanigrula's Hideout
+  { dungeonid: 'kanigrulas_hideout',
     dungeonname: {
-      de: '',
-      en: '',
+      de: 'Kanigroulas Unterschlupf',
+      en: 'Kanigrula\'s Hideout',
       es: '',
       fr: '',
       pt: '',
     },
     sidemobs: ['', '', ''],
-    challenges: ['', '', 'Duo(20)'],
-    bossid: '',
-    dungeonLevel: 0
+    challenges: ['first', 'clean_hands', 'duo(20)'],
+    bossid: 'kanigrula',
+    dungeonLevel: 140
   },
-  // de: '', en: 'Kanigrula\'s Hideout', es: '', fr: '', pt: ''
-  // de: / en: First, Clean Hands, Duo(20) / es: / fr: / pt: 
-  { dungeonid: '',
+  // Soft Oak Dungeon
+  { dungeonid: 'soft_oak_dungeon',
     dungeonname: {
-      de: '',
-      en: '',
+      de: 'Weich Eich Dungeon',
+      en: 'Soft Oak Dungeon',
       es: '',
       fr: '',
       pt: '',
     },
     sidemobs: ['', '', ''],
-    challenges: ['', '', 'Duo(20)'],
+    challenges: ['freedom', 'first', 'duo(20)'],
     bossid: '',
-    dungeonLevel: 0
+    dungeonLevel: 140
   },
-  // de: '', en: 'Soft Oak Dungeon', es: '', fr: '', pt: ''
-  // de: / en: Freedom, First, Duo(20) / es: / fr: / pt: 
-  { dungeonid: '',
+  // The Tynril Lab
+  { dungeonid: 'the_tynril_lab',
     dungeonname: {
-      de: '',
-      en: '',
+      de: 'Tynrils Laboratorium',
+      en: 'The Tynril Lab',
       es: '',
       fr: '',
       pt: '',
     },
     sidemobs: ['', '', ''],
-    challenges: ['', '', 'Duo(20)'],
-    bossid: '',
-    dungeonLevel: 0
+    challenges: ['untouchable', 'zombie', 'duo(20)'],
+    bossid: {
+      disconcerted: 'disconcerted_tynril',
+      dismayed: 'dismayed_tynril',
+      perfidious: 'perfidious_tynril',
+      stunned: 'stunned_tynril',
+    },
+    dungeonLevel: 140
   },
-  // de: '', en: 'The Tynril Lab', es: '', fr: '', pt: ''
-  // de: / en: Untouchable, Zombie, Duo(20) / es: / fr: / pt: 
-  { dungeonid: '',
+  // Royal Pingwin's Excavation
+  { dungeonid: 'royal_pingwins_excavation',
     dungeonname: {
-      de: '',
-      en: '',
+      de: 'King Ping Grotte',
+      en: 'Royal Pingwin\'s Excavation',
       es: '',
       fr: '',
       pt: '',
     },
     sidemobs: ['', '', ''],
-    challenges: ['', '', 'Duo(20)'],
-    bossid: '',
-    dungeonLevel: 0
+    challenges: ['last', 'tight', 'duo(20)'],
+    bossid: 'royal_pingwin',
+    dungeonLevel: 140
   },
-  // de: '', en: 'Royal Pingwin\'s Excavation', es: '', fr: '', pt: ''
-  // de: / en: Last, Tight, Duo(20) / es: / fr: / pt: 
-  { dungeonid: '',
+  // Long Slumber's Barrow
+  { dungeonid: 'long_slumbers_barrow',
     dungeonname: {
-      de: '',
-      en: '',
+      de: 'Grabhügel des langen Schlafs',
+      en: 'Long Slumber\'s Barrow',
       es: '',
       fr: '',
       pt: '',
     },
     sidemobs: ['', '', ''],
-    challenges: ['', '', 'Duo(20)'],
-    bossid: '',
-    dungeonLevel: 0
+    challenges: ['first', 'survivor', 'duo(20)'],
+    bossid: 'hell_mina',
+    dungeonLevel: 140
   },
-  // de: '', en: 'Long Slumber\'s Barrow', es: '', fr: '', pt: ''
-  // de: / en: First, Survivor, Duo(20) / es: / fr: / pt: 
-  { dungeonid: '',
+  // The Wreck of the Hesperus
+  { dungeonid: 'the_wreck_of_the_hesperus',
     dungeonname: {
-      de: '',
-      en: '',
+      de: 'Wrack der Black Rogg',
+      en: 'The Wreck of the Hesperus',
       es: '',
       fr: '',
       pt: '',
     },
     sidemobs: ['', '', ''],
-    challenges: ['', '', 'Duo(20)'],
-    bossid: '',
-    dungeonLevel: 0
+    challenges: ['keep_moving', 'statue', 'duo(20)'],
+    bossid: 'buck_anear',
+    dungeonLevel: 150
   },
-  // de: '', en: 'The Wreck of The Hesperus', es: '', fr: '', pt: ''
-  // de: / en: Keep Moving, Statue, Duo(20) / es: / fr: / pt: 
-  { dungeonid: '',
+  // Amakna Castle Rat Dungeon
+  { dungeonid: 'amakna_castle_rat_dungeon',
     dungeonname: {
-      de: '',
-      en: '',
+      de: 'Rattendungeon des Schlosses von Amakna',
+      en: 'Amakna Castle Rat Dungeon',
       es: '',
       fr: '',
       pt: '',
     },
     sidemobs: ['', '', ''],
-    challenges: ['', '', 'Duo(20)'],
-    bossid: '',
-    dungeonLevel: 0
+    challenges: ['impertinence', 'last', 'duo(20)'],
+    bossid: {
+      sphincter: 'sphincter_cell',
+      white_rat: 'white_rat,',
+      black_rat: 'black_rat'
+    },
+    dungeonLevel: 150
   },
-  // de: '', en: 'Amakna Castle Rat Dungeon', es: '', fr: '', pt: ''
-  // de: / en: Impertinence, Last, Duo(20) / es: / fr: / pt: 
   // Stufe 151 - 190
-  { dungeonid: '',
+  // Kimbo's Canopy
+  { dungeonid: 'kimbos_canopy',
     dungeonname: {
-      de: '',
-      en: '',
+      de: 'Kimbo Blätterdach',
+      en: 'Kimbo\'s Canopy',
       es: '',
       fr: '',
       pt: '',
     },
     sidemobs: ['', '', ''],
-    challenges: ['', '', 'Duo(20)'],
-    bossid: '',
-    dungeonLevel: 0
+    challenges: ['statue', 'first', 'duo(20)'],
+    bossid: 'kimbo',
+    dungeonLevel: 160
   },
-  // de: '', en: 'Kimbo\'s Canopy', es: '', fr: '', pt: ''
-  // de: / en: Statue, First, Duo(20) / es: / fr: / pt: 
-  { dungeonid: '',
+  // Minotot Room
+  { dungeonid: 'minotot_room',
     dungeonname: {
-      de: '',
-      en: '',
+      de: 'Minotot Raum',
+      en: 'Minotot Room',
       es: '',
       fr: '',
       pt: '',
     },
     sidemobs: ['', '', ''],
-    challenges: ['', '', 'Duo(20)'],
-    bossid: '',
-    dungeonLevel: 0
+    challenges: ['keep_moving', 'first', 'duo(20)'],
+    bossid: 'minotot',
+    dungeonLevel: 160
   },
-  // de: '', en: 'Minotot Room', es: '', fr: '', pt: ''
-  // de: / en: Keep Moving, First, Duo(20) / es: / fr: / pt: 
-  { dungeonid: '',
+  // The Obsidemon's Hypogeum
+  { dungeonid: 'the_obsidemons_hypogeum',
     dungeonname: {
-      de: '',
-      en: '',
+      de: 'Grabgewölbe der Obsidianter',
+      en: 'The Obsidemon\'s Hypogeum',
       es: '',
       fr: '',
       pt: '',
     },
     sidemobs: ['', '', ''],
-    challenges: ['', '', 'Duo(20)'],
-    bossid: '',
-    dungeonLevel: 0
+    challenges: ['first', 'statue', 'duo(20)'],
+    bossid: 'obsidemon',
+    dungeonLevel: 160
   },
-  // de: '', en: 'The Obsidemon\'s Hypogeum', es: '', fr: '', pt: ''
-  // de: / en: First, Statue, Duo(20) / es: / fr: / pt: 
-  { dungeonid: '',
+  // The Flooded Chapel
+  { dungeonid: 'the_flooded_chapel',
     dungeonname: {
-      de: '',
-      en: '',
+      de: 'Die überflutete Kapelle',
+      en: 'The Flooded Chapel',
       es: '',
       fr: '',
       pt: '',
     },
     sidemobs: ['', '', ''],
-    challenges: ['', '', 'Duo(20)'],
-    bossid: '',
-    dungeonLevel: 0
+    challenges: ['fainthearted', 'versatile', 'duo(20)'],
+    bossid: 'zombrute',
+    dungeonLevel: 160
   },
-  // de: '', en: 'The Flooded Chapel', es: '', fr: '', pt: ''
-  // de: / en: Fainthearted, Versatile, Duo(20) / es: / fr: / pt: 
-  { dungeonid: '',
+  // Snowfoux Caverns
+  { dungeonid: 'snowfoux_caverns',
     dungeonname: {
-      de: '',
-      en: '',
+      de: 'Eisfux Höhlen',
+      en: 'Snowfoux Caverns',
       es: '',
       fr: '',
       pt: '',
     },
     sidemobs: ['', '', ''],
-    challenges: ['', '', 'Duo(20)'],
-    bossid: '',
-    dungeonLevel: 0
+    challenges: ['first', 'statue', 'duo(15)'],
+    bossid: 'tengu_snowfoux',
+    dungeonLevel: 170
   },
-  // de: '', en: Snowfoux Caverns '', es: '', fr: '', pt: ''
-  // de: / en: First, Statue, Duo / es: / fr: / pt: 
-  { dungeonid: '',
+  // Valley of the Lady of the Water
+  { dungeonid: 'valley_of_the_lady_of_the_water',
     dungeonname: {
-      de: '',
-      en: '',
+      de: 'Tal der Herrin über die Gewässer',
+      en: 'Valley of the Lady of the water',
       es: '',
       fr: '',
       pt: '',
     },
     sidemobs: ['', '', ''],
-    challenges: ['', '', 'Duo(20)'],
-    bossid: '',
-    dungeonLevel: 0
+    challenges: ['last', 'impertinence', 'duo(20)'],
+    bossid: 'nagate',
+    dungeonLevel: 170
   },
-  // de: '', en: 'Valley of the Lady of the Water', es: '', fr: '', pt: ''
-  // de: / en: Last, Impertinence, Duo(20) / es: / fr: / pt: 
-  { dungeonid: '',
+  // Scale King's Pyramid
+  { dungeonid: 'scale_kings_pyramid',
     dungeonname: {
-      de: '',
-      en: '',
+      de: 'Pyramide von König Skai',
+      en: 'Scale King\'s Pyramid',
       es: '',
       fr: '',
       pt: '',
     },
     sidemobs: ['', '', ''],
-    challenges: ['', '', 'Duo(20)'],
-    bossid: '',
-    dungeonLevel: 0
+    challenges: ['last', 'statue', 'duo(20)'],
+    bossid: 'scale_king',
+    dungeonLevel: 170
   },
-  // de: '', en: 'Scale King\'s Pyramid', es: '', fr: '', pt: ''
-  // de: / en: Last, Statue, Duo(20) / es: / fr: / pt: 
-  { dungeonid: '',
+  // Korriander's Lair
+  { dungeonid: 'korrianders_lair',
     dungeonname: {
-      de: '',
-      en: '',
+      de: 'Unterschlupf des Korrianders',
+      en: 'Korriander\'s Lair',
       es: '',
       fr: '',
       pt: '',
     },
     sidemobs: ['', '', ''],
-    challenges: ['', '', 'Duo(20)'],
-    bossid: '',
-    dungeonLevel: 0
+    challenges: ['mystique', 'zombie', 'duo(20)'],
+    bossid: 'Korriander',
+    dungeonLevel: 180
   },
-  // de: '', en: 'Korriander\'s Lair', es: '', fr: '', pt: ''
-  // de: / en: Mystique, Zombie, Duo(15) / es: / fr: / pt: 
-  { dungeonid: '',
+  // Lair of the Giant Kralove
+  { dungeonid: 'lair_of_the_giant_kralove',
     dungeonname: {
-      de: '',
-      en: '',
+      de: 'Höhle des Riesenkrakamors',
+      en: 'Lair of the Giant Kralove',
       es: '',
       fr: '',
       pt: '',
     },
     sidemobs: ['', '', ''],
-    challenges: ['', '', 'Duo(20)'],
-    bossid: '',
-    dungeonLevel: 0
+    challenges: ['nomad', 'blitzkrieg', 'Duo(20)'],
+    bossid: 'giant_kralove',
+    dungeonLevel: 180
   },
-  // de: '', en: 'Lair of the Giant Kralove', es: '', fr: '', pt: ''
-  // de: / en: Nomad, Blitzkrieg, Duo(41) / es: / fr: / pt: 
-  { dungeonid: '',
+  // Bworker Dungeon
+  { dungeonid: 'bworker_dungeon',
     dungeonname: {
-      de: '',
-      en: '',
+      de: 'Bworker Dungeon',
+      en: 'Bworker Dungeon',
       es: '',
       fr: '',
       pt: '',
     },
     sidemobs: ['', '', ''],
-    challenges: ['', '', 'Duo(20)'],
-    bossid: '',
-    dungeonLevel: 0
+    challenges: ['impertinence', 'quick_and_furious', 'duo(20)'],
+    bossid: 'bworker',
+    dungeonLevel: 180
   },
-  // de: '', en: 'Bworker Dungeon', es: '', fr: '', pt: ''
-  // de: / en: Impertinence, Quick and Furious, Duo(15) / es: / fr: / pt: 
-  { dungeonid: '',
+  // Fungus Dungeon
+  { dungeonid: 'fungus_dungeon',
     dungeonname: {
-      de: '',
-      en: '',
+      de: 'Pilz-Dungeon',
+      en: 'Fungus Dungeon',
       es: '',
       fr: '',
       pt: '',
     },
     sidemobs: ['', '', ''],
-    challenges: ['', '', 'Duo(20)'],
-    bossid: '',
-    dungeonLevel: 0
+    challenges: ['tight', 'last', 'Duo(15)'],
+    bossid: 'ougaa',
+    dungeonLevel: 180
   },
-  // de: '', en: 'Fungus Dungeon', es: '', fr: '', pt: ''
-  // de: / en: Tight, Last, Duo(15) / es: / fr: / pt: 
-  { dungeonid: '',
+  // Tanukoui San's Workshop
+  { dungeonid: 'tanukoui_sans_workshop',
     dungeonname: {
-      de: '',
-      en: '',
+      de: 'Tanukouï Sans Werkstatt',
+      en: 'Tanukoui San\'s Workshop',
       es: '',
       fr: '',
       pt: '',
     },
     sidemobs: ['', '', ''],
-    challenges: ['', '', 'Duo(20)'],
-    bossid: '',
-    dungeonLevel: 0
+    challenges: ['nomad', 'blitzkrieg', 'duo(20)'],
+    bossid: 'tanukoui_san',
+    dungeonLevel: 180
   },
-  // de: '', en: 'Tanukouï San\'s Workshop', es: '', fr: '', pt: ''
-  // de: / en: Nomad, Blitzkrieg, Duo(20) / es: / fr: / pt: 
-  { dungeonid: '',
+  // Kolosso's Cavern
+  { dungeonid: 'kolossos_cavern',
     dungeonname: {
-      de: '',
-      en: '',
+      de: 'Höhlen des Daxolossus',
+      en: 'Kolosso\'s Cavern',
       es: '',
       fr: '',
       pt: '',
     },
     sidemobs: ['', '', ''],
-    challenges: ['', '', 'Duo(20)'],
-    bossid: '',
-    dungeonLevel: 0
+    challenges: ['last', 'first', 'duo(19)'],
+    bossid: {
+      kolosso: 'kolosso',
+      professorXa: 'professor_xa'
+    },
+    dungeonLevel: 190
   },
-  // de: '', en: 'Kolosso≥\'s Cavern', es: '', fr: '', pt: ''
-  // de: / en: Last, First, Duo(19) / es: / fr: / pt: 
-  { dungeonid: '',
+  // Fouxwork Factory
+  { dungeonid: 'fouxwork_factory',
     dungeonname: {
-      de: '',
-      en: '',
+      de: 'Feuerwirrk-Fabrik',
+      en: 'Fouxwork Factory',
       es: '',
       fr: '',
       pt: '',
     },
     sidemobs: ['', '', ''],
-    challenges: ['', '', 'Duo(20)'],
-    bossid: '',
-    dungeonLevel: 0
+    challenges: ['last', 'hermit', 'duo(20)'],
+    bossid: 'founoroshi',
+    dungeonLevel: 190
   },
-  // de: '', en: 'Fouxwork Factory', es: '', fr: '', pt: ''
-  // de: / en: Last, Hermit, Duo(20) / es: / fr: / pt: 
-  { dungeonid: '',
+  // Foster Caverns
+  { dungeonid: 'foster_caverns',
     dungeonname: {
-      de: '',
-      en: '',
+      de: 'Fujis Höhle',
+      en: 'Foster Caverns',
       es: '',
       fr: '',
       pt: '',
     },
     sidemobs: ['', '', ''],
-    challenges: ['', '', 'Duo(20)'],
-    bossid: '',
-    dungeonLevel: 0
+    challenges: ['last', 'statue', 'duo(21)'],
+    bossid: 'fuji_snowfoux',
+    dungeonLevel: 190
   },
-  // de: '', en: 'Foster Caverns', es: '', fr: '', pt: ''
-  // de: / en: Last, Statue, Duo(21) / es: / fr: / pt:
-  { dungeonid: '',
+  // Sakai Mine
+  { dungeonid: 'sakai_mine',
     dungeonname: {
-      de: '',
-      en: '',
+      de: 'Mine von Arkal',
+      en: 'Sakai Mine',
       es: '',
       fr: '',
       pt: '',
     },
     sidemobs: ['', '', ''],
-    challenges: ['', '', 'Duo(20)'],
-    bossid: '',
-    dungeonLevel: 0
+    challenges: ['versatile', 'blitzkrieg', 'duo(28)'],
+    bossid: 'grohlum',
+    dungeonLevel: 190
   },
-  // de: '', en: 'Sakai Mine', es: '', fr: '', pt: ''
-  // de: / en: Versatile, Blitzkrieg, Duo(28) / es: / fr: / pt: 
-  { dungeonid: '',
+  // Bearbarian Antichamber
+  { dungeonid: 'bearbarian_antichamber',
     dungeonname: {
-      de: '',
-      en: '',
+      de: 'Vorraum des Barbärenstockes',
+      en: 'Bearbarian Antichamber',
       es: '',
       fr: '',
       pt: '',
     },
     sidemobs: ['', '', ''],
-    challenges: ['', '', 'Duo(20)'],
-    bossid: '',
-    dungeonLevel: 0
+    challenges: ['first', 'tight', 'duo(17)'],
+    bossid: 'celestial_bearbarian',
+    dungeonLevel: 190
   },
-  // de: '', en: 'Bearbarian Antichamber', es: '', fr: '', pt: ''
-  // de: / en: First, Tight, Duo(17) / es: / fr: / pt: 
-  { dungeonid: '',
+  // Wind Dojo
+  { dungeonid: 'wind_dojo',
     dungeonname: {
-      de: '',
-      en: '',
+      de: 'Dojo des Windes',
+      en: 'Wind Dojo',
       es: '',
       fr: '',
       pt: '',
     },
     sidemobs: ['', '', ''],
-    challenges: ['', '', 'Duo(20)'],
-    bossid: '',
-    dungeonLevel: 0
+    challenges: ['first', 'fainthearted', 'Duo(20)'],
+    bossid: {
+      shihan: 'shihan',
+      hanshi: 'hanshi'
+    },
+    dungeonLevel: 190
   },
-  // de: '', en: 'Wind Dojo', es: '', fr: '', pt: ''
-  // de: / en: First, Fainthearted, Duo(20) / es: / fr: / pt: 
   // Stufe 191 - 200
+  // Missiz Freezz's Frostforge
+  { dungeonid: 'missiz_freezzs_frostforge',
+    dungeonname: {
+      de: 'Missiz Frizz Kaltschmiede',
+      en: 'Missiz Frizz\'s Frostforge',
+      es: '',
+      fr: '',
+      pt: '',
+    },
+    sidemobs: ['', '', ''],
+    challenges: ['nomad', 'tight', 'duo(40)'],
+    bossid: 'missiz_freezz',
+    dungeonLevel: 190
+  },
+  // Sylargh's Carrier
+  { dungeonid: 'sylarghs_carrier',
+    dungeonname: {
+      de: 'Sylarghs Transport',
+      en: 'Sylargh\'s Carrier',
+      es: '',
+      fr: '',
+      pt: '',
+    },
+    sidemobs: ['', '', ''],
+    challenges: ['hermit', 'barbaric', 'duo(40)'],
+    bossid: 'sylargh',
+    dungeonLevel: 190
+  },
+  // Klime's Private Suite
+  { dungeonid: 'klimes_private_suite',
+    dungeonname: {
+      de: 'Die privaten Gesellschaftszimmer R.Klimms',
+      en: 'Klime\'s Private Suite',
+      es: '',
+      fr: '',
+      pt: '',
+    },
+    sidemobs: ['', '', ''],
+    challenges: ['fainthearted', 'nomad', 'duo(40)'],
+    bossid: 'klime',
+    dungeonLevel: 190
+  },
+  // Nileza's Laboratory
+  { dungeonid: 'nilezas_laboratory',
+    dungeonname: {
+      de: 'Nilezas Laboratorium',
+      en: 'Nileza\'s Laboratory',
+      es: '',
+      fr: '',
+      pt: '',
+    },
+    sidemobs: ['', '', ''],
+    challenges: ['fainthearted', 'last', 'duo(40)'],
+    bossid: 'nileza',
+    dungeonLevel: 190
+  },
+  // The Count's Dungeon
+  { dungeonid: 'the_counts_dungeon',
+    dungeonname: {
+      de: 'Graf Primzahls Dungeon',
+      en: 'The Count\'s Dungeon',
+      es: '',
+      fr: '',
+      pt: '',
+    },
+    sidemobs: ['', '', ''],
+    challenges: ['versatile', 'statue', 'duo(40)'],
+    bossid: 'count_harebourg',
+    dungeonLevel: 190
+  },
+  // Damadrya's Bamboo Grove
+  { dungeonid: 'damadryas_bamboo_grove',
+    dungeonname: {
+      de: 'Damadryas Bambushain',
+      en: 'Damadrya\'s Bamboo Grove',
+      es: '',
+      fr: '',
+      pt: '',
+    },
+    sidemobs: ['', '', ''],
+    challenges: ['hermit', 'first', 'duo(20)'],
+    bossid: 'damadrya',
+    dungeonLevel: 190
+  },
+  // Lost Soul's Sanctuary
+  { dungeonid: 'lost_souls_sanctuary',
+    dungeonname: {
+      de: 'Heiligtum der verirrten Seelen',
+      en: 'Lost Soul\'s Sanctuary',
+      es: '',
+      fr: '',
+      pt: '',
+    },
+    sidemobs: ['', '', ''],
+    challenges: ['clean_hands', 'impertinence', 'duo(20)'],
+    bossid: 'katamashii',
+    dungeonLevel: 190
+  },
+  // === Saisonale Dungeons
+  // -- Ascension --
+  { dungeonid: 'ascension_25',
+    dungeonname: {
+      de: 'Insel der Ersteigung(25)',
+      en: 'Ascension Island (25)',
+      es: '',
+      fr: '',
+      pt: '',
+    },
+    sidemobs: ['', '', ''],
+    challenges: [''],
+    bossid: 'mucane',
+    dungeonLevel: 0
+  },
+  { dungeonid: 'ascension_50',
+    dungeonname: {
+      de: 'Insel der Ersteigung(50)',
+      en: 'Ascension Island (50)',
+      es: '',
+      fr: '',
+      pt: '',
+    },
+    sidemobs: ['', '', ''],
+    challenges: [''],
+    bossid: 'ul_khan',
+    dungeonLevel: 0
+  },
+  { dungeonid: 'ascension_75',
+    dungeonname: {
+      de: 'Insel der Ersteigung(75)',
+      en: 'Ascension Island (75)',
+      es: '',
+      fr: '',
+      pt: '',
+    },
+    sidemobs: ['', '', ''],
+    challenges: [''],
+    bossid: 'mucane',
+    dungeonLevel: 0
+  },
+  { dungeonid: 'ascension_100',
+    dungeonname: {
+      de: 'Insel der Ersteigung(100)',
+      en: 'Ascension Island (100)',
+      es: '',
+      fr: '',
+      pt: '',
+    },
+    sidemobs: ['', '', ''],
+    challenges: [''],
+    bossid: 'ul_khan',
+    dungeonLevel: 0
+  },
+  // -- Vulkania --
+  // Sleepwalking
+  { dungeonid: 'sleepwalking_pinki_crater',
+    dungeonname: {
+      de: 'Schlafwandeln im Krater Minus',
+      en: 'Sleepwalking Pinki Crater',
+      es: '',
+      fr: '',
+      pt: '',
+    },
+    sidemobs: ['', '', ''],
+    challenges: ['chrono(9)', 'statue', 'clean_hands', 'duo(20)'],
+    bossid: ['sleepwalking_grozilla', 'sleepwalking_grasmera'],
+    dungeonLevel: 40
+  },
+  // Exhausted
+  { dungeonid: 'exhausted_pinki_crater',
+    dungeonname: {
+      de: 'Erschöpft im Krater Minus',
+      en: 'Exhausted Pinki Crater',
+      es: '',
+      fr: '',
+      pt: '',
+    },
+    sidemobs: ['', '', ''],
+    challenges: ['chrono(9)', 'first', 'tight', 'duo(20)'],
+    bossid: ['exhausted_grozilla', 'exhausted_grasmera'],
+    dungeonLevel: 90
+  },
+  // Tired
+  { dungeonid: 'tired_pinki_crater',
+    dungeonname: {
+      de: 'Müde im Krater Minus',
+      en: 'Tired Pinki Crater',
+      es: '',
+      fr: '',
+      pt: '',
+    },
+    sidemobs: ['', '', ''],
+    challenges: ['chrono(9)', 'nomad', 'blitzkrieg', 'duo(20)'],
+    bossid: ['tired_grozilla', 'tired_grasmera'],
+    dungeonLevel: 140
+  },
+  { dungeonid: 'pinki_crater',
+    dungeonname: {
+      de: 'Krater Minus',
+      en: 'Pinki Crater',
+      es: '',
+      fr: '',
+      pt: '',
+    },
+    sidemobs: ['', '', ''],
+    challenges: ['chrono(9)', 'zombie', 'impertinence', 'duo(20)'],
+    bossid: ['grozilla', 'grasmera'],
+    dungeonLevel: 190
+  },
+  // -- Horrob Isle --
   { dungeonid: '',
     dungeonname: {
       de: '',
@@ -935,12 +1132,10 @@ const DUNGEON_LISTE = [
       pt: '',
     },
     sidemobs: ['', '', ''],
-    challenges: ['', '', 'Duo(20)'],
-    bossid: '',
+    challenges: ['', '', 'duo()'],
+    bossid: 'bone_shot',
     dungeonLevel: 0
   },
-  // de: '', en: 'Missiz Freezz\'s Frostforge', es: '', fr: '', pt: ''
-  // de: / en: Nomad, Tight, Duo(40) / es: / fr: / pt: 
   { dungeonid: '',
     dungeonname: {
       de: '',
@@ -950,12 +1145,10 @@ const DUNGEON_LISTE = [
       pt: '',
     },
     sidemobs: ['', '', ''],
-    challenges: ['', '', 'Duo(20)'],
-    bossid: '',
+    challenges: ['', '', 'duo()'],
+    bossid: 'al_howing',
     dungeonLevel: 0
   },
-  // de: '', en: 'Sylargh\'s Carrier', es: '', fr: '', pt: ''
-  // de: / en: Hermit, Barbaric, Duo(40) / es: / fr: / pt: 
   { dungeonid: '',
     dungeonname: {
       de: '',
@@ -965,12 +1158,11 @@ const DUNGEON_LISTE = [
       pt: '',
     },
     sidemobs: ['', '', ''],
-    challenges: ['', '', 'Duo(20)'],
-    bossid: '',
+    challenges: ['', '', 'duo()'],
+    bossid: 'staff_deleghoul',
     dungeonLevel: 0
   },
-  // de: '', en: 'Klime\'s Private Suite', es: '', fr: '', pt: ''
-  // de: / en: Fainthearted, Nomad, Duo(40) / es: / fr: / pt: 
+  // -- Kwismas --
   { dungeonid: '',
     dungeonname: {
       de: '',
@@ -980,12 +1172,10 @@ const DUNGEON_LISTE = [
       pt: '',
     },
     sidemobs: ['', '', ''],
-    challenges: ['', '', 'Duo(20)'],
-    bossid: '',
+    challenges: ['', '', 'duo()'],
+    bossid: 'itzing',
     dungeonLevel: 0
   },
-  // de: '', en: 'Nileza\'s Laboratory', es: '', fr: '', pt: ''
-  // de: / en: Fainthearted, Last, Duo(40) / es: / fr: / pt: 
   { dungeonid: '',
     dungeonname: {
       de: '',
@@ -995,12 +1185,10 @@ const DUNGEON_LISTE = [
       pt: '',
     },
     sidemobs: ['', '', ''],
-    challenges: ['', '', 'Duo(20)'],
-    bossid: '',
+    challenges: ['', '', 'duo()'],
+    bossid: 'father_kwismas',
     dungeonLevel: 0
   },
-  // de: '', en: 'The Count\'s Dungeon', es: '', fr: '', pt: ''
-  // de: / en: Versatile, Statue, Duo(40) / es: / fr: / pt: 
   { dungeonid: '',
     dungeonname: {
       de: '',
@@ -1010,27 +1198,10 @@ const DUNGEON_LISTE = [
       pt: '',
     },
     sidemobs: ['', '', ''],
-    challenges: ['', '', 'Duo(20)'],
-    bossid: '',
+    challenges: ['', '', 'duo()'],
+    bossid: 'father_whupper',
     dungeonLevel: 0
   },
-  // de: '', en: 'Damadrya\'s Bamboo Grove', es: '', fr: '', pt: ''
-  // de: / en: Hermit, First, Duo(20) / es: / fr: / pt: 
-  { dungeonid: '',
-    dungeonname: {
-      de: '',
-      en: '',
-      es: '',
-      fr: '',
-      pt: '',
-    },
-    sidemobs: ['', '', ''],
-    challenges: ['', '', 'Duo(20)'],
-    bossid: '',
-    dungeonLevel: 0
-  },
-  // de: '', en: 'Lost Soul\'s Sanctuary', es: '', fr: '', pt: ''
-  // de: / en: Clean Hands, Impertinence, Duo(20) / es: / fr: / pt: 
 ];
 
 const DUNGEON_KATEGORIEN = {

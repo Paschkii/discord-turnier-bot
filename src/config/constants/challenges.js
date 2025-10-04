@@ -48,6 +48,12 @@ const CHALLENGES = [
 // - es: 
 // - fr: 
 // - pt: 
+// Chrono - Finish Fight in under x turns
+// - de: Die Zeit läuft
+// - en: Chrono
+// - es:
+// - fr:
+// - pt:
 // Clean Hands - Kill monsters indirectly
 // - de: Weiße Weste
 // - en: Clean Hands

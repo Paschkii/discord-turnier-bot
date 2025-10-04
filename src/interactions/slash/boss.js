@@ -121,7 +121,7 @@ async function execute(interaction) {
   await interaction.deferReply();
 
   const bossName = getBossName(boss, locale) || '—';
-  const level = boss.defaultLevel != null ? String(boss.defaultLevel) : '—';
+  const level = boss.level != null ? String(boss.level) : '—';
   const region = getRegionName(boss.region, locale) || '—';
   const family = getFamilyName(boss.family, locale) || '—';
   const characteristics = formatCharacteristics(boss, locale, { includeIcons: true });
