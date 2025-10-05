@@ -15,7 +15,7 @@ const BOSSE_LISTE = [
     level: 12,
     region: 'albuera',
     family: 'albuera',
-    dungeon: 'belladonna_dungeon',
+    homeDungeonID: 'belladonna_dungeon',
     characteristics: {
       vitality: 120,
       actionPoints: 7,
@@ -42,7 +42,7 @@ const BOSSE_LISTE = [
     level: 35,
     region: '',
     family: '',
-    dungeon: 'field_dungeon',
+    homeDungeonID: 'field_dungeon',
     characteristics: {
       vitality: 920,
       actionPoints: 8,
@@ -69,7 +69,7 @@ const BOSSE_LISTE = [
     level: 40,
     region: '',
     family: '',
-    dungeon: 'sand_dungeon',
+    homeDungeonID: 'sand_dungeon',
     characteristics: {
       vitality: 1200,
       actionPoints: 7,
@@ -96,7 +96,7 @@ const BOSSE_LISTE = [
     level: 40,
     region: '',
     family: '',
-    dungeon: 'scaraleaf_dungeon',
+    homeDungeonID: 'scaraleaf_dungeon',
     characteristics: {
       vitality: 1600,
       actionPoints: 8,
@@ -123,7 +123,7 @@ const BOSSE_LISTE = [
     level: 40,
     region: '',
     family: '',
-    dungeon: 'tofu_house',
+    homeDungeonID: 'tofu_house',
     characteristics: {
       vitality: 1000,
       actionPoints: 5,
@@ -150,7 +150,7 @@ const BOSSE_LISTE = [
     level: 40,
     region: '',
     family: '',
-    dungeon: 'haunted_house',
+    homeDungeonID: 'haunted_house',
     characteristics: {
       vitality: 820,
       actionPoints: 10,
@@ -177,7 +177,7 @@ const BOSSE_LISTE = [
     level: 40,
     region: '',
     family: '',
-    dungeon: 'skeleton_dungeon',
+    homeDungeonID: 'skeleton_dungeon',
     characteristics: {
       vitality: 680,
       actionPoints: 10,
@@ -204,7 +204,7 @@ const BOSSE_LISTE = [
     level: 60,
     region: '',
     family: '',
-    dungeon: 'gobball_dungeon',
+    homeDungeonID: 'gobball_dungeon',
     characteristics: {
       vitality: 1700,
       actionPoints: 9,
@@ -231,7 +231,7 @@ const BOSSE_LISTE = [
     level: 50,
     region: '',
     family: '',
-    dungeon: 'bwork_dungeon',
+    homeDungeonID: 'bwork_dungeon',
     characteristics: {
       vitality: 6700,
       actionPoints: 9,
@@ -258,7 +258,7 @@ const BOSSE_LISTE = [
     level: 50,
     region: '',
     family: '',
-    dungeon: 'blacksmith_dungeon',
+    homeDungeonID: 'blacksmith_dungeon',
     characteristics: {
       vitality: 820,
       actionPoints: 8,
@@ -285,7 +285,7 @@ const BOSSE_LISTE = [
     level: 50,
     region: '',
     family: '',
-    dungeon: 'larva_dungeon',
+    homeDungeonID: 'larva_dungeon',
     characteristics: {
       vitality: 1200,
       actionPoints: 9,
@@ -312,7 +312,7 @@ const BOSSE_LISTE = [
     level: 50,
     region: '',
     family: '',
-    dungeon: 'grotto_hesque',
+    homeDungeonID: 'grotto_hesque',
     characteristics: {
       vitality: 2000,
       actionPoints: 8,
@@ -339,7 +339,7 @@ const BOSSE_LISTE = [
     level: 50,
     region: '',
     family: '',
-    dungeon: 'kwakwas_nest',
+    homeDungeonID: 'kwakwas_nest',
     characteristics: {
       vitality: 1100,
       actionPoints: 9,
@@ -367,7 +367,7 @@ const BOSSE_LISTE = [
     level: 61,
     region: '',
     family: '',
-    dungeon: 'wa_wabbits_castle',
+    homeDungeonID: 'wa_wabbits_castle',
     characteristics: {
       vitality: 3000,
       actionPoints: 11,
@@ -394,7 +394,7 @@ const BOSSE_LISTE = [
     level: 60,
     region: '',
     family: '',
-    dungeon: 'kanniball_dungeon',
+    homeDungeonID: 'kanniball_dungeon',
     characteristics: {
       vitality: 1400,
       actionPoints: 10,
@@ -422,7 +422,7 @@ const BOSSE_LISTE = [
     level: 60,
     region: '',
     family: '',
-    dungeon: 'blop_dungeon',
+    homeDungeonID: 'blop_dungeon',
     characteristics: {
       vitality: 2400,
       actionPoints: 10,
@@ -449,7 +449,8 @@ const BOSSE_LISTE = [
     level: 60,
     region: '',
     family: '',
-    dungeon: 'blop_dungeon',
+    homeDungeonID: 'blop_dungeon',
+    alsoIn: [ { dungeonID: 'rainbow_blop_lair', overrides: { level: 120} } ],
     characteristics: {
       vitality: 2400,
       actionPoints: 10,
@@ -476,7 +477,7 @@ const BOSSE_LISTE = [
     level: 60,
     region: '',
     family: '',
-    dungeon: 'blop_dungeon',
+    homeDungeonID: 'blop_dungeon',
     characteristics: {
       vitality: 2400,
       actionPoints: 10,
@@ -503,7 +504,7 @@ const BOSSE_LISTE = [
     level: 60,
     region: '',
     family: '',
-    dungeon: 'blop_dungeon',
+    homeDungeonID: 'blop_dungeon',
     characteristics: {
       vitality: 2400,
       actionPoints: 10,
@@ -531,7 +532,7 @@ const BOSSE_LISTE = [
     level: 60,
     region: '',
     family: '',
-    dungeon: 'jellith_dimension',
+    homeDungeonID: 'jellith_dimension',
     characteristics: {
       vitality: 1400,
       actionPoints: 10,
@@ -558,7 +559,7 @@ const BOSSE_LISTE = [
     level: 60,
     region: '',
     family: '',
-    dungeon: 'jellith_dimension',
+    homeDungeonID: 'jellith_dimension',
     characteristics: {
       vitality: 1400,
       actionPoints: 10,
@@ -585,7 +586,7 @@ const BOSSE_LISTE = [
     level: 60,
     region: '',
     family: '',
-    dungeon: 'jellith_dimension',
+    homeDungeonID: 'jellith_dimension',
     characteristics: {
       vitality: 1400,
       actionPoints: 10,
@@ -612,7 +613,7 @@ const BOSSE_LISTE = [
     level: 60,
     region: '',
     family: '',
-    dungeon: 'jellith_dimension',
+    homeDungeonID: 'jellith_dimension',
     characteristics: {
       vitality: 1400,
       actionPoints: 10,
@@ -639,7 +640,7 @@ const BOSSE_LISTE = [
     level: 70,
     region: '',
     family: '',
-    dungeon: 'brumen_tinctorias_laboratory',
+    homeDungeonID: 'brumen_tinctorias_laboratory',
     characteristics: {
       vitality: 1900,
       actionPoints: 8,
@@ -666,7 +667,7 @@ const BOSSE_LISTE = [
     level: 60,
     region: '',
     family: '',
-    dungeon: 'otomais_ark',
+    homeDungeonID: 'otomais_ark',
     characteristics: {
       vitality: 1900,
       actionPoints: 10,
@@ -693,7 +694,7 @@ const BOSSE_LISTE = [
     level: 60,
     region: '',
     family: '',
-    dungeon: 'crackler_dungeon',
+    homeDungeonID: 'crackler_dungeon',
     characteristics: {
       vitality: 3100,
       actionPoints: 8,
@@ -720,7 +721,7 @@ const BOSSE_LISTE = [
     level: 80,
     region: '',
     family: '',
-    dungeon: 'wa_wabbits_castle',
+    homeDungeonID: 'wa_wabbits_castle',
     characteristics: {
       vitality: 3500,
       actionPoints: 14,
@@ -747,7 +748,7 @@ const BOSSE_LISTE = [
     level: 90,
     region: '',
     family: '',
-    dungeon: 'treechnid_dungeon',
+    homeDungeonID: 'treechnid_dungeon',
     characteristics: {
       vitality: 3600,
       actionPoints: 12,
@@ -774,7 +775,7 @@ const BOSSE_LISTE = [
     level: 90,
     region: '',
     family: '',
-    dungeon: 'hard_head_dam',
+    homeDungeonID: 'hard_head_dam',
     characteristics: {
       vitality: 4500,
       actionPoints: 14,
@@ -801,7 +802,7 @@ const BOSSE_LISTE = [
     level: 100,
     region: '',
     family: '',
-    dungeon: 'dragonpigs_den',
+    homeDungeonID: 'dragonpigs_den',
     characteristics: {
       vitality: 2100,
       actionPoints: 10,
@@ -828,7 +829,7 @@ const BOSSE_LISTE = [
     level: 100,
     region: '',
     family: '',
-    dungeon: 'koolich_cavern',
+    homeDungeonID: 'koolich_cavern',
     characteristics: {
       vitality: 5800,
       actionPoints: 10,
@@ -855,7 +856,7 @@ const BOSSE_LISTE = [
     level: 400,
     region: '',
     family: '',
-    dungeon: 'moon_dungeon',
+    homeDungeonID: 'moon_dungeon',
     characteristics: {
       vitality: 6600,
       actionPoints: 10,
@@ -882,7 +883,7 @@ const BOSSE_LISTE = [
     level: 100,
     region: '',
     family: '',
-    dungeon: 'canidae_dungeon',
+    homeDungeonID: 'canidae_dungeon',
     characteristics: {
       vitality: 5700,
       actionPoints: 8,
@@ -910,7 +911,7 @@ const BOSSE_LISTE = [
     level: 440,
     region: '',
     family: '',
-    dungeon: 'bherbs_gully',
+    homeDungeonID: 'bherbs_gully',
     characteristics: {
       vitality: 7000,
       actionPoints: 8,
@@ -937,7 +938,7 @@ const BOSSE_LISTE = [
     level: 110,
     region: '',
     family: '',
-    dungeon: 'lord_crows_library',
+    homeDungeonID: 'lord_crows_library',
     characteristics: {
       vitality: 4500,
       actionPoints: 12,
@@ -964,7 +965,7 @@ const BOSSE_LISTE = [
     level: 110,
     region: '',
     family: '',
-    dungeon: 'bonta_rat_dungeon',
+    homeDungeonID: 'bonta_rat_dungeon',
     characteristics: {
       vitality: 3500,
       actionPoints: 7,
@@ -991,7 +992,7 @@ const BOSSE_LISTE = [
     level: 110,
     region: '',
     family: '',
-    dungeon: 'brakmar_rat_dungeon',
+    homeDungeonID: 'brakmar_rat_dungeon',
     characteristics: {
       vitality: 3500,
       actionPoints: 7,
@@ -1018,7 +1019,7 @@ const BOSSE_LISTE = [
     level: 120,
     region: '',
     family: '',
-    dungeon: 'rainbow_blop_lair',
+    homeDungeonID: 'rainbow_blop_lair',
     characteristics: {
       vitality: 3400,
       actionPoints: 10,
@@ -1045,7 +1046,7 @@ const BOSSE_LISTE = [
     level: 120,
     region: '',
     family: '',
-    dungeon: 'labyrinth_minotoror',
+    homeDungeonID: 'labyrinth_minotoror',
     characteristics: {
       vitality: 4100,
       actionPoints: 14,
@@ -1072,7 +1073,7 @@ const BOSSE_LISTE = [
     level: 128,
     region: '',
     family: '',
-    dungeon: 'royal_mastogobs_greenhouse',
+    homeDungeonID: 'royal_mastogobs_greenhouse',
     characteristics: {
       vitality: 4000,
       actionPoints: 15,
@@ -1099,7 +1100,7 @@ const BOSSE_LISTE = [
     level: 120,
     region: '',
     family: '',
-    dungeon: 'royal_tofu_house',
+    homeDungeonID: 'royal_tofu_house',
     characteristics: {
       vitality: 3400,
       actionPoints: 12,
@@ -1126,7 +1127,7 @@ const BOSSE_LISTE = [
     level: 120,
     region: '',
     family: '',
-    dungeon: 'dreggon_dungeon',
+    homeDungeonID: 'dreggon_dungeon',
     characteristics: {
       vitality: 7000,
       actionPoints: 9,
@@ -1153,7 +1154,7 @@ const BOSSE_LISTE = [
     level: 120,
     region: '',
     family: '',
-    dungeon: 'skeunks_hideout',
+    homeDungeonID: 'skeunks_hideout',
     characteristics: {
       vitality: 4700,
       actionPoints: 12,
@@ -1180,7 +1181,7 @@ const BOSSE_LISTE = [
     level: 130,
     region: '',
     family: '',
-    dungeon: 'minerock_sanctuary',
+    homeDungeonID: 'minerock_sanctuary',
     characteristics: {
       vitality: 5700,
       actionPoints: 12,
@@ -1207,7 +1208,7 @@ const BOSSE_LISTE = [
     level: 140,
     region: '',
     family: '',
-    dungeon: 'kanigrulas_hideout',
+    homeDungeonID: 'kanigrulas_hideout',
     characteristics: {
       vitality: 6500,
       actionPoints: 12,
@@ -1234,7 +1235,7 @@ const BOSSE_LISTE = [
     level: 140,
     region: '',
     family: '',
-    dungeon: 'soft_oak_dungeon',
+    homeDungeonID: 'soft_oak_dungeon',
     characteristics: {
       vitality: 6500,
       actionPoints: 15,
@@ -1261,7 +1262,7 @@ const BOSSE_LISTE = [
     level: 140,
     region: '',
     family: '',
-    dungeon: 'the_tynril_lab',
+    homeDungeonID: 'the_tynril_lab',
     characteristics: {
       vitality: 3800,
       actionPoints: 10,
@@ -1288,7 +1289,7 @@ const BOSSE_LISTE = [
     level: 140,
     region: '',
     family: '',
-    dungeon: 'the_tynril_lab',
+    homeDungeonID: 'the_tynril_lab',
     characteristics: {
       vitality: 3800,
       actionPoints: 10,
@@ -1315,7 +1316,7 @@ const BOSSE_LISTE = [
     level: 140,
     region: '',
     family: '',
-    dungeon: 'the_tynril_lab',
+    homeDungeonID: 'the_tynril_lab',
     characteristics: {
       vitality: 3800,
       actionPoints: 10,
@@ -1342,7 +1343,7 @@ const BOSSE_LISTE = [
     level: 140,
     region: '',
     family: '',
-    dungeon: 'the_tynril_lab',
+    homeDungeonID: 'the_tynril_lab',
     characteristics: {
       vitality: 3800,
       actionPoints: 10,
@@ -1369,7 +1370,7 @@ const BOSSE_LISTE = [
     level: 162,
     region: '',
     family: '',
-    dungeon: 'royal_pingwins_excavation',
+    homeDungeonID: 'royal_pingwins_excavation',
     characteristics: {
       vitality: 4900,
       actionPoints: 15,
@@ -1396,7 +1397,7 @@ const BOSSE_LISTE = [
     level: 140,
     region: '',
     family: '',
-    dungeon: 'long_slumbers_barrow',
+    homeDungeonID: 'long_slumbers_barrow',
     characteristics: {
       vitality: 6500,
       actionPoints: 12,
@@ -1423,7 +1424,7 @@ const BOSSE_LISTE = [
     level: 150,
     region: '',
     family: '',
-    dungeon: 'the_wreck_of_the_hesperus',
+    homeDungeonID: 'the_wreck_of_the_hesperus',
     characteristics: {
       vitality: 6200,
       actionPoints: 16,
@@ -1450,7 +1451,7 @@ const BOSSE_LISTE = [
     level: 150,
     region: '',
     family: '',
-    dungeon: 'amakna_castle_rat_dungeon',
+    homeDungeonID: 'amakna_castle_rat_dungeon',
     characteristics: {
       vitality: 6400,
       actionPoints: 8,
@@ -1478,7 +1479,7 @@ const BOSSE_LISTE = [
     level: 160,
     region: '',
     family: '',
-    dungeon: 'kimbos_canopy',
+    homeDungeonID: 'kimbos_canopy',
     characteristics: {
       vitality: 6900,
       actionPoints: 10,
@@ -1505,7 +1506,7 @@ const BOSSE_LISTE = [
     level: 160,
     region: '',
     family: '',
-    dungeon: 'minotot_room',
+    homeDungeonID: 'minotot_room',
     characteristics: {
       vitality: 10000,
       actionPoints: 10,
@@ -1532,7 +1533,7 @@ const BOSSE_LISTE = [
     level: 160,
     region: '',
     family: '',
-    dungeon: 'the_obsidemons_hypogeum',
+    homeDungeonID: 'the_obsidemons_hypogeum',
     characteristics: {
       vitality: 7000,
       actionPoints: 16,
@@ -1559,7 +1560,7 @@ const BOSSE_LISTE = [
     level: 160,
     region: '',
     family: '',
-    dungeon: 'the_flooded_chapel',
+    homeDungeonID: 'the_flooded_chapel',
     characteristics: {
       vitality: 8000,
       actionPoints: 14,
@@ -1586,7 +1587,7 @@ const BOSSE_LISTE = [
     level: 170,
     region: '',
     family: '',
-    dungeon: 'snowfoux_caverns',
+    homeDungeonID: 'snowfoux_caverns',
     characteristics: {
       vitality: 7900,
       actionPoints: 15,
@@ -1613,7 +1614,7 @@ const BOSSE_LISTE = [
     level: 170,
     region: '',
     family: '',
-    dungeon: 'valley_of_the_lady_of_the_water',
+    homeDungeonID: 'valley_of_the_lady_of_the_water',
     characteristics: {
       vitality: 8800,
       actionPoints: 14,
@@ -1640,7 +1641,7 @@ const BOSSE_LISTE = [
     level: 170,
     region: '',
     family: '',
-    dungeon: 'scale_kings_pyramid',
+    homeDungeonID: 'scale_kings_pyramid',
     characteristics: {
       vitality: 8800,
       actionPoints: 14,
@@ -1667,7 +1668,7 @@ const BOSSE_LISTE = [
     level: 180,
     region: '',
     family: '',
-    dungeon: 'korrianders_lair',
+    homeDungeonID: 'korrianders_lair',
     characteristics: {
       vitality: 8900,
       actionPoints: 15,
@@ -1694,7 +1695,7 @@ const BOSSE_LISTE = [
     level: 180,
     region: '',
     family: '',
-    dungeon: 'lair_of_the_giant_kralove',
+    homeDungeonID: 'lair_of_the_giant_kralove',
     characteristics: {
       vitality: 3700,
       actionPoints: 18,
@@ -1721,7 +1722,7 @@ const BOSSE_LISTE = [
     level: 180,
     region: '',
     family: '',
-    dungeon: 'bworker_dungeon',
+    homeDungeonID: 'bworker_dungeon',
     characteristics: {
       vitality: 9600,
       actionPoints: 12,
@@ -1748,7 +1749,7 @@ const BOSSE_LISTE = [
     level: 180,
     region: '',
     family: '',
-    dungeon: 'fungus_dungeon',
+    homeDungeonID: 'fungus_dungeon',
     characteristics: {
       vitality: 8500,
       actionPoints: 18,
@@ -1775,7 +1776,7 @@ const BOSSE_LISTE = [
     level: 180,
     region: '',
     family: '',
-    dungeon: 'tanukoui_sans_workshop',
+    homeDungeonID: 'tanukoui_sans_workshop',
     characteristics: {
       vitality: 8900,
       actionPoints: 16,
@@ -1802,7 +1803,7 @@ const BOSSE_LISTE = [
     level: 190,
     region: '',
     family: '',
-    dungeon: 'kolossos_cavern',
+    homeDungeonID: 'kolossos_cavern',
     characteristics: {
       vitality: 8000,
       actionPoints: 15,
@@ -1829,7 +1830,7 @@ const BOSSE_LISTE = [
     level: 190,
     region: '',
     family: '',
-    dungeon: 'kolossos_cavern',
+    homeDungeonID: 'kolossos_cavern',
     characteristics: {
       vitality: 8000,
       actionPoints: 15,
@@ -1856,7 +1857,7 @@ const BOSSE_LISTE = [
     level: 190,
     region: '',
     family: '',
-    dungeon: 'fouxwork_factory',
+    homeDungeonID: 'fouxwork_factory',
     characteristics: {
       vitality: 11000,
       actionPoints: 18,
@@ -1883,7 +1884,7 @@ const BOSSE_LISTE = [
     level: 190,
     region: '',
     family: '',
-    dungeon: 'foster_caverns',
+    homeDungeonID: 'foster_caverns',
     characteristics: {
       vitality: 10000,
       actionPoints: 12,
@@ -1910,7 +1911,7 @@ const BOSSE_LISTE = [
     level: 190,
     region: '',
     family: '',
-    dungeon: 'sakai_mine',
+    homeDungeonID: 'sakai_mine',
     characteristics: {
       vitality: 11000,
       actionPoints: 20,
@@ -1937,7 +1938,7 @@ const BOSSE_LISTE = [
     level: 200,
     region: '',
     family: '',
-    dungeon: 'bearbarian_antichamber',
+    homeDungeonID: 'bearbarian_antichamber',
     characteristics: {
       vitality: 11000,
       actionPoints: 20,
@@ -1964,7 +1965,7 @@ const BOSSE_LISTE = [
     level: 200,
     region: '',
     family: '',
-    dungeon: 'wind_dojo',
+    homeDungeonID: 'wind_dojo',
     characteristics: {
       vitality: 11000,
       actionPoints: 18,
@@ -1991,7 +1992,7 @@ const BOSSE_LISTE = [
     level: 200,
     region: '',
     family: '',
-    dungeon: 'wind_dojo',
+    homeDungeonID: 'wind_dojo',
     characteristics: {
       vitality: 9900,
       actionPoints: 18,
@@ -2019,7 +2020,7 @@ const BOSSE_LISTE = [
     level: 220,
     region: '',
     family: '',
-    dungeon: 'missiz_freezzs_frostforge',
+    homeDungeonID: 'missiz_freezzs_frostforge',
     characteristics: {
       vitality: 13000,
       actionPoints: 20,
@@ -2046,7 +2047,7 @@ const BOSSE_LISTE = [
     level: 220,
     region: '',
     family: '',
-    dungeon: 'sylarghs_carrier',
+    homeDungeonID: 'sylarghs_carrier',
     characteristics: {
       vitality: 13000,
       actionPoints: 20,
@@ -2073,7 +2074,7 @@ const BOSSE_LISTE = [
     level: 220,
     region: '',
     family: '',
-    dungeon: 'klimes_private_suite',
+    homeDungeonID: 'klimes_private_suite',
     characteristics: {
       vitality: 13000,
       actionPoints: 20,
@@ -2100,7 +2101,7 @@ const BOSSE_LISTE = [
     level: 220,
     region: '',
     family: '',
-    dungeon: 'nilezas_laboratory',
+    homeDungeonID: 'nilezas_laboratory',
     characteristics: {
       vitality: 13000,
       actionPoints: 20,
@@ -2127,7 +2128,7 @@ const BOSSE_LISTE = [
     level: 220,
     region: '',
     family: '',
-    dungeon: 'the_counts_dungeon',
+    homeDungeonID: 'the_counts_dungeon',
     characteristics: {
       vitality: 13000,
       actionPoints: 20,
@@ -2154,7 +2155,7 @@ const BOSSE_LISTE = [
     level: 200,
     region: 'pandala',
     family: '',
-    dungeon: 'damadryas_bamboo_grove',
+    homeDungeonID: 'damadryas_bamboo_grove',
     characteristics: {
       vitality: 12000,
       actionPoints: 20,
@@ -2181,7 +2182,7 @@ const BOSSE_LISTE = [
     level: 200,
     region: '',
     family: '',
-    dungeon: 'lost_souls_sanctuary',
+    homeDungeonID: 'lost_souls_sanctuary',
     characteristics: {
       vitality: 13000,
       actionPoints: 20,
@@ -2210,7 +2211,7 @@ const BOSSE_LISTE = [
     level: 137,
     region: '',
     family: '',
-    dungeon: ['ascension_25', 'ascension_75'],
+    homeDungeonID: ['ascension_25', 'ascension_75'],
     characteristics: {
       vitality: 9318,
       actionPoints: 14,
@@ -2237,7 +2238,7 @@ const BOSSE_LISTE = [
     level: 200,
     region: '',
     family: '',
-    dungeon: ['ascension_50', 'ascension_100'],
+    homeDungeonID: ['ascension_50', 'ascension_100'],
     characteristics: {
       vitality: 17790,
       actionPoints: 12,
@@ -2265,7 +2266,7 @@ const BOSSE_LISTE = [
     level: 100,
     region: '',
     family: '',
-    dungeon: 'sleepwalking_pinki_crater',
+    homeDungeonID: 'sleepwalking_pinki_crater',
     characteristics: {
       vitality: 1600,
       actionPoints: 12,
@@ -2292,7 +2293,7 @@ const BOSSE_LISTE = [
     level: 100,
     region: '',
     family: '',
-    dungeon: 'sleepwalking_pinki_crater',
+    homeDungeonID: 'sleepwalking_pinki_crater',
     characteristics: {
       vitality: 1600,
       actionPoints: 12,
@@ -2319,7 +2320,7 @@ const BOSSE_LISTE = [
     level: 200,
     region: '',
     family: '',
-    dungeon: 'exhausted_pinki_crater',
+    homeDungeonID: 'exhausted_pinki_crater',
     characteristics: {
       vitality: 4800,
       actionPoints: 12,
@@ -2346,7 +2347,7 @@ const BOSSE_LISTE = [
     level: 200,
     region: '',
     family: '',
-    dungeon: 'exhausted_pinki_crater',
+    homeDungeonID: 'exhausted_pinki_crater',
     characteristics: {
       vitality: 4800,
       actionPoints: 12,
@@ -2373,7 +2374,7 @@ const BOSSE_LISTE = [
     level: 300,
     region: '',
     family: '',
-    dungeon: 'tired_pinki_crater',
+    homeDungeonID: 'tired_pinki_crater',
     characteristics: {
       vitality: 10000,
       actionPoints: 12,
@@ -2400,7 +2401,7 @@ const BOSSE_LISTE = [
     level: 300,
     region: '',
     family: '',
-    dungeon: 'tiredpinki_crater',
+    homeDungeonID: 'tiredpinki_crater',
     characteristics: {
       vitality: 10000,
       actionPoints: 12,
@@ -2427,7 +2428,7 @@ const BOSSE_LISTE = [
     level: 400,
     region: '',
     family: '',
-    dungeon: 'pinki_crater',
+    homeDungeonID: 'pinki_crater',
     characteristics: {
       vitality: 16000,
       actionPoints: 12,
@@ -2454,7 +2455,7 @@ const BOSSE_LISTE = [
     level: 400,
     region: '',
     family: '',
-    dungeon: 'pinki_crater',
+    homeDungeonID: 'pinki_crater',
     characteristics: {
       vitality: 16000,
       actionPoints: 12,
@@ -2482,7 +2483,7 @@ const BOSSE_LISTE = [
     level: 60,
     region: '',
     family: '',
-    dungeon: '',
+    homeDungeonID: '',
     characteristics: {
       vitality: 1200,
       actionPoints: 10,
@@ -2509,7 +2510,7 @@ const BOSSE_LISTE = [
     level: 100,
     region: '',
     family: '',
-    dungeon: '',
+    homeDungeonID: '',
     characteristics: {
       vitality: 3300,
       actionPoints: 12,
@@ -2536,7 +2537,7 @@ const BOSSE_LISTE = [
     level: 220,
     region: '',
     family: '',
-    dungeon: '',
+    homeDungeonID: '',
     characteristics: {
       vitality: 18000,
       actionPoints: 20,
@@ -2564,7 +2565,7 @@ const BOSSE_LISTE = [
     level: 50,
     region: '',
     family: '',
-    dungeon: '',
+    homeDungeonID: '',
     characteristics: {
       vitality: 1300,
       actionPoints: 10,
@@ -2591,7 +2592,7 @@ const BOSSE_LISTE = [
     level: 110,
     region: '',
     family: '',
-    dungeon: '',
+    homeDungeonID: '',
     characteristics: {
       vitality: 3900,
       actionPoints: 10,
@@ -2618,7 +2619,7 @@ const BOSSE_LISTE = [
     level: 180,
     region: '',
     family: '',
-    dungeon: '',
+    homeDungeonID: '',
     characteristics: {
       vitality: 9600,
       actionPoints: 10,
@@ -2645,7 +2646,7 @@ const BOSSE_LISTE = [
     level: 0,
     region: '',
     family: '',
-    dungeon: '',
+    homeDungeonID: '',
     characteristics: {
       vitality: 0,
       actionPoints: 12,
@@ -2673,7 +2674,7 @@ const BOSSE_LISTE = [
     level: 300,
     region: '',
     family: '',
-    dungeon: '',
+    homeDungeonID: '',
     characteristics: {
       vitality: 32000,
       actionPoints: 20,
@@ -2700,7 +2701,7 @@ const BOSSE_LISTE = [
     level: 300,
     region: '',
     family: '',
-    dungeon: '',
+    homeDungeonID: '',
     characteristics: {
       vitality: 35000,
       actionPoints: 20,

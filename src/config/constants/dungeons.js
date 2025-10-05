@@ -4,7 +4,7 @@
 const DUNGEON_LISTE = [
   // === Stufe 1 - 50 ===
   // Belladonna's Castle
-  { dungeonid: 'belladonna_castle',
+  { dungeonID: 'belladonna_castle',
     dungeonname: {
       de: 'Belladonnas Schloss',
       en: 'Belladonna\'s Castle',
@@ -12,13 +12,17 @@ const DUNGEON_LISTE = [
       fr: '',
       pt: '',
     },
-    sidemobs: ['', '', ''],
+    rooms: [
+      { id: 'room1', monsterID: []},
+      { id: 'room2', monsterID: []},
+      { id: 'room3', monsterID: []},
+    ],
     challenges: ['no_rush', 'last', 'duo(20)'],
     bossid: 'belladonna',
     dungeonLevel: 12
   },
   // Field Dungeon
-  { dungeonid: 'field_dungeon',
+  { dungeonID: 'field_dungeon',
     dungeonname: {
       de: 'Felder Dungeon',
       en: 'Field Dungeon',
@@ -32,7 +36,7 @@ const DUNGEON_LISTE = [
     dungeonLevel: 30
   },
   // Sand Dungeon
-  { dungeonid: 'sand_dungeon',
+  { dungeonID: 'sand_dungeon',
     dungeonname: {
       de: 'Versandeter Dungeon',
       en: 'Sand Dungeon',
@@ -46,7 +50,7 @@ const DUNGEON_LISTE = [
     dungeonLevel: 40
   },
   // Scaraleaf Dungeon
-  { dungeonid: 'scaraleaf_dungeon',
+  { dungeonID: 'scaraleaf_dungeon',
     dungeonname: {
       de: 'Scarablatt Dungeon',
       en: 'Scaraleaf Dungeon',
@@ -60,7 +64,7 @@ const DUNGEON_LISTE = [
     dungeonLevel: 40
   },
   // Tofu House
-  { dungeonid: 'tofu_house',
+  { dungeonID: 'tofu_house',
     dungeonname: {
       de: 'Tofu Dungeon',
       en: 'Tofu House',
@@ -74,7 +78,7 @@ const DUNGEON_LISTE = [
     dungeonLevel: 40
   },
   // Haunted House
-  { dungeonid: 'haunted_house',
+  { dungeonID: 'haunted_house',
     dungeonname: {
       de: 'Geisterhaus',
       en: 'Haunted House',
@@ -88,7 +92,7 @@ const DUNGEON_LISTE = [
     dungeonLevel: 40
   },
   // Skeleton Dungeon
-  { dungeonid: 'skeleton_dungeon',
+  { dungeonID: 'skeleton_dungeon',
     dungeonname: {
       de: 'Dungeon der Skelette',
       en: 'Skeleton Dungeon',
@@ -102,7 +106,7 @@ const DUNGEON_LISTE = [
     dungeonLevel: 40
   },
   // Gobball Dungeon
-  { dungeonid: 'gobball_dungeon',
+  { dungeonID: 'gobball_dungeon',
     dungeonname: {
       de: 'Fresssack Dungeon',
       en: 'Gobball Dungeon',
@@ -116,7 +120,7 @@ const DUNGEON_LISTE = [
     dungeonLevel: 50
   },
   // Bwork Dungeon
-  { dungeonid: 'bwork_dungeon',
+  { dungeonID: 'bwork_dungeon',
     dungeonname: {
       de: 'Bwork Dungeon',
       en: 'Bwork Dungeon',
@@ -130,7 +134,7 @@ const DUNGEON_LISTE = [
     dungeonLevel: 50
   },
   // Blacksmith Dungeon
-  { dungeonid: 'blacksmith_dungeon',
+  { dungeonID: 'blacksmith_dungeon',
     dungeonname: {
       de: 'Dungeon der Schattenschmiede',
       en: 'Blacksmith Dungeon',
@@ -144,7 +148,7 @@ const DUNGEON_LISTE = [
     dungeonLevel: 50
   },
   // Larva Dungeon
-  { dungeonid: 'larva_dungeon',
+  { dungeonID: 'larva_dungeon',
     dungeonname: {
       de: 'Larven Dungeon',
       en: 'Larva Dungeon',
@@ -158,7 +162,7 @@ const DUNGEON_LISTE = [
     dungeonLevel: 50
   },
   // Grotto Hesque
-  { dungeonid: 'grotto_hesque',
+  { dungeonID: 'grotto_hesque',
     dungeonname: {
       de: 'Aggrotte',
       en: 'Grotto Hesque',
@@ -172,7 +176,7 @@ const DUNGEON_LISTE = [
     dungeonLevel: 50
   },
   // Kwakwa's Nest
-  { dungeonid: 'kwakwas_nest',
+  { dungeonID: 'kwakwas_nest',
     dungeonname: {
       de: 'Nest des Kwackataus',
       en: 'Kwakwa\'s Nest',
@@ -187,7 +191,7 @@ const DUNGEON_LISTE = [
   },
   // Stufe 51 - 100
   // Wa Wabbit's Castle
-  { dungeonid: 'wa_wabbits_castle',
+  { dungeonID: 'wa_wabbits_castle',
     dungeonname: {
       de: 'Schloss des Wa Wabbits',
       en: 'Wa Wabbit\'s Castle',
@@ -201,7 +205,7 @@ const DUNGEON_LISTE = [
     dungeonLevel: 60
   },
   // Kanniball Dungeon
-  { dungeonid: 'kanniball_dungeon',
+  { dungeonID: 'kanniball_dungeon',
     dungeonname: {
       de: 'Kanniball Dungeon',
       en: 'Kanniball Dungeon',
@@ -215,7 +219,7 @@ const DUNGEON_LISTE = [
     dungeonLevel: 60
   },
   // Blop Dungeon
-  { dungeonid: 'blop_dungeon',
+  { dungeonID: 'blop_dungeon',
     dungeonname: {
       de: 'Blob Dungeon',
       en: 'Blop Dungeon',
@@ -225,16 +229,11 @@ const DUNGEON_LISTE = [
     },
     sidemobs: ['', '', ''],
     challenges: ['duel', 'fainthearted', 'duo(20)'],
-    bossid: {
-      cherry: 'royal_morello_cherry_blop',
-      pippin: 'royal_pippin_blop',
-      coco: 'royal_coco_blop',
-      indigo: 'royal_indigo_blop',
-    },
+    bossid: ['royal_morello_cherry_blop', 'royal_pippin_blop', 'royal_coco_blop', 'royal_indigo_blop'],
     dungeonLevel: 60
   },
   // The Jellith Dimension
-  { dungeonid: 'jellith_dimension',
+  { dungeonID: 'jellith_dimension',
     dungeonname: {
       de: 'Königliche Gelee Dimension',
       en: 'The Jellith Dimension',
@@ -244,16 +243,11 @@ const DUNGEON_LISTE = [
     },
     sidemobs: ['', '', ''],
     challenges: ['duel', 'tight', 'duo(20)'],
-    bossid: {
-      blue: 'royal_blue_jelly',
-      mint: 'royal_mint_jelly',
-      lemon: 'royal_lemon_jelly',
-      strawberry: 'royal_strawberry_jelly',
-    },
+    bossid: ['royal_blue_jelly', 'royal_mint_jelly', 'royal_lemon_jelly', 'royal_strawberry_jelly'],
     dungeonLevel: 60
   },
   // Brumen Tinctoria's LaboRATory
-  { dungeonid: 'brumen_tinctorias_laboratory',
+  { dungeonID: 'brumen_tinctorias_laboratory',
     dungeonname: {
       de: 'Brumen Tinctorias Laboratorium',
       en: 'Brumen Tinctoria\'s LaboRATory',
@@ -267,7 +261,7 @@ const DUNGEON_LISTE = [
     dungeonLevel: 60
   },
   // Hold of Otomai's Ark
-  { dungeonid: 'otomais_ark',
+  { dungeonID: 'otomais_ark',
     dungeonname: {
       de: 'Bilge von Otomaïs Arche',
       en: 'Hold of Otomai\'s Ark',
@@ -281,7 +275,7 @@ const DUNGEON_LISTE = [
     dungeonLevel: 70
   },
   // Crackler Dungeon
-  { dungeonid: 'crackler_dungeon',
+  { dungeonID: 'crackler_dungeon',
     dungeonname: {
       de: 'Krachler Dungeon',
       en: 'Crackler Dungeon',
@@ -295,7 +289,7 @@ const DUNGEON_LISTE = [
     dungeonLevel: 70
   },
   // Wa Wabbit's Warren
-  { dungeonid: 'wa_wabbits_warren',
+  { dungeonID: 'wa_wabbits_warren',
     dungeonname: {
       de: 'Wa Wabbit Bau',
       en: 'Wa Wabbit\'s Warren',
@@ -309,7 +303,7 @@ const DUNGEON_LISTE = [
     dungeonLevel: 80
   },
   // Treechnid Dungeon
-  { dungeonid: 'treechnid_dungeon',
+  { dungeonID: 'treechnid_dungeon',
     dungeonname: {
       de: 'Astaknyden Dungeon',
       en: 'Treechnid Dungeon',
@@ -323,7 +317,7 @@ const DUNGEON_LISTE = [
     dungeonLevel: 90
   },
   // Hard-Head Dam
-  { dungeonid: 'hard_head_dam',
+  { dungeonID: 'hard_head_dam',
     dungeonname: {
       de: 'Dickschädel-Staudamm',
       en: 'Hard-Head Dam',
@@ -337,7 +331,7 @@ const DUNGEON_LISTE = [
     dungeonLevel: 90
   },
   // Dragon Pig's Den
-  { dungeonid: 'dragonpigs_den',
+  { dungeonID: 'dragonpigs_den',
     dungeonname: {
       de: 'Unterschlupf des Schweinedrachens',
       en: 'Dragon Pig\'s Den',
@@ -351,7 +345,7 @@ const DUNGEON_LISTE = [
     dungeonLevel: 100
   },
   // Koolich Cavern
-  { dungeonid: 'koolich_cavern',
+  { dungeonID: 'koolich_cavern',
     dungeonname: {
       de: 'Höhle des Kuhlosses',
       en: 'Koolich Cavern',
@@ -365,7 +359,7 @@ const DUNGEON_LISTE = [
     dungeonLevel: 100
   },
   // Moon Dungeon
-  { dungeonid: 'moon_dungeon',
+  { dungeonID: 'moon_dungeon',
     dungeonname: {
       de: 'Dungeon von Moon',
       en: 'Moon Dungeon',
@@ -379,7 +373,7 @@ const DUNGEON_LISTE = [
     dungeonLevel: 100
   },
   // Canidae Dungeon
-  { dungeonid: 'canidae_dungeon',
+  { dungeonID: 'canidae_dungeon',
     dungeonname: {
       de: 'Canidae Dungeon',
       en: 'Canidae Dungeon',
@@ -394,7 +388,7 @@ const DUNGEON_LISTE = [
   },
   // Stufe 101 - 150
   // Bherb's Gully
-  { dungeonid: 'bherbs_gully',
+  { dungeonID: 'bherbs_gully',
     dungeonname: {
       de: 'Shilf-Engpass',
       en: 'Bherb\'s Gully',
@@ -408,7 +402,7 @@ const DUNGEON_LISTE = [
     dungeonLevel: 110
   },
   // Lord Crow's Library
-  { dungeonid: 'lord_crows_library',
+  { dungeonID: 'lord_crows_library',
     dungeonname: {
       de: 'Meister Rabs Bibliothek',
       en: 'Lord Crow\'s Library',
@@ -422,7 +416,7 @@ const DUNGEON_LISTE = [
     dungeonLevel: 110
   },
   // Bonta Rat Dungeon
-  { dungeonid: 'bonta_rat_dungeon',
+  { dungeonID: 'bonta_rat_dungeon',
     dungeonname: {
       de: 'Rattendungeon von Bonta',
       en: 'Bonta Rat Dungeon',
@@ -436,7 +430,7 @@ const DUNGEON_LISTE = [
     dungeonLevel: 110
   },
   // Brakmar Rat Dungeon
-  { dungeonid: 'brakmar_rat_dungeon',
+  { dungeonID: 'brakmar_rat_dungeon',
     dungeonname: {
       de: 'Rattendungeon von Brakmar',
       en: 'Brakmar Rat Dungeon',
@@ -450,7 +444,7 @@ const DUNGEON_LISTE = [
     dungeonLevel: 110
   },
 
-  { dungeonid: 'rainbow_blop_lair',
+  { dungeonID: 'rainbow_blop_lair',
     dungeonname: {
       de: 'Unterschlupf des königlichen Multiblobs',
       en: 'Rainbow Blop Lair',
@@ -464,7 +458,7 @@ const DUNGEON_LISTE = [
     dungeonLevel: 120
   },
   // Inner Labyrinth of the Minotoror
-  { dungeonid: 'labyrinth_minotoror',
+  { dungeonID: 'labyrinth_minotoror',
     dungeonname: {
       de: 'Herz des Labyrinths des Minotorors',
       en: 'Inner Labyrinth of the Minotoror',
@@ -478,7 +472,7 @@ const DUNGEON_LISTE = [
     dungeonLevel: 120
   },
   // Royal Mastogob's Greenhouse
-  { dungeonid: 'royal_mastogobs_greenhouse',
+  { dungeonID: 'royal_mastogobs_greenhouse',
     dungeonname: {
       de: 'Gewächshaus des Königlichen Fressmuts',
       en: 'Royal Mastogob\'s Greenhouse',
@@ -492,7 +486,7 @@ const DUNGEON_LISTE = [
     dungeonLevel: 120
   },
   // Royal Tofu House
-  { dungeonid: 'royal_tofu_house',
+  { dungeonID: 'royal_tofu_house',
     dungeonname: {
       de: 'Königlicher Tofustall',
       en: 'Royal Tofu House',
@@ -506,7 +500,7 @@ const DUNGEON_LISTE = [
     dungeonLevel: 120
   },
   // Dreggon Dungeon
-  { dungeonid: 'dreggon_dungeon',
+  { dungeonID: 'dreggon_dungeon',
     dungeonname: {
       de: 'Drachei-Dungeon',
       en: 'Dreggon Dungeon',
@@ -520,7 +514,7 @@ const DUNGEON_LISTE = [
     dungeonLevel: 120
   },
   // Skeunk's Hideout
-  { dungeonid: 'skeunks_hideout',
+  { dungeonID: 'skeunks_hideout',
     dungeonname: {
       de: 'Unterschlupf des Skeunks',
       en: 'Skeunk\'s Hideout',
@@ -534,7 +528,7 @@ const DUNGEON_LISTE = [
     dungeonLevel: 120
   },
   // Minerock Sanctuary
-  { dungeonid: 'minerock_sanctuary',
+  { dungeonID: 'minerock_sanctuary',
     dungeonname: {
       de: 'Erzfelser Heiligtum',
       en: 'Minerock Sanctuary',
@@ -548,7 +542,7 @@ const DUNGEON_LISTE = [
     dungeonLevel: 130
   },
   // Kanigrula's Hideout
-  { dungeonid: 'kanigrulas_hideout',
+  { dungeonID: 'kanigrulas_hideout',
     dungeonname: {
       de: 'Kanigroulas Unterschlupf',
       en: 'Kanigrula\'s Hideout',
@@ -562,7 +556,7 @@ const DUNGEON_LISTE = [
     dungeonLevel: 140
   },
   // Soft Oak Dungeon
-  { dungeonid: 'soft_oak_dungeon',
+  { dungeonID: 'soft_oak_dungeon',
     dungeonname: {
       de: 'Weich Eich Dungeon',
       en: 'Soft Oak Dungeon',
@@ -576,7 +570,7 @@ const DUNGEON_LISTE = [
     dungeonLevel: 140
   },
   // The Tynril Lab
-  { dungeonid: 'the_tynril_lab',
+  { dungeonID: 'the_tynril_lab',
     dungeonname: {
       de: 'Tynrils Laboratorium',
       en: 'The Tynril Lab',
@@ -595,7 +589,7 @@ const DUNGEON_LISTE = [
     dungeonLevel: 140
   },
   // Royal Pingwin's Excavation
-  { dungeonid: 'royal_pingwins_excavation',
+  { dungeonID: 'royal_pingwins_excavation',
     dungeonname: {
       de: 'King Ping Grotte',
       en: 'Royal Pingwin\'s Excavation',
@@ -609,7 +603,7 @@ const DUNGEON_LISTE = [
     dungeonLevel: 140
   },
   // Long Slumber's Barrow
-  { dungeonid: 'long_slumbers_barrow',
+  { dungeonID: 'long_slumbers_barrow',
     dungeonname: {
       de: 'Grabhügel des langen Schlafs',
       en: 'Long Slumber\'s Barrow',
@@ -623,7 +617,7 @@ const DUNGEON_LISTE = [
     dungeonLevel: 140
   },
   // The Wreck of the Hesperus
-  { dungeonid: 'the_wreck_of_the_hesperus',
+  { dungeonID: 'the_wreck_of_the_hesperus',
     dungeonname: {
       de: 'Wrack der Black Rogg',
       en: 'The Wreck of the Hesperus',
@@ -637,7 +631,7 @@ const DUNGEON_LISTE = [
     dungeonLevel: 150
   },
   // Amakna Castle Rat Dungeon
-  { dungeonid: 'amakna_castle_rat_dungeon',
+  { dungeonID: 'amakna_castle_rat_dungeon',
     dungeonname: {
       de: 'Rattendungeon des Schlosses von Amakna',
       en: 'Amakna Castle Rat Dungeon',
@@ -656,7 +650,7 @@ const DUNGEON_LISTE = [
   },
   // Stufe 151 - 190
   // Kimbo's Canopy
-  { dungeonid: 'kimbos_canopy',
+  { dungeonID: 'kimbos_canopy',
     dungeonname: {
       de: 'Kimbo Blätterdach',
       en: 'Kimbo\'s Canopy',
@@ -670,7 +664,7 @@ const DUNGEON_LISTE = [
     dungeonLevel: 160
   },
   // Minotot Room
-  { dungeonid: 'minotot_room',
+  { dungeonID: 'minotot_room',
     dungeonname: {
       de: 'Minotot Raum',
       en: 'Minotot Room',
@@ -684,7 +678,7 @@ const DUNGEON_LISTE = [
     dungeonLevel: 160
   },
   // The Obsidemon's Hypogeum
-  { dungeonid: 'the_obsidemons_hypogeum',
+  { dungeonID: 'the_obsidemons_hypogeum',
     dungeonname: {
       de: 'Grabgewölbe der Obsidianter',
       en: 'The Obsidemon\'s Hypogeum',
@@ -698,7 +692,7 @@ const DUNGEON_LISTE = [
     dungeonLevel: 160
   },
   // The Flooded Chapel
-  { dungeonid: 'the_flooded_chapel',
+  { dungeonID: 'the_flooded_chapel',
     dungeonname: {
       de: 'Die überflutete Kapelle',
       en: 'The Flooded Chapel',
@@ -712,7 +706,7 @@ const DUNGEON_LISTE = [
     dungeonLevel: 160
   },
   // Snowfoux Caverns
-  { dungeonid: 'snowfoux_caverns',
+  { dungeonID: 'snowfoux_caverns',
     dungeonname: {
       de: 'Eisfux Höhlen',
       en: 'Snowfoux Caverns',
@@ -726,7 +720,7 @@ const DUNGEON_LISTE = [
     dungeonLevel: 170
   },
   // Valley of the Lady of the Water
-  { dungeonid: 'valley_of_the_lady_of_the_water',
+  { dungeonID: 'valley_of_the_lady_of_the_water',
     dungeonname: {
       de: 'Tal der Herrin über die Gewässer',
       en: 'Valley of the Lady of the water',
@@ -740,7 +734,7 @@ const DUNGEON_LISTE = [
     dungeonLevel: 170
   },
   // Scale King's Pyramid
-  { dungeonid: 'scale_kings_pyramid',
+  { dungeonID: 'scale_kings_pyramid',
     dungeonname: {
       de: 'Pyramide von König Skai',
       en: 'Scale King\'s Pyramid',
@@ -754,7 +748,7 @@ const DUNGEON_LISTE = [
     dungeonLevel: 170
   },
   // Korriander's Lair
-  { dungeonid: 'korrianders_lair',
+  { dungeonID: 'korrianders_lair',
     dungeonname: {
       de: 'Unterschlupf des Korrianders',
       en: 'Korriander\'s Lair',
@@ -768,7 +762,7 @@ const DUNGEON_LISTE = [
     dungeonLevel: 180
   },
   // Lair of the Giant Kralove
-  { dungeonid: 'lair_of_the_giant_kralove',
+  { dungeonID: 'lair_of_the_giant_kralove',
     dungeonname: {
       de: 'Höhle des Riesenkrakamors',
       en: 'Lair of the Giant Kralove',
@@ -782,7 +776,7 @@ const DUNGEON_LISTE = [
     dungeonLevel: 180
   },
   // Bworker Dungeon
-  { dungeonid: 'bworker_dungeon',
+  { dungeonID: 'bworker_dungeon',
     dungeonname: {
       de: 'Bworker Dungeon',
       en: 'Bworker Dungeon',
@@ -796,7 +790,7 @@ const DUNGEON_LISTE = [
     dungeonLevel: 180
   },
   // Fungus Dungeon
-  { dungeonid: 'fungus_dungeon',
+  { dungeonID: 'fungus_dungeon',
     dungeonname: {
       de: 'Pilz-Dungeon',
       en: 'Fungus Dungeon',
@@ -810,7 +804,7 @@ const DUNGEON_LISTE = [
     dungeonLevel: 180
   },
   // Tanukoui San's Workshop
-  { dungeonid: 'tanukoui_sans_workshop',
+  { dungeonID: 'tanukoui_sans_workshop',
     dungeonname: {
       de: 'Tanukouï Sans Werkstatt',
       en: 'Tanukoui San\'s Workshop',
@@ -824,7 +818,7 @@ const DUNGEON_LISTE = [
     dungeonLevel: 180
   },
   // Kolosso's Cavern
-  { dungeonid: 'kolossos_cavern',
+  { dungeonID: 'kolossos_cavern',
     dungeonname: {
       de: 'Höhlen des Daxolossus',
       en: 'Kolosso\'s Cavern',
@@ -841,7 +835,7 @@ const DUNGEON_LISTE = [
     dungeonLevel: 190
   },
   // Fouxwork Factory
-  { dungeonid: 'fouxwork_factory',
+  { dungeonID: 'fouxwork_factory',
     dungeonname: {
       de: 'Feuerwirrk-Fabrik',
       en: 'Fouxwork Factory',
@@ -855,7 +849,7 @@ const DUNGEON_LISTE = [
     dungeonLevel: 190
   },
   // Foster Caverns
-  { dungeonid: 'foster_caverns',
+  { dungeonID: 'foster_caverns',
     dungeonname: {
       de: 'Fujis Höhle',
       en: 'Foster Caverns',
@@ -869,7 +863,7 @@ const DUNGEON_LISTE = [
     dungeonLevel: 190
   },
   // Sakai Mine
-  { dungeonid: 'sakai_mine',
+  { dungeonID: 'sakai_mine',
     dungeonname: {
       de: 'Mine von Arkal',
       en: 'Sakai Mine',
@@ -883,7 +877,7 @@ const DUNGEON_LISTE = [
     dungeonLevel: 190
   },
   // Bearbarian Antichamber
-  { dungeonid: 'bearbarian_antichamber',
+  { dungeonID: 'bearbarian_antichamber',
     dungeonname: {
       de: 'Vorraum des Barbärenstockes',
       en: 'Bearbarian Antichamber',
@@ -897,7 +891,7 @@ const DUNGEON_LISTE = [
     dungeonLevel: 190
   },
   // Wind Dojo
-  { dungeonid: 'wind_dojo',
+  { dungeonID: 'wind_dojo',
     dungeonname: {
       de: 'Dojo des Windes',
       en: 'Wind Dojo',
@@ -907,15 +901,12 @@ const DUNGEON_LISTE = [
     },
     sidemobs: ['', '', ''],
     challenges: ['first', 'fainthearted', 'Duo(20)'],
-    bossid: {
-      shihan: 'shihan',
-      hanshi: 'hanshi'
-    },
+    bossid: ['shihan', 'hanshi'],
     dungeonLevel: 190
   },
   // Stufe 191 - 200
   // Missiz Freezz's Frostforge
-  { dungeonid: 'missiz_freezzs_frostforge',
+  { dungeonID: 'missiz_freezzs_frostforge',
     dungeonname: {
       de: 'Missiz Frizz Kaltschmiede',
       en: 'Missiz Frizz\'s Frostforge',
@@ -929,7 +920,7 @@ const DUNGEON_LISTE = [
     dungeonLevel: 190
   },
   // Sylargh's Carrier
-  { dungeonid: 'sylarghs_carrier',
+  { dungeonID: 'sylarghs_carrier',
     dungeonname: {
       de: 'Sylarghs Transport',
       en: 'Sylargh\'s Carrier',
@@ -943,7 +934,7 @@ const DUNGEON_LISTE = [
     dungeonLevel: 190
   },
   // Klime's Private Suite
-  { dungeonid: 'klimes_private_suite',
+  { dungeonID: 'klimes_private_suite',
     dungeonname: {
       de: 'Die privaten Gesellschaftszimmer R.Klimms',
       en: 'Klime\'s Private Suite',
@@ -957,7 +948,7 @@ const DUNGEON_LISTE = [
     dungeonLevel: 190
   },
   // Nileza's Laboratory
-  { dungeonid: 'nilezas_laboratory',
+  { dungeonID: 'nilezas_laboratory',
     dungeonname: {
       de: 'Nilezas Laboratorium',
       en: 'Nileza\'s Laboratory',
@@ -971,7 +962,7 @@ const DUNGEON_LISTE = [
     dungeonLevel: 190
   },
   // The Count's Dungeon
-  { dungeonid: 'the_counts_dungeon',
+  { dungeonID: 'the_counts_dungeon',
     dungeonname: {
       de: 'Graf Primzahls Dungeon',
       en: 'The Count\'s Dungeon',
@@ -985,7 +976,7 @@ const DUNGEON_LISTE = [
     dungeonLevel: 190
   },
   // Damadrya's Bamboo Grove
-  { dungeonid: 'damadryas_bamboo_grove',
+  { dungeonID: 'damadryas_bamboo_grove',
     dungeonname: {
       de: 'Damadryas Bambushain',
       en: 'Damadrya\'s Bamboo Grove',
@@ -999,7 +990,7 @@ const DUNGEON_LISTE = [
     dungeonLevel: 190
   },
   // Lost Soul's Sanctuary
-  { dungeonid: 'lost_souls_sanctuary',
+  { dungeonID: 'lost_souls_sanctuary',
     dungeonname: {
       de: 'Heiligtum der verirrten Seelen',
       en: 'Lost Soul\'s Sanctuary',
@@ -1014,7 +1005,7 @@ const DUNGEON_LISTE = [
   },
   // === Saisonale Dungeons
   // -- Ascension --
-  { dungeonid: 'ascension_25',
+  { dungeonID: 'ascension_25',
     dungeonname: {
       de: 'Insel der Ersteigung(25)',
       en: 'Ascension Island (25)',
@@ -1027,7 +1018,7 @@ const DUNGEON_LISTE = [
     bossid: 'mucane',
     dungeonLevel: 0
   },
-  { dungeonid: 'ascension_50',
+  { dungeonID: 'ascension_50',
     dungeonname: {
       de: 'Insel der Ersteigung(50)',
       en: 'Ascension Island (50)',
@@ -1040,7 +1031,7 @@ const DUNGEON_LISTE = [
     bossid: 'ul_khan',
     dungeonLevel: 0
   },
-  { dungeonid: 'ascension_75',
+  { dungeonID: 'ascension_75',
     dungeonname: {
       de: 'Insel der Ersteigung(75)',
       en: 'Ascension Island (75)',
@@ -1053,7 +1044,7 @@ const DUNGEON_LISTE = [
     bossid: 'mucane',
     dungeonLevel: 0
   },
-  { dungeonid: 'ascension_100',
+  { dungeonID: 'ascension_100',
     dungeonname: {
       de: 'Insel der Ersteigung(100)',
       en: 'Ascension Island (100)',
@@ -1068,7 +1059,7 @@ const DUNGEON_LISTE = [
   },
   // -- Vulkania --
   // Sleepwalking
-  { dungeonid: 'sleepwalking_pinki_crater',
+  { dungeonID: 'sleepwalking_pinki_crater',
     dungeonname: {
       de: 'Schlafwandeln im Krater Minus',
       en: 'Sleepwalking Pinki Crater',
@@ -1082,7 +1073,7 @@ const DUNGEON_LISTE = [
     dungeonLevel: 40
   },
   // Exhausted
-  { dungeonid: 'exhausted_pinki_crater',
+  { dungeonID: 'exhausted_pinki_crater',
     dungeonname: {
       de: 'Erschöpft im Krater Minus',
       en: 'Exhausted Pinki Crater',
@@ -1096,7 +1087,7 @@ const DUNGEON_LISTE = [
     dungeonLevel: 90
   },
   // Tired
-  { dungeonid: 'tired_pinki_crater',
+  { dungeonID: 'tired_pinki_crater',
     dungeonname: {
       de: 'Müde im Krater Minus',
       en: 'Tired Pinki Crater',
@@ -1109,7 +1100,7 @@ const DUNGEON_LISTE = [
     bossid: ['tired_grozilla', 'tired_grasmera'],
     dungeonLevel: 140
   },
-  { dungeonid: 'pinki_crater',
+  { dungeonID: 'pinki_crater',
     dungeonname: {
       de: 'Krater Minus',
       en: 'Pinki Crater',
@@ -1123,7 +1114,7 @@ const DUNGEON_LISTE = [
     dungeonLevel: 190
   },
   // -- Horrob Isle --
-  { dungeonid: '',
+  { dungeonID: '',
     dungeonname: {
       de: '',
       en: '',
@@ -1136,7 +1127,7 @@ const DUNGEON_LISTE = [
     bossid: 'bone_shot',
     dungeonLevel: 0
   },
-  { dungeonid: '',
+  { dungeonID: '',
     dungeonname: {
       de: '',
       en: '',
@@ -1149,7 +1140,7 @@ const DUNGEON_LISTE = [
     bossid: 'al_howing',
     dungeonLevel: 0
   },
-  { dungeonid: '',
+  { dungeonID: '',
     dungeonname: {
       de: '',
       en: '',
@@ -1163,7 +1154,7 @@ const DUNGEON_LISTE = [
     dungeonLevel: 0
   },
   // -- Kwismas --
-  { dungeonid: '',
+  { dungeonID: '',
     dungeonname: {
       de: '',
       en: '',
@@ -1176,7 +1167,7 @@ const DUNGEON_LISTE = [
     bossid: 'itzing',
     dungeonLevel: 0
   },
-  { dungeonid: '',
+  { dungeonID: '',
     dungeonname: {
       de: '',
       en: '',
@@ -1189,7 +1180,7 @@ const DUNGEON_LISTE = [
     bossid: 'father_kwismas',
     dungeonLevel: 0
   },
-  { dungeonid: '',
+  { dungeonID: '',
     dungeonname: {
       de: '',
       en: '',

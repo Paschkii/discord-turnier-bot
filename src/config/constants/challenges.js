@@ -17,32 +17,33 @@ const CHALLENGES = [
         }
     },
     {
-        id: '',
+        id: 'duo',
         name: {
-            de: '',
-            en: '',
+            de: 'Duo',
+            en: 'Duo',
             es: '',
             fr: '',
             pt: ''
         },
         description: {
-            de: '',
-            en: '',
+            de: `${bossID} mit maximal 2 Charakteren und in weniger als ${turns} Runden im ${dungeonID} besiegen.`,
+            en: `Defeat ${bossID} with at most 2 characters and in fewer than ${turns} turns in ${dungeonID}.`,
             es: '',
             fr: '',
             pt: ''
-        }
+        },
+        defaults: { turns: 20 }
     },
 ];
 
 
 // Barbaric - Finish monsters with weapons only
-// - de: Barbarisch
+// - de: Barbar
 // - en: Barbaric
 // - es: 
 // - fr: 
 // - pt: 
-// Blitzkrieg - Finish monster before they can play
+// Blitzkrieg - When a monster is attacked, it must be finished off before its turn.
 // - de: Blitzangriff
 // - en: Blitzkrieg
 // - es: 
@@ -180,7 +181,7 @@ const CHALLENGES = [
 // - es: 
 // - fr: 
 // - pt: 
-// Zombie - Use 1 MP per turn
+// Zombie - Use exactly 1 MP per turn
 // - de: Zombie
 // - en: Zombie
 // - es: 
