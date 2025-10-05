@@ -1,3 +1,29 @@
+// Formatiert Challenges
+function formatChallengeEntity(value, locale) {
+    if (Array.isArray(value)) {
+        return value
+            .map(item => formatChallengeEntity(item, locale))
+            .filter(Boolean)
+            .join(', ');
+    }
+    if (value && typeof value === 'object') {
+        if (typeof value.label === 'string') return value.label;
+        if (typeof value.name === 'string') return value.name;
+        if (value.name && typeof value.name === 'object') {
+            if (locale && value.name[locale]) return value.name[locale];
+            const anyLocale = Object.values(value.name).find(Boolean);
+            if (anyLocale) return anyLocale;
+        }
+        if (value.id) return formatChallengeEntity(value.id, locale);
+        const parts = Object.values(value)
+            .map(item => formatChallengeEntity(item, locale))
+            .filter(Boolean);
+        return parts.join(', ');
+    }
+    return value || '';
+}
+
+// Alle Challenges
 const CHALLENGES = [
     {   id: 'barbaric',
         name: {
@@ -40,8 +66,8 @@ const CHALLENGES = [
             pt: ''
         },
         description: {
-            de: `Beende den Kampf in weniger als ${turns} Runden.`,
-            en: `Finish the fight in under ${turns} turns.`,
+            de: ({ turns }) => `Beende den Kampf in weniger als ${turns} Runden.`,
+            en: ({ turns }) => `Finish the fight in under ${turns} turns.`,
             es: '',
             fr: '',
             pt: ''
@@ -89,11 +115,31 @@ const CHALLENGES = [
             pt: ''
         },
         description: {
-            de: `${bossID} mit maximal 2 Charakteren und in weniger als ${turns} Runden im ${dungeonID} besiegen.`,
-            en: `Defeat ${bossID} with at most 2 characters and in fewer than ${turns} turns in ${dungeonID}.`,
-            es: '',
-            fr: '',
-            pt: ''
+            de: ({ bossName, bossID, dungeonName, dungeonID, turns }) => {
+                const boss = formatChallengeEntity(bossName, 'de') || formatChallengeEntity(bossID, 'de') || 'den Boss';
+                const dungeon = formatChallengeEntity(dungeonName, 'de') || formatChallengeEntity(dungeonID, 'de') || 'dem Dungeon';
+                return `Besiege ${boss} mit maximal 2 Charakteren und in weniger als ${turns} Runden im ${dungeon}.`;
+            },
+            en: ({ bossName, bossID, dungeonName, dungeonID, turns }) => {
+                const boss = formatChallengeEntity(bossName, 'en') || formatChallengeEntity(bossID, 'en') || 'the boss';
+                const dungeon = formatChallengeEntity(dungeonName, 'en') || formatChallengeEntity(dungeonID, 'en') || 'the dungeon';
+                return `Defeat ${boss} with at most 2 characters and in fewer than ${turns} turns in ${dungeon}.`;
+            },
+            es: ({ bossName, bossID, dungeonName, dungeonID, turns }) => {
+                const boss = formatChallengeEntity(bossName, 'en') || formatChallengeEntity(bossID, 'en') || 'the boss';
+                const dungeon = formatChallengeEntity(dungeonName, 'en') || formatChallengeEntity(dungeonID, 'en') || 'the dungeon';
+                return `Defeat ${boss} with at most 2 characters and in fewer than ${turns} turns in ${dungeon}.`;
+            },
+            fr: ({ bossName, bossID, dungeonName, dungeonID, turns }) => {
+                const boss = formatChallengeEntity(bossName, 'en') || formatChallengeEntity(bossID, 'en') || 'the boss';
+                const dungeon = formatChallengeEntity(dungeonName, 'en') || formatChallengeEntity(dungeonID, 'en') || 'the dungeon';
+                return `Defeat ${boss} with at most 2 characters and in fewer than ${turns} turns in ${dungeon}.`;
+            },
+            pt: ({ bossName, bossID, dungeonName, dungeonID, turns }) => {
+                const boss = formatChallengeEntity(bossName, 'en') || formatChallengeEntity(bossID, 'en') || 'the boss';
+                const dungeon = formatChallengeEntity(dungeonName, 'en') || formatChallengeEntity(dungeonID, 'en') || 'the dungeon';
+                return `Defeat ${boss} with at most 2 characters and in fewer than ${turns} turns in ${dungeon}.`;
+            }
         },
         defaults: { turns: 20 }
     },
@@ -122,11 +168,21 @@ const CHALLENGES = [
             pt: ''
         },
         description: {
-            de: 'Besiege das ausgewählte Monster als Erstes.',
-            en: 'Defeat the designated monster first.',
-            es: '',
-            fr: '',
-            pt: ''
+            de: ({ targetName }) => formatChallengeEntity(targetName, 'de')
+                ? `Besiege ${formatChallengeEntity(targetName, 'de')} als Erstes.`
+                : 'Besiege das ausgewählte Monster als Erstes.',
+            en: ({ targetName }) => formatChallengeEntity(targetName, 'en')
+                ? `Defeat ${formatChallengeEntity(targetName, 'en')} first.`
+                : 'Defeat the designated monster first.',
+            es: ({ targetName }) => formatChallengeEntity(targetName, 'es')
+                ? `Derrota primero a ${formatChallengeEntity(targetName, 'es')}.`
+                : '',
+            fr: ({ targetName }) => formatChallengeEntity(targetName, 'fr')
+                ? `Vaincre ${formatChallengeEntity(targetName, 'fr')} en premier.`
+                : '',
+            pt: ({ targetName }) => formatChallengeEntity(targetName, 'pt')
+                ? `Derrote ${formatChallengeEntity(targetName, 'pt')} primeiro.`
+                : ''
         }
     },
     {   id: 'freedom',
@@ -202,11 +258,21 @@ const CHALLENGES = [
             pt: ''
         },
         description: {
-            de: 'Besiege das ausgewählte Monster als Letztes.',
-            en: 'Defeat the designated monster last.',
-            es: '',
-            fr: '',
-            pt: ''
+            de: ({ targetName }) => formatChallengeEntity(targetName, 'de')
+                ? `Besiege ${formatChallengeEntity(targetName, 'de')} als Letztes.`
+                : 'Besiege das ausgewählte Monster als Letztes.',
+            en: ({ targetName }) => formatChallengeEntity(targetName, 'en')
+                ? `Defeat ${formatChallengeEntity(targetName, 'en')} last.`
+                : 'Defeat the designated monster last.',
+            es: ({ targetName }) => formatChallengeEntity(targetName, 'es')
+                ? `Derrota a ${formatChallengeEntity(targetName, 'es')} al final.`
+                : '',
+            fr: ({ targetName }) => formatChallengeEntity(targetName, 'fr')
+                ? `Vaincre ${formatChallengeEntity(targetName, 'fr')} en dernier.`
+                : '',
+            pt: ({ targetName }) => formatChallengeEntity(targetName, 'pt')
+                ? `Derrote ${formatChallengeEntity(targetName, 'pt')} por último.`
+                : ''
         }
     },
     {   id: 'mystique',
@@ -403,4 +469,56 @@ const CHALLENGES = [
     },
 ];
 
+function normalizeChallengeId(id) {
+    return String(id || '')
+        .trim()
+        .toLowerCase()
+        .replace(/\s+/g, '_');
+}
+
+const CHALLENGE_MAP = new Map();
+for (const challenge of CHALLENGES) {
+    CHALLENGE_MAP.set(challenge.id, challenge);
+    CHALLENGE_MAP.set(normalizeChallengeId(challenge.id), challenge);
+}
+
+function getChallengeDefinition(id) {
+    if (!id) return undefined;
+    return CHALLENGE_MAP.get(normalizeChallengeId(id));
+}
+
+function cloneLocalizedMap(map) {
+    if (!map) return undefined;
+    const clone = {};
+    for (const [locale, value] of Object.entries(map)) {
+        clone[locale] = value;
+    }
+    return clone;
+}
+
+function createChallenge(id, overrides = {}, context = {}) {
+    const definition = getChallengeDefinition(id);
+    if (!definition) return null;
+
+    const params = { ...(definition.defaults || {}), ...(overrides || {}) };
+
+    return {
+        id: definition.id,
+        name: cloneLocalizedMap(definition.name),
+        description: cloneLocalizedMap(definition.description),
+        defaults: definition.defaults ? { ...definition.defaults } : undefined,
+        params,
+        context,
+    };
+}
+
+CHALLENGES.normalizeId = normalizeChallengeId;
+CHALLENGES.get = getChallengeDefinition;
+CHALLENGES.create = createChallenge;
+CHALLENGES.challenge = createChallenge;
+CHALLENGES.map = CHALLENGE_MAP;
+
 module.exports = CHALLENGES;
+module.exports.normalizeChallengeId = normalizeChallengeId;
+module.exports.getChallengeDefinition = getChallengeDefinition;
+module.exports.createChallenge = createChallenge;

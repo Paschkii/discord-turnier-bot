@@ -1,7 +1,11 @@
 // === Imports ===
+const challengeDefinitions = require('./challenges');
+const { BOSSE_LISTE } = require('./bosses');
 
+const SUPPORTED_LOCALES = ['de', 'en', 'es', 'fr', 'pt'];
+const BOSS_NAME_BY_ID = new Map(BOSSE_LISTE.map((boss) => [boss.id, boss.name]));
 
-const DUNGEON_LISTE = [
+const DUNGEON_ROHDATEN = [
   // === Stufe 1 - 50 ===
   // Belladonna's Castle
   { dungeonID: 'belladonna_castle',
@@ -1194,6 +1198,148 @@ const DUNGEON_LISTE = [
     dungeonLevel: 0
   },
 ];
+
+function flattenBossIdentifier(value) {
+  if (!value) return undefined;
+  if (Array.isArray(value)) {
+    return value
+      .map((item) => flattenBossIdentifier(item))
+      .filter(Boolean)
+      .join(', ');
+  }
+  if (typeof value === 'object') {
+    if (value.id) return flattenBossIdentifier(value.id);
+    return Object.values(value)
+      .map((item) => flattenBossIdentifier(item))
+      .filter(Boolean)
+      .join(', ');
+  }
+  return String(value);
+}
+
+function resolveDungeonLabels(dungeonname) {
+  if (!dungeonname || typeof dungeonname !== 'object') return undefined;
+  const labels = {};
+  for (const locale of SUPPORTED_LOCALES) {
+    if (dungeonname[locale]) labels[locale] = dungeonname[locale];
+  }
+  return Object.keys(labels).length ? labels : undefined;
+}
+
+function resolveBossLabels(bossid) {
+  if (!bossid) return undefined;
+  const labels = {};
+  for (const locale of SUPPORTED_LOCALES) {
+    const label = flattenBossLabelForLocale(bossid, locale);
+    if (label) labels[locale] = label;
+  }
+  return Object.keys(labels).length ? labels : undefined;
+}
+
+function flattenBossLabelForLocale(ref, locale) {
+  if (!ref) return '';
+  if (Array.isArray(ref)) {
+    return ref
+      .map((item) => flattenBossLabelForLocale(item, locale))
+      .filter(Boolean)
+      .join(', ');
+  }
+  if (typeof ref === 'object') {
+    if (ref.name && ref.name[locale]) return ref.name[locale];
+    if (ref.id) return flattenBossLabelForLocale(ref.id, locale);
+    const parts = Object.values(ref)
+      .map((item) => flattenBossLabelForLocale(item, locale))
+      .filter(Boolean);
+    return parts.join(', ');
+  }
+  const names = BOSS_NAME_BY_ID.get(ref);
+  if (names) return names[locale] || names.de || Object.values(names).find(Boolean) || String(ref);
+  return String(ref);
+}
+
+const normalizeChallengeId = challengeDefinitions.normalizeId
+  || challengeDefinitions.normalizeChallengeId
+  || ((id) => String(id || '').trim().toLowerCase().replace(/\s+/g, '_'));
+
+const getChallengeDefinition = challengeDefinitions.get
+  || challengeDefinitions.getChallengeDefinition
+  || (() => undefined);
+
+const createChallengeInstance = challengeDefinitions.create
+  || challengeDefinitions.createChallenge
+  || challengeDefinitions.challenge
+  || ((id, overrides) => ({ id, params: overrides }));
+
+function instantiateDungeonChallenge(spec, dungeon) {
+  if (!spec || typeof spec !== 'string') return null;
+  const raw = spec.trim();
+  if (!raw) return null;
+
+  const match = raw.match(/^([a-zA-Z_\s]+?)(?:\(([^)]*)\))?$/);
+  const idPart = match ? match[1] : raw;
+  const argPart = match ? (match[2] || '').trim() : '';
+
+  const id = normalizeChallengeId(idPart);
+  const overrides = {};
+
+  if (argPart) {
+    const numericArg = Number(argPart);
+    if (!Number.isNaN(numericArg) && (id === 'duo' || id === 'chrono')) {
+      overrides.turns = numericArg;
+    }
+  }
+
+  if (id === 'duo') {
+    overrides.bossID = dungeon.bossid;
+    const bossLabels = resolveBossLabels(dungeon.bossid);
+    if (bossLabels) overrides.bossName = { name: bossLabels };
+    else {
+      const fallback = flattenBossIdentifier(dungeon.bossid);
+      if (fallback) overrides.bossName = fallback;
+    }
+    overrides.dungeonID = dungeon.dungeonID;
+    const dungeonLabels = resolveDungeonLabels(dungeon.dungeonname);
+    if (dungeonLabels) overrides.dungeonName = { name: dungeonLabels };
+    else overrides.dungeonName = dungeon.dungeonID;
+  }
+
+  if (id === 'first' || id === 'last') {
+    overrides.target = dungeon.bossid;
+    const targetLabels = resolveBossLabels(dungeon.bossid);
+    if (targetLabels) overrides.targetName = { name: targetLabels };
+    else {
+      const fallback = flattenBossIdentifier(dungeon.bossid);
+      if (fallback) overrides.targetName = fallback;
+    }
+  }
+
+  const baseDefinition = getChallengeDefinition(id);
+  const challenge = createChallengeInstance(id, overrides, { dungeonID: dungeon.dungeonID, dungeonLevel: dungeon.dungeonLevel });
+
+  if (!challenge) return null;
+
+  if (!challenge.params && baseDefinition) {
+    challenge.params = { ...(baseDefinition.defaults || {}), ...overrides };
+  } else if (challenge.params) {
+    challenge.params = { ...(baseDefinition?.defaults || {}), ...(challenge.params || {}), ...overrides };
+  }
+
+  challenge.raw = raw;
+  return challenge;
+}
+
+const DUNGEON_LISTE = DUNGEON_ROHDATEN.map((dungeon) => {
+  const parsedChallenges = Array.isArray(dungeon.challenges)
+    ? dungeon.challenges
+        .map((entry) => instantiateDungeonChallenge(entry, dungeon))
+        .filter(Boolean)
+    : [];
+
+  return {
+    ...dungeon,
+    challenges: parsedChallenges,
+  };
+});
 
 const DUNGEON_KATEGORIEN = {
   'Level 1-50'    : d => d.level >= 1   && d.level <= 50,
