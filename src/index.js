@@ -7,6 +7,7 @@ const { Client, GatewayIntentBits, Partials } = require('discord.js');
 const { keepAlive } = require('./server/keepAlive');
 const { onReady } = require('./events/ready');
 const { onInteractionCreate } = require('./events/interactionCreate');
+const { onGuildCreate } = require('./events/guildCreate');
 const { initDB } = require('../datenbank');
 
 // === Main ===
@@ -26,6 +27,7 @@ const { initDB } = require('../datenbank');
   // Events registrieren
   client.once('ready', () => onReady(client));
   client.on('interactionCreate', onInteractionCreate);
+  client.on('guildCreate', onGuildCreate);
   // Client einloggen
   await client.login(process.env.DISCORD_TOKEN);
 
