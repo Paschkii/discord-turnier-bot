@@ -40,6 +40,19 @@ const HELP_COMMANDS = [
     admin: false,
   },
   {
+    name: 'dungeon',
+    description: 'Zeigt Infos zu einem Dungeon.',
+    descriptionLocalized: {
+      de: 'Zeigt Infos zu einem Dungeon.',
+      en: 'Shows information about a dungeon.',
+      fr: 'Affiche les informations d’un donjon.',
+      es: 'Muestra información de un calabozo.',
+      it: 'Mostra le informazioni di un dungeon.',
+      pt: 'Mostra informações sobre um calabouço.',
+    },
+    admin: false,
+  },
+  {
     name: 'bracket',
     description: 'Zeigt Gruppen, Kämpfe und Übersicht der aktuellen Phase an',
     descriptionLocalized: {

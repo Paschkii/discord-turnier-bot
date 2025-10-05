@@ -3,6 +3,7 @@
 // Handhabt Autocomplete-Interaktionen
 const map = new Map([
   ['boss', require('./boss')],
+  ['dungeon', require('./dungeon')],
   ['ergebnis_setzen', require('./ergebnis_setzen')],
   ['pvp_start', require('./pvp_start')],
 ]);

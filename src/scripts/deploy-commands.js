@@ -125,11 +125,20 @@ const commands = [
           .setAutocomplete(true)
       )
   ),
+  // /dungeon
+  guildOnly(
+    applyCommandLocalization(new SlashCommandBuilder(), 'dungeon')
+      .addStringOption(opt =>
+        applyOptionLocalization(opt, 'dungeon', 'name')
+          .setRequired(true)
+          .setAutocomplete(true)
+      )
+  ),
   // /bracket
   guildOnly(
     applyCommandLocalization(new SlashCommandBuilder(), 'bracket')
   ),
-  // Hall of Fame
+  // /hall_of_fame
   guildOnly(
     applyCommandLocalization(new SlashCommandBuilder(), 'hallOfFame')
   ),

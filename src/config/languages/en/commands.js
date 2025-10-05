@@ -23,6 +23,16 @@ const commands = {
       },
     },
   },
+  dungeon: {
+    name: 'dungeon',
+    description: 'Show information about a dungeon',
+    options: {
+      name: {
+        name: 'name',
+        description: 'Select a dungeon',
+      },
+    },
+  },
   bracket: {
     name: 'bracket',
     description: 'Show the bracket of the current phase',

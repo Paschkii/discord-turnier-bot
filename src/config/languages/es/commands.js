@@ -23,6 +23,16 @@ const commands = {
       },
     },
   },
+  dungeon: {
+    name: 'dungeon',
+    description: 'Muestra información sobre un calabozo',
+    options: {
+      name: {
+        name: 'nombre',
+        description: 'Selecciona un calabozo',
+      },
+    },
+  },
   bracket: {
     name: 'bracket',
     description: 'Muestra el cuadro de la fase actual',
