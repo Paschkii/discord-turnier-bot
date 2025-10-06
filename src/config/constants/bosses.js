@@ -46,7 +46,12 @@ const BOSSE_LISTE = [
     characteristics: {
       vitality: 920,
       actionPoints: 8,
-      movementPoints: 3
+      movementPoints: 3,
+      ap_resist: 8,
+      mp_resist: 8,
+      block: 10,
+      krit: 0,
+      pushback: 0
     },
     resistances: {
       neutral: 25,
@@ -152,7 +157,7 @@ const BOSSE_LISTE = [
     family: '',
     homeDungeonID: 'haunted_house',
     characteristics: {
-      vitality: 820,
+      vitality: 890,
       actionPoints: 10,
       movementPoints: 6
     },

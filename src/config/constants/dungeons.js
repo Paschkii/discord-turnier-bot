@@ -34,6 +34,11 @@ const DUNGEON_ROHDATEN = [
       fr: '',
       pt: '',
     },
+    rooms: [
+      { id: 'room1', monsterID: ['demonic_rose(2)', 'mush_mush(2)']},
+      { id: 'room2', monsterID: ['demonic_rose(2)', 'evil_dandelion', 'wild_sunflower']},
+      { id: 'room3', monsterID: ['famished_sunflower', 'demonic_rose', 'evil_dandelion', 'wild_sunflower']},
+    ],
     sidemobs: ['', '', ''],
     challenges: ['tight', 'first', 'duo(20)'],
     bossid: 'famished_sunflower',
