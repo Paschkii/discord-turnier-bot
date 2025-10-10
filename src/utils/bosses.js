@@ -180,7 +180,7 @@ function formatResistances(boss, locale = 'de', options = {}) {
 
 // Formatiert die Charakteristik-Zeilen
 function formatCharacteristics(boss, locale = 'de', options = {}) {
-  const { includeIcons = true } = options;
+  const { includeIcons = true, guild = null } = options;
   return getCharacteristicEntries(boss, locale).map((entry) => {
     const iconLink = includeIcons ? createInlineIcon(entry, guild) : '';
     const prefix = iconLink ? `${iconLink} ` : '';
