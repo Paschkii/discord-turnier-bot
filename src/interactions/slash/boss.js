@@ -137,31 +137,47 @@ function buildTwoColumnTable(leftTitle, leftValues, rightTitle, rightValues) {
 // Antwort für /boss erzeugen
 async function execute(interaction) {
   const rawValue = interaction.options.getString('name');
-  const locale = await resolveInteractionLocale(interaction);
-  const t = getMessages(locale);
+  const localePromise = resolveInteractionLocale(interaction);
+  let locale;
+
+  const resolveLocale = async () => {
+    if (locale) return locale;
+    try {
+      locale = await localePromise;
+    } catch (error) {
+      locale = 'en';
+    }
+    return locale;
+  };
+
+  const getMessagesForLocale = async () => getMessages(await resolveLocale());
 
   if (!rawValue) {
+    const t = await getMessagesForLocale();
     return interaction.reply({
       content: t.missingName,
       flags: MessageFlags.Ephemeral,
     });
   }
 
-  const boss = findBossById(rawValue) || findBossByName(rawValue, locale);
-
-  if (!boss) {
-    return interaction.reply({
-      content: t.notFound,
-      flags: MessageFlags.Ephemeral,
-    });
-  }
+  const bossById = findBossById(rawValue);
 
   await interaction.deferReply();
 
-  const bossName = getBossName(boss, locale) || '—';
+  const resolvedLocale = await resolveLocale();
+  const resolvedMessages = getMessages(resolvedLocale);
+  const boss = bossById || findBossByName(rawValue, resolvedLocale);
+
+  if (!boss) {
+    return interaction.editReply({
+      content: resolvedMessages.notFound,
+    });
+  }
+
+  const bossName = getBossName(boss, resolvedLocale) || '—';
   const level = boss.level != null ? String(boss.level) : '—';
-  const region = getRegionName(boss.region, locale) || '—';
-  const family = getFamilyName(boss.family, locale) || '—';
+  const region = getRegionName(boss.region, resolvedLocale) || '—';
+  const family = getFamilyName(boss.family, resolvedLocale) || '—';
   const { guild } = interaction;
 
   if (guild && typeof guild.emojis?.fetch === 'function') {
@@ -172,19 +188,19 @@ async function execute(interaction) {
     }
   }
   
-  const characteristics = formatCharacteristics(boss, locale, {
+  const characteristics = formatCharacteristics(boss, resolvedLocale, {
     includeIcons: true,
     guild,
   });
-  const resistances = formatResistances(boss, locale, {
+  const resistances = formatResistances(boss, resolvedLocale, {
     includeIcons: true,
     guild,
   });
 
   const descriptionLines = [
-    `**${t.description.level}:** ${level}`,
-    `**${t.description.region}:** ${region}`,
-    `**${t.description.family}:** ${family}`,
+    `**${resolvedMessages.description.level}:** ${level}`,
+    `**${resolvedMessages.description.region}:** ${region}`,
+    `**${resolvedMessages.description.family}:** ${family}`,
   ];
 
   const embed = new EmbedBuilder()
@@ -200,9 +216,9 @@ async function execute(interaction) {
   }
 
   const detailsTable = buildTwoColumnTable(
-    t.fields.resistances,
+    resolvedMessages.fields.resistances,
     resistances,
-    t.fields.characteristics,
+    resolvedMessages.fields.characteristics,
     characteristics,
   );
 
