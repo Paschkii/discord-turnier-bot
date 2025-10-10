@@ -147,13 +147,18 @@ async function execute(interaction) {
 
   embed.addFields(
     {
+      name: `**${t.fields.resistances}**`,
+      value: resistances.length ? resistances.join('\n') : '—',
+      inline: true,
+    },
+    {
       name: `**${t.fields.characteristics}**`,
       value: characteristics.length ? characteristics.join('\n') : '—',
       inline: true,
     },
     {
-      name: `**${t.fields.resistances}**`,
-      value: resistances.length ? resistances.join('\n') : '—',
+      name: '\u200B',
+      value: '\u200B',
       inline: true,
     }
   );
