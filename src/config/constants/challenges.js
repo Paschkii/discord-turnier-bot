@@ -79,7 +79,7 @@ const CHALLENGES = [
             de: 'Weiße Weste',
             en: 'Clean Hands',
             es: '',
-            fr: '',
+            fr: 'Mains Propres',
             pt: ''
         },
         description: {
@@ -110,9 +110,9 @@ const CHALLENGES = [
         name: {
             de: 'Duo',
             en: 'Duo',
-            es: '',
-            fr: '',
-            pt: ''
+            es: 'Duo',
+            fr: 'Duo',
+            pt: 'Duo'
         },
         description: {
             de: ({ bossName, bossID, dungeonName, dungeonID, turns }) => {
@@ -164,7 +164,7 @@ const CHALLENGES = [
             de: 'Als Erstes',
             en: 'First',
             es: '',
-            fr: '',
+            fr: 'Premier',
             pt: ''
         },
         description: {
@@ -206,7 +206,7 @@ const CHALLENGES = [
             de: 'Einsiedler',
             en: 'Hermit',
             es: '',
-            fr: '',
+            fr: 'Anachorète',
             pt: ''
         },
         description: {
@@ -254,7 +254,7 @@ const CHALLENGES = [
             de: 'Als Letztes',
             en: 'Last',
             es: '',
-            fr: '',
+            fr: 'Dernier',
             pt: ''
         },
         description: {
@@ -312,7 +312,7 @@ const CHALLENGES = [
             de: 'Ohne Eile',
             en: 'No Rush',
             es: '',
-            fr: '',
+            fr: 'Sans se presser',
             pt: ''
         },
         description: {
@@ -392,7 +392,7 @@ const CHALLENGES = [
             de: 'Anhängsel',
             en: 'Tight',
             es: '',
-            fr: '',
+            fr: 'Collant',
             pt: ''
         },
         description: {
@@ -440,7 +440,7 @@ const CHALLENGES = [
             de: 'Vielseitigkeit',
             en: 'Versatile',
             es: '',
-            fr: '',
+            fr: 'Versatile',
             pt: ''
         },
         description: {
@@ -456,7 +456,7 @@ const CHALLENGES = [
             de: 'Zombie',
             en: 'Zombie',
             es: '',
-            fr: '',
+            fr: 'Zombie',
             pt: ''
         },
         description: {

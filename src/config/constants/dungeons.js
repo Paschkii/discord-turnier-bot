@@ -1,9 +1,11 @@
 // === Imports ===
 const challengeDefinitions = require('./challenges');
 const { BOSSE_LISTE } = require('./bosses');
+const { MONSTER_LISTE } = require('./monsters');
 
 const SUPPORTED_LOCALES = ['de', 'en', 'es', 'fr', 'pt'];
 const BOSS_NAME_BY_ID = new Map(BOSSE_LISTE.map((boss) => [boss.id, boss.name]));
+const MONSTER_NAME_BY_ID = new Map(MONSTER_LISTE.map((monster) => [monster.id, monster.name]));
 
 const DUNGEON_ROHDATEN = [
   // === Stufe 1 - 50 ===
@@ -13,13 +15,13 @@ const DUNGEON_ROHDATEN = [
       de: 'Belladonnas Schloss',
       en: 'Belladonna\'s Castle',
       es: '',
-      fr: '',
+      fr: 'Chateau de Belladone',
       pt: '',
     },
     rooms: [
-      { id: 'room1', monsterID: []},
-      { id: 'room2', monsterID: []},
-      { id: 'room3', monsterID: []},
+      { id: 'room1', monsterID: ['ragnarock', 'dolomanus', 'clobberstone']},
+      { id: 'room2', monsterID: ['marbmour', 'dolomanus', 'clobberstone']},
+      { id: 'room3', monsterID: ['belladonna', 'dolomanus', 'marbmour']},
     ],
     challenges: ['no_rush', 'last', 'duo(20)'],
     bossid: 'belladonna',
@@ -31,7 +33,7 @@ const DUNGEON_ROHDATEN = [
       de: 'Felder Dungeon',
       en: 'Field Dungeon',
       es: '',
-      fr: '',
+      fr: 'Donjon des Champs',
       pt: '',
     },
     rooms: [
@@ -39,7 +41,6 @@ const DUNGEON_ROHDATEN = [
       { id: 'room2', monsterID: ['demonic_rose(2)', 'evil_dandelion', 'wild_sunflower']},
       { id: 'room3', monsterID: ['famished_sunflower', 'demonic_rose', 'evil_dandelion', 'wild_sunflower']},
     ],
-    sidemobs: ['', '', ''],
     challenges: ['tight', 'first', 'duo(20)'],
     bossid: 'famished_sunflower',
     dungeonLevel: 30
@@ -50,10 +51,14 @@ const DUNGEON_ROHDATEN = [
       de: 'Versandeter Dungeon',
       en: 'Sand Dungeon',
       es: '',
-      fr: '',
+      fr: 'Donjon Ensablé',
       pt: '',
     },
-    sidemobs: ['', '', ''],
+    rooms: [
+      { id: 'room1', monsterID: ['white_snapper(2)', 'blue_snapper', 'green_snapper']},
+      { id: 'room2', monsterID: ['red_snapper(2)', 'green_snapper(2)']},
+      { id: 'room3', monsterID: ['spongemob', 'white_snapper', 'red_snapper', 'green_snapper']},
+    ],
     challenges: ['hermit', 'versatile', 'duo(20)'],
     bossid: 'spongemob',
     dungeonLevel: 40
@@ -64,10 +69,14 @@ const DUNGEON_ROHDATEN = [
       de: 'Scarablatt Dungeon',
       en: 'Scaraleaf Dungeon',
       es: '',
-      fr: '',
+      fr: 'Donjon des Scarafeuilles',
       pt: '',
     },
-    sidemobs: ['', '', ''],
+    rooms: [
+      { id: 'room1', monsterID: ['immature_scaraleaf', 'black_scaraleaf', 'green_scaraleaf', 'blue_scaraleaf']},
+      { id: 'room2', monsterID: ['immature_scaraleaf', 'black_scaraleaf', 'red_scaraleaf']},
+      { id: 'room3', monsterID: ['golden_scarabugly', 'black_scaraleaf', 'white_scaraleaf', 'blue_scaraleaf']},
+    ],
     challenges: ['zombie', 'clean_hands', 'duo(20)'],
     bossid: 'scarabugly',
     dungeonLevel: 40
@@ -78,10 +87,14 @@ const DUNGEON_ROHDATEN = [
       de: 'Tofu Dungeon',
       en: 'Tofu House',
       es: '',
-      fr: '',
+      fr: 'Donjon des Tofus',
       pt: '',
     },
-    sidemobs: ['', '', ''],
+    rooms: [
+      { id: 'room1', monsterID: ['tofu', 'black_tofu', 'tofurby', 'tofukaz']},
+      { id: 'room2', monsterID: ['tofukaz', 'tofoone', 'tofurby', 'black_tofu']},
+      { id: 'room3', monsterID: ['batofu', 'tofoone', 'tofurby', 'tofukaz']},
+    ],
     challenges: ['no_rush', 'versatile', 'duo(20)'],
     bossid: 'batofu',
     dungeonLevel: 40
@@ -92,10 +105,14 @@ const DUNGEON_ROHDATEN = [
       de: 'Geisterhaus',
       en: 'Haunted House',
       es: '',
-      fr: '',
+      fr: 'Maison Fantôme',
       pt: '',
     },
-    sidemobs: ['', '', ''],
+    rooms: [
+      { id: 'room1', monsterID: ['garglyph', 'gargoyle', 'kwoan', 'prepubescent_boostache']},
+      { id: 'room2', monsterID: ['vampire_master', 'elite_chafer', 'prepubescent_boostache', 'kwoan']},
+      { id: 'room3', monsterID: ['boostache', 'vampire_master', 'elite_chafer', 'kwoan']},
+    ],
     challenges: ['hermit', 'last', 'duo(20)'],
     bossid: 'boostache',
     dungeonLevel: 40
@@ -109,7 +126,11 @@ const DUNGEON_ROHDATEN = [
       fr: '',
       pt: '',
     },
-    sidemobs: ['', '', ''],
+    rooms: [
+      { id: 'room1', monsterID: ['', '', '', '']},
+      { id: 'room2', monsterID: ['', '', '', '']},
+      { id: 'room3', monsterID: ['', '', '', '']},
+    ],
     challenges: ['nomad', 'first', 'duo(20)'],
     bossid: 'ronin_chafer',
     dungeonLevel: 40
@@ -123,7 +144,11 @@ const DUNGEON_ROHDATEN = [
       fr: '',
       pt: '',
     },
-    sidemobs: ['', '', ''],
+    rooms: [
+      { id: 'room1', monsterID: ['', '', '', '']},
+      { id: 'room2', monsterID: ['', '', '', '']},
+      { id: 'room3', monsterID: ['', '', '', '']},
+    ],
     challenges: ['fainthearted', 'blitzkrieg', 'duo(20)'],
     bossid: 'royal_gobball',
     dungeonLevel: 50
@@ -134,10 +159,14 @@ const DUNGEON_ROHDATEN = [
       de: 'Bwork Dungeon',
       en: 'Bwork Dungeon',
       es: '',
-      fr: '',
+      fr: 'Donjon des Bworks',
       pt: '',
     },
-    sidemobs: ['', '', ''],
+    rooms: [
+      { id: 'room1', monsterID: ['bwork_magus', 'bwork_archer(3)']},
+      { id: 'room2', monsterID: ['bwork_magus', 'bwork(3)']},
+      { id: 'room3', monsterID: ['bworkette', 'bwork_magus', 'bwork_archer', 'bwork']},
+    ],
     challenges: ['hermit', 'first', 'duo(20)'],
     bossid: 'bworkette',
     dungeonLevel: 50
@@ -151,7 +180,11 @@ const DUNGEON_ROHDATEN = [
       fr: '',
       pt: '',
     },
-    sidemobs: ['', '', ''],
+    rooms: [
+      { id: 'room1', monsterID: ['', '', '', '']},
+      { id: 'room2', monsterID: ['', '', '', '']},
+      { id: 'room3', monsterID: ['', '', '', '']},
+    ],
     challenges: ['nomad', 'first', 'duo(20)'],
     bossid: 'smiths_chest',
     dungeonLevel: 50
@@ -165,7 +198,11 @@ const DUNGEON_ROHDATEN = [
       fr: '',
       pt: '',
     },
-    sidemobs: ['', '', ''],
+    rooms: [
+      { id: 'room1', monsterID: ['', '', '', '']},
+      { id: 'room2', monsterID: ['', '', '', '']},
+      { id: 'room3', monsterID: ['', '', '', '']},
+    ],
     challenges: ['fainthearted', 'versatile', 'duo(20)'],
     bossid: 'shin_larva',
     dungeonLevel: 50
@@ -179,7 +216,11 @@ const DUNGEON_ROHDATEN = [
       fr: '',
       pt: '',
     },
-    sidemobs: ['', '', ''],
+    rooms: [
+      { id: 'room1', monsterID: ['', '', '', '']},
+      { id: 'room2', monsterID: ['', '', '', '']},
+      { id: 'room3', monsterID: ['', '', '', '']},
+    ],
     challenges: ['impertinence', 'blitzkrieg', 'duo(20)'],
     bossid: 'great_coralator',
     dungeonLevel: 50
@@ -193,7 +234,11 @@ const DUNGEON_ROHDATEN = [
       fr: '',
       pt: '',
     },
-    sidemobs: ['', '', ''],
+    rooms: [
+      { id: 'room1', monsterID: ['', '', '', '']},
+      { id: 'room2', monsterID: ['', '', '', '']},
+      { id: 'room3', monsterID: ['', '', '', '']},
+    ],
     challenges: ['zombie', 'clean hands', 'duo(20)'],
     bossid: 'kwakwa',
     dungeonLevel: 50
@@ -208,7 +253,11 @@ const DUNGEON_ROHDATEN = [
       fr: '',
       pt: '',
     },
-    sidemobs: ['', '', ''],
+    rooms: [
+      { id: 'room1', monsterID: ['', '', '', '']},
+      { id: 'room2', monsterID: ['', '', '', '']},
+      { id: 'room3', monsterID: ['', '', '', '']},
+    ],
     challenges: ['impertinence', 'blitzkrieg', 'duo(20)'],
     bossid: 'wa_wabbit',
     dungeonLevel: 60
@@ -222,7 +271,11 @@ const DUNGEON_ROHDATEN = [
       fr: '',
       pt: '',
     },
-    sidemobs: ['', '', ''],
+    rooms: [
+      { id: 'room1', monsterID: ['', '', '', '']},
+      { id: 'room2', monsterID: ['', '', '', '']},
+      { id: 'room3', monsterID: ['', '', '', '']},
+    ],
     challenges: ['zombie', 'first', 'duo(20)'],
     bossid: 'kanniball_',
     dungeonLevel: 60
@@ -236,7 +289,11 @@ const DUNGEON_ROHDATEN = [
       fr: '',
       pt: '',
     },
-    sidemobs: ['', '', ''],
+    rooms: [
+      { id: 'room1', monsterID: ['', '', '', '']},
+      { id: 'room2', monsterID: ['', '', '', '']},
+      { id: 'room3', monsterID: ['', '', '', '']},
+    ],
     challenges: ['duel', 'fainthearted', 'duo(20)'],
     bossid: ['royal_morello_cherry_blop', 'royal_pippin_blop', 'royal_coco_blop', 'royal_indigo_blop'],
     dungeonLevel: 60
@@ -250,7 +307,11 @@ const DUNGEON_ROHDATEN = [
       fr: '',
       pt: '',
     },
-    sidemobs: ['', '', ''],
+    rooms: [
+      { id: 'room1', monsterID: ['', '', '', '']},
+      { id: 'room2', monsterID: ['', '', '', '']},
+      { id: 'room3', monsterID: ['', '', '', '']},
+    ],
     challenges: ['duel', 'tight', 'duo(20)'],
     bossid: ['royal_blue_jelly', 'royal_mint_jelly', 'royal_lemon_jelly', 'royal_strawberry_jelly'],
     dungeonLevel: 60
@@ -264,7 +325,11 @@ const DUNGEON_ROHDATEN = [
       fr: '',
       pt: '',
     },
-    sidemobs: ['', '', ''],
+    rooms: [
+      { id: 'room1', monsterID: ['', '', '', '']},
+      { id: 'room2', monsterID: ['', '', '', '']},
+      { id: 'room3', monsterID: ['', '', '', '']},
+    ],
     challenges: ['last', 'hermit', 'duo(20)'],
     bossid: 'nelween',
     dungeonLevel: 60
@@ -278,7 +343,11 @@ const DUNGEON_ROHDATEN = [
       fr: '',
       pt: '',
     },
-    sidemobs: ['', '', ''],
+    rooms: [
+      { id: 'room1', monsterID: ['', '', '', '']},
+      { id: 'room2', monsterID: ['', '', '', '']},
+      { id: 'room3', monsterID: ['', '', '', '']},
+    ],
     challenges: ['first', 'scanty', 'duo(20)'],
     bossid: 'gourlo_the_terrible',
     dungeonLevel: 70
@@ -292,7 +361,11 @@ const DUNGEON_ROHDATEN = [
       fr: '',
       pt: '',
     },
-    sidemobs: ['', '', ''],
+    rooms: [
+      { id: 'room1', monsterID: ['', '', '', '']},
+      { id: 'room2', monsterID: ['', '', '', '']},
+      { id: 'room3', monsterID: ['', '', '', '']},
+    ],
     challenges: ['fainthearted', 'first', 'duo(20)'],
     bossid: 'legendary_crackler',
     dungeonLevel: 70
@@ -306,7 +379,11 @@ const DUNGEON_ROHDATEN = [
       fr: '',
       pt: '',
     },
-    sidemobs: ['', '', ''],
+    rooms: [
+      { id: 'room1', monsterID: ['', '', '', '']},
+      { id: 'room2', monsterID: ['', '', '', '']},
+      { id: 'room3', monsterID: ['', '', '', '']},
+    ],
     challenges: ['clean hands', 'blitzkrieg', 'duo(20)'],
     bossid: 'wa_wobot',
     dungeonLevel: 80
@@ -320,7 +397,11 @@ const DUNGEON_ROHDATEN = [
       fr: '',
       pt: '',
     },
-    sidemobs: ['', '', ''],
+    rooms: [
+      { id: 'room1', monsterID: ['', '', '', '']},
+      { id: 'room2', monsterID: ['', '', '', '']},
+      { id: 'room3', monsterID: ['', '', '', '']},
+    ],
     challenges: ['nomad', 'first', 'Duo(20)'],
     bossid: 'ancestral_treechnid',
     dungeonLevel: 90
@@ -334,7 +415,11 @@ const DUNGEON_ROHDATEN = [
       fr: '',
       pt: '',
     },
-    sidemobs: ['', '', ''],
+    rooms: [
+      { id: 'room1', monsterID: ['', '', '', '']},
+      { id: 'room2', monsterID: ['', '', '', '']},
+      { id: 'room3', monsterID: ['', '', '', '']},
+    ],
     challenges: ['versatile', 'clean hands', 'duo(20)'],
     bossid: 'selim_quartz',
     dungeonLevel: 90
@@ -348,7 +433,11 @@ const DUNGEON_ROHDATEN = [
       fr: '',
       pt: '',
     },
-    sidemobs: ['', '', ''],
+    rooms: [
+      { id: 'room1', monsterID: ['', '', '', '']},
+      { id: 'room2', monsterID: ['', '', '', '']},
+      { id: 'room3', monsterID: ['', '', '', '']},
+    ],
     challenges: ['impertinence', 'versatile', 'duo(20)'],
     bossid: 'dragonpig',
     dungeonLevel: 100
@@ -362,7 +451,11 @@ const DUNGEON_ROHDATEN = [
       fr: '',
       pt: '',
     },
-    sidemobs: ['', '', ''],
+    rooms: [
+      { id: 'room1', monsterID: ['', '', '', '']},
+      { id: 'room2', monsterID: ['', '', '', '']},
+      { id: 'room3', monsterID: ['', '', '', '']},
+    ],
     challenges: ['zombie', 'clean_hands', 'duo(20)'],
     bossid: 'koolich',
     dungeonLevel: 100
@@ -376,7 +469,11 @@ const DUNGEON_ROHDATEN = [
       fr: '',
       pt: '',
     },
-    sidemobs: ['', '', ''],
+    rooms: [
+      { id: 'room1', monsterID: ['', '', '', '']},
+      { id: 'room2', monsterID: ['', '', '', '']},
+      { id: 'room3', monsterID: ['', '', '', '']},
+    ],
     challenges: ['versatile', 'statue', 'duo(20)'],
     bossid: 'moon',
     dungeonLevel: 100
@@ -390,7 +487,11 @@ const DUNGEON_ROHDATEN = [
       fr: '',
       pt: '',
     },
-    sidemobs: ['', '', ''],
+    rooms: [
+      { id: 'room1', monsterID: ['', '', '', '']},
+      { id: 'room2', monsterID: ['', '', '', '']},
+      { id: 'room3', monsterID: ['', '', '', '']},
+    ],
     challenges: ['first', 'impertinence', 'duo(20)'],
     bossid: 'moowolf',
     dungeonLevel: 100
@@ -405,7 +506,11 @@ const DUNGEON_ROHDATEN = [
       fr: '',
       pt: '',
     },
-    sidemobs: ['', '', ''],
+    rooms: [
+      { id: 'room1', monsterID: ['', '', '', '']},
+      { id: 'room2', monsterID: ['', '', '', '']},
+      { id: 'room3', monsterID: ['', '', '', '']},
+    ],
     challenges: ['first', 'time_flies', 'duo(20)'],
     bossid: 'silf',
     dungeonLevel: 110
@@ -419,7 +524,11 @@ const DUNGEON_ROHDATEN = [
       fr: '',
       pt: '',
     },
-    sidemobs: ['', '', ''],
+    rooms: [
+      { id: 'room1', monsterID: ['', '', '', '']},
+      { id: 'room2', monsterID: ['', '', '', '']},
+      { id: 'room3', monsterID: ['', '', '', '']},
+    ],
     challenges: ['tight', 'first', 'duo(20)'],
     bossid: 'lord_crow',
     dungeonLevel: 110
@@ -433,7 +542,11 @@ const DUNGEON_ROHDATEN = [
       fr: '',
       pt: '',
     },
-    sidemobs: ['', '', ''],
+    rooms: [
+      { id: 'room1', monsterID: ['', '', '', '']},
+      { id: 'room2', monsterID: ['', '', '', '']},
+      { id: 'room3', monsterID: ['', '', '', '']},
+    ],
     challenges: ['first', 'impertinence', 'duo(20)'],
     bossid: 'white_rat',
     dungeonLevel: 110
@@ -447,7 +560,11 @@ const DUNGEON_ROHDATEN = [
       fr: '',
       pt: '',
     },
-    sidemobs: ['', '', ''],
+    rooms: [
+      { id: 'room1', monsterID: ['', '', '', '']},
+      { id: 'room2', monsterID: ['', '', '', '']},
+      { id: 'room3', monsterID: ['', '', '', '']},
+    ],
     challenges: ['impertinence', 'blitzkrieg', 'Duo(20)'],
     bossid: 'black_rat',
     dungeonLevel: 110
@@ -461,7 +578,11 @@ const DUNGEON_ROHDATEN = [
       fr: '',
       pt: '',
     },
-    sidemobs: ['', '', ''],
+    rooms: [
+      { id: 'room1', monsterID: ['', '', '', '']},
+      { id: 'room2', monsterID: ['', '', '', '']},
+      { id: 'room3', monsterID: ['', '', '', '']},
+    ],
     challenges: ['impertinence', 'duel', 'duo(20)'],
     bossid: 'royal_rainbow_blop',
     dungeonLevel: 120
@@ -475,7 +596,11 @@ const DUNGEON_ROHDATEN = [
       fr: '',
       pt: '',
     },
-    sidemobs: ['', '', ''],
+    rooms: [
+      { id: 'room1', monsterID: ['', '', '', '']},
+      { id: 'room2', monsterID: ['', '', '', '']},
+      { id: 'room3', monsterID: ['', '', '', '']},
+    ],
     challenges: ['hermit', 'clean_hands', 'duo(20)'],
     bossid: 'minotoror',
     dungeonLevel: 120
@@ -489,7 +614,11 @@ const DUNGEON_ROHDATEN = [
       fr: '',
       pt: '',
     },
-    sidemobs: ['', '', ''],
+    rooms: [
+      { id: 'room1', monsterID: ['', '', '', '']},
+      { id: 'room2', monsterID: ['', '', '', '']},
+      { id: 'room3', monsterID: ['', '', '', '']},
+    ],
     challenges: ['clean_hands', 'first', 'duo(20)'],
     bossid: 'royal_mastogob',
     dungeonLevel: 120
@@ -503,7 +632,11 @@ const DUNGEON_ROHDATEN = [
       fr: '',
       pt: '',
     },
-    sidemobs: ['', '', ''],
+    rooms: [
+      { id: 'room1', monsterID: ['', '', '', '']},
+      { id: 'room2', monsterID: ['', '', '', '']},
+      { id: 'room3', monsterID: ['', '', '', '']},
+    ],
     challenges: ['last', 'statue', 'duo(20)'],
     bossid: 'royal_tofu',
     dungeonLevel: 120
@@ -517,7 +650,11 @@ const DUNGEON_ROHDATEN = [
       fr: '',
       pt: '',
     },
-    sidemobs: ['', '', ''],
+    rooms: [
+      { id: 'room1', monsterID: ['', '', '', '']},
+      { id: 'room2', monsterID: ['', '', '', '']},
+      { id: 'room3', monsterID: ['', '', '', '']},
+    ],
     challenges: ['tight', 'blitzkrieg', 'duo(20)'],
     bossid: 'crocabulia',
     dungeonLevel: 120
@@ -531,7 +668,11 @@ const DUNGEON_ROHDATEN = [
       fr: '',
       pt: '',
     },
-    sidemobs: ['', '', ''],
+    rooms: [
+      { id: 'room1', monsterID: ['', '', '', '']},
+      { id: 'room2', monsterID: ['', '', '', '']},
+      { id: 'room3', monsterID: ['', '', '', '']},
+    ],
     challenges: ['statue', 'blitzkrieg', 'duo(26)'],
     bossid: 'skeunk',
     dungeonLevel: 120
@@ -545,7 +686,11 @@ const DUNGEON_ROHDATEN = [
       fr: '',
       pt: '',
     },
-    sidemobs: ['', '', ''],
+    rooms: [
+      { id: 'room1', monsterID: ['', '', '', '']},
+      { id: 'room2', monsterID: ['', '', '', '']},
+      { id: 'room3', monsterID: ['', '', '', '']},
+    ],
     challenges: ['last', 'zombie', 'duo(20)'],
     bossid: 'crakillian_guardian',
     dungeonLevel: 130
@@ -559,7 +704,11 @@ const DUNGEON_ROHDATEN = [
       fr: '',
       pt: '',
     },
-    sidemobs: ['', '', ''],
+    rooms: [
+      { id: 'room1', monsterID: ['', '', '', '']},
+      { id: 'room2', monsterID: ['', '', '', '']},
+      { id: 'room3', monsterID: ['', '', '', '']},
+    ],
     challenges: ['first', 'clean_hands', 'duo(20)'],
     bossid: 'kanigrula',
     dungeonLevel: 140
@@ -573,7 +722,11 @@ const DUNGEON_ROHDATEN = [
       fr: '',
       pt: '',
     },
-    sidemobs: ['', '', ''],
+    rooms: [
+      { id: 'room1', monsterID: ['', '', '', '']},
+      { id: 'room2', monsterID: ['', '', '', '']},
+      { id: 'room3', monsterID: ['', '', '', '']},
+    ],
     challenges: ['freedom', 'first', 'duo(20)'],
     bossid: '',
     dungeonLevel: 140
@@ -587,7 +740,11 @@ const DUNGEON_ROHDATEN = [
       fr: '',
       pt: '',
     },
-    sidemobs: ['', '', ''],
+    rooms: [
+      { id: 'room1', monsterID: ['', '', '', '']},
+      { id: 'room2', monsterID: ['', '', '', '']},
+      { id: 'room3', monsterID: ['', '', '', '']},
+    ],
     challenges: ['untouchable', 'zombie', 'duo(20)'],
     bossid: {
       disconcerted: 'disconcerted_tynril',
@@ -606,7 +763,11 @@ const DUNGEON_ROHDATEN = [
       fr: '',
       pt: '',
     },
-    sidemobs: ['', '', ''],
+    rooms: [
+      { id: 'room1', monsterID: ['', '', '', '']},
+      { id: 'room2', monsterID: ['', '', '', '']},
+      { id: 'room3', monsterID: ['', '', '', '']},
+    ],
     challenges: ['last', 'tight', 'duo(20)'],
     bossid: 'royal_pingwin',
     dungeonLevel: 140
@@ -620,7 +781,11 @@ const DUNGEON_ROHDATEN = [
       fr: '',
       pt: '',
     },
-    sidemobs: ['', '', ''],
+    rooms: [
+      { id: 'room1', monsterID: ['', '', '', '']},
+      { id: 'room2', monsterID: ['', '', '', '']},
+      { id: 'room3', monsterID: ['', '', '', '']},
+    ],
     challenges: ['first', 'survivor', 'duo(20)'],
     bossid: 'hell_mina',
     dungeonLevel: 140
@@ -634,7 +799,11 @@ const DUNGEON_ROHDATEN = [
       fr: '',
       pt: '',
     },
-    sidemobs: ['', '', ''],
+    rooms: [
+      { id: 'room1', monsterID: ['', '', '', '']},
+      { id: 'room2', monsterID: ['', '', '', '']},
+      { id: 'room3', monsterID: ['', '', '', '']},
+    ],
     challenges: ['keep_moving', 'statue', 'duo(20)'],
     bossid: 'buck_anear',
     dungeonLevel: 150
@@ -648,7 +817,11 @@ const DUNGEON_ROHDATEN = [
       fr: '',
       pt: '',
     },
-    sidemobs: ['', '', ''],
+    rooms: [
+      { id: 'room1', monsterID: ['', '', '', '']},
+      { id: 'room2', monsterID: ['', '', '', '']},
+      { id: 'room3', monsterID: ['', '', '', '']},
+    ],
     challenges: ['impertinence', 'last', 'duo(20)'],
     bossid: {
       sphincter: 'sphincter_cell',
@@ -667,7 +840,11 @@ const DUNGEON_ROHDATEN = [
       fr: '',
       pt: '',
     },
-    sidemobs: ['', '', ''],
+    rooms: [
+      { id: 'room1', monsterID: ['', '', '', '']},
+      { id: 'room2', monsterID: ['', '', '', '']},
+      { id: 'room3', monsterID: ['', '', '', '']},
+    ],
     challenges: ['statue', 'first', 'duo(20)'],
     bossid: 'kimbo',
     dungeonLevel: 160
@@ -681,7 +858,11 @@ const DUNGEON_ROHDATEN = [
       fr: '',
       pt: '',
     },
-    sidemobs: ['', '', ''],
+    rooms: [
+      { id: 'room1', monsterID: ['', '', '', '']},
+      { id: 'room2', monsterID: ['', '', '', '']},
+      { id: 'room3', monsterID: ['', '', '', '']},
+    ],
     challenges: ['keep_moving', 'first', 'duo(20)'],
     bossid: 'minotot',
     dungeonLevel: 160
@@ -695,7 +876,11 @@ const DUNGEON_ROHDATEN = [
       fr: '',
       pt: '',
     },
-    sidemobs: ['', '', ''],
+    rooms: [
+      { id: 'room1', monsterID: ['', '', '', '']},
+      { id: 'room2', monsterID: ['', '', '', '']},
+      { id: 'room3', monsterID: ['', '', '', '']},
+    ],
     challenges: ['first', 'statue', 'duo(20)'],
     bossid: 'obsidemon',
     dungeonLevel: 160
@@ -709,7 +894,11 @@ const DUNGEON_ROHDATEN = [
       fr: '',
       pt: '',
     },
-    sidemobs: ['', '', ''],
+    rooms: [
+      { id: 'room1', monsterID: ['', '', '', '']},
+      { id: 'room2', monsterID: ['', '', '', '']},
+      { id: 'room3', monsterID: ['', '', '', '']},
+    ],
     challenges: ['fainthearted', 'versatile', 'duo(20)'],
     bossid: 'zombrute',
     dungeonLevel: 160
@@ -723,7 +912,11 @@ const DUNGEON_ROHDATEN = [
       fr: '',
       pt: '',
     },
-    sidemobs: ['', '', ''],
+    rooms: [
+      { id: 'room1', monsterID: ['', '', '', '']},
+      { id: 'room2', monsterID: ['', '', '', '']},
+      { id: 'room3', monsterID: ['', '', '', '']},
+    ],
     challenges: ['first', 'statue', 'duo(15)'],
     bossid: 'tengu_snowfoux',
     dungeonLevel: 170
@@ -737,7 +930,11 @@ const DUNGEON_ROHDATEN = [
       fr: '',
       pt: '',
     },
-    sidemobs: ['', '', ''],
+    rooms: [
+      { id: 'room1', monsterID: ['', '', '', '']},
+      { id: 'room2', monsterID: ['', '', '', '']},
+      { id: 'room3', monsterID: ['', '', '', '']},
+    ],
     challenges: ['last', 'impertinence', 'duo(20)'],
     bossid: 'nagate',
     dungeonLevel: 170
@@ -751,7 +948,11 @@ const DUNGEON_ROHDATEN = [
       fr: '',
       pt: '',
     },
-    sidemobs: ['', '', ''],
+    rooms: [
+      { id: 'room1', monsterID: ['', '', '', '']},
+      { id: 'room2', monsterID: ['', '', '', '']},
+      { id: 'room3', monsterID: ['', '', '', '']},
+    ],
     challenges: ['last', 'statue', 'duo(20)'],
     bossid: 'scale_king',
     dungeonLevel: 170
@@ -765,7 +966,11 @@ const DUNGEON_ROHDATEN = [
       fr: '',
       pt: '',
     },
-    sidemobs: ['', '', ''],
+    rooms: [
+      { id: 'room1', monsterID: ['', '', '', '']},
+      { id: 'room2', monsterID: ['', '', '', '']},
+      { id: 'room3', monsterID: ['', '', '', '']},
+    ],
     challenges: ['mystique', 'zombie', 'duo(20)'],
     bossid: 'Korriander',
     dungeonLevel: 180
@@ -779,7 +984,11 @@ const DUNGEON_ROHDATEN = [
       fr: '',
       pt: '',
     },
-    sidemobs: ['', '', ''],
+    rooms: [
+      { id: 'room1', monsterID: ['', '', '', '']},
+      { id: 'room2', monsterID: ['', '', '', '']},
+      { id: 'room3', monsterID: ['', '', '', '']},
+    ],
     challenges: ['nomad', 'blitzkrieg', 'Duo(20)'],
     bossid: 'giant_kralove',
     dungeonLevel: 180
@@ -793,7 +1002,11 @@ const DUNGEON_ROHDATEN = [
       fr: '',
       pt: '',
     },
-    sidemobs: ['', '', ''],
+    rooms: [
+      { id: 'room1', monsterID: ['', '', '', '']},
+      { id: 'room2', monsterID: ['', '', '', '']},
+      { id: 'room3', monsterID: ['', '', '', '']},
+    ],
     challenges: ['impertinence', 'quick_and_furious', 'duo(20)'],
     bossid: 'bworker',
     dungeonLevel: 180
@@ -807,7 +1020,11 @@ const DUNGEON_ROHDATEN = [
       fr: '',
       pt: '',
     },
-    sidemobs: ['', '', ''],
+    rooms: [
+      { id: 'room1', monsterID: ['', '', '', '']},
+      { id: 'room2', monsterID: ['', '', '', '']},
+      { id: 'room3', monsterID: ['', '', '', '']},
+    ],
     challenges: ['tight', 'last', 'Duo(15)'],
     bossid: 'ougaa',
     dungeonLevel: 180
@@ -821,7 +1038,11 @@ const DUNGEON_ROHDATEN = [
       fr: '',
       pt: '',
     },
-    sidemobs: ['', '', ''],
+    rooms: [
+      { id: 'room1', monsterID: ['', '', '', '']},
+      { id: 'room2', monsterID: ['', '', '', '']},
+      { id: 'room3', monsterID: ['', '', '', '']},
+    ],
     challenges: ['nomad', 'blitzkrieg', 'duo(20)'],
     bossid: 'tanukoui_san',
     dungeonLevel: 180
@@ -835,7 +1056,11 @@ const DUNGEON_ROHDATEN = [
       fr: '',
       pt: '',
     },
-    sidemobs: ['', '', ''],
+    rooms: [
+      { id: 'room1', monsterID: ['', '', '', '']},
+      { id: 'room2', monsterID: ['', '', '', '']},
+      { id: 'room3', monsterID: ['', '', '', '']},
+    ],
     challenges: ['last', 'first', 'duo(19)'],
     bossid: {
       kolosso: 'kolosso',
@@ -852,7 +1077,11 @@ const DUNGEON_ROHDATEN = [
       fr: '',
       pt: '',
     },
-    sidemobs: ['', '', ''],
+    rooms: [
+      { id: 'room1', monsterID: ['', '', '', '']},
+      { id: 'room2', monsterID: ['', '', '', '']},
+      { id: 'room3', monsterID: ['', '', '', '']},
+    ],
     challenges: ['last', 'hermit', 'duo(20)'],
     bossid: 'founoroshi',
     dungeonLevel: 190
@@ -866,7 +1095,11 @@ const DUNGEON_ROHDATEN = [
       fr: '',
       pt: '',
     },
-    sidemobs: ['', '', ''],
+    rooms: [
+      { id: 'room1', monsterID: ['', '', '', '']},
+      { id: 'room2', monsterID: ['', '', '', '']},
+      { id: 'room3', monsterID: ['', '', '', '']},
+    ],
     challenges: ['last', 'statue', 'duo(21)'],
     bossid: 'fuji_snowfoux',
     dungeonLevel: 190
@@ -880,7 +1113,11 @@ const DUNGEON_ROHDATEN = [
       fr: '',
       pt: '',
     },
-    sidemobs: ['', '', ''],
+    rooms: [
+      { id: 'room1', monsterID: ['', '', '', '']},
+      { id: 'room2', monsterID: ['', '', '', '']},
+      { id: 'room3', monsterID: ['', '', '', '']},
+    ],
     challenges: ['versatile', 'blitzkrieg', 'duo(28)'],
     bossid: 'grohlum',
     dungeonLevel: 190
@@ -894,7 +1131,11 @@ const DUNGEON_ROHDATEN = [
       fr: '',
       pt: '',
     },
-    sidemobs: ['', '', ''],
+    rooms: [
+      { id: 'room1', monsterID: ['', '', '', '']},
+      { id: 'room2', monsterID: ['', '', '', '']},
+      { id: 'room3', monsterID: ['', '', '', '']},
+    ],
     challenges: ['first', 'tight', 'duo(17)'],
     bossid: 'celestial_bearbarian',
     dungeonLevel: 190
@@ -908,7 +1149,11 @@ const DUNGEON_ROHDATEN = [
       fr: '',
       pt: '',
     },
-    sidemobs: ['', '', ''],
+    rooms: [
+      { id: 'room1', monsterID: ['', '', '', '']},
+      { id: 'room2', monsterID: ['', '', '', '']},
+      { id: 'room3', monsterID: ['', '', '', '']},
+    ],
     challenges: ['first', 'fainthearted', 'Duo(20)'],
     bossid: ['shihan', 'hanshi'],
     dungeonLevel: 190
@@ -923,7 +1168,11 @@ const DUNGEON_ROHDATEN = [
       fr: '',
       pt: '',
     },
-    sidemobs: ['', '', ''],
+    rooms: [
+      { id: 'room1', monsterID: ['', '', '', '']},
+      { id: 'room2', monsterID: ['', '', '', '']},
+      { id: 'room3', monsterID: ['', '', '', '']},
+    ],
     challenges: ['nomad', 'tight', 'duo(40)'],
     bossid: 'missiz_freezz',
     dungeonLevel: 190
@@ -937,7 +1186,11 @@ const DUNGEON_ROHDATEN = [
       fr: '',
       pt: '',
     },
-    sidemobs: ['', '', ''],
+    rooms: [
+      { id: 'room1', monsterID: ['', '', '', '']},
+      { id: 'room2', monsterID: ['', '', '', '']},
+      { id: 'room3', monsterID: ['', '', '', '']},
+    ],
     challenges: ['hermit', 'barbaric', 'duo(40)'],
     bossid: 'sylargh',
     dungeonLevel: 190
@@ -951,7 +1204,11 @@ const DUNGEON_ROHDATEN = [
       fr: '',
       pt: '',
     },
-    sidemobs: ['', '', ''],
+    rooms: [
+      { id: 'room1', monsterID: ['', '', '', '']},
+      { id: 'room2', monsterID: ['', '', '', '']},
+      { id: 'room3', monsterID: ['', '', '', '']},
+    ],
     challenges: ['fainthearted', 'nomad', 'duo(40)'],
     bossid: 'klime',
     dungeonLevel: 190
@@ -965,7 +1222,11 @@ const DUNGEON_ROHDATEN = [
       fr: '',
       pt: '',
     },
-    sidemobs: ['', '', ''],
+    rooms: [
+      { id: 'room1', monsterID: ['', '', '', '']},
+      { id: 'room2', monsterID: ['', '', '', '']},
+      { id: 'room3', monsterID: ['', '', '', '']},
+    ],
     challenges: ['fainthearted', 'last', 'duo(40)'],
     bossid: 'nileza',
     dungeonLevel: 190
@@ -979,7 +1240,11 @@ const DUNGEON_ROHDATEN = [
       fr: '',
       pt: '',
     },
-    sidemobs: ['', '', ''],
+    rooms: [
+      { id: 'room1', monsterID: ['', '', '', '']},
+      { id: 'room2', monsterID: ['', '', '', '']},
+      { id: 'room3', monsterID: ['', '', '', '']},
+    ],
     challenges: ['versatile', 'statue', 'duo(40)'],
     bossid: 'count_harebourg',
     dungeonLevel: 190
@@ -993,7 +1258,11 @@ const DUNGEON_ROHDATEN = [
       fr: '',
       pt: '',
     },
-    sidemobs: ['', '', ''],
+    rooms: [
+      { id: 'room1', monsterID: ['', '', '', '']},
+      { id: 'room2', monsterID: ['', '', '', '']},
+      { id: 'room3', monsterID: ['', '', '', '']},
+    ],
     challenges: ['hermit', 'first', 'duo(20)'],
     bossid: 'damadrya',
     dungeonLevel: 190
@@ -1007,7 +1276,11 @@ const DUNGEON_ROHDATEN = [
       fr: '',
       pt: '',
     },
-    sidemobs: ['', '', ''],
+    rooms: [
+      { id: 'room1', monsterID: ['', '', '', '']},
+      { id: 'room2', monsterID: ['', '', '', '']},
+      { id: 'room3', monsterID: ['', '', '', '']},
+    ],
     challenges: ['clean_hands', 'impertinence', 'duo(20)'],
     bossid: 'katamashii',
     dungeonLevel: 190
@@ -1022,7 +1295,11 @@ const DUNGEON_ROHDATEN = [
       fr: '',
       pt: '',
     },
-    sidemobs: ['', '', ''],
+    rooms: [
+      { id: 'room1', monsterID: ['', '', '', '']},
+      { id: 'room2', monsterID: ['', '', '', '']},
+      { id: 'room3', monsterID: ['', '', '', '']},
+    ],
     challenges: [''],
     bossid: 'mucane',
     dungeonLevel: 0
@@ -1035,7 +1312,11 @@ const DUNGEON_ROHDATEN = [
       fr: '',
       pt: '',
     },
-    sidemobs: ['', '', ''],
+    rooms: [
+      { id: 'room1', monsterID: ['', '', '', '']},
+      { id: 'room2', monsterID: ['', '', '', '']},
+      { id: 'room3', monsterID: ['', '', '', '']},
+    ],
     challenges: [''],
     bossid: 'ul_khan',
     dungeonLevel: 0
@@ -1048,7 +1329,11 @@ const DUNGEON_ROHDATEN = [
       fr: '',
       pt: '',
     },
-    sidemobs: ['', '', ''],
+    rooms: [
+      { id: 'room1', monsterID: ['', '', '', '']},
+      { id: 'room2', monsterID: ['', '', '', '']},
+      { id: 'room3', monsterID: ['', '', '', '']},
+    ],
     challenges: [''],
     bossid: 'mucane',
     dungeonLevel: 0
@@ -1061,7 +1346,11 @@ const DUNGEON_ROHDATEN = [
       fr: '',
       pt: '',
     },
-    sidemobs: ['', '', ''],
+    rooms: [
+      { id: 'room1', monsterID: ['', '', '', '']},
+      { id: 'room2', monsterID: ['', '', '', '']},
+      { id: 'room3', monsterID: ['', '', '', '']},
+    ],
     challenges: [''],
     bossid: 'ul_khan',
     dungeonLevel: 0
@@ -1076,7 +1365,11 @@ const DUNGEON_ROHDATEN = [
       fr: '',
       pt: '',
     },
-    sidemobs: ['', '', ''],
+    rooms: [
+      { id: 'room1', monsterID: ['', '', '', '']},
+      { id: 'room2', monsterID: ['', '', '', '']},
+      { id: 'room3', monsterID: ['', '', '', '']},
+    ],
     challenges: ['chrono(9)', 'statue', 'clean_hands', 'duo(20)'],
     bossid: ['sleepwalking_grozilla', 'sleepwalking_grasmera'],
     dungeonLevel: 40
@@ -1090,7 +1383,11 @@ const DUNGEON_ROHDATEN = [
       fr: '',
       pt: '',
     },
-    sidemobs: ['', '', ''],
+    rooms: [
+      { id: 'room1', monsterID: ['', '', '', '']},
+      { id: 'room2', monsterID: ['', '', '', '']},
+      { id: 'room3', monsterID: ['', '', '', '']},
+    ],
     challenges: ['chrono(9)', 'first', 'tight', 'duo(20)'],
     bossid: ['exhausted_grozilla', 'exhausted_grasmera'],
     dungeonLevel: 90
@@ -1104,7 +1401,11 @@ const DUNGEON_ROHDATEN = [
       fr: '',
       pt: '',
     },
-    sidemobs: ['', '', ''],
+    rooms: [
+      { id: 'room1', monsterID: ['', '', '', '']},
+      { id: 'room2', monsterID: ['', '', '', '']},
+      { id: 'room3', monsterID: ['', '', '', '']},
+    ],
     challenges: ['chrono(9)', 'nomad', 'blitzkrieg', 'duo(20)'],
     bossid: ['tired_grozilla', 'tired_grasmera'],
     dungeonLevel: 140
@@ -1117,7 +1418,11 @@ const DUNGEON_ROHDATEN = [
       fr: '',
       pt: '',
     },
-    sidemobs: ['', '', ''],
+    rooms: [
+      { id: 'room1', monsterID: ['', '', '', '']},
+      { id: 'room2', monsterID: ['', '', '', '']},
+      { id: 'room3', monsterID: ['', '', '', '']},
+    ],
     challenges: ['chrono(9)', 'zombie', 'impertinence', 'duo(20)'],
     bossid: ['grozilla', 'grasmera'],
     dungeonLevel: 190
@@ -1131,7 +1436,11 @@ const DUNGEON_ROHDATEN = [
       fr: '',
       pt: '',
     },
-    sidemobs: ['', '', ''],
+    rooms: [
+      { id: 'room1', monsterID: ['', '', '', '']},
+      { id: 'room2', monsterID: ['', '', '', '']},
+      { id: 'room3', monsterID: ['', '', '', '']},
+    ],
     challenges: ['', '', 'duo()'],
     bossid: 'bone_shot',
     dungeonLevel: 0
@@ -1144,7 +1453,11 @@ const DUNGEON_ROHDATEN = [
       fr: '',
       pt: '',
     },
-    sidemobs: ['', '', ''],
+    rooms: [
+      { id: 'room1', monsterID: ['', '', '', '']},
+      { id: 'room2', monsterID: ['', '', '', '']},
+      { id: 'room3', monsterID: ['', '', '', '']},
+    ],
     challenges: ['', '', 'duo()'],
     bossid: 'al_howing',
     dungeonLevel: 0
@@ -1157,7 +1470,11 @@ const DUNGEON_ROHDATEN = [
       fr: '',
       pt: '',
     },
-    sidemobs: ['', '', ''],
+    rooms: [
+      { id: 'room1', monsterID: ['', '', '', '']},
+      { id: 'room2', monsterID: ['', '', '', '']},
+      { id: 'room3', monsterID: ['', '', '', '']},
+    ],
     challenges: ['', '', 'duo()'],
     bossid: 'staff_deleghoul',
     dungeonLevel: 0
@@ -1171,7 +1488,11 @@ const DUNGEON_ROHDATEN = [
       fr: '',
       pt: '',
     },
-    sidemobs: ['', '', ''],
+    rooms: [
+      { id: 'room1', monsterID: ['', '', '', '']},
+      { id: 'room2', monsterID: ['', '', '', '']},
+      { id: 'room3', monsterID: ['', '', '', '']},
+    ],
     challenges: ['', '', 'duo()'],
     bossid: 'itzing',
     dungeonLevel: 0
@@ -1184,7 +1505,11 @@ const DUNGEON_ROHDATEN = [
       fr: '',
       pt: '',
     },
-    sidemobs: ['', '', ''],
+    rooms: [
+      { id: 'room1', monsterID: ['', '', '', '']},
+      { id: 'room2', monsterID: ['', '', '', '']},
+      { id: 'room3', monsterID: ['', '', '', '']},
+    ],
     challenges: ['', '', 'duo()'],
     bossid: 'father_kwismas',
     dungeonLevel: 0
@@ -1197,7 +1522,11 @@ const DUNGEON_ROHDATEN = [
       fr: '',
       pt: '',
     },
-    sidemobs: ['', '', ''],
+    rooms: [
+      { id: 'room1', monsterID: ['', '', '', '']},
+      { id: 'room2', monsterID: ['', '', '', '']},
+      { id: 'room3', monsterID: ['', '', '', '']},
+    ],
     challenges: ['', '', 'duo()'],
     bossid: 'father_whupper',
     dungeonLevel: 0
