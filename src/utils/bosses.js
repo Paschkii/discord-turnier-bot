@@ -66,11 +66,47 @@ function getFamilyName(familyId, locale = 'de') {
   return getLocalized(entry?.name, locale);
 }
 
-// Nur Emojis zurückgeben (Custom-Emoji oder Unicode).
-// Keine URL-Links mehr, weil Discord die in Feldern nicht als Bild rendert.
-function createInlineIcon(meta) {
-  if (!meta) return '';
-  return meta.emoji || '';
+// Hilfsfunktion um eine Emoji-ID aus einem Custom-Emoji-String zu extrahieren
+function extractCustomEmojiId(raw = '') {
+  const text = String(raw).trim();
+  if (!text) return '';
+
+  const directMatch = text.match(/^(?:<a?:\w{2,}:)?(\d+)>?$/);
+  if (directMatch) return directMatch[1];
+
+  const trailingDigits = text.match(/:([0-9]{5,})>?$/);
+  if (trailingDigits) return trailingDigits[1];
+
+  if (/^\d+$/.test(text)) return text;
+
+  return '';
+}
+
+// Versucht das Emoji aus dem lokalen Server (Guild) zu holen.
+// Fällt bei Bedarf auf die gespeicherte Emoji-Definition zurück.
+function createInlineIcon(entry, guild) {
+  if (!entry) return '';
+
+  const guildEmojis = guild?.emojis?.cache;
+  if (guildEmojis) {
+    const emojiKey = entry.emojiName || entry.type;
+
+    if (emojiKey) {
+      const byId = guildEmojis.get(emojiKey);
+      if (byId) return byId.toString();
+
+      const byName = guildEmojis.find((emoji) => emoji.name === emojiKey);
+      if (byName) return byName.toString();
+    }
+
+    const fallbackId = extractCustomEmojiId(entry.emoji);
+    if (fallbackId) {
+      const byFallbackId = guildEmojis.get(fallbackId);
+      if (byFallbackId) return byFallbackId.toString();
+    }
+  }
+
+  return entry.emoji || '';
 }
 
 function getCharacteristicEntries(boss, locale = 'de') {
@@ -89,6 +125,7 @@ function getCharacteristicEntries(boss, locale = 'de') {
       value: String(value),
       icon: meta.icon,
       emoji: meta.emoji,
+      emojiName: meta.emojiName || meta.emojiKey || null,
     };
   };
 
@@ -125,15 +162,16 @@ function getResistanceEntries(boss, locale = 'de') {
         value: display,
         icon: meta.icon,
         emoji: meta.emoji,
+        emojiName: meta.emojiName || meta.emojiKey || null,
       };
     });
 }
 
 // Formatiert die Resistenz-Zeilen
 function formatResistances(boss, locale = 'de', options = {}) {
-  const { includeIcons = true } = options;
+  const { includeIcons = true, guild = null } = options;
   return getResistanceEntries(boss, locale).map((entry) => {
-    const iconLink = includeIcons ? createInlineIcon(entry) : '';
+    const iconLink = includeIcons ? createInlineIcon(entry, guild) : '';
     const prefix = iconLink ? `${iconLink} ` : '';
     const label = iconLink ? entry.value : `${entry.label}: ${entry.value}`;
     return `${prefix}${label}`.trim();
@@ -144,7 +182,7 @@ function formatResistances(boss, locale = 'de', options = {}) {
 function formatCharacteristics(boss, locale = 'de', options = {}) {
   const { includeIcons = true } = options;
   return getCharacteristicEntries(boss, locale).map((entry) => {
-    const iconLink = includeIcons ? createInlineIcon(entry) : '';
+    const iconLink = includeIcons ? createInlineIcon(entry, guild) : '';
     const prefix = iconLink ? `${iconLink} ` : '';
     return `${prefix}${entry.label}: ${entry.value}`.trim();
   });

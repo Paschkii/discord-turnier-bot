@@ -162,8 +162,16 @@ async function execute(interaction) {
   const level = boss.level != null ? String(boss.level) : '—';
   const region = getRegionName(boss.region, locale) || '—';
   const family = getFamilyName(boss.family, locale) || '—';
-  const characteristics = formatCharacteristics(boss, locale, { includeIcons: true });
-  const resistances = formatResistances(boss, locale, { includeIcons: true });
+  const { guild } = interaction;
+
+  const characteristics = formatCharacteristics(boss, locale, {
+    includeIcons: true,
+    guild,
+  });
+  const resistances = formatResistances(boss, locale, {
+    includeIcons: true,
+    guild,
+  });
 
   const descriptionLines = [
     `**${t.description.level}:** ${level}`,
