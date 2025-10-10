@@ -149,12 +149,12 @@ async function execute(interaction) {
     {
       name: `**${t.fields.characteristics}**`,
       value: characteristics.length ? characteristics.join('\n') : '—',
-      inline: false,
+      inline: true,
     },
     {
       name: `**${t.fields.resistances}**`,
       value: resistances.length ? resistances.join('\n') : '—',
-      inline: false,
+      inline: true,
     }
   );
 

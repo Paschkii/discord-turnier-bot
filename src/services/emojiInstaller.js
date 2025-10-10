@@ -2,7 +2,9 @@ const logger = console;
 
 const RAW_BASE_URL = 'https://raw.githubusercontent.com/Paschkii/dofus-touch-icons/main';
 
-const EMOJI_DEFINITIONS = [
+const { getChallengeEmojiInstallerDefinitions } = require('../config/constants/challengeEmojiConfig');
+
+const BASE_EMOJI_DEFINITIONS = [
   { name: 'ap', path: 'status-icons/ap.png' },
   { name: 'mp', path: 'status-icons/mp.png' },
   { name: 'vitality', path: 'status-icons/vitality.png' },
@@ -27,6 +29,16 @@ const EMOJI_DEFINITIONS = [
   { name: 'foggernaut', path: 'class-icons/foggernaut.png' },
   { name: 'xelor', path: 'class-icons/xelor.png' },
 ];
+
+const EMOJI_DEFINITIONS = (() => {
+  const combined = [...BASE_EMOJI_DEFINITIONS];
+  for (const entry of getChallengeEmojiInstallerDefinitions()) {
+    if (!entry?.name || !entry?.path) continue;
+    if (combined.some((emoji) => emoji.name === entry.name)) continue;
+    combined.push({ name: entry.name, path: entry.path });
+  }
+  return combined;
+})();
 
 const PREMIUM_EMOJI_LIMITS = {
   0: 50,

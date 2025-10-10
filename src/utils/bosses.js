@@ -135,7 +135,8 @@ function formatResistances(boss, locale = 'de', options = {}) {
   return getResistanceEntries(boss, locale).map((entry) => {
     const iconLink = includeIcons ? createInlineIcon(entry) : '';
     const prefix = iconLink ? `${iconLink} ` : '';
-    return `${prefix}${entry.label}: ${entry.value}`.trim();
+    const label = iconLink ? entry.value : `${entry.label}: ${entry.value}`;
+    return `${prefix}${label}`.trim();
   });
 }
 

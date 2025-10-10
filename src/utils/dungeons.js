@@ -5,6 +5,7 @@ const {
   getLocalizedText,
   resolveLocaleKey,
 } = require('../config/constants');
+const { resolveChallengeEmoji } = require('../config/constants/challengeEmojiConfig');
 const { findBossById, getBossName } = require('./bosses');
 
 function resolveLocale(locale) {
@@ -111,10 +112,15 @@ function formatDungeonChallenges(dungeon, locale = 'de', options = {}) {
       const description = includeDescriptions
         ? resolveChallengeText(challenge?.description, loc, challenge?.params)
         : '';
+      const emoji =
+        (typeof challenge?.emoji === 'string' && challenge.emoji.trim())
+          ? challenge.emoji.trim()
+          : resolveChallengeEmoji(challenge?.id);
+      const bullet = emoji || '•';
       if (description) {
-        return `• ${name} — ${description}`;
+        return `${bullet} ${name} — ${description}`;
       }
-      return `• ${name}`;
+      return `${bullet} ${name}`;
     })
     .filter(Boolean);
 }
