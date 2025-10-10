@@ -184,14 +184,14 @@ async function execute(interaction) {
 
    embed.addFields(
     {
-      name: resolvedMessages.fields.resistances,
-      value: resistancesText,
-      inline: true,
-    },
-    {
       name: resolvedMessages.fields.characteristics,
       value: characteristicsText,
-      inline: true,
+      inline: false,
+    },
+    {
+      name: resolvedMessages.fields.resistances,
+      value: resistancesText,
+      inline: false,
     },
   );
 
