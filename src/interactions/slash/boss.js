@@ -164,6 +164,14 @@ async function execute(interaction) {
   const family = getFamilyName(boss.family, locale) || '—';
   const { guild } = interaction;
 
+  if (guild && typeof guild.emojis?.fetch === 'function') {
+    try {
+      await guild.emojis.fetch();
+    } catch (error) {
+      // Ignorieren, wenn Emojis nicht geladen werden können
+    }
+  }
+  
   const characteristics = formatCharacteristics(boss, locale, {
     includeIcons: true,
     guild,

@@ -97,6 +97,8 @@ function createInlineIcon(entry, guild) {
 
       const byName = guildEmojis.find((emoji) => emoji.name === emojiKey);
       if (byName) return byName.toString();
+
+      return `:${emojiKey}:`;
     }
 
     const fallbackId = extractCustomEmojiId(entry.emoji);
@@ -106,6 +108,11 @@ function createInlineIcon(entry, guild) {
     }
   }
 
+  if (entry.emojiName || entry.type) {
+    const key = entry.emojiName || entry.type;
+    return `:${key}:`;
+  }
+  
   return entry.emoji || '';
 }
 
