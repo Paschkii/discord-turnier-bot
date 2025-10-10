@@ -96,6 +96,44 @@ function getMessages(locale) {
   return MESSAGES[locale] || MESSAGES.en || MESSAGES.de;
 }
 
+function getCodePointLength(text = '') {
+  return Array.from(text ?? '').length;
+}
+
+function padToWidth(text, width) {
+  const normalized = text ?? '';
+  const length = getCodePointLength(normalized);
+  if (length >= width) return normalized;
+  return `${normalized}${' '.repeat(width - length)}`;
+}
+
+function buildTwoColumnTable(leftTitle, leftValues, rightTitle, rightValues) {
+  const leftColumn = [
+    leftTitle || '',
+    ...(leftValues && leftValues.length ? leftValues : ['—']),
+  ];
+  const rightColumn = [
+    rightTitle || '',
+    ...(rightValues && rightValues.length ? rightValues : ['—']),
+  ];
+
+  const rows = Math.max(leftColumn.length, rightColumn.length);
+  const leftWidth = Math.max(...leftColumn.map(getCodePointLength));
+  const paddedLeft = leftColumn.map((value) => padToWidth(value, leftWidth));
+
+  const lines = [];
+  for (let i = 0; i < rows; i += 1) {
+    const leftCell = paddedLeft[i] ?? padToWidth('', leftWidth);
+    const rightRaw = rightColumn[i];
+    const rightCell =
+      rightRaw ?? (i === 0 ? '' : '—');
+    const line = `${leftCell}   ${rightCell || (i === 0 ? '' : '—')}`.trimEnd();
+    lines.push(line);
+  }
+
+  return ['```md', ...lines, '```'].join('\n');
+}
+
 // Antwort für /boss erzeugen
 async function execute(interaction) {
   const rawValue = interaction.options.getString('name');
@@ -145,23 +183,17 @@ async function execute(interaction) {
     embed.setThumbnail(boss.icon);
   }
 
-  embed.addFields(
-    {
-      name: `**${t.fields.resistances}**`,
-      value: resistances.length ? resistances.join('\n') : '—',
-      inline: true,
-    },
-    {
-      name: `**${t.fields.characteristics}**`,
-      value: characteristics.length ? characteristics.join('\n') : '—',
-      inline: true,
-    },
-    {
-      name: '\u200B',
-      value: '\u200B',
-      inline: true,
-    }
+  const detailsTable = buildTwoColumnTable(
+    t.fields.resistances,
+    resistances,
+    t.fields.characteristics,
+    characteristics,
   );
+
+  embed.addFields({
+    name: '\u200B',
+    value: detailsTable,
+  });
 
   return interaction.editReply({
     embeds: [embed],
