@@ -96,44 +96,6 @@ function getMessages(locale) {
   return MESSAGES[locale] || MESSAGES.en || MESSAGES.de;
 }
 
-function getCodePointLength(text = '') {
-  return Array.from(text ?? '').length;
-}
-
-function padToWidth(text, width) {
-  const normalized = text ?? '';
-  const length = getCodePointLength(normalized);
-  if (length >= width) return normalized;
-  return `${normalized}${' '.repeat(width - length)}`;
-}
-
-function buildTwoColumnTable(leftTitle, leftValues, rightTitle, rightValues) {
-  const leftColumn = [
-    leftTitle || '',
-    ...(leftValues && leftValues.length ? leftValues : ['—']),
-  ];
-  const rightColumn = [
-    rightTitle || '',
-    ...(rightValues && rightValues.length ? rightValues : ['—']),
-  ];
-
-  const rows = Math.max(leftColumn.length, rightColumn.length);
-  const leftWidth = Math.max(...leftColumn.map(getCodePointLength));
-  const paddedLeft = leftColumn.map((value) => padToWidth(value, leftWidth));
-
-  const lines = [];
-  for (let i = 0; i < rows; i += 1) {
-    const leftCell = paddedLeft[i] ?? padToWidth('', leftWidth);
-    const rightRaw = rightColumn[i];
-    const rightCell =
-      rightRaw ?? (i === 0 ? '' : '—');
-    const line = `${leftCell}   ${rightCell || (i === 0 ? '' : '—')}`.trimEnd();
-    lines.push(line);
-  }
-
-  return ['```md', ...lines, '```'].join('\n');
-}
-
 // Antwort für /boss erzeugen
 async function execute(interaction) {
   const rawValue = interaction.options.getString('name');
@@ -215,17 +177,23 @@ async function execute(interaction) {
     embed.setThumbnail(boss.icon);
   }
 
-  const detailsTable = buildTwoColumnTable(
-    resolvedMessages.fields.resistances,
-    resistances,
-    resolvedMessages.fields.characteristics,
-    characteristics,
-  );
+  const resistancesText = resistances.length ? resistances.join('\n') : '—';
+  const characteristicsText = characteristics.length
+    ? characteristics.join('\n')
+    : '—';
 
-  embed.addFields({
-    name: '\u200B',
-    value: detailsTable,
-  });
+   embed.addFields(
+    {
+      name: resolvedMessages.fields.resistances,
+      value: resistancesText,
+      inline: true,
+    },
+    {
+      name: resolvedMessages.fields.characteristics,
+      value: characteristicsText,
+      inline: true,
+    },
+  );
 
   return interaction.editReply({
     embeds: [embed],
