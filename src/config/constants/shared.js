@@ -1,17 +1,26 @@
 // Gemeinsame Hilfsfunktionen und Konstanten
 function resolveDiscordEmoji(name, fallback = '') {
-  if (!name) return fallback;
-  const envKey = `EMOJI_${String(name).toUpperCase()}`;
+  const normalizedName = typeof name === 'string' ? name.trim() : '';
+  const fallbackString = fallback == null ? '' : String(fallback);
+  const fallbackTrimmed = fallbackString.trim();
+
+  if (!normalizedName) {
+    return fallbackTrimmed || '';
+  }
+
+  const normalizedFallback = fallbackTrimmed || `:${normalizedName}:`;
+
+  const envKey = `EMOJI_${normalizedName.toUpperCase()}`;
   const raw = process.env[envKey];
-  if (!raw) return fallback;
+  if (!raw) return normalizedFallback;
 
   const trimmed = String(raw).trim();
-  if (!trimmed) return fallback;
+  if (!trimmed) return normalizedFallback;
 
   if (/^<a?:\w{2,}:\d+>$/.test(trimmed)) return trimmed;
 
   const idOnly = trimmed.match(/^(\d+)$/);
-  if (idOnly) return `<:${name}:${idOnly[1]}>`;
+  if (idOnly) return `<:${normalizedName}:${idOnly[1]}>`;
 
   const tuple = trimmed.match(/^:?([a-zA-Z0-9_]{2,}):(\d+)>?$/);
   if (tuple) return `<:${tuple[1]}:${tuple[2]}>`;
