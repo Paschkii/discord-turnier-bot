@@ -116,19 +116,51 @@ function resolveChallengeText(entry, locale = 'de', params = {}) {
 }
 
 function resolveGuildEmoji(name, guild, fallback = '') {
-  const normalized = typeof name === 'string' ? name.trim().replace(/^:|:$/g, '') : '';
-  if (!normalized || !guild?.emojis?.cache) {
+  if (!guild?.emojis?.cache) {
     return fallback;
   }
 
   const cache = guild.emojis.cache;
-  const byId = cache.get(normalized);
-  if (byId) {
-    const prefix = byId.animated ? '<a:' : '<:';
-    return `${prefix}${byId.name}:${byId.id}>`;
+  if (typeof name !== 'string') {
+    return fallback;
   }
 
-  const byName = cache.find((emoji) => emoji?.name === normalized);
+  const trimmed = name.trim();
+  if (!trimmed) {
+    return fallback;
+  }
+
+  const mentionMatch = trimmed.match(/^<a?:(?<mentionName>\w{2,}):(?<mentionId>\d+)>$/);
+  const idMatch = trimmed.match(/^(?<rawId>\d+)$/);
+  const bare = trimmed.replace(/^:|:$/g, '');
+
+  const normalizedId = mentionMatch?.groups?.mentionId || idMatch?.groups?.rawId || '';
+  const normalizedName = (mentionMatch?.groups?.mentionName || bare || '').trim();
+  const normalizedNameLower = normalizedName.toLowerCase();
+
+  if (!normalizedId && !normalizedNameLower) {
+    return fallback;
+  }
+
+  if (normalizedId) {
+    const byId = cache.get(normalizedId);
+    if (byId) {
+      const prefix = byId.animated ? '<a:' : '<:';
+      return `${prefix}${byId.name}:${byId.id}>`;
+    }
+  }
+
+  const byExactName = normalizedName && cache.get(normalizedName);
+  if (byExactName) {
+    const prefix = byExactName.animated ? '<a:' : '<:';
+    return `${prefix}${byExactName.name}:${byExactName.id}>`;
+  }
+
+  const byName = cache.find((emoji) => {
+    const emojiName = typeof emoji?.name === 'string' ? emoji.name.trim() : '';
+    if (!emojiName) return false;
+    return emojiName === normalizedName || emojiName.toLowerCase() === normalizedNameLower;
+  });
   if (byName) {
     const prefix = byName.animated ? '<a:' : '<:';
     return `${prefix}${byName.name}:${byName.id}>`;
