@@ -497,7 +497,7 @@ const BOSSE_LISTE = [
     }
   },
   // Royal Coco Blop
-  { id: 'royal_coconut_blop',
+  { id: 'royal_coco_blop',
     name: {
       de: 'Königlicher Kokos Blob',
       en: 'Royal Coco Blop',
