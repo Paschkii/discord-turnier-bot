@@ -96,6 +96,34 @@ function getMessages(locale) {
   return MESSAGES[locale] || MESSAGES.en || MESSAGES.de;
 }
 
+function materializeGuildEmojiShortcodes(text, guild) {
+  if (!text || !guild?.emojis?.cache?.size) {
+    return text;
+  }
+
+  const byLowerCaseName = new Map();
+  for (const emoji of guild.emojis.cache.values()) {
+    if (!emoji?.name) continue;
+    byLowerCaseName.set(emoji.name.toLowerCase(), emoji.toString());
+  }
+
+  return text.replace(/:([a-z0-9_]+):/gi, (match, name) => {
+    return byLowerCaseName.get(name.toLowerCase()) ?? match;
+  });
+}
+
+async function safeDeferReply(interaction, options = {}) {
+  try {
+    if (!interaction.deferred && !interaction.replied) {
+      await interaction.deferReply(options);
+    }
+    return true;
+  } catch (error) {
+    console.warn('[slash] deferReply failed (likely cold start):', error);
+    return false;
+  }
+}
+
 // Antwort für /dungeon erzeugen
 async function execute(interaction) {
   const rawValue = interaction.options.getString('name');
@@ -118,24 +146,23 @@ async function execute(interaction) {
     });
   }
 
-  await interaction.deferReply();
+  const deferred = await safeDeferReply(interaction, { ephemeral: false });
+  if (!deferred) {
+    return;
+  }
 
   const { guild } = interaction;
   if (guild && typeof guild.emojis?.fetch === 'function') {
     try {
-      await guild.emojis.fetch();
+      const emojis = await guild.emojis.fetch();
+      if (!emojis.size) {
+        console.warn(`[emoji] Kein Emoji in Guild ${guild.id}`);
+      } else {
+        console.log('[emoji] Gefunden:', emojis.map((emoji) => emoji.name).join(', '));
+      }
     } catch (error) {
-      // Ignorieren, wenn Emojis nicht geladen werden können
+      console.warn('[emoji] fetch() fehlgeschlagen:', error);
     }
-  }
-
-  // vor dem Aufruf von formatDungeonAchievements(...)
-  try {
-    const emojis = await i.guild.emojis.fetch();
-    if (!emojis.size) console.warn(`[emoji] Kein Emoji in Guild ${i.guild.id}`);
-    else console.log('[emoji] Gefunden:', emojis.map(e => e.name).join(', '));
-  } catch (err) {
-    console.warn('[emoji] fetch() fehlgeschlagen:', err);
   }
 
   const dungeonName = getDungeonName(dungeon, locale) || '—';
@@ -145,6 +172,7 @@ async function execute(interaction) {
   const bossNames = getDungeonBossNames(dungeon, locale);
   const bossLines = bossNames.length ? bossNames.map((name) => `• ${name}`) : [];
   const achievements = formatDungeonAchievements(dungeon, locale, { guild });
+  const achievementText = materializeGuildEmojiShortcodes(achievements.join('\n'), guild);
 
   const descriptionLines = [`**${t.description.level}:** ${level}`];
 
@@ -169,14 +197,19 @@ async function execute(interaction) {
     },
     {
       name: `**${t.fields.achievements}**`,
-      value: achievements.length ? achievements.join('\n') : '—',
+      value: achievementText || '—',
       inline: false,
     }
   );
 
-  return interaction.editReply({
-    embeds: [embed],
-  });
+  try {
+    return await interaction.editReply({
+      embeds: [embed],
+    });
+  } catch (error) {
+    console.error('[slash] editReply failed:', error);
+    return undefined;
+  }
 }
 
 // === Exports ===
