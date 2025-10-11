@@ -1,5 +1,5 @@
 // === Imports ===
-const { AttachmentBuilder, EmbedBuilder, MessageFlags } = require('discord.js');
+const { EmbedBuilder, MessageFlags } = require('discord.js');
 const {
   findDungeonById,
   findDungeonByName,
@@ -9,10 +9,7 @@ const {
   getDungeonName,
 } = require('../../utils/dungeons');
 const { resolveInteractionLocale } = require('../../utils/interactionLocale');
-const {
-  createColumnBossIconImage,
-  createStackedBossIconImage,
-} = require('../../utils/bossIconImages');
+const { bossCollageAttachment } = require('../../helpers/collage');
 
 const ACHIEVEMENT_NAMES = {
   de: 'Erfolge',
@@ -191,32 +188,28 @@ async function execute(interaction) {
     .map(({ boss }) => (boss?.imageUrl || boss?.icon || '').trim())
     .filter(Boolean);
   const attachments = [];
-  let bossImageAssigned = false;
   let bossThumbnailAssigned = false;
 
   if (bossImageSources.length > 1) {
-    const stackedResult = await createStackedBossIconImage(bossImageSources);
-    if (stackedResult) {
-      const attachment = new AttachmentBuilder(stackedResult.buffer, {
-        name: stackedResult.fileName,
+     try {
+      const collageFormat = 'png';
+      const collageFileName = `bosses.${collageFormat}`;
+      const collageAttachment = await bossCollageAttachment(bossImageSources, {
+        size: 384,
+        maxCols: 3,
+        format: collageFormat,
       });
-      attachments.push(attachment);
-      embed.setImage(`attachment://${stackedResult.fileName}`);
-      bossImageAssigned = true;
-    } else {
-      const columnResult = await createColumnBossIconImage(bossImageSources);
-      if (columnResult) {
-        const attachment = new AttachmentBuilder(columnResult.buffer, {
-          name: columnResult.fileName,
-        });
-        attachments.push(attachment);
-        embed.setThumbnail(`attachment://${columnResult.fileName}`);
+      if (collageAttachment) {
+        attachments.push(collageAttachment);
+        embed.setThumbnail(`attachment://${collageFileName}`);
         bossThumbnailAssigned = true;
       }
+      } catch (error) {
+      console.warn('[collage] Erstellung fehlgeschlagen:', error);
     }
   }
 
-  if (!bossImageAssigned && !bossThumbnailAssigned) {
+  if (!bossThumbnailAssigned) {
     const primaryBoss = bossEntries[0]?.boss;
     if (primaryBoss?.imageUrl) {
       embed.setThumbnail(primaryBoss.imageUrl);
