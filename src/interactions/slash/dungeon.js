@@ -129,6 +129,15 @@ async function execute(interaction) {
     }
   }
 
+  // vor dem Aufruf von formatDungeonAchievements(...)
+  try {
+    const emojis = await i.guild.emojis.fetch();
+    if (!emojis.size) console.warn(`[emoji] Kein Emoji in Guild ${i.guild.id}`);
+    else console.log('[emoji] Gefunden:', emojis.map(e => e.name).join(', '));
+  } catch (err) {
+    console.warn('[emoji] fetch() fehlgeschlagen:', err);
+  }
+
   const dungeonName = getDungeonName(dungeon, locale) || '—';
   const levelValue = dungeon.dungeonLevel ?? dungeon.level;
   const level = levelValue != null ? String(levelValue) : '—';
