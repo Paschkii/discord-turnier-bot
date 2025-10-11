@@ -1,7 +1,8 @@
 const { resolveDiscordEmoji } = require('./shared');
 const achievements = require('./achievements');
 
-(typeof achievements.normalizeAchievementId === 'function'
+const normalizeChallengeId =
+  (typeof achievements.normalizeAchievementId === 'function'
     ? achievements.normalizeAchievementId
     : typeof achievements.normalizeId === 'function'
       ? achievements.normalizeId
