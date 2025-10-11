@@ -3,6 +3,7 @@
 const {
   DUNGEON_LISTE,
   getLocalizedText,
+  resolveDiscordEmoji,
   resolveLocaleKey,
 } = require('../config/constants');
 const { resolveChallengeEmoji } = require('../config/constants/challengeEmojiConfig');
@@ -101,21 +102,27 @@ function resolveChallengeText(entry, locale = 'de', params = {}) {
   return String(entry);
 }
 
-function formatDungeonChallenges(dungeon, locale = 'de', options = {}) {
+function formatDungeonAchievements(dungeon, locale = 'de', options = {}) {
   const { includeDescriptions = true } = options;
   const loc = resolveLocale(locale);
-  const challenges = Array.isArray(dungeon?.challenges) ? dungeon.challenges : [];
+  const achievements = Array.isArray(dungeon?.achievements)
+    ? dungeon.achievements
+    : Array.isArray(dungeon?.challenges)
+      ? dungeon.challenges
+      : [];
 
-  return challenges
-    .map((challenge) => {
-      const name = getLocalizedText(challenge?.name, loc) || challenge?.raw || challenge?.id;
+  return achievements
+    .map((achievement) => {
+      const name = getLocalizedText(achievement?.name, loc) || achievement?.raw || achievement?.id;
       const description = includeDescriptions
-        ? resolveChallengeText(challenge?.description, loc, challenge?.params)
+        ? resolveChallengeText(achievement?.description, loc, achievement?.params)
         : '';
       const emoji =
-        (typeof challenge?.emoji === 'string' && challenge.emoji.trim())
-          ? challenge.emoji.trim()
-          : resolveChallengeEmoji(challenge?.id);
+        (typeof achievement?.emoji === 'string' && achievement.emoji.trim())
+          ? achievement.emoji.trim()
+          : achievement?.emojiName
+            ? resolveDiscordEmoji(achievement.emojiName)
+            : resolveChallengeEmoji(achievement?.id);
       const bullet = emoji || '•';
       if (description) {
         return `${bullet} ${name} — ${description}`;
@@ -123,6 +130,10 @@ function formatDungeonChallenges(dungeon, locale = 'de', options = {}) {
       return `${bullet} ${name}`;
     })
     .filter(Boolean);
+}
+
+function formatDungeonChallenges(dungeon, locale = 'de', options = {}) {
+  return formatDungeonAchievements(dungeon, locale, options);
 }
 
 function buildDungeonChoices(locale = 'de', query = '') {
@@ -149,6 +160,7 @@ module.exports = {
   buildDungeonChoices,
   findDungeonById,
   findDungeonByName,
+  formatDungeonAchievements,
   formatDungeonChallenges,
   getDungeonBossEntries,
   getDungeonBossNames,

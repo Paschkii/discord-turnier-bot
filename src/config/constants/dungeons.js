@@ -1,5 +1,7 @@
 // === Imports ===
 const challengeDefinitions = require('./challenges');
+const achievements = require('./achievements');
+const { resolveDiscordEmoji } = require('./shared');
 const { BOSSE_LISTE } = require('./bosses');
 const { MONSTER_LISTE } = require('./monsters');
 
@@ -1648,7 +1650,10 @@ function instantiateDungeonChallenge(spec, dungeon) {
   }
 
   const baseDefinition = getChallengeDefinition(id);
-  const challenge = createChallengeInstance(id, overrides, { dungeonID: dungeon.dungeonID, dungeonLevel: dungeon.dungeonLevel });
+  const challenge = createChallengeInstance(id, overrides, {
+    dungeonID: dungeon.dungeonID,
+    dungeonLevel: dungeon.dungeonLevel,
+  });
 
   if (!challenge) return null;
 
@@ -1656,6 +1661,52 @@ function instantiateDungeonChallenge(spec, dungeon) {
     challenge.params = { ...(baseDefinition.defaults || {}), ...overrides };
   } else if (challenge.params) {
     challenge.params = { ...(baseDefinition?.defaults || {}), ...(challenge.params || {}), ...overrides };
+  }
+  const achievementDefinition =
+    (typeof achievements?.get === 'function' && achievements.get(id)) ||
+    (typeof achievements?.getAchievementDefinition === 'function'
+      ? achievements.getAchievementDefinition(id)
+      : undefined);
+
+  if (achievementDefinition) {
+    if (!challenge.name && achievementDefinition.name) {
+      challenge.name = achievementDefinition.name;
+    }
+    if (!challenge.description && achievementDefinition.description) {
+      challenge.description = achievementDefinition.description;
+    }
+    if (!challenge.defaults && achievementDefinition.defaults) {
+      challenge.defaults = { ...achievementDefinition.defaults };
+    }
+    if (!challenge.icon && achievementDefinition.icon) {
+      challenge.icon = achievementDefinition.icon;
+    }
+    if (!challenge.assetPath && achievementDefinition.assetPath) {
+      challenge.assetPath = achievementDefinition.assetPath;
+    }
+    if (!challenge.emojiName && achievementDefinition.emojiName) {
+      challenge.emojiName = achievementDefinition.emojiName;
+    }
+  }
+
+  if (!challenge.icon && typeof achievements?.getAchievementIconUrl === 'function') {
+    const icon = achievements.getAchievementIconUrl(id);
+    if (icon) challenge.icon = icon;
+  }
+
+  if (!challenge.assetPath && typeof achievements?.getAchievementAssetPath === 'function') {
+    const assetPath = achievements.getAchievementAssetPath(id);
+    if (assetPath) challenge.assetPath = assetPath;
+  }
+
+  if (!challenge.emojiName && typeof achievements?.getAchievementEmojiName === 'function') {
+    const emojiName = achievements.getAchievementEmojiName(id);
+    if (emojiName) challenge.emojiName = emojiName;
+  }
+
+  if (!challenge.emoji && challenge.emojiName) {
+    const resolved = resolveDiscordEmoji(challenge.emojiName);
+    if (resolved) challenge.emoji = resolved;
   }
 
   challenge.raw = raw;
@@ -1672,6 +1723,7 @@ const DUNGEON_LISTE = DUNGEON_ROHDATEN.map((dungeon) => {
   return {
     ...dungeon,
     challenges: parsedChallenges,
+    achievements: parsedChallenges,
   };
 });
 

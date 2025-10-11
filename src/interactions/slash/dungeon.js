@@ -3,12 +3,30 @@ const { EmbedBuilder, MessageFlags } = require('discord.js');
 const {
   findDungeonById,
   findDungeonByName,
-  formatDungeonChallenges,
+  formatDungeonAchievements,
   getDungeonBossEntries,
   getDungeonBossNames,
   getDungeonName,
 } = require('../../utils/dungeons');
 const { resolveInteractionLocale } = require('../../utils/interactionLocale');
+
+const ACHIEVEMENT_NAMES = {
+  de: 'Erfolge',
+  en: 'Achievements',
+  fr: 'Succès',
+  es: 'Logros',
+  it: 'Imprese',
+  pt: 'Conquistas',
+};
+
+function buildAchievementFieldLabel(locale) {
+  const primary = ACHIEVEMENT_NAMES[locale] || ACHIEVEMENT_NAMES.en;
+  const others = Object.entries(ACHIEVEMENT_NAMES)
+    .filter(([loc]) => loc !== locale)
+    .map(([, name]) => name)
+    .join(', ');
+  return others ? `${primary} (${others})` : primary;
+}
 
 const MESSAGES = {
   de: {
@@ -19,7 +37,7 @@ const MESSAGES = {
     },
     fields: {
       boss: 'Boss',
-      challenges: 'Herausforderungen',
+      achievements: buildAchievementFieldLabel('de'),
     },
   },
   en: {
@@ -30,7 +48,7 @@ const MESSAGES = {
     },
     fields: {
       boss: 'Boss',
-      challenges: 'Challenges',
+      achievements: buildAchievementFieldLabel('en'),
     },
   },
   fr: {
@@ -41,7 +59,7 @@ const MESSAGES = {
     },
     fields: {
       boss: 'Boss',
-      challenges: 'Défis',
+      achievements: buildAchievementFieldLabel('fr'),
     },
   },
   es: {
@@ -52,7 +70,7 @@ const MESSAGES = {
     },
     fields: {
       boss: 'Jefe',
-      challenges: 'Desafíos',
+      achievements: buildAchievementFieldLabel('es'),
     },
   },
   it: {
@@ -63,7 +81,7 @@ const MESSAGES = {
     },
     fields: {
       boss: 'Boss',
-      challenges: 'Sfide',
+      achievements: buildAchievementFieldLabel('it'),
     },
   },
   pt: {
@@ -74,7 +92,7 @@ const MESSAGES = {
     },
     fields: {
       boss: 'Chefe',
-      challenges: 'Desafios',
+      achievements: buildAchievementFieldLabel('pt'),
     },
   },
 };
@@ -113,7 +131,7 @@ async function execute(interaction) {
 
   const bossNames = getDungeonBossNames(dungeon, locale);
   const bossLines = bossNames.length ? bossNames.map((name) => `• ${name}`) : [];
-  const challenges = formatDungeonChallenges(dungeon, locale);
+  const achievements = formatDungeonAchievements(dungeon, locale);
 
   const descriptionLines = [`**${t.description.level}:** ${level}`];
 
@@ -137,8 +155,8 @@ async function execute(interaction) {
       inline: false,
     },
     {
-      name: `**${t.fields.challenges}**`,
-      value: challenges.length ? challenges.join('\n') : '—',
+      name: `**${t.fields.achievements}**`,
+      value: achievements.length ? achievements.join('\n') : '—',
       inline: false,
     }
   );
