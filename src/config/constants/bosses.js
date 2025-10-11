@@ -47,11 +47,11 @@ const BOSSE_LISTE = [
       vitality: 920,
       actionPoints: 8,
       movementPoints: 3,
-      ap_resist: 8,
+      /*ap_resist: 8,
       mp_resist: 8,
       block: 10,
       krit: 0,
-      pushback: 0
+      pushback: 0*/
     },
     resistances: {
       neutral: 25,

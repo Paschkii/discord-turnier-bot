@@ -120,13 +120,22 @@ async function execute(interaction) {
 
   await interaction.deferReply();
 
+  const { guild } = interaction;
+  if (guild && typeof guild.emojis?.fetch === 'function') {
+    try {
+      await guild.emojis.fetch();
+    } catch (error) {
+      // Ignorieren, wenn Emojis nicht geladen werden können
+    }
+  }
+
   const dungeonName = getDungeonName(dungeon, locale) || '—';
   const levelValue = dungeon.dungeonLevel ?? dungeon.level;
   const level = levelValue != null ? String(levelValue) : '—';
 
   const bossNames = getDungeonBossNames(dungeon, locale);
   const bossLines = bossNames.length ? bossNames.map((name) => `• ${name}`) : [];
-  const achievements = formatDungeonAchievements(dungeon, locale);
+  const achievements = formatDungeonAchievements(dungeon, locale, { guild });
 
   const descriptionLines = [`**${t.description.level}:** ${level}`];
 

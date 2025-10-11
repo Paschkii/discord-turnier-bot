@@ -115,8 +115,30 @@ function resolveChallengeText(entry, locale = 'de', params = {}) {
   return String(entry);
 }
 
+function resolveGuildEmoji(name, guild, fallback = '') {
+  const normalized = typeof name === 'string' ? name.trim().replace(/^:|:$/g, '') : '';
+  if (!normalized || !guild?.emojis?.cache) {
+    return fallback;
+  }
+
+  const cache = guild.emojis.cache;
+  const byId = cache.get(normalized);
+  if (byId) {
+    const prefix = byId.animated ? '<a:' : '<:';
+    return `${prefix}${byId.name}:${byId.id}>`;
+  }
+
+  const byName = cache.find((emoji) => emoji?.name === normalized);
+  if (byName) {
+    const prefix = byName.animated ? '<a:' : '<:';
+    return `${prefix}${byName.name}:${byName.id}>`;
+  }
+
+  return fallback;
+}
+
 function formatDungeonAchievements(dungeon, locale = 'de', options = {}) {
-  const { includeDescriptions = true } = options;
+  const { includeDescriptions = true, guild = null } = options;
   const loc = resolveLocale(locale);
   const achievements = Array.isArray(dungeon?.achievements)
     ? dungeon.achievements
@@ -137,13 +159,23 @@ function formatDungeonAchievements(dungeon, locale = 'de', options = {}) {
           ? achievement.emojiName.trim()
           : normalizedId;
 
-      const emoji =
+      const defaultEmoji =
         (typeof achievement?.emoji === 'string' && achievement.emoji.trim())
           ? achievement.emoji.trim()
-          : emojiName
-            ? resolveDiscordEmoji(emojiName, `:${emojiName}:`)
-            : resolveChallengeEmoji(achievement?.id) ||
-              (normalizedId ? `:${normalizedId}:` : '');
+          : '';
+
+      const resolvedGuildEmoji = emojiName
+        ? resolveGuildEmoji(emojiName, guild)
+        : normalizedId
+          ? resolveGuildEmoji(normalizedId, guild)
+          : '';
+
+      const emoji =
+        defaultEmoji ||
+        resolvedGuildEmoji ||
+        (emojiName
+          ? resolveDiscordEmoji(emojiName, `:${emojiName}:`)
+          : resolveChallengeEmoji(achievement?.id) || (normalizedId ? `:${normalizedId}:` : ''));
       const bullet = emoji || (normalizedId ? `:${normalizedId}:` : '•');
       if (description) {
         return `${bullet} ${name} — ${description}`;
