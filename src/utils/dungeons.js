@@ -7,6 +7,7 @@ const {
   resolveLocaleKey,
 } = require('../config/constants');
 const { resolveChallengeEmoji } = require('../config/constants/challengeEmojiConfig');
+const achievementsConfig = require('../config/constants/achievements');
 const { findBossById, getBossName } = require('./bosses');
 
 function resolveLocale(locale) {
@@ -49,6 +50,18 @@ function humanizeIdentifier(id) {
     .filter(Boolean)
     .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
     .join(' ');
+}
+
+function normalizeAchievementIdentifier(id) {
+  if (achievementsConfig && typeof achievementsConfig.normalizeAchievementId === 'function') {
+    return achievementsConfig.normalizeAchievementId(id);
+  }
+  return typeof id === 'string'
+    ? id
+        .trim()
+        .toLowerCase()
+        .replace(/\s+/g, '_')
+    : '';
 }
 
 function getDungeonBossEntries(dungeon) {
@@ -117,13 +130,21 @@ function formatDungeonAchievements(dungeon, locale = 'de', options = {}) {
       const description = includeDescriptions
         ? resolveChallengeText(achievement?.description, loc, achievement?.params)
         : '';
+
+      const normalizedId = normalizeAchievementIdentifier(achievement?.id);
+      const emojiName =
+        typeof achievement?.emojiName === 'string' && achievement.emojiName.trim()
+          ? achievement.emojiName.trim()
+          : normalizedId;
+
       const emoji =
         (typeof achievement?.emoji === 'string' && achievement.emoji.trim())
           ? achievement.emoji.trim()
-          : achievement?.emojiName
-            ? resolveDiscordEmoji(achievement.emojiName)
-            : resolveChallengeEmoji(achievement?.id);
-      const bullet = emoji || '•';
+          : emojiName
+            ? resolveDiscordEmoji(emojiName, `:${emojiName}:`)
+            : resolveChallengeEmoji(achievement?.id) ||
+              (normalizedId ? `:${normalizedId}:` : '');
+      const bullet = emoji || (normalizedId ? `:${normalizedId}:` : '•');
       if (description) {
         return `${bullet} ${name} — ${description}`;
       }

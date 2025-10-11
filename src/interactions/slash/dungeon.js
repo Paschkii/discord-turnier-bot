@@ -20,12 +20,7 @@ const ACHIEVEMENT_NAMES = {
 };
 
 function buildAchievementFieldLabel(locale) {
-  const primary = ACHIEVEMENT_NAMES[locale] || ACHIEVEMENT_NAMES.en;
-  const others = Object.entries(ACHIEVEMENT_NAMES)
-    .filter(([loc]) => loc !== locale)
-    .map(([, name]) => name)
-    .join(', ');
-  return others ? `${primary} (${others})` : primary;
+  return ACHIEVEMENT_NAMES[locale] || ACHIEVEMENT_NAMES.en;
 }
 
 const MESSAGES = {

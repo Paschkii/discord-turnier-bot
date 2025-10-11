@@ -58,7 +58,7 @@ function buildAchievementIconUrl(id) {
 
 function buildAchievementEmojiName(id) {
   const normalized = normalizeAchievementId(id);
-  return normalized ? `achievement_${normalized}` : '';
+  return normalized || '';
 }
 
 function cloneAchievementEntry(entry) {

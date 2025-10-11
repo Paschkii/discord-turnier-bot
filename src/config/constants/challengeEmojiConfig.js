@@ -57,7 +57,7 @@ function getChallengeEmojiName(id) {
 
 function resolveChallengeEmoji(id) {
   const name = getChallengeEmojiName(id);
-  return name ? resolveDiscordEmoji(name) : '';
+  return name ? resolveDiscordEmoji(name, `:${name}:`) : '';
 }
 
 function getChallengeEmojiInstallerDefinitions() {
