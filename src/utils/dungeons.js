@@ -115,56 +115,29 @@ function resolveChallengeText(entry, locale = 'de', params = {}) {
   return String(entry);
 }
 
-function resolveGuildEmoji(name, guild, fallback = '') {
-  if (!guild?.emojis?.cache) {
-    return fallback;
-  }
+function resolveGuildEmoji(nameOrId, guild, fallback = '') {
+  if (!guild || !guild.emojis || !guild.emojis.cache || typeof nameOrId !== 'string') return fallback;
 
   const cache = guild.emojis.cache;
-  if (typeof name !== 'string') {
-    return fallback;
+  const trimmed = nameOrId.trim();
+  if (!trimmed) return fallback;
+
+  // 1) Versuche direkt Mention/ID zu extrahieren
+  const mention = trimmed.match(/^<a?:(?<n>[^:>]+):(?<id>\d+)>$/);
+  const idOnly  = trimmed.match(/^\d+$/);
+  const rawId   = mention?.groups?.id || (idOnly ? trimmed : null);
+  const rawName = (mention?.groups?.n || trimmed.replace(/^:|:$/g, '')).trim();
+
+  // 2) Nach ID
+  if (rawId) {
+    const byId = cache.get(rawId);
+    if (byId) return byId.toString();
   }
 
-  const trimmed = name.trim();
-  if (!trimmed) {
-    return fallback;
-  }
-
-  const mentionMatch = trimmed.match(/^<a?:(?<mentionName>\w{2,}):(?<mentionId>\d+)>$/);
-  const idMatch = trimmed.match(/^(?<rawId>\d+)$/);
-  const bare = trimmed.replace(/^:|:$/g, '');
-
-  const normalizedId = mentionMatch?.groups?.mentionId || idMatch?.groups?.rawId || '';
-  const normalizedName = (mentionMatch?.groups?.mentionName || bare || '').trim();
-  const normalizedNameLower = normalizedName.toLowerCase();
-
-  if (!normalizedId && !normalizedNameLower) {
-    return fallback;
-  }
-
-  if (normalizedId) {
-    const byId = cache.get(normalizedId);
-    if (byId) {
-      const prefix = byId.animated ? '<a:' : '<:';
-      return `${prefix}${byId.name}:${byId.id}>`;
-    }
-  }
-
-  const byExactName = normalizedName && cache.get(normalizedName);
-  if (byExactName) {
-    const prefix = byExactName.animated ? '<a:' : '<:';
-    return `${prefix}${byExactName.name}:${byExactName.id}>`;
-  }
-
-  const byName = cache.find((emoji) => {
-    const emojiName = typeof emoji?.name === 'string' ? emoji.name.trim() : '';
-    if (!emojiName) return false;
-    return emojiName === normalizedName || emojiName.toLowerCase() === normalizedNameLower;
-  });
-  if (byName) {
-    const prefix = byName.animated ? '<a:' : '<:';
-    return `${prefix}${byName.name}:${byName.id}>`;
-  }
+  // 3) Nach Name (exakt oder case-insensitiv)
+  const targetLower = rawName.toLowerCase();
+  const byName = cache.find(e => typeof e.name === 'string' && e.name.toLowerCase() === targetLower);
+  if (byName) return byName.toString();
 
   return fallback;
 }
