@@ -1,5 +1,5 @@
 // === Imports ===
-const { EmbedBuilder, MessageFlags } = require('discord.js');
+const { AttachmentBuilder, EmbedBuilder, MessageFlags } = require('discord.js');
 const {
   findDungeonById,
   findDungeonByName,
@@ -9,6 +9,10 @@ const {
   getDungeonName,
 } = require('../../utils/dungeons');
 const { resolveInteractionLocale } = require('../../utils/interactionLocale');
+const {
+  createColumnBossIconImage,
+  createStackedBossIconImage,
+} = require('../../utils/bossIconImages');
 
 const ACHIEVEMENT_NAMES = {
   de: 'Erfolge',
@@ -169,6 +173,7 @@ async function execute(interaction) {
   const levelValue = dungeon.dungeonLevel ?? dungeon.level;
   const level = levelValue != null ? String(levelValue) : '—';
 
+  const bossEntries = getDungeonBossEntries(dungeon);
   const bossNames = getDungeonBossNames(dungeon, locale);
   const bossLines = bossNames.length ? bossNames.map((name) => `• ${name}`) : [];
   const achievements = formatDungeonAchievements(dungeon, locale, { guild });
@@ -182,11 +187,44 @@ async function execute(interaction) {
     .setDescription(descriptionLines.join('\n'))
     .setTimestamp();
 
-  const primaryBoss = getDungeonBossEntries(dungeon)[0]?.boss;
-  if (primaryBoss?.imageUrl) {
-    embed.setThumbnail(primaryBoss.imageUrl);
-  } else if (primaryBoss?.icon) {
-    embed.setThumbnail(primaryBoss.icon);
+  const bossImageSources = bossEntries
+    .map(({ boss }) => (boss?.imageUrl || boss?.icon || '').trim())
+    .filter(Boolean);
+  const attachments = [];
+  let bossImageAssigned = false;
+  let bossThumbnailAssigned = false;
+
+  if (bossImageSources.length > 1) {
+    const stackedResult = await createStackedBossIconImage(bossImageSources);
+    if (stackedResult) {
+      const attachment = new AttachmentBuilder(stackedResult.buffer, {
+        name: stackedResult.fileName,
+      });
+      attachments.push(attachment);
+      embed.setImage(`attachment://${stackedResult.fileName}`);
+      bossImageAssigned = true;
+    } else {
+      const columnResult = await createColumnBossIconImage(bossImageSources);
+      if (columnResult) {
+        const attachment = new AttachmentBuilder(columnResult.buffer, {
+          name: columnResult.fileName,
+        });
+        attachments.push(attachment);
+        embed.setThumbnail(`attachment://${columnResult.fileName}`);
+        bossThumbnailAssigned = true;
+      }
+    }
+  }
+
+  if (!bossImageAssigned && !bossThumbnailAssigned) {
+    const primaryBoss = bossEntries[0]?.boss;
+    if (primaryBoss?.imageUrl) {
+      embed.setThumbnail(primaryBoss.imageUrl);
+      bossThumbnailAssigned = true;
+    } else if (primaryBoss?.icon) {
+      embed.setThumbnail(primaryBoss.icon);
+      bossThumbnailAssigned = true;
+    }
   }
 
   embed.addFields(
@@ -203,9 +241,11 @@ async function execute(interaction) {
   );
 
   try {
-    return await interaction.editReply({
-      embeds: [embed],
-    });
+    const payload = { embeds: [embed] };
+    if (attachments.length) {
+      payload.files = attachments;
+    }
+    return await interaction.editReply(payload);
   } catch (error) {
     console.error('[slash] editReply failed:', error);
     return undefined;
