@@ -10,6 +10,7 @@ const {
 } = require('../../utils/dungeons');
 const { resolveInteractionLocale } = require('../../utils/interactionLocale');
 const { bossRowAttachment } = require('../../helpers/bossRow');
+const { chunkIntoEmbedFields } = require('../../helpers/embedText')
 
 const ACHIEVEMENT_NAMES = {
   de: 'Erfolge',
@@ -221,13 +222,26 @@ async function execute(interaction) {
     inline: false,
   };
 
+  const achievementLines = (achievementText || '')
+    .split('\n')
+    .filter(Boolean)               // leere Zeilen raus
+    .map(s => s.startsWith('•') ? s : `• ${s}`); // Bullet sicherstellen
+
+  const achievementFields = chunkIntoEmbedFields(
+    achievementLines,
+    `**${t.fields.achievements}**`,
+    false
+  );
+
+  const bossField = {
+    name: `**${t.fields.boss}**`,
+    value: bossLines.length ? bossLines.join('\n') : '—',
+    inline: false,
+  };
+
   embed.addFields(
     achievementField,
-    {
-      name: `**${t.fields.boss}**`,
-      value: bossLines.length ? bossLines.join('\n') : '—',
-      inline: false,
-    }
+    bossField
   );
 
   if (bossImageUrl) {
