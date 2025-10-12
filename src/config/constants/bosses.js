@@ -439,7 +439,12 @@ const BOSSE_LISTE = [
       fire: -12,
       water: -12,
       air: -12,
-    }
+    },
+    alsoIn: [
+      { dungeonID: 'rainbow_blop_lair',
+        overrides: { vitality: 3600 }
+      }
+    ],
   },
   // Royal Indigo Blop
   { id: 'royal_indigo_blop',
@@ -455,7 +460,6 @@ const BOSSE_LISTE = [
     region: '',
     family: '',
     homeDungeonID: 'blop_dungeon',
-    alsoIn: [ { dungeonID: 'rainbow_blop_lair', overrides: { level: 120} } ],
     characteristics: {
       vitality: 2400,
       actionPoints: 10,
@@ -467,7 +471,12 @@ const BOSSE_LISTE = [
       fire: -12,
       water: 94,
       air: -12,
-    }
+    },
+    alsoIn: [
+      { dungeonID: 'rainbow_blop_lair',
+        overrides: { vitality: 3600 }
+      }
+    ],
   },
   // Royal Morello Cherry Blop
   { id: 'royal_morello_cherry_blop',
@@ -494,7 +503,12 @@ const BOSSE_LISTE = [
       fire: 94,
       water: -12,
       air: -12,
-    }
+    },
+    alsoIn: [
+      { dungeonID: 'rainbow_blop_lair',
+        overrides: { vitality: 3600 }
+      }
+    ],
   },
   // Royal Coco Blop
   { id: 'royal_coco_blop',
@@ -521,7 +535,12 @@ const BOSSE_LISTE = [
       fire: -12,
       water: -12,
       air: 94,
-    }
+    },
+    alsoIn: [
+      { dungeonID: 'rainbow_blop_lair',
+        overrides: { vitality: 3600 }
+      }
+    ],
   },
   // -- Jellys --
   // Royal Strawberry Jelly
@@ -672,7 +691,7 @@ const BOSSE_LISTE = [
     level: 60,
     region: '',
     family: '',
-    homeDungeonID: 'otomais_ark',
+    homeDungeonID: 'hold_of_otomais_ark',
     characteristics: {
       vitality: 1900,
       actionPoints: 10,

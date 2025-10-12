@@ -337,7 +337,7 @@ const DUNGEON_ROHDATEN = [
     dungeonLevel: 60
   },
   // Hold of Otomai's Ark
-  { dungeonID: 'otomais_ark',
+  { dungeonID: 'hold_of_otomais_ark',
     dungeonname: {
       de: 'Bilge von Otomaïs Arche',
       en: 'Hold of Otomai\'s Ark',
@@ -586,7 +586,7 @@ const DUNGEON_ROHDATEN = [
       { id: 'room3', monsterID: ['', '', '', '']},
     ],
     challenges: ['impertinence', 'duel', 'duo(20)'],
-    bossid: 'royal_rainbow_blop',
+    bossid: ['royal_rainbow_blop', 'royal_coco_blop', 'royal_indigo_blop', 'royal_morello_cherry_blop', 'royal_pippin_blop'],
     dungeonLevel: 120
   },
   // Inner Labyrinth of the Minotoror
