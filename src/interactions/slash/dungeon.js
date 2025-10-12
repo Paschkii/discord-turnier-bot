@@ -231,20 +231,10 @@ async function execute(interaction) {
     inline: false,
   };
 
-  const embeds = [embed];
-
-  if (achievementField.value && achievementField.value !== '—') {
-    const achievementsEmbed = new EmbedBuilder()
-      .setColor(0x00AEFF)
-      .setTimestamp()
-      .addFields(achievementField);
-    embeds.push(achievementsEmbed);
-  } else {
-    embed.addFields(achievementField);
-  }
+  embed.addFields(achievementField);
 
   try {
-    const payload = { embeds };
+    const payload = { embeds: [embed] };
     if (attachments.length) {
       payload.files = attachments;
     }
