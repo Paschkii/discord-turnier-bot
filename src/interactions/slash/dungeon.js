@@ -147,7 +147,7 @@ async function execute(interaction) {
     });
   }
 
-  const deferred = await safeDeferReply(interaction, { ephemeral: false });
+  const deferred = await safeDeferReply(interaction, { flags: MessageFlags.Ephemeral });
   if (!deferred) {
     return;
   }
@@ -188,7 +188,7 @@ async function execute(interaction) {
     .map(({ boss }) => (boss?.imageUrl || boss?.icon || '').trim())
     .filter(Boolean);
   const attachments = [];
-  let bossImageAssigned = false;
+  let bossImageUrl;
 
   if (bossImageSources.length) {
     const bossRowFormat = 'webp';
@@ -201,29 +201,19 @@ async function execute(interaction) {
         format: bossRowFormat,
       });
       attachments.push(bossRow);
-      embed.setImage(`attachment://${bossRowFileName}`);
-      bossImageAssigned = true;
+      bossImageUrl = `attachment://${bossRowFileName}`;
     } catch (error) {
       console.warn('[bossRow] Erstellung fehlgeschlagen:', error);
     }
   }
 
-  if (!bossImageAssigned) {
+  if (!bossImageUrl) {
     const primaryBoss = bossEntries[0]?.boss;
     const fallbackImage = primaryBoss?.imageUrl || primaryBoss?.icon;
     if (fallbackImage) {
-      embed.setImage(fallbackImage);
-      bossImageAssigned = true;
+      bossImageUrl = fallbackImage;
     }
   }
-
-  embed.addFields(
-    {
-      name: `**${t.fields.boss}**`,
-      value: bossLines.length ? bossLines.join('\n') : '—',
-      inline: false,
-    }
-  );
 
   const achievementField = {
     name: `**${t.fields.achievements}**`,
@@ -231,7 +221,18 @@ async function execute(interaction) {
     inline: false,
   };
 
-  embed.addFields(achievementField);
+  embed.addFields(
+    achievementField,
+    {
+      name: `**${t.fields.boss}**`,
+      value: bossLines.length ? bossLines.join('\n') : '—',
+      inline: false,
+    }
+  );
+
+  if (bossImageUrl) {
+    embed.setImage(bossImageUrl);
+  }
 
   try {
     const payload = { embeds: [embed] };
