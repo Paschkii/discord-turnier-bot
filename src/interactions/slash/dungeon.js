@@ -10,6 +10,7 @@ const {
 } = require('../../utils/dungeons');
 const { resolveInteractionLocale } = require('../../utils/interactionLocale');
 const { bossCollageAttachment } = require('../../helpers/collage');
+const { bossRowAttachment } = require('../../helpers/bossRow');
 
 const ACHIEVEMENT_NAMES = {
   de: 'Erfolge',
@@ -190,6 +191,23 @@ async function execute(interaction) {
   const attachments = [];
   let bossThumbnailAssigned = false;
 
+  if (bossImageSources.length) {
+    const bossRowFormat = 'webp';
+    const bossRowFileName = `boss_row.${bossRowFormat}`;
+    try {
+      const bossRow = await bossRowAttachment(bossImageSources, {
+        tile: 48,
+        gap: 6,
+        maxPerRow: 10,
+        format: bossRowFormat,
+      });
+      attachments.push(bossRow);
+      embed.setImage(`attachment://${bossRowFileName}`);
+    } catch (error) {
+      console.warn('[bossRow] Erstellung fehlgeschlagen:', error);
+    }
+  }
+  
   if (bossImageSources.length > 1) {
      try {
       const collageFormat = 'png';

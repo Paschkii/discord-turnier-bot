@@ -303,7 +303,7 @@ const DUNGEON_ROHDATEN = [
   // The Jellith Dimension
   { dungeonID: 'jellith_dimension',
     dungeonname: {
-      de: 'Königliche Gelee Dimension',
+      de: 'Gelee-Dungeon',
       en: 'The Jellith Dimension',
       es: '',
       fr: '',

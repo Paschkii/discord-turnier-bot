@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../dofus-touch-icons"
+		}
+	],
+	"settings": {
+		"git.ignoreLimitWarning": true
+	}
+}

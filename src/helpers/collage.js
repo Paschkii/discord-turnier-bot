@@ -77,4 +77,4 @@ async function fetchBuffer(url, timeoutMs = 10000) {
   }
 }
 
-module.exports = { bossCollageAttachment };
+module.exports = { bossCollageAttachment, fetchBuffer };
