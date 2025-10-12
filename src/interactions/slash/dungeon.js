@@ -9,7 +9,6 @@ const {
   getDungeonName,
 } = require('../../utils/dungeons');
 const { resolveInteractionLocale } = require('../../utils/interactionLocale');
-const { bossCollageAttachment } = require('../../helpers/collage');
 const { bossRowAttachment } = require('../../helpers/bossRow');
 
 const ACHIEVEMENT_NAMES = {
@@ -189,7 +188,7 @@ async function execute(interaction) {
     .map(({ boss }) => (boss?.imageUrl || boss?.icon || '').trim())
     .filter(Boolean);
   const attachments = [];
-  let bossThumbnailAssigned = false;
+  let bossImageAssigned = false;
 
   if (bossImageSources.length) {
     const bossRowFormat = 'webp';
@@ -203,38 +202,18 @@ async function execute(interaction) {
       });
       attachments.push(bossRow);
       embed.setImage(`attachment://${bossRowFileName}`);
+      bossImageAssigned = true;
     } catch (error) {
       console.warn('[bossRow] Erstellung fehlgeschlagen:', error);
     }
   }
-  
-  if (bossImageSources.length > 1) {
-     try {
-      const collageFormat = 'png';
-      const collageFileName = `bosses.${collageFormat}`;
-      const collageAttachment = await bossCollageAttachment(bossImageSources, {
-        size: 384,
-        maxCols: 3,
-        format: collageFormat,
-      });
-      if (collageAttachment) {
-        attachments.push(collageAttachment);
-        embed.setThumbnail(`attachment://${collageFileName}`);
-        bossThumbnailAssigned = true;
-      }
-      } catch (error) {
-      console.warn('[collage] Erstellung fehlgeschlagen:', error);
-    }
-  }
 
-  if (!bossThumbnailAssigned) {
+  if (!bossImageAssigned) {
     const primaryBoss = bossEntries[0]?.boss;
-    if (primaryBoss?.imageUrl) {
-      embed.setThumbnail(primaryBoss.imageUrl);
-      bossThumbnailAssigned = true;
-    } else if (primaryBoss?.icon) {
-      embed.setThumbnail(primaryBoss.icon);
-      bossThumbnailAssigned = true;
+    const fallbackImage = primaryBoss?.imageUrl || primaryBoss?.icon;
+    if (fallbackImage) {
+      embed.setImage(fallbackImage);
+      bossImageAssigned = true;
     }
   }
 
@@ -243,16 +222,29 @@ async function execute(interaction) {
       name: `**${t.fields.boss}**`,
       value: bossLines.length ? bossLines.join('\n') : '—',
       inline: false,
-    },
-    {
-      name: `**${t.fields.achievements}**`,
-      value: achievementText || '—',
-      inline: false,
     }
   );
 
+  const achievementField = {
+    name: `**${t.fields.achievements}**`,
+    value: achievementText || '—',
+    inline: false,
+  };
+
+  const embeds = [embed];
+
+  if (achievementField.value && achievementField.value !== '—') {
+    const achievementsEmbed = new EmbedBuilder()
+      .setColor(0x00AEFF)
+      .setTimestamp()
+      .addFields(achievementField);
+    embeds.push(achievementsEmbed);
+  } else {
+    embed.addFields(achievementField);
+  }
+
   try {
-    const payload = { embeds: [embed] };
+    const payload = { embeds };
     if (attachments.length) {
       payload.files = attachments;
     }
