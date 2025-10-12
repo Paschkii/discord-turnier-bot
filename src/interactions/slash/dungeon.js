@@ -148,7 +148,7 @@ async function execute(interaction) {
     });
   }
 
-  const deferred = await safeDeferReply(interaction, { flags: MessageFlags.Ephemeral });
+  const deferred = await safeDeferReply(interaction);
   if (!deferred) {
     return;
   }
