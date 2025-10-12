@@ -175,7 +175,14 @@ async function execute(interaction) {
   const bossNames = getDungeonBossNames(dungeon, locale);
   const bossLines = bossNames.length ? bossNames.map((name) => `• ${name}`) : [];
   const achievements = formatDungeonAchievements(dungeon, locale, { guild });
-  const achievementText = materializeGuildEmojiShortcodes(achievements.join('\n'), guild);
+  const achievementLines = achievements
+    .map((line) => (typeof line === 'string' ? line.trim() : ''))
+    .filter(Boolean)
+    .map((line) => (line.startsWith('•') ? line : `• ${line}`));
+
+  const achievementText = achievementLines.length
+    ? materializeGuildEmojiShortcodes(achievementLines.join('\n'), guild)
+    : '';
 
   const descriptionLines = [`**${t.description.level}:** ${level}`];
 
@@ -221,17 +228,6 @@ async function execute(interaction) {
     value: achievementText || '—',
     inline: false,
   };
-
-  const achievementLines = (achievementText || '')
-    .split('\n')
-    .filter(Boolean)               // leere Zeilen raus
-    .map(s => s.startsWith('•') ? s : `• ${s}`); // Bullet sicherstellen
-
-  const achievementFields = chunkIntoEmbedFields(
-    achievementLines,
-    `**${t.fields.achievements}**`,
-    false
-  );
 
   const bossField = {
     name: `**${t.fields.boss}**`,
