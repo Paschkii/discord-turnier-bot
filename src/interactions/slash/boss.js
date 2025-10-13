@@ -7,7 +7,6 @@ const {
 } = require('../../utils/bosses');
 const { findDungeonById, getDungeonName: getDungeonDisplayName } = require('../../utils/dungeons');
 const { getLocalizedText, RESISTANCE_TYPES } = require('../../config/constants');
-const { resolveInteractionLocale } = require('../../utils/interactionLocale');
 const {
   resolveInteractionLocale,
   getInteractionLocaleHint,
