@@ -103,29 +103,42 @@ function getMessages(locale) {
 // Antwort für /dungeon erzeugen
 async function execute(interaction) {
   const rawValue = interaction.options.getString('name');
-  const locale = await resolveInteractionLocale(interaction);
-  const t = getMessages(locale);
+  const localePromise = resolveInteractionLocale(interaction);
 
   if (!rawValue) {
+    const locale = await localePromise;
+    const t = getMessages(locale);
     return interaction.reply({
       content: t.missingName,
       flags: MessageFlags.Ephemeral,
     });
   }
 
-  const dungeon = findDungeonById(rawValue) || findDungeonByName(rawValue, locale);
+  let dungeon = findDungeonById(rawValue);
+  let locale;
 
   if (!dungeon) {
-    return interaction.reply({
-      content: t.notFound,
-      flags: MessageFlags.Ephemeral,
-    });
+    locale = await localePromise;
+    dungeon = findDungeonByName(rawValue, locale);
+
+    if (!dungeon) {
+      const t = getMessages(locale);
+      return interaction.reply({
+        content: t.notFound,
+        flags: MessageFlags.Ephemeral,
+      });
+    }
   }
 
   const deferred = await safeDeferReply(interaction);
   if (!deferred) {
     return;
   }
+
+  if (!locale) {
+    locale = await localePromise;
+  }
+  const t = getMessages(locale);
 
   const { guild } = interaction;
   if (guild && typeof guild.emojis?.fetch === 'function') {
