@@ -255,6 +255,15 @@ function formatNumber(value, { suffix = '', showSign = false } = {}) {
   return suffix ? `${result}${suffix}` : result;
 }
 
+function coalesce(...values) {
+  for (const value of values) {
+    if (value !== undefined && value !== null) {
+      return value;
+    }
+  }
+  return undefined;
+}
+
 function formatLabelValue(label, value) {
   return `${label} ${formatNumber(value)}`;
 }
@@ -293,7 +302,7 @@ function buildElementLine({
     return `${elementLabel} ${formatted}`;
   });
 
-  const valueText = hasValue ? parts.join(' • ') : '—';
+  const valueText = hasValue ? parts.join(' ') : '—';
   if (!label) {
     return valueText;
   }
@@ -318,12 +327,27 @@ function buildDescription({ boss, dungeonNames, labels, level, locale }) {
     formatLabelValue(EMOJI_LABELS.baseStats.movementPoints, characteristics.movementPoints),
   ].join(' ');
 
+  const apResistValue = coalesce(
+    characteristics.ap_resist,
+    characteristics.apResist,
+    characteristics.ap_resistance,
+    characteristics.apResistance,
+  );
+
+  const mpResistValue = coalesce(
+    characteristics.mp_resist,
+    characteristics.mpResist,
+    characteristics.mp_resistance,
+    characteristics.mpResistance,
+    characteristics.bp_resist,
+    characteristics.bpResist,
+    characteristics.bp_resistance,
+    characteristics.bpResistance,
+  );
+
   const defensesLine = [
-    formatLabeledStat(EMOJI_LABELS.defenses.apResist, characteristics.ap_resist),
-    formatLabeledStat(
-      EMOJI_LABELS.defenses.bpResist,
-      characteristics.mp_resist ?? characteristics.bp_resist,
-    ),
+    formatLabeledStat(EMOJI_LABELS.defenses.apResist, apResistValue),
+    formatLabeledStat(EMOJI_LABELS.defenses.bpResist, mpResistValue),
     formatLabeledStat(EMOJI_LABELS.defenses.block, characteristics.block),
     formatLabeledStat(
       EMOJI_LABELS.defenses.crit,
@@ -355,12 +379,15 @@ function buildDescription({ boss, dungeonNames, labels, level, locale }) {
 // Antwort für /boss erzeugen
 async function execute(interaction) {
   const rawValue = interaction.options.getString('name');
-  const localePromise = resolveInteractionLocale(interaction);
+  let localePromise;
   let locale;
 
   const resolveLocale = async () => {
     if (locale) return locale;
     try {
+      if (!localePromise) {
+        localePromise = resolveInteractionLocale(interaction);
+      }
       locale = await localePromise;
     } catch (error) {
       locale = 'en';
