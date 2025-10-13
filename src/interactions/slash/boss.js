@@ -321,7 +321,7 @@ function buildDescription({ boss, dungeonNames, labels, level, locale }) {
   const line1 = `**${labels.dungeon}:** ${dungeonText}`;
 
   const baseStatsLine = [
-    formatLabelValue(labels.baseStats.level, level),
+    formatLabelValue(EMOJI_LABELS.baseStats.level, level),
     formatLabelValue(EMOJI_LABELS.baseStats.vitality, characteristics.vitality),
     formatLabelValue(EMOJI_LABELS.baseStats.actionPoints, characteristics.actionPoints),
     formatLabelValue(EMOJI_LABELS.baseStats.movementPoints, characteristics.movementPoints),
