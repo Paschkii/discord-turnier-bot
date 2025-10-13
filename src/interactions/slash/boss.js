@@ -150,6 +150,28 @@ function getMessages(locale) {
 
 const ELEMENT_KEYS = ['neutral', 'earth', 'fire', 'water', 'air'];
 
+const EMOJI_LABELS = {
+  baseStats: {
+    vitality: ':vitality:',
+    actionPoints: ':AP:',
+    movementPoints: ':MP:',
+  },
+  defenses: {
+    apResist: ':AP-Resist:',
+    bpResist: ':BP-Resist:',
+    block: ':Block:',
+    crit: ':Krit:',
+    pushback: ':Rückstoß:',
+  },
+  elements: {
+    neutral: ':neutral:',
+    earth: ':strength:',
+    fire: ':intelligence:',
+    water: ':chance:',
+    air: ':agility:',
+  },
+};
+
 function extractHomeDungeonIds(ref) {
   if (!ref) return [];
   if (Array.isArray(ref)) {
@@ -234,11 +256,27 @@ function formatLabelValue(label, value) {
   return `${label} ${formatNumber(value)}`;
 }
 
-function formatLabeledStat(label, value, options = {}) {
-  return `${label}: ${formatNumber(value, options)}`;
+function appendSeparator(label) {
+  return label && label.endsWith(':') ? label : `${label}:`;
 }
 
-function buildElementLine({ resistances = {}, elementLabels, label, keySuffix = '', suffix = '' }) {
+function formatLabeledStat(label, value, options = {}) {
+  if (!label) {
+    return formatNumber(value, options);
+  }
+
+  const prefix = appendSeparator(label);
+  return `${prefix} ${formatNumber(value, options)}`;
+}
+
+function buildElementLine({
+  resistances = {},
+  elementLabels,
+  elementEmojis,
+  label,
+  keySuffix = '',
+  suffix = '',
+}) {
   let hasValue = false;
   const parts = ELEMENT_KEYS.map((key) => {
     const valueKey = keySuffix ? `${key}_${keySuffix}` : key;
@@ -247,52 +285,67 @@ function buildElementLine({ resistances = {}, elementLabels, label, keySuffix = 
       hasValue = true;
     }
     const formatted = formatNumber(rawValue, { suffix });
-    const elementLabel = elementLabels.get(key) || capitalize(key);
+    const emojiLabel = elementEmojis?.get(key);
+    const elementLabel = emojiLabel || elementLabels.get(key) || capitalize(key);
     return `${elementLabel} ${formatted}`;
   });
 
   const valueText = hasValue ? parts.join(' • ') : '—';
-  return `${label}: ${valueText}`;
+  if (!label) {
+    return valueText;
+  }
+
+  const prefix = appendSeparator(label);
+  return `${prefix} ${valueText}`;
 }
 
 function buildDescription({ boss, dungeonNames, labels, level, locale }) {
   const characteristics = boss?.characteristics || {};
   const resistances = boss?.resistances || {};
   const elementLabels = getElementLabels(locale);
+  const elementEmojis = new Map(Object.entries(EMOJI_LABELS.elements));
 
   const dungeonText = dungeonNames.length ? dungeonNames.join(' • ') : '—';
   const line1 = `**${labels.dungeon}:** ${dungeonText}`;
 
   const baseStatsLine = [
     formatLabelValue(labels.baseStats.level, level),
-    formatLabelValue(labels.baseStats.vitality, characteristics.vitality),
-    formatLabelValue(labels.baseStats.actionPoints, characteristics.actionPoints),
-    formatLabelValue(labels.baseStats.movementPoints, characteristics.movementPoints),
+    formatLabelValue(EMOJI_LABELS.baseStats.vitality, characteristics.vitality),
+    formatLabelValue(EMOJI_LABELS.baseStats.actionPoints, characteristics.actionPoints),
+    formatLabelValue(EMOJI_LABELS.baseStats.movementPoints, characteristics.movementPoints),
   ].join(' • ');
 
   const defensesLine = [
-    formatLabeledStat(labels.defenses.apResist, characteristics.ap_resist, { suffix: '%' }),
-    formatLabeledStat(labels.defenses.bpResist, characteristics.mp_resist ?? characteristics.bp_resist, { suffix: '%' }),
-    formatLabeledStat(labels.defenses.block, characteristics.block),
+    formatLabeledStat(EMOJI_LABELS.defenses.apResist, characteristics.ap_resist, { suffix: '%' }),
     formatLabeledStat(
-      labels.defenses.crit,
+      EMOJI_LABELS.defenses.bpResist,
+      characteristics.mp_resist ?? characteristics.bp_resist,
+      { suffix: '%' },
+    ),
+    formatLabeledStat(EMOJI_LABELS.defenses.block, characteristics.block),
+    formatLabeledStat(
+      EMOJI_LABELS.defenses.crit,
       characteristics.krit ?? characteristics.crit ?? characteristics.critical ?? characteristics.criticalHit,
       { suffix: '%' },
     ),
-    formatLabeledStat(labels.defenses.pushback, characteristics.pushback ?? characteristics.pushback_resist, { suffix: '%' }),
+    formatLabeledStat(
+      EMOJI_LABELS.defenses.pushback,
+      characteristics.pushback ?? characteristics.pushback_resist,
+      { suffix: '%' },
+    ),
   ].join(' • ');
 
   const flatLine = buildElementLine({
     resistances,
     elementLabels,
-    label: labels.flats,
+    elementEmojis,
     keySuffix: 'flat',
   });
 
   const percentLine = buildElementLine({
     resistances,
     elementLabels,
-    label: labels.percents,
+    elementEmojis,
     suffix: '%',
   });
 
