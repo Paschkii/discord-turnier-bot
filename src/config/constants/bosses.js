@@ -47,27 +47,23 @@ const BOSSE_LISTE = [
       vitality: 920,
       actionPoints: 8,
       movementPoints: 3,
-      /*
-      ap_resist: 8,
-      mp_resist: 8,
+      apResist: 8,
+      mpResist: 8,
       block: 10,
       krit: 0,
       pushback: 0
-      */
     },
     resistances: {
       neutral: 25,
       earth: 25,
       fire: 15,
       water: -10,
-      air: -15
-      /*
+      air: -15,
       neutral_flat: 0,
       earth_flat: 0,
       fire_flat: 0,
       water_flat: 0,
       air_flat: 0
-      */
     }
   },
   // Sponge Mob
