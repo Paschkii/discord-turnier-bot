@@ -154,16 +154,17 @@ const ELEMENT_KEYS = ['neutral', 'earth', 'fire', 'water', 'air'];
 
 const EMOJI_LABELS = {
   baseStats: {
+    level: ':level:',
     vitality: ':vitality:',
-    actionPoints: ':AP:',
-    movementPoints: ':MP:',
+    actionPoints: ':ap:',
+    movementPoints: ':mp:',
   },
   defenses: {
-    apResist: ':AP-Resist:',
-    bpResist: ':BP-Resist:',
-    block: ':Block:',
-    crit: ':Krit:',
-    pushback: ':Rückstoß:',
+    apResist: ':apresist:',
+    bpResist: ':mpresist:',
+    block: ':block:',
+    crit: ':critresist:',
+    pushback: ':pushbackresist:',
   },
   elements: {
     neutral: ':neutral:',
@@ -307,7 +308,7 @@ function buildDescription({ boss, dungeonNames, labels, level, locale }) {
   const elementLabels = getElementLabels(locale);
   const elementEmojis = new Map(Object.entries(EMOJI_LABELS.elements));
 
-  const dungeonText = dungeonNames.length ? dungeonNames.join(' • ') : '—';
+  const dungeonText = dungeonNames.length ? dungeonNames.join(' ') : '—';
   const line1 = `**${labels.dungeon}:** ${dungeonText}`;
 
   const baseStatsLine = [
@@ -315,27 +316,24 @@ function buildDescription({ boss, dungeonNames, labels, level, locale }) {
     formatLabelValue(EMOJI_LABELS.baseStats.vitality, characteristics.vitality),
     formatLabelValue(EMOJI_LABELS.baseStats.actionPoints, characteristics.actionPoints),
     formatLabelValue(EMOJI_LABELS.baseStats.movementPoints, characteristics.movementPoints),
-  ].join(' • ');
+  ].join(' ');
 
   const defensesLine = [
-    formatLabeledStat(EMOJI_LABELS.defenses.apResist, characteristics.ap_resist, { suffix: '%' }),
+    formatLabeledStat(EMOJI_LABELS.defenses.apResist, characteristics.ap_resist),
     formatLabeledStat(
       EMOJI_LABELS.defenses.bpResist,
       characteristics.mp_resist ?? characteristics.bp_resist,
-      { suffix: '%' },
     ),
     formatLabeledStat(EMOJI_LABELS.defenses.block, characteristics.block),
     formatLabeledStat(
       EMOJI_LABELS.defenses.crit,
       characteristics.krit ?? characteristics.crit ?? characteristics.critical ?? characteristics.criticalHit,
-      { suffix: '%' },
     ),
     formatLabeledStat(
       EMOJI_LABELS.defenses.pushback,
       characteristics.pushback ?? characteristics.pushback_resist,
-      { suffix: '%' },
     ),
-  ].join(' • ');
+  ].join(' ');
 
   const flatLine = buildElementLine({
     resistances,
