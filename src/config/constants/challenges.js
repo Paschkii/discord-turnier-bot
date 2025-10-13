@@ -106,6 +106,22 @@ const CHALLENGES = [
             pt: ''
         }
     },
+    {   id: 'cruel',
+        name: {
+            de: '',
+            en: 'Cruel',
+            es: '',
+            fr: '',
+            pt: ''
+        },
+        description: {
+            de: '',
+            en: 'You must kill your enemies according to their levels in ascending order.',
+            es: '',
+            fr: '',
+            pt: ''
+        }
+    },
     {   id: 'duel',
         name: {
             de: 'Duell',
@@ -226,7 +242,7 @@ const CHALLENGES = [
     {   id: 'first',
         name: {
             de: 'Als Erstes', // Zielstrebigkeit
-            en: 'First',
+            en: 'First', // Unwilling Volunteer
             es: '',
             fr: 'Premier',
             pt: ''
@@ -247,6 +263,22 @@ const CHALLENGES = [
             pt: ({ targetName }) => formatChallengeEntity(targetName, 'pt')
                 ? `Derrote ${formatChallengeEntity(targetName, 'pt')} primeiro.`
                 : ''
+        }
+    },
+    {   id: 'foresighted',
+        name: {
+            de: 'Vorausschauend',
+            en: 'Foresighted',
+            es: '',
+            fr: '',
+            pt: ''
+        },
+        description: {
+            de: '',
+            en: 'Never use all available action points during your turn.',
+            es: '',
+            fr: '',
+            pt: ''
         }
     },
     {   id: 'freedom',
@@ -276,6 +308,22 @@ const CHALLENGES = [
         description: {
             de: 'Wird ein Gegner angegriffen, muss er besiegt werden, bevor ein anderer Gegner angegriffen werden kann.',
             en: 'Once an enemy has been attacked by an ally, it must be finished off before any other enemy is attacked.',
+            es: '',
+            fr: '',
+            pt: ''
+        }
+    },
+    {   id: 'gangster',
+        name: {
+            de: 'Gangster',
+            en: 'Gangster',
+            es: '',
+            fr: '',
+            pt: ''
+        },
+        description: {
+            de: '',
+            en: 'Cast the Dirty Trick spell every time the spell is available throughout the entire fight.',
             es: '',
             fr: '',
             pt: ''
@@ -382,6 +430,22 @@ const CHALLENGES = [
         description: {
             de: '',
             en: 'The fighter(s) with the lowest level must finish off all enemies.',
+            es: '',
+            fr: '',
+            pt: ''
+        }
+    },
+    {   id: 'maniac',
+        name: {
+            de: '',
+            en: 'Maniac',
+            es: '',
+            fr: '',
+            pt: ''
+        },
+        description: {
+            de: 'Enemies must be killed according to the descending order of their levels.',
+            en: '',
             es: '',
             fr: '',
             pt: ''

@@ -47,11 +47,13 @@ const BOSSE_LISTE = [
       vitality: 920,
       actionPoints: 8,
       movementPoints: 3,
-      /*ap_resist: 8,
+      /*
+      ap_resist: 8,
       mp_resist: 8,
       block: 10,
       krit: 0,
-      pushback: 0*/
+      pushback: 0
+      */
     },
     resistances: {
       neutral: 25,
@@ -59,6 +61,13 @@ const BOSSE_LISTE = [
       fire: 15,
       water: -10,
       air: -15
+      /*
+      neutral_flat: 0,
+      earth_flat: 0,
+      fire_flat: 0,
+      water_flat: 0,
+      air_flat: 0
+      */
     }
   },
   // Sponge Mob
@@ -79,6 +88,13 @@ const BOSSE_LISTE = [
       vitality: 1200,
       actionPoints: 7,
       movementPoints: 4
+      /*
+      ap_resist: 15,
+      mp_resist: 15,
+      block: 15,
+      krit: 0,
+      pushback: 0
+      */
     },
     resistances: {
       neutral: 22,
@@ -86,6 +102,13 @@ const BOSSE_LISTE = [
       fire: -5,
       water: 14,
       air: -5,
+      /*
+      neutral_flat: 0,
+      earth_flat: 0,
+      fire_flat: 0,
+      water_flat: 0,
+      air_flat: 0
+      */
     }
   },
   // Golden Scarabugly
@@ -106,6 +129,13 @@ const BOSSE_LISTE = [
       vitality: 1600,
       actionPoints: 8,
       movementPoints: 3
+      /*
+      ap_resist: 30,
+      mp_resist: 30,
+      block: 28,
+      krit: 0,
+      pushback: 0
+      */
     },
     resistances: {
       neutral: 24,
@@ -113,6 +143,13 @@ const BOSSE_LISTE = [
       fire: 24,
       water: 24,
       air: 24,
+      /*
+      neutral_flat: 0,
+      earth_flat: 0,
+      fire_flat: 0,
+      water_flat: 0,
+      air_flat: 0
+      */
     }
   },
   // Batofu
@@ -133,6 +170,13 @@ const BOSSE_LISTE = [
       vitality: 1000,
       actionPoints: 5,
       movementPoints: 10
+      /*
+      ap_resist: 20,
+      mp_resist: 12,
+      block: 15,
+      krit: 0,
+      pushback: 0
+      */
     },
     resistances: {
       neutral: 14,
@@ -140,6 +184,13 @@ const BOSSE_LISTE = [
       fire: -25,
       water: -15,
       air: 37,
+      /*
+      neutral_flat: 0,
+      earth_flat: 0,
+      fire_flat: 0,
+      water_flat: 0,
+      air_flat: 0
+      */
     }
   },
   // Boostache
@@ -160,6 +211,13 @@ const BOSSE_LISTE = [
       vitality: 890,
       actionPoints: 10,
       movementPoints: 6
+      /*
+      ap_resist: 35,
+      mp_resist: 55,
+      block: 35,
+      krit: 15,
+      pushback: 0
+      */
     },
     resistances: {
       neutral: 55,
@@ -167,6 +225,13 @@ const BOSSE_LISTE = [
       fire: 0,
       water: 15,
       air: 85,
+      /*
+      neutral_flat: 0,
+      earth_flat: 0,
+      fire_flat: 0,
+      water_flat: 0,
+      air_flat: 0
+      */
     }
   },
   // Ronin Chafer
@@ -187,6 +252,13 @@ const BOSSE_LISTE = [
       vitality: 680,
       actionPoints: 10,
       movementPoints: 4
+      /*
+      ap_resist: 16,
+      mp_resist: 24,
+      block: 30,
+      krit: 0,
+      pushback: 0
+      */
     },
     resistances: {
       neutral: 0,
@@ -194,6 +266,13 @@ const BOSSE_LISTE = [
       fire: 0,
       water: 0,
       air: 0,
+      /*
+      neutral_flat: 7,
+      earth_flat: 9,
+      fire_flat: 15,
+      water_flat: 12,
+      air_flat: 9
+      */
     }
   },
   // Royal Gobball
@@ -214,6 +293,13 @@ const BOSSE_LISTE = [
       vitality: 1700,
       actionPoints: 9,
       movementPoints: 5
+      /*
+      ap_resist: 10,
+      mp_resist: 10,
+      block: 15,
+      krit: 0,
+      pushback: 0
+      */
     },
     resistances: {
       neutral: -5,
@@ -221,6 +307,13 @@ const BOSSE_LISTE = [
       fire: 10,
       water: 22,
       air: 0,
+      /*
+      neutral_flat: 7,
+      earth_flat: 9,
+      fire_flat: 15,
+      water_flat: 12,
+      air_flat: 9
+      */
     }
   },
   // Bworkette
@@ -238,9 +331,16 @@ const BOSSE_LISTE = [
     family: '',
     homeDungeonID: 'bwork_dungeon',
     characteristics: {
-      vitality: 6700,
+      vitality: 1600,
       actionPoints: 9,
       movementPoints: 5
+      /*
+      ap_resist: 10,
+      mp_resist: 10,
+      block: 14,
+      krit: 0,
+      pushback: 0
+      */
     },
     resistances: {
       neutral: 33,
@@ -248,6 +348,13 @@ const BOSSE_LISTE = [
       fire: 48,
       water: 18,
       air: 28,
+      /*
+      neutral_flat: 0,
+      earth_flat: 0,
+      fire_flat: 0,
+      water_flat: 0,
+      air_flat: 0
+      */
     }
   },
   // Smith's Chest
@@ -268,6 +375,13 @@ const BOSSE_LISTE = [
       vitality: 820,
       actionPoints: 8,
       movementPoints: 3
+      /*
+      ap_resist: 20,
+      mp_resist: 20,
+      block: 20,
+      krit: 0,
+      pushback: 0
+      */
     },
     resistances: {
       neutral: 0,
@@ -275,6 +389,13 @@ const BOSSE_LISTE = [
       fire: 0,
       water: 0,
       air: 0,
+      /*
+      neutral_flat: 0,
+      earth_flat: 0,
+      fire_flat: 0,
+      water_flat: 0,
+      air_flat: 0
+      */
     }
   },
   // Shin Larva
@@ -295,6 +416,13 @@ const BOSSE_LISTE = [
       vitality: 1200,
       actionPoints: 9,
       movementPoints: 2
+      /*
+      ap_resist: 28,
+      mp_resist: 28,
+      block: 28,
+      krit: 0,
+      pushback: 0
+      */
     },
     resistances: {
       neutral: 54,
@@ -302,6 +430,13 @@ const BOSSE_LISTE = [
       fire: 34,
       water: -26,
       air: -26,
+      /*
+      neutral_flat: 0,
+      earth_flat: 0,
+      fire_flat: 0,
+      water_flat: 0,
+      air_flat: 0
+      */
     }
   },
   // Great Coralator
@@ -322,6 +457,13 @@ const BOSSE_LISTE = [
       vitality: 2000,
       actionPoints: 8,
       movementPoints: 3
+      /*
+      ap_resist: 14,
+      mp_resist: 14,
+      block: 14,
+      krit: 0,
+      pushback: 0
+      */
     },
     resistances: {
       neutral: 23,
@@ -329,6 +471,13 @@ const BOSSE_LISTE = [
       fire: 13,
       water: 18,
       air: -7,
+      /*
+      neutral_flat: 0,
+      earth_flat: 0,
+      fire_flat: 0,
+      water_flat: 0,
+      air_flat: 0
+      */
     }
   },
   // Kwakwa
@@ -336,9 +485,9 @@ const BOSSE_LISTE = [
     name: {
       de: 'Kwackatau',
       en: 'Kwakwa',
-      es: '',
-      fr: '',
-      pt: '',
+      es: 'Kwoknan',
+      fr: 'Kwakwa',
+      pt: 'Kwakwa',
     },
     imageUrl: `${ICON_BASE}/boss-icons/.png`,
     level: 50,
@@ -349,6 +498,13 @@ const BOSSE_LISTE = [
       vitality: 1100,
       actionPoints: 9,
       movementPoints: 7
+      /*
+      ap_resist: 30,
+      mp_resist: 30,
+      block: 80,
+      krit: 0,
+      pushback: 50
+      */
     },
     resistances: {
       neutral: 40,
@@ -356,6 +512,13 @@ const BOSSE_LISTE = [
       fire: 40,
       water: 40,
       air: 40,
+      /*
+      neutral_flat: 0,
+      earth_flat: 0,
+      fire_flat: 0,
+      water_flat: 0,
+      air_flat: 0
+      */
     }
   },
   // === Level 51 - 100 Dungeons ===
@@ -369,14 +532,21 @@ const BOSSE_LISTE = [
       pt: 'Wei Wabbit',
     },
     imageUrl: `${ICON_BASE}/boss-icons/wa_wabbit.png`,
-    level: 61,
+    level: 60,
     region: '',
     family: '',
     homeDungeonID: 'wa_wabbits_castle',
     characteristics: {
       vitality: 3000,
-      actionPoints: 11,
-      movementPoints: 5
+      actionPoints: 10,
+      movementPoints: 4
+      /*
+      ap_resist: 20,
+      mp_resist: 20,
+      block: 13,
+      krit: 0,
+      pushback: 0
+      */
     },
     resistances: {
       neutral: 29,
@@ -384,6 +554,13 @@ const BOSSE_LISTE = [
       fire: 19,
       water: -6,
       air: -11
+      /*
+      neutral_flat: 0,
+      earth_flat: 0,
+      fire_flat: 0,
+      water_flat: 0,
+      air_flat: 0
+      */
     }
   },
   // Kanniball Andchain
@@ -404,6 +581,13 @@ const BOSSE_LISTE = [
       vitality: 1400,
       actionPoints: 10,
       movementPoints: 3
+      /*
+      ap_resist: 25,
+      mp_resist: 25,
+      block: 6,
+      krit: 0,
+      pushback: 0
+      */
     },
     resistances: {
       neutral: 58,
@@ -411,6 +595,13 @@ const BOSSE_LISTE = [
       fire: 23,
       water: 23,
       air: 23,
+      /*
+      neutral_flat: 0,
+      earth_flat: 0,
+      fire_flat: 0,
+      water_flat: 0,
+      air_flat: 0
+      */
     }
   },
   // -- Blops --
@@ -432,6 +623,13 @@ const BOSSE_LISTE = [
       vitality: 2400,
       actionPoints: 10,
       movementPoints: 5
+      /*
+      ap_resist: 28,
+      mp_resist: 28,
+      block: 28,
+      krit: 0,
+      pushback: 0
+      */
     },
     resistances: {
       neutral: -12,
@@ -439,10 +637,17 @@ const BOSSE_LISTE = [
       fire: -12,
       water: -12,
       air: -12,
+      /*
+      neutral_flat: 0,
+      earth_flat: 0,
+      fire_flat: 0,
+      water_flat: 0,
+      air_flat: 0
+      */
     },
     alsoIn: [
       { dungeonID: 'rainbow_blop_lair',
-        overrides: { vitality: 3600 }
+        overrides: { vitality: 3500 }
       }
     ],
   },
@@ -464,6 +669,13 @@ const BOSSE_LISTE = [
       vitality: 2400,
       actionPoints: 10,
       movementPoints: 5
+      /*
+      ap_resist: 28,
+      mp_resist: 28,
+      block: 28,
+      krit: 0,
+      pushback: 0
+      */
     },
     resistances: {
       neutral: -12,
@@ -471,10 +683,17 @@ const BOSSE_LISTE = [
       fire: -12,
       water: 94,
       air: -12,
+      /*
+      neutral_flat: 0,
+      earth_flat: 0,
+      fire_flat: 0,
+      water_flat: 0,
+      air_flat: 0
+      */
     },
     alsoIn: [
       { dungeonID: 'rainbow_blop_lair',
-        overrides: { vitality: 3600 }
+        overrides: { vitality: 3500 }
       }
     ],
   },
@@ -496,6 +715,13 @@ const BOSSE_LISTE = [
       vitality: 2400,
       actionPoints: 10,
       movementPoints: 5
+      /*
+      ap_resist: 28,
+      mp_resist: 28,
+      block: 28,
+      krit: 0,
+      pushback: 0
+      */
     },
     resistances: {
       neutral: -12,
@@ -503,10 +729,17 @@ const BOSSE_LISTE = [
       fire: 94,
       water: -12,
       air: -12,
+      /*
+      neutral_flat: 0,
+      earth_flat: 0,
+      fire_flat: 0,
+      water_flat: 0,
+      air_flat: 0
+      */
     },
     alsoIn: [
       { dungeonID: 'rainbow_blop_lair',
-        overrides: { vitality: 3600 }
+        overrides: { vitality: 3500 }
       }
     ],
   },
@@ -528,6 +761,13 @@ const BOSSE_LISTE = [
       vitality: 2400,
       actionPoints: 10,
       movementPoints: 5
+      /*
+      ap_resist: 28,
+      mp_resist: 28,
+      block: 28,
+      krit: 0,
+      pushback: 0
+      */
     },
     resistances: {
       neutral: -12,
@@ -535,10 +775,17 @@ const BOSSE_LISTE = [
       fire: -12,
       water: -12,
       air: 94,
+      /*
+      neutral_flat: 0,
+      earth_flat: 0,
+      fire_flat: 0,
+      water_flat: 0,
+      air_flat: 0
+      */
     },
     alsoIn: [
       { dungeonID: 'rainbow_blop_lair',
-        overrides: { vitality: 3600 }
+        overrides: { vitality: 3500 }
       }
     ],
   },
@@ -561,6 +808,13 @@ const BOSSE_LISTE = [
       vitality: 1400,
       actionPoints: 10,
       movementPoints: 5
+      /*
+      ap_resist: 10,
+      mp_resist: 10,
+      block: 5,
+      krit: 0,
+      pushback: 0
+      */
     },
     resistances: {
       neutral: 50,
@@ -568,6 +822,13 @@ const BOSSE_LISTE = [
       fire: -10,
       water: 50,
       air: 50,
+      /*
+      neutral_flat: 0,
+      earth_flat: 0,
+      fire_flat: 0,
+      water_flat: 0,
+      air_flat: 0
+      */
     }
   },
   // Royal Mint Jelly
@@ -587,7 +848,14 @@ const BOSSE_LISTE = [
     characteristics: {
       vitality: 1400,
       actionPoints: 10,
-      movementPoints: 5
+      movementPoints: 4
+      /*
+      ap_resist: 32,
+      mp_resist: 41,
+      block: 10,
+      krit: 0,
+      pushback: 0
+      */
     },
     resistances: {
       neutral: 50,
@@ -595,6 +863,13 @@ const BOSSE_LISTE = [
       fire: 50,
       water: 50,
       air: 50,
+      /*
+      neutral_flat: 0,
+      earth_flat: 0,
+      fire_flat: 0,
+      water_flat: 0,
+      air_flat: 0
+      */
     }
   },
   // Royal Lemon Jelly
@@ -612,9 +887,16 @@ const BOSSE_LISTE = [
     family: '',
     homeDungeonID: 'jellith_dimension',
     characteristics: {
-      vitality: 1400,
+      vitality: 1300,
       actionPoints: 10,
       movementPoints: 5
+      /*
+      ap_resist: 19,
+      mp_resist: 14,
+      block: 25,
+      krit: 0,
+      pushback: 0
+      */
     },
     resistances: {
       neutral: 50,
@@ -622,6 +904,13 @@ const BOSSE_LISTE = [
       fire: 50,
       water: 50,
       air: -10,
+      /*
+      neutral_flat: 0,
+      earth_flat: 0,
+      fire_flat: 0,
+      water_flat: 0,
+      air_flat: 0
+      */
     }
   },
   // Royal Blue Jelly
@@ -642,6 +931,13 @@ const BOSSE_LISTE = [
       vitality: 1400,
       actionPoints: 10,
       movementPoints: 5
+      /*
+      ap_resist: 32,
+      mp_resist: 32,
+      block: 18,
+      krit: 0,
+      pushback: 0
+      */
     },
     resistances: {
       neutral: 50,
@@ -649,6 +945,13 @@ const BOSSE_LISTE = [
       fire: 50,
       water: -10,
       air: 50,
+      /*
+      neutral_flat: 0,
+      earth_flat: 0,
+      fire_flat: 0,
+      water_flat: 0,
+      air_flat: 0
+      */
     }
   },
   // Nelween
@@ -669,6 +972,13 @@ const BOSSE_LISTE = [
       vitality: 1900,
       actionPoints: 8,
       movementPoints: 5
+      /*
+      ap_resist: 40,
+      mp_resist: 40,
+      block: 20,
+      krit: 0,
+      pushback: 0
+      */
     },
     resistances: {
       neutral: 30,
@@ -676,6 +986,13 @@ const BOSSE_LISTE = [
       fire: 0,
       water: 0,
       air: 0,
+      /*
+      neutral_flat: 0,
+      earth_flat: 0,
+      fire_flat: 0,
+      water_flat: 0,
+      air_flat: 0
+      */
     }
   },
   // Gourlo the Terrible
@@ -688,7 +1005,7 @@ const BOSSE_LISTE = [
       pt: 'Gurlo o Terrível',
     },
     imageUrl: `${ICON_BASE}/boss-icons/gourlo_the_terrible.png`,
-    level: 60,
+    level: 70,
     region: '',
     family: '',
     homeDungeonID: 'hold_of_otomais_ark',
@@ -696,6 +1013,13 @@ const BOSSE_LISTE = [
       vitality: 1900,
       actionPoints: 10,
       movementPoints: 5
+      /*
+      ap_resist: 14,
+      mp_resist: 14,
+      block: 14,
+      krit: 0,
+      pushback: 9999
+      */
     },
     resistances: {
       neutral: 200,
@@ -703,6 +1027,13 @@ const BOSSE_LISTE = [
       fire: 200,
       water: 200,
       air: 200,
+      /*
+      neutral_flat: 0,
+      earth_flat: 0,
+      fire_flat: 0,
+      water_flat: 0,
+      air_flat: 0
+      */
     }
   },
   // Legendary Crackler
@@ -715,7 +1046,7 @@ const BOSSE_LISTE = [
       pt: 'Smagador Lendário',
     },
     imageUrl: `${ICON_BASE}/boss-icons/legendary_crackler.png`,
-    level: 60,
+    level: 70,
     region: '',
     family: '',
     homeDungeonID: 'crackler_dungeon',
@@ -723,6 +1054,13 @@ const BOSSE_LISTE = [
       vitality: 3100,
       actionPoints: 8,
       movementPoints: 3
+      /*
+      ap_resist: 30,
+      mp_resist: 29,
+      block: 14,
+      krit: 30,
+      pushback: 0
+      */
     },
     resistances: {
       neutral: 58,
@@ -730,6 +1068,13 @@ const BOSSE_LISTE = [
       fire: 28,
       water: 36,
       air: -17,
+      /*
+      neutral_flat: 0,
+      earth_flat: 0,
+      fire_flat: 0,
+      water_flat: 0,
+      air_flat: 0
+      */
     }
   },
   // Wa Wobot
@@ -777,6 +1122,13 @@ const BOSSE_LISTE = [
       vitality: 3600,
       actionPoints: 12,
       movementPoints: 5
+      /*
+      ap_resist: 44,
+      mp_resist: 44,
+      block: 32,
+      krit: 0,
+      pushback: 0
+      */
     },
     resistances: {
       neutral: 30,
@@ -784,6 +1136,13 @@ const BOSSE_LISTE = [
       fire: -5,
       water: 30,
       air: -5,
+      /*
+      neutral_flat: 0,
+      earth_flat: 0,
+      fire_flat: 0,
+      water_flat: 0,
+      air_flat: 0
+      */
     }
   },
   // Selim Quartz
@@ -804,6 +1163,13 @@ const BOSSE_LISTE = [
       vitality: 4500,
       actionPoints: 14,
       movementPoints: 4
+      /*
+      ap_resist: 35,
+      mp_resist: 35,
+      block: 50,
+      krit: 10,
+      pushback: 0
+      */
     },
     resistances: {
       neutral: 15,
@@ -811,6 +1177,13 @@ const BOSSE_LISTE = [
       fire: 30,
       water: 8,
       air: 13,
+      /*
+      neutral_flat: 0,
+      earth_flat: 0,
+      fire_flat: 0,
+      water_flat: 0,
+      air_flat: 0
+      */
     }
   },
   // Dragon Pig
@@ -828,9 +1201,16 @@ const BOSSE_LISTE = [
     family: '',
     homeDungeonID: 'dragonpigs_den',
     characteristics: {
-      vitality: 2100,
+      vitality: 3100,
       actionPoints: 10,
       movementPoints: 5
+      /*
+      ap_resist: 72,
+      mp_resist: 72,
+      block: 110,
+      krit: 0,
+      pushback: 0
+      */
     },
     resistances: {
       neutral: 38,
@@ -838,6 +1218,13 @@ const BOSSE_LISTE = [
       fire: 38,
       water: -5,
       air: -5,
+      /*
+      neutral_flat: 0,
+      earth_flat: 0,
+      fire_flat: 0,
+      water_flat: 0,
+      air_flat: 0
+      */
     }
   },
   // Koolich
@@ -885,6 +1272,13 @@ const BOSSE_LISTE = [
       vitality: 6600,
       actionPoints: 10,
       movementPoints: 6
+      /*
+      ap_resist: 20,
+      mp_resist: 20,
+      block: 30,
+      krit: 0,
+      pushback: 0
+      */
     },
     resistances: {
       neutral: 10,
@@ -892,6 +1286,13 @@ const BOSSE_LISTE = [
       fire: 0,
       water: -10,
       air: 20,
+      /*
+      neutral_flat: 0,
+      earth_flat: 0,
+      fire_flat: 0,
+      water_flat: 0,
+      air_flat: 0
+      */
     }
   },
   // Moowolf
@@ -912,6 +1313,13 @@ const BOSSE_LISTE = [
       vitality: 5700,
       actionPoints: 8,
       movementPoints: 7
+      /*
+      ap_resist: 46,
+      mp_resist: 50,
+      block: 52,
+      krit: 0,
+      pushback: 0
+      */
     },
     resistances: {
       neutral: 22,
@@ -919,6 +1327,13 @@ const BOSSE_LISTE = [
       fire: -5,
       water: 42,
       air: 42,
+      /*
+      neutral_flat: 0,
+      earth_flat: 0,
+      fire_flat: 0,
+      water_flat: 0,
+      air_flat: 0
+      */
     }
   },
   // === Level 101 - 150 Dungeons ===
@@ -940,6 +1355,13 @@ const BOSSE_LISTE = [
       vitality: 7000,
       actionPoints: 8,
       movementPoints: 5
+      /*
+      ap_resist: 64,
+      mp_resist: 64,
+      block: 44,
+      krit: 0,
+      pushback: 9999
+      */
     },
     resistances: {
       neutral: 200,
@@ -947,6 +1369,13 @@ const BOSSE_LISTE = [
       fire: 200,
       water: 200,
       air: 200,
+      /*
+      neutral_flat: 0,
+      earth_flat: 0,
+      fire_flat: 0,
+      water_flat: 0,
+      air_flat: 0
+      */
     }
   },
   // Lord Crow
@@ -967,6 +1396,13 @@ const BOSSE_LISTE = [
       vitality: 4500,
       actionPoints: 12,
       movementPoints: 6
+      /*
+      ap_resist: 54,
+      mp_resist: 54,
+      block: 44,
+      krit: 0,
+      pushback: 0
+      */
     },
     resistances: {
       neutral: 26,
@@ -974,6 +1410,13 @@ const BOSSE_LISTE = [
       fire: 46,
       water: 56,
       air: 56,
+      /*
+      neutral_flat: 0,
+      earth_flat: 0,
+      fire_flat: 0,
+      water_flat: 0,
+      air_flat: 0
+      */
     }
   },
   // White Rat
@@ -994,6 +1437,13 @@ const BOSSE_LISTE = [
       vitality: 3500,
       actionPoints: 7,
       movementPoints: 4
+      /*
+      ap_resist: 28,
+      mp_resist: 28,
+      block: 13,
+      krit: 0,
+      pushback: 50
+      */
     },
     resistances: {
       neutral: 0,
@@ -1001,6 +1451,13 @@ const BOSSE_LISTE = [
       fire: 0,
       water: 0,
       air: 0,
+      /*
+      neutral_flat: 0,
+      earth_flat: 0,
+      fire_flat: 0,
+      water_flat: 0,
+      air_flat: 0
+      */
     }
   },
   // Schwarze Ratte
@@ -1048,6 +1505,13 @@ const BOSSE_LISTE = [
       vitality: 3400,
       actionPoints: 10,
       movementPoints: 3
+      /*
+      ap_resist: 40,
+      mp_resist: 40,
+      block: 35,
+      krit: 0,
+      pushback: 0
+      */
     },
     resistances: {
       neutral: -15,
@@ -1055,6 +1519,13 @@ const BOSSE_LISTE = [
       fire: 15,
       water: 15,
       air: 15,
+      /*
+      neutral_flat: 0,
+      earth_flat: 0,
+      fire_flat: 0,
+      water_flat: 0,
+      air_flat: 0
+      */
     }
   },
   // Minotoror
@@ -1075,6 +1546,13 @@ const BOSSE_LISTE = [
       vitality: 4100,
       actionPoints: 14,
       movementPoints: 6
+      /*
+      ap_resist: 40,
+      mp_resist: 40,
+      block: 40,
+      krit: 0,
+      pushback: 0
+      */
     },
     resistances: {
       neutral: 35,
@@ -1082,6 +1560,13 @@ const BOSSE_LISTE = [
       fire: -20,
       water: 45,
       air: 35,
+      /*
+      neutral_flat: 0,
+      earth_flat: 0,
+      fire_flat: 0,
+      water_flat: 0,
+      air_flat: 0
+      */
     }
   },
   // Royal Mastogob
@@ -1129,6 +1614,13 @@ const BOSSE_LISTE = [
       vitality: 3400,
       actionPoints: 12,
       movementPoints: 30
+      /*
+      ap_resist: 60,
+      mp_resist: 60,
+      block: 70,
+      krit: 0,
+      pushback: 0
+      */
     },
     resistances: {
       neutral: 38,
@@ -1136,6 +1628,13 @@ const BOSSE_LISTE = [
       fire: 18,
       water: 23,
       air: 58,
+      /*
+      neutral_flat: 0,
+      earth_flat: 0,
+      fire_flat: 0,
+      water_flat: 0,
+      air_flat: 0
+      */
     }
   },
   // Crocabulia
@@ -1156,6 +1655,13 @@ const BOSSE_LISTE = [
       vitality: 7000,
       actionPoints: 9,
       movementPoints: 3
+      /*
+      ap_resist: 29,
+      mp_resist: 41,
+      block: 34,
+      krit: 0,
+      pushback: 0
+      */
     },
     resistances: {
       neutral: 58,
@@ -1163,6 +1669,13 @@ const BOSSE_LISTE = [
       fire: 28,
       water: 28,
       air: 28,
+      /*
+      neutral_flat: 0,
+      earth_flat: 0,
+      fire_flat: 0,
+      water_flat: 0,
+      air_flat: 0
+      */
     }
   },
   // Skeunk
