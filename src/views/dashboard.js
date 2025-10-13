@@ -74,6 +74,23 @@ function rowPager(tab, phaseOrRound, page, totalPages) {
 const classEmoji = (k) =>
   KLASSE_LISTE.find(x =>
     x.name === k)?.emoji || '';
+
+function materializeGuildEmojiShortcodes(text, guild) {
+  if (!text || !guild?.emojis?.cache?.size) {
+    return text;
+  }
+
+  const byLowerCaseName = new Map();
+  for (const emoji of guild.emojis.cache.values()) {
+    if (!emoji?.name) continue;
+    byLowerCaseName.set(emoji.name.toLowerCase(), emoji.toString());
+  }
+
+  return text.replace(/:([a-z0-9_]+):/gi, (match, name) => {
+    return byLowerCaseName.get(name.toLowerCase()) ?? match;
+  });
+}
+
 const phaseLabel = (v) =>
   v === 'q' ? 'Qualifikation' :
   v === 'gr' ? 'Gruppenphase' :
@@ -100,7 +117,7 @@ function matchGroupName(fGroupName, groupObj) {
 }
 
 // ===== Tab-Renderer =====
-function buildTabGroups(daten, state) {
+function buildTabGroups(daten, state, guild) {
   const { phaseOrRound } = state;
 
   const groupsAll = (daten.groups || [])
@@ -115,10 +132,11 @@ function buildTabGroups(daten, state) {
     const base = raw.replace(/\s*[⬆⬇]\uFE0F?\s*$/, '');
     const prefix = g.bucket === 'top' ? '⬆️ ' : g.bucket === 'low' ? '⬇️ ' : '';
     const title = withPhaseSuffix(`${prefix}${base}`.trim(), phaseLabel(phaseOrRound));
+    const description = materializeGuildEmojiShortcodes(lines.join('\n') || '—', guild);
     return new EmbedBuilder()
       .setColor(0x00AEFF)
       .setTitle(title)
-      .setDescription(lines.join('\n') || '—')
+      .setDescription(description)
       .setTimestamp();
   });
   return { embeds, totalPages: 1 };
@@ -143,18 +161,19 @@ function fightsForPhase(daten, phaseOrRound) {
 }
 
 // Kürzere, handyfreundliche Ausgabe (2 Zeilen)
-function fmtFight2L(f) {
+function fmtFight2L(f, guild) {
   const A = f.playerA || {}, B = f.playerB || {};
   const aE = A.klasse ? ` ${classEmoji(A.klasse)}` : '';
   const bE = B.klasse ? ` ${classEmoji(B.klasse)}` : '';
   const sA = Number.isInteger(f.scoreA) ? f.scoreA : 0;
   const sB = Number.isInteger(f.scoreB) ? f.scoreB : 0;
   const done = f.finished ? '✅' : '⏳';
-  return `• **${A.name || '—'}**${aE} vs **${B.name || '—'}**${bE}\nErgebnis: ${sA}:${sB} ${done}`;
+  const line = `• **${A.name || '—'}**${aE} vs **${B.name || '—'}**${bE}\nErgebnis: ${sA}:${sB} ${done}`;
+  return materializeGuildEmojiShortcodes(line, guild);
 }
 
 // Kämpfe je Gruppe (oder alle offenen)
-function buildTabMatches(daten, state, openOnly = false) {
+function buildTabMatches(daten, state, openOnly = false, guild) {
   const { phaseOrRound } = state;
 
   // stabile Gruppen-Reihenfolge
@@ -169,7 +188,7 @@ function buildTabMatches(daten, state, openOnly = false) {
     let gf = pool.filter(f => fightBelongsToGroup(f, g));
     if (openOnly) gf = gf.filter(f => !f.finished);
 
-    const desc = gf.map(fmtFight2L).join('\n') || '—';
+    const desc = gf.map((fight) => fmtFight2L(fight, guild)).join('\n') || '—';
 
     const raw = g.displayName || g.name || '';
     const base = raw.replace(/\s*[⬆⬇]\uFE0F?\s*$/, '');
@@ -188,7 +207,7 @@ function buildTabMatches(daten, state, openOnly = false) {
 }
 
 // K.O.-Bracket (Top/Low/Finale)
-function buildTabBracket(daten, state) {
+function buildTabBracket(daten, state, guild) {
   const { phaseOrRound } = state;
 
   // Gruppenphase → Fortschritt je Gruppe
@@ -213,17 +232,18 @@ function buildTabBracket(daten, state) {
       const prefix = g.bucket === 'top' ? '⬆️ ' : g.bucket === 'low' ? '⬇️ ' : '';
       return `${prefix}${base} - ${done}/${total} Kämpfe`;
     });
+    const description = materializeGuildEmojiShortcodes(lines.join('\n') || '—', guild);
     const embed = new EmbedBuilder()
       .setColor(0x5865F2)
       .setTitle(`Kämpfe — ${roundLabel}`)
-      .setDescription(lines.join('\n') || '—')
+      .setDescription(description)
       .setTimestamp();
     return { embeds: [embed], totalPages: 1 };
   }
 
   // Fallback: simple Auflistung
   const fights = fightsForPhase(daten, phaseOrRound);
-  const entries = fights.map(fmtFight2L);
+  const entries = fights.map((fight) => fmtFight2L(fight, guild));
 
   const MAX_EMBEDS = 10;
   const DESC_LIMIT = 3900; // etwas Sicherheitsabstand zu Discords 4096-Grenze
@@ -305,15 +325,31 @@ function defaultStateFromData(daten, fallbackTab = 'g') {
 }
 
 // === Haupt-Builder ===
-async function buildDashboard(_interaction, daten, state) {
+async function buildDashboard(interaction, daten, state) {
   const { tab, phaseOrRound, bucket = 'top', groupIx = 0, page = 1 } = state || defaultStateFromData(daten, 'g');
+  const guild = interaction?.guild;
+
+  if (guild && typeof guild.emojis?.fetch === 'function') {
+    try {
+      const emojis = await guild.emojis.fetch();
+      if (!emojis.size) {
+        console.warn(`[emoji] Kein Emoji in Guild ${guild.id}`);
+      } else {
+        console.log('[emoji] Gefunden:', emojis.map((emoji) => emoji.name).join(', '));
+      }
+    } catch (error) {
+      console.warn('[emoji] fetch() fehlgeschlagen:', error);
+    }
+  }
+
+  let view;
 
   if (tab === 'g') {
-    view = buildTabGroups(daten, { phaseOrRound, groupIx });
+    view = buildTabGroups(daten, { phaseOrRound, groupIx }, guild);
   } else if (tab === 'm') {
-    view = buildTabMatches(daten, { phaseOrRound }, false);
+    view = buildTabMatches(daten, { phaseOrRound }, false, guild);
   } else {
-    view = buildTabBracket(daten, { phaseOrRound, bucket });
+    view = buildTabBracket(daten, { phaseOrRound, bucket }, guild);
   }
 
   const rows = [];
