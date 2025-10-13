@@ -8,6 +8,10 @@ const {
 const { findDungeonById, getDungeonName: getDungeonDisplayName } = require('../../utils/dungeons');
 const { getLocalizedText, RESISTANCE_TYPES } = require('../../config/constants');
 const { resolveInteractionLocale } = require('../../utils/interactionLocale');
+const {
+  resolveInteractionLocale,
+  getInteractionLocaleHint,
+} = require('../../utils/interactionLocale');
 const { materializeGuildEmojiShortcodes } = require('../../helpers/emoji');
 const { safeDeferReply } = require('../../helpers/interactions');
 
@@ -379,41 +383,25 @@ function buildDescription({ boss, dungeonNames, labels, level, locale }) {
 // Antwort für /boss erzeugen
 async function execute(interaction) {
   const rawValue = interaction.options.getString('name');
-  let localePromise;
-  let locale;
-
-  const resolveLocale = async () => {
-    if (locale) return locale;
-    try {
-      if (!localePromise) {
-        localePromise = resolveInteractionLocale(interaction);
-      }
-      locale = await localePromise;
-    } catch (error) {
-      locale = 'en';
-    }
-    return locale;
-  };
-
-  const getMessagesForLocale = async () => getMessages(await resolveLocale());
-
+  const localeHint = getInteractionLocaleHint(interaction);
+  const localePromise = resolveInteractionLocale(interaction).catch(() => localeHint || 'en');
+  
   if (!rawValue) {
-    const t = await getMessagesForLocale();
+    const t = getMessages(localeHint);
     return interaction.reply({
       content: t.missingName,
       flags: MessageFlags.Ephemeral,
     });
   }
 
-  const bossById = findBossById(rawValue);
-
   const deferred = await safeDeferReply(interaction);
   if (!deferred) {
     return;
   }
 
-  const resolvedLocale = await resolveLocale();
+  const resolvedLocale = await localePromise || 'en';
   const resolvedMessages = getMessages(resolvedLocale);
+  const bossById = findBossById(rawValue);
   const boss = bossById || findBossByName(rawValue, resolvedLocale);
 
   if (!boss) {

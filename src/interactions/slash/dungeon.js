@@ -8,7 +8,10 @@ const {
   getDungeonBossNames,
   getDungeonName,
 } = require('../../utils/dungeons');
-const { resolveInteractionLocale } = require('../../utils/interactionLocale');
+const {
+  resolveInteractionLocale,
+  getInteractionLocaleHint,
+} = require('../../utils/interactionLocale');
 const { bossRowAttachment } = require('../../helpers/bossRow');
 const { chunkIntoEmbedFields } = require('../../helpers/embedText');
 const { materializeGuildEmojiShortcodes } = require('../../helpers/emoji');
@@ -103,11 +106,11 @@ function getMessages(locale) {
 // Antwort für /dungeon erzeugen
 async function execute(interaction) {
   const rawValue = interaction.options.getString('name');
-  const localePromise = resolveInteractionLocale(interaction);
+  const localeHint = getInteractionLocaleHint(interaction);
+  const localePromise = resolveInteractionLocale(interaction).catch(() => localeHint || 'en');
 
   if (!rawValue) {
-    const locale = await localePromise;
-    const t = getMessages(locale);
+    const t = getMessages(localeHint);
     return interaction.reply({
       content: t.missingName,
       flags: MessageFlags.Ephemeral,
@@ -115,19 +118,9 @@ async function execute(interaction) {
   }
 
   let dungeon = findDungeonById(rawValue);
-  let locale;
 
   if (!dungeon) {
-    locale = await localePromise;
-    dungeon = findDungeonByName(rawValue, locale);
-
-    if (!dungeon) {
-      const t = getMessages(locale);
-      return interaction.reply({
-        content: t.notFound,
-        flags: MessageFlags.Ephemeral,
-      });
-    }
+    dungeon = findDungeonByName(rawValue, localeHint);
   }
 
   const deferred = await safeDeferReply(interaction);
@@ -135,8 +128,21 @@ async function execute(interaction) {
     return;
   }
 
-  if (!locale) {
-    locale = await localePromise;
+  const locale = (await localePromise) || 'en';
+  if (!dungeon) {
+    dungeon = findDungeonByName(rawValue, locale);
+
+    if (!dungeon) {
+      const t = getMessages(locale);
+      try {
+        return await interaction.editReply({
+          content: t.notFound,
+        });
+      } catch (error) {
+        console.error('[slash] editReply failed:', error);
+        return undefined;
+      }
+    }
   }
   const t = getMessages(locale);
 

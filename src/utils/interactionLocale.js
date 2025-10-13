@@ -50,4 +50,21 @@ async function resolveInteractionLocale(interaction) {
   return DEFAULT_LANGUAGE;
 }
 
-module.exports = { resolveInteractionLocale };
+function getInteractionLocaleHint(interaction) {
+  const candidates = [
+    interaction?.locale,
+    interaction?.guildLocale,
+    interaction?.user?.locale,
+  ];
+
+  for (const candidate of candidates) {
+    const normalized = normalizeLocale(candidate);
+    if (normalized) {
+      return normalized;
+    }
+  }
+
+  return DEFAULT_LANGUAGE;
+}
+
+module.exports = { resolveInteractionLocale, getInteractionLocaleHint };
