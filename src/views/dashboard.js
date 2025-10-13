@@ -1,6 +1,7 @@
 // === Imports ===
 const { EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
 const { KLASSE_LISTE } = require('../config/constants');
+const { materializeGuildEmojiShortcodes } = require('../helpers/emoji');
 
 // ===== Helpers für Steuer-Elemente =====
 function rowTabs(tab, phase, page, daten) {
@@ -74,22 +75,6 @@ function rowPager(tab, phaseOrRound, page, totalPages) {
 const classEmoji = (k) =>
   KLASSE_LISTE.find(x =>
     x.name === k)?.emoji || '';
-
-function materializeGuildEmojiShortcodes(text, guild) {
-  if (!text || !guild?.emojis?.cache?.size) {
-    return text;
-  }
-
-  const byLowerCaseName = new Map();
-  for (const emoji of guild.emojis.cache.values()) {
-    if (!emoji?.name) continue;
-    byLowerCaseName.set(emoji.name.toLowerCase(), emoji.toString());
-  }
-
-  return text.replace(/:([a-z0-9_]+):/gi, (match, name) => {
-    return byLowerCaseName.get(name.toLowerCase()) ?? match;
-  });
-}
 
 const phaseLabel = (v) =>
   v === 'q' ? 'Qualifikation' :

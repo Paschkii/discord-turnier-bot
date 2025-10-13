@@ -8,6 +8,8 @@ const {
 const { findDungeonById, getDungeonName: getDungeonDisplayName } = require('../../utils/dungeons');
 const { getLocalizedText, RESISTANCE_TYPES } = require('../../config/constants');
 const { resolveInteractionLocale } = require('../../utils/interactionLocale');
+const { materializeGuildEmojiShortcodes } = require('../../helpers/emoji');
+const { safeDeferReply } = require('../../helpers/interactions');
 
 const MESSAGES = {
   de: {
@@ -380,16 +382,38 @@ async function execute(interaction) {
 
   const bossById = findBossById(rawValue);
 
-  await interaction.deferReply();
+  const deferred = await safeDeferReply(interaction);
+  if (!deferred) {
+    return;
+  }
 
   const resolvedLocale = await resolveLocale();
   const resolvedMessages = getMessages(resolvedLocale);
   const boss = bossById || findBossByName(rawValue, resolvedLocale);
 
   if (!boss) {
-    return interaction.editReply({
-      content: resolvedMessages.notFound,
-    });
+    try {
+      return await interaction.editReply({
+        content: resolvedMessages.notFound,
+      });
+    } catch (error) {
+      console.error('[slash] editReply failed:', error);
+      return undefined;
+    }
+  }
+
+  const { guild } = interaction;
+  if (guild && typeof guild.emojis?.fetch === 'function') {
+    try {
+      const emojis = await guild.emojis.fetch();
+      if (!emojis.size) {
+        console.warn(`[emoji] Kein Emoji in Guild ${guild.id}`);
+      } else {
+        console.log('[emoji] Gefunden:', emojis.map((emoji) => emoji.name).join(', '));
+      }
+    } catch (error) {
+      console.warn('[emoji] fetch() fehlgeschlagen:', error);
+    }
   }
 
   const bossName = getBossName(boss, resolvedLocale) || '—';
@@ -406,10 +430,14 @@ async function execute(interaction) {
     locale: resolvedLocale,
   });
 
+  const displayName = materializeGuildEmojiShortcodes(bossName, guild) || bossName;
+  const rawDescription = descriptionLines.join('\n');
+  const description = materializeGuildEmojiShortcodes(rawDescription, guild) || rawDescription;
+
   const embed = new EmbedBuilder()
     .setColor(0x00AEFF)
-    .setTitle(bossName)
-    .setDescription(descriptionLines.join('\n'))
+    .setTitle(displayName)
+    .setDescription(description)
     .setTimestamp();
 
   if (boss.imageUrl) {
@@ -418,9 +446,14 @@ async function execute(interaction) {
     embed.setThumbnail(boss.icon);
   }
 
-  return interaction.editReply({
-    embeds: [embed],
-  });
+  try {
+    return await interaction.editReply({
+      embeds: [embed],
+    });
+  } catch (error) {
+    console.error('[slash] editReply failed:', error);
+    return undefined;
+  }
 }
 
 module.exports = { execute };

@@ -10,7 +10,9 @@ const {
 } = require('../../utils/dungeons');
 const { resolveInteractionLocale } = require('../../utils/interactionLocale');
 const { bossRowAttachment } = require('../../helpers/bossRow');
-const { chunkIntoEmbedFields } = require('../../helpers/embedText')
+const { chunkIntoEmbedFields } = require('../../helpers/embedText');
+const { materializeGuildEmojiShortcodes } = require('../../helpers/emoji');
+const { safeDeferReply } = require('../../helpers/interactions');
 
 const ACHIEVEMENT_NAMES = {
   de: 'Erfolge',
@@ -96,34 +98,6 @@ const MESSAGES = {
 
 function getMessages(locale) {
   return MESSAGES[locale] || MESSAGES.en || MESSAGES.de;
-}
-
-function materializeGuildEmojiShortcodes(text, guild) {
-  if (!text || !guild?.emojis?.cache?.size) {
-    return text;
-  }
-
-  const byLowerCaseName = new Map();
-  for (const emoji of guild.emojis.cache.values()) {
-    if (!emoji?.name) continue;
-    byLowerCaseName.set(emoji.name.toLowerCase(), emoji.toString());
-  }
-
-  return text.replace(/:([a-z0-9_]+):/gi, (match, name) => {
-    return byLowerCaseName.get(name.toLowerCase()) ?? match;
-  });
-}
-
-async function safeDeferReply(interaction, options = {}) {
-  try {
-    if (!interaction.deferred && !interaction.replied) {
-      await interaction.deferReply(options);
-    }
-    return true;
-  } catch (error) {
-    console.warn('[slash] deferReply failed (likely cold start):', error);
-    return false;
-  }
 }
 
 // Antwort für /dungeon erzeugen
