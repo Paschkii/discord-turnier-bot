@@ -1,5 +1,4 @@
 const { PermissionsBitField } = require('discord.js');
-const { installGuildEmojis } = require('../services/emojiInstaller');
 
 const ROLE_NAME = 'Bot of Twelve';
 const REQUIRED_PERMISSIONS = new PermissionsBitField([
@@ -43,7 +42,6 @@ async function ensureBotRole(guild) {
 
 async function onGuildCreate(guild) {
   await ensureBotRole(guild);
-  await installGuildEmojis(guild);
 }
 
 module.exports = { onGuildCreate };
