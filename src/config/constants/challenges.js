@@ -396,7 +396,7 @@ const CHALLENGES = [
     {   id: 'last',
         name: {
             de: 'Als Letztes', // Aufschub
-            en: 'Last',
+            en: 'Last', // Reprieve
             es: '',
             fr: 'Dernier',
             pt: ''

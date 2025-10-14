@@ -165,14 +165,12 @@ const BOSSE_LISTE = [
     characteristics: {
       vitality: 1000,
       actionPoints: 5,
-      movementPoints: 10
-      /*
-      ap_resist: 20,
-      mp_resist: 12,
-      block: 15,
-      krit: 0,
-      pushback: 0
-      */
+      movementPoints: 10,
+      apParry: 20,
+      mpParry: 12,
+      lock: 15,
+      criticalResistance: 0,
+      pushbackresistance: 0
     },
     resistances: {
       neutral: 14,
@@ -180,13 +178,11 @@ const BOSSE_LISTE = [
       fire: -25,
       water: -15,
       air: 37,
-      /*
-      neutral_flat: 0,
-      earth_flat: 0,
-      fire_flat: 0,
-      water_flat: 0,
-      air_flat: 0
-      */
+      neutral_fixed: 0,
+      earth_fixed: 0,
+      fire_fixed: 0,
+      water_fixed: 0,
+      air_fixed: 0
     }
   },
   // Boostache
