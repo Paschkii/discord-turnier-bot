@@ -1,3 +1,5 @@
+const { PermissionsBitField } = require('discord.js');
+
 const logger = console;
 
 const RAW_BASE_URL = 'https://raw.githubusercontent.com/Paschkii/dofus-touch-icons/main';
@@ -47,18 +49,20 @@ const PREMIUM_EMOJI_LIMITS = {
   3: 250,
 };
 
-const fetchImpl =
-  typeof globalThis.fetch === 'function'
-    ? (...args) => globalThis.fetch(...args)
-    : (...args) => import('node-fetch').then(({ default: fetch }) => fetch(...args));
+let fetchImpl;
+if (typeof globalThis.fetch === 'function') {
+  fetchImpl = (...args) => globalThis.fetch(...args);
+} else {
+  // npm i undici
+  fetchImpl = (...args) => import('undici').then(({ fetch }) => fetch(...args));
+}
 
 function buildUrl(path) {
   return `${RAW_BASE_URL}/${path}`;
 }
 
 function getEmojiLimit(guild) {
-  const premiumTier = typeof guild.premiumTier === 'number' ? guild.premiumTier : 0;
-  return PREMIUM_EMOJI_LIMITS[premiumTier] ?? PREMIUM_EMOJI_LIMITS[0];
+  return guild.maximumEmojis ?? (PREMIUM_EMOJI_LIMITS[Number(guild.premiumTier) || 0] ?? 50);
 }
 
 async function downloadEmoji(url) {
@@ -71,6 +75,10 @@ async function downloadEmoji(url) {
 }
 
 async function installGuildEmojis(guild) {
+  if (!guild.members?.me?.permissions.has(PermissionsBitField.Flags.ManageGuildExpressions)) {
+    logger.warn(`[EmojiInstaller] Mir fehlt die Berechtigung "Manage Guild Expressions" in ${guild.id} (${guild.name}).`);
+    return;
+  }
   try {
     await guild.emojis.fetch();
     const existingNames = new Set(guild.emojis.cache.map((emoji) => emoji.name));
@@ -113,6 +121,4 @@ async function installGuildEmojis(guild) {
   }
 }
 
-module.exports = {
-  installGuildEmojis,
-};
+module.exports = { installGuildEmojis };

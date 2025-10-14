@@ -298,6 +298,7 @@ const commands = [
       .addStringOption(opt =>
         applyOptionLocalization(opt, 'addDungeon', 'name')
           .setRequired(true)
+          .setAutocomplete(true)
       )
       .setDefaultMemberPermissions(PermissionsBitField.Flags.Administrator)
   ),

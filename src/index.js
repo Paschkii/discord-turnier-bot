@@ -5,6 +5,7 @@ require('dotenv').config();
 // === Imports ===
 const { Client, GatewayIntentBits, Partials } = require('discord.js');
 const { keepAlive } = require('./server/keepAlive');
+const { installGuildEmojis } = require('./services/emojiInstaller');
 const { onReady } = require('./events/ready');
 const { onInteractionCreate } = require('./events/interactionCreate');
 const { onGuildCreate } = require('./events/guildCreate');
@@ -25,9 +26,21 @@ const { initDB } = require('../datenbank');
     partials: [Partials.Channel],
   });
   // Events registrieren
-  client.once('ready', () => onReady(client));
+  client.once('ready', () => {
+    onReady(client);
+
+    // Emojis beim Start installieren
+    for (const [, guild] of client.guilds.cache) {
+      installGuildEmojis(guild);
+    }
+  });
+
   client.on('interactionCreate', onInteractionCreate);
-  client.on('guildCreate', onGuildCreate);
+
+  client.on('guildCreate', (guild) => {
+    onGuildCreate(guild);
+    installGuildEmojis(guild);
+  });
   // Client einloggen
   await client.login(process.env.DISCORD_TOKEN);
 
