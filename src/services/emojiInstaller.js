@@ -74,9 +74,41 @@ async function downloadEmoji(url) {
   return Buffer.from(arrayBuffer);
 }
 
+const EMOJI_PERMISSION_FLAGS = [
+  PermissionsBitField.Flags.ManageGuildExpressions,
+  // "ManageEmojisAndStickers" ist der ältere Name derselben Berechtigung.
+  PermissionsBitField.Flags.ManageEmojisAndStickers,
+].filter((flag) => typeof flag !== 'undefined');
+
+async function resolveSelfMember(guild) {
+  if (!guild?.members) return null;
+  if (guild.members.me) return guild.members.me;
+  if (typeof guild.members.fetchMe !== 'function') return null;
+
+  try {
+    return await guild.members.fetchMe();
+  } catch (error) {
+    logger.error(`[EmojiInstaller] Konnte Bot-Mitglied in Guild ${guild?.id ?? 'unbekannt'} nicht abrufen:`, error);
+    return null;
+  }
+}
+
+function hasEmojiPermission(member) {
+  if (!member?.permissions || typeof member.permissions.has !== 'function') return false;
+  return EMOJI_PERMISSION_FLAGS.some((flag) => member.permissions.has(flag));
+}
+
 async function installGuildEmojis(guild) {
-  if (!guild.members?.me?.permissions.has(PermissionsBitField.Flags.ManageGuildExpressions)) {
-    logger.warn(`[EmojiInstaller] Mir fehlt die Berechtigung "Manage Guild Expressions" in ${guild.id} (${guild.name}).`);
+  const me = await resolveSelfMember(guild);
+  if (!me) {
+    logger.warn(`[EmojiInstaller] Bot-Mitglied in Guild ${guild?.id ?? 'unbekannt'} konnte nicht ermittelt werden.`);
+    return;
+  }
+
+  if (!hasEmojiPermission(me)) {
+    logger.warn(
+      `[EmojiInstaller] Mir fehlt die Berechtigung "Manage Guild Expressions" in ${guild.id} (${guild.name}).`,
+    );
     return;
   }
   try {
