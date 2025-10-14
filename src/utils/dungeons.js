@@ -23,6 +23,13 @@ function normalize(str, locale = 'de') {
     .toLocaleLowerCase(locale === 'de' ? 'de-DE' : locale);
 }
 
+function tokenizeNormalized(str) {
+  return String(str)
+    .split(/[\s/|_,.-]+/)
+    .map((part) => part.trim())
+    .filter(Boolean);
+}
+
 function getDungeonName(dungeon, locale = 'de') {
   return getLocalizedText(dungeon?.dungeonname, locale) || '';
 }
@@ -197,20 +204,77 @@ function formatDungeonChallenges(dungeon, locale = 'de', options = {}) {
 function buildDungeonChoices(locale = 'de', query = '') {
   const loc = resolveLocale(locale);
   const normalizedQuery = normalize(query, loc);
+  const tokens = tokenizeNormalized(normalizedQuery);
 
   const dungeons = DUNGEON_LISTE
-    .map((dungeon) => ({
-      id: dungeon.dungeonID,
-      name: getDungeonName(dungeon, loc),
-    }))
+    .map((dungeon) => {
+      const name = getDungeonName(dungeon, loc);
+      const normalizedName = normalize(name, loc);
+      return {
+        id: dungeon.dungeonID,
+        name,
+        normalizedName,
+        nameWords: tokenizeNormalized(normalizedName),
+        bosses: getDungeonBossNames(dungeon, loc).map((bossName) => {
+          const normalized = normalize(bossName, loc);
+          return {
+            normalized,
+            words: tokenizeNormalized(normalized),
+          };
+        }),
+      };
+    })
     .filter((d) => d.id && d.name)
     .sort((a, b) => a.name.localeCompare(b.name, loc, { sensitivity: 'base' }));
 
-  const filtered = normalizedQuery
-    ? dungeons.filter((d) => normalize(d.name, loc).startsWith(normalizedQuery))
-    : dungeons;
+  if (!tokens.length) {
+    return dungeons.slice(0, 25).map((d) => ({ name: d.name, value: String(d.id) }));
+  }
 
-  return filtered.slice(0, 25).map((d) => ({ name: d.name, value: String(d.id) }));
+  const computeMatchScore = (entry) => {
+    const searchTargets = [
+      { str: entry.normalizedName, weight: 0 },
+      ...entry.nameWords.map((word) => ({ str: word, weight: 1 })),
+      ...entry.bosses.map((boss) => ({ str: boss.normalized, weight: 2 })),
+      ...entry.bosses.flatMap((boss) => boss.words.map((word) => ({ str: word, weight: 3 }))),
+    ];
+
+    let total = 0;
+
+    for (const token of tokens) {
+      let best = Number.POSITIVE_INFINITY;
+
+      for (const target of searchTargets) {
+        const text = target.str;
+        if (!text) continue;
+
+        if (text.startsWith(token)) {
+          if (target.weight < best) best = target.weight;
+          continue;
+        }
+
+        if (text.includes(token)) {
+          const score = target.weight + 5;
+          if (score < best) best = score;
+        }
+      }
+
+      if (!Number.isFinite(best)) {
+        return null;
+      }
+
+      total += best;
+    }
+
+    return total;
+  };
+
+  const matched = dungeons
+    .map((entry) => ({ ...entry, score: computeMatchScore(entry) }))
+    .filter((entry) => entry.score !== null)
+    .sort((a, b) => a.score - b.score || a.name.localeCompare(b.name, loc, { sensitivity: 'base' }));
+
+  return matched.slice(0, 25).map((d) => ({ name: d.name, value: String(d.id) }));
 }
 
 // === Exports ===

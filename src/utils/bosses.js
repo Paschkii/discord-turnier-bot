@@ -24,6 +24,13 @@ function normalize(str, locale = 'de') {
     .toLocaleLowerCase(locale === 'de' ? 'de-DE' : locale);
 }
 
+function tokenizeNormalized(str) {
+  return String(str)
+    .split(/[\s/|_,.-]+/)
+    .map((part) => part.trim())
+    .filter(Boolean);
+}
+
 // Holt einen lokalisierten Text (oder fällt auf andere Sprachen zurück)
 function getLocalized(entry, locale = 'de') {
   return getLocalizedText(entry, locale);
@@ -199,19 +206,69 @@ function formatCharacteristics(boss, locale = 'de', options = {}) {
 function buildBossChoices(locale = 'de', query = '') {
   const loc = resolveLocale(locale);
   const normalizedQuery = normalize(query, loc);
+  const tokens = tokenizeNormalized(normalizedQuery);
+
   const bosses = BOSSE_LISTE
-    .map((boss) => ({
-      id: boss.id,
-      name: getBossName(boss, loc),
-    }))
+    .map((boss) => {
+      const name = getBossName(boss, loc);
+      const normalizedName = normalize(name, loc);
+      return {
+        id: boss.id,
+        name,
+        normalizedName,
+        nameWords: tokenizeNormalized(normalizedName),
+      };
+    })
     .filter((b) => b.id && b.name)
     .sort((a, b) => a.name.localeCompare(b.name, loc, { sensitivity: 'base' }));
 
-  const filtered = normalizedQuery
-    ? bosses.filter((b) => normalize(b.name, loc).startsWith(normalizedQuery))
-    : bosses;
+  if (!tokens.length) {
+    return bosses.slice(0, 25).map((b) => ({ name: b.name, value: String(b.id) }));
+  }
 
-  return filtered.slice(0, 25).map((b) => ({ name: b.name, value: String(b.id) }));
+  const computeMatchScore = (entry) => {
+    const searchTargets = [
+      { str: entry.normalizedName, weight: 0 },
+      ...entry.nameWords.map((word) => ({ str: word, weight: 1 })),
+    ];
+
+    let total = 0;
+
+    for (const token of tokens) {
+      let best = Number.POSITIVE_INFINITY;
+
+      for (const target of searchTargets) {
+        const text = target.str;
+        if (!text) continue;
+
+        if (text.startsWith(token)) {
+          if (target.weight < best) best = target.weight;
+          continue;
+        }
+
+        if (text.includes(token)) {
+          const score = target.weight + 5;
+          if (score < best) best = score;
+        }
+      }
+
+      if (!Number.isFinite(best)) {
+        return null;
+      }
+
+      total += best;
+    }
+
+    return total;
+  };
+
+  const matched = bosses
+    .map((entry) => ({ ...entry, score: computeMatchScore(entry) }))
+    .filter((entry) => entry.score !== null)
+    .sort((a, b) => a.score - b.score || a.name.localeCompare(b.name, loc, { sensitivity: 'base' }));
+
+
+  return matched.slice(0, 25).map((b) => ({ name: b.name, value: String(b.id) }));
 }
 
 module.exports = {
