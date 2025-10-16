@@ -17,16 +17,16 @@ const BOSSE_LISTE = [
     family: 'albuera',
     homeDungeonID: 'belladonna_dungeon',
     characteristics: {
-      vitality: 120,
+      healthPoints: 120,
       actionPoints: 7,
       movementPoints: 3
     },
     resistances: {
-      neutral: 0,
-      earth: 0,
-      fire: 0,
-      water: 0,
-      air: 0,
+      neutral_percent: 0,
+      earth_percent: 0,
+      fire_percent: 0,
+      water_percent: 0,
+      air_percent: 0,
     }
   },
   // Famished Sunflower
@@ -44,26 +44,26 @@ const BOSSE_LISTE = [
     family: '',
     homeDungeonID: 'field_dungeon',
     characteristics: {
-      vitality: 920,
+      healthPoints: 920,
       actionPoints: 8,
       movementPoints: 3,
       apResist: 8,
       mpResist: 8,
-      block: 10,
-      krit: 0,
-      pushback: 0
+      lock: 10,
+      criticalResistance: 0,
+      pushbackResistance: 0
     },
     resistances: {
-      neutral: 25,
-      earth: 25,
-      fire: 15,
-      water: -10,
-      air: -15,
-      neutral_flat: 0,
-      earth_flat: 0,
-      fire_flat: 0,
-      water_flat: 0,
-      air_flat: 0
+      neutral_percent: 25,
+      earth_percent: 25,
+      fire_percent: 15,
+      water_percent: -10,
+      air_percent: -15,
+      neutral_fixed: 0,
+      earth_fixed: 0,
+      fire_fixed: 0,
+      water_fixed: 0,
+      air_fixed: 0
     }
   },
   // Sponge Mob
@@ -81,30 +81,26 @@ const BOSSE_LISTE = [
     family: '',
     homeDungeonID: 'sand_dungeon',
     characteristics: {
-      vitality: 1200,
+      healthPoints: 1200,
       actionPoints: 7,
-      movementPoints: 4
-      /*
-      ap_resist: 15,
-      mp_resist: 15,
-      block: 15,
-      krit: 0,
-      pushback: 0
-      */
+      movementPoints: 4,
+      apParry: 15,
+      mpParry: 15,
+      lock: 15,
+      criticalResistance: 0,
+      pushbackResistance: 0
     },
     resistances: {
-      neutral: 22,
-      earth: 14,
-      fire: -5,
-      water: 14,
-      air: -5,
-      /*
-      neutral_flat: 0,
-      earth_flat: 0,
-      fire_flat: 0,
-      water_flat: 0,
-      air_flat: 0
-      */
+      neutral_percent: 22,
+      earth_percent: 14,
+      fire_percent: -5,
+      water_percent: 14,
+      air_percent: -5,
+      neutral_fixed: 0,
+      earth_fixed: 0,
+      fire_fixed: 0,
+      water_fixed: 0,
+      air_fixed: 0
     }
   },
   // Golden Scarabugly
@@ -122,30 +118,26 @@ const BOSSE_LISTE = [
     family: '',
     homeDungeonID: 'scaraleaf_dungeon',
     characteristics: {
-      vitality: 1600,
+      healthPoints: 1600,
       actionPoints: 8,
-      movementPoints: 3
-      /*
-      ap_resist: 30,
-      mp_resist: 30,
-      block: 28,
-      krit: 0,
-      pushback: 0
-      */
+      movementPoints: 3,
+      apParry: 30,
+      mpParry: 30,
+      lock: 28,
+      criticalResistance: 0,
+      pushbackResistance: 0
     },
     resistances: {
-      neutral: 24,
-      earth: 24,
-      fire: 24,
-      water: 24,
-      air: 24,
-      /*
-      neutral_flat: 0,
-      earth_flat: 0,
-      fire_flat: 0,
-      water_flat: 0,
-      air_flat: 0
-      */
+      neutral_percent: 24,
+      earth_percent: 24,
+      fire_percent: 24,
+      water_percent: 24,
+      air_percent: 24,
+      neutral_fixed: 0,
+      earth_fixed: 0,
+      fire_fixed: 0,
+      water_fixed: 0,
+      air_fixed: 0
     }
   },
   // Batofu
@@ -163,21 +155,21 @@ const BOSSE_LISTE = [
     family: '',
     homeDungeonID: 'tofu_house',
     characteristics: {
-      vitality: 1000,
+      healthPoints: 1000,
       actionPoints: 5,
       movementPoints: 10,
       apParry: 20,
       mpParry: 12,
       lock: 15,
       criticalResistance: 0,
-      pushbackresistance: 0
+      pushbackResistanceResistance: 0
     },
     resistances: {
-      neutral: 14,
-      earth: 9,
-      fire: -25,
-      water: -15,
-      air: 37,
+      neutral_percent: 14,
+      earth_percent: 9,
+      fire_percent: -25,
+      water_percent: -15,
+      air_percent: 37,
       neutral_fixed: 0,
       earth_fixed: 0,
       fire_fixed: 0,
@@ -200,30 +192,26 @@ const BOSSE_LISTE = [
     family: '',
     homeDungeonID: 'haunted_house',
     characteristics: {
-      vitality: 890,
+      healthPoints: 890,
       actionPoints: 10,
-      movementPoints: 6
-      /*
-      ap_resist: 35,
-      mp_resist: 55,
-      block: 35,
-      krit: 15,
-      pushback: 0
-      */
+      movementPoints: 6,
+      apParry: 35,
+      mpParry: 55,
+      lock: 35,
+      criticalResistance: 15,
+      pushbackResistance: 0
     },
     resistances: {
-      neutral: 55,
-      earth: 0,
-      fire: 0,
-      water: 15,
-      air: 85,
-      /*
-      neutral_flat: 0,
-      earth_flat: 0,
-      fire_flat: 0,
-      water_flat: 0,
-      air_flat: 0
-      */
+      neutral_percent: 55,
+      earth_percent: 0,
+      fire_percent: 0,
+      water_percent: 15,
+      air_percent: 85,
+      neutral_fixed: 0,
+      earth_fixed: 0,
+      fire_fixed: 0,
+      water_fixed: 0,
+      air_fixed: 0
     }
   },
   // Ronin Chafer
@@ -241,30 +229,26 @@ const BOSSE_LISTE = [
     family: '',
     homeDungeonID: 'skeleton_dungeon',
     characteristics: {
-      vitality: 680,
+      healthPoints: 680,
       actionPoints: 10,
-      movementPoints: 4
-      /*
-      ap_resist: 16,
-      mp_resist: 24,
-      block: 30,
-      krit: 0,
-      pushback: 0
-      */
+      movementPoints: 4,
+      apParry: 16,
+      mpParry: 24,
+      lock: 30,
+      criticalResistance: 0,
+      pushbackResistance: 0
     },
     resistances: {
-      neutral: 0,
-      earth: 0,
-      fire: 0,
-      water: 0,
-      air: 0,
-      /*
-      neutral_flat: 7,
-      earth_flat: 9,
-      fire_flat: 15,
-      water_flat: 12,
-      air_flat: 9
-      */
+      neutral_percent: 0,
+      earth_percent: 0,
+      fire_percent: 0,
+      water_percent: 0,
+      air_percent: 0,
+      neutral_fixed: 7,
+      earth_fixed: 9,
+      fire_fixed: 15,
+      water_fixed: 12,
+      air_fixed: 9
     }
   },
   // Royal Gobball
@@ -282,30 +266,26 @@ const BOSSE_LISTE = [
     family: '',
     homeDungeonID: 'gobball_dungeon',
     characteristics: {
-      vitality: 1700,
+      healthPoints: 1700,
       actionPoints: 9,
-      movementPoints: 5
-      /*
-      ap_resist: 10,
-      mp_resist: 10,
-      block: 15,
-      krit: 0,
-      pushback: 0
-      */
+      movementPoints: 5,
+      apParry: 10,
+      mpParry: 10,
+      lock: 15,
+      criticalResistance: 0,
+      pushbackResistance: 0
     },
     resistances: {
-      neutral: -5,
-      earth: 13,
-      fire: 10,
-      water: 22,
-      air: 0,
-      /*
-      neutral_flat: 7,
-      earth_flat: 9,
-      fire_flat: 15,
-      water_flat: 12,
-      air_flat: 9
-      */
+      neutral_percent: -5,
+      earth_percent: 13,
+      fire_percent: 10,
+      water_percent: 22,
+      air_percent: 0,
+      neutral_fixed: 7,
+      earth_fixed: 9,
+      fire_fixed: 15,
+      water_fixed: 12,
+      air_fixed: 9
     }
   },
   // Bworkette
@@ -323,30 +303,26 @@ const BOSSE_LISTE = [
     family: '',
     homeDungeonID: 'bwork_dungeon',
     characteristics: {
-      vitality: 1600,
+      healthPoints: 1600,
       actionPoints: 9,
-      movementPoints: 5
-      /*
-      ap_resist: 10,
-      mp_resist: 10,
-      block: 14,
-      krit: 0,
-      pushback: 0
-      */
+      movementPoints: 5,
+      apParry: 10,
+      mpParry: 10,
+      lock: 14,
+      criticalResistance: 0,
+      pushbackResistance: 0
     },
     resistances: {
-      neutral: 33,
-      earth: 33,
-      fire: 48,
-      water: 18,
-      air: 28,
-      /*
-      neutral_flat: 0,
-      earth_flat: 0,
-      fire_flat: 0,
-      water_flat: 0,
-      air_flat: 0
-      */
+      neutral_percent: 33,
+      earth_percent: 33,
+      fire_percent: 48,
+      water_percent: 18,
+      air_percent: 28,
+      neutral_fixed: 0,
+      earth_fixed: 0,
+      fire_fixed: 0,
+      water_fixed: 0,
+      air_fixed: 0
     }
   },
   // Smith's Chest
@@ -364,30 +340,26 @@ const BOSSE_LISTE = [
     family: '',
     homeDungeonID: 'blacksmith_dungeon',
     characteristics: {
-      vitality: 820,
+      healthPoints: 820,
       actionPoints: 8,
-      movementPoints: 3
-      /*
-      ap_resist: 20,
-      mp_resist: 20,
-      block: 20,
-      krit: 0,
-      pushback: 0
-      */
+      movementPoints: 3,
+      apParry: 20,
+      mpParry: 20,
+      lock: 20,
+      criticalResistance: 0,
+      pushbackResistance: 0
     },
     resistances: {
-      neutral: 0,
-      earth: 0,
-      fire: 0,
-      water: 0,
-      air: 0,
-      /*
-      neutral_flat: 0,
-      earth_flat: 0,
-      fire_flat: 0,
-      water_flat: 0,
-      air_flat: 0
-      */
+      neutral_percent: 0,
+      earth_percent: 0,
+      fire_percent: 0,
+      water_percent: 0,
+      air_percent: 0,
+      neutral_fixed: 0,
+      earth_fixed: 0,
+      fire_fixed: 0,
+      water_fixed: 0,
+      air_fixed: 0
     }
   },
   // Shin Larva
@@ -405,30 +377,26 @@ const BOSSE_LISTE = [
     family: '',
     homeDungeonID: 'larva_dungeon',
     characteristics: {
-      vitality: 1200,
+      healthPoints: 1200,
       actionPoints: 9,
-      movementPoints: 2
-      /*
-      ap_resist: 28,
-      mp_resist: 28,
-      block: 28,
-      krit: 0,
-      pushback: 0
-      */
+      movementPoints: 2,
+      apParry: 28,
+      mpParry: 28,
+      lock: 28,
+      criticalResistance: 0,
+      pushbackResistance: 0
     },
     resistances: {
-      neutral: 54,
-      earth: 34,
-      fire: 34,
-      water: -26,
-      air: -26,
-      /*
-      neutral_flat: 0,
-      earth_flat: 0,
-      fire_flat: 0,
-      water_flat: 0,
-      air_flat: 0
-      */
+      neutral_percent: 54,
+      earth_percent: 34,
+      fire_percent: 34,
+      water_percent: -26,
+      air_percent: -26,
+      neutral_fixed: 0,
+      earth_fixed: 0,
+      fire_fixed: 0,
+      water_fixed: 0,
+      air_fixed: 0
     }
   },
   // Great Coralator
@@ -446,30 +414,26 @@ const BOSSE_LISTE = [
     family: '',
     homeDungeonID: 'grotto_hesque',
     characteristics: {
-      vitality: 2000,
+      healthPoints: 2000,
       actionPoints: 8,
-      movementPoints: 3
-      /*
-      ap_resist: 14,
-      mp_resist: 14,
-      block: 14,
-      krit: 0,
-      pushback: 0
-      */
+      movementPoints: 3,
+      apParry: 14,
+      mpParry: 14,
+      lock: 14,
+      criticalResistance: 0,
+      pushbackResistance: 0
     },
     resistances: {
-      neutral: 23,
-      earth: -6,
-      fire: 13,
-      water: 18,
-      air: -7,
-      /*
-      neutral_flat: 0,
-      earth_flat: 0,
-      fire_flat: 0,
-      water_flat: 0,
-      air_flat: 0
-      */
+      neutral_percent: 23,
+      earth_percent: -6,
+      fire_percent: 13,
+      water_percent: 18,
+      air_percent: -7,
+      neutral_fixed: 0,
+      earth_fixed: 0,
+      fire_fixed: 0,
+      water_fixed: 0,
+      air_fixed: 0
     }
   },
   // Kwakwa
@@ -487,30 +451,26 @@ const BOSSE_LISTE = [
     family: '',
     homeDungeonID: 'kwakwas_nest',
     characteristics: {
-      vitality: 1100,
+      healthPoints: 1100,
       actionPoints: 9,
-      movementPoints: 7
-      /*
-      ap_resist: 30,
-      mp_resist: 30,
-      block: 80,
-      krit: 0,
-      pushback: 50
-      */
+      movementPoints: 7,
+      apParry: 30,
+      mpParry: 30,
+      lock: 80,
+      criticalResistance: 0,
+      pushbackResistance: 50
     },
     resistances: {
-      neutral: 40,
-      earth: 40,
-      fire: 40,
-      water: 40,
-      air: 40,
-      /*
-      neutral_flat: 0,
-      earth_flat: 0,
-      fire_flat: 0,
-      water_flat: 0,
-      air_flat: 0
-      */
+      neutral_percent: 40,
+      earth_percent: 40,
+      fire_percent: 40,
+      water_percent: 40,
+      air_percent: 40,
+      neutral_fixed: 0,
+      earth_fixed: 0,
+      fire_fixed: 0,
+      water_fixed: 0,
+      air_fixed: 0
     }
   },
   // === Level 51 - 100 Dungeons ===
@@ -529,30 +489,26 @@ const BOSSE_LISTE = [
     family: '',
     homeDungeonID: 'wa_wabbits_castle',
     characteristics: {
-      vitality: 3000,
+      healthPoints: 3000,
       actionPoints: 10,
-      movementPoints: 4
-      /*
-      ap_resist: 20,
-      mp_resist: 20,
-      block: 13,
-      krit: 0,
-      pushback: 0
-      */
+      movementPoints: 4,
+      apParry: 20,
+      mpParry: 20,
+      lock: 13,
+      criticalResistance: 0,
+      pushbackResistance: 0
     },
     resistances: {
-      neutral: 29,
-      earth: 29,
-      fire: 19,
-      water: -6,
-      air: -11
-      /*
-      neutral_flat: 0,
-      earth_flat: 0,
-      fire_flat: 0,
-      water_flat: 0,
-      air_flat: 0
-      */
+      neutral_percent: 29,
+      earth_percent: 29,
+      fire_percent: 19,
+      water_percent: -6,
+      air_percent: -11,
+      neutral_fixed: 0,
+      earth_fixed: 0,
+      fire_fixed: 0,
+      water_fixed: 0,
+      air_fixed: 0
     }
   },
   // Kanniball Andchain
@@ -570,30 +526,26 @@ const BOSSE_LISTE = [
     family: '',
     homeDungeonID: 'kanniball_dungeon',
     characteristics: {
-      vitality: 1400,
+      healthPoints: 1400,
       actionPoints: 10,
-      movementPoints: 3
-      /*
-      ap_resist: 25,
-      mp_resist: 25,
-      block: 6,
-      krit: 0,
-      pushback: 0
-      */
+      movementPoints: 3,
+      apParry: 25,
+      mpParry: 25,
+      lock: 6,
+      criticalResistance: 0,
+      pushbackResistance: 0
     },
     resistances: {
-      neutral: 58,
-      earth: 23,
-      fire: 23,
-      water: 23,
-      air: 23,
-      /*
-      neutral_flat: 0,
-      earth_flat: 0,
-      fire_flat: 0,
-      water_flat: 0,
-      air_flat: 0
-      */
+      neutral_percent: 58,
+      earth_percent: 23,
+      fire_percent: 23,
+      water_percent: 23,
+      air_percent: 23,
+      neutral_fixed: 0,
+      earth_fixed: 0,
+      fire_fixed: 0,
+      water_fixed: 0,
+      air_fixed: 0
     }
   },
   // -- Blops --
@@ -612,34 +564,30 @@ const BOSSE_LISTE = [
     family: '',
     homeDungeonID: 'blop_dungeon',
     characteristics: {
-      vitality: 2400,
+      healthPoints: 2400,
       actionPoints: 10,
-      movementPoints: 5
-      /*
-      ap_resist: 28,
-      mp_resist: 28,
-      block: 28,
-      krit: 0,
-      pushback: 0
-      */
+      movementPoints: 5,
+      apParry: 28,
+      mpParry: 28,
+      lock: 28,
+      criticalResistance: 0,
+      pushbackResistance: 0
     },
     resistances: {
-      neutral: -12,
-      earth: 94,
-      fire: -12,
-      water: -12,
-      air: -12,
-      /*
-      neutral_flat: 0,
-      earth_flat: 0,
-      fire_flat: 0,
-      water_flat: 0,
-      air_flat: 0
-      */
+      neutral_percent: -12,
+      earth_percent: 94,
+      fire_percent: -12,
+      water_percent: -12,
+      air_percent: -12,
+      neutral_fixed: 0,
+      earth_fixed: 0,
+      fire_fixed: 0,
+      water_fixed: 0,
+      air_fixed: 0
     },
     alsoIn: [
-      { dungeonID: 'rainbow_blop_lair',
-        overrides: { vitality: 3500 }
+      { dungeonID: 'rainbow_blop_lair_percent',
+        overrides: { healthPoints: 3500 }
       }
     ],
   },
@@ -658,34 +606,30 @@ const BOSSE_LISTE = [
     family: '',
     homeDungeonID: 'blop_dungeon',
     characteristics: {
-      vitality: 2400,
+      healthPoints: 2400,
       actionPoints: 10,
-      movementPoints: 5
-      /*
-      ap_resist: 28,
-      mp_resist: 28,
-      block: 28,
-      krit: 0,
-      pushback: 0
-      */
+      movementPoints: 5,
+      apParry: 28,
+      mpParry: 28,
+      lock: 28,
+      criticalResistance: 0,
+      pushbackResistance: 0
     },
     resistances: {
-      neutral: -12,
-      earth: -12,
-      fire: -12,
-      water: 94,
-      air: -12,
-      /*
-      neutral_flat: 0,
-      earth_flat: 0,
-      fire_flat: 0,
-      water_flat: 0,
-      air_flat: 0
-      */
+      neutral_percent: -12,
+      earth_percent: -12,
+      fire_percent: -12,
+      water_percent: 94,
+      air_percent: -12,
+      neutral_fixed: 0,
+      earth_fixed: 0,
+      fire_fixed: 0,
+      water_fixed: 0,
+      air_fixed: 0
     },
     alsoIn: [
-      { dungeonID: 'rainbow_blop_lair',
-        overrides: { vitality: 3500 }
+      { dungeonID: 'rainbow_blop_lair_percent',
+        overrides: { healthPoints: 3500 }
       }
     ],
   },
@@ -704,34 +648,30 @@ const BOSSE_LISTE = [
     family: '',
     homeDungeonID: 'blop_dungeon',
     characteristics: {
-      vitality: 2400,
+      healthPoints: 2400,
       actionPoints: 10,
-      movementPoints: 5
-      /*
-      ap_resist: 28,
-      mp_resist: 28,
-      block: 28,
-      krit: 0,
-      pushback: 0
-      */
+      movementPoints: 5,
+      apParry: 28,
+      mpParry: 28,
+      lock: 28,
+      criticalResistance: 0,
+      pushbackResistance: 0
     },
     resistances: {
-      neutral: -12,
-      earth: -12,
-      fire: 94,
-      water: -12,
-      air: -12,
-      /*
-      neutral_flat: 0,
-      earth_flat: 0,
-      fire_flat: 0,
-      water_flat: 0,
-      air_flat: 0
-      */
+      neutral_percent: -12,
+      earth_percent: -12,
+      fire_percent: 94,
+      water_percent: -12,
+      air_percent: -12,
+      neutral_fixed: 0,
+      earth_fixed: 0,
+      fire_fixed: 0,
+      water_fixed: 0,
+      air_fixed: 0
     },
     alsoIn: [
-      { dungeonID: 'rainbow_blop_lair',
-        overrides: { vitality: 3500 }
+      { dungeonID: 'rainbow_blop_lair_percent',
+        overrides: { healthPoints: 3500 }
       }
     ],
   },
@@ -750,34 +690,30 @@ const BOSSE_LISTE = [
     family: '',
     homeDungeonID: 'blop_dungeon',
     characteristics: {
-      vitality: 2400,
+      healthPoints: 2400,
       actionPoints: 10,
-      movementPoints: 5
-      /*
-      ap_resist: 28,
-      mp_resist: 28,
-      block: 28,
-      krit: 0,
-      pushback: 0
-      */
+      movementPoints: 5,
+      apParry: 28,
+      mpParry: 28,
+      lock: 28,
+      criticalResistance: 0,
+      pushbackResistance: 0
     },
     resistances: {
-      neutral: -12,
-      earth: -12,
-      fire: -12,
-      water: -12,
-      air: 94,
-      /*
-      neutral_flat: 0,
-      earth_flat: 0,
-      fire_flat: 0,
-      water_flat: 0,
-      air_flat: 0
-      */
+      neutral_percent: -12,
+      earth_percent: -12,
+      fire_percent: -12,
+      water_percent: -12,
+      air_percent: 94,
+      neutral_fixed: 0,
+      earth_fixed: 0,
+      fire_fixed: 0,
+      water_fixed: 0,
+      air_fixed: 0
     },
     alsoIn: [
-      { dungeonID: 'rainbow_blop_lair',
-        overrides: { vitality: 3500 }
+      { dungeonID: 'rainbow_blop_lair_percent',
+        overrides: { healthPoints: 3500 }
       }
     ],
   },
@@ -797,30 +733,26 @@ const BOSSE_LISTE = [
     family: '',
     homeDungeonID: 'jellith_dimension',
     characteristics: {
-      vitality: 1400,
+      healthPoints: 1400,
       actionPoints: 10,
-      movementPoints: 5
-      /*
-      ap_resist: 10,
-      mp_resist: 10,
-      block: 5,
-      krit: 0,
-      pushback: 0
-      */
+      movementPoints: 5,
+      apParry: 10,
+      mpParry: 10,
+      lock: 5,
+      criticalResistance: 0,
+      pushbackResistance: 0
     },
     resistances: {
-      neutral: 50,
-      earth: 50,
-      fire: -10,
-      water: 50,
-      air: 50,
-      /*
-      neutral_flat: 0,
-      earth_flat: 0,
-      fire_flat: 0,
-      water_flat: 0,
-      air_flat: 0
-      */
+      neutral_percent: 50,
+      earth_percent: 50,
+      fire_percent: -10,
+      water_percent: 50,
+      air_percent: 50,
+      neutral_fixed: 0,
+      earth_fixed: 0,
+      fire_fixed: 0,
+      water_fixed: 0,
+      air_fixed: 0
     }
   },
   // Royal Mint Jelly
@@ -838,30 +770,26 @@ const BOSSE_LISTE = [
     family: '',
     homeDungeonID: 'jellith_dimension',
     characteristics: {
-      vitality: 1400,
+      healthPoints: 1400,
       actionPoints: 10,
-      movementPoints: 4
-      /*
-      ap_resist: 32,
-      mp_resist: 41,
-      block: 10,
-      krit: 0,
-      pushback: 0
-      */
+      movementPoints: 4,
+      apParry: 32,
+      mpParry: 41,
+      lock: 10,
+      criticalResistance: 0,
+      pushbackResistance: 0
     },
     resistances: {
-      neutral: 50,
-      earth: -10,
-      fire: 50,
-      water: 50,
-      air: 50,
-      /*
-      neutral_flat: 0,
-      earth_flat: 0,
-      fire_flat: 0,
-      water_flat: 0,
-      air_flat: 0
-      */
+      neutral_percent: 50,
+      earth_percent: -10,
+      fire_percent: 50,
+      water_percent: 50,
+      air_percent: 50,
+      neutral_fixed: 0,
+      earth_fixed: 0,
+      fire_fixed: 0,
+      water_fixed: 0,
+      air_fixed: 0
     }
   },
   // Royal Lemon Jelly
@@ -879,30 +807,26 @@ const BOSSE_LISTE = [
     family: '',
     homeDungeonID: 'jellith_dimension',
     characteristics: {
-      vitality: 1300,
+      healthPoints: 1300,
       actionPoints: 10,
-      movementPoints: 5
-      /*
-      ap_resist: 19,
-      mp_resist: 14,
-      block: 25,
-      krit: 0,
-      pushback: 0
-      */
+      movementPoints: 5,
+      apParry: 19,
+      mpParry: 14,
+      lock: 25,
+      criticalResistance: 0,
+      pushbackResistance: 0
     },
     resistances: {
-      neutral: 50,
-      earth: 50,
-      fire: 50,
-      water: 50,
-      air: -10,
-      /*
-      neutral_flat: 0,
-      earth_flat: 0,
-      fire_flat: 0,
-      water_flat: 0,
-      air_flat: 0
-      */
+      neutral_percent: 50,
+      earth_percent: 50,
+      fire_percent: 50,
+      water_percent: 50,
+      air_percent: -10,
+      neutral_fixed: 0,
+      earth_fixed: 0,
+      fire_fixed: 0,
+      water_fixed: 0,
+      air_fixed: 0
     }
   },
   // Royal Blue Jelly
@@ -920,30 +844,26 @@ const BOSSE_LISTE = [
     family: '',
     homeDungeonID: 'jellith_dimension',
     characteristics: {
-      vitality: 1400,
+      healthPoints: 1400,
       actionPoints: 10,
-      movementPoints: 5
-      /*
-      ap_resist: 32,
-      mp_resist: 32,
-      block: 18,
-      krit: 0,
-      pushback: 0
-      */
+      movementPoints: 5,
+      apParry: 32,
+      mpParry: 32,
+      lock: 18,
+      criticalResistance: 0,
+      pushbackResistance: 0
     },
     resistances: {
-      neutral: 50,
-      earth: 50,
-      fire: 50,
-      water: -10,
-      air: 50,
-      /*
-      neutral_flat: 0,
-      earth_flat: 0,
-      fire_flat: 0,
-      water_flat: 0,
-      air_flat: 0
-      */
+      neutral_percent: 50,
+      earth_percent: 50,
+      fire_percent: 50,
+      water_percent: -10,
+      air_percent: 50,
+      neutral_fixed: 0,
+      earth_fixed: 0,
+      fire_fixed: 0,
+      water_fixed: 0,
+      air_fixed: 0
     }
   },
   // Nelween
@@ -961,30 +881,26 @@ const BOSSE_LISTE = [
     family: '',
     homeDungeonID: 'brumen_tinctorias_laboratory',
     characteristics: {
-      vitality: 1900,
+      healthPoints: 1900,
       actionPoints: 8,
-      movementPoints: 5
-      /*
-      ap_resist: 40,
-      mp_resist: 40,
-      block: 20,
-      krit: 0,
-      pushback: 0
-      */
+      movementPoints: 5,
+      apParry: 40,
+      mpParry: 40,
+      lock: 20,
+      criticalResistance: 0,
+      pushbackResistance: 0
     },
     resistances: {
-      neutral: 30,
-      earth: 0,
-      fire: 0,
-      water: 0,
-      air: 0,
-      /*
-      neutral_flat: 0,
-      earth_flat: 0,
-      fire_flat: 0,
-      water_flat: 0,
-      air_flat: 0
-      */
+      neutral_percent: 30,
+      earth_percent: 0,
+      fire_percent: 0,
+      water_percent: 0,
+      air_percent: 0,
+      neutral_fixed: 0,
+      earth_fixed: 0,
+      fire_fixed: 0,
+      water_fixed: 0,
+      air_fixed: 0
     }
   },
   // Gourlo the Terrible
@@ -1002,30 +918,26 @@ const BOSSE_LISTE = [
     family: '',
     homeDungeonID: 'hold_of_otomais_ark',
     characteristics: {
-      vitality: 1900,
+      healthPoints: 1900,
       actionPoints: 10,
-      movementPoints: 5
-      /*
-      ap_resist: 14,
-      mp_resist: 14,
-      block: 14,
-      krit: 0,
-      pushback: 9999
-      */
+      movementPoints: 5,
+      apParry: 14,
+      mpParry: 14,
+      lock: 14,
+      criticalResistance: 0,
+      pushbackResistance: 9999
     },
     resistances: {
-      neutral: 200,
-      earth: 200,
-      fire: 200,
-      water: 200,
-      air: 200,
-      /*
-      neutral_flat: 0,
-      earth_flat: 0,
-      fire_flat: 0,
-      water_flat: 0,
-      air_flat: 0
-      */
+      neutral_percent: 200,
+      earth_percent: 200,
+      fire_percent: 200,
+      water_percent: 200,
+      air_percent: 200,
+      neutral_fixed: 0,
+      earth_fixed: 0,
+      fire_fixed: 0,
+      water_fixed: 0,
+      air_fixed: 0
     }
   },
   // Legendary Crackler
@@ -1034,7 +946,7 @@ const BOSSE_LISTE = [
       de: 'Legendärer Mega Krachler',
       en: 'Legendary Crackler',
       es: 'Crujidor Legendario',
-      fr: 'Craqueleur Légendaire',
+      fr: 'Craqueleur Légendair_percente',
       pt: 'Smagador Lendário',
     },
     imageUrl: `${ICON_BASE}/boss-icons/legendary_crackler.png`,
@@ -1043,30 +955,26 @@ const BOSSE_LISTE = [
     family: '',
     homeDungeonID: 'crackler_dungeon',
     characteristics: {
-      vitality: 3100,
+      healthPoints: 3100,
       actionPoints: 8,
-      movementPoints: 3
-      /*
-      ap_resist: 30,
-      mp_resist: 29,
-      block: 14,
-      krit: 30,
-      pushback: 0
-      */
+      movementPoints: 3,
+      apParry: 30,
+      mpParry: 29,
+      lock: 14,
+      criticalResistance: 30,
+      pushbackResistance: 0
     },
     resistances: {
-      neutral: 58,
-      earth: -12,
-      fire: 28,
-      water: 36,
-      air: -17,
-      /*
-      neutral_flat: 0,
-      earth_flat: 0,
-      fire_flat: 0,
-      water_flat: 0,
-      air_flat: 0
-      */
+      neutral_percent: 58,
+      earth_percent: -12,
+      fire_percent: 28,
+      water_percent: 36,
+      air_percent: -17,
+      neutral_fixed: 0,
+      earth_fixed: 0,
+      fire_fixed: 0,
+      water_fixed: 0,
+      air_fixed: 0
     }
   },
   // Wa Wobot
@@ -1084,16 +992,16 @@ const BOSSE_LISTE = [
     family: '',
     homeDungeonID: 'wa_wabbits_castle',
     characteristics: {
-      vitality: 3500,
+      healthPoints: 3500,
       actionPoints: 14,
       movementPoints: 6
     },
     resistances: {
-      neutral: -10,
-      earth: 16,
-      fire: 8,
-      water: 25,
-      air: 21,
+      neutral_percent: -10,
+      earth_percent: 16,
+      fire_percent: 8,
+      water_percent: 25,
+      air_percent: 21,
     }
   },
   // Ancestral Treechnid
@@ -1111,30 +1019,26 @@ const BOSSE_LISTE = [
     family: '',
     homeDungeonID: 'treechnid_dungeon',
     characteristics: {
-      vitality: 3600,
+      healthPoints: 3600,
       actionPoints: 12,
-      movementPoints: 5
-      /*
-      ap_resist: 44,
-      mp_resist: 44,
-      block: 32,
-      krit: 0,
-      pushback: 0
-      */
+      movementPoints: 5,
+      apParry: 44,
+      mpParry: 44,
+      lock: 32,
+      criticalResistance: 0,
+      pushbackResistance: 0
     },
     resistances: {
-      neutral: 30,
-      earth: 30,
-      fire: -5,
-      water: 30,
-      air: -5,
-      /*
-      neutral_flat: 0,
-      earth_flat: 0,
-      fire_flat: 0,
-      water_flat: 0,
-      air_flat: 0
-      */
+      neutral_percent: 30,
+      earth_percent: 30,
+      fire_percent: -5,
+      water_percent: 30,
+      air_percent: -5,
+      neutral_fixed: 0,
+      earth_fixed: 0,
+      fire_fixed: 0,
+      water_fixed: 0,
+      air_fixed: 0
     }
   },
   // Selim Quartz
@@ -1152,30 +1056,26 @@ const BOSSE_LISTE = [
     family: '',
     homeDungeonID: 'hard_head_dam',
     characteristics: {
-      vitality: 4500,
+      healthPoints: 4500,
       actionPoints: 14,
-      movementPoints: 4
-      /*
-      ap_resist: 35,
-      mp_resist: 35,
-      block: 50,
-      krit: 10,
-      pushback: 0
-      */
+      movementPoints: 4,
+      apParry: 35,
+      mpParry: 35,
+      lock: 50,
+      criticalResistance: 10,
+      pushbackResistance: 0
     },
     resistances: {
-      neutral: 15,
-      earth: 26,
-      fire: 30,
-      water: 8,
-      air: 13,
-      /*
-      neutral_flat: 0,
-      earth_flat: 0,
-      fire_flat: 0,
-      water_flat: 0,
-      air_flat: 0
-      */
+      neutral_percent: 15,
+      earth_percent: 26,
+      fire_percent: 30,
+      water_percent: 8,
+      air_percent: 13,
+      neutral_fixed: 0,
+      earth_fixed: 0,
+      fire_fixed: 0,
+      water_fixed: 0,
+      air_fixed: 0
     }
   },
   // Dragon Pig
@@ -1193,30 +1093,26 @@ const BOSSE_LISTE = [
     family: '',
     homeDungeonID: 'dragonpigs_den',
     characteristics: {
-      vitality: 3100,
+      healthPoints: 3100,
       actionPoints: 10,
-      movementPoints: 5
-      /*
-      ap_resist: 72,
-      mp_resist: 72,
-      block: 110,
-      krit: 0,
-      pushback: 0
-      */
+      movementPoints: 5,
+      apParry: 72,
+      mpParry: 72,
+      lock: 110,
+      criticalResistance: 0,
+      pushbackResistance: 0
     },
     resistances: {
-      neutral: 38,
-      earth: 38,
-      fire: 38,
-      water: -5,
-      air: -5,
-      /*
-      neutral_flat: 0,
-      earth_flat: 0,
-      fire_flat: 0,
-      water_flat: 0,
-      air_flat: 0
-      */
+      neutral_percent: 38,
+      earth_percent: 38,
+      fire_percent: 38,
+      water_percent: -5,
+      air_percent: -5,
+      neutral_fixed: 0,
+      earth_fixed: 0,
+      fire_fixed: 0,
+      water_fixed: 0,
+      air_fixed: 0
     }
   },
   // Koolich
@@ -1234,16 +1130,16 @@ const BOSSE_LISTE = [
     family: '',
     homeDungeonID: 'koolich_cavern',
     characteristics: {
-      vitality: 5800,
+      healthPoints: 5800,
       actionPoints: 10,
       movementPoints: 3
     },
     resistances: {
-      neutral: 78,
-      earth: 28,
-      fire: -12,
-      water: -12,
-      air: 33,
+      neutral_percent: 78,
+      earth_percent: 28,
+      fire_percent: -12,
+      water_percent: -12,
+      air_percent: 33,
     }
   },
   // Moon
@@ -1261,30 +1157,26 @@ const BOSSE_LISTE = [
     family: '',
     homeDungeonID: 'moon_dungeon',
     characteristics: {
-      vitality: 6600,
+      healthPoints: 6600,
       actionPoints: 10,
-      movementPoints: 6
-      /*
-      ap_resist: 20,
-      mp_resist: 20,
-      block: 30,
-      krit: 0,
-      pushback: 0
-      */
+      movementPoints: 6,
+      apParry: 20,
+      mpParry: 20,
+      lock: 30,
+      criticalResistance: 0,
+      pushbackResistance: 0
     },
     resistances: {
-      neutral: 10,
-      earth: 20,
-      fire: 0,
-      water: -10,
-      air: 20,
-      /*
-      neutral_flat: 0,
-      earth_flat: 0,
-      fire_flat: 0,
-      water_flat: 0,
-      air_flat: 0
-      */
+      neutral_percent: 10,
+      earth_percent: 20,
+      fire_percent: 0,
+      water_percent: -10,
+      air_percent: 20,
+      neutral_fixed: 0,
+      earth_fixed: 0,
+      fire_fixed: 0,
+      water_fixed: 0,
+      air_fixed: 0
     }
   },
   // Moowolf
@@ -1302,30 +1194,26 @@ const BOSSE_LISTE = [
     family: '',
     homeDungeonID: 'canidae_dungeon',
     characteristics: {
-      vitality: 5700,
+      healthPoints: 5700,
       actionPoints: 8,
-      movementPoints: 7
-      /*
-      ap_resist: 46,
-      mp_resist: 50,
-      block: 52,
-      krit: 0,
-      pushback: 0
-      */
+      movementPoints: 7,
+      apParry: 46,
+      mpParry: 50,
+      lock: 52,
+      criticalResistance: 0,
+      pushbackResistance: 0
     },
     resistances: {
-      neutral: 22,
-      earth: 32,
-      fire: -5,
-      water: 42,
-      air: 42,
-      /*
-      neutral_flat: 0,
-      earth_flat: 0,
-      fire_flat: 0,
-      water_flat: 0,
-      air_flat: 0
-      */
+      neutral_percent: 22,
+      earth_percent: 32,
+      fire_percent: -5,
+      water_percent: 42,
+      air_percent: 42,
+      neutral_fixed: 0,
+      earth_fixed: 0,
+      fire_fixed: 0,
+      water_fixed: 0,
+      air_fixed: 0
     }
   },
   // === Level 101 - 150 Dungeons ===
@@ -1344,30 +1232,26 @@ const BOSSE_LISTE = [
     family: '',
     homeDungeonID: 'bherbs_gully',
     characteristics: {
-      vitality: 7000,
+      healthPoints: 7000,
       actionPoints: 8,
-      movementPoints: 5
-      /*
-      ap_resist: 64,
-      mp_resist: 64,
-      block: 44,
-      krit: 0,
-      pushback: 9999
-      */
+      movementPoints: 5,
+      apParry: 64,
+      mpParry: 64,
+      lock: 44,
+      criticalResistance: 0,
+      pushbackResistance: 9999
     },
     resistances: {
-      neutral: 200,
-      earth: 200,
-      fire: 200,
-      water: 200,
-      air: 200,
-      /*
-      neutral_flat: 0,
-      earth_flat: 0,
-      fire_flat: 0,
-      water_flat: 0,
-      air_flat: 0
-      */
+      neutral_percent: 200,
+      earth_percent: 200,
+      fire_percent: 200,
+      water_percent: 200,
+      air_percent: 200,
+      neutral_fixed: 0,
+      earth_fixed: 0,
+      fire_fixed: 0,
+      water_fixed: 0,
+      air_fixed: 0
     }
   },
   // Lord Crow
@@ -1385,30 +1269,26 @@ const BOSSE_LISTE = [
     family: '',
     homeDungeonID: 'lord_crows_library',
     characteristics: {
-      vitality: 4500,
+      healthPoints: 4500,
       actionPoints: 12,
-      movementPoints: 6
-      /*
-      ap_resist: 54,
-      mp_resist: 54,
-      block: 44,
-      krit: 0,
-      pushback: 0
-      */
+      movementPoints: 6,
+      apParry: 54,
+      mpParry: 54,
+      lock: 44,
+      criticalResistance: 0,
+      pushbackResistance: 0
     },
     resistances: {
-      neutral: 26,
-      earth: 26,
-      fire: 46,
-      water: 56,
-      air: 56,
-      /*
-      neutral_flat: 0,
-      earth_flat: 0,
-      fire_flat: 0,
-      water_flat: 0,
-      air_flat: 0
-      */
+      neutral_percent: 26,
+      earth_percent: 26,
+      fire_percent: 46,
+      water_percent: 56,
+      air_percent: 56,
+      neutral_fixed: 0,
+      earth_fixed: 0,
+      fire_fixed: 0,
+      water_fixed: 0,
+      air_fixed: 0
     }
   },
   // White Rat
@@ -1426,30 +1306,26 @@ const BOSSE_LISTE = [
     family: '',
     homeDungeonID: 'bonta_rat_dungeon',
     characteristics: {
-      vitality: 3500,
+      healthPoints: 3500,
       actionPoints: 7,
-      movementPoints: 4
-      /*
-      ap_resist: 28,
-      mp_resist: 28,
-      block: 13,
-      krit: 0,
-      pushback: 50
-      */
+      movementPoints: 4,
+      apParry: 28,
+      mpParry: 28,
+      lock: 13,
+      criticalResistance: 0,
+      pushbackResistance: 50
     },
     resistances: {
-      neutral: 0,
-      earth: 0,
-      fire: 0,
-      water: 0,
-      air: 0,
-      /*
-      neutral_flat: 0,
-      earth_flat: 0,
-      fire_flat: 0,
-      water_flat: 0,
-      air_flat: 0
-      */
+      neutral_percent: 0,
+      earth_percent: 0,
+      fire_percent: 0,
+      water_percent: 0,
+      air_percent: 0,
+      neutral_fixed: 0,
+      earth_fixed: 0,
+      fire_fixed: 0,
+      water_fixed: 0,
+      air_fixed: 0
     }
   },
   // Schwarze Ratte
@@ -1467,16 +1343,16 @@ const BOSSE_LISTE = [
     family: '',
     homeDungeonID: 'brakmar_rat_dungeon',
     characteristics: {
-      vitality: 3500,
+      healthPoints: 3500,
       actionPoints: 7,
       movementPoints: 4
     },
     resistances: {
-      neutral: 5,
-      earth: 50,
-      fire: -20,
-      water: 20,
-      air: -20,
+      neutral_percent: 5,
+      earth_percent: 50,
+      fire_percent: -20,
+      water_percent: 20,
+      air_percent: -20,
     }
   },
   // Royal Rainbow Blop
@@ -1492,32 +1368,28 @@ const BOSSE_LISTE = [
     level: 120,
     region: '',
     family: '',
-    homeDungeonID: 'rainbow_blop_lair',
+    homeDungeonID: 'rainbow_blop_lair_percent',
     characteristics: {
-      vitality: 3400,
+      healthPoints: 3400,
       actionPoints: 10,
-      movementPoints: 3
-      /*
-      ap_resist: 40,
-      mp_resist: 40,
-      block: 35,
-      krit: 0,
-      pushback: 0
-      */
+      movementPoints: 3,
+      apParry: 40,
+      mpParry: 40,
+      lock: 35,
+      criticalResistance: 0,
+      pushbackResistance: 0
     },
     resistances: {
-      neutral: -15,
-      earth: 15,
-      fire: 15,
-      water: 15,
-      air: 15,
-      /*
-      neutral_flat: 0,
-      earth_flat: 0,
-      fire_flat: 0,
-      water_flat: 0,
-      air_flat: 0
-      */
+      neutral_percent: -15,
+      earth_percent: 15,
+      fire_percent: 15,
+      water_percent: 15,
+      air_percent: 15,
+      neutral_fixed: 0,
+      earth_fixed: 0,
+      fire_fixed: 0,
+      water_fixed: 0,
+      air_fixed: 0
     }
   },
   // Minotoror
@@ -1535,30 +1407,26 @@ const BOSSE_LISTE = [
     family: '',
     homeDungeonID: 'labyrinth_minotoror',
     characteristics: {
-      vitality: 4100,
+      healthPoints: 4100,
       actionPoints: 14,
-      movementPoints: 6
-      /*
-      ap_resist: 40,
-      mp_resist: 40,
-      block: 40,
-      krit: 0,
-      pushback: 0
-      */
+      movementPoints: 6,
+      apParry: 40,
+      mpParry: 40,
+      lock: 40,
+      criticalResistance: 0,
+      pushbackResistance: 0
     },
     resistances: {
-      neutral: 35,
-      earth: -20,
-      fire: -20,
-      water: 45,
-      air: 35,
-      /*
-      neutral_flat: 0,
-      earth_flat: 0,
-      fire_flat: 0,
-      water_flat: 0,
-      air_flat: 0
-      */
+      neutral_percent: 35,
+      earth_percent: -20,
+      fire_percent: -20,
+      water_percent: 45,
+      air_percent: 35,
+      neutral_fixed: 0,
+      earth_fixed: 0,
+      fire_fixed: 0,
+      water_fixed: 0,
+      air_fixed: 0
     }
   },
   // Royal Mastogob
@@ -1576,16 +1444,16 @@ const BOSSE_LISTE = [
     family: '',
     homeDungeonID: 'royal_mastogobs_greenhouse',
     characteristics: {
-      vitality: 4000,
+      healthPoints: 4000,
       actionPoints: 15,
       movementPoints: 5
     },
     resistances: {
-      neutral: 23,
-      earth: 33,
-      fire: 26,
-      water: -11,
-      air: 48,
+      neutral_percent: 23,
+      earth_percent: 33,
+      fire_percent: 26,
+      water_percent: -11,
+      air_percent: 48,
     }
   },
   // Royal Tofu
@@ -1603,30 +1471,26 @@ const BOSSE_LISTE = [
     family: '',
     homeDungeonID: 'royal_tofu_house',
     characteristics: {
-      vitality: 3400,
+      healthPoints: 3400,
       actionPoints: 12,
-      movementPoints: 30
-      /*
-      ap_resist: 60,
-      mp_resist: 60,
-      block: 70,
-      krit: 0,
-      pushback: 0
-      */
+      movementPoints: 30,
+      apParry: 60,
+      mpParry: 60,
+      lock: 70,
+      criticalResistance: 0,
+      pushbackResistance: 0
     },
     resistances: {
-      neutral: 38,
-      earth: 23,
-      fire: 18,
-      water: 23,
-      air: 58,
-      /*
-      neutral_flat: 0,
-      earth_flat: 0,
-      fire_flat: 0,
-      water_flat: 0,
-      air_flat: 0
-      */
+      neutral_percent: 38,
+      earth_percent: 23,
+      fire_percent: 18,
+      water_percent: 23,
+      air_percent: 58,
+      neutral_fixed: 0,
+      earth_fixed: 0,
+      fire_fixed: 0,
+      water_fixed: 0,
+      air_fixed: 0
     }
   },
   // Crocabulia
@@ -1644,30 +1508,26 @@ const BOSSE_LISTE = [
     family: '',
     homeDungeonID: 'dreggon_dungeon',
     characteristics: {
-      vitality: 7000,
+      healthPoints: 7000,
       actionPoints: 9,
-      movementPoints: 3
-      /*
-      ap_resist: 29,
-      mp_resist: 41,
-      block: 34,
-      krit: 0,
-      pushback: 0
-      */
+      movementPoints: 3,
+      apParry: 29,
+      mpParry: 41,
+      lock: 34,
+      criticalResistance: 0,
+      pushbackResistance: 0
     },
     resistances: {
-      neutral: 58,
-      earth: -12,
-      fire: 28,
-      water: 28,
-      air: 28,
-      /*
-      neutral_flat: 0,
-      earth_flat: 0,
-      fire_flat: 0,
-      water_flat: 0,
-      air_flat: 0
-      */
+      neutral_percent: 58,
+      earth_percent: -12,
+      fire_percent: 28,
+      water_percent: 28,
+      air_percent: 28,
+      neutral_fixed: 0,
+      earth_fixed: 0,
+      fire_fixed: 0,
+      water_fixed: 0,
+      air_fixed: 0
     }
   },
   // Skeunk
@@ -1685,16 +1545,16 @@ const BOSSE_LISTE = [
     family: '',
     homeDungeonID: 'skeunks_hideout',
     characteristics: {
-      vitality: 4700,
+      healthPoints: 4700,
       actionPoints: 12,
       movementPoints: 5
     },
     resistances: {
-      neutral: 28,
-      earth: 28,
-      fire: -5,
-      water: -5,
-      air: 38,
+      neutral_percent: 28,
+      earth_percent: 28,
+      fire_percent: -5,
+      water_percent: -5,
+      air_percent: 38,
     }
   },
   // Crakillian Guardian
@@ -1712,16 +1572,16 @@ const BOSSE_LISTE = [
     family: '',
     homeDungeonID: 'minerock_sanctuary',
     characteristics: {
-      vitality: 5700,
+      healthPoints: 5700,
       actionPoints: 12,
       movementPoints: 5
     },
     resistances: {
-      neutral: 5,
-      earth: 13,
-      fire: 7,
-      water: -8,
-      air: 23,
+      neutral_percent: 5,
+      earth_percent: 13,
+      fire_percent: 7,
+      water_percent: -8,
+      air_percent: 23,
     }
   },
   // Kanigrula
@@ -1739,16 +1599,16 @@ const BOSSE_LISTE = [
     family: '',
     homeDungeonID: 'kanigrulas_hideout',
     characteristics: {
-      vitality: 6500,
+      healthPoints: 6500,
       actionPoints: 12,
       movementPoints: 6
     },
     resistances: {
-      neutral: 6,
-      earth: 12,
-      fire: 8,
-      water: -6,
-      air: 20,
+      neutral_percent: 6,
+      earth_percent: 12,
+      fire_percent: 8,
+      water_percent: -6,
+      air_percent: 20,
     }
   },
   // Soft Oak
@@ -1766,16 +1626,16 @@ const BOSSE_LISTE = [
     family: '',
     homeDungeonID: 'soft_oak_dungeon',
     characteristics: {
-      vitality: 6500,
+      healthPoints: 6500,
       actionPoints: 15,
       movementPoints: 2
     },
     resistances: {
-      neutral: 82,
-      earth: 52,
-      fire: 52,
-      water: -5,
-      air: -5,
+      neutral_percent: 82,
+      earth_percent: 52,
+      fire_percent: 52,
+      water_percent: -5,
+      air_percent: -5,
     }
   },
   // Disconcerted Tynril
@@ -1793,16 +1653,16 @@ const BOSSE_LISTE = [
     family: '',
     homeDungeonID: 'the_tynril_lab',
     characteristics: {
-      vitality: 3800,
+      healthPoints: 3800,
       actionPoints: 10,
       movementPoints: 2
     },
     resistances: {
-      neutral: 200,
-      earth: 200,
-      fire: 200,
-      water: 0,
-      air: 200,
+      neutral_percent: 200,
+      earth_percent: 200,
+      fire_percent: 200,
+      water_percent: 0,
+      air_percent: 200,
     }
   },
   // Dismayed Tynril
@@ -1820,16 +1680,16 @@ const BOSSE_LISTE = [
     family: '',
     homeDungeonID: 'the_tynril_lab',
     characteristics: {
-      vitality: 3800,
+      healthPoints: 3800,
       actionPoints: 10,
       movementPoints: 2
     },
     resistances: {
-      neutral: 200,
-      earth: 200,
-      fire: 200,
-      water: 200,
-      air: 0,
+      neutral_percent: 200,
+      earth_percent: 200,
+      fire_percent: 200,
+      water_percent: 200,
+      air_percent: 0,
     }
   },
   // Perfidious Tynril
@@ -1847,16 +1707,16 @@ const BOSSE_LISTE = [
     family: '',
     homeDungeonID: 'the_tynril_lab',
     characteristics: {
-      vitality: 3800,
+      healthPoints: 3800,
       actionPoints: 10,
       movementPoints: 2
     },
     resistances: {
-      neutral: 200,
-      earth: 200,
-      fire: 0,
-      water: 200,
-      air: 200,
+      neutral_percent: 200,
+      earth_percent: 200,
+      fire_percent: 0,
+      water_percent: 200,
+      air_percent: 200,
     }
   },
   // Stunned Tynril
@@ -1874,16 +1734,16 @@ const BOSSE_LISTE = [
     family: '',
     homeDungeonID: 'the_tynril_lab',
     characteristics: {
-      vitality: 3800,
+      healthPoints: 3800,
       actionPoints: 10,
       movementPoints: 2
     },
     resistances: {
-      neutral: 200,
-      earth: 0,
-      fire: 200,
-      water: 200,
-      air: 200,
+      neutral_percent: 200,
+      earth_percent: 0,
+      fire_percent: 200,
+      water_percent: 200,
+      air_percent: 200,
     }
   },
   // Royal Pingwin
@@ -1901,16 +1761,16 @@ const BOSSE_LISTE = [
     family: '',
     homeDungeonID: 'royal_pingwins_excavation',
     characteristics: {
-      vitality: 4900,
+      healthPoints: 4900,
       actionPoints: 15,
       movementPoints: 4
     },
     resistances: {
-      neutral: 29,
-      earth: 25,
-      fire: 24,
-      water: 34,
-      air: 22,
+      neutral_percent: 29,
+      earth_percent: 25,
+      fire_percent: 24,
+      water_percent: 34,
+      air_percent: 22,
     }
   },
   // Hell Mina
@@ -1928,16 +1788,16 @@ const BOSSE_LISTE = [
     family: '',
     homeDungeonID: 'long_slumbers_barrow',
     characteristics: {
-      vitality: 6500,
+      healthPoints: 6500,
       actionPoints: 12,
       movementPoints: 5
     },
     resistances: {
-      neutral: 10,
-      earth: -4,
-      fire: 20,
-      water: 5,
-      air: 15,
+      neutral_percent: 10,
+      earth_percent: -4,
+      fire_percent: 20,
+      water_percent: 5,
+      air_percent: 15,
     }
   },
   // Buck Anear
@@ -1955,16 +1815,16 @@ const BOSSE_LISTE = [
     family: '',
     homeDungeonID: 'the_wreck_of_the_hesperus',
     characteristics: {
-      vitality: 6200,
+      healthPoints: 6200,
       actionPoints: 16,
       movementPoints: 5
     },
     resistances: {
-      neutral: 24,
-      earth: 16,
-      fire: 17,
-      water: 20,
-      air: 26,
+      neutral_percent: 24,
+      earth_percent: 16,
+      fire_percent: 17,
+      water_percent: 20,
+      air_percent: 26,
     }
   },
   // Sphincter Cell
@@ -1982,16 +1842,16 @@ const BOSSE_LISTE = [
     family: '',
     homeDungeonID: 'amakna_castle_rat_dungeon',
     characteristics: {
-      vitality: 6400,
+      healthPoints: 6400,
       actionPoints: 8,
       movementPoints: 5
     },
     resistances: {
-      neutral: 200,
-      earth: 200,
-      fire: 200,
-      water: 200,
-      air: 200,
+      neutral_percent: 200,
+      earth_percent: 200,
+      fire_percent: 200,
+      water_percent: 200,
+      air_percent: 200,
     }
   },
   // === Level 151 - 190 Dungeons ===
@@ -2010,16 +1870,16 @@ const BOSSE_LISTE = [
     family: '',
     homeDungeonID: 'kimbos_canopy',
     characteristics: {
-      vitality: 6900,
+      healthPoints: 6900,
       actionPoints: 10,
       movementPoints: 7
     },
     resistances: {
-      neutral: 400,
-      earth: 400,
-      fire: 400,
-      water: 400,
-      air: 400,
+      neutral_percent: 400,
+      earth_percent: 400,
+      fire_percent: 400,
+      water_percent: 400,
+      air_percent: 400,
     }
   },
   // Minotot
@@ -2037,16 +1897,16 @@ const BOSSE_LISTE = [
     family: '',
     homeDungeonID: 'minotot_room',
     characteristics: {
-      vitality: 10000,
+      healthPoints: 10000,
       actionPoints: 10,
       movementPoints: 5
     },
     resistances: {
-      neutral: 35,
-      earth: 35,
-      fire: 35,
-      water: -5,
-      air: -5,
+      neutral_percent: 35,
+      earth_percent: 35,
+      fire_percent: 35,
+      water_percent: -5,
+      air_percent: -5,
     }
   },
   // Obsidemon
@@ -2064,16 +1924,16 @@ const BOSSE_LISTE = [
     family: '',
     homeDungeonID: 'the_obsidemons_hypogeum',
     characteristics: {
-      vitality: 7000,
+      healthPoints: 7000,
       actionPoints: 16,
       movementPoints: 6
     },
     resistances: {
-      neutral: 25,
-      earth: 23,
-      fire: 27,
-      water: 21,
-      air: 26,
+      neutral_percent: 25,
+      earth_percent: 23,
+      fire_percent: 27,
+      water_percent: 21,
+      air_percent: 26,
     }
   },
   // Zombrute
@@ -2091,16 +1951,16 @@ const BOSSE_LISTE = [
     family: '',
     homeDungeonID: 'the_flooded_chapel',
     characteristics: {
-      vitality: 8000,
+      healthPoints: 8000,
       actionPoints: 14,
       movementPoints: 4
     },
     resistances: {
-      neutral: 8,
-      earth: -5,
-      fire: 11,
-      water: 40,
-      air: -12,
+      neutral_percent: 8,
+      earth_percent: -5,
+      fire_percent: 11,
+      water_percent: 40,
+      air_percent: -12,
     }
   },
   // Tengu Snowfoux
@@ -2118,16 +1978,16 @@ const BOSSE_LISTE = [
     family: '',
     homeDungeonID: 'snowfoux_caverns',
     characteristics: {
-      vitality: 7900,
+      healthPoints: 7900,
       actionPoints: 15,
       movementPoints: 5
     },
     resistances: {
-      neutral: 33,
-      earth: 13,
-      fire: 19,
-      water: 28,
-      air: 21,
+      neutral_percent: 33,
+      earth_percent: 13,
+      fire_percent: 19,
+      water_percent: 28,
+      air_percent: 21,
     }
   },
   // Nagate
@@ -2143,18 +2003,18 @@ const BOSSE_LISTE = [
     level: 170,
     region: '',
     family: '',
-    homeDungeonID: 'valley_of_the_lady_of_the_water',
+    homeDungeonID: 'valley_of_the_lady_of_the_water_percent',
     characteristics: {
-      vitality: 8800,
+      healthPoints: 8800,
       actionPoints: 14,
       movementPoints: 0
     },
     resistances: {
-      neutral: 20,
-      earth: 31,
-      fire: 20,
-      water: 35,
-      air: 20,
+      neutral_percent: 20,
+      earth_percent: 31,
+      fire_percent: 20,
+      water_percent: 35,
+      air_percent: 20,
     }
   },
   // Scale King
@@ -2172,16 +2032,16 @@ const BOSSE_LISTE = [
     family: '',
     homeDungeonID: 'scale_kings_pyramid',
     characteristics: {
-      vitality: 8800,
+      healthPoints: 8800,
       actionPoints: 14,
       movementPoints: 6
     },
     resistances: {
-      neutral: 10,
-      earth: 10,
-      fire: 7,
-      water: 21,
-      air: -8,
+      neutral_percent: 10,
+      earth_percent: 10,
+      fire_percent: 7,
+      water_percent: 21,
+      air_percent: -8,
     }
   },
   // Korriander
@@ -2197,18 +2057,18 @@ const BOSSE_LISTE = [
     level: 180,
     region: '',
     family: '',
-    homeDungeonID: 'korrianders_lair',
+    homeDungeonID: 'korrianders_lair_percent',
     characteristics: {
-      vitality: 8900,
+      healthPoints: 8900,
       actionPoints: 15,
       movementPoints: 6
     },
     resistances: {
-      neutral: 45,
-      earth: 9,
-      fire: 15,
-      water: 5,
-      air: 17,
+      neutral_percent: 45,
+      earth_percent: 9,
+      fire_percent: 15,
+      water_percent: 5,
+      air_percent: 17,
     }
   },
   // Giant Kralove
@@ -2224,18 +2084,18 @@ const BOSSE_LISTE = [
     level: 180,
     region: '',
     family: '',
-    homeDungeonID: 'lair_of_the_giant_kralove',
+    homeDungeonID: 'lair_percent_of_the_giant_kralove',
     characteristics: {
-      vitality: 3700,
+      healthPoints: 3700,
       actionPoints: 18,
       movementPoints: -1
     },
     resistances: {
-      neutral: 900,
-      earth: 900,
-      fire: 900,
-      water: 900,
-      air: 900,
+      neutral_percent: 900,
+      earth_percent: 900,
+      fire_percent: 900,
+      water_percent: 900,
+      air_percent: 900,
     }
   },
   // Bworker
@@ -2253,16 +2113,16 @@ const BOSSE_LISTE = [
     family: '',
     homeDungeonID: 'bworker_dungeon',
     characteristics: {
-      vitality: 9600,
+      healthPoints: 9600,
       actionPoints: 12,
       movementPoints: 9
     },
     resistances: {
-      neutral: 18,
-      earth: 28,
-      fire: 28,
-      water: 18,
-      air: -13,
+      neutral_percent: 18,
+      earth_percent: 28,
+      fire_percent: 28,
+      water_percent: 18,
+      air_percent: -13,
     }
   },
   // Ougaa
@@ -2280,16 +2140,16 @@ const BOSSE_LISTE = [
     family: '',
     homeDungeonID: 'fungus_dungeon',
     characteristics: {
-      vitality: 8500,
+      healthPoints: 8500,
       actionPoints: 18,
       movementPoints: 6
     },
     resistances: {
-      neutral: 18,
-      earth: 13,
-      fire: 11,
-      water: 35,
-      air: 18,
+      neutral_percent: 18,
+      earth_percent: 13,
+      fire_percent: 11,
+      water_percent: 35,
+      air_percent: 18,
     }
   },
   // Tanukoui San
@@ -2307,16 +2167,16 @@ const BOSSE_LISTE = [
     family: '',
     homeDungeonID: 'tanukoui_sans_workshop',
     characteristics: {
-      vitality: 8900,
+      healthPoints: 8900,
       actionPoints: 16,
       movementPoints: 6
     },
     resistances: {
-      neutral: 14,
-      earth: 28,
-      fire: 7,
-      water: -8,
-      air: 5,
+      neutral_percent: 14,
+      earth_percent: 28,
+      fire_percent: 7,
+      water_percent: -8,
+      air_percent: 5,
     }
   },
   // Kolosso
@@ -2334,16 +2194,16 @@ const BOSSE_LISTE = [
     family: '',
     homeDungeonID: 'kolossos_cavern',
     characteristics: {
-      vitality: 8000,
+      healthPoints: 8000,
       actionPoints: 15,
       movementPoints: 6
     },
     resistances: {
-      neutral: 25,
-      earth: 16,
-      fire: 22,
-      water: 10,
-      air: 29,
+      neutral_percent: 25,
+      earth_percent: 16,
+      fire_percent: 22,
+      water_percent: 10,
+      air_percent: 29,
     }
   },
   // Professor Xa
@@ -2361,16 +2221,16 @@ const BOSSE_LISTE = [
     family: '',
     homeDungeonID: 'kolossos_cavern',
     characteristics: {
-      vitality: 8000,
+      healthPoints: 8000,
       actionPoints: 15,
       movementPoints: 6
     },
     resistances: {
-      neutral: 18,
-      earth: 24,
-      fire: 29,
-      water: 16,
-      air: 9,
+      neutral_percent: 18,
+      earth_percent: 24,
+      fire_percent: 29,
+      water_percent: 16,
+      air_percent: 9,
     }
   },
   // Founoroshi
@@ -2388,16 +2248,16 @@ const BOSSE_LISTE = [
     family: '',
     homeDungeonID: 'fouxwork_factory',
     characteristics: {
-      vitality: 11000,
+      healthPoints: 11000,
       actionPoints: 18,
       movementPoints: 7
     },
     resistances: {
-      neutral: 15,
-      earth: 23,
-      fire: 10,
-      water: 17,
-      air: 20,
+      neutral_percent: 15,
+      earth_percent: 23,
+      fire_percent: 10,
+      water_percent: 17,
+      air_percent: 20,
     }
   },
   // Foster Fuji Snowfoux
@@ -2415,16 +2275,16 @@ const BOSSE_LISTE = [
     family: '',
     homeDungeonID: 'foster_caverns',
     characteristics: {
-      vitality: 10000,
+      healthPoints: 10000,
       actionPoints: 12,
       movementPoints: 4
     },
     resistances: {
-      neutral: -6,
-      earth: 6,
-      fire: 14,
-      water: 12,
-      air: -11,
+      neutral_percent: -6,
+      earth_percent: 6,
+      fire_percent: 14,
+      water_percent: 12,
+      air_percent: -11,
     }
   },
   // Grohlum
@@ -2442,16 +2302,16 @@ const BOSSE_LISTE = [
     family: '',
     homeDungeonID: 'sakai_mine',
     characteristics: {
-      vitality: 11000,
+      healthPoints: 11000,
       actionPoints: 20,
       movementPoints: 6
     },
     resistances: {
-      neutral: 34,
-      earth: 21,
-      fire: 31,
-      water: -5,
-      air: 24,
+      neutral_percent: 34,
+      earth_percent: 21,
+      fire_percent: 31,
+      water_percent: -5,
+      air_percent: 24,
     }
   },
   // Celestial Bearbarian
@@ -2469,16 +2329,16 @@ const BOSSE_LISTE = [
     family: '',
     homeDungeonID: 'bearbarian_antichamber',
     characteristics: {
-      vitality: 11000,
+      healthPoints: 11000,
       actionPoints: 20,
       movementPoints: 8
     },
     resistances: {
-      neutral: 25,
-      earth: 21,
-      fire: 16,
-      water: 24,
-      air: 23,
+      neutral_percent: 25,
+      earth_percent: 21,
+      fire_percent: 16,
+      water_percent: 24,
+      air_percent: 23,
     }
   },
   // Shihan
@@ -2496,16 +2356,16 @@ const BOSSE_LISTE = [
     family: '',
     homeDungeonID: 'wind_dojo',
     characteristics: {
-      vitality: 11000,
+      healthPoints: 11000,
       actionPoints: 18,
       movementPoints: 5
     },
     resistances: {
-      neutral: 23,
-      earth: 12,
-      fire: 24,
-      water: 16,
-      air: 28,
+      neutral_percent: 23,
+      earth_percent: 12,
+      fire_percent: 24,
+      water_percent: 16,
+      air_percent: 28,
     }
   },
   // Hanshi
@@ -2523,16 +2383,16 @@ const BOSSE_LISTE = [
     family: '',
     homeDungeonID: 'wind_dojo',
     characteristics: {
-      vitality: 9900,
+      healthPoints: 9900,
       actionPoints: 18,
       movementPoints: 5
     },
     resistances: {
-      neutral: 12,
-      earth: 23,
-      fire: 16,
-      water: 28,
-      air: 19,
+      neutral_percent: 12,
+      earth_percent: 23,
+      fire_percent: 16,
+      water_percent: 28,
+      air_percent: 19,
     }
   },
   // === Level 191 - 200 Dungeons ===
@@ -2551,16 +2411,16 @@ const BOSSE_LISTE = [
     family: '',
     homeDungeonID: 'missiz_freezzs_frostforge',
     characteristics: {
-      vitality: 13000,
+      healthPoints: 13000,
       actionPoints: 20,
       movementPoints: 6
     },
     resistances: {
-      neutral: 14,
-      earth: 27,
-      fire: 16,
-      water: 21,
-      air: 25,
+      neutral_percent: 14,
+      earth_percent: 27,
+      fire_percent: 16,
+      water_percent: 21,
+      air_percent: 25,
     }
   },
   // Sylargh
@@ -2578,16 +2438,16 @@ const BOSSE_LISTE = [
     family: '',
     homeDungeonID: 'sylarghs_carrier',
     characteristics: {
-      vitality: 13000,
+      healthPoints: 13000,
       actionPoints: 20,
       movementPoints: 6
     },
     resistances: {
-      neutral: 14,
-      earth: 27,
-      fire: 16,
-      water: 22,
-      air: 12,
+      neutral_percent: 14,
+      earth_percent: 27,
+      fire_percent: 16,
+      water_percent: 22,
+      air_percent: 12,
     }
   },
   // Klime
@@ -2605,16 +2465,16 @@ const BOSSE_LISTE = [
     family: '',
     homeDungeonID: 'klimes_private_suite',
     characteristics: {
-      vitality: 13000,
+      healthPoints: 13000,
       actionPoints: 20,
       movementPoints: 6
     },
     resistances: {
-      neutral: 14,
-      earth: 27,
-      fire: 16,
-      water: 9,
-      air: 25,
+      neutral_percent: 14,
+      earth_percent: 27,
+      fire_percent: 16,
+      water_percent: 9,
+      air_percent: 25,
     }
   },
   // Nileza
@@ -2632,16 +2492,16 @@ const BOSSE_LISTE = [
     family: '',
     homeDungeonID: 'nilezas_laboratory',
     characteristics: {
-      vitality: 13000,
+      healthPoints: 13000,
       actionPoints: 20,
       movementPoints: 7
     },
     resistances: {
-      neutral: 14,
-      earth: 15,
-      fire: 16,
-      water: 32,
-      air: 25,
+      neutral_percent: 14,
+      earth_percent: 15,
+      fire_percent: 16,
+      water_percent: 32,
+      air_percent: 25,
     }
   },
   // Count Harebourg
@@ -2659,16 +2519,16 @@ const BOSSE_LISTE = [
     family: '',
     homeDungeonID: 'the_counts_dungeon',
     characteristics: {
-      vitality: 13000,
+      healthPoints: 13000,
       actionPoints: 20,
       movementPoints: 7
     },
     resistances: {
-      neutral: 14,
-      earth: 17,
-      fire: 16,
-      water: 29,
-      air: 25,
+      neutral_percent: 14,
+      earth_percent: 17,
+      fire_percent: 16,
+      water_percent: 29,
+      air_percent: 25,
     }
   },
   // Damadrya
@@ -2686,16 +2546,16 @@ const BOSSE_LISTE = [
     family: '',
     homeDungeonID: 'damadryas_bamboo_grove',
     characteristics: {
-      vitality: 12000,
+      healthPoints: 12000,
       actionPoints: 20,
       movementPoints: 0
     },
     resistances: {
-      neutral: 20,
-      earth: 23,
-      fire: 17,
-      water: 25,
-      air: 24,
+      neutral_percent: 20,
+      earth_percent: 23,
+      fire_percent: 17,
+      water_percent: 25,
+      air_percent: 24,
     }
   },
   // Katamashii
@@ -2713,16 +2573,16 @@ const BOSSE_LISTE = [
     family: '',
     homeDungeonID: 'lost_souls_sanctuary',
     characteristics: {
-      vitality: 13000,
+      healthPoints: 13000,
       actionPoints: 20,
       movementPoints: 6
     },
     resistances: {
-      neutral: 25,
-      earth: 17,
-      fire: 13,
-      water: 21,
-      air: 26,
+      neutral_percent: 25,
+      earth_percent: 17,
+      fire_percent: 13,
+      water_percent: 21,
+      air_percent: 26,
     }
   },
   // === Saisonale Bosse ===
@@ -2742,16 +2602,16 @@ const BOSSE_LISTE = [
     family: '',
     homeDungeonID: ['ascension_25', 'ascension_75'],
     characteristics: {
-      vitality: 9318,
+      healthPoints: 9318,
       actionPoints: 14,
       movementPoints: 6
     },
     resistances: {
-      neutral: 10,
-      earth: 12,
-      fire: 5,
-      water: 22,
-      air: -9,
+      neutral_percent: 10,
+      earth_percent: 12,
+      fire_percent: 5,
+      water_percent: 22,
+      air_percent: -9,
     }
   },
   // Ul-Khan
@@ -2769,16 +2629,16 @@ const BOSSE_LISTE = [
     family: '',
     homeDungeonID: ['ascension_50', 'ascension_100'],
     characteristics: {
-      vitality: 17790,
+      healthPoints: 17790,
       actionPoints: 12,
       movementPoints: 6
     },
     resistances: {
-      neutral: 8,
-      earth: 14,
-      fire: -13,
-      water: 11,
-      air: 35,
+      neutral_percent: 8,
+      earth_percent: 14,
+      fire_percent: -13,
+      water_percent: 11,
+      air_percent: 35,
     }
   },
   // -- Vulkania --
@@ -2797,16 +2657,16 @@ const BOSSE_LISTE = [
     family: '',
     homeDungeonID: 'sleepwalking_pinki_crater',
     characteristics: {
-      vitality: 1600,
+      healthPoints: 1600,
       actionPoints: 12,
       movementPoints: 4
     },
     resistances: {
-      neutral: 20,
-      earth: 20,
-      fire: 50,
-      water: 20,
-      air: 20,
+      neutral_percent: 20,
+      earth_percent: 20,
+      fire_percent: 50,
+      water_percent: 20,
+      air_percent: 20,
     }
   },
   // Sleepwalking Grasmera
@@ -2824,16 +2684,16 @@ const BOSSE_LISTE = [
     family: '',
     homeDungeonID: 'sleepwalking_pinki_crater',
     characteristics: {
-      vitality: 1600,
+      healthPoints: 1600,
       actionPoints: 12,
       movementPoints: 4
     },
     resistances: {
-      neutral: 50,
-      earth: 30,
-      fire: 30,
-      water: 30,
-      air: 30,
+      neutral_percent: 50,
+      earth_percent: 30,
+      fire_percent: 30,
+      water_percent: 30,
+      air_percent: 30,
     }
   },
   // Exhausted Grozilla
@@ -2851,16 +2711,16 @@ const BOSSE_LISTE = [
     family: '',
     homeDungeonID: 'exhausted_pinki_crater',
     characteristics: {
-      vitality: 4800,
+      healthPoints: 4800,
       actionPoints: 12,
       movementPoints: 5
     },
     resistances: {
-      neutral: 20,
-      earth: 20,
-      fire: 50,
-      water: 20,
-      air: 20,
+      neutral_percent: 20,
+      earth_percent: 20,
+      fire_percent: 50,
+      water_percent: 20,
+      air_percent: 20,
     }
   },
   // Exhausted Grasmera
@@ -2878,16 +2738,16 @@ const BOSSE_LISTE = [
     family: '',
     homeDungeonID: 'exhausted_pinki_crater',
     characteristics: {
-      vitality: 4800,
+      healthPoints: 4800,
       actionPoints: 12,
       movementPoints: 5
     },
     resistances: {
-      neutral: 50,
-      earth: 30,
-      fire: 30,
-      water: 30,
-      air: 30,
+      neutral_percent: 50,
+      earth_percent: 30,
+      fire_percent: 30,
+      water_percent: 30,
+      air_percent: 30,
     }
   },
   // Tired Grozilla
@@ -2905,16 +2765,16 @@ const BOSSE_LISTE = [
     family: '',
     homeDungeonID: 'tired_pinki_crater',
     characteristics: {
-      vitality: 10000,
+      healthPoints: 10000,
       actionPoints: 12,
       movementPoints: 5
     },
     resistances: {
-      neutral: 20,
-      earth: 20,
-      fire: 50,
-      water: 20,
-      air: 20,
+      neutral_percent: 20,
+      earth_percent: 20,
+      fire_percent: 50,
+      water_percent: 20,
+      air_percent: 20,
     }
   },
   // Tired Grasmera
@@ -2932,16 +2792,16 @@ const BOSSE_LISTE = [
     family: '',
     homeDungeonID: 'tiredpinki_crater',
     characteristics: {
-      vitality: 10000,
+      healthPoints: 10000,
       actionPoints: 12,
       movementPoints: 5
     },
     resistances: {
-      neutral: 50,
-      earth: 30,
-      fire: 30,
-      water: 30,
-      air: 30,
+      neutral_percent: 50,
+      earth_percent: 30,
+      fire_percent: 30,
+      water_percent: 30,
+      air_percent: 30,
     }
   },
   // Grozilla
@@ -2959,16 +2819,16 @@ const BOSSE_LISTE = [
     family: '',
     homeDungeonID: 'pinki_crater',
     characteristics: {
-      vitality: 16000,
+      healthPoints: 16000,
       actionPoints: 12,
       movementPoints: 6
     },
     resistances: {
-      neutral: 20,
-      earth: 20,
-      fire: 50,
-      water: 20,
-      air: 20,
+      neutral_percent: 20,
+      earth_percent: 20,
+      fire_percent: 50,
+      water_percent: 20,
+      air_percent: 20,
     }
   },
   // Grasmera
@@ -2986,16 +2846,16 @@ const BOSSE_LISTE = [
     family: '',
     homeDungeonID: 'pinki_crater',
     characteristics: {
-      vitality: 16000,
+      healthPoints: 16000,
       actionPoints: 12,
       movementPoints: 6
     },
     resistances: {
-      neutral: 50,
-      earth: 30,
-      fire: 30,
-      water: 30,
-      air: 30,
+      neutral_percent: 50,
+      earth_percent: 30,
+      fire_percent: 30,
+      water_percent: 30,
+      air_percent: 30,
     }
   },
   // -- Horrob Isle
@@ -3014,16 +2874,16 @@ const BOSSE_LISTE = [
     family: '',
     homeDungeonID: '',
     characteristics: {
-      vitality: 1200,
+      healthPoints: 1200,
       actionPoints: 10,
       movementPoints: 5
     },
     resistances: {
-      neutral: -10,
-      earth: -3,
-      fire: 15,
-      water: 0,
-      air: 12,
+      neutral_percent: -10,
+      earth_percent: -3,
+      fire_percent: 15,
+      water_percent: 0,
+      air_percent: 12,
     }
   },
   // Al Howin
@@ -3041,16 +2901,16 @@ const BOSSE_LISTE = [
     family: '',
     homeDungeonID: '',
     characteristics: {
-      vitality: 3300,
+      healthPoints: 3300,
       actionPoints: 12,
       movementPoints: 5
     },
     resistances: {
-      neutral: 13,
-      earth: 15,
-      fire: 0,
-      water: 18,
-      air: 5,
+      neutral_percent: 13,
+      earth_percent: 15,
+      fire_percent: 0,
+      water_percent: 18,
+      air_percent: 5,
     }
   },
   // Staff Deleghoul
@@ -3068,16 +2928,16 @@ const BOSSE_LISTE = [
     family: '',
     homeDungeonID: '',
     characteristics: {
-      vitality: 18000,
+      healthPoints: 18000,
       actionPoints: 20,
       movementPoints: 5
     },
     resistances: {
-      neutral: 130,
-      earth: 130,
-      fire: 130,
-      water: 130,
-      air: 130,
+      neutral_percent: 130,
+      earth_percent: 130,
+      fire_percent: 130,
+      water_percent: 130,
+      air_percent: 130,
     }
   },
   // -- Kwismas --
@@ -3096,16 +2956,16 @@ const BOSSE_LISTE = [
     family: '',
     homeDungeonID: '',
     characteristics: {
-      vitality: 1300,
+      healthPoints: 1300,
       actionPoints: 10,
       movementPoints: 0
     },
     resistances: {
-      neutral: -20,
-      earth: 20,
-      fire: 20,
-      water: 20,
-      air: 20,
+      neutral_percent: -20,
+      earth_percent: 20,
+      fire_percent: 20,
+      water_percent: 20,
+      air_percent: 20,
     }
   },
   // Father Kwismas
@@ -3123,16 +2983,16 @@ const BOSSE_LISTE = [
     family: '',
     homeDungeonID: '',
     characteristics: {
-      vitality: 3900,
+      healthPoints: 3900,
       actionPoints: 10,
       movementPoints: 2
     },
     resistances: {
-      neutral: -2,
-      earth: -2,
-      fire: 40,
-      water: 40,
-      air: 40,
+      neutral_percent: -2,
+      earth_percent: -2,
+      fire_percent: 40,
+      water_percent: 40,
+      air_percent: 40,
     }
   },
   // Father Whupper
@@ -3150,16 +3010,16 @@ const BOSSE_LISTE = [
     family: '',
     homeDungeonID: '',
     characteristics: {
-      vitality: 9600,
+      healthPoints: 9600,
       actionPoints: 10,
       movementPoints: 2
     },
     resistances: {
-      neutral: -2,
-      earth: -2,
-      fire: 30,
-      water: 30,
-      air: 30,
+      neutral_percent: -2,
+      earth_percent: -2,
+      fire_percent: 30,
+      water_percent: 30,
+      air_percent: 30,
     }
   },
   // Minotoball
@@ -3177,16 +3037,16 @@ const BOSSE_LISTE = [
     family: '',
     homeDungeonID: '',
     characteristics: {
-      vitality: 0,
+      healthPoints: 0,
       actionPoints: 12,
       movementPoints: 5
     },
     resistances: {
-      neutral: 0,
-      earth: 0,
-      fire: 0,
-      water: 0,
-      air: 0,
+      neutral_percent: 0,
+      earth_percent: 0,
+      fire_percent: 0,
+      water_percent: 0,
+      air_percent: 0,
     }
   },
   // -- Raid --
@@ -3205,16 +3065,16 @@ const BOSSE_LISTE = [
     family: '',
     homeDungeonID: '',
     characteristics: {
-      vitality: 32000,
+      healthPoints: 32000,
       actionPoints: 20,
       movementPoints: 6
     },
     resistances: {
-      neutral: 5,
-      earth: 21,
-      fire: 12,
-      water: 10,
-      air: 6,
+      neutral_percent: 5,
+      earth_percent: 21,
+      fire_percent: 12,
+      water_percent: 10,
+      air_percent: 6,
     }
   },
   // Dark Vlad
@@ -3232,16 +3092,16 @@ const BOSSE_LISTE = [
     family: '',
     homeDungeonID: '',
     characteristics: {
-      vitality: 35000,
+      healthPoints: 35000,
       actionPoints: 20,
       movementPoints: 7
     },
     resistances: {
-      neutral: 7,
-      earth: 0,
-      fire: 26,
-      water: -6,
-      air: 13,
+      neutral_percent: 7,
+      earth_percent: 0,
+      fire_percent: 26,
+      water_percent: -6,
+      air_percent: 13,
     }
   },
 ];
