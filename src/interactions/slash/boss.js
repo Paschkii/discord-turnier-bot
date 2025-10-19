@@ -225,8 +225,17 @@ function formatLabeledStat(label, value, options = {}) {
     return formatNumber(value, options);
   }
 
-  const prefix = appendSeparator(label);
-  return `${prefix} ${formatNumber(value, options)}`;
+  const { includeSeparator = true, separator = ':', ...formatOptions } = options;
+  const formattedValue = formatNumber(value, formatOptions);
+
+  if (!includeSeparator || separator === null || separator === '') {
+    return `${label} ${formattedValue}`;
+  }
+
+  const effectiveSeparator = typeof separator === 'string' ? separator : ':';
+  const prefix = label.endsWith(effectiveSeparator) ? label : `${label}${effectiveSeparator}`;
+
+  return `${prefix} ${formattedValue}`;
 }
 
 function buildElementLine({
@@ -326,11 +335,12 @@ function buildDescription({ boss, dungeonNames, labels, level, locale }) {
   );
 
   const defensesLine = [
-    formatLabeledStat(EMOJI_LABELS.defenses.apParry, apParryValue),
-    formatLabeledStat(EMOJI_LABELS.defenses.mpParry, mpParryValue),
+    formatLabeledStat(EMOJI_LABELS.defenses.apParry, apParryValue, { includeSeparator: false }),
+    formatLabeledStat(EMOJI_LABELS.defenses.mpParry, mpParryValue, { includeSeparator: false }),
     formatLabeledStat(
       EMOJI_LABELS.defenses.lock,
       coalesce(characteristics.lock, characteristics.block),
+      { includeSeparator: false },
     ),
     formatLabeledStat(
       EMOJI_LABELS.defenses.criticalResistance,
@@ -342,6 +352,7 @@ function buildDescription({ boss, dungeonNames, labels, level, locale }) {
         characteristics.critical,
         characteristics.criticalHit,
       ),
+      { includeSeparator: false },
     ),
     formatLabeledStat(
       EMOJI_LABELS.defenses.pushbackResistance,
@@ -351,6 +362,7 @@ function buildDescription({ boss, dungeonNames, labels, level, locale }) {
         characteristics.pushback,
         characteristics.pushback_resist,
       ),
+      { includeSeparator: false },
     ),
   ].join(' ');
 
@@ -358,7 +370,7 @@ function buildDescription({ boss, dungeonNames, labels, level, locale }) {
     resistances,
     elementLabels,
     elementEmojis: flatElementEmojis,
-    label: labels.flats,
+    label: null,
     keySuffixes: ['fixed', 'flat'],
   });
 
@@ -366,7 +378,7 @@ function buildDescription({ boss, dungeonNames, labels, level, locale }) {
     resistances,
     elementLabels,
     elementEmojis: percentElementEmojis,
-    label: labels.percents,
+    label: null,
     keySuffixes: ['percent'],
     suffix: '%',
   });
@@ -425,7 +437,14 @@ async function execute(interaction) {
 
   const bossName = getBossName(boss, resolvedLocale) || '—';
   const level = boss.level != null ? String(boss.level) : null;
-  const homeDungeonIds = extractHomeDungeonIds(boss.homeDungeonID);
+  const homeDungeonReference = coalesce(
+    boss.homeDungeonID,
+    boss.homeDungeonBossID,
+    boss.homeDungeonId,
+    boss.homeDungeon,
+    boss.home_dungeon_id,
+  );
+  const homeDungeonIds = extractHomeDungeonIds(homeDungeonReference);
   const dungeonNames = resolveDungeonNames(homeDungeonIds, resolvedLocale);
   const labels = resolvedMessages.labels;
 
