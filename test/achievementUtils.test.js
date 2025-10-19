@@ -6,6 +6,7 @@ const {
   getAchievementEmojiName,
 } = require('../src/config/constants/achievementUtils');
 const { formatDungeonAchievements } = require('../src/utils/dungeons');
+const { DUNGEON_LISTE } = require('../src/config/constants/dungeons');
 
 test('getAchievementEmoji respects category allow-list while keeping defaults', () => {
   const defaultEmoji = getAchievementEmoji('barbaric');
@@ -44,5 +45,20 @@ test('formatDungeonAchievements falls back to question mark when no achievement 
 
   const entries = formatDungeonAchievements(dungeon, 'de');
   assert.equal(entries.length, 1);
-  assert.equal(entries[0], '❓ Barbarisch — Besiege alle Feinde.');
+  assert.equal(entries[0], '❓ Barbar — Besiege alle Feinde mit einer Waffe.');
+});
+
+test('dungeon achievements do not reuse challenge emoji fallbacks', () => {
+  const dungeon = DUNGEON_LISTE.find((entry) =>
+    Array.isArray(entry?.achievements)
+      && entry.achievements.some((achievement) => achievement.id === 'barbaric'),
+  );
+
+  assert.ok(dungeon, 'expected dungeon with barbaric achievement');
+
+  const barbaricAchievement = dungeon.achievements.find((achievement) => achievement.id === 'barbaric');
+
+  assert.ok(barbaricAchievement, 'expected barbaric achievement entry');
+  assert.equal(barbaricAchievement.emoji, undefined);
+  assert.equal(barbaricAchievement.emojiName, undefined);
 });

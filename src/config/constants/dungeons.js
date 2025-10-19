@@ -1656,12 +1656,14 @@ function instantiateDungeonChallenge(spec, dungeon) {
     challenge.name = labels;
   }
 
-  const emoji = getAchievementEmoji(id);
+  const achievementEmojiLookup = { categories: ['achievements'] };
+
+  const emoji = getAchievementEmoji(id, achievementEmojiLookup);
   if (emoji) {
     challenge.emoji = emoji;
   }
 
-  const emojiName = getAchievementEmojiName(id);
+  const emojiName = getAchievementEmojiName(id, achievementEmojiLookup);
   if (emojiName) {
     challenge.emojiName = emojiName;
   }
