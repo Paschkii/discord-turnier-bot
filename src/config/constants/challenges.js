@@ -23,7 +23,7 @@ function formatChallengeEntity(value, locale) {
     return value || '';
 }
 
-// Alle Challenges
+// All Challenges
 const CHALLENGES = [
     {   id: 'barbaric',
         name: {

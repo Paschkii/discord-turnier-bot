@@ -3,7 +3,7 @@ const { ICON_BASE } = require('./shared');
 const BOSSE_LISTE = [
   // === Level 1 - 50 Dungeons ===
   // Belladonna
-  { id: 'belladonna',
+  { bossID: 'belladonna',
     name: {
       de: 'Belladonna',
       en: 'Belladonna',
@@ -15,7 +15,7 @@ const BOSSE_LISTE = [
     level: 12,
     region: 'albuera',
     family: 'albuera',
-    homeDungeonID: 'belladonna_dungeon',
+    homeDungeonBossID: 'belladonna_dungeon',
     characteristics: {
       healthPoints: 120,
       actionPoints: 7,
@@ -30,7 +30,7 @@ const BOSSE_LISTE = [
     }
   },
   // Famished Sunflower
-  { id: 'famished_sunflower',
+  { bossID: 'famished_sunflower',
     name: {
       de: 'Ausgehungertes Sonnenblümchen',
       en: 'Famished Sunflower',
@@ -42,13 +42,13 @@ const BOSSE_LISTE = [
     level: 35,
     region: '',
     family: '',
-    homeDungeonID: 'field_dungeon',
+    homeDungeonBossID: 'field_dungeon',
     characteristics: {
       healthPoints: 920,
       actionPoints: 8,
       movementPoints: 3,
-      apResist: 8,
-      mpResist: 8,
+      apParry: 8,
+      mpParry: 8,
       lock: 10,
       criticalResistance: 0,
       pushbackResistance: 0
@@ -67,7 +67,7 @@ const BOSSE_LISTE = [
     }
   },
   // Sponge Mob
-  { id: 'spongemob',
+  { bossID: 'spongemob',
     name: {
       de: 'Spongemob Schwammtopf',
       en: 'Sponge Mob',
@@ -79,7 +79,7 @@ const BOSSE_LISTE = [
     level: 40,
     region: '',
     family: '',
-    homeDungeonID: 'sand_dungeon',
+    homeDungeonBossID: 'sand_dungeon',
     characteristics: {
       healthPoints: 1200,
       actionPoints: 7,
@@ -104,7 +104,7 @@ const BOSSE_LISTE = [
     }
   },
   // Golden Scarabugly
-  { id: 'golden_scarabugly',
+  { bossID: 'golden_scarabugly',
     name: {
       de: 'Goldenes Scarabiest',
       en: 'Golden Scarabugly',
@@ -116,7 +116,7 @@ const BOSSE_LISTE = [
     level: 40,
     region: '',
     family: '',
-    homeDungeonID: 'scaraleaf_dungeon',
+    homeDungeonBossID: 'scaraleaf_dungeon',
     characteristics: {
       healthPoints: 1600,
       actionPoints: 8,
@@ -141,7 +141,7 @@ const BOSSE_LISTE = [
     }
   },
   // Batofu
-  { id: 'batofu',
+  { bossID: 'batofu',
     name: {
       de: 'Batofu',
       en: 'Batofu',
@@ -153,7 +153,7 @@ const BOSSE_LISTE = [
     level: 40,
     region: '',
     family: '',
-    homeDungeonID: 'tofu_house',
+    homeDungeonBossID: 'tofu_house',
     characteristics: {
       healthPoints: 1000,
       actionPoints: 5,
@@ -178,7 +178,7 @@ const BOSSE_LISTE = [
     }
   },
   // Boostache
-  { id: 'boostache',
+  { bossID: 'boostache',
     name: {
       de: 'Bartaboo',
       en: 'Boostache',
@@ -190,7 +190,7 @@ const BOSSE_LISTE = [
     level: 40,
     region: '',
     family: '',
-    homeDungeonID: 'haunted_house',
+    homeDungeonBossID: 'haunted_house',
     characteristics: {
       healthPoints: 890,
       actionPoints: 10,
@@ -215,7 +215,7 @@ const BOSSE_LISTE = [
     }
   },
   // Ronin Chafer
-  { id: 'ronin_chafer',
+  { bossID: 'ronin_chafer',
     name: {
       de: 'Ronin Chafer',
       en: 'Ronin Chafer',
@@ -227,7 +227,7 @@ const BOSSE_LISTE = [
     level: 40,
     region: '',
     family: '',
-    homeDungeonID: 'skeleton_dungeon',
+    homeDungeonBossID: 'skeleton_dungeon',
     characteristics: {
       healthPoints: 680,
       actionPoints: 10,
@@ -252,7 +252,7 @@ const BOSSE_LISTE = [
     }
   },
   // Royal Gobball
-  { id: 'royal_gobball',
+  { bossID: 'royal_gobball',
     name: {
       de: 'Königlicher Fresssack',
       en: 'Royal Gobball',
@@ -264,7 +264,7 @@ const BOSSE_LISTE = [
     level: 60,
     region: '',
     family: '',
-    homeDungeonID: 'gobball_dungeon',
+    homeDungeonBossID: 'gobball_dungeon',
     characteristics: {
       healthPoints: 1700,
       actionPoints: 9,
@@ -289,7 +289,7 @@ const BOSSE_LISTE = [
     }
   },
   // Bworkette
-  { id: 'bworkette',
+  { bossID: 'bworkette',
     name: {
       de: 'Bworkette',
       en: 'Bworkette',
@@ -301,7 +301,7 @@ const BOSSE_LISTE = [
     level: 50,
     region: '',
     family: '',
-    homeDungeonID: 'bwork_dungeon',
+    homeDungeonBossID: 'bwork_dungeon',
     characteristics: {
       healthPoints: 1600,
       actionPoints: 9,
@@ -326,19 +326,19 @@ const BOSSE_LISTE = [
     }
   },
   // Smith's Chest
-  { id: 'smiths_chest',
+  { bossID: 'smiths_chest',
     name: {
       de: 'Schatztruhe der Schattenschmiede',
       en: 'Smith\'s Chest',
-      es: '',
-      fr: '',
-      pt: '',
+      es: 'Cofrerrero',
+      fr: 'Coffre des Forgerons',
+      pt: 'Baú des Ferreiros',
     },
     imageUrl: `${ICON_BASE}/boss-icons/smiths_chest.png`,
     level: 50,
     region: '',
     family: '',
-    homeDungeonID: 'blacksmith_dungeon',
+    homeDungeonBossID: 'blacksmith_dungeon',
     characteristics: {
       healthPoints: 820,
       actionPoints: 8,
@@ -363,7 +363,7 @@ const BOSSE_LISTE = [
     }
   },
   // Shin Larva
-  { id: 'shin_larva',
+  { bossID: 'shin_larva',
     name: {
       de: 'Shin Larve',
       en: 'Shin Larva',
@@ -375,7 +375,7 @@ const BOSSE_LISTE = [
     level: 50,
     region: '',
     family: '',
-    homeDungeonID: 'larva_dungeon',
+    homeDungeonBossID: 'larva_dungeon',
     characteristics: {
       healthPoints: 1200,
       actionPoints: 9,
@@ -400,7 +400,7 @@ const BOSSE_LISTE = [
     }
   },
   // Great Coralator
-  { id: 'great_coralator',
+  { bossID: 'great_coralator',
     name: {
       de: 'Mächtiger Korallator',
       en: 'Great Coralator',
@@ -412,7 +412,7 @@ const BOSSE_LISTE = [
     level: 50,
     region: '',
     family: '',
-    homeDungeonID: 'grotto_hesque',
+    homeDungeonBossID: 'grotto_hesque',
     characteristics: {
       healthPoints: 2000,
       actionPoints: 8,
@@ -437,7 +437,7 @@ const BOSSE_LISTE = [
     }
   },
   // Kwakwa
-  { id: 'kwakwa',
+  { bossID: 'kwakwa',
     name: {
       de: 'Kwackatau',
       en: 'Kwakwa',
@@ -449,7 +449,7 @@ const BOSSE_LISTE = [
     level: 50,
     region: '',
     family: '',
-    homeDungeonID: 'kwakwas_nest',
+    homeDungeonBossID: 'kwakwas_nest',
     characteristics: {
       healthPoints: 1100,
       actionPoints: 9,
@@ -475,7 +475,7 @@ const BOSSE_LISTE = [
   },
   // === Level 51 - 100 Dungeons ===
   // Wa Wabbit
-  { id: 'wa_wabbit',
+  { bossID: 'wa_wabbit',
     name: {
       de: 'Wa Wabbit',
       en: 'Wa Wabbit',
@@ -487,7 +487,7 @@ const BOSSE_LISTE = [
     level: 60,
     region: '',
     family: '',
-    homeDungeonID: 'wa_wabbits_castle',
+    homeDungeonBossID: 'wa_wabbits_castle',
     characteristics: {
       healthPoints: 3000,
       actionPoints: 10,
@@ -512,7 +512,7 @@ const BOSSE_LISTE = [
     }
   },
   // Kanniball Andchain
-  { id: 'kanniball_andchain',
+  { bossID: 'kanniball_andchain',
     name: {
       de: 'Kanniball Ahde',
       en: 'Kanniball Andchain',
@@ -524,7 +524,7 @@ const BOSSE_LISTE = [
     level: 60,
     region: '',
     family: '',
-    homeDungeonID: 'kanniball_dungeon',
+    homeDungeonBossID: 'kanniball_dungeon',
     characteristics: {
       healthPoints: 1400,
       actionPoints: 10,
@@ -549,134 +549,8 @@ const BOSSE_LISTE = [
     }
   },
   // -- Blops --
-  // Royal Pippin Blop
-  { id: 'royal_pippin_blop',
-    name: {
-      de: 'Königlicher Apfel Blob',
-      en: 'Royal Pippin Blop',
-      es: 'Blop Reineta Real',
-      fr: 'Blop Reinette Royal',
-      pt: 'Blop Maçã Real',
-    },
-    imageUrl: `${ICON_BASE}/boss-icons/royal_pippin_blop.png`,
-    level: 60,
-    region: '',
-    family: '',
-    homeDungeonID: 'blop_dungeon',
-    characteristics: {
-      healthPoints: 2400,
-      actionPoints: 10,
-      movementPoints: 5,
-      apParry: 28,
-      mpParry: 28,
-      lock: 28,
-      criticalResistance: 0,
-      pushbackResistance: 0
-    },
-    resistances: {
-      neutral_percent: -12,
-      earth_percent: 94,
-      fire_percent: -12,
-      water_percent: -12,
-      air_percent: -12,
-      neutral_fixed: 0,
-      earth_fixed: 0,
-      fire_fixed: 0,
-      water_fixed: 0,
-      air_fixed: 0
-    },
-    alsoIn: [
-      { dungeonID: 'rainbow_blop_lair_percent',
-        overrides: { healthPoints: 3500 }
-      }
-    ],
-  },
-  // Royal Indigo Blop
-  { id: 'royal_indigo_blop',
-    name: {
-      de: 'Königlicher Indigo Blob',
-      en: 'Royal Indigo Blop',
-      es: 'Blop Indigo Real',
-      fr: 'Blop Indigo Royal',
-      pt: 'Blop Indigo Real',
-    },
-    imageUrl: `${ICON_BASE}/boss-icons/royal_indigo_blop.png`,
-    level: 60,
-    region: '',
-    family: '',
-    homeDungeonID: 'blop_dungeon',
-    characteristics: {
-      healthPoints: 2400,
-      actionPoints: 10,
-      movementPoints: 5,
-      apParry: 28,
-      mpParry: 28,
-      lock: 28,
-      criticalResistance: 0,
-      pushbackResistance: 0
-    },
-    resistances: {
-      neutral_percent: -12,
-      earth_percent: -12,
-      fire_percent: -12,
-      water_percent: 94,
-      air_percent: -12,
-      neutral_fixed: 0,
-      earth_fixed: 0,
-      fire_fixed: 0,
-      water_fixed: 0,
-      air_fixed: 0
-    },
-    alsoIn: [
-      { dungeonID: 'rainbow_blop_lair_percent',
-        overrides: { healthPoints: 3500 }
-      }
-    ],
-  },
-  // Royal Morello Cherry Blop
-  { id: 'royal_morello_cherry_blop',
-    name: {
-      de: 'Königlicher Kirsch Blob',
-      en: 'Royal Morello Cherry Blop',
-      es: 'Blop Guinda Real',
-      fr: 'Blop Griotte Royal',
-      pt: 'Blop Cereja Real',
-    },
-    imageUrl: `${ICON_BASE}/boss-icons/royal_morello_cherry_blop.png`,
-    level: 60,
-    region: '',
-    family: '',
-    homeDungeonID: 'blop_dungeon',
-    characteristics: {
-      healthPoints: 2400,
-      actionPoints: 10,
-      movementPoints: 5,
-      apParry: 28,
-      mpParry: 28,
-      lock: 28,
-      criticalResistance: 0,
-      pushbackResistance: 0
-    },
-    resistances: {
-      neutral_percent: -12,
-      earth_percent: -12,
-      fire_percent: 94,
-      water_percent: -12,
-      air_percent: -12,
-      neutral_fixed: 0,
-      earth_fixed: 0,
-      fire_fixed: 0,
-      water_fixed: 0,
-      air_fixed: 0
-    },
-    alsoIn: [
-      { dungeonID: 'rainbow_blop_lair_percent',
-        overrides: { healthPoints: 3500 }
-      }
-    ],
-  },
   // Royal Coco Blop
-  { id: 'royal_coco_blop',
+  { bossID: 'royal_coco_blop',
     name: {
       de: 'Königlicher Kokos Blob',
       en: 'Royal Coco Blop',
@@ -688,7 +562,7 @@ const BOSSE_LISTE = [
     level: 60,
     region: '',
     family: '',
-    homeDungeonID: 'blop_dungeon',
+    homeDungeonBossID: 'blop_dungeon',
     characteristics: {
       healthPoints: 2400,
       actionPoints: 10,
@@ -712,125 +586,140 @@ const BOSSE_LISTE = [
       air_fixed: 0
     },
     alsoIn: [
-      { dungeonID: 'rainbow_blop_lair_percent',
+      { dungeonbossID: 'rainbow_blop_lair_percent',
+        overrides: { healthPoints: 3500 }
+      }
+    ],
+  },
+  // Royal Indigo Blop
+  { bossID: 'royal_indigo_blop',
+    name: {
+      de: 'Königlicher Indigo Blob',
+      en: 'Royal Indigo Blop',
+      es: 'Blop Indigo Real',
+      fr: 'Blop Indigo Royal',
+      pt: 'Blop Indigo Real',
+    },
+    imageUrl: `${ICON_BASE}/boss-icons/royal_indigo_blop.png`,
+    level: 60,
+    region: '',
+    family: '',
+    homeDungeonBossID: 'blop_dungeon',
+    characteristics: {
+      healthPoints: 2400,
+      actionPoints: 10,
+      movementPoints: 5,
+      apParry: 28,
+      mpParry: 28,
+      lock: 28,
+      criticalResistance: 0,
+      pushbackResistance: 0
+    },
+    resistances: {
+      neutral_percent: -12,
+      earth_percent: -12,
+      fire_percent: -12,
+      water_percent: 94,
+      air_percent: -12,
+      neutral_fixed: 0,
+      earth_fixed: 0,
+      fire_fixed: 0,
+      water_fixed: 0,
+      air_fixed: 0
+    },
+    alsoIn: [
+      { dungeonbossID: 'rainbow_blop_lair_percent',
+        overrides: { healthPoints: 3500 }
+      }
+    ],
+  },
+  // Royal Morello Cherry Blop
+  { bossID: 'royal_morello_cherry_blop',
+    name: {
+      de: 'Königlicher Kirsch Blob',
+      en: 'Royal Morello Cherry Blop',
+      es: 'Blop Guinda Real',
+      fr: 'Blop Griotte Royal',
+      pt: 'Blop Cereja Real',
+    },
+    imageUrl: `${ICON_BASE}/boss-icons/royal_morello_cherry_blop.png`,
+    level: 60,
+    region: '',
+    family: '',
+    homeDungeonBossID: 'blop_dungeon',
+    characteristics: {
+      healthPoints: 2400,
+      actionPoints: 10,
+      movementPoints: 5,
+      apParry: 28,
+      mpParry: 28,
+      lock: 28,
+      criticalResistance: 0,
+      pushbackResistance: 0
+    },
+    resistances: {
+      neutral_percent: -12,
+      earth_percent: -12,
+      fire_percent: 94,
+      water_percent: -12,
+      air_percent: -12,
+      neutral_fixed: 0,
+      earth_fixed: 0,
+      fire_fixed: 0,
+      water_fixed: 0,
+      air_fixed: 0
+    },
+    alsoIn: [
+      { dungeonbossID: 'rainbow_blop_lair_percent',
+        overrides: { healthPoints: 3500 }
+      }
+    ],
+  },
+  // Royal Pippin Blop
+  { bossID: 'royal_pippin_blop',
+    name: {
+      de: 'Königlicher Apfel Blob',
+      en: 'Royal Pippin Blop',
+      es: 'Blop Reineta Real',
+      fr: 'Blop Reinette Royal',
+      pt: 'Blop Maçã Real',
+    },
+    imageUrl: `${ICON_BASE}/boss-icons/royal_pippin_blop.png`,
+    level: 60,
+    region: '',
+    family: '',
+    homeDungeonBossID: 'blop_dungeon',
+    characteristics: {
+      healthPoints: 2400,
+      actionPoints: 10,
+      movementPoints: 5,
+      apParry: 28,
+      mpParry: 28,
+      lock: 28,
+      criticalResistance: 0,
+      pushbackResistance: 0
+    },
+    resistances: {
+      neutral_percent: -12,
+      earth_percent: 94,
+      fire_percent: -12,
+      water_percent: -12,
+      air_percent: -12,
+      neutral_fixed: 0,
+      earth_fixed: 0,
+      fire_fixed: 0,
+      water_fixed: 0,
+      air_fixed: 0
+    },
+    alsoIn: [
+      { dungeonbossID: 'rainbow_blop_lair_percent',
         overrides: { healthPoints: 3500 }
       }
     ],
   },
   // -- Jellys --
-  // Royal Strawberry Jelly
-  { id: 'royal_strawberry_jelly',
-    name: {
-      de: 'Königliches Erdbeergelee',
-      en: 'Royal Strawberry Jelly',
-      es: 'Gelatina Real de Fresa',
-      fr: 'Gelée Royale Fraise',
-      pt: 'Gelatina Real de Morango',
-    },
-    imageUrl: `${ICON_BASE}/boss-icons/royal_strawberry_jelly.png`,
-    level: 60,
-    region: '',
-    family: '',
-    homeDungeonID: 'jellith_dimension',
-    characteristics: {
-      healthPoints: 1400,
-      actionPoints: 10,
-      movementPoints: 5,
-      apParry: 10,
-      mpParry: 10,
-      lock: 5,
-      criticalResistance: 0,
-      pushbackResistance: 0
-    },
-    resistances: {
-      neutral_percent: 50,
-      earth_percent: 50,
-      fire_percent: -10,
-      water_percent: 50,
-      air_percent: 50,
-      neutral_fixed: 0,
-      earth_fixed: 0,
-      fire_fixed: 0,
-      water_fixed: 0,
-      air_fixed: 0
-    }
-  },
-  // Royal Mint Jelly
-  { id: 'royal_mint_jelly',
-    name: {
-      de: 'Königliches Minzgelee',
-      en: 'Royal Mint Jelly',
-      es: 'Gelatina Real de Menta',
-      fr: 'Gelée Royale Menthe',
-      pt: 'Gelatina Real de Menta',
-    },
-    imageUrl: `${ICON_BASE}/boss-icons/royal_mint_jelly.png`,
-    level: 60,
-    region: '',
-    family: '',
-    homeDungeonID: 'jellith_dimension',
-    characteristics: {
-      healthPoints: 1400,
-      actionPoints: 10,
-      movementPoints: 4,
-      apParry: 32,
-      mpParry: 41,
-      lock: 10,
-      criticalResistance: 0,
-      pushbackResistance: 0
-    },
-    resistances: {
-      neutral_percent: 50,
-      earth_percent: -10,
-      fire_percent: 50,
-      water_percent: 50,
-      air_percent: 50,
-      neutral_fixed: 0,
-      earth_fixed: 0,
-      fire_fixed: 0,
-      water_fixed: 0,
-      air_fixed: 0
-    }
-  },
-  // Royal Lemon Jelly
-  { id: 'royal_lemon_jelly',
-    name: {
-      de: 'Königliches Zitronengelee',
-      en: 'Royal Lemon Jelly',
-      es: 'Gelatina Real de Limón',
-      fr: 'Gelée Royale Citron',
-      pt: 'Gelatina Real de Limão',
-    },
-    imageUrl: `${ICON_BASE}/boss-icons/royal_lemon_jelly.png`,
-    level: 60,
-    region: '',
-    family: '',
-    homeDungeonID: 'jellith_dimension',
-    characteristics: {
-      healthPoints: 1300,
-      actionPoints: 10,
-      movementPoints: 5,
-      apParry: 19,
-      mpParry: 14,
-      lock: 25,
-      criticalResistance: 0,
-      pushbackResistance: 0
-    },
-    resistances: {
-      neutral_percent: 50,
-      earth_percent: 50,
-      fire_percent: 50,
-      water_percent: 50,
-      air_percent: -10,
-      neutral_fixed: 0,
-      earth_fixed: 0,
-      fire_fixed: 0,
-      water_fixed: 0,
-      air_fixed: 0
-    }
-  },
   // Royal Blue Jelly
-  { id: 'royal_blue_jelly',
+  { bossID: 'royal_blue_jelly',
     name: {
       de: 'Königliches Blaubeergelee',
       en: 'Royal Blue Jelly',
@@ -842,7 +731,7 @@ const BOSSE_LISTE = [
     level: 60,
     region: '',
     family: '',
-    homeDungeonID: 'jellith_dimension',
+    homeDungeonBossID: 'jellith_dimension',
     characteristics: {
       healthPoints: 1400,
       actionPoints: 10,
@@ -866,8 +755,119 @@ const BOSSE_LISTE = [
       air_fixed: 0
     }
   },
+  // Royal Lemon Jelly
+  { bossID: 'royal_lemon_jelly',
+    name: {
+      de: 'Königliches Zitronengelee',
+      en: 'Royal Lemon Jelly',
+      es: 'Gelatina Real de Limón',
+      fr: 'Gelée Royale Citron',
+      pt: 'Gelatina Real de Limão',
+    },
+    imageUrl: `${ICON_BASE}/boss-icons/royal_lemon_jelly.png`,
+    level: 60,
+    region: '',
+    family: '',
+    homeDungeonBossID: 'jellith_dimension',
+    characteristics: {
+      healthPoints: 1300,
+      actionPoints: 10,
+      movementPoints: 5,
+      apParry: 19,
+      mpParry: 14,
+      lock: 25,
+      criticalResistance: 0,
+      pushbackResistance: 0
+    },
+    resistances: {
+      neutral_percent: 50,
+      earth_percent: 50,
+      fire_percent: 50,
+      water_percent: 50,
+      air_percent: -10,
+      neutral_fixed: 0,
+      earth_fixed: 0,
+      fire_fixed: 0,
+      water_fixed: 0,
+      air_fixed: 0
+    }
+  },
+  // Royal Mint Jelly
+  { bossID: 'royal_mint_jelly',
+    name: {
+      de: 'Königliches Minzgelee',
+      en: 'Royal Mint Jelly',
+      es: 'Gelatina Real de Menta',
+      fr: 'Gelée Royale Menthe',
+      pt: 'Gelatina Real de Menta',
+    },
+    imageUrl: `${ICON_BASE}/boss-icons/royal_mint_jelly.png`,
+    level: 60,
+    region: '',
+    family: '',
+    homeDungeonBossID: 'jellith_dimension',
+    characteristics: {
+      healthPoints: 1400,
+      actionPoints: 10,
+      movementPoints: 4,
+      apParry: 32,
+      mpParry: 41,
+      lock: 10,
+      criticalResistance: 0,
+      pushbackResistance: 0
+    },
+    resistances: {
+      neutral_percent: 50,
+      earth_percent: -10,
+      fire_percent: 50,
+      water_percent: 50,
+      air_percent: 50,
+      neutral_fixed: 0,
+      earth_fixed: 0,
+      fire_fixed: 0,
+      water_fixed: 0,
+      air_fixed: 0
+    }
+  },
+  // Royal Strawberry Jelly
+  { bossID: 'royal_strawberry_jelly',
+    name: {
+      de: 'Königliches Erdbeergelee',
+      en: 'Royal Strawberry Jelly',
+      es: 'Gelatina Real de Fresa',
+      fr: 'Gelée Royale Fraise',
+      pt: 'Gelatina Real de Morango',
+    },
+    imageUrl: `${ICON_BASE}/boss-icons/royal_strawberry_jelly.png`,
+    level: 60,
+    region: '',
+    family: '',
+    homeDungeonBossID: 'jellith_dimension',
+    characteristics: {
+      healthPoints: 1400,
+      actionPoints: 10,
+      movementPoints: 5,
+      apParry: 10,
+      mpParry: 10,
+      lock: 5,
+      criticalResistance: 0,
+      pushbackResistance: 0
+    },
+    resistances: {
+      neutral_percent: 50,
+      earth_percent: 50,
+      fire_percent: -10,
+      water_percent: 50,
+      air_percent: 50,
+      neutral_fixed: 0,
+      earth_fixed: 0,
+      fire_fixed: 0,
+      water_fixed: 0,
+      air_fixed: 0
+    }
+  },
   // Nelween
-  { id: 'nelween',
+  { bossID: 'nelween',
     name: {
       de: 'Nelwynn',
       en: 'Nelween',
@@ -879,7 +879,7 @@ const BOSSE_LISTE = [
     level: 70,
     region: '',
     family: '',
-    homeDungeonID: 'brumen_tinctorias_laboratory',
+    homeDungeonBossID: 'brumen_tinctorias_laboratory',
     characteristics: {
       healthPoints: 1900,
       actionPoints: 8,
@@ -904,7 +904,7 @@ const BOSSE_LISTE = [
     }
   },
   // Gourlo the Terrible
-  { id: 'gourlo_the_terrible',
+  { bossID: 'gourlo_the_terrible',
     name: {
       de: 'Gurrlo der Fürchterliche',
       en: 'Gourlo the Terrible',
@@ -916,7 +916,7 @@ const BOSSE_LISTE = [
     level: 70,
     region: '',
     family: '',
-    homeDungeonID: 'hold_of_otomais_ark',
+    homeDungeonBossID: 'hold_of_otomais_ark',
     characteristics: {
       healthPoints: 1900,
       actionPoints: 10,
@@ -941,19 +941,19 @@ const BOSSE_LISTE = [
     }
   },
   // Legendary Crackler
-  { id: 'legendary_crackler',
+  { bossID: 'legendary_crackler',
     name: {
       de: 'Legendärer Mega Krachler',
       en: 'Legendary Crackler',
       es: 'Crujidor Legendario',
-      fr: 'Craqueleur Légendair_percente',
+      fr: 'Craqueleur Légendaire',
       pt: 'Smagador Lendário',
     },
     imageUrl: `${ICON_BASE}/boss-icons/legendary_crackler.png`,
     level: 70,
     region: '',
     family: '',
-    homeDungeonID: 'crackler_dungeon',
+    homeDungeonBossID: 'crackler_dungeon',
     characteristics: {
       healthPoints: 3100,
       actionPoints: 8,
@@ -978,7 +978,7 @@ const BOSSE_LISTE = [
     }
   },
   // Wa Wobot
-  { id: 'wa_wobot',
+  { bossID: 'wa_wobot',
     name: {
       de: 'Wa Wobot',
       en: 'Wa Wobot',
@@ -990,7 +990,7 @@ const BOSSE_LISTE = [
     level: 80,
     region: '',
     family: '',
-    homeDungeonID: 'wa_wabbits_castle',
+    homeDungeonBossID: 'wa_wabbits_castle',
     characteristics: {
       healthPoints: 3500,
       actionPoints: 14,
@@ -1005,7 +1005,7 @@ const BOSSE_LISTE = [
     }
   },
   // Ancestral Treechnid
-  { id: 'ancestral_treechnid',
+  { bossID: 'ancestral_treechnid',
     name: {
       de: 'Ur-Astaknyde',
       en: 'Ancestral Treechnid',
@@ -1017,7 +1017,7 @@ const BOSSE_LISTE = [
     level: 90,
     region: '',
     family: '',
-    homeDungeonID: 'treechnid_dungeon',
+    homeDungeonBossID: 'treechnid_dungeon',
     characteristics: {
       healthPoints: 3600,
       actionPoints: 12,
@@ -1042,7 +1042,7 @@ const BOSSE_LISTE = [
     }
   },
   // Selim Quartz
-  { id: 'selim_quartz',
+  { bossID: 'selim_quartz',
     name: {
       de: 'Oberstnimb Selim Quartz',
       en: 'Major-Yoberal Selim Quartz',
@@ -1054,7 +1054,7 @@ const BOSSE_LISTE = [
     level: 90,
     region: '',
     family: '',
-    homeDungeonID: 'hard_head_dam',
+    homeDungeonBossID: 'hard_head_dam',
     characteristics: {
       healthPoints: 4500,
       actionPoints: 14,
@@ -1079,7 +1079,7 @@ const BOSSE_LISTE = [
     }
   },
   // Dragon Pig
-  { id: 'dragonpig',
+  { bossID: 'dragonpig',
     name: {
       de: 'Schweinedrachen',
       en: 'Dragonpig',
@@ -1091,7 +1091,7 @@ const BOSSE_LISTE = [
     level: 100,
     region: '',
     family: '',
-    homeDungeonID: 'dragonpigs_den',
+    homeDungeonBossID: 'dragonpigs_den',
     characteristics: {
       healthPoints: 3100,
       actionPoints: 10,
@@ -1116,7 +1116,7 @@ const BOSSE_LISTE = [
     }
   },
   // Koolich
-  { id: 'koolich',
+  { bossID: 'koolich',
     name: {
       de: 'Kuhloss',
       en: 'Koolich',
@@ -1128,7 +1128,7 @@ const BOSSE_LISTE = [
     level: 100,
     region: '',
     family: '',
-    homeDungeonID: 'koolich_cavern',
+    homeDungeonBossID: 'koolich_cavern',
     characteristics: {
       healthPoints: 5800,
       actionPoints: 10,
@@ -1143,7 +1143,7 @@ const BOSSE_LISTE = [
     }
   },
   // Moon
-  { id: 'moon',
+  { bossID: 'moon',
     name: {
       de: 'Moon',
       en: 'Moon',
@@ -1155,7 +1155,7 @@ const BOSSE_LISTE = [
     level: 400,
     region: '',
     family: '',
-    homeDungeonID: 'moon_dungeon',
+    homeDungeonBossID: 'moon_dungeon',
     characteristics: {
       healthPoints: 6600,
       actionPoints: 10,
@@ -1180,7 +1180,7 @@ const BOSSE_LISTE = [
     }
   },
   // Moowolf
-  { id: 'moowolf',
+  { bossID: 'moowolf',
     name: {
       de: 'MuWulf',
       en: 'Moowolf',
@@ -1192,7 +1192,7 @@ const BOSSE_LISTE = [
     level: 100,
     region: '',
     family: '',
-    homeDungeonID: 'canidae_dungeon',
+    homeDungeonBossID: 'canbossIDae_dungeon',
     characteristics: {
       healthPoints: 5700,
       actionPoints: 8,
@@ -1218,7 +1218,7 @@ const BOSSE_LISTE = [
   },
   // === Level 101 - 150 Dungeons ===
   // Silf the Greater Berb
-  { id: 'silf',
+  { bossID: 'silf',
     name: {
       de: 'Groß-Shilf',
       en: 'Silf The Greater Berb',
@@ -1230,7 +1230,7 @@ const BOSSE_LISTE = [
     level: 440,
     region: '',
     family: '',
-    homeDungeonID: 'bherbs_gully',
+    homeDungeonBossID: 'bherbs_gully',
     characteristics: {
       healthPoints: 7000,
       actionPoints: 8,
@@ -1255,7 +1255,7 @@ const BOSSE_LISTE = [
     }
   },
   // Lord Crow
-  { id: 'lord_crow',
+  { bossID: 'lord_crow',
     name: {
       de: 'Meister Rab',
       en: 'Lord Crow',
@@ -1267,7 +1267,7 @@ const BOSSE_LISTE = [
     level: 110,
     region: '',
     family: '',
-    homeDungeonID: 'lord_crows_library',
+    homeDungeonBossID: 'lord_crows_library',
     characteristics: {
       healthPoints: 4500,
       actionPoints: 12,
@@ -1292,7 +1292,7 @@ const BOSSE_LISTE = [
     }
   },
   // White Rat
-  { id: 'white_rat',
+  { bossID: 'white_rat',
     name: {
       de: 'Weiße Ratte',
       en: 'White Rat',
@@ -1304,7 +1304,7 @@ const BOSSE_LISTE = [
     level: 110,
     region: '',
     family: '',
-    homeDungeonID: 'bonta_rat_dungeon',
+    homeDungeonBossID: 'bonta_rat_dungeon',
     characteristics: {
       healthPoints: 3500,
       actionPoints: 7,
@@ -1329,7 +1329,7 @@ const BOSSE_LISTE = [
     }
   },
   // Schwarze Ratte
-  { id: 'black_rat',
+  { bossID: 'black_rat',
     name: {
       de: 'Schwarze Ratte',
       en: 'Black Rat',
@@ -1341,7 +1341,7 @@ const BOSSE_LISTE = [
     level: 110,
     region: '',
     family: '',
-    homeDungeonID: 'brakmar_rat_dungeon',
+    homeDungeonBossID: 'brakmar_rat_dungeon',
     characteristics: {
       healthPoints: 3500,
       actionPoints: 7,
@@ -1356,7 +1356,7 @@ const BOSSE_LISTE = [
     }
   },
   // Royal Rainbow Blop
-  { id: 'royal_rainbow_blop',
+  { bossID: 'royal_rainbow_blop',
     name: {
       de: 'Königlicher Multiblob',
       en: 'Royal Rainbow Blob',
@@ -1368,7 +1368,7 @@ const BOSSE_LISTE = [
     level: 120,
     region: '',
     family: '',
-    homeDungeonID: 'rainbow_blop_lair_percent',
+    homeDungeonBossID: 'rainbow_blop_lair_percent',
     characteristics: {
       healthPoints: 3400,
       actionPoints: 10,
@@ -1393,7 +1393,7 @@ const BOSSE_LISTE = [
     }
   },
   // Minotoror
-  { id: 'minotoror',
+  { bossID: 'minotoror',
     name: {
       de: 'Minotoror',
       en: 'Minotoror',
@@ -1405,7 +1405,7 @@ const BOSSE_LISTE = [
     level: 120,
     region: '',
     family: '',
-    homeDungeonID: 'labyrinth_minotoror',
+    homeDungeonBossID: 'labyrinth_minotoror',
     characteristics: {
       healthPoints: 4100,
       actionPoints: 14,
@@ -1427,10 +1427,15 @@ const BOSSE_LISTE = [
       fire_fixed: 0,
       water_fixed: 0,
       air_fixed: 0
-    }
+    },
+    alsoIn: [
+      { dungeonbossID: 'minotot_room',
+        overrides: { healthPoints: 6000 }
+      }
+    ],
   },
   // Royal Mastogob
-  { id: 'royal_mastogob',
+  { bossID: 'royal_mastogob',
     name: {
       de: 'Königliches Fressmut',
       en: 'Royal Mastogob',
@@ -1442,7 +1447,7 @@ const BOSSE_LISTE = [
     level: 128,
     region: '',
     family: '',
-    homeDungeonID: 'royal_mastogobs_greenhouse',
+    homeDungeonBossID: 'royal_mastogobs_greenhouse',
     characteristics: {
       healthPoints: 4000,
       actionPoints: 15,
@@ -1457,7 +1462,7 @@ const BOSSE_LISTE = [
     }
   },
   // Royal Tofu
-  { id: 'royal_tofu',
+  { bossID: 'royal_tofu',
     name: {
       de: 'Königlicher Tofu',
       en: 'Royal Tofu',
@@ -1469,7 +1474,7 @@ const BOSSE_LISTE = [
     level: 120,
     region: '',
     family: '',
-    homeDungeonID: 'royal_tofu_house',
+    homeDungeonBossID: 'royal_tofu_house',
     characteristics: {
       healthPoints: 3400,
       actionPoints: 12,
@@ -1494,7 +1499,7 @@ const BOSSE_LISTE = [
     }
   },
   // Crocabulia
-  { id: 'crocabulia',
+  { bossID: 'crocabulia',
     name: {
       de: 'Crocabulia',
       en: 'Crocabulia',
@@ -1506,7 +1511,7 @@ const BOSSE_LISTE = [
     level: 120,
     region: '',
     family: '',
-    homeDungeonID: 'dreggon_dungeon',
+    homeDungeonBossID: 'dreggon_dungeon',
     characteristics: {
       healthPoints: 7000,
       actionPoints: 9,
@@ -1531,7 +1536,7 @@ const BOSSE_LISTE = [
     }
   },
   // Skeunk
-  { id: 'skeunk',
+  { bossID: 'skeunk',
     name: {
       de: 'Skeunk',
       en: 'Skeunk',
@@ -1543,11 +1548,16 @@ const BOSSE_LISTE = [
     level: 120,
     region: '',
     family: '',
-    homeDungeonID: 'skeunks_hideout',
+    homeDungeonBossID: 'skeunks_hideout',
     characteristics: {
-      healthPoints: 4700,
+      healthPoints: 5800,
       actionPoints: 12,
-      movementPoints: 5
+      movementPoints: 5,
+      apParry: 40,
+      mpParry: 45,
+      lock: 25,
+      criticalResistance: 0,
+      pushbackResistance: 0
     },
     resistances: {
       neutral_percent: 28,
@@ -1555,10 +1565,15 @@ const BOSSE_LISTE = [
       fire_percent: -5,
       water_percent: -5,
       air_percent: 38,
+      neutral_fixed: 0,
+      earth_fixed: 0,
+      fire_fixed: 0,
+      water_fixed: 0,
+      air_fixed: 0
     }
   },
   // Crakillian Guardian
-  { id: 'crakillian_guardian',
+  { bossID: 'crakillian_guardian',
     name: {
       de: 'Krakillian Wächter',
       en: 'Crakillian Guardian',
@@ -1570,11 +1585,16 @@ const BOSSE_LISTE = [
     level: 130,
     region: '',
     family: '',
-    homeDungeonID: 'minerock_sanctuary',
+    homeDungeonBossID: 'minerock_sanctuary',
     characteristics: {
       healthPoints: 5700,
       actionPoints: 12,
-      movementPoints: 5
+      movementPoints: 5,
+      apParry: 30,
+      mpParry: 50,
+      lock: 50,
+      criticalResistance: 0,
+      pushbackResistance: 0
     },
     resistances: {
       neutral_percent: 5,
@@ -1582,10 +1602,15 @@ const BOSSE_LISTE = [
       fire_percent: 7,
       water_percent: -8,
       air_percent: 23,
+      neutral_fixed: 0,
+      earth_fixed: 0,
+      fire_fixed: 0,
+      water_fixed: 0,
+      air_fixed: 0
     }
   },
   // Kanigrula
-  { id: 'kanigrula',
+  { bossID: 'kanigrula',
     name: {
       de: 'Kanigroula',
       en: 'Kanigrula',
@@ -1597,11 +1622,16 @@ const BOSSE_LISTE = [
     level: 140,
     region: '',
     family: '',
-    homeDungeonID: 'kanigrulas_hideout',
+    homeDungeonBossID: 'kanigrulas_hbossIDeout',
     characteristics: {
       healthPoints: 6500,
       actionPoints: 12,
-      movementPoints: 6
+      movementPoints: 6,
+      apParry: 55,
+      mpParry: 50,
+      lock: 40,
+      criticalResistance: 0,
+      pushbackResistance: 0
     },
     resistances: {
       neutral_percent: 6,
@@ -1609,10 +1639,15 @@ const BOSSE_LISTE = [
       fire_percent: 8,
       water_percent: -6,
       air_percent: 20,
+      neutral_fixed: 0,
+      earth_fixed: 0,
+      fire_fixed: 0,
+      water_fixed: 0,
+      air_fixed: 0
     }
   },
   // Soft Oak
-  { id: 'soft_oak',
+  { bossID: 'soft_oak',
     name: {
       de: 'Weich Eich',
       en: 'Soft Oak',
@@ -1624,11 +1659,16 @@ const BOSSE_LISTE = [
     level: 140,
     region: '',
     family: '',
-    homeDungeonID: 'soft_oak_dungeon',
+    homeDungeonBossID: 'soft_oak_dungeon',
     characteristics: {
       healthPoints: 6500,
       actionPoints: 15,
-      movementPoints: 2
+      movementPoints: 2,
+      apParry: 40,
+      mpParry: 40,
+      lock: 80,
+      criticalResistance: 0,
+      pushbackResistance: 100
     },
     resistances: {
       neutral_percent: 82,
@@ -1636,10 +1676,15 @@ const BOSSE_LISTE = [
       fire_percent: 52,
       water_percent: -5,
       air_percent: -5,
+      neutral_fixed: 0,
+      earth_fixed: 0,
+      fire_fixed: 0,
+      water_fixed: 0,
+      air_fixed: 0
     }
   },
   // Disconcerted Tynril
-  { id: 'disconcerted_tynril',
+  { bossID: 'disconcerted_tynril',
     name: {
       de: 'Verdutzter Tynril',
       en: 'Disconcerted Tynril',
@@ -1651,11 +1696,16 @@ const BOSSE_LISTE = [
     level: 140,
     region: '',
     family: '',
-    homeDungeonID: 'the_tynril_lab',
+    homeDungeonBossID: 'the_tynril_lab',
     characteristics: {
       healthPoints: 3800,
       actionPoints: 10,
-      movementPoints: 2
+      movementPoints: 2,
+      apParry: 23,
+      mpParry: 23,
+      lock: 35,
+      criticalResistance: 0,
+      pushbackResistance: 0
     },
     resistances: {
       neutral_percent: 200,
@@ -1663,10 +1713,15 @@ const BOSSE_LISTE = [
       fire_percent: 200,
       water_percent: 0,
       air_percent: 200,
+      neutral_fixed: 0,
+      earth_fixed: 0,
+      fire_fixed: 0,
+      water_fixed: 0,
+      air_fixed: 0
     }
   },
   // Dismayed Tynril
-  { id: 'dismayed_tynril',
+  { bossID: 'dismayed_tynril',
     name: {
       de: 'Bestürzter Tynril',
       en: 'Dismayed Tynril',
@@ -1678,11 +1733,16 @@ const BOSSE_LISTE = [
     level: 140,
     region: '',
     family: '',
-    homeDungeonID: 'the_tynril_lab',
+    homeDungeonBossID: 'the_tynril_lab',
     characteristics: {
       healthPoints: 3800,
       actionPoints: 10,
-      movementPoints: 2
+      movementPoints: 2,
+      apParry: 23,
+      mpParry: 23,
+      lock: 35,
+      criticalResistance: 0,
+      pushbackResistance: 0
     },
     resistances: {
       neutral_percent: 200,
@@ -1690,10 +1750,15 @@ const BOSSE_LISTE = [
       fire_percent: 200,
       water_percent: 200,
       air_percent: 0,
+      neutral_fixed: 0,
+      earth_fixed: 0,
+      fire_fixed: 0,
+      water_fixed: 0,
+      air_fixed: 0
     }
   },
-  // Perfidious Tynril
-  { id: 'perfidious_tynril',
+  // Perfidous Tynril
+  { bossID: 'perfidious_tynril',
     name: {
       de: 'Perfider Tynril',
       en: 'Perfidious Tynril',
@@ -1705,11 +1770,16 @@ const BOSSE_LISTE = [
     level: 140,
     region: '',
     family: '',
-    homeDungeonID: 'the_tynril_lab',
+    homeDungeonBossID: 'the_tynril_lab',
     characteristics: {
       healthPoints: 3800,
       actionPoints: 10,
-      movementPoints: 2
+      movementPoints: 2,
+      apParry: 23,
+      mpParry: 23,
+      lock: 35,
+      criticalResistance: 0,
+      pushbackResistance: 0
     },
     resistances: {
       neutral_percent: 200,
@@ -1717,10 +1787,15 @@ const BOSSE_LISTE = [
       fire_percent: 0,
       water_percent: 200,
       air_percent: 200,
+      neutral_fixed: 0,
+      earth_fixed: 0,
+      fire_fixed: 0,
+      water_fixed: 0,
+      air_fixed: 0
     }
   },
   // Stunned Tynril
-  { id: 'stunned_tynril',
+  { bossID: 'stunned_tynril',
     name: {
       de: 'Verblüffter Tynril',
       en: 'Stunned Tynril',
@@ -1732,11 +1807,16 @@ const BOSSE_LISTE = [
     level: 140,
     region: '',
     family: '',
-    homeDungeonID: 'the_tynril_lab',
+    homeDungeonBossID: 'the_tynril_lab',
     characteristics: {
       healthPoints: 3800,
       actionPoints: 10,
-      movementPoints: 2
+      movementPoints: 2,
+      apParry: 23,
+      mpParry: 23,
+      lock: 35,
+      criticalResistance: 0,
+      pushbackResistance: 0
     },
     resistances: {
       neutral_percent: 200,
@@ -1744,10 +1824,15 @@ const BOSSE_LISTE = [
       fire_percent: 200,
       water_percent: 200,
       air_percent: 200,
+      neutral_fixed: 0,
+      earth_fixed: 0,
+      fire_fixed: 0,
+      water_fixed: 0,
+      air_fixed: 0
     }
   },
   // Royal Pingwin
-  { id: 'royal_pingwin',
+  { bossID: 'royal_pingwin',
     name: {
       de: 'King Ping',
       en: 'Royal Pingwin',
@@ -1759,7 +1844,7 @@ const BOSSE_LISTE = [
     level: 162,
     region: '',
     family: '',
-    homeDungeonID: 'royal_pingwins_excavation',
+    homeDungeonBossID: 'royal_pingwins_excavation',
     characteristics: {
       healthPoints: 4900,
       actionPoints: 15,
@@ -1774,7 +1859,7 @@ const BOSSE_LISTE = [
     }
   },
   // Hell Mina
-  { id: 'hell_mina',
+  { bossID: 'hell_mina',
     name: {
       de: 'Hell Mina',
       en: 'Hell Mina',
@@ -1786,7 +1871,7 @@ const BOSSE_LISTE = [
     level: 140,
     region: '',
     family: '',
-    homeDungeonID: 'long_slumbers_barrow',
+    homeDungeonBossID: 'long_slumbers_barrow',
     characteristics: {
       healthPoints: 6500,
       actionPoints: 12,
@@ -1801,7 +1886,7 @@ const BOSSE_LISTE = [
     }
   },
   // Buck Anear
-  { id: 'buck_anear',
+  { bossID: 'buck_anear',
     name: {
       de: 'Ben der Ripat',
       en: 'Buck Anear',
@@ -1813,7 +1898,7 @@ const BOSSE_LISTE = [
     level: 150,
     region: '',
     family: '',
-    homeDungeonID: 'the_wreck_of_the_hesperus',
+    homeDungeonBossID: 'the_wreck_of_the_hesperus',
     characteristics: {
       healthPoints: 6200,
       actionPoints: 16,
@@ -1828,7 +1913,7 @@ const BOSSE_LISTE = [
     }
   },
   // Sphincter Cell
-  { id: 'sphincter_cell',
+  { bossID: 'sphincter_cell',
     name: {
       de: 'Sphincter Cell',
       en: 'Sphincter Cell',
@@ -1840,7 +1925,7 @@ const BOSSE_LISTE = [
     level: 150,
     region: '',
     family: '',
-    homeDungeonID: 'amakna_castle_rat_dungeon',
+    homeDungeonBossID: 'amakna_castle_rat_dungeon',
     characteristics: {
       healthPoints: 6400,
       actionPoints: 8,
@@ -1856,7 +1941,7 @@ const BOSSE_LISTE = [
   },
   // === Level 151 - 190 Dungeons ===
   // Kimbo
-  { id: 'kimbo',
+  { bossID: 'kimbo',
     name: {
       de: 'Kimbo',
       en: 'Kimbo',
@@ -1868,7 +1953,7 @@ const BOSSE_LISTE = [
     level: 160,
     region: '',
     family: '',
-    homeDungeonID: 'kimbos_canopy',
+    homeDungeonBossID: 'kimbos_canopy',
     characteristics: {
       healthPoints: 6900,
       actionPoints: 10,
@@ -1883,7 +1968,7 @@ const BOSSE_LISTE = [
     }
   },
   // Minotot
-  { id: 'minotot',
+  { bossID: 'minotot',
     name: {
       de: 'Minotot',
       en: 'Minotot',
@@ -1895,11 +1980,16 @@ const BOSSE_LISTE = [
     level: 160,
     region: '',
     family: '',
-    homeDungeonID: 'minotot_room',
+    homeDungeonBossID: 'minotot_room',
     characteristics: {
       healthPoints: 10000,
       actionPoints: 10,
-      movementPoints: 5
+      movementPoints: 5,
+      apParry: 90,
+      mpParry: 90,
+      lock: 60,
+      criticalResistance: 0,
+      pushbackResistance: 0
     },
     resistances: {
       neutral_percent: 35,
@@ -1907,10 +1997,15 @@ const BOSSE_LISTE = [
       fire_percent: 35,
       water_percent: -5,
       air_percent: -5,
+      neutral_fixed: 0,
+      earth_fixed: 0,
+      fire_fixed: 0,
+      water_fixed: 0,
+      air_fixed: 0
     }
   },
   // Obsidemon
-  { id: 'obsidemon',
+  { bossID: 'obsidemon',
     name: {
       de: 'Obsidianter',
       en: 'Obsidemon',
@@ -1918,11 +2013,11 @@ const BOSSE_LISTE = [
       fr: 'Obsidiantre',
       pt: 'Obsidemõnio',
     },
-    imageUrl: `${ICON_BASE}/boss-icons/obsidemon.png`,
+    imageUrl: `${ICON_BASE}/boss-icons/obsidmon.png`,
     level: 160,
     region: '',
     family: '',
-    homeDungeonID: 'the_obsidemons_hypogeum',
+    homeDungeonBossID: 'the_obsidemons_hypogeum',
     characteristics: {
       healthPoints: 7000,
       actionPoints: 16,
@@ -1937,7 +2032,7 @@ const BOSSE_LISTE = [
     }
   },
   // Zombrute
-  { id: 'zombrute',
+  { bossID: 'zombrute',
     name: {
       de: 'Zombrutalist',
       en: 'Zombrute',
@@ -1949,7 +2044,7 @@ const BOSSE_LISTE = [
     level: 160,
     region: '',
     family: '',
-    homeDungeonID: 'the_flooded_chapel',
+    homeDungeonBossID: 'the_flooded_chapel',
     characteristics: {
       healthPoints: 8000,
       actionPoints: 14,
@@ -1964,7 +2059,7 @@ const BOSSE_LISTE = [
     }
   },
   // Tengu Snowfoux
-  { id: 'tengu_snowfoux',
+  { bossID: 'tengu_snowfoux',
     name: {
       de: 'Tengu Eisfux',
       en: 'Tengu Snowfoux',
@@ -1976,7 +2071,7 @@ const BOSSE_LISTE = [
     level: 170,
     region: '',
     family: '',
-    homeDungeonID: 'snowfoux_caverns',
+    homeDungeonBossID: 'snowfoux_caverns',
     characteristics: {
       healthPoints: 7900,
       actionPoints: 15,
@@ -1990,8 +2085,35 @@ const BOSSE_LISTE = [
       air_percent: 21,
     }
   },
+  // Foster Fuji Snowfoux
+  { bossID: 'fuji_snowfoux',
+    name: {
+      de: 'Fuji Eisfux Ziehmutter',
+      en: 'Foster Fuji Snowfoux',
+      es: 'Fuji Gélifux Nodriza',
+      fr: 'Fuji Givrefoux Nourricière',
+      pt: 'Fuji Gelifox Maternal',
+    },
+    imageUrl: `${ICON_BASE}/boss-icons/fuji_snowfoux.png`,
+    level: 190,
+    region: '',
+    family: '',
+    homeDungeonBossID: 'foster_caverns',
+    characteristics: {
+      healthPoints: 10000,
+      actionPoints: 12,
+      movementPoints: 4
+    },
+    resistances: {
+      neutral_percent: -6,
+      earth_percent: 6,
+      fire_percent: 14,
+      water_percent: 12,
+      air_percent: -11,
+    }
+  },
   // Nagate
-  { id: 'nagate',
+  { bossID: 'nagate',
     name: {
       de: 'Nagate',
       en: 'Nagate',
@@ -2003,7 +2125,7 @@ const BOSSE_LISTE = [
     level: 170,
     region: '',
     family: '',
-    homeDungeonID: 'valley_of_the_lady_of_the_water_percent',
+    homeDungeonBossID: 'valley_of_the_lady_of_the_water_percent',
     characteristics: {
       healthPoints: 8800,
       actionPoints: 14,
@@ -2018,7 +2140,7 @@ const BOSSE_LISTE = [
     }
   },
   // Scale King
-  { id: 'scale_king',
+  { bossID: 'scale_king',
     name: {
       de: 'König Skai',
       en: 'Scale King',
@@ -2030,7 +2152,7 @@ const BOSSE_LISTE = [
     level: 170,
     region: '',
     family: '',
-    homeDungeonID: 'scale_kings_pyramid',
+    homeDungeonBossID: 'scale_kings_pyrambossID',
     characteristics: {
       healthPoints: 8800,
       actionPoints: 14,
@@ -2045,7 +2167,7 @@ const BOSSE_LISTE = [
     }
   },
   // Korriander
-  { id: 'Korriander',
+  { bossID: 'Korriander',
     name: {
       de: 'Korriander',
       en: 'Korriander',
@@ -2057,7 +2179,7 @@ const BOSSE_LISTE = [
     level: 180,
     region: '',
     family: '',
-    homeDungeonID: 'korrianders_lair_percent',
+    homeDungeonBossID: 'korrianders_lair_percent',
     characteristics: {
       healthPoints: 8900,
       actionPoints: 15,
@@ -2072,7 +2194,7 @@ const BOSSE_LISTE = [
     }
   },
   // Giant Kralove
-  { id: 'giant_kralove',
+  { bossID: 'giant_kralove',
     name: {
       de: 'Riesenkrakamor',
       en: 'Giant Kralove',
@@ -2084,7 +2206,7 @@ const BOSSE_LISTE = [
     level: 180,
     region: '',
     family: '',
-    homeDungeonID: 'lair_percent_of_the_giant_kralove',
+    homeDungeonBossID: 'lair_percent_of_the_giant_kralove',
     characteristics: {
       healthPoints: 3700,
       actionPoints: 18,
@@ -2099,7 +2221,7 @@ const BOSSE_LISTE = [
     }
   },
   // Bworker
-  { id: 'bworker',
+  { bossID: 'bworker',
     name: {
       de: 'Bworker',
       en: 'Bworker',
@@ -2111,11 +2233,16 @@ const BOSSE_LISTE = [
     level: 180,
     region: '',
     family: '',
-    homeDungeonID: 'bworker_dungeon',
+    homeDungeonBossID: 'bworker_dungeon',
     characteristics: {
       healthPoints: 9600,
       actionPoints: 12,
-      movementPoints: 9
+      movementPoints: 9,
+      apParry: 80,
+      mpParry: 80,
+      lock: 100,
+      criticalResistance: 0,
+      pushbackResistance: 0
     },
     resistances: {
       neutral_percent: 18,
@@ -2123,10 +2250,15 @@ const BOSSE_LISTE = [
       fire_percent: 28,
       water_percent: 18,
       air_percent: -13,
+      neutral_fixed: 0,
+      earth_fixed: 0,
+      fire_fixed: 0,
+      water_fixed: 0,
+      air_fixed: 0
     }
   },
   // Ougaa
-  { id: 'ougaa',
+  { bossID: 'ougaa',
     name: {
       de: 'Stinkeling',
       en: 'Ougaa',
@@ -2138,7 +2270,7 @@ const BOSSE_LISTE = [
     level: 180,
     region: '',
     family: '',
-    homeDungeonID: 'fungus_dungeon',
+    homeDungeonBossID: 'fungus_dungeon',
     characteristics: {
       healthPoints: 8500,
       actionPoints: 18,
@@ -2153,7 +2285,7 @@ const BOSSE_LISTE = [
     }
   },
   // Tanukoui San
-  { id: 'tanukoui_san',
+  { bossID: 'tanukoui_san',
     name: {
       de: 'Tanukouï San',
       en: 'Tanukoui San',
@@ -2165,7 +2297,7 @@ const BOSSE_LISTE = [
     level: 180,
     region: '',
     family: '',
-    homeDungeonID: 'tanukoui_sans_workshop',
+    homeDungeonBossID: 'tanukoui_sans_workshop',
     characteristics: {
       healthPoints: 8900,
       actionPoints: 16,
@@ -2180,7 +2312,7 @@ const BOSSE_LISTE = [
     }
   },
   // Kolosso
-  { id: 'kolosso',
+  { bossID: 'kolosso',
     name: {
       de: 'Daxolossus',
       en: 'Kolosso',
@@ -2192,7 +2324,7 @@ const BOSSE_LISTE = [
     level: 190,
     region: '',
     family: '',
-    homeDungeonID: 'kolossos_cavern',
+    homeDungeonBossID: 'kolossos_cavern',
     characteristics: {
       healthPoints: 8000,
       actionPoints: 15,
@@ -2207,7 +2339,7 @@ const BOSSE_LISTE = [
     }
   },
   // Professor Xa
-  { id: 'professor_xa',
+  { bossID: 'professor_xa',
     name: {
       de: 'Professor Xa',
       en: 'Professor Xa',
@@ -2219,7 +2351,7 @@ const BOSSE_LISTE = [
     level: 190,
     region: '',
     family: '',
-    homeDungeonID: 'kolossos_cavern',
+    homeDungeonBossID: 'kolossos_cavern',
     characteristics: {
       healthPoints: 8000,
       actionPoints: 15,
@@ -2234,7 +2366,7 @@ const BOSSE_LISTE = [
     }
   },
   // Founoroshi
-  { id: 'founoroshi',
+  { bossID: 'founoroshi',
     name: {
       de: 'Fuxoroshi',
       en: 'Founoroshi',
@@ -2246,7 +2378,7 @@ const BOSSE_LISTE = [
     level: 190,
     region: '',
     family: '',
-    homeDungeonID: 'fouxwork_factory',
+    homeDungeonBossID: 'fouxwork_factory',
     characteristics: {
       healthPoints: 11000,
       actionPoints: 18,
@@ -2260,35 +2392,8 @@ const BOSSE_LISTE = [
       air_percent: 20,
     }
   },
-  // Foster Fuji Snowfoux
-  { id: 'fuji_snowfoux',
-    name: {
-      de: 'Fuji Eisfux Ziehmutter',
-      en: 'Foster Fuji Snowfoux',
-      es: 'Fuji Gélifux Nodriza',
-      fr: 'Fuji Givrefoux Nourricière',
-      pt: 'Fuji Gelifox Maternal',
-    },
-    imageUrl: `${ICON_BASE}/boss-icons/fuji_snowfoux.png`,
-    level: 190,
-    region: '',
-    family: '',
-    homeDungeonID: 'foster_caverns',
-    characteristics: {
-      healthPoints: 10000,
-      actionPoints: 12,
-      movementPoints: 4
-    },
-    resistances: {
-      neutral_percent: -6,
-      earth_percent: 6,
-      fire_percent: 14,
-      water_percent: 12,
-      air_percent: -11,
-    }
-  },
   // Grohlum
-  { id: 'grohlum',
+  { bossID: 'grohlum',
     name: {
       de: 'Grollum',
       en: 'Grohlum',
@@ -2300,7 +2405,7 @@ const BOSSE_LISTE = [
     level: 190,
     region: '',
     family: '',
-    homeDungeonID: 'sakai_mine',
+    homeDungeonBossID: 'sakai_mine',
     characteristics: {
       healthPoints: 11000,
       actionPoints: 20,
@@ -2315,7 +2420,7 @@ const BOSSE_LISTE = [
     }
   },
   // Celestial Bearbarian
-  { id: 'celestial_bearbarian',
+  { bossID: 'celestial_bearbarian',
     name: {
       de: 'Himmlischer Barbär',
       en: 'Celestial Bearbarian',
@@ -2327,7 +2432,7 @@ const BOSSE_LISTE = [
     level: 200,
     region: '',
     family: '',
-    homeDungeonID: 'bearbarian_antichamber',
+    homeDungeonBossID: 'bearbarian_antichamber',
     characteristics: {
       healthPoints: 11000,
       actionPoints: 20,
@@ -2342,7 +2447,7 @@ const BOSSE_LISTE = [
     }
   },
   // Shihan
-  { id: 'shihan',
+  { bossID: 'shihan',
     name: {
       de: 'Shihan',
       en: 'Shihan',
@@ -2354,7 +2459,7 @@ const BOSSE_LISTE = [
     level: 200,
     region: '',
     family: '',
-    homeDungeonID: 'wind_dojo',
+    homeDungeonBossID: 'wind_dojo',
     characteristics: {
       healthPoints: 11000,
       actionPoints: 18,
@@ -2369,7 +2474,7 @@ const BOSSE_LISTE = [
     }
   },
   // Hanshi
-  { id: 'hanshi',
+  { bossID: 'hanshi',
     name: {
       de: 'Hanshi',
       en: 'Hanshi',
@@ -2381,7 +2486,7 @@ const BOSSE_LISTE = [
     level: 200,
     region: '',
     family: '',
-    homeDungeonID: 'wind_dojo',
+    homeDungeonBossID: 'wind_dojo',
     characteristics: {
       healthPoints: 9900,
       actionPoints: 18,
@@ -2397,7 +2502,7 @@ const BOSSE_LISTE = [
   },
   // === Level 191 - 200 Dungeons ===
   // Missiz Freezz
-  { id: 'missiz_freezz',
+  { bossID: 'missiz_freezz',
     name: {
       de: 'Missiz Frizz',
       en: 'Missiz Freezz',
@@ -2409,7 +2514,7 @@ const BOSSE_LISTE = [
     level: 220,
     region: '',
     family: '',
-    homeDungeonID: 'missiz_freezzs_frostforge',
+    homeDungeonBossID: 'missiz_freezzs_frostforge',
     characteristics: {
       healthPoints: 13000,
       actionPoints: 20,
@@ -2424,7 +2529,7 @@ const BOSSE_LISTE = [
     }
   },
   // Sylargh
-  { id: 'sylargh',
+  { bossID: 'sylargh',
     name: {
       de: 'Sylargh',
       en: 'Sylargh',
@@ -2436,7 +2541,7 @@ const BOSSE_LISTE = [
     level: 220,
     region: '',
     family: '',
-    homeDungeonID: 'sylarghs_carrier',
+    homeDungeonBossID: 'sylarghs_carrier',
     characteristics: {
       healthPoints: 13000,
       actionPoints: 20,
@@ -2451,7 +2556,7 @@ const BOSSE_LISTE = [
     }
   },
   // Klime
-  { id: 'klime',
+  { bossID: 'klime',
     name: {
       de: 'R.Klimm',
       en: 'Klime',
@@ -2463,7 +2568,7 @@ const BOSSE_LISTE = [
     level: 220,
     region: '',
     family: '',
-    homeDungeonID: 'klimes_private_suite',
+    homeDungeonBossID: 'klimes_private_suite',
     characteristics: {
       healthPoints: 13000,
       actionPoints: 20,
@@ -2478,7 +2583,7 @@ const BOSSE_LISTE = [
     }
   },
   // Nileza
-  { id: 'nileza',
+  { bossID: 'nileza',
     name: {
       de: 'Nileza',
       en: 'Nileza',
@@ -2490,7 +2595,7 @@ const BOSSE_LISTE = [
     level: 220,
     region: '',
     family: '',
-    homeDungeonID: 'nilezas_laboratory',
+    homeDungeonBossID: 'nilezas_laboratory',
     characteristics: {
       healthPoints: 13000,
       actionPoints: 20,
@@ -2505,7 +2610,7 @@ const BOSSE_LISTE = [
     }
   },
   // Count Harebourg
-  { id: 'count_harebourg',
+  { bossID: 'count_harebourg',
     name: {
       de: 'Graf Primzahl',
       en: 'Count Harebourg',
@@ -2517,7 +2622,7 @@ const BOSSE_LISTE = [
     level: 220,
     region: '',
     family: '',
-    homeDungeonID: 'the_counts_dungeon',
+    homeDungeonBossID: 'the_counts_dungeon',
     characteristics: {
       healthPoints: 13000,
       actionPoints: 20,
@@ -2532,7 +2637,7 @@ const BOSSE_LISTE = [
     }
   },
   // Damadrya
-  { id: 'damadrya',
+  { bossID: 'damadrya',
     name: {
       de: 'Damadrya',
       en: 'Damadrya',
@@ -2544,7 +2649,7 @@ const BOSSE_LISTE = [
     level: 200,
     region: 'pandala',
     family: '',
-    homeDungeonID: 'damadryas_bamboo_grove',
+    homeDungeonBossID: 'damadryas_bamboo_grove',
     characteristics: {
       healthPoints: 12000,
       actionPoints: 20,
@@ -2559,7 +2664,7 @@ const BOSSE_LISTE = [
     }
   },
   // Katamashii
-  { id: 'katamashii',
+  { bossID: 'katamashii',
     name: {
       de: 'Katamashii',
       en: 'Katamashii',
@@ -2571,7 +2676,7 @@ const BOSSE_LISTE = [
     level: 200,
     region: '',
     family: '',
-    homeDungeonID: 'lost_souls_sanctuary',
+    homeDungeonBossID: 'lost_souls_sanctuary',
     characteristics: {
       healthPoints: 13000,
       actionPoints: 20,
@@ -2585,10 +2690,10 @@ const BOSSE_LISTE = [
       air_percent: 26,
     }
   },
-  // === Saisonale Bosse ===
+  // === Seasonal Bosses ===
   // -- Ascension --
   // Mucane
-  { id: 'mucane',
+  { bossID: 'mucane',
     name: {
       de: 'Mucane',
       en: 'Mucane',
@@ -2600,7 +2705,7 @@ const BOSSE_LISTE = [
     level: 137,
     region: '',
     family: '',
-    homeDungeonID: ['ascension_25', 'ascension_75'],
+    homeDungeonBossID: ['ascension_25', 'ascension_75'],
     characteristics: {
       healthPoints: 9318,
       actionPoints: 14,
@@ -2615,7 +2720,7 @@ const BOSSE_LISTE = [
     }
   },
   // Ul-Khan
-  { id: 'ul_khan',
+  { bossID: 'ul_khan',
     name: {
       de: 'Ul\'Khan',
       en: 'Ul\'Khan',
@@ -2627,7 +2732,7 @@ const BOSSE_LISTE = [
     level: 200,
     region: '',
     family: '',
-    homeDungeonID: ['ascension_50', 'ascension_100'],
+    homeDungeonBossID: ['ascension_50', 'ascension_100'],
     characteristics: {
       healthPoints: 17790,
       actionPoints: 12,
@@ -2643,7 +2748,7 @@ const BOSSE_LISTE = [
   },
   // -- Vulkania --
   // Sleepwalking Grozilla
-  { id: 'sleepwalking_grozilla',
+  { bossID: 'sleepwalking_grozilla',
     name: {
       de: 'Schlafwandelnder Grozilla',
       en: 'Sleepwalking Grozilla',
@@ -2655,7 +2760,7 @@ const BOSSE_LISTE = [
     level: 100,
     region: '',
     family: '',
-    homeDungeonID: 'sleepwalking_pinki_crater',
+    homeDungeonBossID: 'sleepwalking_pinki_crater',
     characteristics: {
       healthPoints: 1600,
       actionPoints: 12,
@@ -2670,7 +2775,7 @@ const BOSSE_LISTE = [
     }
   },
   // Sleepwalking Grasmera
-  { id: 'sleepwalking_grasmera',
+  { bossID: 'sleepwalking_grasmera',
     name: {
       de: 'Schlafwandelnde Grasmera',
       en: 'Sleepwalking Grasmera',
@@ -2682,7 +2787,7 @@ const BOSSE_LISTE = [
     level: 100,
     region: '',
     family: '',
-    homeDungeonID: 'sleepwalking_pinki_crater',
+    homeDungeonBossID: 'sleepwalking_pinki_crater',
     characteristics: {
       healthPoints: 1600,
       actionPoints: 12,
@@ -2697,7 +2802,7 @@ const BOSSE_LISTE = [
     }
   },
   // Exhausted Grozilla
-  { id: 'exhausted_grozilla',
+  { bossID: 'exhausted_grozilla',
     name: {
       de: 'Erschöpfter Grozilla',
       en: 'Exhausted Grozilla',
@@ -2709,7 +2814,7 @@ const BOSSE_LISTE = [
     level: 200,
     region: '',
     family: '',
-    homeDungeonID: 'exhausted_pinki_crater',
+    homeDungeonBossID: 'exhausted_pinki_crater',
     characteristics: {
       healthPoints: 4800,
       actionPoints: 12,
@@ -2724,7 +2829,7 @@ const BOSSE_LISTE = [
     }
   },
   // Exhausted Grasmera
-  { id: 'exhausted_grasmera',
+  { bossID: 'exhausted_grasmera',
     name: {
       de: 'Erschöpfte Grasmera',
       en: 'Exhausted Grasmera',
@@ -2736,7 +2841,7 @@ const BOSSE_LISTE = [
     level: 200,
     region: '',
     family: '',
-    homeDungeonID: 'exhausted_pinki_crater',
+    homeDungeonBossID: 'exhausted_pinki_crater',
     characteristics: {
       healthPoints: 4800,
       actionPoints: 12,
@@ -2751,7 +2856,7 @@ const BOSSE_LISTE = [
     }
   },
   // Tired Grozilla
-  { id: 'tired_grozilla',
+  { bossID: 'tired_grozilla',
     name: {
       de: 'Müder Grozilla',
       en: 'Tired Grozilla',
@@ -2763,7 +2868,7 @@ const BOSSE_LISTE = [
     level: 300,
     region: '',
     family: '',
-    homeDungeonID: 'tired_pinki_crater',
+    homeDungeonBossID: 'tired_pinki_crater',
     characteristics: {
       healthPoints: 10000,
       actionPoints: 12,
@@ -2778,7 +2883,7 @@ const BOSSE_LISTE = [
     }
   },
   // Tired Grasmera
-  { id: 'tired_grasmera',
+  { bossID: 'tired_grasmera',
     name: {
       de: 'Müde Grasmera',
       en: 'Tired Grasmera',
@@ -2790,7 +2895,7 @@ const BOSSE_LISTE = [
     level: 300,
     region: '',
     family: '',
-    homeDungeonID: 'tiredpinki_crater',
+    homeDungeonBossID: 'tiredpinki_crater',
     characteristics: {
       healthPoints: 10000,
       actionPoints: 12,
@@ -2805,7 +2910,7 @@ const BOSSE_LISTE = [
     }
   },
   // Grozilla
-  { id: 'grozilla',
+  { bossID: 'grozilla',
     name: {
       de: 'Grozilla',
       en: 'Grozilla',
@@ -2817,7 +2922,7 @@ const BOSSE_LISTE = [
     level: 400,
     region: '',
     family: '',
-    homeDungeonID: 'pinki_crater',
+    homeDungeonBossID: 'pinki_crater',
     characteristics: {
       healthPoints: 16000,
       actionPoints: 12,
@@ -2832,7 +2937,7 @@ const BOSSE_LISTE = [
     }
   },
   // Grasmera
-  { id: 'grasmera',
+  { bossID: 'grasmera',
     name: {
       de: 'Grasmera',
       en: 'Grasmera',
@@ -2844,7 +2949,7 @@ const BOSSE_LISTE = [
     level: 400,
     region: '',
     family: '',
-    homeDungeonID: 'pinki_crater',
+    homeDungeonBossID: 'pinki_crater',
     characteristics: {
       healthPoints: 16000,
       actionPoints: 12,
@@ -2860,7 +2965,7 @@ const BOSSE_LISTE = [
   },
   // -- Horrob Isle
   // B'one Shot
-  { id: 'bone_shot',
+  { bossID: 'bone_shot',
     name: {
       de: 'Mark Sauger',
       en: 'B\'one Shot',
@@ -2872,7 +2977,7 @@ const BOSSE_LISTE = [
     level: 60,
     region: '',
     family: '',
-    homeDungeonID: '',
+    homeDungeonBossID: '',
     characteristics: {
       healthPoints: 1200,
       actionPoints: 10,
@@ -2887,7 +2992,7 @@ const BOSSE_LISTE = [
     }
   },
   // Al Howin
-  { id: 'al_howin',
+  { bossID: 'al_howin',
     name: {
       de: 'Höll O\'Feen',
       en: 'Al Howin',
@@ -2899,7 +3004,7 @@ const BOSSE_LISTE = [
     level: 100,
     region: '',
     family: '',
-    homeDungeonID: '',
+    homeDungeonBossID: '',
     characteristics: {
       healthPoints: 3300,
       actionPoints: 12,
@@ -2914,10 +3019,10 @@ const BOSSE_LISTE = [
     }
   },
   // Staff Deleghoul
-  { id: 'staff_deleghoul',
+  { bossID: 'staff_deleghoul',
     name: {
       de: 'Personal Deleghul',
-      en: 'Staff Deleghul',
+      en: 'Staff Deleghoul',
       es: 'Deleghuaedo de Personal',
       fr: 'Délégoule du Personnel',
       pt: 'Carniçátiro',
@@ -2926,7 +3031,7 @@ const BOSSE_LISTE = [
     level: 220,
     region: '',
     family: '',
-    homeDungeonID: '',
+    homeDungeonBossID: '',
     characteristics: {
       healthPoints: 18000,
       actionPoints: 20,
@@ -2942,19 +3047,19 @@ const BOSSE_LISTE = [
   },
   // -- Kwismas --
   // Itzing
-  { id: 'itzing',
+  { bossID: 'itzting',
     name: {
       de: 'Pisack',
-      en: 'Itzing',
+      en: 'Itzting',
       es: 'Pikabeto',
       fr: 'Sapik',
       pt: 'Spinho',
     },
-    imageUrl: `${ICON_BASE}/boss-icons/itzing.png`,
+    imageUrl: `${ICON_BASE}/boss-icons/itzting.png`,
     level: 50,
     region: '',
     family: '',
-    homeDungeonID: '',
+    homeDungeonBossID: '',
     characteristics: {
       healthPoints: 1300,
       actionPoints: 10,
@@ -2969,7 +3074,7 @@ const BOSSE_LISTE = [
     }
   },
   // Father Kwismas
-  { id: 'father_kwismas',
+  { bossID: 'father_kwismas',
     name: {
       de: 'Weißnachtsmann',
       en: 'Father Kwismas',
@@ -2981,7 +3086,7 @@ const BOSSE_LISTE = [
     level: 110,
     region: '',
     family: '',
-    homeDungeonID: '',
+    homeDungeonBossID: '',
     characteristics: {
       healthPoints: 3900,
       actionPoints: 10,
@@ -2996,7 +3101,7 @@ const BOSSE_LISTE = [
     }
   },
   // Father Whupper
-  { id: 'father_whupper',
+  { bossID: 'father_whupper',
     name: {
       de: 'Rubrächer der Knechter',
       en: 'Father Whupper',
@@ -3008,7 +3113,7 @@ const BOSSE_LISTE = [
     level: 180,
     region: '',
     family: '',
-    homeDungeonID: '',
+    homeDungeonBossID: '',
     characteristics: {
       healthPoints: 9600,
       actionPoints: 10,
@@ -3023,7 +3128,7 @@ const BOSSE_LISTE = [
     }
   },
   // Minotoball
-  { id: '',
+  { bossID: '',
     name: {
       de: '',
       en: '',
@@ -3035,7 +3140,7 @@ const BOSSE_LISTE = [
     level: 0,
     region: '',
     family: '',
-    homeDungeonID: '',
+    homeDungeonBossID: '',
     characteristics: {
       healthPoints: 0,
       actionPoints: 12,
@@ -3051,7 +3156,7 @@ const BOSSE_LISTE = [
   },
   // -- Raid --
   // Belladonna (Raid)
-  { id: 'exalted_belladonna',
+  { bossID: 'exalted_belladonna',
     name: {
       de: 'Begeisterte Belladonna',
       en: 'Exalted Belladonna',
@@ -3063,7 +3168,7 @@ const BOSSE_LISTE = [
     level: 300,
     region: '',
     family: '',
-    homeDungeonID: '',
+    homeDungeonBossID: '',
     characteristics: {
       healthPoints: 32000,
       actionPoints: 20,
@@ -3078,7 +3183,7 @@ const BOSSE_LISTE = [
     }
   },
   // Dark Vlad
-  { id: 'dark_vlad',
+  { bossID: 'dark_vlad',
     name: {
       de: 'Dark Vlad',
       en: 'Dark Vlad',
@@ -3090,7 +3195,7 @@ const BOSSE_LISTE = [
     level: 300,
     region: '',
     family: '',
-    homeDungeonID: '',
+    homeDungeonBossID: '',
     characteristics: {
       healthPoints: 35000,
       actionPoints: 20,
