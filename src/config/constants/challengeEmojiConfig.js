@@ -1,69 +1,60 @@
-const { resolveDiscordEmoji } = require('./shared');
-const achievements = require('./achievements');
+const { CATEGORIES } = require('./achievementsChallenges');
+const { EMOJI_LIST } = require('./emojis');
+const {
+  extractEmojiName,
+  getAchievementEmoji,
+  getAchievementEmojiName,
+  normalizeAchievementKey,
+} = require('./achievementUtils');
 
-const normalizeChallengeId =
-  (typeof achievements.normalizeAchievementId === 'function'
-    ? achievements.normalizeAchievementId
-    : typeof achievements.normalizeId === 'function'
-      ? achievements.normalizeId
-      : (id) => String(id || '').trim().toLowerCase().replace(/\s+/g, '_'));
-
-const getAchievementEmojiName =
-  (typeof achievements.getAchievementEmojiName === 'function'
-    ? achievements.getAchievementEmojiName
-    : (id) => {
-        const normalized = normalizeChallengeId(id);
-        return normalized ? `achievement_${normalized}` : '';
-      });
-
-const getAchievementAssetPath =
-  (typeof achievements.getAchievementAssetPath === 'function'
-    ? achievements.getAchievementAssetPath
-    : (id) => {
-        const normalized = normalizeChallengeId(id);
-        return normalized ? `achievement-icons/${normalized}.png` : '';
-      });
-
-// Configure challenge emojis here. Example:
-// { id: 'duo', name: 'challenge_duo', assetPath: 'challenge-icons/duo.png' }
 const CHALLENGE_EMOJIS = (() => {
   const entries = [];
   const seen = new Set();
-  if (Array.isArray(achievements)) {
-    for (const achievement of achievements) {
-      if (!achievement || typeof achievement !== 'object') continue;
-      const normalized = normalizeChallengeId(achievement.id);
+
+  for (const [category, keys] of Object.entries(CATEGORIES)) {
+    const emojiGroup = EMOJI_LIST?.[category];
+    if (!emojiGroup || !Array.isArray(keys)) continue;
+
+    for (const key of keys) {
+      if (!key) continue;
+      const normalized = normalizeAchievementKey(key);
       if (!normalized || seen.has(normalized)) continue;
-      const name = achievement.emojiName || getAchievementEmojiName(achievement.id);
-      const assetPath = achievement.assetPath || getAchievementAssetPath(achievement.id);
-      if (!name || !assetPath) continue;
-      entries.push({ id: achievement.id, name, assetPath });
+
+      const emoji = emojiGroup[normalized] || getAchievementEmoji(normalized);
+      if (!emoji) continue;
+
+      const name = extractEmojiName(emoji) || getAchievementEmojiName(normalized);
+      entries.push({ id: normalized, name, emoji });
       seen.add(normalized);
     }
   }
+
   return entries;
 })();
 
+const EMOJI_BY_KEY = new Map(CHALLENGE_EMOJIS.map((entry) => [entry.id, entry.emoji]));
+const NAME_BY_KEY = new Map(CHALLENGE_EMOJIS.map((entry) => [entry.id, entry.name]));
+
 function findChallengeEmojiEntry(id) {
   if (!id) return null;
-  const normalized = normalizeChallengeId(id);
-  return CHALLENGE_EMOJIS.find((entry) => normalizeChallengeId(entry.id) === normalized) || null;
+  const normalized = normalizeAchievementKey(id);
+  return CHALLENGE_EMOJIS.find((entry) => entry.id === normalized) || null;
 }
 
 function getChallengeEmojiName(id) {
-  const entry = findChallengeEmojiEntry(id);
-  return entry?.name || '';
+  if (!id) return '';
+  const normalized = normalizeAchievementKey(id);
+  return NAME_BY_KEY.get(normalized) || '';
 }
 
 function resolveChallengeEmoji(id) {
-  const name = getChallengeEmojiName(id);
-  return name ? resolveDiscordEmoji(name, `:${name}:`) : '';
+  if (!id) return '';
+  const normalized = normalizeAchievementKey(id);
+  return EMOJI_BY_KEY.get(normalized) || '';
 }
 
 function getChallengeEmojiInstallerDefinitions() {
-  return CHALLENGE_EMOJIS
-    .filter((entry) => entry?.name && entry?.assetPath)
-    .map((entry) => ({ name: entry.name, path: entry.assetPath }));
+  return [];
 }
 
 module.exports = {

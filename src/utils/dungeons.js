@@ -7,7 +7,10 @@ const {
   resolveLocaleKey,
 } = require('../config/constants');
 const { resolveChallengeEmoji } = require('../config/constants/challengeEmojiConfig');
-const achievementsConfig = require('../config/constants/achievements');
+const {
+  getAchievementEmojiName,
+  normalizeAchievementKey,
+} = require('../config/constants/achievementUtils');
 const { findBossById, getBossName } = require('./bosses');
 
 function resolveLocale(locale) {
@@ -60,15 +63,7 @@ function humanizeIdentifier(id) {
 }
 
 function normalizeAchievementIdentifier(id) {
-  if (achievementsConfig && typeof achievementsConfig.normalizeAchievementId === 'function') {
-    return achievementsConfig.normalizeAchievementId(id);
-  }
-  return typeof id === 'string'
-    ? id
-        .trim()
-        .toLowerCase()
-        .replace(/\s+/g, '_')
-    : '';
+  return normalizeAchievementKey(id);
 }
 
 function getDungeonBossEntries(dungeon) {
@@ -166,28 +161,30 @@ function formatDungeonAchievements(dungeon, locale = 'de', options = {}) {
         : '';
 
       const normalizedId = normalizeAchievementIdentifier(achievement?.id);
+
+      const fallbackEmojiName = normalizedId
+        ? getAchievementEmojiName(normalizedId)
+        : '';
+
       const emojiName =
         typeof achievement?.emojiName === 'string' && achievement.emojiName.trim()
           ? achievement.emojiName.trim()
-          : normalizedId;
+          : fallbackEmojiName || normalizedId;
 
       const defaultEmoji =
         (typeof achievement?.emoji === 'string' && achievement.emoji.trim())
           ? achievement.emoji.trim()
-          : '';
+          : resolveChallengeEmoji(achievement?.id || normalizedId) || '';
 
       const resolvedGuildEmoji = emojiName
         ? resolveGuildEmoji(emojiName, guild)
-        : normalizedId
-          ? resolveGuildEmoji(normalizedId, guild)
-          : '';
+        : '';
 
       const emoji =
         defaultEmoji ||
         resolvedGuildEmoji ||
-        (emojiName
-          ? resolveDiscordEmoji(emojiName, `:${emojiName}:`)
-          : resolveChallengeEmoji(achievement?.id) || (normalizedId ? `:${normalizedId}:` : ''));
+        (emojiName ? resolveDiscordEmoji(emojiName, `:${emojiName}:`) : '') ||
+        (normalizedId ? `:${normalizedId}:` : '');
       const bullet = emoji || (normalizedId ? `:${normalizedId}:` : '•');
       if (description) {
         return `${bullet} ${name} — ${description}`;
