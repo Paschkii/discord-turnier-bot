@@ -8,6 +8,7 @@ const {
   getLocalizedText,
   resolveLocaleKey,
 } = require('../config/constants');
+const { bossEmojis } = require('../config/constants/bossEmojis');
 
 // Sucht den besten passenden Locale-Key ("de", "en" …)
 function resolveLocale(inputLocale) {
@@ -39,6 +40,31 @@ function getLocalized(entry, locale = 'de') {
 function getBossIdentifier(boss) {
   if (!boss || typeof boss !== 'object') return '';
   return boss.bossID || boss.id || '';
+}
+
+function getBossEmoji(ref) {
+  const identifier = (() => {
+    if (!ref) return '';
+    if (typeof ref === 'string') return ref;
+    if (typeof ref === 'object') {
+      return (
+        ref.bossID
+        || ref.id
+        || ref.homeDungeonBossID
+        || ref.home_dungeon_boss_id
+        || ''
+      );
+    }
+    return '';
+  })();
+
+  const normalized = String(identifier || '')
+    .trim()
+    .toLowerCase();
+
+  if (!normalized) return '';
+
+  return bossEmojis[normalized] || '';
 }
 
 // Lokalisierten Bossnamen ermitteln
@@ -287,6 +313,7 @@ module.exports = {
   formatCharacteristics,
   formatResistances,
   getCharacteristicEntries,
+  getBossEmoji,
   getBossName,
   getFamilyName,
   getRegionName,

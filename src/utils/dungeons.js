@@ -6,12 +6,12 @@ const {
   resolveDiscordEmoji,
   resolveLocaleKey,
 } = require('../config/constants');
-const { resolveChallengeEmoji } = require('../config/constants/challengeEmojiConfig');
 const {
+  getAchievementEmoji,
   getAchievementEmojiName,
   normalizeAchievementKey,
 } = require('../config/constants/achievementUtils');
-const { findBossById, getBossName } = require('./bosses');
+const { findBossById, getBossEmoji, getBossName } = require('./bosses');
 
 function resolveLocale(locale) {
   return resolveLocaleKey(locale);
@@ -71,11 +71,25 @@ function getDungeonBossEntries(dungeon) {
   return ids.map((id) => ({ id, boss: findBossById(id) }));
 }
 
-function getDungeonBossNames(dungeon, locale = 'de') {
+function getDungeonBossDisplayEntries(dungeon, locale = 'de') {
   const loc = resolveLocale(locale);
   return getDungeonBossEntries(dungeon)
-    .map(({ id, boss }) => getBossName(boss, loc) || humanizeIdentifier(id))
+    .map(({ id, boss }) => {
+      const name = getBossName(boss, loc) || humanizeIdentifier(id);
+      if (!name) return null;
+      const emoji = getBossEmoji(boss || id) || getBossEmoji(id);
+      return {
+        id,
+        boss,
+        name,
+        emoji,
+      };
+    })
     .filter(Boolean);
+}
+
+function getDungeonBossNames(dungeon, locale = 'de') {
+  return getDungeonBossDisplayEntries(dungeon, locale).map((entry) => entry.name);
 }
 
 function findDungeonById(id) {
@@ -162,30 +176,39 @@ function formatDungeonAchievements(dungeon, locale = 'de', options = {}) {
 
       const normalizedId = normalizeAchievementIdentifier(achievement?.id);
 
+      const fallbackAchievementEmoji = normalizedId
+        ? getAchievementEmoji(normalizedId)
+        : '';
+
       const fallbackEmojiName = normalizedId
         ? getAchievementEmojiName(normalizedId)
         : '';
 
-      const emojiName =
-        typeof achievement?.emojiName === 'string' && achievement.emojiName.trim()
-          ? achievement.emojiName.trim()
-          : fallbackEmojiName || normalizedId;
-
-      const defaultEmoji =
-        (typeof achievement?.emoji === 'string' && achievement.emoji.trim())
+      const explicitEmoji =
+        typeof achievement?.emoji === 'string' && achievement.emoji.trim()
           ? achievement.emoji.trim()
-          : resolveChallengeEmoji(achievement?.id || normalizedId) || '';
+          : '';
+
+      const emojiName =
+        (typeof achievement?.emojiName === 'string' && achievement.emojiName.trim())
+          ? achievement.emojiName.trim()
+          : fallbackEmojiName;
 
       const resolvedGuildEmoji = emojiName
         ? resolveGuildEmoji(emojiName, guild)
         : '';
 
+      const resolvedDiscordEmoji = emojiName
+        ? resolveDiscordEmoji(emojiName, `:${emojiName}:`)
+        : '';
+
       const emoji =
-        defaultEmoji ||
-        resolvedGuildEmoji ||
-        (emojiName ? resolveDiscordEmoji(emojiName, `:${emojiName}:`) : '') ||
-        (normalizedId ? `:${normalizedId}:` : '');
-      const bullet = emoji || (normalizedId ? `:${normalizedId}:` : '•');
+        explicitEmoji
+        || resolvedGuildEmoji
+        || fallbackAchievementEmoji
+        || resolvedDiscordEmoji;
+
+      const bullet = emoji || '❓';
       if (description) {
         return `${bullet} ${name} — ${description}`;
       }
@@ -281,6 +304,7 @@ module.exports = {
   findDungeonByName,
   formatDungeonAchievements,
   formatDungeonChallenges,
+  getDungeonBossDisplayEntries,
   getDungeonBossEntries,
   getDungeonBossNames,
   getDungeonName,

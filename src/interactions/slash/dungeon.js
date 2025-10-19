@@ -4,16 +4,13 @@ const {
   findDungeonById,
   findDungeonByName,
   formatDungeonAchievements,
-  getDungeonBossEntries,
-  getDungeonBossNames,
+  getDungeonBossDisplayEntries,
   getDungeonName,
 } = require('../../utils/dungeons');
 const {
   resolveInteractionLocale,
   getInteractionLocaleHint,
 } = require('../../utils/interactionLocale');
-const { bossRowAttachment } = require('../../helpers/bossRow');
-const { chunkIntoEmbedFields } = require('../../helpers/embedText');
 const { materializeGuildEmojiShortcodes } = require('../../helpers/emoji');
 const { safeDeferReply } = require('../../helpers/interactions');
 
@@ -164,9 +161,10 @@ async function execute(interaction) {
   const levelValue = dungeon.dungeonLevel ?? dungeon.level;
   const level = levelValue != null ? String(levelValue) : '—';
 
-  const bossEntries = getDungeonBossEntries(dungeon);
-  const bossNames = getDungeonBossNames(dungeon, locale);
-  const bossLines = bossNames.length ? bossNames.map((name) => `• ${name}`) : [];
+  const bossDisplayEntries = getDungeonBossDisplayEntries(dungeon, locale);
+  const bossLines = bossDisplayEntries.length
+    ? bossDisplayEntries.map(({ name, emoji }) => `• ${name}${emoji ? ` ${emoji}` : ''}`)
+    : [];
   const achievements = formatDungeonAchievements(dungeon, locale, { guild });
   const achievementLines = achievements
     .map((line) => (typeof line === 'string' ? line.trim() : ''))
@@ -185,37 +183,6 @@ async function execute(interaction) {
     .setDescription(descriptionLines.join('\n'))
     .setTimestamp();
 
-  const bossImageSources = bossEntries
-    .map(({ boss }) => (boss?.imageUrl || boss?.icon || '').trim())
-    .filter(Boolean);
-  const attachments = [];
-  let bossImageUrl;
-
-  if (bossImageSources.length) {
-    const bossRowFormat = 'webp';
-    const bossRowFileName = `boss_row.${bossRowFormat}`;
-    try {
-      const bossRow = await bossRowAttachment(bossImageSources, {
-        tile: 48,
-        gap: 6,
-        maxPerRow: 10,
-        format: bossRowFormat,
-      });
-      attachments.push(bossRow);
-      bossImageUrl = `attachment://${bossRowFileName}`;
-    } catch (error) {
-      console.warn('[bossRow] Erstellung fehlgeschlagen:', error);
-    }
-  }
-
-  if (!bossImageUrl) {
-    const primaryBoss = bossEntries[0]?.boss;
-    const fallbackImage = primaryBoss?.imageUrl || primaryBoss?.icon;
-    if (fallbackImage) {
-      bossImageUrl = fallbackImage;
-    }
-  }
-
   const achievementField = {
     name: `**${t.fields.achievements}**`,
     value: achievementText || '—',
@@ -229,20 +196,12 @@ async function execute(interaction) {
   };
 
   embed.addFields(
+    bossField,
     achievementField,
-    bossField
   );
 
-  if (bossImageUrl) {
-    embed.setImage(bossImageUrl);
-  }
-
   try {
-    const payload = { embeds: [embed] };
-    if (attachments.length) {
-      payload.files = attachments;
-    }
-    return await interaction.editReply(payload);
+    return await interaction.editReply({ embeds: [embed] });
   } catch (error) {
     console.error('[slash] editReply failed:', error);
     return undefined;
