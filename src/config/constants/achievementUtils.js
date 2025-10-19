@@ -46,23 +46,46 @@ function extractEmojiName(emoji) {
   return match?.groups?.name || '';
 }
 
-function getAchievementEmoji(value) {
+function getAchievementEmoji(value, options = {}) {
+  const { categories, fallback = '' } = options || {};
   const canonical = normalizeAchievementKey(value);
-  if (!canonical) return '';
+  if (!canonical) return fallback || '';
+
   const category = getAchievementCategory(canonical);
+
+  const normalizedAllowList = Array.isArray(categories) && categories.length
+    ? categories
+        .map((entry) => String(entry || '').trim())
+        .filter(Boolean)
+    : ['achievements', 'challenges'];
+
   const categoriesToTry = [];
-  if (category) categoriesToTry.push(category);
-  categoriesToTry.push('achievements', 'challenges');
+  const seen = new Set();
+
+  const addCategory = (entry) => {
+    const normalized = String(entry || '').trim();
+    if (!normalized || seen.has(normalized)) return;
+    seen.add(normalized);
+    categoriesToTry.push(normalized);
+  };
+
+  if (category && normalizedAllowList.includes(category)) {
+    addCategory(category);
+  }
+
+  for (const entry of normalizedAllowList) {
+    addCategory(entry);
+  }
 
   for (const entry of categoriesToTry) {
     const emoji = EMOJI_LIST?.[entry]?.[canonical];
     if (emoji) return emoji;
   }
-  return '';
+  return fallback || '';
 }
 
-function getAchievementEmojiName(value) {
-  const emoji = getAchievementEmoji(value);
+function getAchievementEmojiName(value, options) {
+  const emoji = getAchievementEmoji(value, options);
   if (!emoji) return '';
   return extractEmojiName(emoji);
 }

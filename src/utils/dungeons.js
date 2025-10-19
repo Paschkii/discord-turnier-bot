@@ -176,12 +176,14 @@ function formatDungeonAchievements(dungeon, locale = 'de', options = {}) {
 
       const normalizedId = normalizeAchievementIdentifier(achievement?.id);
 
+      const emojiLookupOptions = { categories: ['achievements'] };
+
       const fallbackAchievementEmoji = normalizedId
-        ? getAchievementEmoji(normalizedId)
+        ? getAchievementEmoji(normalizedId, emojiLookupOptions)
         : '';
 
       const fallbackEmojiName = normalizedId
-        ? getAchievementEmojiName(normalizedId)
+        ? getAchievementEmojiName(normalizedId, emojiLookupOptions)
         : '';
 
       const explicitEmoji =
