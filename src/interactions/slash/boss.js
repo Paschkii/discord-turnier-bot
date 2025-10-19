@@ -14,31 +14,14 @@ const {
 } = require('../../utils/interactionLocale');
 const { materializeGuildEmojiShortcodes } = require('../../helpers/emoji');
 const { safeDeferReply } = require('../../helpers/interactions');
+const languages = require('../../config/languages');
 
-const MESSAGES = {
-  de: {
-    missingName: '❌ Bitte wähle ein Bossmonster aus.',
-    notFound: '❌ Dieses Bossmonster konnte nicht gefunden werden.',
-    labels: {
-      dungeon: 'Dungeon',
-      baseStats: {
-        level: 'Level',
-        healthPoints: 'LP',
-        actionPoints: 'AP',
-        movementPoints: 'BP',
-      },
-      defenses: {
-        apParry: 'AP-Resist',
-        mpParry: 'BP-Resist',
-        lock: 'Blocken',
-        criticalResistance: 'Krit-Resist',
-        pushbackResistance: 'Schubs-Resist',
-      },
-      flats: 'Flat-Resistenzen',
-      percents: 'Resistenzen',
-    },
-  },
-  en: {
+const DEFAULT_LOCALE = 'en';
+
+const DEFAULT_MESSAGES =
+  languages?.[DEFAULT_LOCALE]?.characteristics?.boss
+  || languages?.de?.characteristics?.boss
+  || {
     missingName: '❌ Please choose a boss monster.',
     notFound: '❌ This boss monster could not be found.',
     labels: {
@@ -59,99 +42,35 @@ const MESSAGES = {
       flats: 'Flat Resistances',
       percents: 'Resistances',
     },
-  },
-  fr: {
-    missingName: '❌ Veuillez choisir un boss.',
-    notFound: '❌ Ce boss est introuvable.',
-    labels: {
-      dungeon: 'Donjon',
-      baseStats: {
-        level: 'Niveau',
-        healthPoints: 'PV',
-        actionPoints: 'PA',
-        movementPoints: 'PM',
-      },
-      defenses: {
-        apParry: 'Parade PA',
-        mpParry: 'Parade PM',
-        lock: 'Tacle',
-        criticalResistance: 'Résist. Critique',
-        pushbackResistance: 'Résist. Poussée',
-      },
-      flats: 'Résistances fixes',
-      percents: 'Résistances',
-    },
-  },
-  es: {
-    missingName: '❌ Selecciona un boss.',
-    notFound: '❌ No se encontró este boss.',
-    labels: {
-      dungeon: 'Mazmorra',
-      baseStats: {
-        level: 'Nivel',
-        healthPoints: 'PV',
-        actionPoints: 'PA',
-        movementPoints: 'PM',
-      },
-      defenses: {
-        apParry: 'Parada PA',
-        mpParry: 'Parada PM',
-        lock: 'Placaje',
-        criticalResistance: 'Resist. Crítica',
-        pushbackResistance: 'Resist. Empuje',
-      },
-      flats: 'Resistencias fijas',
-      percents: 'Resistencias',
-    },
-  },
-  it: {
-    missingName: '❌ Seleziona un boss.',
-    notFound: '❌ Questo boss non è stato trovato.',
-    labels: {
-      dungeon: 'Dungeon',
-      baseStats: {
-        level: 'Livello',
-        healthPoints: 'PF',
-        actionPoints: 'PA',
-        movementPoints: 'PM',
-      },
-      defenses: {
-        apParry: 'Parata PA',
-        mpParry: 'Parata PM',
-        lock: 'Blocco',
-        criticalResistance: 'Resist. Critica',
-        pushbackResistance: 'Resist. Spinta',
-      },
-      flats: 'Resistenze fisse',
-      percents: 'Resistenze',
-    },
-  },
-  pt: {
-    missingName: '❌ Escolha um boss.',
-    notFound: '❌ Esse boss não foi encontrado.',
-    labels: {
-      dungeon: 'Masmorra',
-      baseStats: {
-        level: 'Nível',
-        healthPoints: 'PV',
-        actionPoints: 'PA',
-        movementPoints: 'PM',
-      },
-      defenses: {
-        apParry: 'Parada PA',
-        mpParry: 'Parada PM',
-        lock: 'Bloqueio',
-        criticalResistance: 'Resist. Crítica',
-        pushbackResistance: 'Resist. Empurrão',
-      },
-      flats: 'Resistências fixas',
-      percents: 'Resistências',
-    },
-  },
-};
+  };
 
 function getMessages(locale) {
-  return MESSAGES[locale] || MESSAGES.en || MESSAGES.de;
+  const normalized = typeof locale === 'string' ? locale.toLowerCase() : DEFAULT_LOCALE;
+  const base = normalized.includes('-') ? normalized.split('-')[0] : normalized;
+  const pack = languages?.[normalized] || languages?.[base];
+  const messages = pack?.characteristics?.boss;
+
+  if (!messages) {
+    return DEFAULT_MESSAGES;
+  }
+
+  return {
+    ...DEFAULT_MESSAGES,
+    ...messages,
+  
+    labels: {
+      ...DEFAULT_MESSAGES.labels,
+      ...messages.labels,
+      baseStats: {
+        ...DEFAULT_MESSAGES.labels.baseStats,
+        ...(messages.labels?.baseStats || {}),
+      },
+      defenses: {
+        ...DEFAULT_MESSAGES.labels.defenses,
+        ...(messages.labels?.defenses || {}),
+      },
+    },
+  };
 }
 
 const ELEMENT_KEYS = ['neutral', 'earth', 'fire', 'water', 'air'];
@@ -316,15 +235,33 @@ function buildElementLine({
   elementEmojis,
   label,
   keySuffix = '',
+  keySuffixes,
   suffix = '',
 }) {
   let hasValue = false;
+  const suffixList = Array.isArray(keySuffixes) && keySuffixes.length
+    ? keySuffixes.slice()
+    : (keySuffix ? [keySuffix] : []);
+
+  if (!suffixList.includes('')) {
+    suffixList.push('');
+  }
+
   const parts = ELEMENT_KEYS.map((key) => {
-    const valueKey = keySuffix ? `${key}_${keySuffix}` : key;
-    const rawValue = resistances ? resistances[valueKey] : undefined;
-    if (rawValue !== undefined && rawValue !== null && rawValue !== '') {
-      hasValue = true;
+    const candidateKeys = suffixList.map((suffixKey) => (
+      suffixKey ? `${key}_${suffixKey}` : key
+    ));
+
+    let rawValue;
+    for (const candidate of candidateKeys) {
+      const candidateValue = resistances ? resistances[candidate] : undefined;
+      if (candidateValue !== undefined && candidateValue !== null && candidateValue !== '') {
+        rawValue = candidateValue;
+        hasValue = true;
+        break;
+      }
     }
+
     const formatted = formatNumber(rawValue, { suffix });
     const emojiLabel = elementEmojis?.get(key);
     const elementLabel = emojiLabel || elementLabels.get(key) || capitalize(key);
@@ -422,7 +359,7 @@ function buildDescription({ boss, dungeonNames, labels, level, locale }) {
     elementLabels,
     elementEmojis: flatElementEmojis,
     label: labels.flats,
-    keySuffix: 'flat',
+    keySuffixes: ['fixed', 'flat'],
   });
 
   const percentLine = buildElementLine({
@@ -430,6 +367,7 @@ function buildDescription({ boss, dungeonNames, labels, level, locale }) {
     elementLabels,
     elementEmojis: percentElementEmojis,
     label: labels.percents,
+    keySuffixes: ['percent'],
     suffix: '%',
   });
 

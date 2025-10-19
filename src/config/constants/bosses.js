@@ -19,7 +19,12 @@ const BOSSE_LISTE = [
     characteristics: {
       healthPoints: 120,
       actionPoints: 7,
-      movementPoints: 3
+      movementPoints: 3,
+      apParry: 8,
+      mpParry: 8,
+      lock: 10,
+      criticalResistance: 0,
+      pushbackResistance: 0
     },
     resistances: {
       neutral_percent: 0,
@@ -27,6 +32,11 @@ const BOSSE_LISTE = [
       fire_percent: 0,
       water_percent: 0,
       air_percent: 0,
+      neutral_fixed: 0,
+      earth_fixed: 0,
+      fire_fixed: 0,
+      water_fixed: 0,
+      air_fixed: 0
     }
   },
   // Famished Sunflower
