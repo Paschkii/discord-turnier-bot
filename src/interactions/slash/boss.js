@@ -209,11 +209,37 @@ function coalesce(...values) {
   return undefined;
 }
 
+function isEmojiLabel(label) {
+  if (typeof label !== 'string') {
+    return false;
+  }
+
+  const trimmed = label.trim();
+  if (!trimmed) {
+    return false;
+  }
+
+  if (/^<a?:[a-zA-Z0-9_]+:\d+>$/.test(trimmed)) {
+    return true;
+  }
+
+  if (/^:[^:\s]+:$/.test(trimmed)) {
+    return true;
+  }
+
+  return /\p{Extended_Pictographic}/u.test(trimmed);
+}
+
+function getLabelValueSeparator(label) {
+  return isEmojiLabel(label) ? '' : ' ';
+}
+
 function formatLabelValue(label, value) {
   if (!label) {
     return formatNumber(value);
   }
-  return `${label} ${formatNumber(value)}`;
+  const formatted = formatNumber(value);
+  return `${label}${getLabelValueSeparator(label)}${formatted}`;
 }
 
 function appendSeparator(label) {
@@ -229,13 +255,13 @@ function formatLabeledStat(label, value, options = {}) {
   const formattedValue = formatNumber(value, formatOptions);
 
   if (!includeSeparator || separator === null || separator === '') {
-    return `${label} ${formattedValue}`;
+    return `${label}${getLabelValueSeparator(label)}${formattedValue}`;
   }
 
   const effectiveSeparator = typeof separator === 'string' ? separator : ':';
   const prefix = label.endsWith(effectiveSeparator) ? label : `${label}${effectiveSeparator}`;
 
-  return `${prefix} ${formattedValue}`;
+  return `${prefix}${getLabelValueSeparator(prefix)}${formattedValue}`;
 }
 
 function buildElementLine({
@@ -274,7 +300,7 @@ function buildElementLine({
     const formatted = formatNumber(rawValue, { suffix });
     const emojiLabel = elementEmojis?.get(key);
     const elementLabel = emojiLabel || elementLabels.get(key) || capitalize(key);
-    return `${elementLabel} ${formatted}`;
+    return `${elementLabel}${getLabelValueSeparator(elementLabel)}${formatted}`;
   });
 
   const valueText = hasValue ? parts.join(' ') : '—';
@@ -283,7 +309,7 @@ function buildElementLine({
   }
 
   const prefix = appendSeparator(label);
-  return `${prefix} ${valueText}`;
+  return `${prefix}${getLabelValueSeparator(prefix)}${valueText}`;
 }
 
 function buildDescription({ boss, dungeonNames, labels, level, locale }) {
