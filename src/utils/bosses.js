@@ -36,6 +36,11 @@ function getLocalized(entry, locale = 'de') {
   return getLocalizedText(entry, locale);
 }
 
+function getBossIdentifier(boss) {
+  if (!boss || typeof boss !== 'object') return '';
+  return boss.bossID || boss.id || '';
+}
+
 // Lokalisierten Bossnamen ermitteln
 function getBossName(boss, locale = 'de') {
   return getLocalized(boss?.name, locale) || '';
@@ -45,7 +50,10 @@ function getBossName(boss, locale = 'de') {
 function findBossById(id) {
   if (!id) return null;
   const target = String(id).toLowerCase();
-  return BOSSE_LISTE.find((b) => String(b.id).toLowerCase() === target) || null;
+  return (
+    BOSSE_LISTE.find((b) => String(getBossIdentifier(b)).toLowerCase() === target)
+    || null
+  );
 }
 
 // Boss anhand Namen (lokalisiert) finden
@@ -212,8 +220,9 @@ function buildBossChoices(locale = 'de', query = '') {
     .map((boss) => {
       const name = getBossName(boss, loc);
       const normalizedName = normalize(name, loc);
+      const identifier = getBossIdentifier(boss);
       return {
-        id: boss.id,
+        id: identifier,
         name,
         normalizedName,
         nameWords: tokenizeNormalized(normalizedName),

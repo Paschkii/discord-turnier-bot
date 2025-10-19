@@ -6,7 +6,9 @@ const { BOSSE_LISTE } = require('./bosses');
 const { MONSTER_LISTE } = require('./monsters');
 
 const SUPPORTED_LOCALES = ['de', 'en', 'es', 'fr', 'pt'];
-const BOSS_NAME_BY_ID = new Map(BOSSE_LISTE.map((boss) => [boss.id, boss.name]));
+const BOSS_NAME_BY_ID = new Map(
+  BOSSE_LISTE.map((boss) => [boss.bossID || boss.id, boss.name]).filter(([id]) => id),
+);
 const MONSTER_NAME_BY_ID = new Map(MONSTER_LISTE.map((monster) => [monster.id, monster.name]));
 
 const DUNGEON_ROHDATEN = [

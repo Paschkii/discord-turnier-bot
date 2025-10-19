@@ -7,6 +7,7 @@ const {
 } = require('../../utils/bosses');
 const { findDungeonById, getDungeonName: getDungeonDisplayName } = require('../../utils/dungeons');
 const { getLocalizedText, RESISTANCE_TYPES } = require('../../config/constants');
+const { EMOJI_LIST } = require('../../config/constants/emojis');
 const {
   resolveInteractionLocale,
   getInteractionLocaleHint,
@@ -22,16 +23,16 @@ const MESSAGES = {
       dungeon: 'Dungeon',
       baseStats: {
         level: 'Level',
-        vitality: 'LP',
+        healthPoints: 'LP',
         actionPoints: 'AP',
         movementPoints: 'BP',
       },
       defenses: {
-        apResist: 'AP-Resist',
-        bpResist: 'BP-Resist',
-        block: 'Block',
-        crit: 'Krit',
-        pushback: 'Rückstoß',
+        apParry: 'AP-Resist',
+        mpParry: 'BP-Resist',
+        lock: 'Blocken',
+        criticalResistance: 'Krit-Resist',
+        pushbackResistance: 'Schubs-Resist',
       },
       flats: 'Flat-Resistenzen',
       percents: 'Resistenzen',
@@ -44,16 +45,16 @@ const MESSAGES = {
       dungeon: 'Dungeon',
       baseStats: {
         level: 'Level',
-        vitality: 'HP',
+        healthPoints: 'HP',
         actionPoints: 'AP',
         movementPoints: 'MP',
       },
       defenses: {
-        apResist: 'AP Resistance',
-        bpResist: 'MP Resistance',
-        block: 'Block',
-        crit: 'Crit',
-        pushback: 'Pushback',
+        apParry: 'AP Parry',
+        mpParry: 'MP Parry',
+        lock: 'Lock',
+        criticalResistance: 'Critical Resist',
+        pushbackResistance: 'Pushback Resist',
       },
       flats: 'Flat Resistances',
       percents: 'Resistances',
@@ -66,16 +67,16 @@ const MESSAGES = {
       dungeon: 'Donjon',
       baseStats: {
         level: 'Niveau',
-        vitality: 'PV',
+        healthPoints: 'PV',
         actionPoints: 'PA',
         movementPoints: 'PM',
       },
       defenses: {
-        apResist: 'Résistance PA',
-        bpResist: 'Résistance PM',
-        block: 'Blocage',
-        crit: 'Critique',
-        pushback: 'Poussée',
+        apParry: 'Parade PA',
+        mpParry: 'Parade PM',
+        lock: 'Tacle',
+        criticalResistance: 'Résist. Critique',
+        pushbackResistance: 'Résist. Poussée',
       },
       flats: 'Résistances fixes',
       percents: 'Résistances',
@@ -88,16 +89,16 @@ const MESSAGES = {
       dungeon: 'Mazmorra',
       baseStats: {
         level: 'Nivel',
-        vitality: 'PV',
+        healthPoints: 'PV',
         actionPoints: 'PA',
         movementPoints: 'PM',
       },
       defenses: {
-        apResist: 'Resistencia PA',
-        bpResist: 'Resistencia PM',
-        block: 'Placaje',
-        crit: 'Crítico',
-        pushback: 'Empuje',
+        apParry: 'Parada PA',
+        mpParry: 'Parada PM',
+        lock: 'Placaje',
+        criticalResistance: 'Resist. Crítica',
+        pushbackResistance: 'Resist. Empuje',
       },
       flats: 'Resistencias fijas',
       percents: 'Resistencias',
@@ -110,16 +111,16 @@ const MESSAGES = {
       dungeon: 'Dungeon',
       baseStats: {
         level: 'Livello',
-        vitality: 'PF',
+        healthPoints: 'PF',
         actionPoints: 'PA',
         movementPoints: 'PM',
       },
       defenses: {
-        apResist: 'Resistenza PA',
-        bpResist: 'Resistenza PM',
-        block: 'Blocco',
-        crit: 'Critico',
-        pushback: 'Spinta',
+        apParry: 'Parata PA',
+        mpParry: 'Parata PM',
+        lock: 'Blocco',
+        criticalResistance: 'Resist. Critica',
+        pushbackResistance: 'Resist. Spinta',
       },
       flats: 'Resistenze fisse',
       percents: 'Resistenze',
@@ -132,16 +133,16 @@ const MESSAGES = {
       dungeon: 'Masmorra',
       baseStats: {
         level: 'Nível',
-        vitality: 'PV',
+        healthPoints: 'PV',
         actionPoints: 'PA',
         movementPoints: 'PM',
       },
       defenses: {
-        apResist: 'Resistência PA',
-        bpResist: 'Resistência PM',
-        block: 'Bloqueio',
-        crit: 'Crítico',
-        pushback: 'Empurrão',
+        apParry: 'Parada PA',
+        mpParry: 'Parada PM',
+        lock: 'Bloqueio',
+        criticalResistance: 'Resist. Crítica',
+        pushbackResistance: 'Resist. Empurrão',
       },
       flats: 'Resistências fixas',
       percents: 'Resistências',
@@ -155,27 +156,49 @@ function getMessages(locale) {
 
 const ELEMENT_KEYS = ['neutral', 'earth', 'fire', 'water', 'air'];
 
+function toShortcode(emoji, fallback) {
+  if (typeof emoji === 'string' && /^<a?:[a-zA-Z0-9_]+:\d+>$/.test(emoji.trim())) {
+    const match = emoji.match(/^<a?:([a-zA-Z0-9_]+):\d+>$/);
+    if (match) {
+      return `:${match[1]}:`;
+    }
+  }
+  return fallback || '';
+}
+
+const PRIMARY_EMOJIS = EMOJI_LIST?.primaryStats || {};
+const SECONDARY_EMOJIS = EMOJI_LIST?.secondaryStats || {};
+const RESISTANCE_EMOJIS = EMOJI_LIST?.resistanceStats || {};
+
 const EMOJI_LABELS = {
   baseStats: {
-    level: ':level:',
-    vitality: ':vitality:',
-    actionPoints: ':ap:',
-    movementPoints: ':mp:',
+    level: PRIMARY_EMOJIS.level || ':level:',
+    healthPoints: PRIMARY_EMOJIS.healthPoints || ':vitality:',
+    actionPoints: PRIMARY_EMOJIS.actionPoints || ':ap:',
+    movementPoints: PRIMARY_EMOJIS.movementPoints || ':mp:',
   },
   defenses: {
-    apResist: ':apresist:',
-    bpResist: ':mpresist:',
-    block: ':block:',
-    crit: ':critresist:',
-    pushback: ':pushbackresist:',
+    apParry: SECONDARY_EMOJIS.apParry || ':apparry:',
+    mpParry: SECONDARY_EMOJIS.mpParry || ':mpparry:',
+    lock: SECONDARY_EMOJIS.lock || ':lock:',
+    criticalResistance: RESISTANCE_EMOJIS.criticalResistance || ':criticalresistance:',
+    pushbackResistance: RESISTANCE_EMOJIS.pushbackResistance || ':pushbackresistance:',
   },
-  elements: {
-    neutral: ':neutral:',
-    earth: ':strength:',
-    fire: ':intelligence:',
-    water: ':chance:',
-    air: ':agility:',
-  },
+  percentElements: new Map(
+    ELEMENT_KEYS.map((key) => [
+      key,
+      RESISTANCE_EMOJIS[`${key}_percent`]
+        || toShortcode(RESISTANCE_TYPES[key]?.emoji, `:${key}:`),
+    ]),
+  ),
+  flatElements: new Map(
+    ELEMENT_KEYS.map((key) => [
+      key,
+      RESISTANCE_EMOJIS[`${key}_fixed`]
+        || RESISTANCE_EMOJIS[`${key}_percent`]
+        || toShortcode(RESISTANCE_TYPES[key]?.emoji, `:${key}:`),
+    ]),
+  ),
 };
 
 function extractHomeDungeonIds(ref) {
@@ -268,6 +291,9 @@ function coalesce(...values) {
 }
 
 function formatLabelValue(label, value) {
+  if (!label) {
+    return formatNumber(value);
+  }
   return `${label} ${formatNumber(value)}`;
 }
 
@@ -318,61 +344,92 @@ function buildDescription({ boss, dungeonNames, labels, level, locale }) {
   const characteristics = boss?.characteristics || {};
   const resistances = boss?.resistances || {};
   const elementLabels = getElementLabels(locale);
-  const elementEmojis = new Map(Object.entries(EMOJI_LABELS.elements));
+  const flatElementEmojis = EMOJI_LABELS.flatElements;
+  const percentElementEmojis = EMOJI_LABELS.percentElements;
 
   const dungeonText = dungeonNames.length ? dungeonNames.join(' ') : '—';
   const line1 = `**${labels.dungeon}:** ${dungeonText}`;
 
   const baseStatsLine = [
     formatLabelValue(EMOJI_LABELS.baseStats.level, level),
-    formatLabelValue(EMOJI_LABELS.baseStats.vitality, characteristics.vitality),
-    formatLabelValue(EMOJI_LABELS.baseStats.actionPoints, characteristics.actionPoints),
-    formatLabelValue(EMOJI_LABELS.baseStats.movementPoints, characteristics.movementPoints),
+    formatLabelValue(
+      EMOJI_LABELS.baseStats.healthPoints,
+      coalesce(characteristics.healthPoints, characteristics.vitality),
+    ),
+    formatLabelValue(
+      EMOJI_LABELS.baseStats.actionPoints,
+      coalesce(characteristics.actionPoints, characteristics.ap),
+    ),
+    formatLabelValue(
+      EMOJI_LABELS.baseStats.movementPoints,
+      coalesce(characteristics.movementPoints, characteristics.mp),
+    ),
   ].join(' ');
 
-  const apResistValue = coalesce(
-    characteristics.ap_resist,
+  const apParryValue = coalesce(
+    characteristics.apParry,
+    characteristics.ap_parry,
     characteristics.apResist,
-    characteristics.ap_resistance,
+    characteristics.ap_resist,
     characteristics.apResistance,
+    characteristics.ap_resistance,
   );
 
-  const mpResistValue = coalesce(
-    characteristics.mp_resist,
+  const mpParryValue = coalesce(
+    characteristics.mpParry,
+    characteristics.mp_parry,
     characteristics.mpResist,
-    characteristics.mp_resistance,
-    characteristics.mpResistance,
-    characteristics.bp_resist,
+    characteristics.mp_resist,
     characteristics.bpResist,
-    characteristics.bp_resistance,
+    characteristics.bp_resist,
+    characteristics.mpResistance,
+    characteristics.mp_resistance,
     characteristics.bpResistance,
+    characteristics.bp_resistance,
   );
 
   const defensesLine = [
-    formatLabeledStat(EMOJI_LABELS.defenses.apResist, apResistValue),
-    formatLabeledStat(EMOJI_LABELS.defenses.bpResist, mpResistValue),
-    formatLabeledStat(EMOJI_LABELS.defenses.block, characteristics.block),
+    formatLabeledStat(EMOJI_LABELS.defenses.apParry, apParryValue),
+    formatLabeledStat(EMOJI_LABELS.defenses.mpParry, mpParryValue),
     formatLabeledStat(
-      EMOJI_LABELS.defenses.crit,
-      characteristics.krit ?? characteristics.crit ?? characteristics.critical ?? characteristics.criticalHit,
+      EMOJI_LABELS.defenses.lock,
+      coalesce(characteristics.lock, characteristics.block),
     ),
     formatLabeledStat(
-      EMOJI_LABELS.defenses.pushback,
-      characteristics.pushback ?? characteristics.pushback_resist,
+      EMOJI_LABELS.defenses.criticalResistance,
+      coalesce(
+        characteristics.criticalResistance,
+        characteristics.critical_resistance,
+        characteristics.krit,
+        characteristics.crit,
+        characteristics.critical,
+        characteristics.criticalHit,
+      ),
+    ),
+    formatLabeledStat(
+      EMOJI_LABELS.defenses.pushbackResistance,
+      coalesce(
+        characteristics.pushbackResistance,
+        characteristics.pushback_resistance,
+        characteristics.pushback,
+        characteristics.pushback_resist,
+      ),
     ),
   ].join(' ');
 
   const flatLine = buildElementLine({
     resistances,
     elementLabels,
-    elementEmojis,
+    elementEmojis: flatElementEmojis,
+    label: labels.flats,
     keySuffix: 'flat',
   });
 
   const percentLine = buildElementLine({
     resistances,
     elementLabels,
-    elementEmojis,
+    elementEmojis: percentElementEmojis,
+    label: labels.percents,
     suffix: '%',
   });
 
