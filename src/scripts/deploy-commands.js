@@ -56,6 +56,26 @@ const buildLocalizations = (commandKey, path) => {
   }
   return localizations;
 };
+
+const buildChoiceLocalizations = (commandKey, optionKey, choiceKey) => {
+  const localizations = {};
+  for (const [languageKey, commandSet] of Object.entries(languages)) {
+    if (languageKey === DEFAULT_LANGUAGE) continue;
+    const locales = LOCALE_MAP[languageKey];
+    if (!locales) continue;
+    const value = getNestedValue(
+      commandSet?.commands?.[commandKey],
+      ['options', optionKey, 'choices', choiceKey, 'name'],
+    );
+    if (!value) continue;
+    const localeList = Array.isArray(locales) ? locales : [locales];
+    for (const locale of localeList) {
+      localizations[locale] = value;
+    }
+  }
+  return localizations;
+};
+
 // Helper: Lokalisierungen anwenden
 const applyLocalizations = (target, method, data) => {
   if (Object.keys(data).length > 0 && typeof target[method] === 'function') {
@@ -90,6 +110,31 @@ const applyOptionLocalization = (option, commandKey, optionKey) => {
   applyLocalizations(option, 'setNameLocalizations', buildLocalizations(commandKey, ['options', optionKey, 'name']));
   applyLocalizations(option, 'setDescriptionLocalizations', buildLocalizations(commandKey, ['options', optionKey, 'description']));
 
+  if (optionData.choices) {
+    const choiceEntries = Object.entries(optionData.choices);
+    if (!choiceEntries.length) {
+      throw new Error(`Command ${commandKey} option ${optionKey} defines choices but none were provided`);
+    }
+
+    const choices = choiceEntries.map(([choiceKey, choiceData]) => {
+      if (!choiceData || !choiceData.name) {
+        throw new Error(`Invalid choice ${choiceKey} for option ${optionKey} in command ${commandKey}`);
+      }
+
+      const value = choiceData.value ?? choiceKey;
+      const nameLocalizations = buildChoiceLocalizations(commandKey, optionKey, choiceKey);
+
+      const choice = { name: choiceData.name, value };
+      if (Object.keys(nameLocalizations).length > 0) {
+        choice.name_localizations = nameLocalizations;
+      }
+
+      return choice;
+    });
+
+    option.addChoices(...choices);
+  }
+
   return option;
 };
 
@@ -116,6 +161,10 @@ const commands = [
           .setMaxValue(3)
       )
   ),
+  // /achievements
+  guildOnly(
+    applyCommandLocalization(new SlashCommandBuilder(), 'achievements')
+  ),
   // /boss
   guildOnly(
     applyCommandLocalization(new SlashCommandBuilder(), 'boss')
@@ -124,6 +173,14 @@ const commands = [
           .setRequired(true)
           .setAutocomplete(true)
       )
+      .addStringOption(opt =>
+        applyOptionLocalization(opt, 'boss', 'location')
+          .setRequired(false)
+      )
+  ),
+  // /challenges
+  guildOnly(
+    applyCommandLocalization(new SlashCommandBuilder(), 'challenges')
   ),
   // /dungeon
   guildOnly(

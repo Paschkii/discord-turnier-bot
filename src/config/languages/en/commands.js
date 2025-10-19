@@ -13,6 +13,10 @@ const commands = {
       },
     },
   },
+  achievements: {
+    name: 'achievements',
+    description: 'Shows a list of all achievements with their descriptions',
+  },
   boss: {
     name: 'boss',
     description: 'Show information about a boss monster',
@@ -21,7 +25,25 @@ const commands = {
         name: 'name',
         description: 'Select a boss monster',
       },
+      location: {
+        name: 'location',
+        description: 'Choose which dungeon to display (home or alternate locations)',
+        choices: {
+          home: {
+            name: 'Home Dungeon',
+            value: 'home',
+          },
+          alternate: {
+            name: 'Alternate Dungeons',
+            value: 'alternate',
+          },
+        },
+      },
     },
+  },
+  challenges: {
+    name: 'challenges',
+    description: 'Shows a list of all challenges with their descriptions',
   },
   dungeon: {
     name: 'dungeon',

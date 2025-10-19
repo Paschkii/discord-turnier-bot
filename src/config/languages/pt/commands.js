@@ -13,6 +13,10 @@ const commands = {
       },
     },
   },
+  achievements: {
+    name: 'achievements',
+    description: 'Mostra uma lista de todas as conquistas com descrição',
+  },
   boss: {
     name: 'chefe',
     description: 'Mostra informações sobre um chefe',
@@ -21,7 +25,25 @@ const commands = {
         name: 'nome',
         description: 'Selecione um chefe',
       },
+      location: {
+        name: 'location',
+        description: 'Escolha qual calabouço mostrar (principal ou locais alternativos)',
+        choices: {
+          home: {
+            name: 'Calabouço principal',
+            value: 'home',
+          },
+          alternate: {
+            name: 'Calabouços alternativos',
+            value: 'alternate',
+          },
+        },
+      },
     },
+  },
+  challenges: {
+    name: 'challenges',
+    description: 'Mostra uma lista de todos os desafios com descrição',
   },
   dungeon: {
     name: 'dungeon',

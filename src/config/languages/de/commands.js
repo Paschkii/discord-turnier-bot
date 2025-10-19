@@ -13,6 +13,10 @@ const commands = {
       },
     },
   },
+  achievements: {
+    name: 'achievements',
+    description: 'Zeigt eine Liste aller Erfolge mit Beschreibung',
+  },
   boss: {
     name: 'boss',
     description: 'Zeigt Infos zu einem Bossmonster',
@@ -21,7 +25,25 @@ const commands = {
         name: 'name',
         description: 'Bossmonster auswählen',
       },
+      location: {
+        name: 'location',
+        description: 'Wähle den Dungeon (Heimat oder alternative Fundorte)',
+        choices: {
+          home: {
+            name: 'Heimat-Dungeon',
+            value: 'home',
+          },
+          alternate: {
+            name: 'Alternative Dungeons',
+            value: 'alternate',
+          },
+        },
+      },
     },
+  },
+  challenges: {
+    name: 'challenges',
+    description: 'Zeigt eine Liste aller Herausforderungen mit Beschreibung',
   },
   dungeon: {
     name: 'dungeon',

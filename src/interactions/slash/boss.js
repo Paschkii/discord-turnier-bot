@@ -26,6 +26,9 @@ const DEFAULT_MESSAGES =
     notFound: '❌ This boss monster could not be found.',
     labels: {
       dungeon: 'Dungeon',
+      homeDungeon: 'Home Dungeon',
+      alternateDungeon: 'Alternate Dungeon',
+      alsoIn: 'Also Found In',
       baseStats: {
         level: 'Level',
         healthPoints: 'HP',
@@ -132,6 +135,50 @@ function extractHomeDungeonIds(ref) {
   }
   const text = String(ref).trim();
   return text ? [text] : [];
+}
+
+function extractAlsoInDungeonIds(ref) {
+  if (!ref) return [];
+  if (Array.isArray(ref)) {
+    return ref.flatMap((value) => extractAlsoInDungeonIds(value)).filter(Boolean);
+  }
+  if (typeof ref === 'object') {
+    const candidateKeys = [
+      ref.dungeonBossID,
+      ref.dungeonbossID,
+      ref.dungeonId,
+      ref.dungeonID,
+      ref.id,
+      ref.value,
+    ];
+
+    for (const candidate of candidateKeys) {
+      if (candidate !== undefined && candidate !== null && candidate !== '') {
+        return extractAlsoInDungeonIds(candidate);
+      }
+    }
+
+    return Object.values(ref)
+      .flatMap((value) => extractAlsoInDungeonIds(value))
+      .filter(Boolean);
+  }
+
+  const text = String(ref).trim();
+  return text ? [text] : [];
+}
+
+function uniqueStrings(values = []) {
+  const seen = new Set();
+  const result = [];
+
+  for (const value of values) {
+    const text = String(value ?? '').trim();
+    if (!text || seen.has(text)) continue;
+    seen.add(text);
+    result.push(text);
+  }
+
+  return result;
 }
 
 function resolveDungeonNames(ids, locale) {
@@ -312,7 +359,7 @@ function buildElementLine({
   return `${prefix}${getLabelValueSeparator(prefix)}${valueText}`;
 }
 
-function buildDescription({ boss, dungeonNames, labels, level, locale }) {
+function buildDescription({ boss, dungeonLabel, dungeonNames, labels, level, locale }) {
   const characteristics = boss?.characteristics || {};
   const resistances = boss?.resistances || {};
   const elementLabels = getElementLabels(locale);
@@ -320,7 +367,8 @@ function buildDescription({ boss, dungeonNames, labels, level, locale }) {
   const percentElementEmojis = EMOJI_LABELS.percentElements;
 
   const dungeonText = dungeonNames.length ? dungeonNames.join(' ') : '—';
-  const line1 = `**${labels.dungeon}:** ${dungeonText}`;
+  const label = dungeonLabel || labels.dungeon;
+  const line1 = `**${label}:** ${dungeonText}`;
 
   const baseStatsLine = [
     formatLabelValue(EMOJI_LABELS.baseStats.level, level),
@@ -415,6 +463,7 @@ function buildDescription({ boss, dungeonNames, labels, level, locale }) {
 // Antwort für /boss erzeugen
 async function execute(interaction) {
   const rawValue = interaction.options.getString('name');
+  const locationPreference = interaction.options.getString('location');
   const localeHint = getInteractionLocaleHint(interaction);
   const localePromise = resolveInteractionLocale(interaction).catch(() => localeHint || 'en');
   
@@ -470,12 +519,39 @@ async function execute(interaction) {
     boss.homeDungeon,
     boss.home_dungeon_id,
   );
-  const homeDungeonIds = extractHomeDungeonIds(homeDungeonReference);
-  const dungeonNames = resolveDungeonNames(homeDungeonIds, resolvedLocale);
+  const homeDungeonIds = uniqueStrings(extractHomeDungeonIds(homeDungeonReference));
+  const alternateDungeonIds = uniqueStrings(extractAlsoInDungeonIds(boss?.alsoIn));
+
+  const homeDungeonNames = uniqueStrings(resolveDungeonNames(homeDungeonIds, resolvedLocale));
+  const alternateDungeonNames = uniqueStrings(resolveDungeonNames(alternateDungeonIds, resolvedLocale));
+
+  let useAlternate = false;
+  if (alternateDungeonNames.length) {
+    if (locationPreference === 'alternate') {
+      useAlternate = true;
+    } else if (!homeDungeonNames.length) {
+      useAlternate = true;
+    }
+  }
+
+  let dungeonNames = useAlternate ? alternateDungeonNames : homeDungeonNames;
+
+  if (!dungeonNames.length && alternateDungeonNames.length) {
+    dungeonNames = alternateDungeonNames;
+    useAlternate = true;
+  } else if (!dungeonNames.length && homeDungeonNames.length) {
+    dungeonNames = homeDungeonNames;
+    useAlternate = false;
+  }
   const labels = resolvedMessages.labels;
+
+  const dungeonLabel = useAlternate
+    ? (labels.alternateDungeon || labels.dungeon)
+    : (labels.homeDungeon || labels.dungeon);
 
   const descriptionLines = buildDescription({
     boss,
+    dungeonLabel,
     dungeonNames,
     labels,
     level,
@@ -498,6 +574,20 @@ async function execute(interaction) {
     embed.setThumbnail(boss.icon);
   }
 
+  if (alternateDungeonNames.length) {
+    const supplementaryLabel = useAlternate
+      ? (labels.homeDungeon || labels.dungeon)
+      : (labels.alsoIn || labels.alternateDungeon || labels.dungeon);
+    const supplementaryNames = useAlternate ? homeDungeonNames : alternateDungeonNames;
+    if (supplementaryNames.length) {
+      embed.addFields({
+        name: `**${supplementaryLabel}**`,
+        value: supplementaryNames.join('\n'),
+        inline: false,
+      });
+    }
+  }
+  
   try {
     return await interaction.editReply({
       embeds: [embed],

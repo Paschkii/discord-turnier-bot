@@ -13,6 +13,10 @@ const commands = {
       },
     },
   },
+  achievements: {
+    name: 'achievements',
+    description: 'Mostra la lista di tutti gli obiettivi con descrizione',
+  },
   boss: {
     name: 'boss',
     description: 'Mostra informazioni su un boss',
@@ -21,7 +25,25 @@ const commands = {
         name: 'nome',
         description: 'Seleziona un boss',
       },
+      location: {
+        name: 'location',
+        description: 'Scegli quale dungeon mostrare (principale o posizioni alternative)',
+        choices: {
+          home: {
+            name: 'Dungeon principale',
+            value: 'home',
+          },
+          alternate: {
+            name: 'Dungeon alternativi',
+            value: 'alternate',
+          },
+        },
+      },
     },
+  },
+  challenges: {
+    name: 'challenges',
+    description: 'Mostra la lista di tutte le sfide con descrizione',
   },
   dungeon: {
     name: 'dungeon',

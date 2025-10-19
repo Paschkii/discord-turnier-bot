@@ -1,10 +1,12 @@
 // === Imports ===
 const { MessageFlags } = require('discord.js');
 // Turnier-Befehle
+const achievements        = require('./achievements');
 const arena               = require('./arena');
 const boss                = require('./boss');
 const dungeon             = require('./dungeon');
 const bracket             = require('./bracket');
+const challenges          = require('./challenges');
 const ergebnis_setzen     = require('./ergebnis_setzen');
 const ergebnisse_wuerfeln = require('./ergebnisse_wuerfeln');
 const fake_anmeldungen    = require('./fake_anmeldungen');
@@ -29,8 +31,10 @@ const pvm_stop            = require('./pvm_stop');
 // Map mit Handlern
 const map = new Map([
   //Turnier-Befehle
+  ['achievements', achievements],
   ['arena', arena],
   ['boss', boss],
+  ['challenges', challenges],
   ['dungeon', dungeon],
   ['bracket', bracket],
   ['ergebnis_setzen', ergebnis_setzen],

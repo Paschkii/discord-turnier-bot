@@ -27,6 +27,19 @@ const HELP_COMMANDS = [
     admin: false,
   },
   {
+    name: 'achievements',
+    description: 'Listet alle Erfolge mit Beschreibung auf.',
+    descriptionLocalized: {
+      de: 'Listet alle Erfolge mit Beschreibung auf.',
+      en: 'Lists all achievements with their descriptions.',
+      fr: 'Répertorie tous les succès avec leur description.',
+      es: 'Enumera todos los logros con su descripción.',
+      it: 'Elenca tutti gli obiettivi con descrizione.',
+      pt: 'Lista todas as conquistas com descrição.',
+    },
+    admin: false,
+  },
+  {
     name: 'boss',
     description: 'Zeigt Infos zu einem Bossmonster.',
     descriptionLocalized: {
@@ -36,6 +49,19 @@ const HELP_COMMANDS = [
       es: 'Muestra información de un jefe.',
       it: 'Mostra le informazioni di un boss.',
       pt: 'Mostra informações sobre um chefe.',
+    },
+    admin: false,
+  },
+  {
+    name: 'challenges',
+    description: 'Listet alle Herausforderungen mit Beschreibung auf.',
+    descriptionLocalized: {
+      de: 'Listet alle Herausforderungen mit Beschreibung auf.',
+      en: 'Lists all challenges with their descriptions.',
+      fr: 'Répertorie tous les défis avec leur description.',
+      es: 'Enumera todos los desafíos con su descripción.',
+      it: 'Elenca tutte le sfide con descrizione.',
+      pt: 'Lista todos os desafios com descrição.',
     },
     admin: false,
   },

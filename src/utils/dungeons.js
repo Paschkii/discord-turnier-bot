@@ -67,7 +67,7 @@ function normalizeAchievementIdentifier(id) {
 }
 
 function getDungeonBossEntries(dungeon) {
-  const ids = unique(flattenBossIds(dungeon?.bossid));
+  const ids = unique(flattenBossIds(dungeon?.bossID));
   return ids.map((id) => ({ id, boss: findBossById(id) }));
 }
 
@@ -310,4 +310,5 @@ module.exports = {
   getDungeonBossEntries,
   getDungeonBossNames,
   getDungeonName,
+  resolveChallengeText,
 };

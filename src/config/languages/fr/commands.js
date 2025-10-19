@@ -13,6 +13,10 @@ const commands = {
       },
     },
   },
+  achievements: {
+    name: 'achievements',
+    description: 'Affiche la liste de tous les succès avec leur description',
+  },
   boss: {
     name: 'boss',
     description: 'Affiche les informations d\'un boss',
@@ -21,7 +25,25 @@ const commands = {
         name: 'nom',
         description: 'Choisis un boss',
       },
+      location: {
+        name: 'location',
+        description: 'Choisis le donjon à afficher (principal ou lieux alternatifs)',
+        choices: {
+          home: {
+            name: 'Donjon principal',
+            value: 'home',
+          },
+          alternate: {
+            name: 'Donjons alternatifs',
+            value: 'alternate',
+          },
+        },
+      },
     },
+  },
+  challenges: {
+    name: 'challenges',
+    description: 'Affiche la liste de tous les défis avec leur description',
   },
   dungeon: {
     name: 'dungeon',
