@@ -7,7 +7,7 @@ const descriptions = {
         },
         chrono: {
             name: 'Chrono',
-            description: `Finish the fight in ${turns} or less.`
+            description: ({ turns = '{number}' } = {}) => `Finish the fight in ${turns} turns or less.`
         },
         cleanHands: {
             name: 'Clean Hands',
@@ -19,7 +19,7 @@ const descriptions = {
         },
         duo: {
             name: 'Duo',
-            description: `Finish the fight with two players or less in no more than ${turns} turns.`
+            description: ({ turns = '{number}' } = {}) => `Finish the fight with two players or less in no more than ${turns} turns.`
         },
         fainthearted: {
             name: 'Fainthearted',
@@ -27,7 +27,7 @@ const descriptions = {
         },
         first: {
             name: 'First',
-            description: `Kill ${bossID} first.`
+            description: ({ bossID = 'the designated boss' } = {}) => `Kill ${bossID} first.`
         },
         freedom: {
             name: 'Freedom',
@@ -47,7 +47,7 @@ const descriptions = {
         },
         last: {
             name: 'Last',
-            description: `Kill ${bossID} last.`
+            description: ({ bossID = 'the designated boss' } = {}) => `Kill ${bossID} last.`
         },
         mystique: {
             name: 'Mystique',
@@ -106,7 +106,7 @@ const descriptions = {
         },
         chrono: {
             name: 'Chrono',
-            description: `Finish the fight in ${turns} or less.`
+            description: ({ turns = '{number}' } = {}) => `Finish the fight in ${turns} turns or less.`
         },
         cleanHands: {
             name: 'Clean Hands',
@@ -202,7 +202,7 @@ const descriptions = {
         },
         reprieve: {
             name: 'Reprieve',
-            description: `Kill ${monsterID} last.`
+            description: ({ monsterID = 'the designated monster' } = {}) => `Kill ${monsterID} last.`
         },
         rootedToTheSpot: {
             name: 'Rooted to the Spot',
@@ -270,7 +270,7 @@ const descriptions = {
         },
         unwillingVolunteer: {
             name: 'Unwilling Volunteer',
-            description: `Kill ${monsterID} first.`
+            description: ({ monsterID = 'the designated monster' } = {}) => `Kill ${monsterID} first.`
         },
         versatile: {
             name: 'Versatile',
@@ -282,3 +282,5 @@ const descriptions = {
         },
     }
 };
+
+module.exports = descriptions;

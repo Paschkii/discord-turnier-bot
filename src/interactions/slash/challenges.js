@@ -1,6 +1,8 @@
 // === Imports ===
-const challenges = require('../../config/constants/challenges');
+const { CHALLENGE_KEYS } = require('../../config/constants/achievementsChallenges');
+const { EMOJI_LIST } = require('../../config/constants/emojis');
 const { createListCommand } = require('./listCommandFactory');
+const { buildEntries } = require('./achievementsChallengesHelper');
 
 const COPY = {
   title: {
@@ -29,20 +31,13 @@ const COPY = {
   },
 };
 
-const createEntry = (id, fallback) => {
-  if (typeof challenges.create === 'function') {
-    const entry = challenges.create(id);
-    if (entry) {
-      return entry;
-    }
-  }
-  return fallback;
-};
-
 module.exports = {
   execute: createListCommand({
-    list: challenges,
+    list: buildEntries(
+      CHALLENGE_KEYS,
+      'challenges',
+      EMOJI_LIST?.challenges,
+    ),
     copy: COPY,
-    createEntry,
   }),
 };
