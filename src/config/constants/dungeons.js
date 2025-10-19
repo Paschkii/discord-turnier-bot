@@ -31,7 +31,7 @@ const DUNGEON_ROHDATEN = [
       { id: 'room3', monsterID: ['belladonna', 'dolomanus', 'marbmour']},
     ],
     achievements: ['no_rush', 'last', 'duo(20)'],
-    bossid: 'belladonna',
+    bossID: 'belladonna',
     dungeonLevel: 12
   },
   // Field Dungeon
@@ -49,7 +49,7 @@ const DUNGEON_ROHDATEN = [
       { id: 'room3', monsterID: ['famished_sunflower', 'demonic_rose', 'evil_dandelion', 'wild_sunflower']},
     ],
     achievements: ['tight', 'first', 'duo(20)'],
-    bossid: 'famished_sunflower',
+    bossID: 'famished_sunflower',
     dungeonLevel: 30
   },
   // Sand Dungeon
@@ -67,7 +67,7 @@ const DUNGEON_ROHDATEN = [
       { id: 'room3', monsterID: ['spongemob', 'white_snapper', 'red_snapper', 'green_snapper']},
     ],
     achievements: ['hermit', 'versatile', 'duo(20)'],
-    bossid: 'spongemob',
+    bossID: 'spongemob',
     dungeonLevel: 40
   },
   // Scaraleaf Dungeon
@@ -85,7 +85,7 @@ const DUNGEON_ROHDATEN = [
       { id: 'room3', monsterID: ['golden_scarabugly', 'black_scaraleaf', 'white_scaraleaf', 'blue_scaraleaf']},
     ],
     achievements: ['zombie', 'clean_hands', 'duo(20)'],
-    bossid: 'scarabugly',
+    bossID: 'scarabugly',
     dungeonLevel: 40
   },
   // Tofu House
@@ -103,7 +103,7 @@ const DUNGEON_ROHDATEN = [
       { id: 'room3', monsterID: ['batofu', 'tofoone', 'tofurby', 'tofukaz']},
     ],
     achievements: ['no_rush', 'versatile', 'duo(20)'],
-    bossid: 'batofu',
+    bossID: 'batofu',
     dungeonLevel: 40
   },
   // Haunted House
@@ -121,7 +121,7 @@ const DUNGEON_ROHDATEN = [
       { id: 'room3', monsterID: ['boostache', 'vampire_master', 'elite_chafer', 'kwoan']},
     ],
     achievements: ['hermit', 'last', 'duo(20)'],
-    bossid: 'boostache',
+    bossID: 'boostache',
     dungeonLevel: 40
   },
   // Skeleton Dungeon
@@ -139,7 +139,7 @@ const DUNGEON_ROHDATEN = [
       { id: 'room3', monsterID: ['', '', '', '']},
     ],
     achievements: ['nomad', 'first', 'duo(20)'],
-    bossid: 'ronin_chafer',
+    bossID: 'ronin_chafer',
     dungeonLevel: 40
   },
   // Gobball Dungeon
@@ -157,7 +157,7 @@ const DUNGEON_ROHDATEN = [
       { id: 'room3', monsterID: ['', '', '', '']},
     ],
     achievements: ['fainthearted', 'blitzkrieg', 'duo(20)'],
-    bossid: 'royal_gobball',
+    bossID: 'royal_gobball',
     dungeonLevel: 50
   },
   // Bwork Dungeon
@@ -175,7 +175,7 @@ const DUNGEON_ROHDATEN = [
       { id: 'room3', monsterID: ['bworkette', 'bwork_magus', 'bwork_archer', 'bwork']},
     ],
     achievements: ['hermit', 'first', 'duo(20)'],
-    bossid: 'bworkette',
+    bossID: 'bworkette',
     dungeonLevel: 50
   },
   // Blacksmith Dungeon
@@ -193,7 +193,7 @@ const DUNGEON_ROHDATEN = [
       { id: 'room3', monsterID: ['', '', '', '']},
     ],
     achievements: ['nomad', 'first', 'duo(20)'],
-    bossid: 'smiths_chest',
+    bossID: 'smiths_chest',
     dungeonLevel: 50
   },
   // Larva Dungeon
@@ -211,7 +211,7 @@ const DUNGEON_ROHDATEN = [
       { id: 'room3', monsterID: ['', '', '', '']},
     ],
     achievements: ['fainthearted', 'versatile', 'duo(20)'],
-    bossid: 'shin_larva',
+    bossID: 'shin_larva',
     dungeonLevel: 50
   },
   // Grotto Hesque
@@ -229,7 +229,7 @@ const DUNGEON_ROHDATEN = [
       { id: 'room3', monsterID: ['', '', '', '']},
     ],
     achievements: ['impertinence', 'blitzkrieg', 'duo(20)'],
-    bossid: 'great_coralator',
+    bossID: 'great_coralator',
     dungeonLevel: 50
   },
   // Kwakwa's Nest
@@ -247,7 +247,7 @@ const DUNGEON_ROHDATEN = [
       { id: 'room3', monsterID: ['', '', '', '']},
     ],
     achievements: ['zombie', 'clean hands', 'duo(20)'],
-    bossid: 'kwakwa',
+    bossID: 'kwakwa',
     dungeonLevel: 50
   },
   // Stufe 51 - 100
@@ -266,7 +266,7 @@ const DUNGEON_ROHDATEN = [
       { id: 'room3', monsterID: ['', '', '', '']},
     ],
     achievements: ['impertinence', 'blitzkrieg', 'duo(20)'],
-    bossid: 'wa_wabbit',
+    bossID: 'wa_wabbit',
     dungeonLevel: 60
   },
   // Kanniball Dungeon
@@ -284,7 +284,7 @@ const DUNGEON_ROHDATEN = [
       { id: 'room3', monsterID: ['', '', '', '']},
     ],
     achievements: ['zombie', 'first', 'duo(20)'],
-    bossid: 'kanniball_',
+    bossID: 'kanniball_',
     dungeonLevel: 60
   },
   // Blop Dungeon
@@ -302,7 +302,7 @@ const DUNGEON_ROHDATEN = [
       { id: 'room3', monsterID: ['', '', '', '']},
     ],
     achievements: ['duel', 'fainthearted', 'duo(20)'],
-    bossid: ['royal_morello_cherry_blop', 'royal_pippin_blop', 'royal_coco_blop', 'royal_indigo_blop'],
+    bossID: ['royal_morello_cherry_blop', 'royal_pippin_blop', 'royal_coco_blop', 'royal_indigo_blop'],
     dungeonLevel: 60
   },
   // The Jellith Dimension
@@ -320,7 +320,7 @@ const DUNGEON_ROHDATEN = [
       { id: 'room3', monsterID: ['', '', '', '']},
     ],
     achievements: ['duel', 'tight', 'duo(20)'],
-    bossid: ['royal_blue_jelly', 'royal_mint_jelly', 'royal_lemon_jelly', 'royal_strawberry_jelly'],
+    bossID: ['royal_blue_jelly', 'royal_mint_jelly', 'royal_lemon_jelly', 'royal_strawberry_jelly'],
     dungeonLevel: 60
   },
   // Brumen Tinctoria's LaboRATory
@@ -338,7 +338,7 @@ const DUNGEON_ROHDATEN = [
       { id: 'room3', monsterID: ['', '', '', '']},
     ],
     achievements: ['last', 'hermit', 'duo(20)'],
-    bossid: 'nelween',
+    bossID: 'nelween',
     dungeonLevel: 60
   },
   // Hold of Otomai's Ark
@@ -356,7 +356,7 @@ const DUNGEON_ROHDATEN = [
       { id: 'room3', monsterID: ['', '', '', '']},
     ],
     achievements: ['first', 'scanty', 'duo(20)'],
-    bossid: 'gourlo_the_terrible',
+    bossID: 'gourlo_the_terrible',
     dungeonLevel: 70
   },
   // Crackler Dungeon
@@ -374,7 +374,7 @@ const DUNGEON_ROHDATEN = [
       { id: 'room3', monsterID: ['', '', '', '']},
     ],
     achievements: ['fainthearted', 'first', 'duo(20)'],
-    bossid: 'legendary_crackler',
+    bossID: 'legendary_crackler',
     dungeonLevel: 70
   },
   // Wa Wabbit's Warren
@@ -392,7 +392,7 @@ const DUNGEON_ROHDATEN = [
       { id: 'room3', monsterID: ['', '', '', '']},
     ],
     achievements: ['clean hands', 'blitzkrieg', 'duo(20)'],
-    bossid: 'wa_wobot',
+    bossID: 'wa_wobot',
     dungeonLevel: 80
   },
   // Treechnid Dungeon
@@ -410,7 +410,7 @@ const DUNGEON_ROHDATEN = [
       { id: 'room3', monsterID: ['', '', '', '']},
     ],
     achievements: ['nomad', 'first', 'Duo(20)'],
-    bossid: 'ancestral_treechnid',
+    bossID: 'ancestral_treechnid',
     dungeonLevel: 90
   },
   // Hard-Head Dam
@@ -428,7 +428,7 @@ const DUNGEON_ROHDATEN = [
       { id: 'room3', monsterID: ['', '', '', '']},
     ],
     achievements: ['versatile', 'clean hands', 'duo(20)'],
-    bossid: 'selim_quartz',
+    bossID: 'selim_quartz',
     dungeonLevel: 90
   },
   // Dragon Pig's Den
@@ -446,7 +446,7 @@ const DUNGEON_ROHDATEN = [
       { id: 'room3', monsterID: ['', '', '', '']},
     ],
     achievements: ['impertinence', 'versatile', 'duo(20)'],
-    bossid: 'dragonpig',
+    bossID: 'dragonpig',
     dungeonLevel: 100
   },
   // Koolich Cavern
@@ -464,7 +464,7 @@ const DUNGEON_ROHDATEN = [
       { id: 'room3', monsterID: ['', '', '', '']},
     ],
     achievements: ['zombie', 'clean_hands', 'duo(20)'],
-    bossid: 'koolich',
+    bossID: 'koolich',
     dungeonLevel: 100
   },
   // Moon Dungeon
@@ -482,7 +482,7 @@ const DUNGEON_ROHDATEN = [
       { id: 'room3', monsterID: ['', '', '', '']},
     ],
     achievements: ['versatile', 'statue', 'duo(20)'],
-    bossid: 'moon',
+    bossID: 'moon',
     dungeonLevel: 100
   },
   // Canidae Dungeon
@@ -500,7 +500,7 @@ const DUNGEON_ROHDATEN = [
       { id: 'room3', monsterID: ['', '', '', '']},
     ],
     achievements: ['first', 'impertinence', 'duo(20)'],
-    bossid: 'moowolf',
+    bossID: 'moowolf',
     dungeonLevel: 100
   },
   // Stufe 101 - 150
@@ -519,7 +519,7 @@ const DUNGEON_ROHDATEN = [
       { id: 'room3', monsterID: ['', '', '', '']},
     ],
     achievements: ['first', 'time_flies', 'duo(20)'],
-    bossid: 'silf',
+    bossID: 'silf',
     dungeonLevel: 110
   },
   // Lord Crow's Library
@@ -537,7 +537,7 @@ const DUNGEON_ROHDATEN = [
       { id: 'room3', monsterID: ['', '', '', '']},
     ],
     achievements: ['tight', 'first', 'duo(20)'],
-    bossid: 'lord_crow',
+    bossID: 'lord_crow',
     dungeonLevel: 110
   },
   // Bonta Rat Dungeon
@@ -555,7 +555,7 @@ const DUNGEON_ROHDATEN = [
       { id: 'room3', monsterID: ['', '', '', '']},
     ],
     achievements: ['first', 'impertinence', 'duo(20)'],
-    bossid: 'white_rat',
+    bossID: 'white_rat',
     dungeonLevel: 110
   },
   // Brakmar Rat Dungeon
@@ -573,7 +573,7 @@ const DUNGEON_ROHDATEN = [
       { id: 'room3', monsterID: ['', '', '', '']},
     ],
     achievements: ['impertinence', 'blitzkrieg', 'Duo(20)'],
-    bossid: 'black_rat',
+    bossID: 'black_rat',
     dungeonLevel: 110
   },
 
@@ -591,7 +591,7 @@ const DUNGEON_ROHDATEN = [
       { id: 'room3', monsterID: ['', '', '', '']},
     ],
     achievements: ['impertinence', 'duel', 'duo(20)'],
-    bossid: ['royal_rainbow_blop', 'royal_coco_blop', 'royal_indigo_blop', 'royal_morello_cherry_blop', 'royal_pippin_blop'],
+    bossID: ['royal_rainbow_blop', 'royal_coco_blop', 'royal_indigo_blop', 'royal_morello_cherry_blop', 'royal_pippin_blop'],
     dungeonLevel: 120
   },
   // Inner Labyrinth of the Minotoror
@@ -609,7 +609,7 @@ const DUNGEON_ROHDATEN = [
       { id: 'room3', monsterID: ['', '', '', '']},
     ],
     achievements: ['hermit', 'clean_hands', 'duo(20)'],
-    bossid: 'minotoror',
+    bossID: 'minotoror',
     dungeonLevel: 120
   },
   // Royal Mastogob's Greenhouse
@@ -627,7 +627,7 @@ const DUNGEON_ROHDATEN = [
       { id: 'room3', monsterID: ['', '', '', '']},
     ],
     achievements: ['clean_hands', 'first', 'duo(20)'],
-    bossid: 'royal_mastogob',
+    bossID: 'royal_mastogob',
     dungeonLevel: 120
   },
   // Royal Tofu House
@@ -645,7 +645,7 @@ const DUNGEON_ROHDATEN = [
       { id: 'room3', monsterID: ['', '', '', '']},
     ],
     achievements: ['last', 'statue', 'duo(20)'],
-    bossid: 'royal_tofu',
+    bossID: 'royal_tofu',
     dungeonLevel: 120
   },
   // Dreggon Dungeon
@@ -663,7 +663,7 @@ const DUNGEON_ROHDATEN = [
       { id: 'room3', monsterID: ['', '', '', '']},
     ],
     achievements: ['tight', 'blitzkrieg', 'duo(20)'],
-    bossid: 'crocabulia',
+    bossID: 'crocabulia',
     dungeonLevel: 120
   },
   // Skeunk's Hideout
@@ -681,7 +681,7 @@ const DUNGEON_ROHDATEN = [
       { id: 'room3', monsterID: ['', '', '', '']},
     ],
     achievements: ['statue', 'blitzkrieg', 'duo(26)'],
-    bossid: 'skeunk',
+    bossID: 'skeunk',
     dungeonLevel: 120
   },
   // Minerock Sanctuary
@@ -699,7 +699,7 @@ const DUNGEON_ROHDATEN = [
       { id: 'room3', monsterID: ['', '', '', '']},
     ],
     achievements: ['last', 'zombie', 'duo(20)'],
-    bossid: 'crakillian_guardian',
+    bossID: 'crakillian_guardian',
     dungeonLevel: 130
   },
   // Kanigrula's Hideout
@@ -717,7 +717,7 @@ const DUNGEON_ROHDATEN = [
       { id: 'room3', monsterID: ['', '', '', '']},
     ],
     achievements: ['first', 'clean_hands', 'duo(20)'],
-    bossid: 'kanigrula',
+    bossID: 'kanigrula',
     dungeonLevel: 140
   },
   // Soft Oak Dungeon
@@ -735,7 +735,7 @@ const DUNGEON_ROHDATEN = [
       { id: 'room3', monsterID: ['', '', '', '']},
     ],
     achievements: ['freedom', 'first', 'duo(20)'],
-    bossid: '',
+    bossID: 'soft_oak',
     dungeonLevel: 140
   },
   // The Tynril Lab
@@ -753,7 +753,7 @@ const DUNGEON_ROHDATEN = [
       { id: 'room3', monsterID: ['', '', '', '']},
     ],
     achievements: ['untouchable', 'zombie', 'duo(20)'],
-    bossid: {
+    bossID: {
       disconcerted: 'disconcerted_tynril',
       dismayed: 'dismayed_tynril',
       perfidious: 'perfidious_tynril',
@@ -776,7 +776,7 @@ const DUNGEON_ROHDATEN = [
       { id: 'room3', monsterID: ['', '', '', '']},
     ],
     achievements: ['last', 'tight', 'duo(20)'],
-    bossid: 'royal_pingwin',
+    bossID: 'royal_pingwin',
     dungeonLevel: 140
   },
   // Long Slumber's Barrow
@@ -794,7 +794,7 @@ const DUNGEON_ROHDATEN = [
       { id: 'room3', monsterID: ['', '', '', '']},
     ],
     achievements: ['first', 'survivor', 'duo(20)'],
-    bossid: 'hell_mina',
+    bossID: 'hell_mina',
     dungeonLevel: 140
   },
   // The Wreck of the Hesperus
@@ -812,7 +812,7 @@ const DUNGEON_ROHDATEN = [
       { id: 'room3', monsterID: ['', '', '', '']},
     ],
     achievements: ['keep_moving', 'statue', 'duo(20)'],
-    bossid: 'buck_anear',
+    bossID: 'buck_anear',
     dungeonLevel: 150
   },
   // Amakna Castle Rat Dungeon
@@ -830,9 +830,9 @@ const DUNGEON_ROHDATEN = [
       { id: 'room3', monsterID: ['', '', '', '']},
     ],
     achievements: ['impertinence', 'last', 'duo(20)'],
-    bossid: {
+    bossID: {
       sphincter: 'sphincter_cell',
-      white_rat: 'white_rat,',
+      white_rat: 'white_rat',
       black_rat: 'black_rat'
     },
     dungeonLevel: 150
@@ -853,7 +853,7 @@ const DUNGEON_ROHDATEN = [
       { id: 'room3', monsterID: ['', '', '', '']},
     ],
     achievements: ['statue', 'first', 'duo(20)'],
-    bossid: 'kimbo',
+    bossID: 'kimbo',
     dungeonLevel: 160
   },
   // Minotot Room
@@ -871,7 +871,7 @@ const DUNGEON_ROHDATEN = [
       { id: 'room3', monsterID: ['', '', '', '']},
     ],
     achievements: ['keep_moving', 'first', 'duo(20)'],
-    bossid: 'minotot',
+    bossID: ['minotot', 'minotoror'],
     dungeonLevel: 160
   },
   // The Obsidemon's Hypogeum
@@ -889,7 +889,7 @@ const DUNGEON_ROHDATEN = [
       { id: 'room3', monsterID: ['', '', '', '']},
     ],
     achievements: ['first', 'statue', 'duo(20)'],
-    bossid: 'obsidemon',
+    bossID: 'obsidemon',
     dungeonLevel: 160
   },
   // The Flooded Chapel
@@ -907,7 +907,7 @@ const DUNGEON_ROHDATEN = [
       { id: 'room3', monsterID: ['', '', '', '']},
     ],
     achievements: ['fainthearted', 'versatile', 'duo(20)'],
-    bossid: 'zombrute',
+    bossID: 'zombrute',
     dungeonLevel: 160
   },
   // Snowfoux Caverns
@@ -925,7 +925,7 @@ const DUNGEON_ROHDATEN = [
       { id: 'room3', monsterID: ['', '', '', '']},
     ],
     achievements: ['first', 'statue', 'duo(15)'],
-    bossid: 'tengu_snowfoux',
+    bossID: 'tengu_snowfoux',
     dungeonLevel: 170
   },
   // Valley of the Lady of the Water
@@ -943,7 +943,7 @@ const DUNGEON_ROHDATEN = [
       { id: 'room3', monsterID: ['', '', '', '']},
     ],
     achievements: ['last', 'impertinence', 'duo(20)'],
-    bossid: 'nagate',
+    bossID: 'nagate',
     dungeonLevel: 170
   },
   // Scale King's Pyramid
@@ -961,7 +961,7 @@ const DUNGEON_ROHDATEN = [
       { id: 'room3', monsterID: ['', '', '', '']},
     ],
     achievements: ['last', 'statue', 'duo(20)'],
-    bossid: 'scale_king',
+    bossID: 'scale_king',
     dungeonLevel: 170
   },
   // Korriander's Lair
@@ -979,7 +979,7 @@ const DUNGEON_ROHDATEN = [
       { id: 'room3', monsterID: ['', '', '', '']},
     ],
     achievements: ['mystique', 'zombie', 'duo(20)'],
-    bossid: 'Korriander',
+    bossID: 'Korriander',
     dungeonLevel: 180
   },
   // Lair of the Giant Kralove
@@ -997,7 +997,7 @@ const DUNGEON_ROHDATEN = [
       { id: 'room3', monsterID: ['', '', '', '']},
     ],
     achievements: ['nomad', 'blitzkrieg', 'Duo(20)'],
-    bossid: 'giant_kralove',
+    bossID: 'giant_kralove',
     dungeonLevel: 180
   },
   // Bworker Dungeon
@@ -1015,7 +1015,7 @@ const DUNGEON_ROHDATEN = [
       { id: 'room3', monsterID: ['', '', '', '']},
     ],
     achievements: ['impertinence', 'quick_and_furious', 'duo(20)'],
-    bossid: 'bworker',
+    bossID: 'bworker',
     dungeonLevel: 180
   },
   // Fungus Dungeon
@@ -1033,7 +1033,7 @@ const DUNGEON_ROHDATEN = [
       { id: 'room3', monsterID: ['', '', '', '']},
     ],
     achievements: ['tight', 'last', 'Duo(15)'],
-    bossid: 'ougaa',
+    bossID: 'ougaa',
     dungeonLevel: 180
   },
   // Tanukoui San's Workshop
@@ -1051,7 +1051,7 @@ const DUNGEON_ROHDATEN = [
       { id: 'room3', monsterID: ['', '', '', '']},
     ],
     achievements: ['nomad', 'blitzkrieg', 'duo(20)'],
-    bossid: 'tanukoui_san',
+    bossID: 'tanukoui_san',
     dungeonLevel: 180
   },
   // Kolosso's Cavern
@@ -1069,7 +1069,7 @@ const DUNGEON_ROHDATEN = [
       { id: 'room3', monsterID: ['', '', '', '']},
     ],
     achievements: ['last', 'first', 'duo(19)'],
-    bossid: {
+    bossID: {
       kolosso: 'kolosso',
       professorXa: 'professor_xa'
     },
@@ -1090,7 +1090,7 @@ const DUNGEON_ROHDATEN = [
       { id: 'room3', monsterID: ['', '', '', '']},
     ],
     achievements: ['last', 'hermit', 'duo(20)'],
-    bossid: 'founoroshi',
+    bossID: 'founoroshi',
     dungeonLevel: 190
   },
   // Foster Caverns
@@ -1108,7 +1108,7 @@ const DUNGEON_ROHDATEN = [
       { id: 'room3', monsterID: ['', '', '', '']},
     ],
     achievements: ['last', 'statue', 'duo(21)'],
-    bossid: 'fuji_snowfoux',
+    bossID: 'fuji_snowfoux',
     dungeonLevel: 190
   },
   // Sakai Mine
@@ -1126,7 +1126,7 @@ const DUNGEON_ROHDATEN = [
       { id: 'room3', monsterID: ['', '', '', '']},
     ],
     achievements: ['versatile', 'blitzkrieg', 'duo(28)'],
-    bossid: 'grohlum',
+    bossID: 'grohlum',
     dungeonLevel: 190
   },
   // Bearbarian Antichamber
@@ -1144,7 +1144,7 @@ const DUNGEON_ROHDATEN = [
       { id: 'room3', monsterID: ['', '', '', '']},
     ],
     achievements: ['first', 'tight', 'duo(17)'],
-    bossid: 'celestial_bearbarian',
+    bossID: 'celestial_bearbarian',
     dungeonLevel: 190
   },
   // Wind Dojo
@@ -1162,7 +1162,7 @@ const DUNGEON_ROHDATEN = [
       { id: 'room3', monsterID: ['', '', '', '']},
     ],
     achievements: ['first', 'fainthearted', 'Duo(20)'],
-    bossid: ['shihan', 'hanshi'],
+    bossID: ['shihan', 'hanshi'],
     dungeonLevel: 190
   },
   // Stufe 191 - 200
@@ -1181,7 +1181,7 @@ const DUNGEON_ROHDATEN = [
       { id: 'room3', monsterID: ['', '', '', '']},
     ],
     achievements: ['nomad', 'tight', 'duo(40)'],
-    bossid: 'missiz_freezz',
+    bossID: 'missiz_freezz',
     dungeonLevel: 190
   },
   // Sylargh's Carrier
@@ -1199,7 +1199,7 @@ const DUNGEON_ROHDATEN = [
       { id: 'room3', monsterID: ['', '', '', '']},
     ],
     achievements: ['hermit', 'barbaric', 'duo(40)'],
-    bossid: 'sylargh',
+    bossID: 'sylargh',
     dungeonLevel: 190
   },
   // Klime's Private Suite
@@ -1217,7 +1217,7 @@ const DUNGEON_ROHDATEN = [
       { id: 'room3', monsterID: ['', '', '', '']},
     ],
     achievements: ['fainthearted', 'nomad', 'duo(40)'],
-    bossid: 'klime',
+    bossID: 'klime',
     dungeonLevel: 190
   },
   // Nileza's Laboratory
@@ -1235,7 +1235,7 @@ const DUNGEON_ROHDATEN = [
       { id: 'room3', monsterID: ['', '', '', '']},
     ],
     achievements: ['fainthearted', 'last', 'duo(40)'],
-    bossid: 'nileza',
+    bossID: 'nileza',
     dungeonLevel: 190
   },
   // The Count's Dungeon
@@ -1253,7 +1253,7 @@ const DUNGEON_ROHDATEN = [
       { id: 'room3', monsterID: ['', '', '', '']},
     ],
     achievements: ['versatile', 'statue', 'duo(40)'],
-    bossid: 'count_harebourg',
+    bossID: 'count_harebourg',
     dungeonLevel: 190
   },
   // Damadrya's Bamboo Grove
@@ -1271,7 +1271,7 @@ const DUNGEON_ROHDATEN = [
       { id: 'room3', monsterID: ['', '', '', '']},
     ],
     achievements: ['hermit', 'first', 'duo(20)'],
-    bossid: 'damadrya',
+    bossID: 'damadrya',
     dungeonLevel: 190
   },
   // Lost Soul's Sanctuary
@@ -1289,7 +1289,7 @@ const DUNGEON_ROHDATEN = [
       { id: 'room3', monsterID: ['', '', '', '']},
     ],
     achievements: ['clean_hands', 'impertinence', 'duo(20)'],
-    bossid: 'katamashii',
+    bossID: 'katamashii',
     dungeonLevel: 190
   },
   // === Saisonale Dungeons
@@ -1308,7 +1308,7 @@ const DUNGEON_ROHDATEN = [
       { id: 'room3', monsterID: ['', '', '', '']},
     ],
     achievements: [''],
-    bossid: 'mucane',
+    bossID: 'mucane',
     dungeonLevel: 0
   },
   { dungeonID: 'ascension_50',
@@ -1325,7 +1325,7 @@ const DUNGEON_ROHDATEN = [
       { id: 'room3', monsterID: ['', '', '', '']},
     ],
     achievements: [''],
-    bossid: 'ul_khan',
+    bossID: 'ul_khan',
     dungeonLevel: 0
   },
   { dungeonID: 'ascension_75',
@@ -1342,7 +1342,7 @@ const DUNGEON_ROHDATEN = [
       { id: 'room3', monsterID: ['', '', '', '']},
     ],
     achievements: [''],
-    bossid: 'mucane',
+    bossID: 'mucane',
     dungeonLevel: 0
   },
   { dungeonID: 'ascension_100',
@@ -1359,7 +1359,7 @@ const DUNGEON_ROHDATEN = [
       { id: 'room3', monsterID: ['', '', '', '']},
     ],
     achievements: [''],
-    bossid: 'ul_khan',
+    bossID: 'ul_khan',
     dungeonLevel: 0
   },
   // -- Vulkania --
@@ -1378,7 +1378,7 @@ const DUNGEON_ROHDATEN = [
       { id: 'room3', monsterID: ['', '', '', '']},
     ],
     achievements: ['chrono(9)', 'statue', 'clean_hands', 'duo(20)'],
-    bossid: ['sleepwalking_grozilla', 'sleepwalking_grasmera'],
+    bossID: ['sleepwalking_grozilla', 'sleepwalking_grasmera'],
     dungeonLevel: 40
   },
   // Exhausted
@@ -1396,7 +1396,7 @@ const DUNGEON_ROHDATEN = [
       { id: 'room3', monsterID: ['', '', '', '']},
     ],
     achievements: ['chrono(9)', 'first', 'tight', 'duo(20)'],
-    bossid: ['exhausted_grozilla', 'exhausted_grasmera'],
+    bossID: ['exhausted_grozilla', 'exhausted_grasmera'],
     dungeonLevel: 90
   },
   // Tired
@@ -1414,7 +1414,7 @@ const DUNGEON_ROHDATEN = [
       { id: 'room3', monsterID: ['', '', '', '']},
     ],
     achievements: ['chrono(9)', 'nomad', 'blitzkrieg', 'duo(20)'],
-    bossid: ['tired_grozilla', 'tired_grasmera'],
+    bossID: ['tired_grozilla', 'tired_grasmera'],
     dungeonLevel: 140
   },
   { dungeonID: 'pinki_crater',
@@ -1431,7 +1431,7 @@ const DUNGEON_ROHDATEN = [
       { id: 'room3', monsterID: ['', '', '', '']},
     ],
     achievements: ['chrono(9)', 'zombie', 'impertinence', 'duo(20)'],
-    bossid: ['grozilla', 'grasmera'],
+    bossID: ['grozilla', 'grasmera'],
     dungeonLevel: 190
   },
   // -- Horrob Isle --
@@ -1449,7 +1449,7 @@ const DUNGEON_ROHDATEN = [
       { id: 'room3', monsterID: ['', '', '', '']},
     ],
     achievements: ['', '', 'duo()'],
-    bossid: 'bone_shot',
+    bossID: 'bone_shot',
     dungeonLevel: 0
   },
   { dungeonID: '',
@@ -1466,7 +1466,7 @@ const DUNGEON_ROHDATEN = [
       { id: 'room3', monsterID: ['', '', '', '']},
     ],
     achievements: ['', '', 'duo()'],
-    bossid: 'al_howing',
+    bossID: 'al_howing',
     dungeonLevel: 0
   },
   { dungeonID: '',
@@ -1483,7 +1483,7 @@ const DUNGEON_ROHDATEN = [
       { id: 'room3', monsterID: ['', '', '', '']},
     ],
     achievements: ['', '', 'duo()'],
-    bossid: 'staff_deleghoul',
+    bossID: 'staff_deleghoul',
     dungeonLevel: 0
   },
   // -- Kwismas --
@@ -1501,7 +1501,7 @@ const DUNGEON_ROHDATEN = [
       { id: 'room3', monsterID: ['', '', '', '']},
     ],
     achievements: ['', '', 'duo()'],
-    bossid: 'itzing',
+    bossID: 'itzing',
     dungeonLevel: 0
   },
   { dungeonID: '',
@@ -1518,7 +1518,7 @@ const DUNGEON_ROHDATEN = [
       { id: 'room3', monsterID: ['', '', '', '']},
     ],
     achievements: ['', '', 'duo()'],
-    bossid: 'father_kwismas',
+    bossID: 'father_kwismas',
     dungeonLevel: 0
   },
   { dungeonID: '',
@@ -1535,23 +1535,23 @@ const DUNGEON_ROHDATEN = [
       { id: 'room3', monsterID: ['', '', '', '']},
     ],
     achievements: ['', '', 'duo()'],
-    bossid: 'father_whupper',
+    bossID: 'father_whupper',
     dungeonLevel: 0
   },
 ];
 
-function flattenBossIdentifier(value) {
+function flattenbossIDentifier(value) {
   if (!value) return undefined;
   if (Array.isArray(value)) {
     return value
-      .map((item) => flattenBossIdentifier(item))
+      .map((item) => flattenbossIDentifier(item))
       .filter(Boolean)
       .join(', ');
   }
   if (typeof value === 'object') {
-    if (value.id) return flattenBossIdentifier(value.id);
+    if (value.id) return flattenbossIDentifier(value.id);
     return Object.values(value)
-      .map((item) => flattenBossIdentifier(item))
+      .map((item) => flattenbossIDentifier(item))
       .filter(Boolean)
       .join(', ');
   }
@@ -1567,11 +1567,11 @@ function resolveDungeonLabels(dungeonname) {
   return Object.keys(labels).length ? labels : undefined;
 }
 
-function resolveBossLabels(bossid) {
-  if (!bossid) return undefined;
+function resolveBossLabels(bossID) {
+  if (!bossID) return undefined;
   const labels = {};
   for (const locale of SUPPORTED_LOCALES) {
-    const label = flattenBossLabelForLocale(bossid, locale);
+    const label = flattenBossLabelForLocale(bossID, locale);
     if (label) labels[locale] = label;
   }
   return Object.keys(labels).length ? labels : undefined;
@@ -1620,11 +1620,11 @@ function instantiateDungeonChallenge(spec, dungeon) {
   }
 
   if (id === 'duo') {
-    overrides.bossID = dungeon.bossid;
-    const bossLabels = resolveBossLabels(dungeon.bossid);
+    overrides.bossID = dungeon.bossID;
+    const bossLabels = resolveBossLabels(dungeon.bossID);
     if (bossLabels) overrides.bossName = { name: bossLabels };
     else {
-      const fallback = flattenBossIdentifier(dungeon.bossid);
+      const fallback = flattenbossIDentifier(dungeon.bossID);
       if (fallback) overrides.bossName = fallback;
     }
     overrides.dungeonID = dungeon.dungeonID;
@@ -1634,11 +1634,11 @@ function instantiateDungeonChallenge(spec, dungeon) {
   }
 
   if (id === 'first' || id === 'last') {
-    overrides.target = dungeon.bossid;
-    const targetLabels = resolveBossLabels(dungeon.bossid);
+    overrides.target = dungeon.bossID;
+    const targetLabels = resolveBossLabels(dungeon.bossID);
     if (targetLabels) overrides.targetName = { name: targetLabels };
     else {
-      const fallback = flattenBossIdentifier(dungeon.bossid);
+      const fallback = flattenbossIDentifier(dungeon.bossID);
       if (fallback) overrides.targetName = fallback;
     }
   }
