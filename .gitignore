@@ -4,3 +4,4 @@ turnier.json
 dist
 coverage
 .DS_Store
+.emoji-snapshot.json
