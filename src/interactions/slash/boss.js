@@ -92,6 +92,9 @@ const PRIMARY_EMOJIS = EMOJI_LIST?.primaryStats || {};
 const SECONDARY_EMOJIS = EMOJI_LIST?.secondaryStats || {};
 const RESISTANCE_EMOJIS = EMOJI_LIST?.resistanceStats || {};
 
+// NBSP = No Break Space
+const NBSP = '\u00A0';
+
 const EMOJI_LABELS = {
   baseStats: {
     level: PRIMARY_EMOJIS.level || ':level:',
@@ -165,6 +168,104 @@ function extractAlsoInDungeonIds(ref) {
 
   const text = String(ref).trim();
   return text ? [text] : [];
+}
+
+function mergeDeep(base = {}, overrides = {}) {
+  const result = { ...base };
+
+  if (!overrides || typeof overrides !== 'object') {
+    return result;
+  }
+
+  for (const [key, value] of Object.entries(overrides)) {
+    if (value && typeof value === 'object' && !Array.isArray(value)) {
+      const baseValue = base[key];
+      const nestedBase = baseValue && typeof baseValue === 'object' && !Array.isArray(baseValue)
+        ? baseValue
+        : {};
+      result[key] = mergeDeep(nestedBase, value);
+    } else {
+      result[key] = value;
+    }
+  }
+
+  return result;
+}
+
+function applyBossOverrides(boss, overrides) {
+  if (!boss || typeof boss !== 'object') return boss;
+  if (!overrides || typeof overrides !== 'object') return boss;
+
+  const baseCharacteristics = boss.characteristics && typeof boss.characteristics === 'object'
+    ? mergeDeep({}, boss.characteristics)
+    : {};
+  const baseResistances = boss.resistances && typeof boss.resistances === 'object'
+    ? mergeDeep({}, boss.resistances)
+    : {};
+
+  const mergedCharacteristics = mergeDeep(baseCharacteristics, overrides.characteristics || {});
+  const mergedResistances = mergeDeep(baseResistances, overrides.resistances || {});
+
+  const defaultCharacteristicKeys = new Set([
+    'level',
+    'healthPoints',
+    'actionPoints',
+    'movementPoints',
+    'apParry',
+    'mpParry',
+    'lock',
+    'criticalResistance',
+    'pushbackResistance',
+  ]);
+
+  for (const [key, value] of Object.entries(overrides)) {
+    if (key === 'characteristics' || key === 'resistances') continue;
+
+    const isResistanceKey = (key in baseResistances) || /_(percent|fixed)$/i.test(key);
+    const isCharacteristicKey = (key in baseCharacteristics) || defaultCharacteristicKeys.has(key);
+
+    if (isResistanceKey) {
+      mergedResistances[key] = value;
+    } else if (isCharacteristicKey || !(value && typeof value === 'object')) {
+      mergedCharacteristics[key] = value;
+    }
+  }
+
+  return {
+    ...boss,
+    characteristics: mergedCharacteristics,
+    resistances: mergedResistances,
+  };
+}
+
+function findAlsoInEntryByDungeonId(reference, targetId) {
+  if (!reference || !targetId) return null;
+
+  const stack = Array.isArray(reference) ? reference.slice() : [reference];
+
+  while (stack.length) {
+    const current = stack.shift();
+    if (!current) continue;
+
+    if (Array.isArray(current)) {
+      stack.push(...current);
+      continue;
+    }
+
+    if (typeof current === 'object') {
+      const ids = extractAlsoInDungeonIds(current);
+      if (ids.includes(targetId)) {
+        return current;
+      }
+
+      for (const [key, value] of Object.entries(current)) {
+        if (key === 'overrides') continue;
+        stack.push(value);
+      }
+    }
+  }
+
+  return null;
 }
 
 function uniqueStrings(values = []) {
@@ -278,7 +379,7 @@ function isEmojiLabel(label) {
 }
 
 function getLabelValueSeparator(label) {
-  return isEmojiLabel(label) ? '' : ' ';
+  return isEmojiLabel(label) ? '' : NBSP;
 }
 
 function formatLabelValue(label, value) {
@@ -350,7 +451,7 @@ function buildElementLine({
     return `${elementLabel}${getLabelValueSeparator(elementLabel)}${formatted}`;
   });
 
-  const valueText = hasValue ? parts.join(' ') : '—';
+  const valueText = hasValue ? parts.join(NBSP) : '—';
   if (!label) {
     return valueText;
   }
@@ -384,7 +485,7 @@ function buildDescription({ boss, dungeonLabel, dungeonNames, labels, level, loc
       EMOJI_LABELS.baseStats.movementPoints,
       coalesce(characteristics.movementPoints, characteristics.mp),
     ),
-  ].join(' ');
+  ].join(NBSP);
 
   const apParryValue = coalesce(
     characteristics.apParry,
@@ -510,8 +611,6 @@ async function execute(interaction) {
     }
   }
 
-  const bossName = getBossName(boss, resolvedLocale) || '—';
-  const level = boss.level != null ? String(boss.level) : null;
   const homeDungeonReference = coalesce(
     boss.homeDungeonID,
     boss.homeDungeonBossID,
@@ -549,8 +648,22 @@ async function execute(interaction) {
     ? (labels.alternateDungeon || labels.dungeon)
     : (labels.homeDungeon || labels.dungeon);
 
+  const activeDungeonIds = useAlternate ? alternateDungeonIds : homeDungeonIds;
+  const activeDungeonId = activeDungeonIds.length ? activeDungeonIds[0] : null;
+
+  let displayBoss = boss;
+  if (useAlternate && activeDungeonId) {
+    const alsoInEntry = findAlsoInEntryByDungeonId(boss?.alsoIn, activeDungeonId);
+    if (alsoInEntry?.overrides) {
+      displayBoss = applyBossOverrides(boss, alsoInEntry.overrides);
+    }
+  }
+
+  const bossName = getBossName(displayBoss, resolvedLocale) || '—';
+  const level = displayBoss.level != null ? String(displayBoss.level) : null;
+
   const descriptionLines = buildDescription({
-    boss,
+    boss: displayBoss,
     dungeonLabel,
     dungeonNames,
     labels,
@@ -568,17 +681,15 @@ async function execute(interaction) {
     .setDescription(description)
     .setTimestamp();
 
-  if (boss.imageUrl) {
-    embed.setThumbnail(boss.imageUrl);
-  } else if (boss.icon) {
-    embed.setThumbnail(boss.icon);
+  if (displayBoss.imageUrl) {
+    embed.setThumbnail(displayBoss.imageUrl);
+  } else if (displayBoss.icon) {
+    embed.setThumbnail(displayBoss.icon);
   }
 
-  if (alternateDungeonNames.length) {
-    const supplementaryLabel = useAlternate
-      ? (labels.homeDungeon || labels.dungeon)
-      : (labels.alsoIn || labels.alternateDungeon || labels.dungeon);
-    const supplementaryNames = useAlternate ? homeDungeonNames : alternateDungeonNames;
+  if (!useAlternate && alternateDungeonNames.length) {
+    const supplementaryLabel = labels.alsoIn || labels.alternateDungeon || labels.dungeon;
+    const supplementaryNames = alternateDungeonNames;
     if (supplementaryNames.length) {
       embed.addFields({
         name: `**${supplementaryLabel}**`,
