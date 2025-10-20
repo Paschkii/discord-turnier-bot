@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node src/index.js",
     "deploy:commands": "node src/scripts/deploy-commands.js",
+    "emoji:dump": "node src/scripts/emoji-dump.js",
     "test": "node --test"
   },
   "engines": {
