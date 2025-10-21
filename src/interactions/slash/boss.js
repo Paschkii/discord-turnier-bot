@@ -391,10 +391,6 @@ function formatLabelValue(label, value) {
   return `${label}${getLabelValueSeparator(label)}${formatted}`;
 }
 
-function appendSeparator(label) {
-  return label && label.endsWith(':') ? label : `${label}:`;
-}
-
 function formatLabeledStat(label, value, options = {}) {
   if (!label) {
     return formatNumber(value, options);
@@ -413,16 +409,14 @@ function formatLabeledStat(label, value, options = {}) {
   return `${prefix}${getLabelValueSeparator(prefix)}${formattedValue}`;
 }
 
-function buildElementLine({
+function collectElementValues({
   resistances = {},
   elementLabels,
   elementEmojis,
-  label,
   keySuffix = '',
   keySuffixes,
   suffix = '',
 }) {
-  let hasValue = false;
   const suffixList = Array.isArray(keySuffixes) && keySuffixes.length
     ? keySuffixes.slice()
     : (keySuffix ? [keySuffix] : []);
@@ -431,7 +425,7 @@ function buildElementLine({
     suffixList.push('');
   }
 
-  const parts = ELEMENT_KEYS.map((key) => {
+  return ELEMENT_KEYS.map((key) => {
     const candidateKeys = suffixList.map((suffixKey) => (
       suffixKey ? `${key}_${suffixKey}` : key
     ));
@@ -441,24 +435,19 @@ function buildElementLine({
       const candidateValue = resistances ? resistances[candidate] : undefined;
       if (candidateValue !== undefined && candidateValue !== null && candidateValue !== '') {
         rawValue = candidateValue;
-        hasValue = true;
         break;
       }
     }
 
     const formatted = formatNumber(rawValue, { suffix });
+    if (formatted === '—') {
+      return '';
+    }
+
     const emojiLabel = elementEmojis?.get(key);
     const elementLabel = emojiLabel || elementLabels.get(key) || capitalize(key);
     return `${elementLabel}${getLabelValueSeparator(elementLabel)}${formatted}`;
   });
-
-  const valueText = hasValue ? parts.join(NBSP) : '—';
-  if (!label) {
-    return valueText;
-  }
-
-  const prefix = appendSeparator(label);
-  return `${prefix}${getLabelValueSeparator(prefix)}${valueText}`;
 }
 
 function buildDescription({ boss, dungeonLabel, dungeonNames, labels, level, locale }) {
@@ -468,9 +457,12 @@ function buildDescription({ boss, dungeonLabel, dungeonNames, labels, level, loc
   const flatElementEmojis = EMOJI_LABELS.flatElements;
   const percentElementEmojis = EMOJI_LABELS.percentElements;
 
-  const dungeonText = dungeonNames.length ? dungeonNames.join(' ') : '—';
+  const dungeonLines = dungeonNames.length
+    ? dungeonNames.map((name) => `- ${name}`)
+    : [];
+  const dungeonText = dungeonLines.length ? dungeonLines.join('\n') : '—';
   const label = dungeonLabel || labels.dungeon;
-  const line1 = `**${label}:** ${dungeonText}`;
+  const line1 = `${label}:\n${dungeonText}`;
 
   const baseStatsLine = [
     formatLabelValue(EMOJI_LABELS.baseStats.level, level),
@@ -542,32 +534,45 @@ function buildDescription({ boss, dungeonLabel, dungeonNames, labels, level, loc
   const formattedDefenses = defenseStats.map(({ label, value }) => (
     formatLabeledStat(label, value, { includeSeparator: false })
   ));
-  const hasDefenseValue = defenseStats.some(({ value }) => value !== undefined && value !== null && value !== '');
-  const defensesLine = hasDefenseValue ? formattedDefenses.join(NBSP) : '—';
 
-
-  const flatLine = buildElementLine({
+  const flatValues = collectElementValues({
     resistances,
     elementLabels,
     elementEmojis: flatElementEmojis,
-    label: null,
     keySuffixes: ['fixed', 'flat'],
   });
 
-  const percentLine = buildElementLine({
+  const percentValues = collectElementValues({
     resistances,
     elementLabels,
     elementEmojis: percentElementEmojis,
-    label: null,
     keySuffixes: ['percent'],
     suffix: '%',
   });
 
+  const combinedLines = ELEMENT_KEYS.map((_, index) => {
+    const defense = formattedDefenses[index] || '';
+    const percent = percentValues[index] || '';
+    const flat = flatValues[index] || '';
+
+    const parts = [defense, percent, flat].reduce((acc, part) => {
+      if (typeof part !== 'string') {
+        return acc;
+      }
+
+      const trimmed = part.trim();
+      if (trimmed) {
+        acc.push(part);
+      }
+
+      return acc;
+    }, []);
+
+    return parts.length ? parts.join(NBSP) : null;
+  }).filter(Boolean);
+
   return {
-    headerLines: [line1, baseStatsLine],
-    percentLine,
-    flatLine,
-    defensesLine,
+    headerLines: [line1, baseStatsLine, ...combinedLines],
   };
 }
 
@@ -686,44 +691,11 @@ async function execute(interaction) {
   const rawDescription = headerLines.join('\n');
   const description = materializeGuildEmojiShortcodes(rawDescription, guild) || rawDescription;
 
-  const fallbackValue = (value) => {
-    if (typeof value !== 'string') {
-      return '—';
-    }
-    const trimmed = value.trim();
-    return trimmed ? trimmed : '—';
-  };
-
-  const percentValueRaw = fallbackValue(descriptionParts.percentLine || '—');
-  const flatValueRaw = fallbackValue(descriptionParts.flatLine || '—');
-  const defensesValueRaw = fallbackValue(descriptionParts.defensesLine || '—');
-
-  const percentValue = materializeGuildEmojiShortcodes(percentValueRaw, guild) || percentValueRaw;
-  const flatValue = materializeGuildEmojiShortcodes(flatValueRaw, guild) || flatValueRaw;
-  const defensesValue = materializeGuildEmojiShortcodes(defensesValueRaw, guild) || defensesValueRaw;
-
   const embed = new EmbedBuilder()
     .setColor(0x00AEFF)
     .setTitle(displayName)
     .setDescription(description)
     .setTimestamp();
-  
-   embed
-    .addFields({
-      name: labels.percents,
-      value: percentValue,
-      inline: true,
-    })
-    .addFields({
-      name: labels.flats,
-      value: flatValue,
-      inline: true,
-    })
-    .addFields({
-      name: labels.additionalResistances || DEFAULT_MESSAGES.labels.additionalResistances,
-      value: defensesValue,
-      inline: true,
-    });
 
   if (displayBoss.imageUrl) {
     embed.setThumbnail(displayBoss.imageUrl);

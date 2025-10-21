@@ -1423,8 +1423,8 @@ const BOSSE_LISTE = [
       apParry: 40,
       mpParry: 40,
       lock: 40,
-      criticalResistance: 0,
-      pushbackResistance: 0
+      criticalResistance: 100,
+      pushbackResistance: 100
     },
     resistances: {
       neutral_percent: 35,
