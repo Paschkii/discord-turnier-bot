@@ -342,7 +342,7 @@ function formatNumber(value, { suffix = '', showSign = false } = {}) {
     const numberValue = typeof value === 'number' ? value : numeric;
     const signPrefix = showSign && numberValue > 0 ? '+' : '';
     const baseValue = `${signPrefix}${numberValue}`;
-    result = baseValue.padStart(4, FIGURE_SPACE);
+    result = `${FIGURE_SPACE}${baseValue}${FIGURE_SPACE}`;
   } else {
     result = String(value);
   }
