@@ -45,31 +45,29 @@ function resolveDiscordEmoji(name, fallback = '') {
 
 const SUPPORTED_LOCALES = ['de', 'en', 'fr', 'es', 'it', 'pt'];
 
-function resolveLocaleKey(locale = 'de') {
+function resolveLocaleKey(locale = 'en') {
   const raw = typeof locale === 'string' ? locale.toLowerCase() : '';
-  if (!raw) return 'de';
+  if (!raw) return 'en';
   for (const loc of SUPPORTED_LOCALES) {
     if (raw === loc || raw.startsWith(`${loc}-`)) return loc;
   }
-  return 'de';
+  return 'en';
 }
 
-function getLocalizedText(entry, locale = 'de') {
+function getLocalizedText(entry, locale = 'en') {
   if (!entry) return '';
   if (typeof entry === 'string') return entry;
   if (typeof entry === 'object') {
     const key = resolveLocaleKey(locale);
-    return (
-      entry[key] ||
-      entry.de ||
-      entry.en ||
-      entry.fr ||
-      entry.es ||
-      entry.it ||
-      entry.pt ||
-      Object.values(entry).find(Boolean) ||
-      ''
-    );
+    const fallbackOrder = [...new Set([key, 'en', 'de', 'fr', 'es', 'it', 'pt'])];
+
+    for (const loc of fallbackOrder) {
+      if (loc && entry[loc]) {
+        return entry[loc];
+      }
+    }
+
+    return Object.values(entry).find(Boolean) || '';
   }
   return '';
 }

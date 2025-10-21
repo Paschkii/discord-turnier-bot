@@ -2,10 +2,13 @@
 const { buildDashboard } = require('../../views/dashboard');
 const { ladeTurnier } = require('../../store/turniere');
 const { MessageFlags } = require('discord.js')
+const { getLocalizedString } = require('../../config/messages');
+const { resolveInteractionLocale } = require('../../utils/interactionLocale');
 
 // === Functions ===
 // Turnier-Phasenwahl
 async function run(interaction) {
+  const locale = await resolveInteractionLocale(interaction);
   const id = interaction.customId || '';
   if (!id.startsWith('tnav|phase|')) return;
 
@@ -16,7 +19,8 @@ async function run(interaction) {
 
   const guildId = interaction.guildId;
   if (!guildId) {
-    return interaction.reply({ content: '❌ Aktion nur innerhalb eines Servers möglich.', flags: MessageFlags.Ephemeral });
+    const message = getLocalizedString('messages.tournament.general.guildOnlyAction', locale);
+    return interaction.reply({ content: message, flags: MessageFlags.Ephemeral });
   }
   const daten = await ladeTurnier(guildId);
   await interaction.deferUpdate();

@@ -30,7 +30,7 @@ async function initDB() {
       CREATE TABLE IF NOT EXISTS guild_settings (
         id SERIAL PRIMARY KEY,
         guild_id TEXT NOT NULL UNIQUE,
-        language TEXT NOT NULL DEFAULT 'de',
+        language TEXT NOT NULL DEFAULT 'en',
         guild_name TEXT,
         updated_at TIMESTAMP DEFAULT NOW()
       );

@@ -10,7 +10,7 @@ function sortObject(obj, comparator) {
   return Object.fromEntries(
     Object.entries(obj || {})
       .filter(([, value]) => value !== undefined && value !== null)
-      .sort(comparator || (([a], [b]) => a.localeCompare(b, 'de', { sensitivity: 'base' })))
+      .sort(comparator || (([a], [b]) => a.localeCompare(b, 'en', { sensitivity: 'base' })))
   );
 }
 

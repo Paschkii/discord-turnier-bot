@@ -1594,7 +1594,15 @@ function flattenBossLabelForLocale(ref, locale) {
     return parts.join(', ');
   }
   const names = BOSS_NAME_BY_ID.get(ref);
-  if (names) return names[locale] || names.de || Object.values(names).find(Boolean) || String(ref);
+  if (names) {
+    return (
+      names[locale]
+      || names.en
+      || names.de
+      || Object.values(names).find(Boolean)
+      || String(ref)
+    );
+  }
   return String(ref);
 }
 

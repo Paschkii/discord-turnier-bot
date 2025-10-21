@@ -2,7 +2,7 @@
 const { pool } = require('../../datenbank');
 
 // === Constants & Variables ===
-const DEFAULT_LANGUAGE = 'de';
+const DEFAULT_LANGUAGE = 'en';
 // Unterstützte Sprachen
 const SUPPORTED_LANGUAGES = new Set(['de', 'en', 'fr', 'es', 'it', 'pt']);
 // (in sync mit src/config/languages/*)
@@ -19,6 +19,18 @@ async function getGuildLanguage(guildId) {
     const lang = res.rows?.[0]?.language;
     if (typeof lang === 'string' && SUPPORTED_LANGUAGES.has(lang)) {
       return lang;
+    }
+    if (!res.rowCount) {
+      try {
+        await pool.query(
+          `INSERT INTO guild_settings (guild_id, language, updated_at)
+           VALUES ($1, $2, NOW())
+           ON CONFLICT (guild_id) DO NOTHING`,
+          [guildId, DEFAULT_LANGUAGE]
+        );
+      } catch (persistErr) {
+        console.error('[guildSettings] persist default language failed', persistErr);
+      }
     }
   } catch (err) {
     console.error('[guildSettings] getGuildLanguage failed', err);

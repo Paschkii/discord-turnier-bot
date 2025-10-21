@@ -2,29 +2,44 @@
 const { KLASSE_LISTE } = require('../../config/constants');
 const { ladeTurnier, speichereTurnier } = require('../../store/turniere');
 const { MessageFlags } = require('discord.js');
+const { getLocalizedString } = require('../../config/messages');
+const { resolveInteractionLocale } = require('../../utils/interactionLocale');
 
 // === Functions ===
 // deine Klassenwahl
 async function run(interaction) {
+  const locale = await resolveInteractionLocale(interaction);
   const userId = interaction.customId.split('_').pop();
   if (interaction.user.id !== userId) {
-    return interaction.reply({ content: '⛔ Nur du darfst deine Klasse auswählen!', flags: MessageFlags.Ephemeral });
+    const message = getLocalizedString('messages.tournament.general.notYourSelection', locale);
+    return interaction.reply({ content: message, flags: MessageFlags.Ephemeral });
   }
   const guildId = interaction.guildId;
   if (!guildId) {
-    return interaction.reply({ content: '❌ Diese Aktion ist nur innerhalb eines Servers möglich.', flags: MessageFlags.Ephemeral });
+    const message = getLocalizedString('messages.tournament.general.guildOnlyAction', locale);
+    return interaction.reply({ content: message, flags: MessageFlags.Ephemeral });
   }
   await interaction.deferUpdate();
   const selectedClass = interaction.values?.[0];
 
   const db2 = await ladeTurnier(guildId);
-  if (!db2) return interaction.followUp({ content: '❌ Kein aktives Turnier gefunden.', flags: MessageFlags.Ephemeral });
-  if (db2.status !== 'offen') return interaction.followUp({ content: '❌ Das Turnier ist nicht mehr offen.', flags: MessageFlags.Ephemeral });
+  if (!db2) {
+    const message = getLocalizedString('messages.tournament.general.noActiveTournament', locale);
+    return interaction.followUp({ content: message, flags: MessageFlags.Ephemeral });
+  }
+  if (db2.status !== 'offen') {
+    const message = getLocalizedString('messages.tournament.general.tournamentClosed', locale);
+    return interaction.followUp({ content: message, flags: MessageFlags.Ephemeral });
+  }
   if (db2.teilnehmer?.[interaction.user.id]) {
-    return interaction.followUp({ content: '⚠️ Du bist bereits angemeldet.', flags: MessageFlags.Ephemeral });
+    const message = getLocalizedString('messages.tournament.general.alreadyRegistered', locale);
+    return interaction.followUp({ content: message, flags: MessageFlags.Ephemeral });
   }
   const valid = KLASSE_LISTE.some((k) => k.name === selectedClass);
-  if (!valid) return interaction.followUp({ content: '❌ Ungültige Klasse ausgewählt.', flags: MessageFlags.Ephemeral });
+  if (!valid) {
+    const message = getLocalizedString('messages.tournament.general.invalidClass', locale);
+    return interaction.followUp({ content: message, flags: MessageFlags.Ephemeral });
+  }
 
   const member = await interaction.guild.members.fetch(interaction.user.id).catch(() => null);
   const nickname = member?.nickname || interaction.user.globalName || interaction.user.username;
@@ -33,7 +48,11 @@ async function run(interaction) {
   db2.teilnehmer[interaction.user.id] = { name: nickname, klasse: selectedClass };
   await speichereTurnier(guildId, db2);
 
-  return interaction.followUp({ content: `✅ ${nickname} wurde als **${selectedClass}** erfolgreich angemeldet!` });
+  const message = getLocalizedString('messages.tournament.registration.success', locale, {
+    name: nickname,
+    class: selectedClass,
+  });
+  return interaction.followUp({ content: message || `✅ ${nickname} has been registered successfully as **${selectedClass}**!` });
 }
 
 // === Exports ===

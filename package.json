@@ -8,6 +8,7 @@
     "deploy:commands": "node src/scripts/deploy-commands.js",
     "emoji:dump": "node src/scripts/emoji-dump.js",
     "emoji:dump:changes": "node src/scripts/emoji-dump.js --changes",
+    "migrate:language-default": "node src/scripts/migrate-guild-language-default.js",
     "test": "node --test"
   },
   "engines": {

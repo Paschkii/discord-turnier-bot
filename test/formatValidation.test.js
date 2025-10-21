@@ -17,9 +17,11 @@ test('validateFormat rejects invalid participant counts', () => {
 });
 
 test('validateFormat reports helpful reasons', () => {
-  assert.equal(validateFormat(-1, '1v1').reason, 'Teilnehmerzahl muss eine positive ganze Zahl sein.');
-  assert.equal(validateFormat(4, '5v5').reason, 'Unbekanntes Format.');
-  assert.equal(validateFormat(6, '2v2').reason, 'Teamanzahl muss gerade sein.');
-  assert.equal(validateFormat(8, '3v3').reason, 'Teilnehmerzahl muss durch 3 teilbar sein.');
-  assert.equal(validateFormat(2, '2v2').reason, 'Mindestens 2 Teams erforderlich.');
+  assert.equal(validateFormat(-1, '1v1').reasonKey, 'invalidPositiveInteger');
+  assert.equal(validateFormat(4, '5v5').reasonKey, 'unknownFormat');
+  assert.equal(validateFormat(6, '2v2').reasonKey, 'teamsEven');
+  const divisible = validateFormat(8, '3v3');
+  assert.equal(divisible.reasonKey, 'participantsDivisible');
+  assert.equal(divisible.context.teamSize, 3);
+  assert.equal(validateFormat(2, '2v2').reasonKey, 'minTeams');
 });

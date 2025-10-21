@@ -15,29 +15,29 @@ const FORMAT_TEAM_SIZE = {
  */
 function validateFormat(nTotal, format) {
   if (!Number.isInteger(nTotal) || nTotal <= 0) {
-    return { ok: false, reason: 'Teilnehmerzahl muss eine positive ganze Zahl sein.' };
+    return { ok: false, reasonKey: 'invalidPositiveInteger' };
   }
 
   if (!Object.prototype.hasOwnProperty.call(FORMAT_TEAM_SIZE, format)) {
-    return { ok: false, reason: 'Unbekanntes Format.' };
+    return { ok: false, reasonKey: 'unknownFormat' };
   }
 
   if (nTotal % 2 !== 0) {
-    return { ok: false, reason: 'Teilnehmerzahl muss gerade sein.' };
+    return { ok: false, reasonKey: 'participantsEven' };
   }
 
   const teamSize = FORMAT_TEAM_SIZE[format];
   if (nTotal % teamSize !== 0) {
-    return { ok: false, reason: `Teilnehmerzahl muss durch ${teamSize} teilbar sein.` };
+    return { ok: false, reasonKey: 'participantsDivisible', context: { teamSize } };
   }
 
   const teamCount = nTotal / teamSize;
   if (teamCount < 2) {
-    return { ok: false, reason: 'Mindestens 2 Teams erforderlich.' };
+    return { ok: false, reasonKey: 'minTeams' };
   }
 
   if (teamCount % 2 !== 0) {
-    return { ok: false, reason: 'Teamanzahl muss gerade sein.' };
+    return { ok: false, reasonKey: 'teamsEven' };
   }
 
   return { ok: true };

@@ -21,6 +21,8 @@ const {
   prepareParticipantsForMode
 } = require('../../services/tournament');
 const { validateFormat } = require('../../services/planner/validation');
+const { getLocalizedString } = require('../../config/messages');
+const { resolveInteractionLocale } = require('../../utils/interactionLocale');
 
 // === Alte Kämpfe vor dem Überschreiben archivieren ===
 function archiveFights(d) {
@@ -34,17 +36,23 @@ function nextFightId(d) {
 
 // Nächste Phase starten
 async function execute(interaction) {
+  const locale = await resolveInteractionLocale(interaction);
   if (!interaction.member.permissions.has(PermissionsBitField.Flags.Administrator)) {
-    return interaction.reply({ content: '⛔ Nur Admins dürfen die nächste Phase starten.', flags: MessageFlags.Ephemeral });
+    const message = getLocalizedString('messages.tournament.advance.adminOnly', locale);
+    return interaction.reply({ content: message, flags: MessageFlags.Ephemeral });
   }
 
   const guildId = interaction.guildId;
   if (!guildId) {
-    return interaction.reply({ content: '❌ Dieser Befehl kann nur in einem Server verwendet werden.', flags: MessageFlags.Ephemeral });
+    const message = getLocalizedString('messages.tournament.general.guildOnlyCommand', locale);
+    return interaction.reply({ content: message, flags: MessageFlags.Ephemeral });
   }
 
   const daten = await ladeTurnier(guildId);
-  if (!daten) return interaction.reply({ content: '❌ Kein aktives Turnier.', flags: MessageFlags.Ephemeral });
+  if (!daten) {
+    const message = getLocalizedString('messages.tournament.general.noActiveTournament', locale);
+    return interaction.reply({ content: message, flags: MessageFlags.Ephemeral });
+  }
 
   try {
     // Start/Offen → QUALI
@@ -53,11 +61,21 @@ async function execute(interaction) {
       const teilnehmerArr = Object.entries(daten.teilnehmer || {})
         .map(([id, p]) => ({ id, name: p.name, klasse: p.klasse }));
       if (teilnehmerArr.length < 2) {
-        return interaction.reply({ content: '❌ Mindestens 2 Teilnehmer erforderlich.', flags: MessageFlags.Ephemeral });
+        const message = getLocalizedString('messages.tournament.advance.needsParticipants', locale);
+        return interaction.reply({ content: message, flags: MessageFlags.Ephemeral });
       }
       const validation = validateFormat(teilnehmerArr.length, format);
       if (!validation.ok) {
-        return interaction.reply({ content: `❌ ${validation.reason || 'Ungültige Teilnehmerkonstellation.'}`, flags: MessageFlags.Ephemeral });
+        const context = validation.context || {};
+        const reasonKey = validation.reasonKey
+          ? `messages.tournament.advance.validation.${validation.reasonKey}`
+          : null;
+        const reasonMessage = reasonKey
+          ? getLocalizedString(reasonKey, locale, context)
+          : '';
+        const fallback = getLocalizedString('messages.tournament.advance.invalidConfiguration', locale);
+        const message = reasonMessage || fallback;
+        return interaction.reply({ content: message, flags: MessageFlags.Ephemeral });
       }
 
       const { map: participantMap, teams } = prepareParticipantsForMode(daten.teilnehmer, format);
@@ -69,7 +87,8 @@ async function execute(interaction) {
 
       let fights = createQualificationFromTeilnehmerMap(participantMap);
       // Quali-Phase & sichtbare Gruppe setzen
-      const qualiName = `${themedGroupNames(1)[0]} Qualifikation`;
+      const qualificationLabel = getLocalizedString('messages.tournament.advance.qualificationLabel', locale, {}, 'Qualifikation');
+      const qualiName = `${themedGroupNames(1)[0]} ${qualificationLabel}`.trim();
       fights = fights.map((f, i) => ({
         ...f,
         phase: 'quali',
@@ -87,8 +106,9 @@ async function execute(interaction) {
 
       await speichereTurnier(guildId, daten);
       const view = await buildDashboard(interaction, daten, defaultStateFromData(daten, 'g'));
+      const startMessage = getLocalizedString('messages.tournament.advance.qualificationStarted', locale, { count: fights.length });
       return interaction.reply({
-        content: `🔰 Qualifikationsrunde gestartet (${fights.length} Kämpfe).`,
+        content: startMessage || `🔰 Qualification round started (${fights.length} matches).`,
         embeds: view.embeds,
         components: view.components
       });
@@ -98,7 +118,8 @@ async function execute(interaction) {
     if (daten.status === 'quali') {
       const unfinished = (daten.kämpfe || []).filter(f => f.phase === 'quali' && !f.finished);
       if (unfinished.length > 0) {
-        return interaction.reply({ content: `⚠️ Es gibt noch ${unfinished.length} offene Quali-Kämpfe.`, flags: MessageFlags.Ephemeral });
+        const message = getLocalizedString('messages.tournament.advance.unfinishedQualification', locale, { count: unfinished.length });
+        return interaction.reply({ content: message, flags: MessageFlags.Ephemeral });
       }
 
       // Gewinner/Verlierer markieren → tag 'Top' / 'Low'
@@ -117,14 +138,16 @@ async function execute(interaction) {
 
       await speichereTurnier(guildId, daten);
       const view = await buildDashboard(interaction, daten, defaultStateFromData(daten, 'g'));
-      return interaction.reply({ content: `🟦 Gruppenphase gestartet (${daten.kämpfe.length} Kämpfe).`, embeds: view.embeds, components: view.components });
+      const message = getLocalizedString('messages.tournament.advance.groupsStarted', locale, { count: daten.kämpfe.length });
+      return interaction.reply({ content: message || `🟦 Group phase started (${daten.kämpfe.length} matches).`, embeds: view.embeds, components: view.components });
     }
 
     // Gruppen → KO (Top/Low Viertelfinale)
     if (daten.status === 'gruppen') {
       const unfinished = (daten.kämpfe || []).filter(f => f.phase === 'gruppen' && !f.finished);
       if (unfinished.length > 0) {
-        return interaction.reply({ content: `⚠️ Es gibt noch ${unfinished.length} offene Gruppen-Kämpfe.`, flags: MessageFlags.Ephemeral });
+        const message = getLocalizedString('messages.tournament.advance.unfinishedGroups', locale, { count: unfinished.length });
+        return interaction.reply({ content: message, flags: MessageFlags.Ephemeral });
       }
 
       const allFights   = [ ...(daten.kämpfeArchiv || []), ...(daten.kämpfe || []) ];
@@ -137,12 +160,16 @@ async function execute(interaction) {
         daten.pendingTieBreakers = tieBreakers;
         await speichereTurnier(guildId, daten);
         const row = new ActionRowBuilder().addComponents(
-          new ButtonBuilder().setCustomId('start_tiebreakers').setLabel('Tie-Breaker starten').setStyle(ButtonStyle.Danger)
+          new ButtonBuilder()
+            .setCustomId('start_tiebreakers')
+            .setLabel(getLocalizedString('messages.tournament.advance.tieBreakerButton', locale, {}, 'Tie-Breaker starten'))
+            .setStyle(ButtonStyle.Danger)
         );
 
         const groupList = tieBreakers.map(tb => tb.groupName).join(', ');
+        const tieBreakerMessage = getLocalizedString('messages.tournament.advance.tieBreakerNeeded', locale, { groups: groupList || '—' });
         return interaction.reply({
-          content: `⚠️ Tie-Breaker (Bo1) nötig: ${groupList || '—'}.`,
+          content: tieBreakerMessage || `⚠️ Tie-breakers (Bo1) required: ${groupList || '—'}.`,
           components: [row]
         });
       }
@@ -151,7 +178,8 @@ async function execute(interaction) {
       const countSeeds = (obj) => Object.values(obj).reduce((n, a) => n + (a?.length || 0), 0);
       const topCount = countSeeds(topSeeds), lowCount = countSeeds(lowSeeds);
       if (!(topCount === 4 && lowCount === 4)) {
-        return interaction.reply({ content: `❌ Unerwartete Quali-Zahlen: Top=${topCount}, Low=${lowCount}. Erwartet je 4.`, flags: MessageFlags.Ephemeral });
+        const message = getLocalizedString('messages.tournament.advance.unexpectedSeedCount', locale, { top: topCount, low: lowCount });
+        return interaction.reply({ content: message, flags: MessageFlags.Ephemeral });
       }
 
       // QF je Bucket erzeugen
@@ -184,14 +212,16 @@ async function execute(interaction) {
 
       await speichereTurnier(guildId, daten);
       const view = await buildDashboard(interaction, daten, defaultStateFromData(daten, 'g'));
-      return interaction.reply({ content: `⚔️ K.O.-Viertelfinale gestartet (${qf.length} Kämpfe).`, embeds: view.embeds, components: view.components });
+      const message = getLocalizedString('messages.tournament.advance.quarterfinalsStarted', locale, { count: qf.length });
+      return interaction.reply({ content: message || `⚔️ KO quarterfinals started (${qf.length} matches).`, embeds: view.embeds, components: view.components });
     }
 
     // KO (Viertelfinale) → KO (Halbfinale)
     if (daten.status === 'ko' && (daten.kämpfe?.length || 0) === 4) {
       const unfinished = (daten.kämpfe || []).filter(f => f.phase === 'ko' && !f.finished);
       if (unfinished.length > 0) {
-        return interaction.reply({ content: `⚠️ Es gibt noch ${unfinished.length} offene KO-Kämpfe.`, flags: MessageFlags.Ephemeral });
+        const message = getLocalizedString('messages.tournament.advance.unfinishedKo', locale, { count: unfinished.length });
+        return interaction.reply({ content: message, flags: MessageFlags.Ephemeral });
       }
 
       const winnersTop = [], winnersLow = [];
@@ -204,7 +234,8 @@ async function execute(interaction) {
 
       // Guard: je Bucket genau 2 Sieger erwartet
       if (winnersTop.length !== 2 || winnersLow.length !== 2) {
-        return interaction.reply({ content: `❌ Für das Halbfinale werden je 2 Sieger pro Bracket benötigt (Top=${winnersTop.length}, Low=${winnersLow.length}).`, flags: MessageFlags.Ephemeral });
+        const message = getLocalizedString('messages.tournament.advance.semifinalRequirement', locale, { top: winnersTop.length, low: winnersLow.length });
+        return interaction.reply({ content: message, flags: MessageFlags.Ephemeral });
       }
 
       const baseTop = daten.groups.find(g => g.bucket === 'top')?.name || themedGroupNames(2)[0];
@@ -239,14 +270,16 @@ async function execute(interaction) {
 
       await speichereTurnier(guildId, daten);
       const view = await buildDashboard(interaction, daten, defaultStateFromData(daten, 'g'));
-      return interaction.reply({ content: `🔁 K.O.-Halbfinale gestartet (2 Kämpfe).`, embeds: view.embeds, components: view.components });
+      const message = getLocalizedString('messages.tournament.advance.semifinalsStarted', locale);
+      return interaction.reply({ content: message || '🔁 KO semifinals started (2 matches).', embeds: view.embeds, components: view.components });
     }
 
     // KO (Halbfinale) → Finale (+ Bronze)
     if (daten.status === 'ko' && (daten.kämpfe?.length || 0) === 2) {
       const unfinished = daten.kämpfe.filter(f => f.phase === 'ko' && !f.finished);
       if (unfinished.length > 0) {
-        return interaction.reply({ content: `⚠️ Halbfinale nicht beendet.`, flags: MessageFlags.Ephemeral });
+        const message = getLocalizedString('messages.tournament.advance.unfinishedSemifinals', locale);
+        return interaction.reply({ content: message, flags: MessageFlags.Ephemeral });
       }
 
       let topWinner, topLoser, lowWinner, lowLoser;
@@ -258,8 +291,8 @@ async function execute(interaction) {
         else { lowWinner = win; lowLoser = lose; }
       }
 
-      const finalGroupName = 'Kampf um Platz 1 und 2';
-      const bronzeGroupName = 'Kampf um Platz 3 und 4';
+      const finalGroupName = getLocalizedString('messages.tournament.finals.finalGroupName', locale, {}, 'Kampf um Platz 1 und 2');
+      const bronzeGroupName = getLocalizedString('messages.tournament.finals.bronzeGroupName', locale, {}, 'Kampf um Platz 3 und 4');
 
       const startId = nextFightId(daten);
       const finalFight = {
@@ -289,13 +322,17 @@ async function execute(interaction) {
       daten.status = 'finale';
       await speichereTurnier(guildId, daten);
       const view = await buildDashboard(interaction, daten, defaultStateFromData(daten, 'g'));
-      return interaction.reply({ content: `🏁 Finale & 🥉-Match erstellt.`, embeds: view.embeds, components: view.components });
+      const message = getLocalizedString('messages.tournament.advance.finalsStarted', locale);
+      return interaction.reply({ content: message || '🏁 Finals and bronze match created.', embeds: view.embeds, components: view.components });
     }
 
     // FINALE → Abschluss (+ HoF)
     if (daten.status === 'finale') {
       const unfinished = (daten.kämpfe || []).filter((f) => f.phase === 'finale' && !f.finished);
-      if (unfinished.length > 0) return interaction.reply({ content: '⚠️ Finale/Bronze nicht beendet.', flags: MessageFlags.Ephemeral });
+      if (unfinished.length > 0) {
+        const message = getLocalizedString('messages.tournament.advance.unfinishedFinals', locale);
+        return interaction.reply({ content: message, flags: MessageFlags.Ephemeral });
+      }
 
       const finalFight  = daten.kämpfe.find(f => f.localId === 1) || daten.kämpfe[0];
       const bronzeFight = daten.kämpfe.find(f => f.localId === 2) || null;
@@ -321,29 +358,40 @@ async function execute(interaction) {
       await speichereTurnier(guildId, daten);
 
       const prize = daten.prize || null;
+      const defaultName = getLocalizedString('messages.tournament.finals.embedDefaultName', locale, {}, 'Turnier');
+      const tournamentName = daten.name || defaultName;
+      const embedTitle = getLocalizedString('messages.tournament.finals.embedTitle', locale, { name: tournamentName }, `🏆 Endergebnis — ${tournamentName}`);
+      const firstLabel = getLocalizedString('messages.tournament.finals.podium.first', locale, {}, '🥇 Platz 1');
+      const secondLabel = getLocalizedString('messages.tournament.finals.podium.second', locale, {}, '🥈 Platz 2');
+      const thirdLabel = getLocalizedString('messages.tournament.finals.podium.third', locale, {}, '🥉 Platz 3');
+      const fourthLabel = getLocalizedString('messages.tournament.finals.podium.fourth', locale, {}, '🎖️ Platz 4');
+      const prizeLabel = getLocalizedString('messages.tournament.finals.podium.prize', locale, {}, '💰 Pott & Preise');
       const embed = new EmbedBuilder()
         .setColor(0xffd700)
-        .setTitle(`🏆 Endergebnis — ${daten.name || 'Turnier'}`)
+        .setTitle(embedTitle)
         .addFields(
-          { name: '🥇 Platz 1', value: `**${gold.name}**` },
-          { name: '🥈 Platz 2', value: `**${silver.name}**` },
-          ...(bronze ? [{ name: '🥉 Platz 3', value: `**${bronze.name}**` }] : []),
-          ...(fourth ? [{ name: '🎖️ Platz 4', value: `**${fourth.name}**` }] : []),
+          { name: firstLabel, value: `**${gold.name}**` },
+          { name: secondLabel, value: `**${silver.name}**` },
+          ...(bronze ? [{ name: thirdLabel, value: `**${bronze.name}**` }] : []),
+          ...(fourth ? [{ name: fourthLabel, value: `**${fourth.name}**` }] : []),
           ...(prize ? [{
-            name: '💰 Pott & Preise',
+            name: prizeLabel,
             value: `${prize.text?.total ?? formatMK(prize.totalMK)} · 🥇 ${prize.text?.first ?? formatMK(prize.firstMK)} · 🥈 ${prize.text?.second ?? formatMK(prize.secondMK)} · 🥉 ${prize.text?.third ?? formatMK(prize.thirdMK)}`
           }] : []),
         )
         .setTimestamp();
 
-      return interaction.reply({ content: '🏆 Turnier abgeschlossen!', embeds: [embed] });
+      const completeMessage = getLocalizedString('messages.tournament.advance.tournamentCompleted', locale, {}, '🏆 Turnier abgeschlossen!');
+      return interaction.reply({ content: completeMessage, embeds: [embed] });
     }
 
-    return interaction.reply({ content: '⚠️ Unbekannter Status.', flags: MessageFlags.Ephemeral });
+    const message = getLocalizedString('messages.tournament.advance.unknownStatus', locale);
+    return interaction.reply({ content: message, flags: MessageFlags.Ephemeral });
 
   } catch (err) {
     console.error('[turnier_advance] error:', err);
-    return interaction.reply({ content: `❌ Fehler: ${err.message}`, flags: MessageFlags.Ephemeral });
+    const message = getLocalizedString('messages.tournament.advance.error', locale, { message: err.message }, `❌ Fehler: ${err.message}`);
+    return interaction.reply({ content: message, flags: MessageFlags.Ephemeral });
   }
 }
 

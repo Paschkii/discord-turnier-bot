@@ -73,7 +73,7 @@ function buildTournamentInfoEmbeds(daten = {}) {
   const title = `🏆 ${daten.name || 'Turnier'}`;
   const teilnehmerArr = Object.entries(daten.teilnehmer || {})
     .map(([id, p]) => ({ id, ...p }))
-    .sort((a, b) => (a.name || '').localeCompare(b.name || '', 'de', { sensitivity: 'base' }));
+    .sort((a, b) => (a.name || '').localeCompare(b.name || '', 'en', { sensitivity: 'base' }));
   // Alive-Set berechnen
   const alive = computeAliveSet(daten);
   // Felder bauen

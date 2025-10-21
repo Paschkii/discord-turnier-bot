@@ -12,7 +12,7 @@ const languages = require('../config/languages/index');
 
 // === Constants & Variables ===
 // Standard-Sprache
-const DEFAULT_LANGUAGE = 'de';
+const DEFAULT_LANGUAGE = 'en';
 // Unterstützte Sprachen und ihre Locale-Codes (in sync mit src/config/languages/*)
 const LOCALE_MAP = {
   de: 'de',
@@ -22,15 +22,15 @@ const LOCALE_MAP = {
   it: 'it',
   pt: 'pt-BR',
 };
-const commandsDe = languages[DEFAULT_LANGUAGE]?.commands;
+const commandsEn = languages[DEFAULT_LANGUAGE]?.commands;
 // Sicherheits-Check
-if (!commandsDe) {
+if (!commandsEn) {
   throw new Error(`Missing command definitions for default language "${DEFAULT_LANGUAGE}"`);
 }
 // Sprach-Auswahl für /language
 const LANGUAGE_CHOICES = [
-  { name: 'Deutsch', value: 'de' },
   { name: 'English', value: 'en' },
+  { name: 'Deutsch', value: 'de' },
   { name: 'Français', value: 'fr' },
   { name: 'Español', value: 'es' },
   { name: 'Italiano', value: 'it' },
@@ -84,7 +84,7 @@ const applyLocalizations = (target, method, data) => {
 };
 // Command mit Lokalisierungen versehen
 const applyCommandLocalization = (builder, commandKey) => {
-  const command = commandsDe[commandKey];
+  const command = commandsEn[commandKey];
   if (!command) {
     throw new Error(`Unknown command key: ${commandKey}`);
   }
@@ -99,7 +99,7 @@ const applyCommandLocalization = (builder, commandKey) => {
 };
 // Option mit Lokalisierungen versehen
 const applyOptionLocalization = (option, commandKey, optionKey) => {
-  const optionData = commandsDe[commandKey]?.options?.[optionKey];
+  const optionData = commandsEn[commandKey]?.options?.[optionKey];
   if (!optionData) {
     throw new Error(`Unknown option ${optionKey} for command ${commandKey}`);
   }

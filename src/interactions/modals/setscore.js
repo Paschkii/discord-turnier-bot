@@ -11,60 +11,31 @@ const { ladeTurnier, speichereTurnier } = require('../../store/turniere');
 const { validReportExact, validReportKO } = require('../../utils');
 const { resolveInteractionLocale } = require('../../utils/interactionLocale');
 const { getPhaseLabel } = require('../../config/constants');
-
-const MESSAGE_BUNDLE = {
-  de: {
-    invalid: (bestOf) => `❌ Unklares Ergebnis, in dieser Phase gilt Best of ${bestOf}.`,
-    groupFinished: (group) => `✅ Alle Kämpfe in ${group} fertig!`,
-    phaseFinished: (phase) => `✅ Alle Kämpfe in der ${phase} fertig! Das Turnier kann in die nächste Phase übergeleitet werden.`,
-  },
-  en: {
-    invalid: (bestOf) => `❌ Unclear result, this phase is played as Best of ${bestOf}.`,
-    groupFinished: (group) => `✅ All matches in ${group} finished!`,
-    phaseFinished: (phase) => `✅ All matches in the ${phase} are finished! The tournament can advance to the next phase.`,
-  },
-  fr: {
-    invalid: (bestOf) => `❌ Résultat incertain, cette phase se joue en Best of ${bestOf}.`,
-    groupFinished: (group) => `✅ Tous les matchs de ${group} sont terminés !`,
-    phaseFinished: (phase) => `✅ Tous les matchs de la ${phase} sont terminés ! Le tournoi peut passer à la phase suivante.`,
-  },
-  es: {
-    invalid: (bestOf) => `❌ Resultado poco claro, esta fase se juega al mejor de ${bestOf}.`,
-    groupFinished: (group) => `✅ ¡Todos los combates en ${group} están terminados!`,
-    phaseFinished: (phase) => `✅ ¡Todos los combates de la ${phase} han terminado! El torneo puede pasar a la siguiente fase.`,
-  },
-  it: {
-    invalid: (bestOf) => `❌ Risultato non chiaro, in questa fase si gioca al meglio delle ${bestOf}.`,
-    groupFinished: (group) => `✅ Tutti gli incontri in ${group} sono terminati!`,
-    phaseFinished: (phase) => `✅ Tutti gli incontri della ${phase} sono terminati! Il torneo può passare alla fase successiva.`,
-  },
-  pt: {
-    invalid: (bestOf) => `❌ Resultado indefinido, esta fase é disputada em Melhor de ${bestOf}.`,
-    groupFinished: (group) => `✅ Todas as partidas em ${group} foram concluídas!`,
-    phaseFinished: (phase) => `✅ Todas as partidas da ${phase} terminaram! O torneio pode avançar para a próxima fase.`,
-  },
-};
-
-const getMessages = (locale = 'de') => MESSAGE_BUNDLE[locale] || MESSAGE_BUNDLE.de;
+const { getLocalizedString } = require('../../config/messages');
 
 // Modal anzeigen (Labels = Spielernamen)
-function open(interaction, fight) {
+async function open(interaction, fight) {
+  const locale = await resolveInteractionLocale(interaction);
+  const title = getLocalizedString('messages.tournament.score.modalTitle', locale, { id: fight.id }, `Set result — #${fight.id}`);
+  const labelA = getLocalizedString('messages.tournament.score.playerALabel', locale, {}, 'Player A');
+  const labelB = getLocalizedString('messages.tournament.score.playerBLabel', locale, {}, 'Player B');
+  const placeholder = getLocalizedString('messages.tournament.score.scorePlaceholder', locale, {}, 'e.g. 2');
   const modal = new ModalBuilder()
     .setCustomId(`setscore_${fight.id}`)
-    .setTitle(`Ergebnis setzen — #${fight.id}`);
+    .setTitle(title);
 
   const a = new TextInputBuilder()
     .setCustomId('score_a')
-    .setLabel(fight.playerA?.name || 'Spieler A')
+    .setLabel(fight.playerA?.name || labelA)
     .setStyle(TextInputStyle.Short)
-    .setPlaceholder('z. B. 2')
+    .setPlaceholder(placeholder || 'e.g. 2')
     .setRequired(true);
 
   const b = new TextInputBuilder()
     .setCustomId('score_b')
-    .setLabel(fight.playerB?.name || 'Spieler B')
+    .setLabel(fight.playerB?.name || labelB)
     .setStyle(TextInputStyle.Short)
-    .setPlaceholder('z. B. 1')
+    .setPlaceholder(placeholder || 'e.g. 1')
     .setRequired(true);
 
   modal.addComponents(
@@ -78,31 +49,34 @@ function open(interaction, fight) {
 // Modal-Submit verarbeiten
 async function run(interaction) {
   // Admin-Guard
+  const locale = await resolveInteractionLocale(interaction);
   if (!interaction.memberPermissions?.has(PermissionFlagsBits.Administrator)) {
-    return interaction.reply({ content: '⛔ Nur Admins dürfen Ergebnisse setzen.', flags: MessageFlags.Ephemeral });
+    const message = getLocalizedString('messages.tournament.score.adminOnly', locale);
+    return interaction.reply({ content: message, flags: MessageFlags.Ephemeral });
   }
 
   // Kampf laden
   const kampfId = parseInt((interaction.customId || '').split('_')[1], 10);
   const guildId = interaction.guildId;
   if (!guildId) {
-    return interaction.reply({ content: '❌ Dieser Befehl kann nur in einem Server verwendet werden.', flags: MessageFlags.Ephemeral });
+    const message = getLocalizedString('messages.tournament.general.guildOnlyCommand', locale);
+    return interaction.reply({ content: message, flags: MessageFlags.Ephemeral });
   }
   const data = await ladeTurnier(guildId);
   const fight = (data?.kämpfe || []).find(f => f.id === kampfId);
   if (!fight) {
-    return interaction.reply({ content: `❌ Kampf #${kampfId} nicht gefunden.`, flags: MessageFlags.Ephemeral });
+    const message = getLocalizedString('messages.tournament.score.matchNotFound', locale, { id: kampfId }, `❌ Match #${kampfId} not found.`);
+    return interaction.reply({ content: message, flags: MessageFlags.Ephemeral });
   }
 
-  const locale = await resolveInteractionLocale(interaction);
-  const messages = getMessages(locale);
   const phaseLabel = getPhaseLabel(fight.phase, locale) || fight.phase;
 
   // Eingaben parsen
   const a = parseInt((interaction.fields.getTextInputValue('score_a') || '').trim(), 10);
   const b = parseInt((interaction.fields.getTextInputValue('score_b') || '').trim(), 10);
   if (!Number.isInteger(a) || !Number.isInteger(b)) {
-    return interaction.reply({ content: '❌ Bitte nur ganze Zahlen eingeben.', flags: MessageFlags.Ephemeral });
+    const message = getLocalizedString('messages.tournament.score.invalidNumbers', locale, {}, '❌ Please enter whole numbers only.');
+    return interaction.reply({ content: message, flags: MessageFlags.Ephemeral });
   }
 
   // Phase & Best-of bestimmen
@@ -113,10 +87,8 @@ async function run(interaction) {
   // Validierung
   const ok = isKO ? validReportKO(bestOf, a, b) : validReportExact(bestOf, a, b);
   if (!ok) {
-    return interaction.reply({
-      content: messages.invalid(bestOf),
-      flags: MessageFlags.Ephemeral
-    });
+    const message = getLocalizedString('messages.tournament.score.followUps.invalid', locale, { bestOf }, `❌ Unclear result, this phase is played as Best of ${bestOf}.`);
+    return interaction.reply({ content: message, flags: MessageFlags.Ephemeral });
   }
 
   // Speichern
@@ -130,28 +102,43 @@ async function run(interaction) {
 
   await speichereTurnier(guildId, data);
 
-  const grpInfo = fight.groupName ? ` · Gruppe **${fight.groupName}**` : '';
+  const grpInfo = fight.groupName
+    ? getLocalizedString('messages.tournament.score.groupInfo', locale, { group: fight.groupName }, ` · Group **${fight.groupName}**`)
+    : '';
   const followUps = [];
   const activeFights = Array.isArray(data.kämpfe) ? data.kämpfe : [];
 
   if (fight.groupName) {
     const groupFights = activeFights.filter(f => f.phase === fight.phase && f.groupName === fight.groupName);
     if (groupFights.length > 0 && groupFights.every(f => f.finished)) {
-      followUps.push(messages.groupFinished(fight.groupName));
+      followUps.push(
+        getLocalizedString('messages.tournament.score.followUps.groupFinished', locale, { group: fight.groupName })
+      );
     }
   }
 
   const phaseFights = activeFights.filter(f => f.phase === fight.phase);
   if (phaseFights.length > 0 && phaseFights.every(f => f.finished)) {
-    followUps.push(messages.phaseFinished(phaseLabel));
+    followUps.push(
+      getLocalizedString('messages.tournament.score.followUps.phaseFinished', locale, { phase: phaseLabel })
+    );
   }
 
-  await interaction.reply({
-    content: `🛠️ Ergebnis gesetzt: **#${kampfId}**${grpInfo} — ${fight.playerA?.name ?? 'A'} ${a} : ${b} ${fight.playerB?.name ?? 'B'}`
-  });
+  const resultMessage = getLocalizedString('messages.tournament.score.resultSet', locale, {
+    id: kampfId,
+    groupInfo: grpInfo,
+    playerA: fight.playerA?.name ?? 'A',
+    scoreA: a,
+    scoreB: b,
+    playerB: fight.playerB?.name ?? 'B',
+  }, `🛠️ Result saved: **#${kampfId}**${grpInfo} — ${fight.playerA?.name ?? 'A'} ${a} : ${b} ${fight.playerB?.name ?? 'B'}`);
+
+  await interaction.reply({ content: resultMessage });
 
   for (const msg of followUps) {
-    await interaction.followUp({ content: msg });
+    if (msg) {
+      await interaction.followUp({ content: msg });
+    }
   }
 }
 

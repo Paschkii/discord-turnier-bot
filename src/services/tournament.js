@@ -134,7 +134,7 @@ function createGroupsPhaseTopLow(teilnehmerMap) {
   }
 
   // deterministisch sortieren
-  const byName = (a, b) => (a.name || '').localeCompare(b.name || '', 'de', { sensitivity: 'base' });
+  const byName = (a, b) => (a.name || '').localeCompare(b.name || '', 'en', { sensitivity: 'base' });
   top.sort(byName);
   low.sort(byName);
 

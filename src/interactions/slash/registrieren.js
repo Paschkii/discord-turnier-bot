@@ -5,28 +5,34 @@ const {
   StringSelectMenuBuilder
 } = require('discord.js');
 const { KLASSE_LISTE } = require('../../config/constants');
+const { getLocalizedString } = require('../../config/messages');
+const { resolveInteractionLocale } = require('../../utils/interactionLocale');
 
 // Anmeldung zum Turnier
 async function execute(interaction, daten) {
-  // kein DB-Call hier – wir vertrauen auf den Snapshot aus dem Router
+  const locale = await resolveInteractionLocale(interaction);
   if (!daten || daten.status !== 'offen') {
-    return interaction.reply({ content: '❌ Keine Anmeldung möglich (Turnier nicht offen).', flags: MessageFlags.Ephemeral });
+    const message = getLocalizedString('messages.tournament.general.registrationClosed', locale);
+    return interaction.reply({ content: message, flags: MessageFlags.Ephemeral });
   }
   if (daten.teilnehmer && daten.teilnehmer[interaction.user.id]) {
-    return interaction.reply({ content: '⚠️ Du bist bereits angemeldet.', flags: MessageFlags.Ephemeral });
+    const message = getLocalizedString('messages.tournament.general.alreadyRegistered', locale);
+    return interaction.reply({ content: message, flags: MessageFlags.Ephemeral });
   }
 
   // Auswahlmenü mit Klassen
+  const placeholder = getLocalizedString('messages.tournament.registration.selectPlaceholder', locale);
   const select = new StringSelectMenuBuilder()
     .setCustomId(`klasse_auswahl_${interaction.user.id}`)
-    .setPlaceholder('Wähle deine Klasse...')
+    .setPlaceholder(placeholder || 'Choose your class…')
     .addOptions((KLASSE_LISTE || []).slice(0, 25).map(k => ({
       label: k.name, value: k.name, emoji: k.emoji
     })));
 
   // Menü in eine ActionRow packen
   const row = new ActionRowBuilder().addComponents(select);
-  return interaction.reply({ content: 'Bitte wähle deine Klasse:', components: [row], flags: MessageFlags.Ephemeral });
+  const prompt = getLocalizedString('messages.tournament.registration.selectPrompt', locale);
+  return interaction.reply({ content: prompt || 'Please choose your class:', components: [row], flags: MessageFlags.Ephemeral });
 }
 
 // === Exports ===
