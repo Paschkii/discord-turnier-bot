@@ -19,6 +19,7 @@ module.exports = {
       },
       flats: 'Resistências fixas',
       percents: 'Resistências',
+      additionalResistances: 'Resistências adicionais',
     },
   },
 };

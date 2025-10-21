@@ -44,6 +44,7 @@ const DEFAULT_MESSAGES =
       },
       flats: 'Flat Resistances',
       percents: 'Resistances',
+      additionalResistances: 'Other Resistances',
     },
   };
 
@@ -509,17 +510,16 @@ function buildDescription({ boss, dungeonLabel, dungeonNames, labels, level, loc
     characteristics.bp_resistance,
   );
 
-  const defensesLine = [
-    formatLabeledStat(EMOJI_LABELS.defenses.apParry, apParryValue, { includeSeparator: false }),
-    formatLabeledStat(EMOJI_LABELS.defenses.mpParry, mpParryValue, { includeSeparator: false }),
-    formatLabeledStat(
-      EMOJI_LABELS.defenses.lock,
-      coalesce(characteristics.lock, characteristics.block),
-      { includeSeparator: false },
-    ),
-    formatLabeledStat(
-      EMOJI_LABELS.defenses.criticalResistance,
-      coalesce(
+  const defenseStats = [
+    { label: EMOJI_LABELS.defenses.apParry, value: apParryValue },
+    { label: EMOJI_LABELS.defenses.mpParry, value: mpParryValue },
+    {
+      label: EMOJI_LABELS.defenses.lock,
+      value: coalesce(characteristics.lock, characteristics.block),
+    },
+    {
+      label: EMOJI_LABELS.defenses.criticalResistance,
+      value: coalesce(
         characteristics.criticalResistance,
         characteristics.critical_resistance,
         characteristics.krit,
@@ -527,19 +527,24 @@ function buildDescription({ boss, dungeonLabel, dungeonNames, labels, level, loc
         characteristics.critical,
         characteristics.criticalHit,
       ),
-      { includeSeparator: false },
-    ),
-    formatLabeledStat(
-      EMOJI_LABELS.defenses.pushbackResistance,
-      coalesce(
+    },
+    {
+      label: EMOJI_LABELS.defenses.pushbackResistance,
+      value: coalesce(
         characteristics.pushbackResistance,
         characteristics.pushback_resistance,
         characteristics.pushback,
         characteristics.pushback_resist,
       ),
-      { includeSeparator: false },
-    ),
-  ].join(' ');
+      },
+  ];
+
+  const formattedDefenses = defenseStats.map(({ label, value }) => (
+    formatLabeledStat(label, value, { includeSeparator: false })
+  ));
+  const hasDefenseValue = defenseStats.some(({ value }) => value !== undefined && value !== null && value !== '');
+  const defensesLine = hasDefenseValue ? formattedDefenses.join(NBSP) : '—';
+
 
   const flatLine = buildElementLine({
     resistances,
@@ -558,7 +563,12 @@ function buildDescription({ boss, dungeonLabel, dungeonNames, labels, level, loc
     suffix: '%',
   });
 
-  return [line1, baseStatsLine, defensesLine, flatLine, percentLine];
+  return {
+    headerLines: [line1, baseStatsLine],
+    percentLine,
+    flatLine,
+    defensesLine,
+  };
 }
 
 // Antwort für /boss erzeugen
@@ -662,7 +672,7 @@ async function execute(interaction) {
   const bossName = getBossName(displayBoss, resolvedLocale) || '—';
   const level = displayBoss.level != null ? String(displayBoss.level) : null;
 
-  const descriptionLines = buildDescription({
+  const descriptionParts = buildDescription({
     boss: displayBoss,
     dungeonLabel,
     dungeonNames,
@@ -672,14 +682,48 @@ async function execute(interaction) {
   });
 
   const displayName = materializeGuildEmojiShortcodes(bossName, guild) || bossName;
-  const rawDescription = descriptionLines.join('\n');
+  const headerLines = descriptionParts.headerLines || [];
+  const rawDescription = headerLines.join('\n');
   const description = materializeGuildEmojiShortcodes(rawDescription, guild) || rawDescription;
+
+  const fallbackValue = (value) => {
+    if (typeof value !== 'string') {
+      return '—';
+    }
+    const trimmed = value.trim();
+    return trimmed ? trimmed : '—';
+  };
+
+  const percentValueRaw = fallbackValue(descriptionParts.percentLine || '—');
+  const flatValueRaw = fallbackValue(descriptionParts.flatLine || '—');
+  const defensesValueRaw = fallbackValue(descriptionParts.defensesLine || '—');
+
+  const percentValue = materializeGuildEmojiShortcodes(percentValueRaw, guild) || percentValueRaw;
+  const flatValue = materializeGuildEmojiShortcodes(flatValueRaw, guild) || flatValueRaw;
+  const defensesValue = materializeGuildEmojiShortcodes(defensesValueRaw, guild) || defensesValueRaw;
 
   const embed = new EmbedBuilder()
     .setColor(0x00AEFF)
     .setTitle(displayName)
     .setDescription(description)
     .setTimestamp();
+  
+   embed
+    .addFields({
+      name: labels.percents,
+      value: percentValue,
+      inline: true,
+    })
+    .addFields({
+      name: labels.flats,
+      value: flatValue,
+      inline: true,
+    })
+    .addFields({
+      name: labels.additionalResistances || DEFAULT_MESSAGES.labels.additionalResistances,
+      value: defensesValue,
+      inline: true,
+    });
 
   if (displayBoss.imageUrl) {
     embed.setThumbnail(displayBoss.imageUrl);
