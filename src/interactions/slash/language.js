@@ -14,7 +14,7 @@ const {
 async function execute(interaction) {
   const locale = await resolveInteractionLocale(interaction);
 
-  if (!interaction.member?.permissions?.has(PermissionsBitField.Flags.Administrator)) {
+  if (!interaction.memberPermissions?.has(PermissionsBitField.Flags.Administrator)) {
     return interaction.reply({ content: getErrorMessage(locale, 'notAdmin'), flags: MessageFlags.Ephemeral });
   }
 
