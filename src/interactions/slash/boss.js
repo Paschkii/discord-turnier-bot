@@ -93,8 +93,8 @@ const PRIMARY_EMOJIS = EMOJI_LIST?.primaryStats || {};
 const SECONDARY_EMOJIS = EMOJI_LIST?.secondaryStats || {};
 const RESISTANCE_EMOJIS = EMOJI_LIST?.resistanceStats || {};
 
-// NBSP = No Break Space
-const NBSP = '\u00A0';
+// Figure space (U+2007) aligns numeric columns while remaining invisible in Discord embeds
+const FIGURE_SPACE = '\u2007';
 
 const EMOJI_LABELS = {
   baseStats: {
@@ -341,7 +341,8 @@ function formatNumber(value, { suffix = '', showSign = false } = {}) {
   if (isNumeric) {
     const numberValue = typeof value === 'number' ? value : numeric;
     const signPrefix = showSign && numberValue > 0 ? '+' : '';
-    result = `${signPrefix}${numberValue}`;
+    const baseValue = `${signPrefix}${numberValue}`;
+    result = baseValue.padStart(4, FIGURE_SPACE);
   } else {
     result = String(value);
   }
@@ -380,7 +381,7 @@ function isEmojiLabel(label) {
 }
 
 function getLabelValueSeparator(label) {
-  return isEmojiLabel(label) ? '' : NBSP;
+  return isEmojiLabel(label) ? '' : FIGURE_SPACE;
 }
 
 function formatLabelValue(label, value) {
@@ -478,7 +479,7 @@ function buildDescription({ boss, dungeonLabel, dungeonNames, labels, level, loc
       EMOJI_LABELS.baseStats.movementPoints,
       coalesce(characteristics.movementPoints, characteristics.mp),
     ),
-  ].join(NBSP);
+  ].join(FIGURE_SPACE);
 
   const apParryValue = coalesce(
     characteristics.apParry,
@@ -568,7 +569,7 @@ function buildDescription({ boss, dungeonLabel, dungeonNames, labels, level, loc
       return acc;
     }, []);
 
-    return parts.length ? parts.join(NBSP) : null;
+    return parts.length ? parts.join(FIGURE_SPACE) : null;
   }).filter(Boolean);
 
   return {
@@ -657,6 +658,14 @@ async function execute(interaction) {
     dungeonNames = homeDungeonNames;
     useAlternate = false;
   }
+
+  if (!useAlternate && alternateDungeonNames.length) {
+    dungeonNames = uniqueStrings([
+      ...dungeonNames,
+      ...alternateDungeonNames,
+    ]);
+  }
+
   const labels = resolvedMessages.labels;
 
   const dungeonLabel = useAlternate
@@ -701,18 +710,6 @@ async function execute(interaction) {
     embed.setThumbnail(displayBoss.imageUrl);
   } else if (displayBoss.icon) {
     embed.setThumbnail(displayBoss.icon);
-  }
-
-  if (!useAlternate && alternateDungeonNames.length) {
-    const supplementaryLabel = labels.alsoIn || labels.alternateDungeon || labels.dungeon;
-    const supplementaryNames = alternateDungeonNames;
-    if (supplementaryNames.length) {
-      embed.addFields({
-        name: `**${supplementaryLabel}**`,
-        value: supplementaryNames.join('\n'),
-        inline: false,
-      });
-    }
   }
   
   try {
