@@ -37,7 +37,7 @@
     "fireDamage": "<:firedamage:1427599984567783484>",
     "waterDamage": "<:waterdamage:1427600032076529755>",
     "airDamage": "<:airdamage:1427599920818290748>",
-    "pushbackDamage": "<:damage_pushback:1427600137684914216>"
+    "pushbackDamage": "<:pushbackdamage:1427600137684914216>"
   },
   "resistanceStats": {
     "neutral_fixed": "<:neutral:1427596926127308851>",
@@ -199,7 +199,7 @@
     "domakuro": "<:domakuro:1427600931649884241>",
     "dorigami": "<:dorigami:1427600942513131620>",
     "icedofus": "<:icedofus:1427600953582030939>",
-    "aiwuztheyadofus": "<:aiwuztheya:1427600967335022603>",
+    "aiwuztheyadofus": "<:aiwuztheyadofus:1427600967335022603>",
     "kaliptusdofus": "<:kaliptusdofus:1427600982501752883>",
     "cawottdofus": "<:cawottdofus:1427601009982701649>",
     "magmamaticdofus": "<:magmaticdofus:1427601020409610341>",

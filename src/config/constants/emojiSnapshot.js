@@ -89,6 +89,17 @@ function normalizeEntry(entry, fallbackKey = '') {
   };
 }
 
+function hasEntryData(entry) {
+  if (!entry || typeof entry !== 'object') return false;
+  return Boolean(
+    (typeof entry.key === 'string' && entry.key.trim())
+      || (typeof entry.name === 'string' && entry.name.trim())
+      || (typeof entry.id === 'string' && entry.id.trim())
+      || (typeof entry.mention === 'string' && entry.mention.trim())
+      || (typeof entry.unicode === 'string' && entry.unicode.trim()),
+  );
+}
+
 function collectEntries(source, fallbackKey) {
   if (!source) return [];
 
@@ -102,9 +113,15 @@ function collectEntries(source, fallbackKey) {
     const entries = [];
     for (const [key, value] of Object.entries(source)) {
       if (!value) continue;
-      if (typeof value === 'object') {
-        const normalized = normalizeEntry(value, key);
-        if (normalized) entries.push(normalized);
+      if (Array.isArray(value)) {
+        entries.push(...collectEntries(value, key));
+      } else if (typeof value === 'object') {
+        if (hasEntryData(value)) {
+          const normalized = normalizeEntry(value, key);
+          if (normalized) entries.push(normalized);
+        } else {
+          entries.push(...collectEntries(value, key));
+        }
       } else if (typeof value === 'string') {
         const parsed = parseMention(value);
         entries.push(
