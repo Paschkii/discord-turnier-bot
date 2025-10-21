@@ -1,3 +1,9 @@
+const {
+  getEmojiById,
+  getEmojiByKey,
+  getEmojiByName,
+} = require('./emojiSnapshot');
+
 // Gemeinsame Hilfsfunktionen und Konstanten
 function resolveDiscordEmoji(name, fallback = '') {
   const normalizedName = typeof name === 'string' ? name.trim() : '';
@@ -6,6 +12,15 @@ function resolveDiscordEmoji(name, fallback = '') {
 
   if (!normalizedName) {
     return fallbackTrimmed || '';
+  }
+
+  const lookupEntry =
+    getEmojiByKey(normalizedName)
+    || getEmojiByName(normalizedName)
+    || (Number.isInteger(Number(normalizedName)) ? getEmojiById(normalizedName) : null);
+
+  if (lookupEntry?.mention) {
+    return lookupEntry.mention;
   }
 
   const normalizedFallback = fallbackTrimmed || `:${normalizedName}:`;

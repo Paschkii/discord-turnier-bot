@@ -1,248 +1,87 @@
+const {
+  resolveDiscordEmoji,
+} = require('./shared');
+const {
+  getEmojiByKey,
+  getEmojiByName,
+} = require('./emojiSnapshot');
+const FALLBACK_EMOJIS = require('./emoji-fallback.json');
 
+const missingSnapshotKeys = new Set();
 
-const EMOJI_LIST = {
-    // === Stats ===
-    // -- Primary Stats --
-    primaryStats: {
-        level: '<:level:1427597125503553659>',
-        vitality: '<:vitality:1427600430397128874>',
-        healthPoints: '<:healthpoints:1427600289380171929>',
-        wisdom: '<:wisdom:1428323165490380801>',
-        neutral: '<:neutral:1427596926127308851>',
-        strength: '<:strength:1427597058747142235>',
-        intelligence: '<:intelligence:1427596766601150474>',
-        chance: '<:chance:1427596695369416724>',
-        agility: '<:agility:1427596513135165460>',
-        actionPoints: '<:ap:1427596539064483902>',
-        movementPoints: '<:mp:1427596871005896734>',
-        initiative: '<:initiative:1427600254265589814>',
-        prospection: '<:prospection:1427600569765199953>',
-        range: '<:range:1427600507584647279>',
-        summons: '<:summons:1427600461137182832>',
-        pods: '<:pods:1427600616062189579>',
-        elements: '<:elements:1427600196065427457>',
-    },
-    // -- Secondary Stats --
-    secondaryStats: {
-        apReduction: '<:apreduction:1427599517854859325>',
-        apParry: '<:apparry:1427596572572516523>',
-        mpReduction: '<:mpreduction:1427600678192414740>',
-        mpParry: '<:mpparry:1427597395788693587>',
-        criticalHits: '<:criticalhits:1427600738967621734>',
-        heals: '<:heal:1427600231872073860>',
-        lock: '<:lock:1427596624309391391>',
-        dodge: '<:dodge:1427600110354694206>',
-    },
-    // -- Damage --
-    damageStats: {
-        damage: '<:damage:1427600169448505385>',
-        power: '<:power:1427600595891785810>',
-        criticalDamage: '<:criticaldamage:1427600082362044426>',
-        neutralDamage: '<:neutraldamage:1427600055220568085>',
-        earthDamage: '<:earthdamage:1427599964162232421>',
-        fireDamage: '<:firedamage:1427599984567783484>',
-        waterDamage: '<:waterdamage:1427600032076529755>',
-        airDamage: '<:airdamage:1427599920818290748>',
-        pushbackDamage: '<:damage_pushback:1427600137684914216>',
-    },
-    // -- Resistances --
-    resistanceStats: {
-        // - Fixed -
-        neutral_fixed: '<:neutral:1427596926127308851>',
-        earth_fixed: '<:strength:1427597058747142235>',
-        fire_fixed: '<:intelligence:1427596766601150474>',
-        water_fixed: '<:chance:1427596695369416724>',
-        air_fixed: '<:agility:1427596513135165460>',
-        // - Percent -
-        neutral_percent: '<:neutral:1427596926127308851>',
-        earth_percent: '<:strength:1427597058747142235>',
-        fire_percent: '<:intelligence:1427596766601150474>',
-        water_percent: '<:chance:1427596695369416724>',
-        air_percent: '<:agility:1427596513135165460>',
-        // -- Critical --
-        criticalResistance: '<:criticalresistance:1427596825874927736>',
-        // -- Pushback --
-        pushbackResistance: '<:pushbackresistance:1427597202254987356>',
-    },
+function extractKeyFromFallback(propertyKey, fallbackValue) {
+  if (typeof fallbackValue === 'string') {
+    const trimmed = fallbackValue.trim();
+    const match = trimmed.match(/^<a?:([^:>]+):\d+>$/);
+    if (match) return match[1];
+  }
+  return propertyKey;
+}
 
-    // === Achievements ===
-    achievements: {
-        blitzkrieg: '<:achieve_blitzkrieg:1427602827475423343>',
-        chrono: '<:achieve_chrono:1427603292757692486>',
-        cleanHands: '<:achieve_cleanhands:1427603327687983104>',
-        duel: '<:achieve_duel:1427603358298148964>',
-        duo: '<:achieve_duo:1427603408096985088>',
-        fainthearted: '<:achieve_fainthearted:1427603462228807802>',
-        first: '<:achieve_first:1427603506227052597>',
-        freedom: '<:achieve_freedom:1429117708334665848>',
-        hermit: '<:achieve_hermit:1427603536253943869>',
-        impertinence: '<:achieve_impertinence:1427603644035108894>',
-        //keepMoving: '',
-        last: '<:achieve_last:1427603680407847075>',
-        //mystique: '',
-        nomad: '<:achieve_nomad:1427603717015867463>',
-        quickAndFurious: '<:achieve_quickandfurious:1428743970263007282>',
-        scanty: '<:achieve_scanty:1427603748229877871>',
-        statue: '<:achieve_statue:1427603778688913508>',
-        tight: '<:achieve_tight:1427603809177305109>',
-        timeFlies: '<:achieve_timeflies:1427603842173763697>',
-        versatile: '<:achieve_versatile:1427603876231774288>',
-        zombie: '<:achieve_zombie:1427603914626302063>',
-    },
+function formatPath(path) {
+  return path.length ? path.join('.') : '';
+}
 
-    // === Challenges ===
-    challenges: {
-        barbaric: '<:chall_barbaric:1427601736348073984>',
-        battleRoyal: '<:chall_battleroyal:1427601749132447744>',
-        //blitzkrieg: '',
-        chrono: '<:chall_chrono:1427601766257786993>',
-        cleanHands: '<:chall_cleanhands:1427601817746800682>',
-        contamination: '<:chall_contamination:1427601842208243732>',
-        contractKiller: '<:chall_contractkiller:1427601876290900089>',
-        cruel: '<:chall_cruel:1427601902144852008>',
-        //duel: '',
-        //elementaryMyDear: '',
-        elitist: '<:chall_elitist:1427601928287944724>',
-        evasive: '<:chall_evasive:1427601949846671501>',
-        exuberant: '<:chall_exuberant:1427601971518373952>',
-        fainthearted: '<:chall_fainthearted:1427601990720028722>',
-        unwillingVolunteer: '<:chall_unwillingvolunteer:1427602008247894066>',
-        focus: '<:chall_focus:1427602030889009192>',
-        foresighted: '<:chall_foresighted:1427602054762729572>',
-        gangster: '<:chall_gangster:1427602086346096813>',
-        //: '',
-        impertinence: '<:chall_impertinence:1427602132613464115>',
-        keepMoving: '<:chall_keepmoving:1427602162577575977>',
-        loyalFriend: '<:chall_loyalfriend:1429117951478468648>',
-        reprieve: '<:chall_reprieve:1427602193904701580>',
-        maniac: '<:chall_maniac:1427602217430548593>',
-        mystique: '<:chall_mystique:1427602253065486367>',
-        noRush: '<:chall_norush:1427602281095757907>',
-        nomad: '<:chall_nomad:1427602305141837874>',
-        quickAndFurious: '<:chall_quickandfurious:1427602332111343626>',
-        rootedToTheSpot: '<:chall_rootedtothespot:1427602356052426762>',
-        scanty: '<:chall_scanty:1427602377602764901>',
-        scapegoat: '<:chall_scapegoat:1427602416647274506>',
-        selfSacrifice: '<:chall_selfsacrifice:1427602449757114409>',
-        sharing: '<:chall_sharing:1427602474801430592>',
-        sightseeing: '<:chall_sightseeing:1429117953483214970>',
-        static: '<:chall_static:1427602500277506139>',
-        statue: '<:chall_statue:1427602519886135378>',
-        tight: '<:chall_tight:1429117955517448242>',
-        timeFlies: '<:chall_timeflies:1427602541486801016>',
-        toEachHisPwn: '<:chall_toeachhispwn:1429117957216272465>',
-        twoForThePriceOfOne: '<:chall_twoforthepriceofone:1427602565666832404>',
-        untouchable: '<:chall_untouchable:1427602594754203759>',
-        versatile: '<:chall_versatile:1427602615591764009>',
-        zombie: '<:chall_zombie:1427602635149672489>',
-    },
+function resolveMentionForKey(key, fallbackValue, path) {
+  const snapshotEntry = getEmojiByKey(key) || getEmojiByName(key);
+  if (snapshotEntry?.mention) {
+    return snapshotEntry.mention;
+  }
 
-    // === Other Icons ===
-    otherIcons: {
-        // -- AvA --
-        avaIcons: {
-            ava_clock: '<:ava_clock:1427599741406937089>',
-            ava_shield: '<:ava_shield:1427599763838074952>',
-            ava_star: '<:ava_star:1427599781190176809>',
-            ava_healerpotion: '<:ava_healerpotion:1427600783419117570>',
-            ava_undertakerpotion: '<:ava_undertakerpotion:1427600836074143775>',
-            ava_sentinelpotion: '<:ava_sentinelpotion:1427600846061047932>',
-            ava_prism: '<:ava_prism:1427600800015847445>',
-            ava_prism_placed: '<:ava_prismplaced:1427600813089620058>',
-            ava_teleportmodul: '<:ava_teleportmodul:1427600824242278472>',
-        },
-        // -- Buttons --
-        buttonIcons: {
-            increase: '<:increase:1427600531882246145>',
-            achievements: '<:achievements:1427602660533604495>',
-            almanax: '<:almanax:1427602674097979473>',
-            attributes: '<:attributes:1427602686769102911>',
-            closeWindow: '<:closewindow:1427602700832342046>',
-            endturn: '<:endturn:1427602710756331520>',
-            marketplace: '<:marketplace:1427602722999373855>',
-            monsterCompendium: '<:monstercompendium:1427602732562251786>',
-            questbook: '<:questbook:1427602743283028041>',
-            ready: '<:ready:1427602752590319647>',
-            refresh: '<:refresh:1427602763839443005>',
-            sidekicks: '<:sidekicks:1427602776153915452>',
-            spells: '<:spells:1427602787423752302>',
-        },
-    },
+    const fallbackString = fallbackValue == null ? '' : String(fallbackValue);
+    const resolved = resolveDiscordEmoji(key, fallbackString);
 
-    // === Classes ===
-    classes: {
-        cra: '<:cra:1427597431775952939>',
-        ecaflip: '<:ecaflip:1427597459340656761>',
-        eniripsa: '<:eniripsa:1427597482073919650>',
-        enutrof: '<:enutrof:1427597502541987952>',
-        feca: '<:feca:1427597522049699850>',
-        foggernaut: '<:foggernaut:1427597557064007790>',
-        iop: '<:iop:1427597605202034698>',
-        masqueraider: '<:masqueraider:1427597627226325053>',
-        osamodas: '<:osamodas:1427597656489988117>',
-        pandawa: '<:pandawa:1427597688735662111>',
-        rogue: '<:rogue:1427597716518731798>',
-        sacrier: '<:sacrieur:1427597742779138068>',
-        sadida: '<:sadida:1427597762131656836>',
-        sram: '<:sram:1427597781660598363>',
-        xelor: '<:xelor:1427597797971984485>',
-    },
+    if (!missingSnapshotKeys.has(key)) {
+        missingSnapshotKeys.add(key);
+        const location = formatPath(path);
+        const locationSuffix = location ? ` (${location})` : '';
+        let explanation = 'Using default colon fallback.';
+        if (resolved && resolved !== `:${key}:`) {
+        if (fallbackString && resolved === fallbackString) {
+            explanation = `Using configured fallback "${fallbackString}".`;
+        } else if (resolved !== fallbackString && fallbackString) {
+            explanation = `Using environment override over fallback "${fallbackString}".`;
+        } else if (fallbackString) {
+            explanation = `Using configured fallback "${fallbackString}".`;
+        } else {
+            explanation = 'Using environment override.';
+        }
+        } else if (fallbackString) {
+        explanation = `Using configured fallback "${fallbackString}".`;
+        }
+        console.warn(`[emoji] Missing snapshot entry for key "${key}"${locationSuffix}. ${explanation}`);
+    }
 
-    // === Class Icons ===
-    classIcons: {
-        craFemale: '<:cra_female:1427601190765592607>',
-        craMale: '<:cra_male:1427601203055034443>',
-        ecaflipFemale: '<:ecaflip_female:1427601217063878769>',
-        ecaflipMale: '<:ecaflip_male:1427601230502432919>',
-        eniripsaFemale: '<:eniripsa_female:1427601248655245382>',
-        eniripsaMale: '<:eniripsa_male:1427601257958342786>',
-        enutrofFemale: '<:enutrof_female:1427601274307739819>',
-        enutrofMale: '<:enutrof_male:1427601287293308939>',
-        fecaFemale: '<:feca_female:1427601299335024711>',
-        fecaMale: '<:feca_male:1427601311586582641>',
-        foggernautFemale: '<:foggernaut_female:1427601325914591262>',
-        foggernautMale: '<:foggernaut_male:1427601338283327571>',
-        iopFemale: '<:iop_female:1427601354834186270>',
-        iopMale: '<:iop_male:1427601370139066458>',
-        masqueraiderFemale: '<:masqueraider_female:1427601389877461074>',
-        masqueraiderMale: '<:masqueraider_male:1427601408613683223>',
-        osamodasFemale: '<:osamodas_female:1427601429992050777>',
-        osamodasMale: '<:osamodas_male:1427601458160865321>',
-        pandawaFemale: '<:pandawa_female:1427601483976802405>',
-        pandawaMale: '<:pandawa_male:1427601507913826345>',
-        rogueFemale: '<:rogue_female:1427601529329946714>',
-        rogueMale: '<:rogue_male:1427601547789074582>',
-        sacrierFemale: '<:sacrier_female:1427601564788330566>',
-        sacrierMale: '<:sacrier_male:1427601581351632956>',
-        sadidaFemale: '<:sadida_female:1427601602591850628>',
-        sadidaMale: '<:sadida_male:1427601622825177139>',
-        sramFemale: '<:sram_female:1427601643767070760>',
-        sramMale: '<:sram_male:1427601661584740392>',
-        xelorFemale: '<:xelor_female:1427601686737850389>',
-        xelorMale:  '<:xelor_male:1427601701992398878>',
-    },
+    return resolved;
+}
 
-    // === Dofus ===
-    dofusIcons: {
-        dofawa: '<:dofawa:1427600888528375838>',
-        dofushu: '<:dofushu:1427600899374842006>',
-        dolmanax: '<:dolmanax:1427600921910706276>',
-        domakuro: '<:domakuro:1427600931649884241>',
-        dorigami: '<:dorigami:1427600942513131620>',
-        icedofus: '<:icedofus:1427600953582030939>',
-        aiwuztheyadofus: '<:aiwuztheya:1427600967335022603>',
-        kaliptusdofus: '<:kaliptusdofus:1427600982501752883>',
-        cawottdofus: '<:cawottdofus:1427601009982701649>',
-        magmamaticdofus: '<:magmaticdofus:1427601020409610341>',
-        ochredofus: '<:ochredofus:1427601032141213846>',
-        crimsondofus: '<:crimsondofus:1427601053318250537>',
-        blackspotteddofus: '<:blackspotteddofus:1427601073463492708>',
-        silverdofus: '<:silverdofus:1427601093554081822>',
-        emeralddofus: '<:emeralddofus:1427601108460638341>',
-        turqouisedofus: '<:turqouisedofus:1427601123333636196>',
-        vulbisdofus: '<:vulbisdofus:1427601137661644850>',
-        timelessicedofus: '<:timelessicedofus:1427601150613655613>',
-        //grofus: { name: 'Grofus', id: ''}},
-    },
+function buildEmojiStructure(source, path = [], keyReferenceTarget = null) {
+  if (!source || typeof source !== 'object' || Array.isArray(source)) {
+    return {};
+  }
+
+  const result = {};
+  for (const [property, value] of Object.entries(source)) {
+    const nextPath = [...path, property];
+    if (value && typeof value === 'object' && !Array.isArray(value)) {
+      const nestedReference = keyReferenceTarget ? (keyReferenceTarget[property] = {}) : null;
+      result[property] = buildEmojiStructure(value, nextPath, nestedReference);
+    } else {
+      const fallbackValue = typeof value === 'string' ? value : '';
+      const key = extractKeyFromFallback(property, fallbackValue);
+      if (keyReferenceTarget) keyReferenceTarget[property] = key;
+      result[property] = resolveMentionForKey(key, fallbackValue, nextPath);
+    }
+  }
+
+  return result;
+}
+
+const EMOJI_KEYS = {};
+const EMOJI_LIST = buildEmojiStructure(FALLBACK_EMOJIS, [], EMOJI_KEYS);
+
+module.exports = {
+  EMOJI_KEYS,
+  EMOJI_LIST,
+  FALLBACK_EMOJIS,
 };
-module.exports = { EMOJI_LIST };

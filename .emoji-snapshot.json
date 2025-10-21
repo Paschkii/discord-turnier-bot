@@ -1,0 +1,6080 @@
+{
+  "version": 1,
+  "updatedAt": "2025-10-21T07:21:01.608Z",
+  "total": 289,
+  "byKey": {
+    "achieve_blitzkrieg": {
+      "id": "1427602827475423343",
+      "name": "achieve_blitzkrieg",
+      "animated": false,
+      "mention": "<:achieve_blitzkrieg:1427602827475423343>",
+      "createdTimestamp": 1760437437648
+    },
+    "achieve_chrono": {
+      "id": "1427603292757692486",
+      "name": "achieve_chrono",
+      "animated": false,
+      "mention": "<:achieve_chrono:1427603292757692486>",
+      "createdTimestamp": 1760437548580
+    },
+    "achieve_cleanhands": {
+      "id": "1427603327687983104",
+      "name": "achieve_cleanhands",
+      "animated": false,
+      "mention": "<:achieve_cleanhands:1427603327687983104>",
+      "createdTimestamp": 1760437556908
+    },
+    "achieve_duel": {
+      "id": "1427603358298148964",
+      "name": "achieve_duel",
+      "animated": false,
+      "mention": "<:achieve_duel:1427603358298148964>",
+      "createdTimestamp": 1760437564206
+    },
+    "achieve_duo": {
+      "id": "1427603408096985088",
+      "name": "achieve_duo",
+      "animated": false,
+      "mention": "<:achieve_duo:1427603408096985088>",
+      "createdTimestamp": 1760437576079
+    },
+    "achieve_fainthearted": {
+      "id": "1427603462228807802",
+      "name": "achieve_fainthearted",
+      "animated": false,
+      "mention": "<:achieve_fainthearted:1427603462228807802>",
+      "createdTimestamp": 1760437588985
+    },
+    "achieve_first": {
+      "id": "1427603506227052597",
+      "name": "achieve_first",
+      "animated": false,
+      "mention": "<:achieve_first:1427603506227052597>",
+      "createdTimestamp": 1760437599475
+    },
+    "achieve_freedom": {
+      "id": "1429117708334665848",
+      "name": "achieve_freedom",
+      "animated": false,
+      "mention": "<:achieve_freedom:1429117708334665848>",
+      "createdTimestamp": 1760798613390
+    },
+    "achieve_hermit": {
+      "id": "1427603536253943869",
+      "name": "achieve_hermit",
+      "animated": false,
+      "mention": "<:achieve_hermit:1427603536253943869>",
+      "createdTimestamp": 1760437606634
+    },
+    "achieve_impertinence": {
+      "id": "1427603644035108894",
+      "name": "achieve_impertinence",
+      "animated": false,
+      "mention": "<:achieve_impertinence:1427603644035108894>",
+      "createdTimestamp": 1760437632331
+    },
+    "achieve_last": {
+      "id": "1427603680407847075",
+      "name": "achieve_last",
+      "animated": false,
+      "mention": "<:achieve_last:1427603680407847075>",
+      "createdTimestamp": 1760437641003
+    },
+    "achieve_nomad": {
+      "id": "1427603717015867463",
+      "name": "achieve_nomad",
+      "animated": false,
+      "mention": "<:achieve_nomad:1427603717015867463>",
+      "createdTimestamp": 1760437649731
+    },
+    "achieve_quickandfurious": {
+      "id": "1428743970263007282",
+      "name": "achieve_quickandfurious",
+      "animated": false,
+      "mention": "<:achieve_quickandfurious:1428743970263007282>",
+      "createdTimestamp": 1760709507290
+    },
+    "achieve_scanty": {
+      "id": "1427603748229877871",
+      "name": "achieve_scanty",
+      "animated": false,
+      "mention": "<:achieve_scanty:1427603748229877871>",
+      "createdTimestamp": 1760437657173
+    },
+    "achieve_statue": {
+      "id": "1427603778688913508",
+      "name": "achieve_statue",
+      "animated": false,
+      "mention": "<:achieve_statue:1427603778688913508>",
+      "createdTimestamp": 1760437664435
+    },
+    "achieve_tight": {
+      "id": "1427603809177305109",
+      "name": "achieve_tight",
+      "animated": false,
+      "mention": "<:achieve_tight:1427603809177305109>",
+      "createdTimestamp": 1760437671704
+    },
+    "achieve_timeflies": {
+      "id": "1427603842173763697",
+      "name": "achieve_timeflies",
+      "animated": false,
+      "mention": "<:achieve_timeflies:1427603842173763697>",
+      "createdTimestamp": 1760437679571
+    },
+    "achieve_untouchable": {
+      "id": "1428743971005530214",
+      "name": "achieve_untouchable",
+      "animated": false,
+      "mention": "<:achieve_untouchable:1428743971005530214>",
+      "createdTimestamp": 1760709507467
+    },
+    "achieve_versatile": {
+      "id": "1427603876231774288",
+      "name": "achieve_versatile",
+      "animated": false,
+      "mention": "<:achieve_versatile:1427603876231774288>",
+      "createdTimestamp": 1760437687691
+    },
+    "achieve_zombie": {
+      "id": "1427603914626302063",
+      "name": "achieve_zombie",
+      "animated": false,
+      "mention": "<:achieve_zombie:1427603914626302063>",
+      "createdTimestamp": 1760437696845
+    },
+    "achievements": {
+      "id": "1427602660533604495",
+      "name": "achievements",
+      "animated": false,
+      "mention": "<:achievements:1427602660533604495>",
+      "createdTimestamp": 1760437397846
+    },
+    "agility": {
+      "id": "1427596513135165460",
+      "name": "agility",
+      "animated": false,
+      "mention": "<:agility:1427596513135165460>",
+      "createdTimestamp": 1760435932192
+    },
+    "airdamage": {
+      "id": "1427599920818290748",
+      "name": "airdamage",
+      "animated": false,
+      "mention": "<:airdamage:1427599920818290748>",
+      "createdTimestamp": 1760436744647
+    },
+    "aiwuztheyadofus": {
+      "id": "1427600967335022603",
+      "name": "aiwuztheyadofus",
+      "animated": false,
+      "mention": "<:aiwuztheyadofus:1427600967335022603>",
+      "createdTimestamp": 1760436994156
+    },
+    "al_howin": {
+      "id": "1427604029755621467",
+      "name": "al_howin",
+      "animated": false,
+      "mention": "<:al_howin:1427604029755621467>",
+      "createdTimestamp": 1760437724294
+    },
+    "almanax": {
+      "id": "1427602674097979473",
+      "name": "almanax",
+      "animated": false,
+      "mention": "<:almanax:1427602674097979473>",
+      "createdTimestamp": 1760437401080
+    },
+    "ancestral_treechnid": {
+      "id": "1427604040828846142",
+      "name": "ancestral_treechnid",
+      "animated": false,
+      "mention": "<:ancestral_treechnid:1427604040828846142>",
+      "createdTimestamp": 1760437726934
+    },
+    "ap": {
+      "id": "1427596539064483902",
+      "name": "ap",
+      "animated": false,
+      "mention": "<:ap:1427596539064483902>",
+      "createdTimestamp": 1760435938374
+    },
+    "apparry": {
+      "id": "1427596572572516523",
+      "name": "apparry",
+      "animated": false,
+      "mention": "<:apparry:1427596572572516523>",
+      "createdTimestamp": 1760435946363
+    },
+    "apreduction": {
+      "id": "1427599517854859325",
+      "name": "apreduction",
+      "animated": false,
+      "mention": "<:apreduction:1427599517854859325>",
+      "createdTimestamp": 1760436648573
+    },
+    "attributes": {
+      "id": "1427602686769102911",
+      "name": "attributes",
+      "animated": false,
+      "mention": "<:attributes:1427602686769102911>",
+      "createdTimestamp": 1760437404101
+    },
+    "ava_clock": {
+      "id": "1427599741406937089",
+      "name": "ava_clock",
+      "animated": false,
+      "mention": "<:ava_clock:1427599741406937089>",
+      "createdTimestamp": 1760436701872
+    },
+    "ava_healerpotion": {
+      "id": "1427600783419117570",
+      "name": "ava_healerpotion",
+      "animated": false,
+      "mention": "<:ava_healerpotion:1427600783419117570>",
+      "createdTimestamp": 1760436950307
+    },
+    "ava_prism": {
+      "id": "1427600800015847445",
+      "name": "ava_prism",
+      "animated": false,
+      "mention": "<:ava_prism:1427600800015847445>",
+      "createdTimestamp": 1760436954264
+    },
+    "ava_prismplaced": {
+      "id": "1427600813089620058",
+      "name": "ava_prismplaced",
+      "animated": false,
+      "mention": "<:ava_prismplaced:1427600813089620058>",
+      "createdTimestamp": 1760436957381
+    },
+    "ava_sentinelpotion": {
+      "id": "1427600846061047932",
+      "name": "ava_sentinelpotion",
+      "animated": false,
+      "mention": "<:ava_sentinelpotion:1427600846061047932>",
+      "createdTimestamp": 1760436965242
+    },
+    "ava_shield": {
+      "id": "1427599763838074952",
+      "name": "ava_shield",
+      "animated": false,
+      "mention": "<:ava_shield:1427599763838074952>",
+      "createdTimestamp": 1760436707220
+    },
+    "ava_star": {
+      "id": "1427599781190176809",
+      "name": "ava_star",
+      "animated": false,
+      "mention": "<:ava_star:1427599781190176809>",
+      "createdTimestamp": 1760436711357
+    },
+    "ava_sword": {
+      "id": "1427599798755790970",
+      "name": "ava_sword",
+      "animated": false,
+      "mention": "<:ava_sword:1427599798755790970>",
+      "createdTimestamp": 1760436715545
+    },
+    "ava_teleportmodul": {
+      "id": "1427600824242278472",
+      "name": "ava_teleportmodul",
+      "animated": false,
+      "mention": "<:ava_teleportmodul:1427600824242278472>",
+      "createdTimestamp": 1760436960040
+    },
+    "ava_undertakerpotion": {
+      "id": "1427600836074143775",
+      "name": "ava_undertakerpotion",
+      "animated": false,
+      "mention": "<:ava_undertakerpotion:1427600836074143775>",
+      "createdTimestamp": 1760436962861
+    },
+    "azure_plop": {
+      "id": "1428709933011959959",
+      "name": "azure_plop",
+      "animated": false,
+      "mention": "<:azure_plop:1428709933011959959>",
+      "createdTimestamp": 1760701392177
+    },
+    "batofu": {
+      "id": "1427604053998702682",
+      "name": "batofu",
+      "animated": false,
+      "mention": "<:batofu:1427604053998702682>",
+      "createdTimestamp": 1760437730074
+    },
+    "belladonna": {
+      "id": "1427604069006049290",
+      "name": "belladonna",
+      "animated": false,
+      "mention": "<:belladonna:1427604069006049290>",
+      "createdTimestamp": 1760437733652
+    },
+    "black_rat": {
+      "id": "1427604089193238650",
+      "name": "black_rat",
+      "animated": false,
+      "mention": "<:black_rat:1427604089193238650>",
+      "createdTimestamp": 1760437738465
+    },
+    "blackspotteddofus": {
+      "id": "1427601073463492708",
+      "name": "blackspotteddofus",
+      "animated": false,
+      "mention": "<:blackspotteddofus:1427601073463492708>",
+      "createdTimestamp": 1760437019459
+    },
+    "bone_shot": {
+      "id": "1427604107836915744",
+      "name": "bone_shot",
+      "animated": false,
+      "mention": "<:bone_shot:1427604107836915744>",
+      "createdTimestamp": 1760437742910
+    },
+    "boostache": {
+      "id": "1427604123036942447",
+      "name": "boostache",
+      "animated": false,
+      "mention": "<:boostache:1427604123036942447>",
+      "createdTimestamp": 1760437746534
+    },
+    "boss_outline": {
+      "id": "1427599847065649213",
+      "name": "boss_outline",
+      "animated": false,
+      "mention": "<:boss_outline:1427599847065649213>",
+      "createdTimestamp": 1760436727063
+    },
+    "buck_anear": {
+      "id": "1427604141139693568",
+      "name": "buck_anear",
+      "animated": false,
+      "mention": "<:buck_anear:1427604141139693568>",
+      "createdTimestamp": 1760437750850
+    },
+    "bworker": {
+      "id": "1427604152653058179",
+      "name": "bworker",
+      "animated": false,
+      "mention": "<:bworker:1427604152653058179>",
+      "createdTimestamp": 1760437753595
+    },
+    "bworkette": {
+      "id": "1427604163038023741",
+      "name": "bworkette",
+      "animated": false,
+      "mention": "<:bworkette:1427604163038023741>",
+      "createdTimestamp": 1760437756071
+    },
+    "cawottdofus": {
+      "id": "1427601009982701649",
+      "name": "cawottdofus",
+      "animated": false,
+      "mention": "<:cawottdofus:1427601009982701649>",
+      "createdTimestamp": 1760437004324
+    },
+    "celestial_arachnee": {
+      "id": "1428710026645606492",
+      "name": "celestial_arachnee",
+      "animated": false,
+      "mention": "<:celestial_arachnee:1428710026645606492>",
+      "createdTimestamp": 1760701414501
+    },
+    "celestial_bearbarian": {
+      "id": "1427604175268876370",
+      "name": "celestial_bearbarian",
+      "animated": false,
+      "mention": "<:celestial_bearbarian:1427604175268876370>",
+      "createdTimestamp": 1760437758987
+    },
+    "celestial_boar": {
+      "id": "1428710028021465169",
+      "name": "celestial_boar",
+      "animated": false,
+      "mention": "<:celestial_boar:1428710028021465169>",
+      "createdTimestamp": 1760701414829
+    },
+    "celestial_gobball": {
+      "id": "1428710029154058305",
+      "name": "celestial_gobball",
+      "animated": false,
+      "mention": "<:celestial_gobball:1428710029154058305>",
+      "createdTimestamp": 1760701415099
+    },
+    "celestial_piwi": {
+      "id": "1428715547456962631",
+      "name": "celestial_piwi",
+      "animated": false,
+      "mention": "<:celestial_piwi:1428715547456962631>",
+      "createdTimestamp": 1760702730765
+    },
+    "celestial_tofu": {
+      "id": "1428710030483652609",
+      "name": "celestial_tofu",
+      "animated": false,
+      "mention": "<:celestial_tofu:1428710030483652609>",
+      "createdTimestamp": 1760701415416
+    },
+    "chall_barbaric": {
+      "id": "1427601736348073984",
+      "name": "chall_barbaric",
+      "animated": false,
+      "mention": "<:chall_barbaric:1427601736348073984>",
+      "createdTimestamp": 1760437177503
+    },
+    "chall_battleroyal": {
+      "id": "1427601749132447744",
+      "name": "chall_battleroyal",
+      "animated": false,
+      "mention": "<:chall_battleroyal:1427601749132447744>",
+      "createdTimestamp": 1760437180551
+    },
+    "chall_chrono": {
+      "id": "1427601766257786993",
+      "name": "chall_chrono",
+      "animated": false,
+      "mention": "<:chall_chrono:1427601766257786993>",
+      "createdTimestamp": 1760437184634
+    },
+    "chall_cleanhands": {
+      "id": "1427601817746800682",
+      "name": "chall_cleanhands",
+      "animated": false,
+      "mention": "<:chall_cleanhands:1427601817746800682>",
+      "createdTimestamp": 1760437196910
+    },
+    "chall_contamination": {
+      "id": "1427601842208243732",
+      "name": "chall_contamination",
+      "animated": false,
+      "mention": "<:chall_contamination:1427601842208243732>",
+      "createdTimestamp": 1760437202742
+    },
+    "chall_contractkiller": {
+      "id": "1427601876290900089",
+      "name": "chall_contractkiller",
+      "animated": false,
+      "mention": "<:chall_contractkiller:1427601876290900089>",
+      "createdTimestamp": 1760437210868
+    },
+    "chall_cruel": {
+      "id": "1427601902144852008",
+      "name": "chall_cruel",
+      "animated": false,
+      "mention": "<:chall_cruel:1427601902144852008>",
+      "createdTimestamp": 1760437217032
+    },
+    "chall_elitist": {
+      "id": "1427601928287944724",
+      "name": "chall_elitist",
+      "animated": false,
+      "mention": "<:chall_elitist:1427601928287944724>",
+      "createdTimestamp": 1760437223265
+    },
+    "chall_evasive": {
+      "id": "1427601949846671501",
+      "name": "chall_evasive",
+      "animated": false,
+      "mention": "<:chall_evasive:1427601949846671501>",
+      "createdTimestamp": 1760437228405
+    },
+    "chall_exuberant": {
+      "id": "1427601971518373952",
+      "name": "chall_exuberant",
+      "animated": false,
+      "mention": "<:chall_exuberant:1427601971518373952>",
+      "createdTimestamp": 1760437233572
+    },
+    "chall_fainthearted": {
+      "id": "1427601990720028722",
+      "name": "chall_fainthearted",
+      "animated": false,
+      "mention": "<:chall_fainthearted:1427601990720028722>",
+      "createdTimestamp": 1760437238150
+    },
+    "chall_focus": {
+      "id": "1427602030889009192",
+      "name": "chall_focus",
+      "animated": false,
+      "mention": "<:chall_focus:1427602030889009192>",
+      "createdTimestamp": 1760437247727
+    },
+    "chall_foresighted": {
+      "id": "1427602054762729572",
+      "name": "chall_foresighted",
+      "animated": false,
+      "mention": "<:chall_foresighted:1427602054762729572>",
+      "createdTimestamp": 1760437253419
+    },
+    "chall_gangster": {
+      "id": "1427602086346096813",
+      "name": "chall_gangster",
+      "animated": false,
+      "mention": "<:chall_gangster:1427602086346096813>",
+      "createdTimestamp": 1760437260949
+    },
+    "chall_impertinence": {
+      "id": "1427602132613464115",
+      "name": "chall_impertinence",
+      "animated": false,
+      "mention": "<:chall_impertinence:1427602132613464115>",
+      "createdTimestamp": 1760437271980
+    },
+    "chall_keepmoving": {
+      "id": "1427602162577575977",
+      "name": "chall_keepmoving",
+      "animated": false,
+      "mention": "<:chall_keepmoving:1427602162577575977>",
+      "createdTimestamp": 1760437279124
+    },
+    "chall_loyalfriend": {
+      "id": "1429117951478468648",
+      "name": "chall_loyalfriend",
+      "animated": false,
+      "mention": "<:chall_loyalfriend:1429117951478468648>",
+      "createdTimestamp": 1760798671360
+    },
+    "chall_maniac": {
+      "id": "1427602217430548593",
+      "name": "chall_maniac",
+      "animated": false,
+      "mention": "<:chall_maniac:1427602217430548593>",
+      "createdTimestamp": 1760437292202
+    },
+    "chall_mystique": {
+      "id": "1427602253065486367",
+      "name": "chall_mystique",
+      "animated": false,
+      "mention": "<:chall_mystique:1427602253065486367>",
+      "createdTimestamp": 1760437300698
+    },
+    "chall_nomad": {
+      "id": "1427602305141837874",
+      "name": "chall_nomad",
+      "animated": false,
+      "mention": "<:chall_nomad:1427602305141837874>",
+      "createdTimestamp": 1760437313114
+    },
+    "chall_norush": {
+      "id": "1427602281095757907",
+      "name": "chall_norush",
+      "animated": false,
+      "mention": "<:chall_norush:1427602281095757907>",
+      "createdTimestamp": 1760437307381
+    },
+    "chall_quickandfurious": {
+      "id": "1427602332111343626",
+      "name": "chall_quickandfurious",
+      "animated": false,
+      "mention": "<:chall_quickandfurious:1427602332111343626>",
+      "createdTimestamp": 1760437319544
+    },
+    "chall_reprieve": {
+      "id": "1427602193904701580",
+      "name": "chall_reprieve",
+      "animated": false,
+      "mention": "<:chall_reprieve:1427602193904701580>",
+      "createdTimestamp": 1760437286593
+    },
+    "chall_rootedtothespot": {
+      "id": "1427602356052426762",
+      "name": "chall_rootedtothespot",
+      "animated": false,
+      "mention": "<:chall_rootedtothespot:1427602356052426762>",
+      "createdTimestamp": 1760437325252
+    },
+    "chall_scanty": {
+      "id": "1427602377602764901",
+      "name": "chall_scanty",
+      "animated": false,
+      "mention": "<:chall_scanty:1427602377602764901>",
+      "createdTimestamp": 1760437330390
+    },
+    "chall_scapegoat": {
+      "id": "1427602416647274506",
+      "name": "chall_scapegoat",
+      "animated": false,
+      "mention": "<:chall_scapegoat:1427602416647274506>",
+      "createdTimestamp": 1760437339699
+    },
+    "chall_selfsacrifice": {
+      "id": "1427602449757114409",
+      "name": "chall_selfsacrifice",
+      "animated": false,
+      "mention": "<:chall_selfsacrifice:1427602449757114409>",
+      "createdTimestamp": 1760437347593
+    },
+    "chall_sharing": {
+      "id": "1427602474801430592",
+      "name": "chall_sharing",
+      "animated": false,
+      "mention": "<:chall_sharing:1427602474801430592>",
+      "createdTimestamp": 1760437353564
+    },
+    "chall_sightseeing": {
+      "id": "1429117953483214970",
+      "name": "chall_sightseeing",
+      "animated": false,
+      "mention": "<:chall_sightseeing:1429117953483214970>",
+      "createdTimestamp": 1760798671838
+    },
+    "chall_static": {
+      "id": "1427602500277506139",
+      "name": "chall_static",
+      "animated": false,
+      "mention": "<:chall_static:1427602500277506139>",
+      "createdTimestamp": 1760437359638
+    },
+    "chall_statue": {
+      "id": "1427602519886135378",
+      "name": "chall_statue",
+      "animated": false,
+      "mention": "<:chall_statue:1427602519886135378>",
+      "createdTimestamp": 1760437364313
+    },
+    "chall_tight": {
+      "id": "1429117955517448242",
+      "name": "chall_tight",
+      "animated": false,
+      "mention": "<:chall_tight:1429117955517448242>",
+      "createdTimestamp": 1760798672323
+    },
+    "chall_timeflies": {
+      "id": "1427602541486801016",
+      "name": "chall_timeflies",
+      "animated": false,
+      "mention": "<:chall_timeflies:1427602541486801016>",
+      "createdTimestamp": 1760437369463
+    },
+    "chall_toeachhispwn": {
+      "id": "1429117957216272465",
+      "name": "chall_toeachhispwn",
+      "animated": false,
+      "mention": "<:chall_toeachhispwn:1429117957216272465>",
+      "createdTimestamp": 1760798672728
+    },
+    "chall_twoforthepriceofone": {
+      "id": "1427602565666832404",
+      "name": "chall_twoforthepriceofone",
+      "animated": false,
+      "mention": "<:chall_twoforthepriceofone:1427602565666832404>",
+      "createdTimestamp": 1760437375228
+    },
+    "chall_untouchable": {
+      "id": "1427602594754203759",
+      "name": "chall_untouchable",
+      "animated": false,
+      "mention": "<:chall_untouchable:1427602594754203759>",
+      "createdTimestamp": 1760437382163
+    },
+    "chall_unwillingvolunteer": {
+      "id": "1427602008247894066",
+      "name": "chall_unwillingvolunteer",
+      "animated": false,
+      "mention": "<:chall_unwillingvolunteer:1427602008247894066>",
+      "createdTimestamp": 1760437242329
+    },
+    "chall_versatile": {
+      "id": "1427602615591764009",
+      "name": "chall_versatile",
+      "animated": false,
+      "mention": "<:chall_versatile:1427602615591764009>",
+      "createdTimestamp": 1760437387131
+    },
+    "chall_zombie": {
+      "id": "1427602635149672489",
+      "name": "chall_zombie",
+      "animated": false,
+      "mention": "<:chall_zombie:1427602635149672489>",
+      "createdTimestamp": 1760437391794
+    },
+    "chance": {
+      "id": "1427596695369416724",
+      "name": "chance",
+      "animated": false,
+      "mention": "<:chance:1427596695369416724>",
+      "createdTimestamp": 1760435975640
+    },
+    "closewindow": {
+      "id": "1427602700832342046",
+      "name": "closewindow",
+      "animated": false,
+      "mention": "<:closewindow:1427602700832342046>",
+      "createdTimestamp": 1760437407454
+    },
+    "count_harebourg": {
+      "id": "1427604186090045521",
+      "name": "count_harebourg",
+      "animated": false,
+      "mention": "<:count_harebourg:1427604186090045521>",
+      "createdTimestamp": 1760437761567
+    },
+    "cra": {
+      "id": "1427597431775952939",
+      "name": "cra",
+      "animated": false,
+      "mention": "<:cra:1427597431775952939>",
+      "createdTimestamp": 1760436151213
+    },
+    "cra_female": {
+      "id": "1427601190765592607",
+      "name": "cra_female",
+      "animated": false,
+      "mention": "<:cra_female:1427601190765592607>",
+      "createdTimestamp": 1760437047426
+    },
+    "cra_male": {
+      "id": "1427601203055034443",
+      "name": "cra_male",
+      "animated": false,
+      "mention": "<:cra_male:1427601203055034443>",
+      "createdTimestamp": 1760437050356
+    },
+    "crakillian_guardian": {
+      "id": "1427604216658268210",
+      "name": "crakillian_guardian",
+      "animated": false,
+      "mention": "<:crakillian_guardian:1427604216658268210>",
+      "createdTimestamp": 1760437768855
+    },
+    "crimson_plop": {
+      "id": "1428710201351209062",
+      "name": "crimson_plop",
+      "animated": false,
+      "mention": "<:crimson_plop:1428710201351209062>",
+      "createdTimestamp": 1760701456154
+    },
+    "crimsondofus": {
+      "id": "1427601053318250537",
+      "name": "crimsondofus",
+      "animated": false,
+      "mention": "<:crimsondofus:1427601053318250537>",
+      "createdTimestamp": 1760437014656
+    },
+    "criticaldamage": {
+      "id": "1427600082362044426",
+      "name": "criticaldamage",
+      "animated": false,
+      "mention": "<:criticaldamage:1427600082362044426>",
+      "createdTimestamp": 1760436783162
+    },
+    "criticalhits": {
+      "id": "1427600738967621734",
+      "name": "criticalhits",
+      "animated": false,
+      "mention": "<:criticalhits:1427600738967621734>",
+      "createdTimestamp": 1760436939709
+    },
+    "criticalresistance": {
+      "id": "1427596825874927736",
+      "name": "criticalresistance",
+      "animated": false,
+      "mention": "<:criticalresistance:1427596825874927736>",
+      "createdTimestamp": 1760436006755
+    },
+    "crocabulia": {
+      "id": "1427604225306919003",
+      "name": "crocabulia",
+      "animated": false,
+      "mention": "<:crocabulia:1427604225306919003>",
+      "createdTimestamp": 1760437770917
+    },
+    "damadrya": {
+      "id": "1427604241442144307",
+      "name": "damadrya",
+      "animated": false,
+      "mention": "<:damadrya:1427604241442144307>",
+      "createdTimestamp": 1760437774764
+    },
+    "damage": {
+      "id": "1427600169448505385",
+      "name": "damage",
+      "animated": false,
+      "mention": "<:damage:1427600169448505385>",
+      "createdTimestamp": 1760436803925
+    },
+    "dark_arachnee": {
+      "id": "1428708279508537434",
+      "name": "dark_arachnee",
+      "animated": false,
+      "mention": "<:dark_arachnee:1428708279508537434>",
+      "createdTimestamp": 1760700997951
+    },
+    "dark_boar": {
+      "id": "1428708281135665183",
+      "name": "dark_boar",
+      "animated": false,
+      "mention": "<:dark_boar:1428708281135665183>",
+      "createdTimestamp": 1760700998339
+    },
+    "dark_gobball": {
+      "id": "1428708282612056075",
+      "name": "dark_gobball",
+      "animated": false,
+      "mention": "<:dark_gobball:1428708282612056075>",
+      "createdTimestamp": 1760700998691
+    },
+    "dark_piwi": {
+      "id": "1428708283849379860",
+      "name": "dark_piwi",
+      "animated": false,
+      "mention": "<:dark_piwi:1428708283849379860>",
+      "createdTimestamp": 1760700998986
+    },
+    "dark_tofu": {
+      "id": "1428708285137031198",
+      "name": "dark_tofu",
+      "animated": false,
+      "mention": "<:dark_tofu:1428708285137031198>",
+      "createdTimestamp": 1760700999293
+    },
+    "dark_vlad": {
+      "id": "1427604255061184522",
+      "name": "dark_vlad",
+      "animated": false,
+      "mention": "<:dark_vlad:1427604255061184522>",
+      "createdTimestamp": 1760437778011
+    },
+    "dodge": {
+      "id": "1427600110354694206",
+      "name": "dodge",
+      "animated": false,
+      "mention": "<:dodge:1427600110354694206>",
+      "createdTimestamp": 1760436789836
+    },
+    "dofawa": {
+      "id": "1427600888528375838",
+      "name": "dofawa",
+      "animated": false,
+      "mention": "<:dofawa:1427600888528375838>",
+      "createdTimestamp": 1760436975367
+    },
+    "dofushu": {
+      "id": "1427600899374842006",
+      "name": "dofushu",
+      "animated": false,
+      "mention": "<:dofushu:1427600899374842006>",
+      "createdTimestamp": 1760436977953
+    },
+    "dolmanax": {
+      "id": "1427600921910706276",
+      "name": "dolmanax",
+      "animated": false,
+      "mention": "<:dolmanax:1427600921910706276>",
+      "createdTimestamp": 1760436983326
+    },
+    "domakuro": {
+      "id": "1427600931649884241",
+      "name": "domakuro",
+      "animated": false,
+      "mention": "<:domakuro:1427600931649884241>",
+      "createdTimestamp": 1760436985648
+    },
+    "dorigami": {
+      "id": "1427600942513131620",
+      "name": "dorigami",
+      "animated": false,
+      "mention": "<:dorigami:1427600942513131620>",
+      "createdTimestamp": 1760436988238
+    },
+    "dragonpig": {
+      "id": "1427604275189645322",
+      "name": "dragonpig",
+      "animated": false,
+      "mention": "<:dragonpig:1427604275189645322>",
+      "createdTimestamp": 1760437782810
+    },
+    "earthdamage": {
+      "id": "1427599964162232421",
+      "name": "earthdamage",
+      "animated": false,
+      "mention": "<:earthdamage:1427599964162232421>",
+      "createdTimestamp": 1760436754981
+    },
+    "ecaflip": {
+      "id": "1427597459340656761",
+      "name": "ecaflip",
+      "animated": false,
+      "mention": "<:ecaflip:1427597459340656761>",
+      "createdTimestamp": 1760436157785
+    },
+    "ecaflip_female": {
+      "id": "1427601217063878769",
+      "name": "ecaflip_female",
+      "animated": false,
+      "mention": "<:ecaflip_female:1427601217063878769>",
+      "createdTimestamp": 1760437053696
+    },
+    "ecaflip_male": {
+      "id": "1427601230502432919",
+      "name": "ecaflip_male",
+      "animated": false,
+      "mention": "<:ecaflip_male:1427601230502432919>",
+      "createdTimestamp": 1760437056900
+    },
+    "elements": {
+      "id": "1427600196065427457",
+      "name": "elements",
+      "animated": false,
+      "mention": "<:elements:1427600196065427457>",
+      "createdTimestamp": 1760436810271
+    },
+    "emeralddofus": {
+      "id": "1427601108460638341",
+      "name": "emeralddofus",
+      "animated": false,
+      "mention": "<:emeralddofus:1427601108460638341>",
+      "createdTimestamp": 1760437027803
+    },
+    "endturn": {
+      "id": "1427602710756331520",
+      "name": "endturn",
+      "animated": false,
+      "mention": "<:endturn:1427602710756331520>",
+      "createdTimestamp": 1760437409820
+    },
+    "eniripsa": {
+      "id": "1427597482073919650",
+      "name": "eniripsa",
+      "animated": false,
+      "mention": "<:eniripsa:1427597482073919650>",
+      "createdTimestamp": 1760436163205
+    },
+    "eniripsa_female": {
+      "id": "1427601248655245382",
+      "name": "eniripsa_female",
+      "animated": false,
+      "mention": "<:eniripsa_female:1427601248655245382>",
+      "createdTimestamp": 1760437061228
+    },
+    "eniripsa_male": {
+      "id": "1427601257958342786",
+      "name": "eniripsa_male",
+      "animated": false,
+      "mention": "<:eniripsa_male:1427601257958342786>",
+      "createdTimestamp": 1760437063446
+    },
+    "enutrof": {
+      "id": "1427597502541987952",
+      "name": "enutrof",
+      "animated": false,
+      "mention": "<:enutrof:1427597502541987952>",
+      "createdTimestamp": 1760436168085
+    },
+    "enutrof_female": {
+      "id": "1427601274307739819",
+      "name": "enutrof_female",
+      "animated": false,
+      "mention": "<:enutrof_female:1427601274307739819>",
+      "createdTimestamp": 1760437067344
+    },
+    "enutrof_male": {
+      "id": "1427601287293308939",
+      "name": "enutrof_male",
+      "animated": false,
+      "mention": "<:enutrof_male:1427601287293308939>",
+      "createdTimestamp": 1760437070440
+    },
+    "famished_sunflower": {
+      "id": "1427604295364116531",
+      "name": "famished_sunflower",
+      "animated": false,
+      "mention": "<:famished_sunflower:1427604295364116531>",
+      "createdTimestamp": 1760437787620
+    },
+    "father_kwismas": {
+      "id": "1427604315819737149",
+      "name": "father_kwismas",
+      "animated": false,
+      "mention": "<:father_kwismas:1427604315819737149>",
+      "createdTimestamp": 1760437792497
+    },
+    "father_whupper": {
+      "id": "1427604325793792120",
+      "name": "father_whupper",
+      "animated": false,
+      "mention": "<:father_whupper:1427604325793792120>",
+      "createdTimestamp": 1760437794875
+    },
+    "feca": {
+      "id": "1427597522049699850",
+      "name": "feca",
+      "animated": false,
+      "mention": "<:feca:1427597522049699850>",
+      "createdTimestamp": 1760436172736
+    },
+    "feca_female": {
+      "id": "1427601299335024711",
+      "name": "feca_female",
+      "animated": false,
+      "mention": "<:feca_female:1427601299335024711>",
+      "createdTimestamp": 1760437073311
+    },
+    "feca_male": {
+      "id": "1427601311586582641",
+      "name": "feca_male",
+      "animated": false,
+      "mention": "<:feca_male:1427601311586582641>",
+      "createdTimestamp": 1760437076232
+    },
+    "firedamage": {
+      "id": "1427599984567783484",
+      "name": "firedamage",
+      "animated": false,
+      "mention": "<:firedamage:1427599984567783484>",
+      "createdTimestamp": 1760436759846
+    },
+    "foggernaut": {
+      "id": "1427597557064007790",
+      "name": "foggernaut",
+      "animated": false,
+      "mention": "<:foggernaut:1427597557064007790>",
+      "createdTimestamp": 1760436181084
+    },
+    "foggernaut_female": {
+      "id": "1427601325914591262",
+      "name": "foggernaut_female",
+      "animated": false,
+      "mention": "<:foggernaut_female:1427601325914591262>",
+      "createdTimestamp": 1760437079648
+    },
+    "foggernaut_male": {
+      "id": "1427601338283327571",
+      "name": "foggernaut_male",
+      "animated": false,
+      "mention": "<:foggernaut_male:1427601338283327571>",
+      "createdTimestamp": 1760437082597
+    },
+    "founoroshi": {
+      "id": "1427604341799522314",
+      "name": "founoroshi",
+      "animated": false,
+      "mention": "<:founoroshi:1427604341799522314>",
+      "createdTimestamp": 1760437798691
+    },
+    "fuji_snowfoux": {
+      "id": "1427604363949506701",
+      "name": "fuji_snowfoux",
+      "animated": false,
+      "mention": "<:fuji_snowfoux:1427604363949506701>",
+      "createdTimestamp": 1760437803972
+    },
+    "giant_kralove": {
+      "id": "1427604382542725210",
+      "name": "giant_kralove",
+      "animated": false,
+      "mention": "<:giant_kralove:1427604382542725210>",
+      "createdTimestamp": 1760437808405
+    },
+    "golden_scarabugly": {
+      "id": "1427604405183578152",
+      "name": "golden_scarabugly",
+      "animated": false,
+      "mention": "<:golden_scarabugly:1427604405183578152>",
+      "createdTimestamp": 1760437813803
+    },
+    "gourlo_the_terrible": {
+      "id": "1427604421407281162",
+      "name": "gourlo_the_terrible",
+      "animated": false,
+      "mention": "<:gourlo_the_terrible:1427604421407281162>",
+      "createdTimestamp": 1760437817671
+    },
+    "grasmera": {
+      "id": "1428707736912138363",
+      "name": "grasmera",
+      "animated": false,
+      "mention": "<:grasmera:1428707736912138363>",
+      "createdTimestamp": 1760700868586
+    },
+    "great_coralator": {
+      "id": "1427604438713110601",
+      "name": "great_coralator",
+      "animated": false,
+      "mention": "<:great_coralator:1427604438713110601>",
+      "createdTimestamp": 1760437821797
+    },
+    "grohlum": {
+      "id": "1427604458556231743",
+      "name": "grohlum",
+      "animated": false,
+      "mention": "<:grohlum:1427604458556231743>",
+      "createdTimestamp": 1760437826528
+    },
+    "grozilla": {
+      "id": "1427604480928514180",
+      "name": "grozilla",
+      "animated": false,
+      "mention": "<:grozilla:1427604480928514180>",
+      "createdTimestamp": 1760437831862
+    },
+    "hanshi": {
+      "id": "1427604616522104904",
+      "name": "hanshi",
+      "animated": false,
+      "mention": "<:hanshi:1427604616522104904>",
+      "createdTimestamp": 1760437864190
+    },
+    "heal": {
+      "id": "1427600231872073860",
+      "name": "heal",
+      "animated": false,
+      "mention": "<:heal:1427600231872073860>",
+      "createdTimestamp": 1760436818808
+    },
+    "healthpoints": {
+      "id": "1427600289380171929",
+      "name": "healthpoints",
+      "animated": false,
+      "mention": "<:healthpoints:1427600289380171929>",
+      "createdTimestamp": 1760436832519
+    },
+    "hell_mina": {
+      "id": "1427604655340523640",
+      "name": "hell_mina",
+      "animated": false,
+      "mention": "<:hell_mina:1427604655340523640>",
+      "createdTimestamp": 1760437873445
+    },
+    "icedofus": {
+      "id": "1427600953582030939",
+      "name": "icedofus",
+      "animated": false,
+      "mention": "<:icedofus:1427600953582030939>",
+      "createdTimestamp": 1760436990877
+    },
+    "increase": {
+      "id": "1427600531882246145",
+      "name": "increase",
+      "animated": false,
+      "mention": "<:increase:1427600531882246145>",
+      "createdTimestamp": 1760436890336
+    },
+    "initiative": {
+      "id": "1427600254265589814",
+      "name": "initiative",
+      "animated": false,
+      "mention": "<:initiative:1427600254265589814>",
+      "createdTimestamp": 1760436824147
+    },
+    "intelligence": {
+      "id": "1427596766601150474",
+      "name": "intelligence",
+      "animated": false,
+      "mention": "<:intelligence:1427596766601150474>",
+      "createdTimestamp": 1760435992623
+    },
+    "iop": {
+      "id": "1427597605202034698",
+      "name": "iop",
+      "animated": false,
+      "mention": "<:iop:1427597605202034698>",
+      "createdTimestamp": 1760436192561
+    },
+    "iop_female": {
+      "id": "1427601354834186270",
+      "name": "iop_female",
+      "animated": false,
+      "mention": "<:iop_female:1427601354834186270>",
+      "createdTimestamp": 1760437086543
+    },
+    "iop_male": {
+      "id": "1427601370139066458",
+      "name": "iop_male",
+      "animated": false,
+      "mention": "<:iop_male:1427601370139066458>",
+      "createdTimestamp": 1760437090192
+    },
+    "itzting": {
+      "id": "1427604674919399505",
+      "name": "itzting",
+      "animated": false,
+      "mention": "<:itzting:1427604674919399505>",
+      "createdTimestamp": 1760437878113
+    },
+    "kaliptusdofus": {
+      "id": "1427600982501752883",
+      "name": "kaliptusdofus",
+      "animated": false,
+      "mention": "<:kaliptusdofus:1427600982501752883>",
+      "createdTimestamp": 1760436997772
+    },
+    "kama": {
+      "id": "1427600996640751646",
+      "name": "Kama",
+      "animated": false,
+      "mention": "<:Kama:1427600996640751646>",
+      "createdTimestamp": 1760437001143
+    },
+    "kanigrula": {
+      "id": "1427604698449444864",
+      "name": "kanigrula",
+      "animated": false,
+      "mention": "<:kanigrula:1427604698449444864>",
+      "createdTimestamp": 1760437883723
+    },
+    "kanniball_andchain": {
+      "id": "1427604722713624708",
+      "name": "kanniball_andchain",
+      "animated": false,
+      "mention": "<:kanniball_andchain:1427604722713624708>",
+      "createdTimestamp": 1760437889508
+    },
+    "katamashii": {
+      "id": "1427604748336500808",
+      "name": "katamashii",
+      "animated": false,
+      "mention": "<:katamashii:1427604748336500808>",
+      "createdTimestamp": 1760437895617
+    },
+    "kimbo": {
+      "id": "1427604767299080292",
+      "name": "kimbo",
+      "animated": false,
+      "mention": "<:kimbo:1427604767299080292>",
+      "createdTimestamp": 1760437900138
+    },
+    "klime": {
+      "id": "1427604790120153129",
+      "name": "klime",
+      "animated": false,
+      "mention": "<:klime:1427604790120153129>",
+      "createdTimestamp": 1760437905579
+    },
+    "kolosso": {
+      "id": "1427604817076944948",
+      "name": "kolosso",
+      "animated": false,
+      "mention": "<:kolosso:1427604817076944948>",
+      "createdTimestamp": 1760437912006
+    },
+    "koolich": {
+      "id": "1427604837545021571",
+      "name": "koolich",
+      "animated": false,
+      "mention": "<:koolich:1427604837545021571>",
+      "createdTimestamp": 1760437916886
+    },
+    "korriander": {
+      "id": "1427604883703595089",
+      "name": "korriander",
+      "animated": false,
+      "mention": "<:korriander:1427604883703595089>",
+      "createdTimestamp": 1760437927891
+    },
+    "kwakwa": {
+      "id": "1427604904976846979",
+      "name": "kwakwa",
+      "animated": false,
+      "mention": "<:kwakwa:1427604904976846979>",
+      "createdTimestamp": 1760437932963
+    },
+    "legendary_crackler": {
+      "id": "1427604940104142878",
+      "name": "legendary_crackler",
+      "animated": false,
+      "mention": "<:legendary_crackler:1427604940104142878>",
+      "createdTimestamp": 1760437941338
+    },
+    "level": {
+      "id": "1427597125503553659",
+      "name": "level",
+      "animated": false,
+      "mention": "<:level:1427597125503553659>",
+      "createdTimestamp": 1760436078192
+    },
+    "lock": {
+      "id": "1427596624309391391",
+      "name": "lock",
+      "animated": false,
+      "mention": "<:lock:1427596624309391391>",
+      "createdTimestamp": 1760435958698
+    },
+    "lord_crow": {
+      "id": "1427604965857296384",
+      "name": "lord_crow",
+      "animated": false,
+      "mention": "<:lord_crow:1427604965857296384>",
+      "createdTimestamp": 1760437947478
+    },
+    "magmaticdofus": {
+      "id": "1427601020409610341",
+      "name": "magmaticdofus",
+      "animated": false,
+      "mention": "<:magmaticdofus:1427601020409610341>",
+      "createdTimestamp": 1760437006810
+    },
+    "marketplace": {
+      "id": "1427602722999373855",
+      "name": "marketplace",
+      "animated": false,
+      "mention": "<:marketplace:1427602722999373855>",
+      "createdTimestamp": 1760437412739
+    },
+    "masqueraider": {
+      "id": "1427597627226325053",
+      "name": "masqueraider",
+      "animated": false,
+      "mention": "<:masqueraider:1427597627226325053>",
+      "createdTimestamp": 1760436197812
+    },
+    "masqueraider_female": {
+      "id": "1427601389877461074",
+      "name": "masqueraider_female",
+      "animated": false,
+      "mention": "<:masqueraider_female:1427601389877461074>",
+      "createdTimestamp": 1760437094898
+    },
+    "masqueraider_male": {
+      "id": "1427601408613683223",
+      "name": "masqueraider_male",
+      "animated": false,
+      "mention": "<:masqueraider_male:1427601408613683223>",
+      "createdTimestamp": 1760437099365
+    },
+    "minotoball": {
+      "id": "1428707824564830258",
+      "name": "minotoball",
+      "animated": false,
+      "mention": "<:minotoball:1428707824564830258>",
+      "createdTimestamp": 1760700889484
+    },
+    "minotoror": {
+      "id": "1427605027006185602",
+      "name": "minotoror",
+      "animated": false,
+      "mention": "<:minotoror:1427605027006185602>",
+      "createdTimestamp": 1760437962057
+    },
+    "minotot": {
+      "id": "1427605054579540040",
+      "name": "minotot",
+      "animated": false,
+      "mention": "<:minotot:1427605054579540040>",
+      "createdTimestamp": 1760437968631
+    },
+    "missiz_freezz": {
+      "id": "1427605080005414974",
+      "name": "missiz_freezz",
+      "animated": false,
+      "mention": "<:missiz_freezz:1427605080005414974>",
+      "createdTimestamp": 1760437974693
+    },
+    "monstercompendium": {
+      "id": "1427602732562251786",
+      "name": "monstercompendium",
+      "animated": false,
+      "mention": "<:monstercompendium:1427602732562251786>",
+      "createdTimestamp": 1760437415019
+    },
+    "moon": {
+      "id": "1427605108866289734",
+      "name": "moon",
+      "animated": false,
+      "mention": "<:moon:1427605108866289734>",
+      "createdTimestamp": 1760437981574
+    },
+    "moowolf": {
+      "id": "1427605132027367545",
+      "name": "moowolf",
+      "animated": false,
+      "mention": "<:moowolf:1427605132027367545>",
+      "createdTimestamp": 1760437987096
+    },
+    "mp": {
+      "id": "1427596871005896734",
+      "name": "mp",
+      "animated": false,
+      "mention": "<:mp:1427596871005896734>",
+      "createdTimestamp": 1760436017515
+    },
+    "mpparry": {
+      "id": "1427597395788693587",
+      "name": "mpparry",
+      "animated": false,
+      "mention": "<:mpparry:1427597395788693587>",
+      "createdTimestamp": 1760436142633
+    },
+    "mpreduction": {
+      "id": "1427600678192414740",
+      "name": "mpreduction",
+      "animated": false,
+      "mention": "<:mpreduction:1427600678192414740>",
+      "createdTimestamp": 1760436925219
+    },
+    "mucane": {
+      "id": "1427605154286272523",
+      "name": "mucane",
+      "animated": false,
+      "mention": "<:mucane:1427605154286272523>",
+      "createdTimestamp": 1760437992403
+    },
+    "nagate": {
+      "id": "1427605172192022558",
+      "name": "nagate",
+      "animated": false,
+      "mention": "<:nagate:1427605172192022558>",
+      "createdTimestamp": 1760437996672
+    },
+    "nelween": {
+      "id": "1427605197869547520",
+      "name": "nelween",
+      "animated": false,
+      "mention": "<:nelween:1427605197869547520>",
+      "createdTimestamp": 1760438002794
+    },
+    "neutral": {
+      "id": "1427596926127308851",
+      "name": "neutral",
+      "animated": false,
+      "mention": "<:neutral:1427596926127308851>",
+      "createdTimestamp": 1760436030657
+    },
+    "neutraldamage": {
+      "id": "1427600055220568085",
+      "name": "neutraldamage",
+      "animated": false,
+      "mention": "<:neutraldamage:1427600055220568085>",
+      "createdTimestamp": 1760436776691
+    },
+    "nileza": {
+      "id": "1428707649385529454",
+      "name": "nileza",
+      "animated": false,
+      "mention": "<:nileza:1428707649385529454>",
+      "createdTimestamp": 1760700847718
+    },
+    "obsidemon": {
+      "id": "1427605216932659302",
+      "name": "obsidemon",
+      "animated": false,
+      "mention": "<:obsidemon:1427605216932659302>",
+      "createdTimestamp": 1760438007339
+    },
+    "ochredofus": {
+      "id": "1427601032141213846",
+      "name": "ochredofus",
+      "animated": false,
+      "mention": "<:ochredofus:1427601032141213846>",
+      "createdTimestamp": 1760437009607
+    },
+    "osamodas": {
+      "id": "1427597656489988117",
+      "name": "osamodas",
+      "animated": false,
+      "mention": "<:osamodas:1427597656489988117>",
+      "createdTimestamp": 1760436204789
+    },
+    "osamodas_female": {
+      "id": "1427601429992050777",
+      "name": "osamodas_female",
+      "animated": false,
+      "mention": "<:osamodas_female:1427601429992050777>",
+      "createdTimestamp": 1760437104462
+    },
+    "osamodas_male": {
+      "id": "1427601458160865321",
+      "name": "osamodas_male",
+      "animated": false,
+      "mention": "<:osamodas_male:1427601458160865321>",
+      "createdTimestamp": 1760437111178
+    },
+    "ougaa": {
+      "id": "1427605235416694835",
+      "name": "ougaa",
+      "animated": false,
+      "mention": "<:ougaa:1427605235416694835>",
+      "createdTimestamp": 1760438011746
+    },
+    "pandawa": {
+      "id": "1427597688735662111",
+      "name": "pandawa",
+      "animated": false,
+      "mention": "<:pandawa:1427597688735662111>",
+      "createdTimestamp": 1760436212477
+    },
+    "pandawa_female": {
+      "id": "1427601483976802405",
+      "name": "pandawa_female",
+      "animated": false,
+      "mention": "<:pandawa_female:1427601483976802405>",
+      "createdTimestamp": 1760437117333
+    },
+    "pandawa_male": {
+      "id": "1427601507913826345",
+      "name": "pandawa_male",
+      "animated": false,
+      "mention": "<:pandawa_male:1427601507913826345>",
+      "createdTimestamp": 1760437123040
+    },
+    "pods": {
+      "id": "1427600616062189579",
+      "name": "pods",
+      "animated": false,
+      "mention": "<:pods:1427600616062189579>",
+      "createdTimestamp": 1760436910406
+    },
+    "power": {
+      "id": "1427600595891785810",
+      "name": "power",
+      "animated": false,
+      "mention": "<:power:1427600595891785810>",
+      "createdTimestamp": 1760436905597
+    },
+    "professor_xa": {
+      "id": "1427605260695896185",
+      "name": "professor_xa",
+      "animated": false,
+      "mention": "<:professor_xa:1427605260695896185>",
+      "createdTimestamp": 1760438017773
+    },
+    "prospection": {
+      "id": "1427600569765199953",
+      "name": "prospection",
+      "animated": false,
+      "mention": "<:prospection:1427600569765199953>",
+      "createdTimestamp": 1760436899368
+    },
+    "pushbackdamage": {
+      "id": "1427600137684914216",
+      "name": "pushbackdamage",
+      "animated": false,
+      "mention": "<:pushbackdamage:1427600137684914216>",
+      "createdTimestamp": 1760436796352
+    },
+    "pushbackresistance": {
+      "id": "1427597202254987356",
+      "name": "pushbackresistance",
+      "animated": false,
+      "mention": "<:pushbackresistance:1427597202254987356>",
+      "createdTimestamp": 1760436096491
+    },
+    "questbook": {
+      "id": "1427602743283028041",
+      "name": "questbook",
+      "animated": false,
+      "mention": "<:questbook:1427602743283028041>",
+      "createdTimestamp": 1760437417575
+    },
+    "range": {
+      "id": "1427600507584647279",
+      "name": "range",
+      "animated": false,
+      "mention": "<:range:1427600507584647279>",
+      "createdTimestamp": 1760436884543
+    },
+    "ready": {
+      "id": "1427602752590319647",
+      "name": "ready",
+      "animated": false,
+      "mention": "<:ready:1427602752590319647>",
+      "createdTimestamp": 1760437419794
+    },
+    "refresh": {
+      "id": "1427602763839443005",
+      "name": "refresh",
+      "animated": false,
+      "mention": "<:refresh:1427602763839443005>",
+      "createdTimestamp": 1760437422476
+    },
+    "rogue": {
+      "id": "1427597716518731798",
+      "name": "rogue",
+      "animated": false,
+      "mention": "<:rogue:1427597716518731798>",
+      "createdTimestamp": 1760436219101
+    },
+    "rogue_female": {
+      "id": "1427601529329946714",
+      "name": "rogue_female",
+      "animated": false,
+      "mention": "<:rogue_female:1427601529329946714>",
+      "createdTimestamp": 1760437128146
+    },
+    "rogue_male": {
+      "id": "1427601547789074582",
+      "name": "rogue_male",
+      "animated": false,
+      "mention": "<:rogue_male:1427601547789074582>",
+      "createdTimestamp": 1760437132547
+    },
+    "ronin_chafer": {
+      "id": "1427605273488392323",
+      "name": "ronin_chafer",
+      "animated": false,
+      "mention": "<:ronin_chafer:1427605273488392323>",
+      "createdTimestamp": 1760438020823
+    },
+    "royal_blue_jelly": {
+      "id": "1427605295978516611",
+      "name": "royal_blue_jelly",
+      "animated": false,
+      "mention": "<:royal_blue_jelly:1427605295978516611>",
+      "createdTimestamp": 1760438026185
+    },
+    "royal_coco_blop": {
+      "id": "1427605417462333511",
+      "name": "royal_coco_blop",
+      "animated": false,
+      "mention": "<:royal_coco_blop:1427605417462333511>",
+      "createdTimestamp": 1760438055149
+    },
+    "royal_gobball": {
+      "id": "1427605594281611295",
+      "name": "royal_gobball",
+      "animated": false,
+      "mention": "<:royal_gobball:1427605594281611295>",
+      "createdTimestamp": 1760438097306
+    },
+    "royal_indigo_blop": {
+      "id": "1427605443626139721",
+      "name": "royal_indigo_blop",
+      "animated": false,
+      "mention": "<:royal_indigo_blop:1427605443626139721>",
+      "createdTimestamp": 1760438061387
+    },
+    "royal_lemon_jelly": {
+      "id": "1427605326408061019",
+      "name": "royal_lemon_jelly",
+      "animated": false,
+      "mention": "<:royal_lemon_jelly:1427605326408061019>",
+      "createdTimestamp": 1760438033440
+    },
+    "royal_mastogob": {
+      "id": "1427605670210830467",
+      "name": "royal_mastogob",
+      "animated": false,
+      "mention": "<:royal_mastogob:1427605670210830467>",
+      "createdTimestamp": 1760438115409
+    },
+    "royal_mint_jelly": {
+      "id": "1427605351980601425",
+      "name": "royal_mint_jelly",
+      "animated": false,
+      "mention": "<:royal_mint_jelly:1427605351980601425>",
+      "createdTimestamp": 1760438039537
+    },
+    "royal_morello_cherry_blop": {
+      "id": "1427605493161000990",
+      "name": "royal_morello_cherry_blop",
+      "animated": false,
+      "mention": "<:royal_morello_cherry_blop:1427605493161000990>",
+      "createdTimestamp": 1760438073197
+    },
+    "royal_pingwin": {
+      "id": "1427605630176198778",
+      "name": "royal_pingwin",
+      "animated": false,
+      "mention": "<:royal_pingwin:1427605630176198778>",
+      "createdTimestamp": 1760438105864
+    },
+    "royal_pippin_blop": {
+      "id": "1427605527919329310",
+      "name": "royal_pippin_blop",
+      "animated": false,
+      "mention": "<:royal_pippin_blop:1427605527919329310>",
+      "createdTimestamp": 1760438081484
+    },
+    "royal_rainbow_blop": {
+      "id": "1427605567626809517",
+      "name": "royal_rainbow_blop",
+      "animated": false,
+      "mention": "<:royal_rainbow_blop:1427605567626809517>",
+      "createdTimestamp": 1760438090951
+    },
+    "royal_strawberry_jelly": {
+      "id": "1427605389956091964",
+      "name": "royal_strawberry_jelly",
+      "animated": false,
+      "mention": "<:royal_strawberry_jelly:1427605389956091964>",
+      "createdTimestamp": 1760438048591
+    },
+    "royal_tofu": {
+      "id": "1427605727039455264",
+      "name": "royal_tofu",
+      "animated": false,
+      "mention": "<:royal_tofu:1427605727039455264>",
+      "createdTimestamp": 1760438128958
+    },
+    "sacrier_female": {
+      "id": "1427601564788330566",
+      "name": "sacrier_female",
+      "animated": false,
+      "mention": "<:sacrier_female:1427601564788330566>",
+      "createdTimestamp": 1760437136600
+    },
+    "sacrier_male": {
+      "id": "1427601581351632956",
+      "name": "sacrier_male",
+      "animated": false,
+      "mention": "<:sacrier_male:1427601581351632956>",
+      "createdTimestamp": 1760437140549
+    },
+    "sacrieur": {
+      "id": "1427597742779138068",
+      "name": "sacrieur",
+      "animated": false,
+      "mention": "<:sacrieur:1427597742779138068>",
+      "createdTimestamp": 1760436225362
+    },
+    "sadida": {
+      "id": "1427597762131656836",
+      "name": "sadida",
+      "animated": false,
+      "mention": "<:sadida:1427597762131656836>",
+      "createdTimestamp": 1760436229976
+    },
+    "sadida_female": {
+      "id": "1427601602591850628",
+      "name": "sadida_female",
+      "animated": false,
+      "mention": "<:sadida_female:1427601602591850628>",
+      "createdTimestamp": 1760437145613
+    },
+    "sadida_male": {
+      "id": "1427601622825177139",
+      "name": "sadida_male",
+      "animated": false,
+      "mention": "<:sadida_male:1427601622825177139>",
+      "createdTimestamp": 1760437150437
+    },
+    "scale_king": {
+      "id": "1427605741274927134",
+      "name": "scale_king",
+      "animated": false,
+      "mention": "<:scale_king:1427605741274927134>",
+      "createdTimestamp": 1760438132352
+    },
+    "selim_quartz": {
+      "id": "1427605766134825020",
+      "name": "selim_quartz",
+      "animated": false,
+      "mention": "<:selim_quartz:1427605766134825020>",
+      "createdTimestamp": 1760438138279
+    },
+    "shihan": {
+      "id": "1427605790809784340",
+      "name": "shihan",
+      "animated": false,
+      "mention": "<:shihan:1427605790809784340>",
+      "createdTimestamp": 1760438144162
+    },
+    "shin_larva": {
+      "id": "1427605820539011103",
+      "name": "shin_larva",
+      "animated": false,
+      "mention": "<:shin_larva:1427605820539011103>",
+      "createdTimestamp": 1760438151250
+    },
+    "sidekicks": {
+      "id": "1427602776153915452",
+      "name": "sidekicks",
+      "animated": false,
+      "mention": "<:sidekicks:1427602776153915452>",
+      "createdTimestamp": 1760437425412
+    },
+    "silf": {
+      "id": "1427605847814570035",
+      "name": "silf",
+      "animated": false,
+      "mention": "<:silf:1427605847814570035>",
+      "createdTimestamp": 1760438157753
+    },
+    "silverdofus": {
+      "id": "1427601093554081822",
+      "name": "silverdofus",
+      "animated": false,
+      "mention": "<:silverdofus:1427601093554081822>",
+      "createdTimestamp": 1760437024249
+    },
+    "skeunk": {
+      "id": "1427605867498307594",
+      "name": "skeunk",
+      "animated": false,
+      "mention": "<:skeunk:1427605867498307594>",
+      "createdTimestamp": 1760438162446
+    },
+    "smiths_chest": {
+      "id": "1427605927007096852",
+      "name": "smiths_chest",
+      "animated": false,
+      "mention": "<:smiths_chest:1427605927007096852>",
+      "createdTimestamp": 1760438176634
+    },
+    "soft_oak": {
+      "id": "1427605948372881479",
+      "name": "soft_oak",
+      "animated": false,
+      "mention": "<:soft_oak:1427605948372881479>",
+      "createdTimestamp": 1760438181728
+    },
+    "spells": {
+      "id": "1427602787423752302",
+      "name": "spells",
+      "animated": false,
+      "mention": "<:spells:1427602787423752302>",
+      "createdTimestamp": 1760437428099
+    },
+    "sphincter_cell": {
+      "id": "1427605974700654602",
+      "name": "sphincter_cell",
+      "animated": false,
+      "mention": "<:sphincter_cell:1427605974700654602>",
+      "createdTimestamp": 1760438188005
+    },
+    "spongemob": {
+      "id": "1427606006900461650",
+      "name": "spongemob",
+      "animated": false,
+      "mention": "<:spongemob:1427606006900461650>",
+      "createdTimestamp": 1760438195682
+    },
+    "sram": {
+      "id": "1427597781660598363",
+      "name": "sram",
+      "animated": false,
+      "mention": "<:sram:1427597781660598363>",
+      "createdTimestamp": 1760436234632
+    },
+    "sram_female": {
+      "id": "1427601643767070760",
+      "name": "sram_female",
+      "animated": false,
+      "mention": "<:sram_female:1427601643767070760>",
+      "createdTimestamp": 1760437155430
+    },
+    "sram_male": {
+      "id": "1427601661584740392",
+      "name": "sram_male",
+      "animated": false,
+      "mention": "<:sram_male:1427601661584740392>",
+      "createdTimestamp": 1760437159678
+    },
+    "staff_deleghoul": {
+      "id": "1427606062302761031",
+      "name": "staff_deleghoul",
+      "animated": false,
+      "mention": "<:staff_deleghoul:1427606062302761031>",
+      "createdTimestamp": 1760438208891
+    },
+    "strength": {
+      "id": "1427597058747142235",
+      "name": "strength",
+      "animated": false,
+      "mention": "<:strength:1427597058747142235>",
+      "createdTimestamp": 1760436062276
+    },
+    "summons": {
+      "id": "1427600461137182832",
+      "name": "summons",
+      "animated": false,
+      "mention": "<:summons:1427600461137182832>",
+      "createdTimestamp": 1760436873469
+    },
+    "sylargh": {
+      "id": "1427606032695169045",
+      "name": "sylargh",
+      "animated": false,
+      "mention": "<:sylargh:1427606032695169045>",
+      "createdTimestamp": 1760438201832
+    },
+    "tanukoui_san": {
+      "id": "1427606084289433651",
+      "name": "tanukoui_san",
+      "animated": false,
+      "mention": "<:tanukoui_san:1427606084289433651>",
+      "createdTimestamp": 1760438214133
+    },
+    "tengu_snowfoux": {
+      "id": "1427606114140160142",
+      "name": "tengu_snowfoux",
+      "animated": false,
+      "mention": "<:tengu_snowfoux:1427606114140160142>",
+      "createdTimestamp": 1760438221250
+    },
+    "timelessicedofus": {
+      "id": "1427601150613655613",
+      "name": "timelessicedofus",
+      "animated": false,
+      "mention": "<:timelessicedofus:1427601150613655613>",
+      "createdTimestamp": 1760437037853
+    },
+    "troolibrius": {
+      "id": "1428710272318705724",
+      "name": "troolibrius",
+      "animated": false,
+      "mention": "<:troolibrius:1428710272318705724>",
+      "createdTimestamp": 1760701473074
+    },
+    "trooligophren": {
+      "id": "1428710273958543360",
+      "name": "trooligophren",
+      "animated": false,
+      "mention": "<:trooligophren:1428710273958543360>",
+      "createdTimestamp": 1760701473465
+    },
+    "troologram": {
+      "id": "1428710275015639071",
+      "name": "troologram",
+      "animated": false,
+      "mention": "<:troologram:1428710275015639071>",
+      "createdTimestamp": 1760701473717
+    },
+    "troololens": {
+      "id": "1428710276345368667",
+      "name": "troololens",
+      "animated": false,
+      "mention": "<:troololens:1428710276345368667>",
+      "createdTimestamp": 1760701474034
+    },
+    "turqouisedofus": {
+      "id": "1427601123333636196",
+      "name": "turqouisedofus",
+      "animated": false,
+      "mention": "<:turqouisedofus:1427601123333636196>",
+      "createdTimestamp": 1760437031349
+    },
+    "tynril": {
+      "id": "1427606140245774396",
+      "name": "tynril",
+      "animated": false,
+      "mention": "<:tynril:1427606140245774396>",
+      "createdTimestamp": 1760438227474
+    },
+    "ul_khan": {
+      "id": "1427606165247754281",
+      "name": "ul_khan",
+      "animated": false,
+      "mention": "<:ul_khan:1427606165247754281>",
+      "createdTimestamp": 1760438233435
+    },
+    "vitality": {
+      "id": "1427600430397128874",
+      "name": "vitality",
+      "animated": false,
+      "mention": "<:vitality:1427600430397128874>",
+      "createdTimestamp": 1760436866140
+    },
+    "vulbisdofus": {
+      "id": "1427601137661644850",
+      "name": "vulbisdofus",
+      "animated": false,
+      "mention": "<:vulbisdofus:1427601137661644850>",
+      "createdTimestamp": 1760437034765
+    },
+    "wa_wabbit": {
+      "id": "1427606192380973066",
+      "name": "wa_wabbit",
+      "animated": false,
+      "mention": "<:wa_wabbit:1427606192380973066>",
+      "createdTimestamp": 1760438239904
+    },
+    "wa_wobot": {
+      "id": "1427606214128177163",
+      "name": "wa_wobot",
+      "animated": false,
+      "mention": "<:wa_wobot:1427606214128177163>",
+      "createdTimestamp": 1760438245089
+    },
+    "waterdamage": {
+      "id": "1427600032076529755",
+      "name": "waterdamage",
+      "animated": false,
+      "mention": "<:waterdamage:1427600032076529755>",
+      "createdTimestamp": 1760436771173
+    },
+    "white_rat": {
+      "id": "1427606238220390511",
+      "name": "white_rat",
+      "animated": false,
+      "mention": "<:white_rat:1427606238220390511>",
+      "createdTimestamp": 1760438250833
+    },
+    "wisdom": {
+      "id": "1428323165490380801",
+      "name": "wisdom",
+      "animated": false,
+      "mention": "<:wisdom:1428323165490380801>",
+      "createdTimestamp": 1760609179614
+    },
+    "xelor": {
+      "id": "1427597797971984485",
+      "name": "xelor",
+      "animated": false,
+      "mention": "<:xelor:1427597797971984485>",
+      "createdTimestamp": 1760436238521
+    },
+    "xelor_female": {
+      "id": "1427601686737850389",
+      "name": "xelor_female",
+      "animated": false,
+      "mention": "<:xelor_female:1427601686737850389>",
+      "createdTimestamp": 1760437165675
+    },
+    "xelor_male": {
+      "id": "1427601701992398878",
+      "name": "xelor_male",
+      "animated": false,
+      "mention": "<:xelor_male:1427601701992398878>",
+      "createdTimestamp": 1760437169312
+    },
+    "zombrute": {
+      "id": "1427606275465678872",
+      "name": "zombrute",
+      "animated": false,
+      "mention": "<:zombrute:1427606275465678872>",
+      "createdTimestamp": 1760438259713
+    }
+  },
+  "byId": {
+    "1427596513135165460": {
+      "key": "agility",
+      "name": "agility",
+      "animated": false,
+      "mention": "<:agility:1427596513135165460>",
+      "createdTimestamp": 1760435932192
+    },
+    "1427596539064483902": {
+      "key": "ap",
+      "name": "ap",
+      "animated": false,
+      "mention": "<:ap:1427596539064483902>",
+      "createdTimestamp": 1760435938374
+    },
+    "1427596572572516523": {
+      "key": "apparry",
+      "name": "apparry",
+      "animated": false,
+      "mention": "<:apparry:1427596572572516523>",
+      "createdTimestamp": 1760435946363
+    },
+    "1427596624309391391": {
+      "key": "lock",
+      "name": "lock",
+      "animated": false,
+      "mention": "<:lock:1427596624309391391>",
+      "createdTimestamp": 1760435958698
+    },
+    "1427596695369416724": {
+      "key": "chance",
+      "name": "chance",
+      "animated": false,
+      "mention": "<:chance:1427596695369416724>",
+      "createdTimestamp": 1760435975640
+    },
+    "1427596766601150474": {
+      "key": "intelligence",
+      "name": "intelligence",
+      "animated": false,
+      "mention": "<:intelligence:1427596766601150474>",
+      "createdTimestamp": 1760435992623
+    },
+    "1427596825874927736": {
+      "key": "criticalresistance",
+      "name": "criticalresistance",
+      "animated": false,
+      "mention": "<:criticalresistance:1427596825874927736>",
+      "createdTimestamp": 1760436006755
+    },
+    "1427596871005896734": {
+      "key": "mp",
+      "name": "mp",
+      "animated": false,
+      "mention": "<:mp:1427596871005896734>",
+      "createdTimestamp": 1760436017515
+    },
+    "1427596926127308851": {
+      "key": "neutral",
+      "name": "neutral",
+      "animated": false,
+      "mention": "<:neutral:1427596926127308851>",
+      "createdTimestamp": 1760436030657
+    },
+    "1427597058747142235": {
+      "key": "strength",
+      "name": "strength",
+      "animated": false,
+      "mention": "<:strength:1427597058747142235>",
+      "createdTimestamp": 1760436062276
+    },
+    "1427597125503553659": {
+      "key": "level",
+      "name": "level",
+      "animated": false,
+      "mention": "<:level:1427597125503553659>",
+      "createdTimestamp": 1760436078192
+    },
+    "1427597202254987356": {
+      "key": "pushbackresistance",
+      "name": "pushbackresistance",
+      "animated": false,
+      "mention": "<:pushbackresistance:1427597202254987356>",
+      "createdTimestamp": 1760436096491
+    },
+    "1427597395788693587": {
+      "key": "mpparry",
+      "name": "mpparry",
+      "animated": false,
+      "mention": "<:mpparry:1427597395788693587>",
+      "createdTimestamp": 1760436142633
+    },
+    "1427597431775952939": {
+      "key": "cra",
+      "name": "cra",
+      "animated": false,
+      "mention": "<:cra:1427597431775952939>",
+      "createdTimestamp": 1760436151213
+    },
+    "1427597459340656761": {
+      "key": "ecaflip",
+      "name": "ecaflip",
+      "animated": false,
+      "mention": "<:ecaflip:1427597459340656761>",
+      "createdTimestamp": 1760436157785
+    },
+    "1427597482073919650": {
+      "key": "eniripsa",
+      "name": "eniripsa",
+      "animated": false,
+      "mention": "<:eniripsa:1427597482073919650>",
+      "createdTimestamp": 1760436163205
+    },
+    "1427597502541987952": {
+      "key": "enutrof",
+      "name": "enutrof",
+      "animated": false,
+      "mention": "<:enutrof:1427597502541987952>",
+      "createdTimestamp": 1760436168085
+    },
+    "1427597522049699850": {
+      "key": "feca",
+      "name": "feca",
+      "animated": false,
+      "mention": "<:feca:1427597522049699850>",
+      "createdTimestamp": 1760436172736
+    },
+    "1427597557064007790": {
+      "key": "foggernaut",
+      "name": "foggernaut",
+      "animated": false,
+      "mention": "<:foggernaut:1427597557064007790>",
+      "createdTimestamp": 1760436181084
+    },
+    "1427597605202034698": {
+      "key": "iop",
+      "name": "iop",
+      "animated": false,
+      "mention": "<:iop:1427597605202034698>",
+      "createdTimestamp": 1760436192561
+    },
+    "1427597627226325053": {
+      "key": "masqueraider",
+      "name": "masqueraider",
+      "animated": false,
+      "mention": "<:masqueraider:1427597627226325053>",
+      "createdTimestamp": 1760436197812
+    },
+    "1427597656489988117": {
+      "key": "osamodas",
+      "name": "osamodas",
+      "animated": false,
+      "mention": "<:osamodas:1427597656489988117>",
+      "createdTimestamp": 1760436204789
+    },
+    "1427597688735662111": {
+      "key": "pandawa",
+      "name": "pandawa",
+      "animated": false,
+      "mention": "<:pandawa:1427597688735662111>",
+      "createdTimestamp": 1760436212477
+    },
+    "1427597716518731798": {
+      "key": "rogue",
+      "name": "rogue",
+      "animated": false,
+      "mention": "<:rogue:1427597716518731798>",
+      "createdTimestamp": 1760436219101
+    },
+    "1427597742779138068": {
+      "key": "sacrieur",
+      "name": "sacrieur",
+      "animated": false,
+      "mention": "<:sacrieur:1427597742779138068>",
+      "createdTimestamp": 1760436225362
+    },
+    "1427597762131656836": {
+      "key": "sadida",
+      "name": "sadida",
+      "animated": false,
+      "mention": "<:sadida:1427597762131656836>",
+      "createdTimestamp": 1760436229976
+    },
+    "1427597781660598363": {
+      "key": "sram",
+      "name": "sram",
+      "animated": false,
+      "mention": "<:sram:1427597781660598363>",
+      "createdTimestamp": 1760436234632
+    },
+    "1427597797971984485": {
+      "key": "xelor",
+      "name": "xelor",
+      "animated": false,
+      "mention": "<:xelor:1427597797971984485>",
+      "createdTimestamp": 1760436238521
+    },
+    "1427599517854859325": {
+      "key": "apreduction",
+      "name": "apreduction",
+      "animated": false,
+      "mention": "<:apreduction:1427599517854859325>",
+      "createdTimestamp": 1760436648573
+    },
+    "1427599741406937089": {
+      "key": "ava_clock",
+      "name": "ava_clock",
+      "animated": false,
+      "mention": "<:ava_clock:1427599741406937089>",
+      "createdTimestamp": 1760436701872
+    },
+    "1427599763838074952": {
+      "key": "ava_shield",
+      "name": "ava_shield",
+      "animated": false,
+      "mention": "<:ava_shield:1427599763838074952>",
+      "createdTimestamp": 1760436707220
+    },
+    "1427599781190176809": {
+      "key": "ava_star",
+      "name": "ava_star",
+      "animated": false,
+      "mention": "<:ava_star:1427599781190176809>",
+      "createdTimestamp": 1760436711357
+    },
+    "1427599798755790970": {
+      "key": "ava_sword",
+      "name": "ava_sword",
+      "animated": false,
+      "mention": "<:ava_sword:1427599798755790970>",
+      "createdTimestamp": 1760436715545
+    },
+    "1427599847065649213": {
+      "key": "boss_outline",
+      "name": "boss_outline",
+      "animated": false,
+      "mention": "<:boss_outline:1427599847065649213>",
+      "createdTimestamp": 1760436727063
+    },
+    "1427599920818290748": {
+      "key": "airdamage",
+      "name": "airdamage",
+      "animated": false,
+      "mention": "<:airdamage:1427599920818290748>",
+      "createdTimestamp": 1760436744647
+    },
+    "1427599964162232421": {
+      "key": "earthdamage",
+      "name": "earthdamage",
+      "animated": false,
+      "mention": "<:earthdamage:1427599964162232421>",
+      "createdTimestamp": 1760436754981
+    },
+    "1427599984567783484": {
+      "key": "firedamage",
+      "name": "firedamage",
+      "animated": false,
+      "mention": "<:firedamage:1427599984567783484>",
+      "createdTimestamp": 1760436759846
+    },
+    "1427600032076529755": {
+      "key": "waterdamage",
+      "name": "waterdamage",
+      "animated": false,
+      "mention": "<:waterdamage:1427600032076529755>",
+      "createdTimestamp": 1760436771173
+    },
+    "1427600055220568085": {
+      "key": "neutraldamage",
+      "name": "neutraldamage",
+      "animated": false,
+      "mention": "<:neutraldamage:1427600055220568085>",
+      "createdTimestamp": 1760436776691
+    },
+    "1427600082362044426": {
+      "key": "criticaldamage",
+      "name": "criticaldamage",
+      "animated": false,
+      "mention": "<:criticaldamage:1427600082362044426>",
+      "createdTimestamp": 1760436783162
+    },
+    "1427600110354694206": {
+      "key": "dodge",
+      "name": "dodge",
+      "animated": false,
+      "mention": "<:dodge:1427600110354694206>",
+      "createdTimestamp": 1760436789836
+    },
+    "1427600137684914216": {
+      "key": "pushbackdamage",
+      "name": "pushbackdamage",
+      "animated": false,
+      "mention": "<:pushbackdamage:1427600137684914216>",
+      "createdTimestamp": 1760436796352
+    },
+    "1427600169448505385": {
+      "key": "damage",
+      "name": "damage",
+      "animated": false,
+      "mention": "<:damage:1427600169448505385>",
+      "createdTimestamp": 1760436803925
+    },
+    "1427600196065427457": {
+      "key": "elements",
+      "name": "elements",
+      "animated": false,
+      "mention": "<:elements:1427600196065427457>",
+      "createdTimestamp": 1760436810271
+    },
+    "1427600231872073860": {
+      "key": "heal",
+      "name": "heal",
+      "animated": false,
+      "mention": "<:heal:1427600231872073860>",
+      "createdTimestamp": 1760436818808
+    },
+    "1427600254265589814": {
+      "key": "initiative",
+      "name": "initiative",
+      "animated": false,
+      "mention": "<:initiative:1427600254265589814>",
+      "createdTimestamp": 1760436824147
+    },
+    "1427600289380171929": {
+      "key": "healthpoints",
+      "name": "healthpoints",
+      "animated": false,
+      "mention": "<:healthpoints:1427600289380171929>",
+      "createdTimestamp": 1760436832519
+    },
+    "1427600430397128874": {
+      "key": "vitality",
+      "name": "vitality",
+      "animated": false,
+      "mention": "<:vitality:1427600430397128874>",
+      "createdTimestamp": 1760436866140
+    },
+    "1427600461137182832": {
+      "key": "summons",
+      "name": "summons",
+      "animated": false,
+      "mention": "<:summons:1427600461137182832>",
+      "createdTimestamp": 1760436873469
+    },
+    "1427600507584647279": {
+      "key": "range",
+      "name": "range",
+      "animated": false,
+      "mention": "<:range:1427600507584647279>",
+      "createdTimestamp": 1760436884543
+    },
+    "1427600531882246145": {
+      "key": "increase",
+      "name": "increase",
+      "animated": false,
+      "mention": "<:increase:1427600531882246145>",
+      "createdTimestamp": 1760436890336
+    },
+    "1427600569765199953": {
+      "key": "prospection",
+      "name": "prospection",
+      "animated": false,
+      "mention": "<:prospection:1427600569765199953>",
+      "createdTimestamp": 1760436899368
+    },
+    "1427600595891785810": {
+      "key": "power",
+      "name": "power",
+      "animated": false,
+      "mention": "<:power:1427600595891785810>",
+      "createdTimestamp": 1760436905597
+    },
+    "1427600616062189579": {
+      "key": "pods",
+      "name": "pods",
+      "animated": false,
+      "mention": "<:pods:1427600616062189579>",
+      "createdTimestamp": 1760436910406
+    },
+    "1427600678192414740": {
+      "key": "mpreduction",
+      "name": "mpreduction",
+      "animated": false,
+      "mention": "<:mpreduction:1427600678192414740>",
+      "createdTimestamp": 1760436925219
+    },
+    "1427600738967621734": {
+      "key": "criticalhits",
+      "name": "criticalhits",
+      "animated": false,
+      "mention": "<:criticalhits:1427600738967621734>",
+      "createdTimestamp": 1760436939709
+    },
+    "1427600783419117570": {
+      "key": "ava_healerpotion",
+      "name": "ava_healerpotion",
+      "animated": false,
+      "mention": "<:ava_healerpotion:1427600783419117570>",
+      "createdTimestamp": 1760436950307
+    },
+    "1427600800015847445": {
+      "key": "ava_prism",
+      "name": "ava_prism",
+      "animated": false,
+      "mention": "<:ava_prism:1427600800015847445>",
+      "createdTimestamp": 1760436954264
+    },
+    "1427600813089620058": {
+      "key": "ava_prismplaced",
+      "name": "ava_prismplaced",
+      "animated": false,
+      "mention": "<:ava_prismplaced:1427600813089620058>",
+      "createdTimestamp": 1760436957381
+    },
+    "1427600824242278472": {
+      "key": "ava_teleportmodul",
+      "name": "ava_teleportmodul",
+      "animated": false,
+      "mention": "<:ava_teleportmodul:1427600824242278472>",
+      "createdTimestamp": 1760436960040
+    },
+    "1427600836074143775": {
+      "key": "ava_undertakerpotion",
+      "name": "ava_undertakerpotion",
+      "animated": false,
+      "mention": "<:ava_undertakerpotion:1427600836074143775>",
+      "createdTimestamp": 1760436962861
+    },
+    "1427600846061047932": {
+      "key": "ava_sentinelpotion",
+      "name": "ava_sentinelpotion",
+      "animated": false,
+      "mention": "<:ava_sentinelpotion:1427600846061047932>",
+      "createdTimestamp": 1760436965242
+    },
+    "1427600888528375838": {
+      "key": "dofawa",
+      "name": "dofawa",
+      "animated": false,
+      "mention": "<:dofawa:1427600888528375838>",
+      "createdTimestamp": 1760436975367
+    },
+    "1427600899374842006": {
+      "key": "dofushu",
+      "name": "dofushu",
+      "animated": false,
+      "mention": "<:dofushu:1427600899374842006>",
+      "createdTimestamp": 1760436977953
+    },
+    "1427600921910706276": {
+      "key": "dolmanax",
+      "name": "dolmanax",
+      "animated": false,
+      "mention": "<:dolmanax:1427600921910706276>",
+      "createdTimestamp": 1760436983326
+    },
+    "1427600931649884241": {
+      "key": "domakuro",
+      "name": "domakuro",
+      "animated": false,
+      "mention": "<:domakuro:1427600931649884241>",
+      "createdTimestamp": 1760436985648
+    },
+    "1427600942513131620": {
+      "key": "dorigami",
+      "name": "dorigami",
+      "animated": false,
+      "mention": "<:dorigami:1427600942513131620>",
+      "createdTimestamp": 1760436988238
+    },
+    "1427600953582030939": {
+      "key": "icedofus",
+      "name": "icedofus",
+      "animated": false,
+      "mention": "<:icedofus:1427600953582030939>",
+      "createdTimestamp": 1760436990877
+    },
+    "1427600967335022603": {
+      "key": "aiwuztheyadofus",
+      "name": "aiwuztheyadofus",
+      "animated": false,
+      "mention": "<:aiwuztheyadofus:1427600967335022603>",
+      "createdTimestamp": 1760436994156
+    },
+    "1427600982501752883": {
+      "key": "kaliptusdofus",
+      "name": "kaliptusdofus",
+      "animated": false,
+      "mention": "<:kaliptusdofus:1427600982501752883>",
+      "createdTimestamp": 1760436997772
+    },
+    "1427600996640751646": {
+      "key": "kama",
+      "name": "Kama",
+      "animated": false,
+      "mention": "<:Kama:1427600996640751646>",
+      "createdTimestamp": 1760437001143
+    },
+    "1427601009982701649": {
+      "key": "cawottdofus",
+      "name": "cawottdofus",
+      "animated": false,
+      "mention": "<:cawottdofus:1427601009982701649>",
+      "createdTimestamp": 1760437004324
+    },
+    "1427601020409610341": {
+      "key": "magmaticdofus",
+      "name": "magmaticdofus",
+      "animated": false,
+      "mention": "<:magmaticdofus:1427601020409610341>",
+      "createdTimestamp": 1760437006810
+    },
+    "1427601032141213846": {
+      "key": "ochredofus",
+      "name": "ochredofus",
+      "animated": false,
+      "mention": "<:ochredofus:1427601032141213846>",
+      "createdTimestamp": 1760437009607
+    },
+    "1427601053318250537": {
+      "key": "crimsondofus",
+      "name": "crimsondofus",
+      "animated": false,
+      "mention": "<:crimsondofus:1427601053318250537>",
+      "createdTimestamp": 1760437014656
+    },
+    "1427601073463492708": {
+      "key": "blackspotteddofus",
+      "name": "blackspotteddofus",
+      "animated": false,
+      "mention": "<:blackspotteddofus:1427601073463492708>",
+      "createdTimestamp": 1760437019459
+    },
+    "1427601093554081822": {
+      "key": "silverdofus",
+      "name": "silverdofus",
+      "animated": false,
+      "mention": "<:silverdofus:1427601093554081822>",
+      "createdTimestamp": 1760437024249
+    },
+    "1427601108460638341": {
+      "key": "emeralddofus",
+      "name": "emeralddofus",
+      "animated": false,
+      "mention": "<:emeralddofus:1427601108460638341>",
+      "createdTimestamp": 1760437027803
+    },
+    "1427601123333636196": {
+      "key": "turqouisedofus",
+      "name": "turqouisedofus",
+      "animated": false,
+      "mention": "<:turqouisedofus:1427601123333636196>",
+      "createdTimestamp": 1760437031349
+    },
+    "1427601137661644850": {
+      "key": "vulbisdofus",
+      "name": "vulbisdofus",
+      "animated": false,
+      "mention": "<:vulbisdofus:1427601137661644850>",
+      "createdTimestamp": 1760437034765
+    },
+    "1427601150613655613": {
+      "key": "timelessicedofus",
+      "name": "timelessicedofus",
+      "animated": false,
+      "mention": "<:timelessicedofus:1427601150613655613>",
+      "createdTimestamp": 1760437037853
+    },
+    "1427601190765592607": {
+      "key": "cra_female",
+      "name": "cra_female",
+      "animated": false,
+      "mention": "<:cra_female:1427601190765592607>",
+      "createdTimestamp": 1760437047426
+    },
+    "1427601203055034443": {
+      "key": "cra_male",
+      "name": "cra_male",
+      "animated": false,
+      "mention": "<:cra_male:1427601203055034443>",
+      "createdTimestamp": 1760437050356
+    },
+    "1427601217063878769": {
+      "key": "ecaflip_female",
+      "name": "ecaflip_female",
+      "animated": false,
+      "mention": "<:ecaflip_female:1427601217063878769>",
+      "createdTimestamp": 1760437053696
+    },
+    "1427601230502432919": {
+      "key": "ecaflip_male",
+      "name": "ecaflip_male",
+      "animated": false,
+      "mention": "<:ecaflip_male:1427601230502432919>",
+      "createdTimestamp": 1760437056900
+    },
+    "1427601248655245382": {
+      "key": "eniripsa_female",
+      "name": "eniripsa_female",
+      "animated": false,
+      "mention": "<:eniripsa_female:1427601248655245382>",
+      "createdTimestamp": 1760437061228
+    },
+    "1427601257958342786": {
+      "key": "eniripsa_male",
+      "name": "eniripsa_male",
+      "animated": false,
+      "mention": "<:eniripsa_male:1427601257958342786>",
+      "createdTimestamp": 1760437063446
+    },
+    "1427601274307739819": {
+      "key": "enutrof_female",
+      "name": "enutrof_female",
+      "animated": false,
+      "mention": "<:enutrof_female:1427601274307739819>",
+      "createdTimestamp": 1760437067344
+    },
+    "1427601287293308939": {
+      "key": "enutrof_male",
+      "name": "enutrof_male",
+      "animated": false,
+      "mention": "<:enutrof_male:1427601287293308939>",
+      "createdTimestamp": 1760437070440
+    },
+    "1427601299335024711": {
+      "key": "feca_female",
+      "name": "feca_female",
+      "animated": false,
+      "mention": "<:feca_female:1427601299335024711>",
+      "createdTimestamp": 1760437073311
+    },
+    "1427601311586582641": {
+      "key": "feca_male",
+      "name": "feca_male",
+      "animated": false,
+      "mention": "<:feca_male:1427601311586582641>",
+      "createdTimestamp": 1760437076232
+    },
+    "1427601325914591262": {
+      "key": "foggernaut_female",
+      "name": "foggernaut_female",
+      "animated": false,
+      "mention": "<:foggernaut_female:1427601325914591262>",
+      "createdTimestamp": 1760437079648
+    },
+    "1427601338283327571": {
+      "key": "foggernaut_male",
+      "name": "foggernaut_male",
+      "animated": false,
+      "mention": "<:foggernaut_male:1427601338283327571>",
+      "createdTimestamp": 1760437082597
+    },
+    "1427601354834186270": {
+      "key": "iop_female",
+      "name": "iop_female",
+      "animated": false,
+      "mention": "<:iop_female:1427601354834186270>",
+      "createdTimestamp": 1760437086543
+    },
+    "1427601370139066458": {
+      "key": "iop_male",
+      "name": "iop_male",
+      "animated": false,
+      "mention": "<:iop_male:1427601370139066458>",
+      "createdTimestamp": 1760437090192
+    },
+    "1427601389877461074": {
+      "key": "masqueraider_female",
+      "name": "masqueraider_female",
+      "animated": false,
+      "mention": "<:masqueraider_female:1427601389877461074>",
+      "createdTimestamp": 1760437094898
+    },
+    "1427601408613683223": {
+      "key": "masqueraider_male",
+      "name": "masqueraider_male",
+      "animated": false,
+      "mention": "<:masqueraider_male:1427601408613683223>",
+      "createdTimestamp": 1760437099365
+    },
+    "1427601429992050777": {
+      "key": "osamodas_female",
+      "name": "osamodas_female",
+      "animated": false,
+      "mention": "<:osamodas_female:1427601429992050777>",
+      "createdTimestamp": 1760437104462
+    },
+    "1427601458160865321": {
+      "key": "osamodas_male",
+      "name": "osamodas_male",
+      "animated": false,
+      "mention": "<:osamodas_male:1427601458160865321>",
+      "createdTimestamp": 1760437111178
+    },
+    "1427601483976802405": {
+      "key": "pandawa_female",
+      "name": "pandawa_female",
+      "animated": false,
+      "mention": "<:pandawa_female:1427601483976802405>",
+      "createdTimestamp": 1760437117333
+    },
+    "1427601507913826345": {
+      "key": "pandawa_male",
+      "name": "pandawa_male",
+      "animated": false,
+      "mention": "<:pandawa_male:1427601507913826345>",
+      "createdTimestamp": 1760437123040
+    },
+    "1427601529329946714": {
+      "key": "rogue_female",
+      "name": "rogue_female",
+      "animated": false,
+      "mention": "<:rogue_female:1427601529329946714>",
+      "createdTimestamp": 1760437128146
+    },
+    "1427601547789074582": {
+      "key": "rogue_male",
+      "name": "rogue_male",
+      "animated": false,
+      "mention": "<:rogue_male:1427601547789074582>",
+      "createdTimestamp": 1760437132547
+    },
+    "1427601564788330566": {
+      "key": "sacrier_female",
+      "name": "sacrier_female",
+      "animated": false,
+      "mention": "<:sacrier_female:1427601564788330566>",
+      "createdTimestamp": 1760437136600
+    },
+    "1427601581351632956": {
+      "key": "sacrier_male",
+      "name": "sacrier_male",
+      "animated": false,
+      "mention": "<:sacrier_male:1427601581351632956>",
+      "createdTimestamp": 1760437140549
+    },
+    "1427601602591850628": {
+      "key": "sadida_female",
+      "name": "sadida_female",
+      "animated": false,
+      "mention": "<:sadida_female:1427601602591850628>",
+      "createdTimestamp": 1760437145613
+    },
+    "1427601622825177139": {
+      "key": "sadida_male",
+      "name": "sadida_male",
+      "animated": false,
+      "mention": "<:sadida_male:1427601622825177139>",
+      "createdTimestamp": 1760437150437
+    },
+    "1427601643767070760": {
+      "key": "sram_female",
+      "name": "sram_female",
+      "animated": false,
+      "mention": "<:sram_female:1427601643767070760>",
+      "createdTimestamp": 1760437155430
+    },
+    "1427601661584740392": {
+      "key": "sram_male",
+      "name": "sram_male",
+      "animated": false,
+      "mention": "<:sram_male:1427601661584740392>",
+      "createdTimestamp": 1760437159678
+    },
+    "1427601686737850389": {
+      "key": "xelor_female",
+      "name": "xelor_female",
+      "animated": false,
+      "mention": "<:xelor_female:1427601686737850389>",
+      "createdTimestamp": 1760437165675
+    },
+    "1427601701992398878": {
+      "key": "xelor_male",
+      "name": "xelor_male",
+      "animated": false,
+      "mention": "<:xelor_male:1427601701992398878>",
+      "createdTimestamp": 1760437169312
+    },
+    "1427601736348073984": {
+      "key": "chall_barbaric",
+      "name": "chall_barbaric",
+      "animated": false,
+      "mention": "<:chall_barbaric:1427601736348073984>",
+      "createdTimestamp": 1760437177503
+    },
+    "1427601749132447744": {
+      "key": "chall_battleroyal",
+      "name": "chall_battleroyal",
+      "animated": false,
+      "mention": "<:chall_battleroyal:1427601749132447744>",
+      "createdTimestamp": 1760437180551
+    },
+    "1427601766257786993": {
+      "key": "chall_chrono",
+      "name": "chall_chrono",
+      "animated": false,
+      "mention": "<:chall_chrono:1427601766257786993>",
+      "createdTimestamp": 1760437184634
+    },
+    "1427601817746800682": {
+      "key": "chall_cleanhands",
+      "name": "chall_cleanhands",
+      "animated": false,
+      "mention": "<:chall_cleanhands:1427601817746800682>",
+      "createdTimestamp": 1760437196910
+    },
+    "1427601842208243732": {
+      "key": "chall_contamination",
+      "name": "chall_contamination",
+      "animated": false,
+      "mention": "<:chall_contamination:1427601842208243732>",
+      "createdTimestamp": 1760437202742
+    },
+    "1427601876290900089": {
+      "key": "chall_contractkiller",
+      "name": "chall_contractkiller",
+      "animated": false,
+      "mention": "<:chall_contractkiller:1427601876290900089>",
+      "createdTimestamp": 1760437210868
+    },
+    "1427601902144852008": {
+      "key": "chall_cruel",
+      "name": "chall_cruel",
+      "animated": false,
+      "mention": "<:chall_cruel:1427601902144852008>",
+      "createdTimestamp": 1760437217032
+    },
+    "1427601928287944724": {
+      "key": "chall_elitist",
+      "name": "chall_elitist",
+      "animated": false,
+      "mention": "<:chall_elitist:1427601928287944724>",
+      "createdTimestamp": 1760437223265
+    },
+    "1427601949846671501": {
+      "key": "chall_evasive",
+      "name": "chall_evasive",
+      "animated": false,
+      "mention": "<:chall_evasive:1427601949846671501>",
+      "createdTimestamp": 1760437228405
+    },
+    "1427601971518373952": {
+      "key": "chall_exuberant",
+      "name": "chall_exuberant",
+      "animated": false,
+      "mention": "<:chall_exuberant:1427601971518373952>",
+      "createdTimestamp": 1760437233572
+    },
+    "1427601990720028722": {
+      "key": "chall_fainthearted",
+      "name": "chall_fainthearted",
+      "animated": false,
+      "mention": "<:chall_fainthearted:1427601990720028722>",
+      "createdTimestamp": 1760437238150
+    },
+    "1427602008247894066": {
+      "key": "chall_unwillingvolunteer",
+      "name": "chall_unwillingvolunteer",
+      "animated": false,
+      "mention": "<:chall_unwillingvolunteer:1427602008247894066>",
+      "createdTimestamp": 1760437242329
+    },
+    "1427602030889009192": {
+      "key": "chall_focus",
+      "name": "chall_focus",
+      "animated": false,
+      "mention": "<:chall_focus:1427602030889009192>",
+      "createdTimestamp": 1760437247727
+    },
+    "1427602054762729572": {
+      "key": "chall_foresighted",
+      "name": "chall_foresighted",
+      "animated": false,
+      "mention": "<:chall_foresighted:1427602054762729572>",
+      "createdTimestamp": 1760437253419
+    },
+    "1427602086346096813": {
+      "key": "chall_gangster",
+      "name": "chall_gangster",
+      "animated": false,
+      "mention": "<:chall_gangster:1427602086346096813>",
+      "createdTimestamp": 1760437260949
+    },
+    "1427602132613464115": {
+      "key": "chall_impertinence",
+      "name": "chall_impertinence",
+      "animated": false,
+      "mention": "<:chall_impertinence:1427602132613464115>",
+      "createdTimestamp": 1760437271980
+    },
+    "1427602162577575977": {
+      "key": "chall_keepmoving",
+      "name": "chall_keepmoving",
+      "animated": false,
+      "mention": "<:chall_keepmoving:1427602162577575977>",
+      "createdTimestamp": 1760437279124
+    },
+    "1427602193904701580": {
+      "key": "chall_reprieve",
+      "name": "chall_reprieve",
+      "animated": false,
+      "mention": "<:chall_reprieve:1427602193904701580>",
+      "createdTimestamp": 1760437286593
+    },
+    "1427602217430548593": {
+      "key": "chall_maniac",
+      "name": "chall_maniac",
+      "animated": false,
+      "mention": "<:chall_maniac:1427602217430548593>",
+      "createdTimestamp": 1760437292202
+    },
+    "1427602253065486367": {
+      "key": "chall_mystique",
+      "name": "chall_mystique",
+      "animated": false,
+      "mention": "<:chall_mystique:1427602253065486367>",
+      "createdTimestamp": 1760437300698
+    },
+    "1427602281095757907": {
+      "key": "chall_norush",
+      "name": "chall_norush",
+      "animated": false,
+      "mention": "<:chall_norush:1427602281095757907>",
+      "createdTimestamp": 1760437307381
+    },
+    "1427602305141837874": {
+      "key": "chall_nomad",
+      "name": "chall_nomad",
+      "animated": false,
+      "mention": "<:chall_nomad:1427602305141837874>",
+      "createdTimestamp": 1760437313114
+    },
+    "1427602332111343626": {
+      "key": "chall_quickandfurious",
+      "name": "chall_quickandfurious",
+      "animated": false,
+      "mention": "<:chall_quickandfurious:1427602332111343626>",
+      "createdTimestamp": 1760437319544
+    },
+    "1427602356052426762": {
+      "key": "chall_rootedtothespot",
+      "name": "chall_rootedtothespot",
+      "animated": false,
+      "mention": "<:chall_rootedtothespot:1427602356052426762>",
+      "createdTimestamp": 1760437325252
+    },
+    "1427602377602764901": {
+      "key": "chall_scanty",
+      "name": "chall_scanty",
+      "animated": false,
+      "mention": "<:chall_scanty:1427602377602764901>",
+      "createdTimestamp": 1760437330390
+    },
+    "1427602416647274506": {
+      "key": "chall_scapegoat",
+      "name": "chall_scapegoat",
+      "animated": false,
+      "mention": "<:chall_scapegoat:1427602416647274506>",
+      "createdTimestamp": 1760437339699
+    },
+    "1427602449757114409": {
+      "key": "chall_selfsacrifice",
+      "name": "chall_selfsacrifice",
+      "animated": false,
+      "mention": "<:chall_selfsacrifice:1427602449757114409>",
+      "createdTimestamp": 1760437347593
+    },
+    "1427602474801430592": {
+      "key": "chall_sharing",
+      "name": "chall_sharing",
+      "animated": false,
+      "mention": "<:chall_sharing:1427602474801430592>",
+      "createdTimestamp": 1760437353564
+    },
+    "1427602500277506139": {
+      "key": "chall_static",
+      "name": "chall_static",
+      "animated": false,
+      "mention": "<:chall_static:1427602500277506139>",
+      "createdTimestamp": 1760437359638
+    },
+    "1427602519886135378": {
+      "key": "chall_statue",
+      "name": "chall_statue",
+      "animated": false,
+      "mention": "<:chall_statue:1427602519886135378>",
+      "createdTimestamp": 1760437364313
+    },
+    "1427602541486801016": {
+      "key": "chall_timeflies",
+      "name": "chall_timeflies",
+      "animated": false,
+      "mention": "<:chall_timeflies:1427602541486801016>",
+      "createdTimestamp": 1760437369463
+    },
+    "1427602565666832404": {
+      "key": "chall_twoforthepriceofone",
+      "name": "chall_twoforthepriceofone",
+      "animated": false,
+      "mention": "<:chall_twoforthepriceofone:1427602565666832404>",
+      "createdTimestamp": 1760437375228
+    },
+    "1427602594754203759": {
+      "key": "chall_untouchable",
+      "name": "chall_untouchable",
+      "animated": false,
+      "mention": "<:chall_untouchable:1427602594754203759>",
+      "createdTimestamp": 1760437382163
+    },
+    "1427602615591764009": {
+      "key": "chall_versatile",
+      "name": "chall_versatile",
+      "animated": false,
+      "mention": "<:chall_versatile:1427602615591764009>",
+      "createdTimestamp": 1760437387131
+    },
+    "1427602635149672489": {
+      "key": "chall_zombie",
+      "name": "chall_zombie",
+      "animated": false,
+      "mention": "<:chall_zombie:1427602635149672489>",
+      "createdTimestamp": 1760437391794
+    },
+    "1427602660533604495": {
+      "key": "achievements",
+      "name": "achievements",
+      "animated": false,
+      "mention": "<:achievements:1427602660533604495>",
+      "createdTimestamp": 1760437397846
+    },
+    "1427602674097979473": {
+      "key": "almanax",
+      "name": "almanax",
+      "animated": false,
+      "mention": "<:almanax:1427602674097979473>",
+      "createdTimestamp": 1760437401080
+    },
+    "1427602686769102911": {
+      "key": "attributes",
+      "name": "attributes",
+      "animated": false,
+      "mention": "<:attributes:1427602686769102911>",
+      "createdTimestamp": 1760437404101
+    },
+    "1427602700832342046": {
+      "key": "closewindow",
+      "name": "closewindow",
+      "animated": false,
+      "mention": "<:closewindow:1427602700832342046>",
+      "createdTimestamp": 1760437407454
+    },
+    "1427602710756331520": {
+      "key": "endturn",
+      "name": "endturn",
+      "animated": false,
+      "mention": "<:endturn:1427602710756331520>",
+      "createdTimestamp": 1760437409820
+    },
+    "1427602722999373855": {
+      "key": "marketplace",
+      "name": "marketplace",
+      "animated": false,
+      "mention": "<:marketplace:1427602722999373855>",
+      "createdTimestamp": 1760437412739
+    },
+    "1427602732562251786": {
+      "key": "monstercompendium",
+      "name": "monstercompendium",
+      "animated": false,
+      "mention": "<:monstercompendium:1427602732562251786>",
+      "createdTimestamp": 1760437415019
+    },
+    "1427602743283028041": {
+      "key": "questbook",
+      "name": "questbook",
+      "animated": false,
+      "mention": "<:questbook:1427602743283028041>",
+      "createdTimestamp": 1760437417575
+    },
+    "1427602752590319647": {
+      "key": "ready",
+      "name": "ready",
+      "animated": false,
+      "mention": "<:ready:1427602752590319647>",
+      "createdTimestamp": 1760437419794
+    },
+    "1427602763839443005": {
+      "key": "refresh",
+      "name": "refresh",
+      "animated": false,
+      "mention": "<:refresh:1427602763839443005>",
+      "createdTimestamp": 1760437422476
+    },
+    "1427602776153915452": {
+      "key": "sidekicks",
+      "name": "sidekicks",
+      "animated": false,
+      "mention": "<:sidekicks:1427602776153915452>",
+      "createdTimestamp": 1760437425412
+    },
+    "1427602787423752302": {
+      "key": "spells",
+      "name": "spells",
+      "animated": false,
+      "mention": "<:spells:1427602787423752302>",
+      "createdTimestamp": 1760437428099
+    },
+    "1427602827475423343": {
+      "key": "achieve_blitzkrieg",
+      "name": "achieve_blitzkrieg",
+      "animated": false,
+      "mention": "<:achieve_blitzkrieg:1427602827475423343>",
+      "createdTimestamp": 1760437437648
+    },
+    "1427603292757692486": {
+      "key": "achieve_chrono",
+      "name": "achieve_chrono",
+      "animated": false,
+      "mention": "<:achieve_chrono:1427603292757692486>",
+      "createdTimestamp": 1760437548580
+    },
+    "1427603327687983104": {
+      "key": "achieve_cleanhands",
+      "name": "achieve_cleanhands",
+      "animated": false,
+      "mention": "<:achieve_cleanhands:1427603327687983104>",
+      "createdTimestamp": 1760437556908
+    },
+    "1427603358298148964": {
+      "key": "achieve_duel",
+      "name": "achieve_duel",
+      "animated": false,
+      "mention": "<:achieve_duel:1427603358298148964>",
+      "createdTimestamp": 1760437564206
+    },
+    "1427603408096985088": {
+      "key": "achieve_duo",
+      "name": "achieve_duo",
+      "animated": false,
+      "mention": "<:achieve_duo:1427603408096985088>",
+      "createdTimestamp": 1760437576079
+    },
+    "1427603462228807802": {
+      "key": "achieve_fainthearted",
+      "name": "achieve_fainthearted",
+      "animated": false,
+      "mention": "<:achieve_fainthearted:1427603462228807802>",
+      "createdTimestamp": 1760437588985
+    },
+    "1427603506227052597": {
+      "key": "achieve_first",
+      "name": "achieve_first",
+      "animated": false,
+      "mention": "<:achieve_first:1427603506227052597>",
+      "createdTimestamp": 1760437599475
+    },
+    "1427603536253943869": {
+      "key": "achieve_hermit",
+      "name": "achieve_hermit",
+      "animated": false,
+      "mention": "<:achieve_hermit:1427603536253943869>",
+      "createdTimestamp": 1760437606634
+    },
+    "1427603644035108894": {
+      "key": "achieve_impertinence",
+      "name": "achieve_impertinence",
+      "animated": false,
+      "mention": "<:achieve_impertinence:1427603644035108894>",
+      "createdTimestamp": 1760437632331
+    },
+    "1427603680407847075": {
+      "key": "achieve_last",
+      "name": "achieve_last",
+      "animated": false,
+      "mention": "<:achieve_last:1427603680407847075>",
+      "createdTimestamp": 1760437641003
+    },
+    "1427603717015867463": {
+      "key": "achieve_nomad",
+      "name": "achieve_nomad",
+      "animated": false,
+      "mention": "<:achieve_nomad:1427603717015867463>",
+      "createdTimestamp": 1760437649731
+    },
+    "1427603748229877871": {
+      "key": "achieve_scanty",
+      "name": "achieve_scanty",
+      "animated": false,
+      "mention": "<:achieve_scanty:1427603748229877871>",
+      "createdTimestamp": 1760437657173
+    },
+    "1427603778688913508": {
+      "key": "achieve_statue",
+      "name": "achieve_statue",
+      "animated": false,
+      "mention": "<:achieve_statue:1427603778688913508>",
+      "createdTimestamp": 1760437664435
+    },
+    "1427603809177305109": {
+      "key": "achieve_tight",
+      "name": "achieve_tight",
+      "animated": false,
+      "mention": "<:achieve_tight:1427603809177305109>",
+      "createdTimestamp": 1760437671704
+    },
+    "1427603842173763697": {
+      "key": "achieve_timeflies",
+      "name": "achieve_timeflies",
+      "animated": false,
+      "mention": "<:achieve_timeflies:1427603842173763697>",
+      "createdTimestamp": 1760437679571
+    },
+    "1427603876231774288": {
+      "key": "achieve_versatile",
+      "name": "achieve_versatile",
+      "animated": false,
+      "mention": "<:achieve_versatile:1427603876231774288>",
+      "createdTimestamp": 1760437687691
+    },
+    "1427603914626302063": {
+      "key": "achieve_zombie",
+      "name": "achieve_zombie",
+      "animated": false,
+      "mention": "<:achieve_zombie:1427603914626302063>",
+      "createdTimestamp": 1760437696845
+    },
+    "1427604029755621467": {
+      "key": "al_howin",
+      "name": "al_howin",
+      "animated": false,
+      "mention": "<:al_howin:1427604029755621467>",
+      "createdTimestamp": 1760437724294
+    },
+    "1427604040828846142": {
+      "key": "ancestral_treechnid",
+      "name": "ancestral_treechnid",
+      "animated": false,
+      "mention": "<:ancestral_treechnid:1427604040828846142>",
+      "createdTimestamp": 1760437726934
+    },
+    "1427604053998702682": {
+      "key": "batofu",
+      "name": "batofu",
+      "animated": false,
+      "mention": "<:batofu:1427604053998702682>",
+      "createdTimestamp": 1760437730074
+    },
+    "1427604069006049290": {
+      "key": "belladonna",
+      "name": "belladonna",
+      "animated": false,
+      "mention": "<:belladonna:1427604069006049290>",
+      "createdTimestamp": 1760437733652
+    },
+    "1427604089193238650": {
+      "key": "black_rat",
+      "name": "black_rat",
+      "animated": false,
+      "mention": "<:black_rat:1427604089193238650>",
+      "createdTimestamp": 1760437738465
+    },
+    "1427604107836915744": {
+      "key": "bone_shot",
+      "name": "bone_shot",
+      "animated": false,
+      "mention": "<:bone_shot:1427604107836915744>",
+      "createdTimestamp": 1760437742910
+    },
+    "1427604123036942447": {
+      "key": "boostache",
+      "name": "boostache",
+      "animated": false,
+      "mention": "<:boostache:1427604123036942447>",
+      "createdTimestamp": 1760437746534
+    },
+    "1427604141139693568": {
+      "key": "buck_anear",
+      "name": "buck_anear",
+      "animated": false,
+      "mention": "<:buck_anear:1427604141139693568>",
+      "createdTimestamp": 1760437750850
+    },
+    "1427604152653058179": {
+      "key": "bworker",
+      "name": "bworker",
+      "animated": false,
+      "mention": "<:bworker:1427604152653058179>",
+      "createdTimestamp": 1760437753595
+    },
+    "1427604163038023741": {
+      "key": "bworkette",
+      "name": "bworkette",
+      "animated": false,
+      "mention": "<:bworkette:1427604163038023741>",
+      "createdTimestamp": 1760437756071
+    },
+    "1427604175268876370": {
+      "key": "celestial_bearbarian",
+      "name": "celestial_bearbarian",
+      "animated": false,
+      "mention": "<:celestial_bearbarian:1427604175268876370>",
+      "createdTimestamp": 1760437758987
+    },
+    "1427604186090045521": {
+      "key": "count_harebourg",
+      "name": "count_harebourg",
+      "animated": false,
+      "mention": "<:count_harebourg:1427604186090045521>",
+      "createdTimestamp": 1760437761567
+    },
+    "1427604216658268210": {
+      "key": "crakillian_guardian",
+      "name": "crakillian_guardian",
+      "animated": false,
+      "mention": "<:crakillian_guardian:1427604216658268210>",
+      "createdTimestamp": 1760437768855
+    },
+    "1427604225306919003": {
+      "key": "crocabulia",
+      "name": "crocabulia",
+      "animated": false,
+      "mention": "<:crocabulia:1427604225306919003>",
+      "createdTimestamp": 1760437770917
+    },
+    "1427604241442144307": {
+      "key": "damadrya",
+      "name": "damadrya",
+      "animated": false,
+      "mention": "<:damadrya:1427604241442144307>",
+      "createdTimestamp": 1760437774764
+    },
+    "1427604255061184522": {
+      "key": "dark_vlad",
+      "name": "dark_vlad",
+      "animated": false,
+      "mention": "<:dark_vlad:1427604255061184522>",
+      "createdTimestamp": 1760437778011
+    },
+    "1427604275189645322": {
+      "key": "dragonpig",
+      "name": "dragonpig",
+      "animated": false,
+      "mention": "<:dragonpig:1427604275189645322>",
+      "createdTimestamp": 1760437782810
+    },
+    "1427604295364116531": {
+      "key": "famished_sunflower",
+      "name": "famished_sunflower",
+      "animated": false,
+      "mention": "<:famished_sunflower:1427604295364116531>",
+      "createdTimestamp": 1760437787620
+    },
+    "1427604315819737149": {
+      "key": "father_kwismas",
+      "name": "father_kwismas",
+      "animated": false,
+      "mention": "<:father_kwismas:1427604315819737149>",
+      "createdTimestamp": 1760437792497
+    },
+    "1427604325793792120": {
+      "key": "father_whupper",
+      "name": "father_whupper",
+      "animated": false,
+      "mention": "<:father_whupper:1427604325793792120>",
+      "createdTimestamp": 1760437794875
+    },
+    "1427604341799522314": {
+      "key": "founoroshi",
+      "name": "founoroshi",
+      "animated": false,
+      "mention": "<:founoroshi:1427604341799522314>",
+      "createdTimestamp": 1760437798691
+    },
+    "1427604363949506701": {
+      "key": "fuji_snowfoux",
+      "name": "fuji_snowfoux",
+      "animated": false,
+      "mention": "<:fuji_snowfoux:1427604363949506701>",
+      "createdTimestamp": 1760437803972
+    },
+    "1427604382542725210": {
+      "key": "giant_kralove",
+      "name": "giant_kralove",
+      "animated": false,
+      "mention": "<:giant_kralove:1427604382542725210>",
+      "createdTimestamp": 1760437808405
+    },
+    "1427604405183578152": {
+      "key": "golden_scarabugly",
+      "name": "golden_scarabugly",
+      "animated": false,
+      "mention": "<:golden_scarabugly:1427604405183578152>",
+      "createdTimestamp": 1760437813803
+    },
+    "1427604421407281162": {
+      "key": "gourlo_the_terrible",
+      "name": "gourlo_the_terrible",
+      "animated": false,
+      "mention": "<:gourlo_the_terrible:1427604421407281162>",
+      "createdTimestamp": 1760437817671
+    },
+    "1427604438713110601": {
+      "key": "great_coralator",
+      "name": "great_coralator",
+      "animated": false,
+      "mention": "<:great_coralator:1427604438713110601>",
+      "createdTimestamp": 1760437821797
+    },
+    "1427604458556231743": {
+      "key": "grohlum",
+      "name": "grohlum",
+      "animated": false,
+      "mention": "<:grohlum:1427604458556231743>",
+      "createdTimestamp": 1760437826528
+    },
+    "1427604480928514180": {
+      "key": "grozilla",
+      "name": "grozilla",
+      "animated": false,
+      "mention": "<:grozilla:1427604480928514180>",
+      "createdTimestamp": 1760437831862
+    },
+    "1427604616522104904": {
+      "key": "hanshi",
+      "name": "hanshi",
+      "animated": false,
+      "mention": "<:hanshi:1427604616522104904>",
+      "createdTimestamp": 1760437864190
+    },
+    "1427604655340523640": {
+      "key": "hell_mina",
+      "name": "hell_mina",
+      "animated": false,
+      "mention": "<:hell_mina:1427604655340523640>",
+      "createdTimestamp": 1760437873445
+    },
+    "1427604674919399505": {
+      "key": "itzting",
+      "name": "itzting",
+      "animated": false,
+      "mention": "<:itzting:1427604674919399505>",
+      "createdTimestamp": 1760437878113
+    },
+    "1427604698449444864": {
+      "key": "kanigrula",
+      "name": "kanigrula",
+      "animated": false,
+      "mention": "<:kanigrula:1427604698449444864>",
+      "createdTimestamp": 1760437883723
+    },
+    "1427604722713624708": {
+      "key": "kanniball_andchain",
+      "name": "kanniball_andchain",
+      "animated": false,
+      "mention": "<:kanniball_andchain:1427604722713624708>",
+      "createdTimestamp": 1760437889508
+    },
+    "1427604748336500808": {
+      "key": "katamashii",
+      "name": "katamashii",
+      "animated": false,
+      "mention": "<:katamashii:1427604748336500808>",
+      "createdTimestamp": 1760437895617
+    },
+    "1427604767299080292": {
+      "key": "kimbo",
+      "name": "kimbo",
+      "animated": false,
+      "mention": "<:kimbo:1427604767299080292>",
+      "createdTimestamp": 1760437900138
+    },
+    "1427604790120153129": {
+      "key": "klime",
+      "name": "klime",
+      "animated": false,
+      "mention": "<:klime:1427604790120153129>",
+      "createdTimestamp": 1760437905579
+    },
+    "1427604817076944948": {
+      "key": "kolosso",
+      "name": "kolosso",
+      "animated": false,
+      "mention": "<:kolosso:1427604817076944948>",
+      "createdTimestamp": 1760437912006
+    },
+    "1427604837545021571": {
+      "key": "koolich",
+      "name": "koolich",
+      "animated": false,
+      "mention": "<:koolich:1427604837545021571>",
+      "createdTimestamp": 1760437916886
+    },
+    "1427604883703595089": {
+      "key": "korriander",
+      "name": "korriander",
+      "animated": false,
+      "mention": "<:korriander:1427604883703595089>",
+      "createdTimestamp": 1760437927891
+    },
+    "1427604904976846979": {
+      "key": "kwakwa",
+      "name": "kwakwa",
+      "animated": false,
+      "mention": "<:kwakwa:1427604904976846979>",
+      "createdTimestamp": 1760437932963
+    },
+    "1427604940104142878": {
+      "key": "legendary_crackler",
+      "name": "legendary_crackler",
+      "animated": false,
+      "mention": "<:legendary_crackler:1427604940104142878>",
+      "createdTimestamp": 1760437941338
+    },
+    "1427604965857296384": {
+      "key": "lord_crow",
+      "name": "lord_crow",
+      "animated": false,
+      "mention": "<:lord_crow:1427604965857296384>",
+      "createdTimestamp": 1760437947478
+    },
+    "1427605027006185602": {
+      "key": "minotoror",
+      "name": "minotoror",
+      "animated": false,
+      "mention": "<:minotoror:1427605027006185602>",
+      "createdTimestamp": 1760437962057
+    },
+    "1427605054579540040": {
+      "key": "minotot",
+      "name": "minotot",
+      "animated": false,
+      "mention": "<:minotot:1427605054579540040>",
+      "createdTimestamp": 1760437968631
+    },
+    "1427605080005414974": {
+      "key": "missiz_freezz",
+      "name": "missiz_freezz",
+      "animated": false,
+      "mention": "<:missiz_freezz:1427605080005414974>",
+      "createdTimestamp": 1760437974693
+    },
+    "1427605108866289734": {
+      "key": "moon",
+      "name": "moon",
+      "animated": false,
+      "mention": "<:moon:1427605108866289734>",
+      "createdTimestamp": 1760437981574
+    },
+    "1427605132027367545": {
+      "key": "moowolf",
+      "name": "moowolf",
+      "animated": false,
+      "mention": "<:moowolf:1427605132027367545>",
+      "createdTimestamp": 1760437987096
+    },
+    "1427605154286272523": {
+      "key": "mucane",
+      "name": "mucane",
+      "animated": false,
+      "mention": "<:mucane:1427605154286272523>",
+      "createdTimestamp": 1760437992403
+    },
+    "1427605172192022558": {
+      "key": "nagate",
+      "name": "nagate",
+      "animated": false,
+      "mention": "<:nagate:1427605172192022558>",
+      "createdTimestamp": 1760437996672
+    },
+    "1427605197869547520": {
+      "key": "nelween",
+      "name": "nelween",
+      "animated": false,
+      "mention": "<:nelween:1427605197869547520>",
+      "createdTimestamp": 1760438002794
+    },
+    "1427605216932659302": {
+      "key": "obsidemon",
+      "name": "obsidemon",
+      "animated": false,
+      "mention": "<:obsidemon:1427605216932659302>",
+      "createdTimestamp": 1760438007339
+    },
+    "1427605235416694835": {
+      "key": "ougaa",
+      "name": "ougaa",
+      "animated": false,
+      "mention": "<:ougaa:1427605235416694835>",
+      "createdTimestamp": 1760438011746
+    },
+    "1427605260695896185": {
+      "key": "professor_xa",
+      "name": "professor_xa",
+      "animated": false,
+      "mention": "<:professor_xa:1427605260695896185>",
+      "createdTimestamp": 1760438017773
+    },
+    "1427605273488392323": {
+      "key": "ronin_chafer",
+      "name": "ronin_chafer",
+      "animated": false,
+      "mention": "<:ronin_chafer:1427605273488392323>",
+      "createdTimestamp": 1760438020823
+    },
+    "1427605295978516611": {
+      "key": "royal_blue_jelly",
+      "name": "royal_blue_jelly",
+      "animated": false,
+      "mention": "<:royal_blue_jelly:1427605295978516611>",
+      "createdTimestamp": 1760438026185
+    },
+    "1427605326408061019": {
+      "key": "royal_lemon_jelly",
+      "name": "royal_lemon_jelly",
+      "animated": false,
+      "mention": "<:royal_lemon_jelly:1427605326408061019>",
+      "createdTimestamp": 1760438033440
+    },
+    "1427605351980601425": {
+      "key": "royal_mint_jelly",
+      "name": "royal_mint_jelly",
+      "animated": false,
+      "mention": "<:royal_mint_jelly:1427605351980601425>",
+      "createdTimestamp": 1760438039537
+    },
+    "1427605389956091964": {
+      "key": "royal_strawberry_jelly",
+      "name": "royal_strawberry_jelly",
+      "animated": false,
+      "mention": "<:royal_strawberry_jelly:1427605389956091964>",
+      "createdTimestamp": 1760438048591
+    },
+    "1427605417462333511": {
+      "key": "royal_coco_blop",
+      "name": "royal_coco_blop",
+      "animated": false,
+      "mention": "<:royal_coco_blop:1427605417462333511>",
+      "createdTimestamp": 1760438055149
+    },
+    "1427605443626139721": {
+      "key": "royal_indigo_blop",
+      "name": "royal_indigo_blop",
+      "animated": false,
+      "mention": "<:royal_indigo_blop:1427605443626139721>",
+      "createdTimestamp": 1760438061387
+    },
+    "1427605493161000990": {
+      "key": "royal_morello_cherry_blop",
+      "name": "royal_morello_cherry_blop",
+      "animated": false,
+      "mention": "<:royal_morello_cherry_blop:1427605493161000990>",
+      "createdTimestamp": 1760438073197
+    },
+    "1427605527919329310": {
+      "key": "royal_pippin_blop",
+      "name": "royal_pippin_blop",
+      "animated": false,
+      "mention": "<:royal_pippin_blop:1427605527919329310>",
+      "createdTimestamp": 1760438081484
+    },
+    "1427605567626809517": {
+      "key": "royal_rainbow_blop",
+      "name": "royal_rainbow_blop",
+      "animated": false,
+      "mention": "<:royal_rainbow_blop:1427605567626809517>",
+      "createdTimestamp": 1760438090951
+    },
+    "1427605594281611295": {
+      "key": "royal_gobball",
+      "name": "royal_gobball",
+      "animated": false,
+      "mention": "<:royal_gobball:1427605594281611295>",
+      "createdTimestamp": 1760438097306
+    },
+    "1427605630176198778": {
+      "key": "royal_pingwin",
+      "name": "royal_pingwin",
+      "animated": false,
+      "mention": "<:royal_pingwin:1427605630176198778>",
+      "createdTimestamp": 1760438105864
+    },
+    "1427605670210830467": {
+      "key": "royal_mastogob",
+      "name": "royal_mastogob",
+      "animated": false,
+      "mention": "<:royal_mastogob:1427605670210830467>",
+      "createdTimestamp": 1760438115409
+    },
+    "1427605727039455264": {
+      "key": "royal_tofu",
+      "name": "royal_tofu",
+      "animated": false,
+      "mention": "<:royal_tofu:1427605727039455264>",
+      "createdTimestamp": 1760438128958
+    },
+    "1427605741274927134": {
+      "key": "scale_king",
+      "name": "scale_king",
+      "animated": false,
+      "mention": "<:scale_king:1427605741274927134>",
+      "createdTimestamp": 1760438132352
+    },
+    "1427605766134825020": {
+      "key": "selim_quartz",
+      "name": "selim_quartz",
+      "animated": false,
+      "mention": "<:selim_quartz:1427605766134825020>",
+      "createdTimestamp": 1760438138279
+    },
+    "1427605790809784340": {
+      "key": "shihan",
+      "name": "shihan",
+      "animated": false,
+      "mention": "<:shihan:1427605790809784340>",
+      "createdTimestamp": 1760438144162
+    },
+    "1427605820539011103": {
+      "key": "shin_larva",
+      "name": "shin_larva",
+      "animated": false,
+      "mention": "<:shin_larva:1427605820539011103>",
+      "createdTimestamp": 1760438151250
+    },
+    "1427605847814570035": {
+      "key": "silf",
+      "name": "silf",
+      "animated": false,
+      "mention": "<:silf:1427605847814570035>",
+      "createdTimestamp": 1760438157753
+    },
+    "1427605867498307594": {
+      "key": "skeunk",
+      "name": "skeunk",
+      "animated": false,
+      "mention": "<:skeunk:1427605867498307594>",
+      "createdTimestamp": 1760438162446
+    },
+    "1427605927007096852": {
+      "key": "smiths_chest",
+      "name": "smiths_chest",
+      "animated": false,
+      "mention": "<:smiths_chest:1427605927007096852>",
+      "createdTimestamp": 1760438176634
+    },
+    "1427605948372881479": {
+      "key": "soft_oak",
+      "name": "soft_oak",
+      "animated": false,
+      "mention": "<:soft_oak:1427605948372881479>",
+      "createdTimestamp": 1760438181728
+    },
+    "1427605974700654602": {
+      "key": "sphincter_cell",
+      "name": "sphincter_cell",
+      "animated": false,
+      "mention": "<:sphincter_cell:1427605974700654602>",
+      "createdTimestamp": 1760438188005
+    },
+    "1427606006900461650": {
+      "key": "spongemob",
+      "name": "spongemob",
+      "animated": false,
+      "mention": "<:spongemob:1427606006900461650>",
+      "createdTimestamp": 1760438195682
+    },
+    "1427606032695169045": {
+      "key": "sylargh",
+      "name": "sylargh",
+      "animated": false,
+      "mention": "<:sylargh:1427606032695169045>",
+      "createdTimestamp": 1760438201832
+    },
+    "1427606062302761031": {
+      "key": "staff_deleghoul",
+      "name": "staff_deleghoul",
+      "animated": false,
+      "mention": "<:staff_deleghoul:1427606062302761031>",
+      "createdTimestamp": 1760438208891
+    },
+    "1427606084289433651": {
+      "key": "tanukoui_san",
+      "name": "tanukoui_san",
+      "animated": false,
+      "mention": "<:tanukoui_san:1427606084289433651>",
+      "createdTimestamp": 1760438214133
+    },
+    "1427606114140160142": {
+      "key": "tengu_snowfoux",
+      "name": "tengu_snowfoux",
+      "animated": false,
+      "mention": "<:tengu_snowfoux:1427606114140160142>",
+      "createdTimestamp": 1760438221250
+    },
+    "1427606140245774396": {
+      "key": "tynril",
+      "name": "tynril",
+      "animated": false,
+      "mention": "<:tynril:1427606140245774396>",
+      "createdTimestamp": 1760438227474
+    },
+    "1427606165247754281": {
+      "key": "ul_khan",
+      "name": "ul_khan",
+      "animated": false,
+      "mention": "<:ul_khan:1427606165247754281>",
+      "createdTimestamp": 1760438233435
+    },
+    "1427606192380973066": {
+      "key": "wa_wabbit",
+      "name": "wa_wabbit",
+      "animated": false,
+      "mention": "<:wa_wabbit:1427606192380973066>",
+      "createdTimestamp": 1760438239904
+    },
+    "1427606214128177163": {
+      "key": "wa_wobot",
+      "name": "wa_wobot",
+      "animated": false,
+      "mention": "<:wa_wobot:1427606214128177163>",
+      "createdTimestamp": 1760438245089
+    },
+    "1427606238220390511": {
+      "key": "white_rat",
+      "name": "white_rat",
+      "animated": false,
+      "mention": "<:white_rat:1427606238220390511>",
+      "createdTimestamp": 1760438250833
+    },
+    "1427606275465678872": {
+      "key": "zombrute",
+      "name": "zombrute",
+      "animated": false,
+      "mention": "<:zombrute:1427606275465678872>",
+      "createdTimestamp": 1760438259713
+    },
+    "1428323165490380801": {
+      "key": "wisdom",
+      "name": "wisdom",
+      "animated": false,
+      "mention": "<:wisdom:1428323165490380801>",
+      "createdTimestamp": 1760609179614
+    },
+    "1428707649385529454": {
+      "key": "nileza",
+      "name": "nileza",
+      "animated": false,
+      "mention": "<:nileza:1428707649385529454>",
+      "createdTimestamp": 1760700847718
+    },
+    "1428707736912138363": {
+      "key": "grasmera",
+      "name": "grasmera",
+      "animated": false,
+      "mention": "<:grasmera:1428707736912138363>",
+      "createdTimestamp": 1760700868586
+    },
+    "1428707824564830258": {
+      "key": "minotoball",
+      "name": "minotoball",
+      "animated": false,
+      "mention": "<:minotoball:1428707824564830258>",
+      "createdTimestamp": 1760700889484
+    },
+    "1428708279508537434": {
+      "key": "dark_arachnee",
+      "name": "dark_arachnee",
+      "animated": false,
+      "mention": "<:dark_arachnee:1428708279508537434>",
+      "createdTimestamp": 1760700997951
+    },
+    "1428708281135665183": {
+      "key": "dark_boar",
+      "name": "dark_boar",
+      "animated": false,
+      "mention": "<:dark_boar:1428708281135665183>",
+      "createdTimestamp": 1760700998339
+    },
+    "1428708282612056075": {
+      "key": "dark_gobball",
+      "name": "dark_gobball",
+      "animated": false,
+      "mention": "<:dark_gobball:1428708282612056075>",
+      "createdTimestamp": 1760700998691
+    },
+    "1428708283849379860": {
+      "key": "dark_piwi",
+      "name": "dark_piwi",
+      "animated": false,
+      "mention": "<:dark_piwi:1428708283849379860>",
+      "createdTimestamp": 1760700998986
+    },
+    "1428708285137031198": {
+      "key": "dark_tofu",
+      "name": "dark_tofu",
+      "animated": false,
+      "mention": "<:dark_tofu:1428708285137031198>",
+      "createdTimestamp": 1760700999293
+    },
+    "1428709933011959959": {
+      "key": "azure_plop",
+      "name": "azure_plop",
+      "animated": false,
+      "mention": "<:azure_plop:1428709933011959959>",
+      "createdTimestamp": 1760701392177
+    },
+    "1428710026645606492": {
+      "key": "celestial_arachnee",
+      "name": "celestial_arachnee",
+      "animated": false,
+      "mention": "<:celestial_arachnee:1428710026645606492>",
+      "createdTimestamp": 1760701414501
+    },
+    "1428710028021465169": {
+      "key": "celestial_boar",
+      "name": "celestial_boar",
+      "animated": false,
+      "mention": "<:celestial_boar:1428710028021465169>",
+      "createdTimestamp": 1760701414829
+    },
+    "1428710029154058305": {
+      "key": "celestial_gobball",
+      "name": "celestial_gobball",
+      "animated": false,
+      "mention": "<:celestial_gobball:1428710029154058305>",
+      "createdTimestamp": 1760701415099
+    },
+    "1428710030483652609": {
+      "key": "celestial_tofu",
+      "name": "celestial_tofu",
+      "animated": false,
+      "mention": "<:celestial_tofu:1428710030483652609>",
+      "createdTimestamp": 1760701415416
+    },
+    "1428710201351209062": {
+      "key": "crimson_plop",
+      "name": "crimson_plop",
+      "animated": false,
+      "mention": "<:crimson_plop:1428710201351209062>",
+      "createdTimestamp": 1760701456154
+    },
+    "1428710272318705724": {
+      "key": "troolibrius",
+      "name": "troolibrius",
+      "animated": false,
+      "mention": "<:troolibrius:1428710272318705724>",
+      "createdTimestamp": 1760701473074
+    },
+    "1428710273958543360": {
+      "key": "trooligophren",
+      "name": "trooligophren",
+      "animated": false,
+      "mention": "<:trooligophren:1428710273958543360>",
+      "createdTimestamp": 1760701473465
+    },
+    "1428710275015639071": {
+      "key": "troologram",
+      "name": "troologram",
+      "animated": false,
+      "mention": "<:troologram:1428710275015639071>",
+      "createdTimestamp": 1760701473717
+    },
+    "1428710276345368667": {
+      "key": "troololens",
+      "name": "troololens",
+      "animated": false,
+      "mention": "<:troololens:1428710276345368667>",
+      "createdTimestamp": 1760701474034
+    },
+    "1428715547456962631": {
+      "key": "celestial_piwi",
+      "name": "celestial_piwi",
+      "animated": false,
+      "mention": "<:celestial_piwi:1428715547456962631>",
+      "createdTimestamp": 1760702730765
+    },
+    "1428743970263007282": {
+      "key": "achieve_quickandfurious",
+      "name": "achieve_quickandfurious",
+      "animated": false,
+      "mention": "<:achieve_quickandfurious:1428743970263007282>",
+      "createdTimestamp": 1760709507290
+    },
+    "1428743971005530214": {
+      "key": "achieve_untouchable",
+      "name": "achieve_untouchable",
+      "animated": false,
+      "mention": "<:achieve_untouchable:1428743971005530214>",
+      "createdTimestamp": 1760709507467
+    },
+    "1429117708334665848": {
+      "key": "achieve_freedom",
+      "name": "achieve_freedom",
+      "animated": false,
+      "mention": "<:achieve_freedom:1429117708334665848>",
+      "createdTimestamp": 1760798613390
+    },
+    "1429117951478468648": {
+      "key": "chall_loyalfriend",
+      "name": "chall_loyalfriend",
+      "animated": false,
+      "mention": "<:chall_loyalfriend:1429117951478468648>",
+      "createdTimestamp": 1760798671360
+    },
+    "1429117953483214970": {
+      "key": "chall_sightseeing",
+      "name": "chall_sightseeing",
+      "animated": false,
+      "mention": "<:chall_sightseeing:1429117953483214970>",
+      "createdTimestamp": 1760798671838
+    },
+    "1429117955517448242": {
+      "key": "chall_tight",
+      "name": "chall_tight",
+      "animated": false,
+      "mention": "<:chall_tight:1429117955517448242>",
+      "createdTimestamp": 1760798672323
+    },
+    "1429117957216272465": {
+      "key": "chall_toeachhispwn",
+      "name": "chall_toeachhispwn",
+      "animated": false,
+      "mention": "<:chall_toeachhispwn:1429117957216272465>",
+      "createdTimestamp": 1760798672728
+    }
+  },
+  "byName": {
+    "achieve_blitzkrieg": {
+      "key": "achieve_blitzkrieg",
+      "id": "1427602827475423343",
+      "animated": false,
+      "mention": "<:achieve_blitzkrieg:1427602827475423343>",
+      "createdTimestamp": 1760437437648
+    },
+    "achieve_chrono": {
+      "key": "achieve_chrono",
+      "id": "1427603292757692486",
+      "animated": false,
+      "mention": "<:achieve_chrono:1427603292757692486>",
+      "createdTimestamp": 1760437548580
+    },
+    "achieve_cleanhands": {
+      "key": "achieve_cleanhands",
+      "id": "1427603327687983104",
+      "animated": false,
+      "mention": "<:achieve_cleanhands:1427603327687983104>",
+      "createdTimestamp": 1760437556908
+    },
+    "achieve_duel": {
+      "key": "achieve_duel",
+      "id": "1427603358298148964",
+      "animated": false,
+      "mention": "<:achieve_duel:1427603358298148964>",
+      "createdTimestamp": 1760437564206
+    },
+    "achieve_duo": {
+      "key": "achieve_duo",
+      "id": "1427603408096985088",
+      "animated": false,
+      "mention": "<:achieve_duo:1427603408096985088>",
+      "createdTimestamp": 1760437576079
+    },
+    "achieve_fainthearted": {
+      "key": "achieve_fainthearted",
+      "id": "1427603462228807802",
+      "animated": false,
+      "mention": "<:achieve_fainthearted:1427603462228807802>",
+      "createdTimestamp": 1760437588985
+    },
+    "achieve_first": {
+      "key": "achieve_first",
+      "id": "1427603506227052597",
+      "animated": false,
+      "mention": "<:achieve_first:1427603506227052597>",
+      "createdTimestamp": 1760437599475
+    },
+    "achieve_freedom": {
+      "key": "achieve_freedom",
+      "id": "1429117708334665848",
+      "animated": false,
+      "mention": "<:achieve_freedom:1429117708334665848>",
+      "createdTimestamp": 1760798613390
+    },
+    "achieve_hermit": {
+      "key": "achieve_hermit",
+      "id": "1427603536253943869",
+      "animated": false,
+      "mention": "<:achieve_hermit:1427603536253943869>",
+      "createdTimestamp": 1760437606634
+    },
+    "achieve_impertinence": {
+      "key": "achieve_impertinence",
+      "id": "1427603644035108894",
+      "animated": false,
+      "mention": "<:achieve_impertinence:1427603644035108894>",
+      "createdTimestamp": 1760437632331
+    },
+    "achieve_last": {
+      "key": "achieve_last",
+      "id": "1427603680407847075",
+      "animated": false,
+      "mention": "<:achieve_last:1427603680407847075>",
+      "createdTimestamp": 1760437641003
+    },
+    "achieve_nomad": {
+      "key": "achieve_nomad",
+      "id": "1427603717015867463",
+      "animated": false,
+      "mention": "<:achieve_nomad:1427603717015867463>",
+      "createdTimestamp": 1760437649731
+    },
+    "achieve_quickandfurious": {
+      "key": "achieve_quickandfurious",
+      "id": "1428743970263007282",
+      "animated": false,
+      "mention": "<:achieve_quickandfurious:1428743970263007282>",
+      "createdTimestamp": 1760709507290
+    },
+    "achieve_scanty": {
+      "key": "achieve_scanty",
+      "id": "1427603748229877871",
+      "animated": false,
+      "mention": "<:achieve_scanty:1427603748229877871>",
+      "createdTimestamp": 1760437657173
+    },
+    "achieve_statue": {
+      "key": "achieve_statue",
+      "id": "1427603778688913508",
+      "animated": false,
+      "mention": "<:achieve_statue:1427603778688913508>",
+      "createdTimestamp": 1760437664435
+    },
+    "achieve_tight": {
+      "key": "achieve_tight",
+      "id": "1427603809177305109",
+      "animated": false,
+      "mention": "<:achieve_tight:1427603809177305109>",
+      "createdTimestamp": 1760437671704
+    },
+    "achieve_timeflies": {
+      "key": "achieve_timeflies",
+      "id": "1427603842173763697",
+      "animated": false,
+      "mention": "<:achieve_timeflies:1427603842173763697>",
+      "createdTimestamp": 1760437679571
+    },
+    "achieve_untouchable": {
+      "key": "achieve_untouchable",
+      "id": "1428743971005530214",
+      "animated": false,
+      "mention": "<:achieve_untouchable:1428743971005530214>",
+      "createdTimestamp": 1760709507467
+    },
+    "achieve_versatile": {
+      "key": "achieve_versatile",
+      "id": "1427603876231774288",
+      "animated": false,
+      "mention": "<:achieve_versatile:1427603876231774288>",
+      "createdTimestamp": 1760437687691
+    },
+    "achieve_zombie": {
+      "key": "achieve_zombie",
+      "id": "1427603914626302063",
+      "animated": false,
+      "mention": "<:achieve_zombie:1427603914626302063>",
+      "createdTimestamp": 1760437696845
+    },
+    "achievements": {
+      "key": "achievements",
+      "id": "1427602660533604495",
+      "animated": false,
+      "mention": "<:achievements:1427602660533604495>",
+      "createdTimestamp": 1760437397846
+    },
+    "agility": {
+      "key": "agility",
+      "id": "1427596513135165460",
+      "animated": false,
+      "mention": "<:agility:1427596513135165460>",
+      "createdTimestamp": 1760435932192
+    },
+    "airdamage": {
+      "key": "airdamage",
+      "id": "1427599920818290748",
+      "animated": false,
+      "mention": "<:airdamage:1427599920818290748>",
+      "createdTimestamp": 1760436744647
+    },
+    "aiwuztheyadofus": {
+      "key": "aiwuztheyadofus",
+      "id": "1427600967335022603",
+      "animated": false,
+      "mention": "<:aiwuztheyadofus:1427600967335022603>",
+      "createdTimestamp": 1760436994156
+    },
+    "al_howin": {
+      "key": "al_howin",
+      "id": "1427604029755621467",
+      "animated": false,
+      "mention": "<:al_howin:1427604029755621467>",
+      "createdTimestamp": 1760437724294
+    },
+    "almanax": {
+      "key": "almanax",
+      "id": "1427602674097979473",
+      "animated": false,
+      "mention": "<:almanax:1427602674097979473>",
+      "createdTimestamp": 1760437401080
+    },
+    "ancestral_treechnid": {
+      "key": "ancestral_treechnid",
+      "id": "1427604040828846142",
+      "animated": false,
+      "mention": "<:ancestral_treechnid:1427604040828846142>",
+      "createdTimestamp": 1760437726934
+    },
+    "ap": {
+      "key": "ap",
+      "id": "1427596539064483902",
+      "animated": false,
+      "mention": "<:ap:1427596539064483902>",
+      "createdTimestamp": 1760435938374
+    },
+    "apparry": {
+      "key": "apparry",
+      "id": "1427596572572516523",
+      "animated": false,
+      "mention": "<:apparry:1427596572572516523>",
+      "createdTimestamp": 1760435946363
+    },
+    "apreduction": {
+      "key": "apreduction",
+      "id": "1427599517854859325",
+      "animated": false,
+      "mention": "<:apreduction:1427599517854859325>",
+      "createdTimestamp": 1760436648573
+    },
+    "attributes": {
+      "key": "attributes",
+      "id": "1427602686769102911",
+      "animated": false,
+      "mention": "<:attributes:1427602686769102911>",
+      "createdTimestamp": 1760437404101
+    },
+    "ava_clock": {
+      "key": "ava_clock",
+      "id": "1427599741406937089",
+      "animated": false,
+      "mention": "<:ava_clock:1427599741406937089>",
+      "createdTimestamp": 1760436701872
+    },
+    "ava_healerpotion": {
+      "key": "ava_healerpotion",
+      "id": "1427600783419117570",
+      "animated": false,
+      "mention": "<:ava_healerpotion:1427600783419117570>",
+      "createdTimestamp": 1760436950307
+    },
+    "ava_prism": {
+      "key": "ava_prism",
+      "id": "1427600800015847445",
+      "animated": false,
+      "mention": "<:ava_prism:1427600800015847445>",
+      "createdTimestamp": 1760436954264
+    },
+    "ava_prismplaced": {
+      "key": "ava_prismplaced",
+      "id": "1427600813089620058",
+      "animated": false,
+      "mention": "<:ava_prismplaced:1427600813089620058>",
+      "createdTimestamp": 1760436957381
+    },
+    "ava_sentinelpotion": {
+      "key": "ava_sentinelpotion",
+      "id": "1427600846061047932",
+      "animated": false,
+      "mention": "<:ava_sentinelpotion:1427600846061047932>",
+      "createdTimestamp": 1760436965242
+    },
+    "ava_shield": {
+      "key": "ava_shield",
+      "id": "1427599763838074952",
+      "animated": false,
+      "mention": "<:ava_shield:1427599763838074952>",
+      "createdTimestamp": 1760436707220
+    },
+    "ava_star": {
+      "key": "ava_star",
+      "id": "1427599781190176809",
+      "animated": false,
+      "mention": "<:ava_star:1427599781190176809>",
+      "createdTimestamp": 1760436711357
+    },
+    "ava_sword": {
+      "key": "ava_sword",
+      "id": "1427599798755790970",
+      "animated": false,
+      "mention": "<:ava_sword:1427599798755790970>",
+      "createdTimestamp": 1760436715545
+    },
+    "ava_teleportmodul": {
+      "key": "ava_teleportmodul",
+      "id": "1427600824242278472",
+      "animated": false,
+      "mention": "<:ava_teleportmodul:1427600824242278472>",
+      "createdTimestamp": 1760436960040
+    },
+    "ava_undertakerpotion": {
+      "key": "ava_undertakerpotion",
+      "id": "1427600836074143775",
+      "animated": false,
+      "mention": "<:ava_undertakerpotion:1427600836074143775>",
+      "createdTimestamp": 1760436962861
+    },
+    "azure_plop": {
+      "key": "azure_plop",
+      "id": "1428709933011959959",
+      "animated": false,
+      "mention": "<:azure_plop:1428709933011959959>",
+      "createdTimestamp": 1760701392177
+    },
+    "batofu": {
+      "key": "batofu",
+      "id": "1427604053998702682",
+      "animated": false,
+      "mention": "<:batofu:1427604053998702682>",
+      "createdTimestamp": 1760437730074
+    },
+    "belladonna": {
+      "key": "belladonna",
+      "id": "1427604069006049290",
+      "animated": false,
+      "mention": "<:belladonna:1427604069006049290>",
+      "createdTimestamp": 1760437733652
+    },
+    "black_rat": {
+      "key": "black_rat",
+      "id": "1427604089193238650",
+      "animated": false,
+      "mention": "<:black_rat:1427604089193238650>",
+      "createdTimestamp": 1760437738465
+    },
+    "blackspotteddofus": {
+      "key": "blackspotteddofus",
+      "id": "1427601073463492708",
+      "animated": false,
+      "mention": "<:blackspotteddofus:1427601073463492708>",
+      "createdTimestamp": 1760437019459
+    },
+    "bone_shot": {
+      "key": "bone_shot",
+      "id": "1427604107836915744",
+      "animated": false,
+      "mention": "<:bone_shot:1427604107836915744>",
+      "createdTimestamp": 1760437742910
+    },
+    "boostache": {
+      "key": "boostache",
+      "id": "1427604123036942447",
+      "animated": false,
+      "mention": "<:boostache:1427604123036942447>",
+      "createdTimestamp": 1760437746534
+    },
+    "boss_outline": {
+      "key": "boss_outline",
+      "id": "1427599847065649213",
+      "animated": false,
+      "mention": "<:boss_outline:1427599847065649213>",
+      "createdTimestamp": 1760436727063
+    },
+    "buck_anear": {
+      "key": "buck_anear",
+      "id": "1427604141139693568",
+      "animated": false,
+      "mention": "<:buck_anear:1427604141139693568>",
+      "createdTimestamp": 1760437750850
+    },
+    "bworker": {
+      "key": "bworker",
+      "id": "1427604152653058179",
+      "animated": false,
+      "mention": "<:bworker:1427604152653058179>",
+      "createdTimestamp": 1760437753595
+    },
+    "bworkette": {
+      "key": "bworkette",
+      "id": "1427604163038023741",
+      "animated": false,
+      "mention": "<:bworkette:1427604163038023741>",
+      "createdTimestamp": 1760437756071
+    },
+    "cawottdofus": {
+      "key": "cawottdofus",
+      "id": "1427601009982701649",
+      "animated": false,
+      "mention": "<:cawottdofus:1427601009982701649>",
+      "createdTimestamp": 1760437004324
+    },
+    "celestial_arachnee": {
+      "key": "celestial_arachnee",
+      "id": "1428710026645606492",
+      "animated": false,
+      "mention": "<:celestial_arachnee:1428710026645606492>",
+      "createdTimestamp": 1760701414501
+    },
+    "celestial_bearbarian": {
+      "key": "celestial_bearbarian",
+      "id": "1427604175268876370",
+      "animated": false,
+      "mention": "<:celestial_bearbarian:1427604175268876370>",
+      "createdTimestamp": 1760437758987
+    },
+    "celestial_boar": {
+      "key": "celestial_boar",
+      "id": "1428710028021465169",
+      "animated": false,
+      "mention": "<:celestial_boar:1428710028021465169>",
+      "createdTimestamp": 1760701414829
+    },
+    "celestial_gobball": {
+      "key": "celestial_gobball",
+      "id": "1428710029154058305",
+      "animated": false,
+      "mention": "<:celestial_gobball:1428710029154058305>",
+      "createdTimestamp": 1760701415099
+    },
+    "celestial_piwi": {
+      "key": "celestial_piwi",
+      "id": "1428715547456962631",
+      "animated": false,
+      "mention": "<:celestial_piwi:1428715547456962631>",
+      "createdTimestamp": 1760702730765
+    },
+    "celestial_tofu": {
+      "key": "celestial_tofu",
+      "id": "1428710030483652609",
+      "animated": false,
+      "mention": "<:celestial_tofu:1428710030483652609>",
+      "createdTimestamp": 1760701415416
+    },
+    "chall_barbaric": {
+      "key": "chall_barbaric",
+      "id": "1427601736348073984",
+      "animated": false,
+      "mention": "<:chall_barbaric:1427601736348073984>",
+      "createdTimestamp": 1760437177503
+    },
+    "chall_battleroyal": {
+      "key": "chall_battleroyal",
+      "id": "1427601749132447744",
+      "animated": false,
+      "mention": "<:chall_battleroyal:1427601749132447744>",
+      "createdTimestamp": 1760437180551
+    },
+    "chall_chrono": {
+      "key": "chall_chrono",
+      "id": "1427601766257786993",
+      "animated": false,
+      "mention": "<:chall_chrono:1427601766257786993>",
+      "createdTimestamp": 1760437184634
+    },
+    "chall_cleanhands": {
+      "key": "chall_cleanhands",
+      "id": "1427601817746800682",
+      "animated": false,
+      "mention": "<:chall_cleanhands:1427601817746800682>",
+      "createdTimestamp": 1760437196910
+    },
+    "chall_contamination": {
+      "key": "chall_contamination",
+      "id": "1427601842208243732",
+      "animated": false,
+      "mention": "<:chall_contamination:1427601842208243732>",
+      "createdTimestamp": 1760437202742
+    },
+    "chall_contractkiller": {
+      "key": "chall_contractkiller",
+      "id": "1427601876290900089",
+      "animated": false,
+      "mention": "<:chall_contractkiller:1427601876290900089>",
+      "createdTimestamp": 1760437210868
+    },
+    "chall_cruel": {
+      "key": "chall_cruel",
+      "id": "1427601902144852008",
+      "animated": false,
+      "mention": "<:chall_cruel:1427601902144852008>",
+      "createdTimestamp": 1760437217032
+    },
+    "chall_elitist": {
+      "key": "chall_elitist",
+      "id": "1427601928287944724",
+      "animated": false,
+      "mention": "<:chall_elitist:1427601928287944724>",
+      "createdTimestamp": 1760437223265
+    },
+    "chall_evasive": {
+      "key": "chall_evasive",
+      "id": "1427601949846671501",
+      "animated": false,
+      "mention": "<:chall_evasive:1427601949846671501>",
+      "createdTimestamp": 1760437228405
+    },
+    "chall_exuberant": {
+      "key": "chall_exuberant",
+      "id": "1427601971518373952",
+      "animated": false,
+      "mention": "<:chall_exuberant:1427601971518373952>",
+      "createdTimestamp": 1760437233572
+    },
+    "chall_fainthearted": {
+      "key": "chall_fainthearted",
+      "id": "1427601990720028722",
+      "animated": false,
+      "mention": "<:chall_fainthearted:1427601990720028722>",
+      "createdTimestamp": 1760437238150
+    },
+    "chall_focus": {
+      "key": "chall_focus",
+      "id": "1427602030889009192",
+      "animated": false,
+      "mention": "<:chall_focus:1427602030889009192>",
+      "createdTimestamp": 1760437247727
+    },
+    "chall_foresighted": {
+      "key": "chall_foresighted",
+      "id": "1427602054762729572",
+      "animated": false,
+      "mention": "<:chall_foresighted:1427602054762729572>",
+      "createdTimestamp": 1760437253419
+    },
+    "chall_gangster": {
+      "key": "chall_gangster",
+      "id": "1427602086346096813",
+      "animated": false,
+      "mention": "<:chall_gangster:1427602086346096813>",
+      "createdTimestamp": 1760437260949
+    },
+    "chall_impertinence": {
+      "key": "chall_impertinence",
+      "id": "1427602132613464115",
+      "animated": false,
+      "mention": "<:chall_impertinence:1427602132613464115>",
+      "createdTimestamp": 1760437271980
+    },
+    "chall_keepmoving": {
+      "key": "chall_keepmoving",
+      "id": "1427602162577575977",
+      "animated": false,
+      "mention": "<:chall_keepmoving:1427602162577575977>",
+      "createdTimestamp": 1760437279124
+    },
+    "chall_loyalfriend": {
+      "key": "chall_loyalfriend",
+      "id": "1429117951478468648",
+      "animated": false,
+      "mention": "<:chall_loyalfriend:1429117951478468648>",
+      "createdTimestamp": 1760798671360
+    },
+    "chall_maniac": {
+      "key": "chall_maniac",
+      "id": "1427602217430548593",
+      "animated": false,
+      "mention": "<:chall_maniac:1427602217430548593>",
+      "createdTimestamp": 1760437292202
+    },
+    "chall_mystique": {
+      "key": "chall_mystique",
+      "id": "1427602253065486367",
+      "animated": false,
+      "mention": "<:chall_mystique:1427602253065486367>",
+      "createdTimestamp": 1760437300698
+    },
+    "chall_nomad": {
+      "key": "chall_nomad",
+      "id": "1427602305141837874",
+      "animated": false,
+      "mention": "<:chall_nomad:1427602305141837874>",
+      "createdTimestamp": 1760437313114
+    },
+    "chall_norush": {
+      "key": "chall_norush",
+      "id": "1427602281095757907",
+      "animated": false,
+      "mention": "<:chall_norush:1427602281095757907>",
+      "createdTimestamp": 1760437307381
+    },
+    "chall_quickandfurious": {
+      "key": "chall_quickandfurious",
+      "id": "1427602332111343626",
+      "animated": false,
+      "mention": "<:chall_quickandfurious:1427602332111343626>",
+      "createdTimestamp": 1760437319544
+    },
+    "chall_reprieve": {
+      "key": "chall_reprieve",
+      "id": "1427602193904701580",
+      "animated": false,
+      "mention": "<:chall_reprieve:1427602193904701580>",
+      "createdTimestamp": 1760437286593
+    },
+    "chall_rootedtothespot": {
+      "key": "chall_rootedtothespot",
+      "id": "1427602356052426762",
+      "animated": false,
+      "mention": "<:chall_rootedtothespot:1427602356052426762>",
+      "createdTimestamp": 1760437325252
+    },
+    "chall_scanty": {
+      "key": "chall_scanty",
+      "id": "1427602377602764901",
+      "animated": false,
+      "mention": "<:chall_scanty:1427602377602764901>",
+      "createdTimestamp": 1760437330390
+    },
+    "chall_scapegoat": {
+      "key": "chall_scapegoat",
+      "id": "1427602416647274506",
+      "animated": false,
+      "mention": "<:chall_scapegoat:1427602416647274506>",
+      "createdTimestamp": 1760437339699
+    },
+    "chall_selfsacrifice": {
+      "key": "chall_selfsacrifice",
+      "id": "1427602449757114409",
+      "animated": false,
+      "mention": "<:chall_selfsacrifice:1427602449757114409>",
+      "createdTimestamp": 1760437347593
+    },
+    "chall_sharing": {
+      "key": "chall_sharing",
+      "id": "1427602474801430592",
+      "animated": false,
+      "mention": "<:chall_sharing:1427602474801430592>",
+      "createdTimestamp": 1760437353564
+    },
+    "chall_sightseeing": {
+      "key": "chall_sightseeing",
+      "id": "1429117953483214970",
+      "animated": false,
+      "mention": "<:chall_sightseeing:1429117953483214970>",
+      "createdTimestamp": 1760798671838
+    },
+    "chall_static": {
+      "key": "chall_static",
+      "id": "1427602500277506139",
+      "animated": false,
+      "mention": "<:chall_static:1427602500277506139>",
+      "createdTimestamp": 1760437359638
+    },
+    "chall_statue": {
+      "key": "chall_statue",
+      "id": "1427602519886135378",
+      "animated": false,
+      "mention": "<:chall_statue:1427602519886135378>",
+      "createdTimestamp": 1760437364313
+    },
+    "chall_tight": {
+      "key": "chall_tight",
+      "id": "1429117955517448242",
+      "animated": false,
+      "mention": "<:chall_tight:1429117955517448242>",
+      "createdTimestamp": 1760798672323
+    },
+    "chall_timeflies": {
+      "key": "chall_timeflies",
+      "id": "1427602541486801016",
+      "animated": false,
+      "mention": "<:chall_timeflies:1427602541486801016>",
+      "createdTimestamp": 1760437369463
+    },
+    "chall_toeachhispwn": {
+      "key": "chall_toeachhispwn",
+      "id": "1429117957216272465",
+      "animated": false,
+      "mention": "<:chall_toeachhispwn:1429117957216272465>",
+      "createdTimestamp": 1760798672728
+    },
+    "chall_twoforthepriceofone": {
+      "key": "chall_twoforthepriceofone",
+      "id": "1427602565666832404",
+      "animated": false,
+      "mention": "<:chall_twoforthepriceofone:1427602565666832404>",
+      "createdTimestamp": 1760437375228
+    },
+    "chall_untouchable": {
+      "key": "chall_untouchable",
+      "id": "1427602594754203759",
+      "animated": false,
+      "mention": "<:chall_untouchable:1427602594754203759>",
+      "createdTimestamp": 1760437382163
+    },
+    "chall_unwillingvolunteer": {
+      "key": "chall_unwillingvolunteer",
+      "id": "1427602008247894066",
+      "animated": false,
+      "mention": "<:chall_unwillingvolunteer:1427602008247894066>",
+      "createdTimestamp": 1760437242329
+    },
+    "chall_versatile": {
+      "key": "chall_versatile",
+      "id": "1427602615591764009",
+      "animated": false,
+      "mention": "<:chall_versatile:1427602615591764009>",
+      "createdTimestamp": 1760437387131
+    },
+    "chall_zombie": {
+      "key": "chall_zombie",
+      "id": "1427602635149672489",
+      "animated": false,
+      "mention": "<:chall_zombie:1427602635149672489>",
+      "createdTimestamp": 1760437391794
+    },
+    "chance": {
+      "key": "chance",
+      "id": "1427596695369416724",
+      "animated": false,
+      "mention": "<:chance:1427596695369416724>",
+      "createdTimestamp": 1760435975640
+    },
+    "closewindow": {
+      "key": "closewindow",
+      "id": "1427602700832342046",
+      "animated": false,
+      "mention": "<:closewindow:1427602700832342046>",
+      "createdTimestamp": 1760437407454
+    },
+    "count_harebourg": {
+      "key": "count_harebourg",
+      "id": "1427604186090045521",
+      "animated": false,
+      "mention": "<:count_harebourg:1427604186090045521>",
+      "createdTimestamp": 1760437761567
+    },
+    "cra": {
+      "key": "cra",
+      "id": "1427597431775952939",
+      "animated": false,
+      "mention": "<:cra:1427597431775952939>",
+      "createdTimestamp": 1760436151213
+    },
+    "cra_female": {
+      "key": "cra_female",
+      "id": "1427601190765592607",
+      "animated": false,
+      "mention": "<:cra_female:1427601190765592607>",
+      "createdTimestamp": 1760437047426
+    },
+    "cra_male": {
+      "key": "cra_male",
+      "id": "1427601203055034443",
+      "animated": false,
+      "mention": "<:cra_male:1427601203055034443>",
+      "createdTimestamp": 1760437050356
+    },
+    "crakillian_guardian": {
+      "key": "crakillian_guardian",
+      "id": "1427604216658268210",
+      "animated": false,
+      "mention": "<:crakillian_guardian:1427604216658268210>",
+      "createdTimestamp": 1760437768855
+    },
+    "crimson_plop": {
+      "key": "crimson_plop",
+      "id": "1428710201351209062",
+      "animated": false,
+      "mention": "<:crimson_plop:1428710201351209062>",
+      "createdTimestamp": 1760701456154
+    },
+    "crimsondofus": {
+      "key": "crimsondofus",
+      "id": "1427601053318250537",
+      "animated": false,
+      "mention": "<:crimsondofus:1427601053318250537>",
+      "createdTimestamp": 1760437014656
+    },
+    "criticaldamage": {
+      "key": "criticaldamage",
+      "id": "1427600082362044426",
+      "animated": false,
+      "mention": "<:criticaldamage:1427600082362044426>",
+      "createdTimestamp": 1760436783162
+    },
+    "criticalhits": {
+      "key": "criticalhits",
+      "id": "1427600738967621734",
+      "animated": false,
+      "mention": "<:criticalhits:1427600738967621734>",
+      "createdTimestamp": 1760436939709
+    },
+    "criticalresistance": {
+      "key": "criticalresistance",
+      "id": "1427596825874927736",
+      "animated": false,
+      "mention": "<:criticalresistance:1427596825874927736>",
+      "createdTimestamp": 1760436006755
+    },
+    "crocabulia": {
+      "key": "crocabulia",
+      "id": "1427604225306919003",
+      "animated": false,
+      "mention": "<:crocabulia:1427604225306919003>",
+      "createdTimestamp": 1760437770917
+    },
+    "damadrya": {
+      "key": "damadrya",
+      "id": "1427604241442144307",
+      "animated": false,
+      "mention": "<:damadrya:1427604241442144307>",
+      "createdTimestamp": 1760437774764
+    },
+    "damage": {
+      "key": "damage",
+      "id": "1427600169448505385",
+      "animated": false,
+      "mention": "<:damage:1427600169448505385>",
+      "createdTimestamp": 1760436803925
+    },
+    "dark_arachnee": {
+      "key": "dark_arachnee",
+      "id": "1428708279508537434",
+      "animated": false,
+      "mention": "<:dark_arachnee:1428708279508537434>",
+      "createdTimestamp": 1760700997951
+    },
+    "dark_boar": {
+      "key": "dark_boar",
+      "id": "1428708281135665183",
+      "animated": false,
+      "mention": "<:dark_boar:1428708281135665183>",
+      "createdTimestamp": 1760700998339
+    },
+    "dark_gobball": {
+      "key": "dark_gobball",
+      "id": "1428708282612056075",
+      "animated": false,
+      "mention": "<:dark_gobball:1428708282612056075>",
+      "createdTimestamp": 1760700998691
+    },
+    "dark_piwi": {
+      "key": "dark_piwi",
+      "id": "1428708283849379860",
+      "animated": false,
+      "mention": "<:dark_piwi:1428708283849379860>",
+      "createdTimestamp": 1760700998986
+    },
+    "dark_tofu": {
+      "key": "dark_tofu",
+      "id": "1428708285137031198",
+      "animated": false,
+      "mention": "<:dark_tofu:1428708285137031198>",
+      "createdTimestamp": 1760700999293
+    },
+    "dark_vlad": {
+      "key": "dark_vlad",
+      "id": "1427604255061184522",
+      "animated": false,
+      "mention": "<:dark_vlad:1427604255061184522>",
+      "createdTimestamp": 1760437778011
+    },
+    "dodge": {
+      "key": "dodge",
+      "id": "1427600110354694206",
+      "animated": false,
+      "mention": "<:dodge:1427600110354694206>",
+      "createdTimestamp": 1760436789836
+    },
+    "dofawa": {
+      "key": "dofawa",
+      "id": "1427600888528375838",
+      "animated": false,
+      "mention": "<:dofawa:1427600888528375838>",
+      "createdTimestamp": 1760436975367
+    },
+    "dofushu": {
+      "key": "dofushu",
+      "id": "1427600899374842006",
+      "animated": false,
+      "mention": "<:dofushu:1427600899374842006>",
+      "createdTimestamp": 1760436977953
+    },
+    "dolmanax": {
+      "key": "dolmanax",
+      "id": "1427600921910706276",
+      "animated": false,
+      "mention": "<:dolmanax:1427600921910706276>",
+      "createdTimestamp": 1760436983326
+    },
+    "domakuro": {
+      "key": "domakuro",
+      "id": "1427600931649884241",
+      "animated": false,
+      "mention": "<:domakuro:1427600931649884241>",
+      "createdTimestamp": 1760436985648
+    },
+    "dorigami": {
+      "key": "dorigami",
+      "id": "1427600942513131620",
+      "animated": false,
+      "mention": "<:dorigami:1427600942513131620>",
+      "createdTimestamp": 1760436988238
+    },
+    "dragonpig": {
+      "key": "dragonpig",
+      "id": "1427604275189645322",
+      "animated": false,
+      "mention": "<:dragonpig:1427604275189645322>",
+      "createdTimestamp": 1760437782810
+    },
+    "earthdamage": {
+      "key": "earthdamage",
+      "id": "1427599964162232421",
+      "animated": false,
+      "mention": "<:earthdamage:1427599964162232421>",
+      "createdTimestamp": 1760436754981
+    },
+    "ecaflip": {
+      "key": "ecaflip",
+      "id": "1427597459340656761",
+      "animated": false,
+      "mention": "<:ecaflip:1427597459340656761>",
+      "createdTimestamp": 1760436157785
+    },
+    "ecaflip_female": {
+      "key": "ecaflip_female",
+      "id": "1427601217063878769",
+      "animated": false,
+      "mention": "<:ecaflip_female:1427601217063878769>",
+      "createdTimestamp": 1760437053696
+    },
+    "ecaflip_male": {
+      "key": "ecaflip_male",
+      "id": "1427601230502432919",
+      "animated": false,
+      "mention": "<:ecaflip_male:1427601230502432919>",
+      "createdTimestamp": 1760437056900
+    },
+    "elements": {
+      "key": "elements",
+      "id": "1427600196065427457",
+      "animated": false,
+      "mention": "<:elements:1427600196065427457>",
+      "createdTimestamp": 1760436810271
+    },
+    "emeralddofus": {
+      "key": "emeralddofus",
+      "id": "1427601108460638341",
+      "animated": false,
+      "mention": "<:emeralddofus:1427601108460638341>",
+      "createdTimestamp": 1760437027803
+    },
+    "endturn": {
+      "key": "endturn",
+      "id": "1427602710756331520",
+      "animated": false,
+      "mention": "<:endturn:1427602710756331520>",
+      "createdTimestamp": 1760437409820
+    },
+    "eniripsa": {
+      "key": "eniripsa",
+      "id": "1427597482073919650",
+      "animated": false,
+      "mention": "<:eniripsa:1427597482073919650>",
+      "createdTimestamp": 1760436163205
+    },
+    "eniripsa_female": {
+      "key": "eniripsa_female",
+      "id": "1427601248655245382",
+      "animated": false,
+      "mention": "<:eniripsa_female:1427601248655245382>",
+      "createdTimestamp": 1760437061228
+    },
+    "eniripsa_male": {
+      "key": "eniripsa_male",
+      "id": "1427601257958342786",
+      "animated": false,
+      "mention": "<:eniripsa_male:1427601257958342786>",
+      "createdTimestamp": 1760437063446
+    },
+    "enutrof": {
+      "key": "enutrof",
+      "id": "1427597502541987952",
+      "animated": false,
+      "mention": "<:enutrof:1427597502541987952>",
+      "createdTimestamp": 1760436168085
+    },
+    "enutrof_female": {
+      "key": "enutrof_female",
+      "id": "1427601274307739819",
+      "animated": false,
+      "mention": "<:enutrof_female:1427601274307739819>",
+      "createdTimestamp": 1760437067344
+    },
+    "enutrof_male": {
+      "key": "enutrof_male",
+      "id": "1427601287293308939",
+      "animated": false,
+      "mention": "<:enutrof_male:1427601287293308939>",
+      "createdTimestamp": 1760437070440
+    },
+    "famished_sunflower": {
+      "key": "famished_sunflower",
+      "id": "1427604295364116531",
+      "animated": false,
+      "mention": "<:famished_sunflower:1427604295364116531>",
+      "createdTimestamp": 1760437787620
+    },
+    "father_kwismas": {
+      "key": "father_kwismas",
+      "id": "1427604315819737149",
+      "animated": false,
+      "mention": "<:father_kwismas:1427604315819737149>",
+      "createdTimestamp": 1760437792497
+    },
+    "father_whupper": {
+      "key": "father_whupper",
+      "id": "1427604325793792120",
+      "animated": false,
+      "mention": "<:father_whupper:1427604325793792120>",
+      "createdTimestamp": 1760437794875
+    },
+    "feca": {
+      "key": "feca",
+      "id": "1427597522049699850",
+      "animated": false,
+      "mention": "<:feca:1427597522049699850>",
+      "createdTimestamp": 1760436172736
+    },
+    "feca_female": {
+      "key": "feca_female",
+      "id": "1427601299335024711",
+      "animated": false,
+      "mention": "<:feca_female:1427601299335024711>",
+      "createdTimestamp": 1760437073311
+    },
+    "feca_male": {
+      "key": "feca_male",
+      "id": "1427601311586582641",
+      "animated": false,
+      "mention": "<:feca_male:1427601311586582641>",
+      "createdTimestamp": 1760437076232
+    },
+    "firedamage": {
+      "key": "firedamage",
+      "id": "1427599984567783484",
+      "animated": false,
+      "mention": "<:firedamage:1427599984567783484>",
+      "createdTimestamp": 1760436759846
+    },
+    "foggernaut": {
+      "key": "foggernaut",
+      "id": "1427597557064007790",
+      "animated": false,
+      "mention": "<:foggernaut:1427597557064007790>",
+      "createdTimestamp": 1760436181084
+    },
+    "foggernaut_female": {
+      "key": "foggernaut_female",
+      "id": "1427601325914591262",
+      "animated": false,
+      "mention": "<:foggernaut_female:1427601325914591262>",
+      "createdTimestamp": 1760437079648
+    },
+    "foggernaut_male": {
+      "key": "foggernaut_male",
+      "id": "1427601338283327571",
+      "animated": false,
+      "mention": "<:foggernaut_male:1427601338283327571>",
+      "createdTimestamp": 1760437082597
+    },
+    "founoroshi": {
+      "key": "founoroshi",
+      "id": "1427604341799522314",
+      "animated": false,
+      "mention": "<:founoroshi:1427604341799522314>",
+      "createdTimestamp": 1760437798691
+    },
+    "fuji_snowfoux": {
+      "key": "fuji_snowfoux",
+      "id": "1427604363949506701",
+      "animated": false,
+      "mention": "<:fuji_snowfoux:1427604363949506701>",
+      "createdTimestamp": 1760437803972
+    },
+    "giant_kralove": {
+      "key": "giant_kralove",
+      "id": "1427604382542725210",
+      "animated": false,
+      "mention": "<:giant_kralove:1427604382542725210>",
+      "createdTimestamp": 1760437808405
+    },
+    "golden_scarabugly": {
+      "key": "golden_scarabugly",
+      "id": "1427604405183578152",
+      "animated": false,
+      "mention": "<:golden_scarabugly:1427604405183578152>",
+      "createdTimestamp": 1760437813803
+    },
+    "gourlo_the_terrible": {
+      "key": "gourlo_the_terrible",
+      "id": "1427604421407281162",
+      "animated": false,
+      "mention": "<:gourlo_the_terrible:1427604421407281162>",
+      "createdTimestamp": 1760437817671
+    },
+    "grasmera": {
+      "key": "grasmera",
+      "id": "1428707736912138363",
+      "animated": false,
+      "mention": "<:grasmera:1428707736912138363>",
+      "createdTimestamp": 1760700868586
+    },
+    "great_coralator": {
+      "key": "great_coralator",
+      "id": "1427604438713110601",
+      "animated": false,
+      "mention": "<:great_coralator:1427604438713110601>",
+      "createdTimestamp": 1760437821797
+    },
+    "grohlum": {
+      "key": "grohlum",
+      "id": "1427604458556231743",
+      "animated": false,
+      "mention": "<:grohlum:1427604458556231743>",
+      "createdTimestamp": 1760437826528
+    },
+    "grozilla": {
+      "key": "grozilla",
+      "id": "1427604480928514180",
+      "animated": false,
+      "mention": "<:grozilla:1427604480928514180>",
+      "createdTimestamp": 1760437831862
+    },
+    "hanshi": {
+      "key": "hanshi",
+      "id": "1427604616522104904",
+      "animated": false,
+      "mention": "<:hanshi:1427604616522104904>",
+      "createdTimestamp": 1760437864190
+    },
+    "heal": {
+      "key": "heal",
+      "id": "1427600231872073860",
+      "animated": false,
+      "mention": "<:heal:1427600231872073860>",
+      "createdTimestamp": 1760436818808
+    },
+    "healthpoints": {
+      "key": "healthpoints",
+      "id": "1427600289380171929",
+      "animated": false,
+      "mention": "<:healthpoints:1427600289380171929>",
+      "createdTimestamp": 1760436832519
+    },
+    "hell_mina": {
+      "key": "hell_mina",
+      "id": "1427604655340523640",
+      "animated": false,
+      "mention": "<:hell_mina:1427604655340523640>",
+      "createdTimestamp": 1760437873445
+    },
+    "icedofus": {
+      "key": "icedofus",
+      "id": "1427600953582030939",
+      "animated": false,
+      "mention": "<:icedofus:1427600953582030939>",
+      "createdTimestamp": 1760436990877
+    },
+    "increase": {
+      "key": "increase",
+      "id": "1427600531882246145",
+      "animated": false,
+      "mention": "<:increase:1427600531882246145>",
+      "createdTimestamp": 1760436890336
+    },
+    "initiative": {
+      "key": "initiative",
+      "id": "1427600254265589814",
+      "animated": false,
+      "mention": "<:initiative:1427600254265589814>",
+      "createdTimestamp": 1760436824147
+    },
+    "intelligence": {
+      "key": "intelligence",
+      "id": "1427596766601150474",
+      "animated": false,
+      "mention": "<:intelligence:1427596766601150474>",
+      "createdTimestamp": 1760435992623
+    },
+    "iop": {
+      "key": "iop",
+      "id": "1427597605202034698",
+      "animated": false,
+      "mention": "<:iop:1427597605202034698>",
+      "createdTimestamp": 1760436192561
+    },
+    "iop_female": {
+      "key": "iop_female",
+      "id": "1427601354834186270",
+      "animated": false,
+      "mention": "<:iop_female:1427601354834186270>",
+      "createdTimestamp": 1760437086543
+    },
+    "iop_male": {
+      "key": "iop_male",
+      "id": "1427601370139066458",
+      "animated": false,
+      "mention": "<:iop_male:1427601370139066458>",
+      "createdTimestamp": 1760437090192
+    },
+    "itzting": {
+      "key": "itzting",
+      "id": "1427604674919399505",
+      "animated": false,
+      "mention": "<:itzting:1427604674919399505>",
+      "createdTimestamp": 1760437878113
+    },
+    "kaliptusdofus": {
+      "key": "kaliptusdofus",
+      "id": "1427600982501752883",
+      "animated": false,
+      "mention": "<:kaliptusdofus:1427600982501752883>",
+      "createdTimestamp": 1760436997772
+    },
+    "Kama": {
+      "key": "kama",
+      "id": "1427600996640751646",
+      "animated": false,
+      "mention": "<:Kama:1427600996640751646>",
+      "createdTimestamp": 1760437001143
+    },
+    "kanigrula": {
+      "key": "kanigrula",
+      "id": "1427604698449444864",
+      "animated": false,
+      "mention": "<:kanigrula:1427604698449444864>",
+      "createdTimestamp": 1760437883723
+    },
+    "kanniball_andchain": {
+      "key": "kanniball_andchain",
+      "id": "1427604722713624708",
+      "animated": false,
+      "mention": "<:kanniball_andchain:1427604722713624708>",
+      "createdTimestamp": 1760437889508
+    },
+    "katamashii": {
+      "key": "katamashii",
+      "id": "1427604748336500808",
+      "animated": false,
+      "mention": "<:katamashii:1427604748336500808>",
+      "createdTimestamp": 1760437895617
+    },
+    "kimbo": {
+      "key": "kimbo",
+      "id": "1427604767299080292",
+      "animated": false,
+      "mention": "<:kimbo:1427604767299080292>",
+      "createdTimestamp": 1760437900138
+    },
+    "klime": {
+      "key": "klime",
+      "id": "1427604790120153129",
+      "animated": false,
+      "mention": "<:klime:1427604790120153129>",
+      "createdTimestamp": 1760437905579
+    },
+    "kolosso": {
+      "key": "kolosso",
+      "id": "1427604817076944948",
+      "animated": false,
+      "mention": "<:kolosso:1427604817076944948>",
+      "createdTimestamp": 1760437912006
+    },
+    "koolich": {
+      "key": "koolich",
+      "id": "1427604837545021571",
+      "animated": false,
+      "mention": "<:koolich:1427604837545021571>",
+      "createdTimestamp": 1760437916886
+    },
+    "korriander": {
+      "key": "korriander",
+      "id": "1427604883703595089",
+      "animated": false,
+      "mention": "<:korriander:1427604883703595089>",
+      "createdTimestamp": 1760437927891
+    },
+    "kwakwa": {
+      "key": "kwakwa",
+      "id": "1427604904976846979",
+      "animated": false,
+      "mention": "<:kwakwa:1427604904976846979>",
+      "createdTimestamp": 1760437932963
+    },
+    "legendary_crackler": {
+      "key": "legendary_crackler",
+      "id": "1427604940104142878",
+      "animated": false,
+      "mention": "<:legendary_crackler:1427604940104142878>",
+      "createdTimestamp": 1760437941338
+    },
+    "level": {
+      "key": "level",
+      "id": "1427597125503553659",
+      "animated": false,
+      "mention": "<:level:1427597125503553659>",
+      "createdTimestamp": 1760436078192
+    },
+    "lock": {
+      "key": "lock",
+      "id": "1427596624309391391",
+      "animated": false,
+      "mention": "<:lock:1427596624309391391>",
+      "createdTimestamp": 1760435958698
+    },
+    "lord_crow": {
+      "key": "lord_crow",
+      "id": "1427604965857296384",
+      "animated": false,
+      "mention": "<:lord_crow:1427604965857296384>",
+      "createdTimestamp": 1760437947478
+    },
+    "magmaticdofus": {
+      "key": "magmaticdofus",
+      "id": "1427601020409610341",
+      "animated": false,
+      "mention": "<:magmaticdofus:1427601020409610341>",
+      "createdTimestamp": 1760437006810
+    },
+    "marketplace": {
+      "key": "marketplace",
+      "id": "1427602722999373855",
+      "animated": false,
+      "mention": "<:marketplace:1427602722999373855>",
+      "createdTimestamp": 1760437412739
+    },
+    "masqueraider": {
+      "key": "masqueraider",
+      "id": "1427597627226325053",
+      "animated": false,
+      "mention": "<:masqueraider:1427597627226325053>",
+      "createdTimestamp": 1760436197812
+    },
+    "masqueraider_female": {
+      "key": "masqueraider_female",
+      "id": "1427601389877461074",
+      "animated": false,
+      "mention": "<:masqueraider_female:1427601389877461074>",
+      "createdTimestamp": 1760437094898
+    },
+    "masqueraider_male": {
+      "key": "masqueraider_male",
+      "id": "1427601408613683223",
+      "animated": false,
+      "mention": "<:masqueraider_male:1427601408613683223>",
+      "createdTimestamp": 1760437099365
+    },
+    "minotoball": {
+      "key": "minotoball",
+      "id": "1428707824564830258",
+      "animated": false,
+      "mention": "<:minotoball:1428707824564830258>",
+      "createdTimestamp": 1760700889484
+    },
+    "minotoror": {
+      "key": "minotoror",
+      "id": "1427605027006185602",
+      "animated": false,
+      "mention": "<:minotoror:1427605027006185602>",
+      "createdTimestamp": 1760437962057
+    },
+    "minotot": {
+      "key": "minotot",
+      "id": "1427605054579540040",
+      "animated": false,
+      "mention": "<:minotot:1427605054579540040>",
+      "createdTimestamp": 1760437968631
+    },
+    "missiz_freezz": {
+      "key": "missiz_freezz",
+      "id": "1427605080005414974",
+      "animated": false,
+      "mention": "<:missiz_freezz:1427605080005414974>",
+      "createdTimestamp": 1760437974693
+    },
+    "monstercompendium": {
+      "key": "monstercompendium",
+      "id": "1427602732562251786",
+      "animated": false,
+      "mention": "<:monstercompendium:1427602732562251786>",
+      "createdTimestamp": 1760437415019
+    },
+    "moon": {
+      "key": "moon",
+      "id": "1427605108866289734",
+      "animated": false,
+      "mention": "<:moon:1427605108866289734>",
+      "createdTimestamp": 1760437981574
+    },
+    "moowolf": {
+      "key": "moowolf",
+      "id": "1427605132027367545",
+      "animated": false,
+      "mention": "<:moowolf:1427605132027367545>",
+      "createdTimestamp": 1760437987096
+    },
+    "mp": {
+      "key": "mp",
+      "id": "1427596871005896734",
+      "animated": false,
+      "mention": "<:mp:1427596871005896734>",
+      "createdTimestamp": 1760436017515
+    },
+    "mpparry": {
+      "key": "mpparry",
+      "id": "1427597395788693587",
+      "animated": false,
+      "mention": "<:mpparry:1427597395788693587>",
+      "createdTimestamp": 1760436142633
+    },
+    "mpreduction": {
+      "key": "mpreduction",
+      "id": "1427600678192414740",
+      "animated": false,
+      "mention": "<:mpreduction:1427600678192414740>",
+      "createdTimestamp": 1760436925219
+    },
+    "mucane": {
+      "key": "mucane",
+      "id": "1427605154286272523",
+      "animated": false,
+      "mention": "<:mucane:1427605154286272523>",
+      "createdTimestamp": 1760437992403
+    },
+    "nagate": {
+      "key": "nagate",
+      "id": "1427605172192022558",
+      "animated": false,
+      "mention": "<:nagate:1427605172192022558>",
+      "createdTimestamp": 1760437996672
+    },
+    "nelween": {
+      "key": "nelween",
+      "id": "1427605197869547520",
+      "animated": false,
+      "mention": "<:nelween:1427605197869547520>",
+      "createdTimestamp": 1760438002794
+    },
+    "neutral": {
+      "key": "neutral",
+      "id": "1427596926127308851",
+      "animated": false,
+      "mention": "<:neutral:1427596926127308851>",
+      "createdTimestamp": 1760436030657
+    },
+    "neutraldamage": {
+      "key": "neutraldamage",
+      "id": "1427600055220568085",
+      "animated": false,
+      "mention": "<:neutraldamage:1427600055220568085>",
+      "createdTimestamp": 1760436776691
+    },
+    "nileza": {
+      "key": "nileza",
+      "id": "1428707649385529454",
+      "animated": false,
+      "mention": "<:nileza:1428707649385529454>",
+      "createdTimestamp": 1760700847718
+    },
+    "obsidemon": {
+      "key": "obsidemon",
+      "id": "1427605216932659302",
+      "animated": false,
+      "mention": "<:obsidemon:1427605216932659302>",
+      "createdTimestamp": 1760438007339
+    },
+    "ochredofus": {
+      "key": "ochredofus",
+      "id": "1427601032141213846",
+      "animated": false,
+      "mention": "<:ochredofus:1427601032141213846>",
+      "createdTimestamp": 1760437009607
+    },
+    "osamodas": {
+      "key": "osamodas",
+      "id": "1427597656489988117",
+      "animated": false,
+      "mention": "<:osamodas:1427597656489988117>",
+      "createdTimestamp": 1760436204789
+    },
+    "osamodas_female": {
+      "key": "osamodas_female",
+      "id": "1427601429992050777",
+      "animated": false,
+      "mention": "<:osamodas_female:1427601429992050777>",
+      "createdTimestamp": 1760437104462
+    },
+    "osamodas_male": {
+      "key": "osamodas_male",
+      "id": "1427601458160865321",
+      "animated": false,
+      "mention": "<:osamodas_male:1427601458160865321>",
+      "createdTimestamp": 1760437111178
+    },
+    "ougaa": {
+      "key": "ougaa",
+      "id": "1427605235416694835",
+      "animated": false,
+      "mention": "<:ougaa:1427605235416694835>",
+      "createdTimestamp": 1760438011746
+    },
+    "pandawa": {
+      "key": "pandawa",
+      "id": "1427597688735662111",
+      "animated": false,
+      "mention": "<:pandawa:1427597688735662111>",
+      "createdTimestamp": 1760436212477
+    },
+    "pandawa_female": {
+      "key": "pandawa_female",
+      "id": "1427601483976802405",
+      "animated": false,
+      "mention": "<:pandawa_female:1427601483976802405>",
+      "createdTimestamp": 1760437117333
+    },
+    "pandawa_male": {
+      "key": "pandawa_male",
+      "id": "1427601507913826345",
+      "animated": false,
+      "mention": "<:pandawa_male:1427601507913826345>",
+      "createdTimestamp": 1760437123040
+    },
+    "pods": {
+      "key": "pods",
+      "id": "1427600616062189579",
+      "animated": false,
+      "mention": "<:pods:1427600616062189579>",
+      "createdTimestamp": 1760436910406
+    },
+    "power": {
+      "key": "power",
+      "id": "1427600595891785810",
+      "animated": false,
+      "mention": "<:power:1427600595891785810>",
+      "createdTimestamp": 1760436905597
+    },
+    "professor_xa": {
+      "key": "professor_xa",
+      "id": "1427605260695896185",
+      "animated": false,
+      "mention": "<:professor_xa:1427605260695896185>",
+      "createdTimestamp": 1760438017773
+    },
+    "prospection": {
+      "key": "prospection",
+      "id": "1427600569765199953",
+      "animated": false,
+      "mention": "<:prospection:1427600569765199953>",
+      "createdTimestamp": 1760436899368
+    },
+    "pushbackdamage": {
+      "key": "pushbackdamage",
+      "id": "1427600137684914216",
+      "animated": false,
+      "mention": "<:pushbackdamage:1427600137684914216>",
+      "createdTimestamp": 1760436796352
+    },
+    "pushbackresistance": {
+      "key": "pushbackresistance",
+      "id": "1427597202254987356",
+      "animated": false,
+      "mention": "<:pushbackresistance:1427597202254987356>",
+      "createdTimestamp": 1760436096491
+    },
+    "questbook": {
+      "key": "questbook",
+      "id": "1427602743283028041",
+      "animated": false,
+      "mention": "<:questbook:1427602743283028041>",
+      "createdTimestamp": 1760437417575
+    },
+    "range": {
+      "key": "range",
+      "id": "1427600507584647279",
+      "animated": false,
+      "mention": "<:range:1427600507584647279>",
+      "createdTimestamp": 1760436884543
+    },
+    "ready": {
+      "key": "ready",
+      "id": "1427602752590319647",
+      "animated": false,
+      "mention": "<:ready:1427602752590319647>",
+      "createdTimestamp": 1760437419794
+    },
+    "refresh": {
+      "key": "refresh",
+      "id": "1427602763839443005",
+      "animated": false,
+      "mention": "<:refresh:1427602763839443005>",
+      "createdTimestamp": 1760437422476
+    },
+    "rogue": {
+      "key": "rogue",
+      "id": "1427597716518731798",
+      "animated": false,
+      "mention": "<:rogue:1427597716518731798>",
+      "createdTimestamp": 1760436219101
+    },
+    "rogue_female": {
+      "key": "rogue_female",
+      "id": "1427601529329946714",
+      "animated": false,
+      "mention": "<:rogue_female:1427601529329946714>",
+      "createdTimestamp": 1760437128146
+    },
+    "rogue_male": {
+      "key": "rogue_male",
+      "id": "1427601547789074582",
+      "animated": false,
+      "mention": "<:rogue_male:1427601547789074582>",
+      "createdTimestamp": 1760437132547
+    },
+    "ronin_chafer": {
+      "key": "ronin_chafer",
+      "id": "1427605273488392323",
+      "animated": false,
+      "mention": "<:ronin_chafer:1427605273488392323>",
+      "createdTimestamp": 1760438020823
+    },
+    "royal_blue_jelly": {
+      "key": "royal_blue_jelly",
+      "id": "1427605295978516611",
+      "animated": false,
+      "mention": "<:royal_blue_jelly:1427605295978516611>",
+      "createdTimestamp": 1760438026185
+    },
+    "royal_coco_blop": {
+      "key": "royal_coco_blop",
+      "id": "1427605417462333511",
+      "animated": false,
+      "mention": "<:royal_coco_blop:1427605417462333511>",
+      "createdTimestamp": 1760438055149
+    },
+    "royal_gobball": {
+      "key": "royal_gobball",
+      "id": "1427605594281611295",
+      "animated": false,
+      "mention": "<:royal_gobball:1427605594281611295>",
+      "createdTimestamp": 1760438097306
+    },
+    "royal_indigo_blop": {
+      "key": "royal_indigo_blop",
+      "id": "1427605443626139721",
+      "animated": false,
+      "mention": "<:royal_indigo_blop:1427605443626139721>",
+      "createdTimestamp": 1760438061387
+    },
+    "royal_lemon_jelly": {
+      "key": "royal_lemon_jelly",
+      "id": "1427605326408061019",
+      "animated": false,
+      "mention": "<:royal_lemon_jelly:1427605326408061019>",
+      "createdTimestamp": 1760438033440
+    },
+    "royal_mastogob": {
+      "key": "royal_mastogob",
+      "id": "1427605670210830467",
+      "animated": false,
+      "mention": "<:royal_mastogob:1427605670210830467>",
+      "createdTimestamp": 1760438115409
+    },
+    "royal_mint_jelly": {
+      "key": "royal_mint_jelly",
+      "id": "1427605351980601425",
+      "animated": false,
+      "mention": "<:royal_mint_jelly:1427605351980601425>",
+      "createdTimestamp": 1760438039537
+    },
+    "royal_morello_cherry_blop": {
+      "key": "royal_morello_cherry_blop",
+      "id": "1427605493161000990",
+      "animated": false,
+      "mention": "<:royal_morello_cherry_blop:1427605493161000990>",
+      "createdTimestamp": 1760438073197
+    },
+    "royal_pingwin": {
+      "key": "royal_pingwin",
+      "id": "1427605630176198778",
+      "animated": false,
+      "mention": "<:royal_pingwin:1427605630176198778>",
+      "createdTimestamp": 1760438105864
+    },
+    "royal_pippin_blop": {
+      "key": "royal_pippin_blop",
+      "id": "1427605527919329310",
+      "animated": false,
+      "mention": "<:royal_pippin_blop:1427605527919329310>",
+      "createdTimestamp": 1760438081484
+    },
+    "royal_rainbow_blop": {
+      "key": "royal_rainbow_blop",
+      "id": "1427605567626809517",
+      "animated": false,
+      "mention": "<:royal_rainbow_blop:1427605567626809517>",
+      "createdTimestamp": 1760438090951
+    },
+    "royal_strawberry_jelly": {
+      "key": "royal_strawberry_jelly",
+      "id": "1427605389956091964",
+      "animated": false,
+      "mention": "<:royal_strawberry_jelly:1427605389956091964>",
+      "createdTimestamp": 1760438048591
+    },
+    "royal_tofu": {
+      "key": "royal_tofu",
+      "id": "1427605727039455264",
+      "animated": false,
+      "mention": "<:royal_tofu:1427605727039455264>",
+      "createdTimestamp": 1760438128958
+    },
+    "sacrier_female": {
+      "key": "sacrier_female",
+      "id": "1427601564788330566",
+      "animated": false,
+      "mention": "<:sacrier_female:1427601564788330566>",
+      "createdTimestamp": 1760437136600
+    },
+    "sacrier_male": {
+      "key": "sacrier_male",
+      "id": "1427601581351632956",
+      "animated": false,
+      "mention": "<:sacrier_male:1427601581351632956>",
+      "createdTimestamp": 1760437140549
+    },
+    "sacrieur": {
+      "key": "sacrieur",
+      "id": "1427597742779138068",
+      "animated": false,
+      "mention": "<:sacrieur:1427597742779138068>",
+      "createdTimestamp": 1760436225362
+    },
+    "sadida": {
+      "key": "sadida",
+      "id": "1427597762131656836",
+      "animated": false,
+      "mention": "<:sadida:1427597762131656836>",
+      "createdTimestamp": 1760436229976
+    },
+    "sadida_female": {
+      "key": "sadida_female",
+      "id": "1427601602591850628",
+      "animated": false,
+      "mention": "<:sadida_female:1427601602591850628>",
+      "createdTimestamp": 1760437145613
+    },
+    "sadida_male": {
+      "key": "sadida_male",
+      "id": "1427601622825177139",
+      "animated": false,
+      "mention": "<:sadida_male:1427601622825177139>",
+      "createdTimestamp": 1760437150437
+    },
+    "scale_king": {
+      "key": "scale_king",
+      "id": "1427605741274927134",
+      "animated": false,
+      "mention": "<:scale_king:1427605741274927134>",
+      "createdTimestamp": 1760438132352
+    },
+    "selim_quartz": {
+      "key": "selim_quartz",
+      "id": "1427605766134825020",
+      "animated": false,
+      "mention": "<:selim_quartz:1427605766134825020>",
+      "createdTimestamp": 1760438138279
+    },
+    "shihan": {
+      "key": "shihan",
+      "id": "1427605790809784340",
+      "animated": false,
+      "mention": "<:shihan:1427605790809784340>",
+      "createdTimestamp": 1760438144162
+    },
+    "shin_larva": {
+      "key": "shin_larva",
+      "id": "1427605820539011103",
+      "animated": false,
+      "mention": "<:shin_larva:1427605820539011103>",
+      "createdTimestamp": 1760438151250
+    },
+    "sidekicks": {
+      "key": "sidekicks",
+      "id": "1427602776153915452",
+      "animated": false,
+      "mention": "<:sidekicks:1427602776153915452>",
+      "createdTimestamp": 1760437425412
+    },
+    "silf": {
+      "key": "silf",
+      "id": "1427605847814570035",
+      "animated": false,
+      "mention": "<:silf:1427605847814570035>",
+      "createdTimestamp": 1760438157753
+    },
+    "silverdofus": {
+      "key": "silverdofus",
+      "id": "1427601093554081822",
+      "animated": false,
+      "mention": "<:silverdofus:1427601093554081822>",
+      "createdTimestamp": 1760437024249
+    },
+    "skeunk": {
+      "key": "skeunk",
+      "id": "1427605867498307594",
+      "animated": false,
+      "mention": "<:skeunk:1427605867498307594>",
+      "createdTimestamp": 1760438162446
+    },
+    "smiths_chest": {
+      "key": "smiths_chest",
+      "id": "1427605927007096852",
+      "animated": false,
+      "mention": "<:smiths_chest:1427605927007096852>",
+      "createdTimestamp": 1760438176634
+    },
+    "soft_oak": {
+      "key": "soft_oak",
+      "id": "1427605948372881479",
+      "animated": false,
+      "mention": "<:soft_oak:1427605948372881479>",
+      "createdTimestamp": 1760438181728
+    },
+    "spells": {
+      "key": "spells",
+      "id": "1427602787423752302",
+      "animated": false,
+      "mention": "<:spells:1427602787423752302>",
+      "createdTimestamp": 1760437428099
+    },
+    "sphincter_cell": {
+      "key": "sphincter_cell",
+      "id": "1427605974700654602",
+      "animated": false,
+      "mention": "<:sphincter_cell:1427605974700654602>",
+      "createdTimestamp": 1760438188005
+    },
+    "spongemob": {
+      "key": "spongemob",
+      "id": "1427606006900461650",
+      "animated": false,
+      "mention": "<:spongemob:1427606006900461650>",
+      "createdTimestamp": 1760438195682
+    },
+    "sram": {
+      "key": "sram",
+      "id": "1427597781660598363",
+      "animated": false,
+      "mention": "<:sram:1427597781660598363>",
+      "createdTimestamp": 1760436234632
+    },
+    "sram_female": {
+      "key": "sram_female",
+      "id": "1427601643767070760",
+      "animated": false,
+      "mention": "<:sram_female:1427601643767070760>",
+      "createdTimestamp": 1760437155430
+    },
+    "sram_male": {
+      "key": "sram_male",
+      "id": "1427601661584740392",
+      "animated": false,
+      "mention": "<:sram_male:1427601661584740392>",
+      "createdTimestamp": 1760437159678
+    },
+    "staff_deleghoul": {
+      "key": "staff_deleghoul",
+      "id": "1427606062302761031",
+      "animated": false,
+      "mention": "<:staff_deleghoul:1427606062302761031>",
+      "createdTimestamp": 1760438208891
+    },
+    "strength": {
+      "key": "strength",
+      "id": "1427597058747142235",
+      "animated": false,
+      "mention": "<:strength:1427597058747142235>",
+      "createdTimestamp": 1760436062276
+    },
+    "summons": {
+      "key": "summons",
+      "id": "1427600461137182832",
+      "animated": false,
+      "mention": "<:summons:1427600461137182832>",
+      "createdTimestamp": 1760436873469
+    },
+    "sylargh": {
+      "key": "sylargh",
+      "id": "1427606032695169045",
+      "animated": false,
+      "mention": "<:sylargh:1427606032695169045>",
+      "createdTimestamp": 1760438201832
+    },
+    "tanukoui_san": {
+      "key": "tanukoui_san",
+      "id": "1427606084289433651",
+      "animated": false,
+      "mention": "<:tanukoui_san:1427606084289433651>",
+      "createdTimestamp": 1760438214133
+    },
+    "tengu_snowfoux": {
+      "key": "tengu_snowfoux",
+      "id": "1427606114140160142",
+      "animated": false,
+      "mention": "<:tengu_snowfoux:1427606114140160142>",
+      "createdTimestamp": 1760438221250
+    },
+    "timelessicedofus": {
+      "key": "timelessicedofus",
+      "id": "1427601150613655613",
+      "animated": false,
+      "mention": "<:timelessicedofus:1427601150613655613>",
+      "createdTimestamp": 1760437037853
+    },
+    "troolibrius": {
+      "key": "troolibrius",
+      "id": "1428710272318705724",
+      "animated": false,
+      "mention": "<:troolibrius:1428710272318705724>",
+      "createdTimestamp": 1760701473074
+    },
+    "trooligophren": {
+      "key": "trooligophren",
+      "id": "1428710273958543360",
+      "animated": false,
+      "mention": "<:trooligophren:1428710273958543360>",
+      "createdTimestamp": 1760701473465
+    },
+    "troologram": {
+      "key": "troologram",
+      "id": "1428710275015639071",
+      "animated": false,
+      "mention": "<:troologram:1428710275015639071>",
+      "createdTimestamp": 1760701473717
+    },
+    "troololens": {
+      "key": "troololens",
+      "id": "1428710276345368667",
+      "animated": false,
+      "mention": "<:troololens:1428710276345368667>",
+      "createdTimestamp": 1760701474034
+    },
+    "turqouisedofus": {
+      "key": "turqouisedofus",
+      "id": "1427601123333636196",
+      "animated": false,
+      "mention": "<:turqouisedofus:1427601123333636196>",
+      "createdTimestamp": 1760437031349
+    },
+    "tynril": {
+      "key": "tynril",
+      "id": "1427606140245774396",
+      "animated": false,
+      "mention": "<:tynril:1427606140245774396>",
+      "createdTimestamp": 1760438227474
+    },
+    "ul_khan": {
+      "key": "ul_khan",
+      "id": "1427606165247754281",
+      "animated": false,
+      "mention": "<:ul_khan:1427606165247754281>",
+      "createdTimestamp": 1760438233435
+    },
+    "vitality": {
+      "key": "vitality",
+      "id": "1427600430397128874",
+      "animated": false,
+      "mention": "<:vitality:1427600430397128874>",
+      "createdTimestamp": 1760436866140
+    },
+    "vulbisdofus": {
+      "key": "vulbisdofus",
+      "id": "1427601137661644850",
+      "animated": false,
+      "mention": "<:vulbisdofus:1427601137661644850>",
+      "createdTimestamp": 1760437034765
+    },
+    "wa_wabbit": {
+      "key": "wa_wabbit",
+      "id": "1427606192380973066",
+      "animated": false,
+      "mention": "<:wa_wabbit:1427606192380973066>",
+      "createdTimestamp": 1760438239904
+    },
+    "wa_wobot": {
+      "key": "wa_wobot",
+      "id": "1427606214128177163",
+      "animated": false,
+      "mention": "<:wa_wobot:1427606214128177163>",
+      "createdTimestamp": 1760438245089
+    },
+    "waterdamage": {
+      "key": "waterdamage",
+      "id": "1427600032076529755",
+      "animated": false,
+      "mention": "<:waterdamage:1427600032076529755>",
+      "createdTimestamp": 1760436771173
+    },
+    "white_rat": {
+      "key": "white_rat",
+      "id": "1427606238220390511",
+      "animated": false,
+      "mention": "<:white_rat:1427606238220390511>",
+      "createdTimestamp": 1760438250833
+    },
+    "wisdom": {
+      "key": "wisdom",
+      "id": "1428323165490380801",
+      "animated": false,
+      "mention": "<:wisdom:1428323165490380801>",
+      "createdTimestamp": 1760609179614
+    },
+    "xelor": {
+      "key": "xelor",
+      "id": "1427597797971984485",
+      "animated": false,
+      "mention": "<:xelor:1427597797971984485>",
+      "createdTimestamp": 1760436238521
+    },
+    "xelor_female": {
+      "key": "xelor_female",
+      "id": "1427601686737850389",
+      "animated": false,
+      "mention": "<:xelor_female:1427601686737850389>",
+      "createdTimestamp": 1760437165675
+    },
+    "xelor_male": {
+      "key": "xelor_male",
+      "id": "1427601701992398878",
+      "animated": false,
+      "mention": "<:xelor_male:1427601701992398878>",
+      "createdTimestamp": 1760437169312
+    },
+    "zombrute": {
+      "key": "zombrute",
+      "id": "1427606275465678872",
+      "animated": false,
+      "mention": "<:zombrute:1427606275465678872>",
+      "createdTimestamp": 1760438259713
+    }
+  }
+}
