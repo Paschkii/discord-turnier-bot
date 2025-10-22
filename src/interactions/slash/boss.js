@@ -313,7 +313,7 @@ function humanizeIdentifier(id) {
     .split(/[_\s]+/)
     .filter(Boolean)
     .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
-    .join(' ');
+    .join('');
 }
 
 function capitalize(text) {
@@ -342,7 +342,7 @@ function formatNumber(value, { suffix = '', showSign = false } = {}) {
     const numberValue = typeof value === 'number' ? value : numeric;
     const signPrefix = showSign && numberValue > 0 ? '+' : '';
     const baseValue = `${signPrefix}${numberValue}`;
-    result = `${baseValue}${FIGURE_SPACE}`;
+    result = `${baseValue}`;
   } else {
     result = String(value);
   }
@@ -479,7 +479,7 @@ function buildDescription({ boss, dungeonLabel, dungeonNames, labels, level, loc
       EMOJI_LABELS.baseStats.movementPoints,
       coalesce(characteristics.movementPoints, characteristics.mp),
     ),
-  ].join(' ');
+  ].join(FIGURE_SPACE);
 
   const apParryValue = coalesce(
     characteristics.apParry,
@@ -569,7 +569,7 @@ function buildDescription({ boss, dungeonLabel, dungeonNames, labels, level, loc
       return acc;
     }, []);
 
-    return parts.length ? parts.join(' ') : null;
+    return parts.length ? parts.join('') : null;
   }).filter(Boolean);
 
   return {
