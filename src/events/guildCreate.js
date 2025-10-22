@@ -2,13 +2,14 @@ const { PermissionsBitField } = require('discord.js');
 
 const ROLE_NAME = 'Bot of Twelve';
 const REQUIRED_PERMISSIONS = new PermissionsBitField([
-  PermissionsBitField.Flags.ViewChannel,
-  PermissionsBitField.Flags.SendMessages,
-  PermissionsBitField.Flags.ManageRoles,
+  PermissionsBitField.Flags.AddReactions,
   PermissionsBitField.Flags.AttachFiles,
+  PermissionsBitField.Flags.EmbedLinks,
+  PermissionsBitField.Flags.ManageRoles,
+  PermissionsBitField.Flags.SendMessages,
   PermissionsBitField.Flags.UseExternalEmojis,
   PermissionsBitField.Flags.UseApplicationCommands,
-  PermissionsBitField.Flags.AddReactions
+  PermissionsBitField.Flags.ViewChannel,
 ]);
 
 async function ensureBotRole(guild) {
