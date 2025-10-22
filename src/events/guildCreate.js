@@ -1,4 +1,4 @@
-const { PermissionsBitField } = require('discord.js');
+const { PermissionsBitField, Colors } = require('discord.js');
 
 const ROLE_NAME = 'Bot of Twelve';
 const REQUIRED_PERMISSIONS = new PermissionsBitField([
@@ -25,7 +25,7 @@ async function ensureBotRole(guild) {
     if (!role) {
       role = await guild.roles.create({
         name: 'Bot of Twelve',
-        color: 'Red',
+        color: Colors.Red,
         permissions: REQUIRED_PERMISSIONS,
         reason: 'Automatisch vom Bot erstellt',
       });
