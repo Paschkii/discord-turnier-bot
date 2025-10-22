@@ -479,7 +479,7 @@ function buildDescription({ boss, dungeonLabel, dungeonNames, labels, level, loc
       EMOJI_LABELS.baseStats.movementPoints,
       coalesce(characteristics.movementPoints, characteristics.mp),
     ),
-  ].join(FIGURE_SPACE);
+  ].join(' ');
 
   const apParryValue = coalesce(
     characteristics.apParry,
@@ -569,7 +569,7 @@ function buildDescription({ boss, dungeonLabel, dungeonNames, labels, level, loc
       return acc;
     }, []);
 
-    return parts.length ? parts.join(FIGURE_SPACE) : null;
+    return parts.length ? parts.join(' ') : null;
   }).filter(Boolean);
 
   return {
