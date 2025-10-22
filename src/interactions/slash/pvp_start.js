@@ -22,7 +22,12 @@ async function execute(interaction) {
     await interaction.reply({ content: '❌ Dieser Befehl kann nur in einem Server verwendet werden.', flags: MessageFlags.Ephemeral });
     return;
   }
-  if (!interaction.member.permissions.has(PermissionsBitField.Flags.Administrator)) {
+  const permissions = interaction.member?.permissions;
+  const memberPermissions = permissions instanceof PermissionsBitField
+    ? permissions
+    : (permissions ? new PermissionsBitField(permissions) : null);
+
+  if (!memberPermissions?.has(PermissionsBitField.Flags.Administrator)) {
     await interaction.reply({ content: '⛔ Nur Admins können das Turnier starten.', flags: MessageFlags.Ephemeral });
     return;
   }

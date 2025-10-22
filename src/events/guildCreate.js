@@ -44,4 +44,4 @@ async function onGuildCreate(guild) {
   await ensureBotRole(guild);
 }
 
-module.exports = { onGuildCreate };
+module.exports = { onGuildCreate, ensureBotRole };
