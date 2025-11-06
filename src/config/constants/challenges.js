@@ -29,7 +29,7 @@ const CHALLENGES = [
         name: {
             de: 'Barbar',
             en: 'Barbaric',
-            es: '',
+            es: 'Bárbaro',
             fr: '',
             pt: ''
         },
@@ -45,7 +45,7 @@ const CHALLENGES = [
         name: {
             de: 'Blitzangriff',
             en: 'Blitzkrieg',
-            es: '',
+            es: 'Blitzkrieg',
             fr: '',
             pt: ''
         },
@@ -61,7 +61,7 @@ const CHALLENGES = [
         name: {
             de: 'Die Zeit läuft',
             en: 'Chrono',
-            es: '',
+            es: 'Crono',
             fr: '',
             pt: ''
         },
@@ -78,7 +78,7 @@ const CHALLENGES = [
         name: {
             de: 'Weiße Weste',
             en: 'Clean Hands',
-            es: '',
+            es: 'Manos Limpias',
             fr: 'Mains Propres',
             pt: ''
         },
@@ -126,8 +126,8 @@ const CHALLENGES = [
         name: {
             de: 'Duell',
             en: 'Duel',
-            es: '',
-            fr: '',
+            es: 'Duelo',
+            fr: 'Duel',
             pt: ''
         },
         description: {
@@ -142,7 +142,7 @@ const CHALLENGES = [
         name: {
             de: 'Duo',
             en: 'Duo',
-            es: 'Duo',
+            es: 'Dúo',
             fr: 'Duo',
             pt: 'Duo'
         },
@@ -227,8 +227,8 @@ const CHALLENGES = [
         name: {
             de: 'Zaghaft',
             en: 'Fainthearted',
-            es: '',
-            fr: '',
+            es: 'Pusilánime',
+            fr: 'Pusillanime',
             pt: ''
         },
         description: {
@@ -243,7 +243,7 @@ const CHALLENGES = [
         name: {
             de: 'Als Erstes', // Zielstrebigkeit
             en: 'First', // Unwilling Volunteer
-            es: '',
+            es: 'Primera Posición',
             fr: 'Premier',
             pt: ''
         },
@@ -285,7 +285,7 @@ const CHALLENGES = [
         name: {
             de: 'Freiheit',
             en: 'Freedom',
-            es: '',
+            es: 'Libertad',
             fr: '',
             pt: ''
         },
@@ -333,7 +333,7 @@ const CHALLENGES = [
         name: {
             de: 'Einsiedler',
             en: 'Hermit',
-            es: '',
+            es: 'Anacoreta',
             fr: 'Anachorète',
             pt: ''
         },
@@ -349,8 +349,8 @@ const CHALLENGES = [
         name: {
             de: 'Gewagt',
             en: 'Impertinence',
-            es: '',
-            fr: '',
+            es: 'Audaz',
+            fr: 'Hardi',
             pt: ''
         },
         description: {
@@ -381,7 +381,7 @@ const CHALLENGES = [
         name: {
             de: 'Bewegung, Bewegung',
             en: 'Keep Moving',
-            es: '',
+            es: 'Circulen',
             fr: '',
             pt: ''
         },
@@ -389,7 +389,7 @@ const CHALLENGES = [
             de: 'Während des Kampfes dürfen Gegnern keine BP entzogen werden.',
             en: '',
             es: '',
-            fr: '',
+            fr: 'Durant un combat, les MP des adversaires ne peuvent pas être déduits.',
             pt: ''
         }
     },
@@ -397,7 +397,7 @@ const CHALLENGES = [
         name: {
             de: 'Als Letztes', // Aufschub
             en: 'Last', // Reprieve
-            es: '',
+            es: 'Última Posicón',
             fr: 'Dernier',
             pt: ''
         },
@@ -431,7 +431,7 @@ const CHALLENGES = [
             de: '',
             en: 'The fighter(s) with the lowest level must finish off all enemies.',
             es: '',
-            fr: '',
+            fr: 'Le ou les combattants de niveau le plus bas doivent éliminer tous les ennemis.',
             pt: ''
         }
     },
@@ -440,14 +440,14 @@ const CHALLENGES = [
             de: '',
             en: 'Maniac',
             es: '',
-            fr: '',
+            fr: 'Maniaque',
             pt: ''
         },
         description: {
-            de: 'Enemies must be killed according to the descending order of their levels.',
-            en: '',
+            de: 'Gegner müssen entsprechend der absteigenden Reihenfolge ihrer Level besiegt werden.',
+            en: 'Enemies must be killed according to the descending order of their levels.',
             es: '',
-            fr: '',
+            fr: 'Les ennemis doivent être tués dans l\'ordre décroissant de leur niveau.',
             pt: ''
         }
     },
@@ -455,15 +455,15 @@ const CHALLENGES = [
         name: {
             de: 'Mystiker',
             en: 'Mystique',
-            es: '',
-            fr: '',
+            es: 'Mistico',
+            fr: 'Mystique',
             pt: ''
         },
         description: {
             de: 'Im gesamten Kampf dürfen nur Zaubersprüche verwendet werden.',
-            en: '',
+            en: 'For the duration of the fight you must only use spells.',
             es: '',
-            fr: '',
+            fr: 'Seuls les sorts magiques peuvent être utilisés durant toute la bataille.',
             pt: ''
         }
     },
@@ -471,64 +471,64 @@ const CHALLENGES = [
         name: {
             de: 'Nomade',
             en: 'Nomad',
-            es: '',
-            fr: '',
+            es: 'Nómada',
+            fr: 'Nomade',
             pt: ''
         },
         description: {
             de: 'Pro Runde müssen alle BP eingesetzt werden.',
             en: 'Allied fighters must use all of their Movement Points every turn for the duration of the fight.',
             es: '',
-            fr: '',
-            pt: ''
+            fr: 'Allier doit utiliser tous ses Points de Mouvement à chaque tour pendant toute la durée du combat.',
+            pt: 'Aliado deve usar todos os seus Pontos de Movimento a cada turno durante toda a luta.'
         }
     },
     {   id: 'no_rush',
         name: {
             de: 'Ohne Eile',
             en: 'No Rush',
-            es: '',
+            es: 'Sin Prisas',
             fr: 'Sans se presser',
             pt: ''
         },
         description: {
             de: 'Verwende nicht all deine BP.',
             en: 'Don\'t use all of your MP.',
-            es: '',
-            fr: '',
-            pt: ''
+            es: 'Non utilices todos tus PM.',
+            fr: 'Ne utilisez pas tous vos PM.',
+            pt: 'No utilize todos os seus PM.'
         }
     },
     {   id: 'quick_and_furious',
         name: {
             de: 'Schnell und Wütend',
             en: 'Quick and Furious',
-            es: '',
+            es: 'Rápido y furioso',
             fr: '',
             pt: ''
         },
         description: {
             de: 'Sobald ein Monster angegriffen wird, muss es innerhalb von drei Zügen besiegt werden.',
             en: 'As soon as a monster is attacked, it must be finished in three turns or less.',
-            es: '',
-            fr: '',
-            pt: ''
+            es: 'Dèspues de que un monstruo sea atacado, debe ser derrotado en tres turnos o menos.',
+            fr: 'Dès qu\'un monstre est attaqué, il doit être vaincu en trois tours ou moins.',
+            pt: 'Des pois de um monstro ser atacado, deve ser derrotado em três turnos ou menos.'
         }
     },
     {   id: 'scanty',
         name: {
             de: 'Wirtschaftlichkeit',
             en: 'Scanty',
-            es: '',
-            fr: '',
+            es: 'Económico',
+            fr: 'Économe',
             pt: ''
         },
         description: {
             de: 'Alle Charaktere dürfen im Verlauf des Kampfes jede Aktion nur insgesamt 1x durchführen.',
             en: 'Allied fighters must not use the same action more than once for the duration of the fight.',
-            es: '',
-            fr: '',
-            pt: ''
+            es: 'Todos los aliados no deben usar la misma acción más de una vez durante toda la pelea.',
+            fr: 'Tous les alliés ne doivent pas utiliser la même action plus d\'une fois pendant toute la durée du combat.',
+            pt: 'Todos os aliados não devem usar a mesma ação mais de uma vez durante toda a luta.'
         }
     },
     {   id: 'sharing',
@@ -540,75 +540,75 @@ const CHALLENGES = [
             pt: ''
         },
         description: {
-            de: '',
+            de: 'Jeder Verbündete muss während des Kampfes mindestens einen Gegner erledigt haben.',
             en: 'Each allied fighter must have finished off at least one enemy fighter during the fight.',
-            es: '',
-            fr: '',
-            pt: ''
+            es: 'Todos los aliados deben haber derrotado al menos a un enemigo durante la pelea.',
+            fr: 'Tous les alliés doivent avoir vaincu au moins un ennemi pendant le combat.',
+            pt: 'Todos os aliados devem ter derrotado pelo menos um inimigo durante a luta.'
         }
     },
     {   id: 'statue',
         name: {
             de: 'Statue',
             en: 'Statue',
-            es: '',
-            fr: '',
+            es: 'Estatua',
+            fr: 'Statue',
             pt: ''
         },
         description: {
             de: 'Jede Runde muss auf dem Anfangsfeld beendet werden und das während der gesamten Kampfzeit.',
             en: 'Allied fighters must finish every turn on the same cell that they started on, for the duration of the fight.',
-            es: '',
-            fr: '',
-            pt: ''
+            es: 'Alia de debe terminar cada turno en la misma casilla en la que comenzó, durante toda la pelea.',
+            fr: 'Allier doit terminer chaque tour sur la même case que celle où il a commencé, pendant toute la durée du combat.',
+            pt: 'Aliado deve terminar cada turno na mesma célula em que começou, durante toda a luta.'
         }
     },
     {   id: 'survivor',
         name: {
             de: 'Überlebender',
             en: 'Survivor',
-            es: '',
+            es: 'Superviviente',
             fr: '',
             pt: ''
         },
         description: {
             de: 'Kein Verbündeter darf sterben.',
             en: 'No ally must die.',
-            es: '',
-            fr: '',
-            pt: ''
+            es: 'Ningún aliado debe morir.',
+            fr: 'Alun allié ne doit mourir.',
+            pt: 'Nenhum aliado deve morrer.'
         }
     },
     {   id: 'tight',
         name: {
             de: 'Anhängsel',
             en: 'Tight',
-            es: '',
+            es: 'Pegajoso',
             fr: 'Collant',
             pt: ''
         },
         description: {
             de: 'Die eigene Runde muss auf dem benachbarten Feld eines Verbündeten beendet werden.',
             en: 'Allied fighters must end their turn on a cell adjacent to another allied fighter.',
-            es: '',
-            fr: '',
-            pt: ''
+            es: 'Finito su turno en una casilla adyacente a otro aliado.',
+            fr: 'Finir son tour sur une case adjacente à un autre allié.',
+            pt: 'Finir o seu turno numa célula adjacente a outro aliado.'
         }
     },
     {   id: 'time_flies',
         name: {
             de: 'Die Zeit rennt',
             en: 'Time Flies',
-            es: '',
-            fr: '',
+            es: 'El Tiempo Pasa',
+            fr: 'Temps qui court',
             pt: ''
         },
         description: {
             de: 'Während des Kampfes darf nicht versucht werden, Gegnern AP zu entziehen.',
-            en: '',
-            es: '',
-            fr: '',
-            pt: ''
+            en: 'Don\'t try to reduce enemies\' AP during the fight.',
+            es: 'Ne intentes reducir los PA de los enemigos durante el combate.',
+            fr: 'Ne pas tenter de réduire les PA des ennemis pendant le combat.',
+            pt: 'Ne tente reduzir os PA dos inimigos durante a luta.'
         }
     },
     {   id: 'two_for_the_price_of_one',
@@ -663,7 +663,7 @@ const CHALLENGES = [
         name: {
             de: 'Unberührbarkeit',
             en: 'Untouchable',
-            es: '',
+            es: 'Intocable',
             fr: '',
             pt: ''
         },
@@ -679,7 +679,7 @@ const CHALLENGES = [
         name: {
             de: 'Vielseitigkeit',
             en: 'Versatile',
-            es: '',
+            es: 'Versátil',
             fr: 'Versatile',
             pt: ''
         },
@@ -695,7 +695,7 @@ const CHALLENGES = [
         name: {
             de: 'Zombie',
             en: 'Zombie',
-            es: '',
+            es: 'Zombi',
             fr: 'Zombie',
             pt: ''
         },

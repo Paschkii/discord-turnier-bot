@@ -21,7 +21,7 @@ const DUNGEON_ROHDATEN = [
     dungeonname: {
       de: 'Belladonnas Schloss',
       en: 'Belladonna\'s Castle',
-      es: '',
+      es: 'Castillo de Belladona',
       fr: 'Chateau de Belladone',
       pt: '',
     },
@@ -39,7 +39,7 @@ const DUNGEON_ROHDATEN = [
     dungeonname: {
       de: 'Felder Dungeon',
       en: 'Field Dungeon',
-      es: '',
+      es: 'Mazmorra de los Campos',
       fr: 'Donjon des Champs',
       pt: '',
     },
@@ -57,7 +57,7 @@ const DUNGEON_ROHDATEN = [
     dungeonname: {
       de: 'Versandeter Dungeon',
       en: 'Sand Dungeon',
-      es: '',
+      es: 'Mazmorra Enarenada',
       fr: 'Donjon Ensablé',
       pt: '',
     },
@@ -75,7 +75,7 @@ const DUNGEON_ROHDATEN = [
     dungeonname: {
       de: 'Scarablatt Dungeon',
       en: 'Scaraleaf Dungeon',
-      es: '',
+      es: 'Mazmorra de los Escarahojas',
       fr: 'Donjon des Scarafeuilles',
       pt: '',
     },
@@ -93,7 +93,7 @@ const DUNGEON_ROHDATEN = [
     dungeonname: {
       de: 'Tofu Dungeon',
       en: 'Tofu House',
-      es: '',
+      es: 'Mazmorra de los Tofus',
       fr: 'Donjon des Tofus',
       pt: '',
     },
@@ -111,7 +111,7 @@ const DUNGEON_ROHDATEN = [
     dungeonname: {
       de: 'Geisterhaus',
       en: 'Haunted House',
-      es: '',
+      es: 'Mansión Encantada',
       fr: 'Maison Fantôme',
       pt: '',
     },
@@ -129,14 +129,14 @@ const DUNGEON_ROHDATEN = [
     dungeonname: {
       de: 'Dungeon der Skelette',
       en: 'Skeleton Dungeon',
-      es: '',
-      fr: '',
+      es: 'Mazmorra de los Esqueletos',
+      fr: 'Donjon des Squelettes',
       pt: '',
     },
     rooms: [
-      { id: 'room1', monsterID: ['', '', '', '']},
-      { id: 'room2', monsterID: ['', '', '', '']},
-      { id: 'room3', monsterID: ['', '', '', '']},
+      { id: 'room1', monsterID: ['primitive_chafer', 'rib(3)']},
+      { id: 'room2', monsterID: ['draugur_chafer', 'primitive_chafer', 'chafer_foot_soldier', 'chafer']},
+      { id: 'room3', monsterID: ['ronin_chafer', 'draugur_chafer(2)', 'primitive_chafer']},
     ],
     achievements: ['nomad', 'first', 'duo(20)'],
     bossID: 'ronin_chafer',
@@ -147,14 +147,14 @@ const DUNGEON_ROHDATEN = [
     dungeonname: {
       de: 'Fresssack Dungeon',
       en: 'Gobball Dungeon',
-      es: '',
-      fr: '',
+      es: 'Mazmorra de los Jalatós',
+      fr: 'Donjon des Bouftous',
       pt: '',
     },
     rooms: [
-      { id: 'room1', monsterID: ['', '', '', '']},
-      { id: 'room2', monsterID: ['', '', '', '']},
-      { id: 'room3', monsterID: ['', '', '', '']},
+      { id: 'room1', monsterID: ['black_gobbly', 'white_gobbly(2)', 'gobball']},
+      { id: 'room2', monsterID: ['gobball_war_chief', 'gobball(3)']},
+      { id: 'room3', monsterID: ['royal_gobball', 'gobball_war_chief', 'gobball(2)']},
     ],
     achievements: ['fainthearted', 'blitzkrieg', 'duo(20)'],
     bossID: 'royal_gobball',
@@ -165,7 +165,7 @@ const DUNGEON_ROHDATEN = [
     dungeonname: {
       de: 'Bwork Dungeon',
       en: 'Bwork Dungeon',
-      es: '',
+      es: 'Mazmorra de los Bworks',
       fr: 'Donjon des Bworks',
       pt: '',
     },
@@ -183,14 +183,14 @@ const DUNGEON_ROHDATEN = [
     dungeonname: {
       de: 'Dungeon der Schattenschmiede',
       en: 'Blacksmith Dungeon',
-      es: '',
-      fr: '',
+      es: 'Mazmorra de los Herreros',
+      fr: 'Donjon des Forgerons',
       pt: '',
     },
     rooms: [
-      { id: 'room1', monsterID: ['', '', '', '']},
-      { id: 'room2', monsterID: ['', '', '', '']},
-      { id: 'room3', monsterID: ['', '', '', '']},
+      { id: 'room1', monsterID: ['dark_baker(2)', 'rogue_clan_bandit(2)']},
+      { id: 'room2', monsterID: ['dark_smith', 'dark_miner', 'rogue_clan_bandit', 'dark_baker']},
+      { id: 'room3', monsterID: ['smiths_chest', 'dark_smith', 'dark_miner', 'dark_baker']},
     ],
     achievements: ['nomad', 'first', 'duo(20)'],
     bossID: 'smiths_chest',
@@ -201,14 +201,14 @@ const DUNGEON_ROHDATEN = [
     dungeonname: {
       de: 'Larven Dungeon',
       en: 'Larva Dungeon',
-      es: '',
-      fr: '',
+      es: 'Mazmorra de las Larvas',
+      fr: 'Donjon des Larves',
       pt: '',
     },
     rooms: [
-      { id: 'room1', monsterID: ['', '', '', '']},
-      { id: 'room2', monsterID: ['', '', '', '']},
-      { id: 'room3', monsterID: ['', '', '', '']},
+      { id: 'room1', monsterID: ['golden_larva', 'green_larva', 'blue_larva(2)']},
+      { id: 'room2', monsterID: ['golden_larva', 'orange_larva(2)', 'green_larva']},
+      { id: 'room3', monsterID: ['shin_larva', 'golden_larva', 'orange_larva', 'green_larva']},
     ],
     achievements: ['fainthearted', 'versatile', 'duo(20)'],
     bossID: 'shin_larva',
@@ -219,14 +219,14 @@ const DUNGEON_ROHDATEN = [
     dungeonname: {
       de: 'Aggrotte',
       en: 'Grotto Hesque',
-      es: '',
-      fr: '',
+      es: 'Gruta Grut\'Hesqua',
+      fr: 'La Grotte Hesque',
       pt: '',
     },
     rooms: [
-      { id: 'room1', monsterID: ['', '', '', '']},
-      { id: 'room2', monsterID: ['', '', '', '']},
-      { id: 'room3', monsterID: ['', '', '', '']},
+      { id: 'room1', monsterID: ['mahlibuh_palmflower', 'mojeeto_palmflower', 'passaoh_palmflower', 'kurasso_palmflower']},
+      { id: 'room2', monsterID: ['coralator(2)', 'kurasso_palmflower', 'kurasso_craberal']},
+      { id: 'room3', monsterID: ['great_coralator', 'coralator', 'mojeeto_palmflower', 'mahlibuh_palmflower']},
     ],
     achievements: ['impertinence', 'blitzkrieg', 'duo(20)'],
     bossID: 'great_coralator',
@@ -237,14 +237,14 @@ const DUNGEON_ROHDATEN = [
     dungeonname: {
       de: 'Nest des Kwackataus',
       en: 'Kwakwa\'s Nest',
-      es: '',
-      fr: '',
+      es: 'Nido de Kwoknan',
+      fr: 'Nid du Kwakwa',
       pt: '',
     },
     rooms: [
-      { id: 'room1', monsterID: ['', '', '', '']},
-      { id: 'room2', monsterID: ['', '', '', '']},
-      { id: 'room3', monsterID: ['', '', '', '']},
+      { id: 'room1', monsterID: ['earth_kwakere', 'ice_kwakere', 'earth_bwak', 'ice_bwak']},
+      { id: 'room2', monsterID: ['fire_kwakere', 'wind_kwakere', 'fire_bwak', 'wind_bwak']},
+      { id: 'room3', monsterID: ['kwakwa', 'earth_kwak', 'ice_kwak', 'wind_kwak']},
     ],
     achievements: ['zombie', 'clean hands', 'duo(20)'],
     bossID: 'kwakwa',
@@ -256,14 +256,14 @@ const DUNGEON_ROHDATEN = [
     dungeonname: {
       de: 'Schloss des Wa Wabbits',
       en: 'Wa Wabbit\'s Castle',
-      es: '',
-      fr: '',
+      es: 'Castillo del Wey Wabbit',
+      fr: 'Chateau du Wa Wabbit',
       pt: '',
     },
     rooms: [
-      { id: 'room1', monsterID: ['', '', '', '']},
-      { id: 'room2', monsterID: ['', '', '', '']},
-      { id: 'room3', monsterID: ['', '', '', '']},
+      { id: 'room1', monsterID: ['black_wabbit', 'wabbit', 'black_tiwabbit', 'tiwabbit']},
+      { id: 'room2', monsterID: ['wo_wabbit', 'black_wabbit', 'wabbit', 'tiwabbit_wosungwee']},
+      { id: 'room3', monsterID: ['wa_wabbit', 'wo_wabbit', 'grand_pa_wabbit(2)']},
     ],
     achievements: ['impertinence', 'blitzkrieg', 'duo(20)'],
     bossID: 'wa_wabbit',
@@ -274,17 +274,17 @@ const DUNGEON_ROHDATEN = [
     dungeonname: {
       de: 'Kanniball Dungeon',
       en: 'Kanniball Dungeon',
-      es: '',
-      fr: '',
+      es: 'Mazmorra Kanibola',
+      fr: 'Donjon Kanniboul',
       pt: '',
     },
     rooms: [
-      { id: 'room1', monsterID: ['', '', '', '']},
-      { id: 'room2', monsterID: ['', '', '', '']},
-      { id: 'room3', monsterID: ['', '', '', '']},
+      { id: 'room1', monsterID: ['kanniball_archer(2)', 'kanniball_jav(2)']},
+      { id: 'room2', monsterID: ['kanniball_sarbak(2)', 'kanniball_thiery', 'haloperi_doll']},
+      { id: 'room3', monsterID: ['kanniball_andchain', 'haloperi_doll', 'kanniball_sarbak', 'kanniball_jav']},
     ],
     achievements: ['zombie', 'first', 'duo(20)'],
-    bossID: 'kanniball_',
+    bossID: 'kanniball_andchain',
     dungeonLevel: 60
   },
   // Blop Dungeon
@@ -292,17 +292,20 @@ const DUNGEON_ROHDATEN = [
     dungeonname: {
       de: 'Blob Dungeon',
       en: 'Blop Dungeon',
-      es: '',
-      fr: '',
+      es: 'Mazmorra de los Blops',
+      fr: 'Donjon des Blops',
       pt: '',
     },
     rooms: [
-      { id: 'room1', monsterID: ['', '', '', '']},
-      { id: 'room2', monsterID: ['', '', '', '']},
-      { id: 'room3', monsterID: ['', '', '', '']},
+      { id: 'room1', monsterID: ['greedoblop', 'blopshroom', 'trunkiblop(2)']},
+      { id: 'room2', monsterID: ['greedoblop(2)', 'blopshroom', 'trunkiblop']},
+      { id: 'room3(coco)', monsterID: ['royal_coco_blop', 'blopshroom', 'trunkiblop', 'coco_blop']},
+      { id: 'room3(indigo)', monsterID: ['royal_indigo_blop', 'blopshroom', 'trunkiblop', 'indigo_blop']},
+      { id: 'room3(cherry)', monsterID: ['royal_morello_cherry_blop', 'blopshroom', 'trunkiblop', 'morello_cherry_blop']},
+      { id: 'room3(pippin)', monsterID: ['royal_pippin_blop', 'blopshroom', 'trunkiblop', 'pippin_blop']},
     ],
     achievements: ['duel', 'fainthearted', 'duo(20)'],
-    bossID: ['royal_morello_cherry_blop', 'royal_pippin_blop', 'royal_coco_blop', 'royal_indigo_blop'],
+    bossID: ['royal_coco_blop', 'royal_indigo_blop', 'royal_morello_cherry_blop', 'royal_pippin_blop'],
     dungeonLevel: 60
   },
   // The Jellith Dimension
@@ -310,14 +313,14 @@ const DUNGEON_ROHDATEN = [
     dungeonname: {
       de: 'Gelee-Dungeon',
       en: 'The Jellith Dimension',
-      es: '',
-      fr: '',
+      es: 'Gelexta Dimensión',
+      fr: 'Gelaxième Dimension',
       pt: '',
     },
     rooms: [
-      { id: 'room1', monsterID: ['', '', '', '']},
-      { id: 'room2', monsterID: ['', '', '', '']},
-      { id: 'room3', monsterID: ['', '', '', '']},
+      { id: 'room1', monsterID: ['lemon_jelly', 'strawberry_jelly', 'blue_jelly', 'mint_jelly']},
+      { id: 'room2', monsterID: ['lemon_jelly(2)', 'strawberry_jelly', 'mint_jelly']},
+      { id: 'room3', monsterID: ['royal_blue_jelly', 'royal_mint_jelly', 'royal_lemon_jelly', 'royal_strawberry_jelly']},
     ],
     achievements: ['duel', 'tight', 'duo(20)'],
     bossID: ['royal_blue_jelly', 'royal_mint_jelly', 'royal_lemon_jelly', 'royal_strawberry_jelly'],
@@ -328,14 +331,14 @@ const DUNGEON_ROHDATEN = [
     dungeonname: {
       de: 'Brumen Tinctorias Laboratorium',
       en: 'Brumen Tinctoria\'s LaboRATory',
-      es: '',
-      fr: '',
+      es: 'Laboratorio de Brumen Tinctorias',
+      fr: 'Laboratoire de Brumen Tinctorias',
       pt: '',
     },
     rooms: [
-      { id: 'room1', monsterID: ['', '', '', '']},
-      { id: 'room2', monsterID: ['', '', '', '']},
-      { id: 'room3', monsterID: ['', '', '', '']},
+      { id: 'room1', monsterID: ['reinforced_scurvion', 'rabid_ouginak', 'lab_kolerat', 'terrestrial_crobak']},
+      { id: 'room2', monsterID: ['reinforced_scurvion', 'rabid_ouginak(2)', 'lab_kolerat']},
+      { id: 'room3', monsterID: ['nelween', 'reinforced_scurvion', 'rabid_ouginak', 'lab_kolerat']},
     ],
     achievements: ['last', 'hermit', 'duo(20)'],
     bossID: 'nelween',
@@ -346,14 +349,14 @@ const DUNGEON_ROHDATEN = [
     dungeonname: {
       de: 'Bilge von Otomaïs Arche',
       en: 'Hold of Otomai\'s Ark',
-      es: '',
-      fr: '',
+      es: 'Cala del Arca de Otomai',
+      fr: 'Arche d\'Otomaï',
       pt: '',
     },
     rooms: [
-      { id: 'room1', monsterID: ['', '', '', '']},
-      { id: 'room2', monsterID: ['', '', '', '']},
-      { id: 'room3', monsterID: ['', '', '', '']},
+      { id: 'room1', monsterID: ['ze_flib', 'canon_dorf', 'hazwonarm', 'boomba']},
+      { id: 'room2', monsterID: ['ze_flib', 'barbrossa', 'sparo', 'hazwonarm']},
+      { id: 'room3', monsterID: ['gourlo_the_terrible', 'sparo(2)', 'barbrossa']},
     ],
     achievements: ['first', 'scanty', 'duo(20)'],
     bossID: 'gourlo_the_terrible',
@@ -364,14 +367,14 @@ const DUNGEON_ROHDATEN = [
     dungeonname: {
       de: 'Krachler Dungeon',
       en: 'Crackler Dungeon',
-      es: '',
-      fr: '',
+      es: 'Mazmorra de los Crujidores',
+      fr: 'Donjon des Craqueleurs',
       pt: '',
     },
     rooms: [
-      { id: 'room1', monsterID: ['', '', '', '']},
-      { id: 'room2', monsterID: ['', '', '', '']},
-      { id: 'room3', monsterID: ['', '', '', '']},
+      { id: 'room1', monsterID: ['crackler(2)', 'crackrock']},
+      { id: 'room2', monsterID: ['plain_crackler(2)', 'crackler(2)']},
+      { id: 'room3', monsterID: ['legendary_crackler', 'plain_crackler', 'crackler', 'crackrock']},
     ],
     achievements: ['fainthearted', 'first', 'duo(20)'],
     bossID: 'legendary_crackler',
@@ -382,14 +385,14 @@ const DUNGEON_ROHDATEN = [
     dungeonname: {
       de: 'Wa Wabbit Bau',
       en: 'Wa Wabbit\'s Warren',
-      es: '',
-      fr: '',
+      es: 'Madriguera del Wey Wabbit',
+      fr: 'Terrier du Wa Wabbit',
       pt: '',
     },
     rooms: [
-      { id: 'room1', monsterID: ['', '', '', '']},
-      { id: 'room2', monsterID: ['', '', '', '']},
-      { id: 'room3', monsterID: ['', '', '', '']},
+      { id: 'room1', monsterID: ['black_wo_wabbit', 'wobot(2)', 'tiwobot']},
+      { id: 'room2', monsterID: ['whitepaw_wabbit(2)', 'wobot', 'black_wo_wabbit']},
+      { id: 'room3', monsterID: ['wa_wobot', 'black_wo_wabbit', 'wobot_wosungwee', 'tiwobot']},
     ],
     achievements: ['clean hands', 'blitzkrieg', 'duo(20)'],
     bossID: 'wa_wobot',
@@ -400,14 +403,14 @@ const DUNGEON_ROHDATEN = [
     dungeonname: {
       de: 'Astaknyden Dungeon',
       en: 'Treechnid Dungeon',
-      es: '',
-      fr: '',
+      es: 'Mazmorra de los Abráknidos',
+      fr: 'Donjon des Abraknydes',
       pt: '',
     },
     rooms: [
-      { id: 'room1', monsterID: ['', '', '', '']},
-      { id: 'room2', monsterID: ['', '', '', '']},
-      { id: 'room3', monsterID: ['', '', '', '']},
+      { id: 'room1', monsterID: ['dark_treechnid(2)', 'arachnotron', 'venerable_treechnid']},
+      { id: 'room2', monsterID: ['dark_treechnee', 'arachnotron', 'venerable_treechnid(2)']},
+      { id: 'room3', monsterID: ['ancestral_treechnid', 'dark_treechnee', 'dark_treechnid', 'arachnotron']},
     ],
     achievements: ['nomad', 'first', 'Duo(20)'],
     bossID: 'ancestral_treechnid',
@@ -418,14 +421,14 @@ const DUNGEON_ROHDATEN = [
     dungeonname: {
       de: 'Dickschädel-Staudamm',
       en: 'Hard-Head Dam',
-      es: '',
-      fr: '',
+      es: 'Presa Cabera Dura',
+      fr: 'Barrage Dure-Tête',
       pt: '',
     },
     rooms: [
-      { id: 'room1', monsterID: ['', '', '', '']},
-      { id: 'room2', monsterID: ['', '', '', '']},
-      { id: 'room3', monsterID: ['', '', '', '']},
+      { id: 'room1', monsterID: ['breakrock_knight', 'yobbomark_knight', 'knockarock', 'yobreaker']},
+      { id: 'room2', monsterID: ['yobbomark_knight', 'yobreaker', 'knockarock', 'leatheraxer']},
+      { id: 'room3', monsterID: ['selim_quartz', 'leatheraxer', 'yobreaker(2)']},
     ],
     achievements: ['versatile', 'clean hands', 'duo(20)'],
     bossID: 'selim_quartz',
@@ -436,14 +439,14 @@ const DUNGEON_ROHDATEN = [
     dungeonname: {
       de: 'Unterschlupf des Schweinedrachens',
       en: 'Dragon Pig\'s Den',
-      es: '',
-      fr: '',
+      es: 'Antro del Dragocerdo',
+      fr: 'Antre du Dragon Cochon',
       pt: '',
     },
     rooms: [
-      { id: 'room1', monsterID: ['', '', '', '']},
-      { id: 'room2', monsterID: ['', '', '', '']},
-      { id: 'room3', monsterID: ['', '', '', '']},
+      { id: 'room1', monsterID: ['dorgan_ation', 'blodz_uker', 'farles_pig', 'pignolia']},
+      { id: 'room2', monsterID: ['blodz_uker', 'farles_pig', 'pignolia(2)']},
+      { id: 'room3', monsterID: ['dragonpig', 'dorgan_ation', 'blodz_uker', 'farles_pig']},
     ],
     achievements: ['impertinence', 'versatile', 'duo(20)'],
     bossID: 'dragonpig',
@@ -454,14 +457,14 @@ const DUNGEON_ROHDATEN = [
     dungeonname: {
       de: 'Höhle des Kuhlosses',
       en: 'Koolich Cavern',
-      es: '',
-      fr: '',
+      es: 'Cueva del Trankitronko',
+      fr: 'Caverne du Koulosse',
       pt: '',
     },
     rooms: [
-      { id: 'room1', monsterID: ['', '', '', '']},
-      { id: 'room2', monsterID: ['', '', '', '']},
-      { id: 'room3', monsterID: ['', '', '', '']},
+      { id: 'room1', monsterID: ['mama_koalak', 'drakoalak', 'brown_warko', 'dok_alako']},
+      { id: 'room2', monsterID: ['cave_gobball(2)', 'gobkool(2)']},
+      { id: 'room3', monsterID: ['koolich', 'cave_gobball(3)']},
     ],
     achievements: ['zombie', 'clean_hands', 'duo(20)'],
     bossID: 'koolich',
@@ -472,14 +475,12 @@ const DUNGEON_ROHDATEN = [
     dungeonname: {
       de: 'Dungeon von Moon',
       en: 'Moon Dungeon',
-      es: '',
-      fr: '',
+      es: 'Mazmorra de Moon',
+      fr: 'Donjon de Moon',
       pt: '',
     },
     rooms: [
-      { id: 'room1', monsterID: ['', '', '', '']},
-      { id: 'room2', monsterID: ['', '', '', '']},
-      { id: 'room3', monsterID: ['', '', '', '']},
+      { id: 'room1', monsterID: ['moon']},
     ],
     achievements: ['versatile', 'statue', 'duo(20)'],
     bossID: 'moon',
@@ -490,14 +491,14 @@ const DUNGEON_ROHDATEN = [
     dungeonname: {
       de: 'Canidae Dungeon',
       en: 'Canidae Dungeon',
-      es: '',
-      fr: '',
+      es: 'Mazmorra de los Cánidos',
+      fr: 'Donjon des Canidés',
       pt: '',
     },
     rooms: [
-      { id: 'room1', monsterID: ['', '', '', '']},
-      { id: 'room2', monsterID: ['', '', '', '']},
-      { id: 'room3', monsterID: ['', '', '', '']},
+      { id: 'room1', monsterID: ['mature_kaniger(2)', 'ouginak(2)']},
+      { id: 'room2', monsterID: ['boowolf', 'miliboowolf', 'mature_kaniger', 'ouginak']},
+      { id: 'room3', monsterID: ['moowolf', 'boowolf', 'miliboowolf', 'mature_kaniger']},
     ],
     achievements: ['first', 'impertinence', 'duo(20)'],
     bossID: 'moowolf',
@@ -509,14 +510,14 @@ const DUNGEON_ROHDATEN = [
     dungeonname: {
       de: 'Shilf-Engpass',
       en: 'Bherb\'s Gully',
-      es: '',
-      fr: '',
+      es: 'Boca del Rasgabola',
+      fr: 'Goulet du Rasboul',
       pt: '',
     },
     rooms: [
-      { id: 'room1', monsterID: ['', '', '', '']},
-      { id: 'room2', monsterID: ['', '', '', '']},
-      { id: 'room3', monsterID: ['', '', '', '']},
+      { id: 'room1', monsterID: ['kilibriss', 'polished_crackler(2)', 'polished_crackrock']},
+      { id: 'room2', monsterID: ['kilibriss', 'kido', 'plain_pikoko', 'mufafah']},
+      { id: 'room3', monsterID: ['silf', 'plain_pikoko', 'kilibriss', 'kido']},
     ],
     achievements: ['first', 'time_flies', 'duo(20)'],
     bossID: 'silf',
@@ -527,14 +528,14 @@ const DUNGEON_ROHDATEN = [
     dungeonname: {
       de: 'Meister Rabs Bibliothek',
       en: 'Lord Crow\'s Library',
-      es: '',
-      fr: '',
+      es: 'Biblioteca del Maestro Cuerbok',
+      fr: 'Bibliothèque du Maître Corbac',
       pt: '',
     },
     rooms: [
-      { id: 'room1', monsterID: ['', '', '', '']},
-      { id: 'room2', monsterID: ['', '', '', '']},
-      { id: 'room3', monsterID: ['', '', '', '']},
+      { id: 'room1', monsterID: ['horace_the_tamed_crobak', 'kapotie_the_drinker', 'tamed_crobak', 'drinker']},
+      { id: 'room2', monsterID: ['foxo_the_crowfox', 'horace_the_tamed_crobak', 'crowfox', 'tamed_crobak']},
+      { id: 'room3', monsterID: ['lord_crow', 'foxo_the_crowfox', 'horace_the_tamed_crobak', 'kapotie_the_drinker']},
     ],
     achievements: ['tight', 'first', 'duo(20)'],
     bossID: 'lord_crow',
@@ -545,14 +546,14 @@ const DUNGEON_ROHDATEN = [
     dungeonname: {
       de: 'Rattendungeon von Bonta',
       en: 'Bonta Rat Dungeon',
-      es: '',
-      fr: '',
+      es: 'Mazmorra de las Ratas de Bonta',
+      fr: 'Donjon des Rats de Bonta',
       pt: '',
     },
     rooms: [
-      { id: 'room1', monsterID: ['', '', '', '']},
-      { id: 'room2', monsterID: ['', '', '', '']},
-      { id: 'room3', monsterID: ['', '', '', '']},
+      { id: 'room1', monsterID: ['rat_rah(2)', 'rat_basher(2)']},
+      { id: 'room2', monsterID: ['rat_pakk(2)', 'rat_rah', 'rat_basher']},
+      { id: 'room3', monsterID: ['white_rat', 'rat_pakk', 'rat_rah', 'rat_basher']},
     ],
     achievements: ['first', 'impertinence', 'duo(20)'],
     bossID: 'white_rat',
@@ -563,14 +564,14 @@ const DUNGEON_ROHDATEN = [
     dungeonname: {
       de: 'Rattendungeon von Brakmar',
       en: 'Brakmar Rat Dungeon',
-      es: '',
-      fr: '',
+      es: 'Mazmorra de las Ratas de Brakmar',
+      fr: 'Donjon des Rats de Brâkmar',
       pt: '',
     },
     rooms: [
-      { id: 'room1', monsterID: ['', '', '', '']},
-      { id: 'room2', monsterID: ['', '', '', '']},
-      { id: 'room3', monsterID: ['', '', '', '']},
+      { id: 'room1', monsterID: ['rat_suenami(2)', 'rat_bag(2)']},
+      { id: 'room2', monsterID: ['rat_tchet(2)', 'rat_suenami', 'rat_bag']},
+      { id: 'room3', monsterID: ['black_rat', 'rat_tchet', 'rat_suenami', 'rat_bag']},
     ],
     achievements: ['impertinence', 'blitzkrieg', 'Duo(20)'],
     bossID: 'black_rat',
@@ -581,14 +582,12 @@ const DUNGEON_ROHDATEN = [
     dungeonname: {
       de: 'Unterschlupf des königlichen Multiblobs',
       en: 'Rainbow Blop Lair',
-      es: '',
-      fr: '',
+      es: 'Antro del Blop Multicolor Real',
+      fr: 'Antre du Blop Multicolore Royal',
       pt: '',
     },
     rooms: [
-      { id: 'room1', monsterID: ['', '', '', '']},
-      { id: 'room2', monsterID: ['', '', '', '']},
-      { id: 'room3', monsterID: ['', '', '', '']},
+      { id: 'room1', monsterID: ['royal_rainbow_blop', 'royal_coco_blop', 'royal_indigo_blop', 'royal_morello_cherry_blop', 'royal_pippin_blop']},
     ],
     achievements: ['impertinence', 'duel', 'duo(20)'],
     bossID: ['royal_rainbow_blop', 'royal_coco_blop', 'royal_indigo_blop', 'royal_morello_cherry_blop', 'royal_pippin_blop'],
@@ -597,16 +596,16 @@ const DUNGEON_ROHDATEN = [
   // Inner Labyrinth of the Minotoror
   { dungeonID: 'labyrinth_minotoror',
     dungeonname: {
-      de: 'Herz des Labyrinths des Minotorors',
-      en: 'Inner Labyrinth of the Minotoror',
-      es: '',
-      fr: '',
+      de: 'Labyrinth des Minotorors',
+      en: 'Labyrinth of the Minotoror',
+      es: 'Laberinto del Minotauroro',
+      fr: 'Labyrinthe du Minotoror',
       pt: '',
     },
     rooms: [
-      { id: 'room1', monsterID: ['', '', '', '']},
-      { id: 'room2', monsterID: ['', '', '', '']},
-      { id: 'room3', monsterID: ['', '', '', '']},
+      { id: 'room1', monsterID: ['quetsnakiatl', 'minokid', 'scaratos', 'deminoball']},
+      { id: 'room2', monsterID: ['manderisha', 'scaratos', 'minoskito', 'mumminotor']},
+      { id: 'room3', monsterID: ['minotoror', 'minokid', 'deminoball', 'mumminotor']},
     ],
     achievements: ['hermit', 'clean_hands', 'duo(20)'],
     bossID: 'minotoror',
@@ -617,14 +616,14 @@ const DUNGEON_ROHDATEN = [
     dungeonname: {
       de: 'Gewächshaus des Königlichen Fressmuts',
       en: 'Royal Mastogob\'s Greenhouse',
-      es: '',
-      fr: '',
+      es: 'Invernáculo de Jalamut Real',
+      fr: 'Serre du Royalmouth',
       pt: '',
     },
     rooms: [
-      { id: 'room1', monsterID: ['', '', '', '']},
-      { id: 'room2', monsterID: ['', '', '', '']},
-      { id: 'room3', monsterID: ['', '', '', '']},
+      { id: 'room1', monsterID: ['mastogob(2)', 'mastogobbly(2)']},
+      { id: 'room2', monsterID: ['venerable_mastogob', 'mastogob_warrior', 'mastogob', 'mastogobbly']},
+      { id: 'room3', monsterID: ['royal_mastogob', 'venerable_mastogob', 'mastogob_warrior', 'mastogob']},
     ],
     achievements: ['clean_hands', 'first', 'duo(20)'],
     bossID: 'royal_mastogob',
@@ -635,14 +634,14 @@ const DUNGEON_ROHDATEN = [
     dungeonname: {
       de: 'Königlicher Tofustall',
       en: 'Royal Tofu House',
-      es: '',
-      fr: '',
+      es: 'Tofullinero Real',
+      fr: 'Tofulailler Royal',
       pt: '',
     },
     rooms: [
-      { id: 'room1', monsterID: ['', '', '', '']},
-      { id: 'room2', monsterID: ['', '', '', '']},
-      { id: 'room3', monsterID: ['', '', '', '']},
+      { id: 'room1', monsterID: ['blastofu(2)', 'ugly_tofu(2)']},
+      { id: 'room2', monsterID: ['podgy_tofu(2)', 'tofubine', 'tofuzmo']},
+      { id: 'room3', monsterID: ['royal_tofu', 'podgy_tofu', 'tofubine', 'blastofu']},
     ],
     achievements: ['last', 'statue', 'duo(20)'],
     bossID: 'royal_tofu',
@@ -653,14 +652,14 @@ const DUNGEON_ROHDATEN = [
     dungeonname: {
       de: 'Drachei-Dungeon',
       en: 'Dreggon Dungeon',
-      es: '',
-      fr: '',
+      es: 'Mazmorra de los Dragohuevos',
+      fr: 'Sanctuaire des Dragoeufs',
       pt: '',
     },
     rooms: [
-      { id: 'room1', monsterID: ['', '', '', '']},
-      { id: 'room2', monsterID: ['', '', '', '']},
-      { id: 'room3', monsterID: ['', '', '', '']},
+      { id: 'room1', monsterID: ['dragostess', 'flying_dreggon(2)', 'dreggon_warrior']},
+      { id: 'room2', monsterID: ['alert_white_dragoss', 'alert_golden_dragoss', 'alert_sapphire_dragoss', 'dreggon_warrior']},
+      { id: 'room3', monsterID: ['crocabulia', 'flying_dreggon', 'dreggon_warrior', 'dragostess']},
     ],
     achievements: ['tight', 'blitzkrieg', 'duo(20)'],
     bossID: 'crocabulia',
@@ -671,14 +670,14 @@ const DUNGEON_ROHDATEN = [
     dungeonname: {
       de: 'Unterschlupf des Skeunks',
       en: 'Skeunk\'s Hideout',
-      es: '',
-      fr: '',
+      es: 'Guarida de Skonk',
+      fr: 'Repaire de Skeunk',
       pt: '',
     },
     rooms: [
-      { id: 'room1', monsterID: ['', '', '', '']},
-      { id: 'room2', monsterID: ['', '', '', '']},
-      { id: 'room3', monsterID: ['', '', '', '']},
+      { id: 'room1', monsterID: ['ruby', 'purple_warko', 'reapalak', 'koalak_warrior']},
+      { id: 'room2', monsterID: ['sapphira', 'starving_doll', 'bloody_koalak', 'koalak_warrior']},
+      { id: 'room3', monsterID: ['skeunk', 'diamantine', 'emeraude', 'starving_doll']},
     ],
     achievements: ['statue', 'blitzkrieg', 'duo(26)'],
     bossID: 'skeunk',
@@ -689,7 +688,7 @@ const DUNGEON_ROHDATEN = [
     dungeonname: {
       de: 'Erzfelser Heiligtum',
       en: 'Minerock Sanctuary',
-      es: '',
+      es: 'Santuario Minerroca',
       fr: '',
       pt: '',
     },
@@ -707,7 +706,7 @@ const DUNGEON_ROHDATEN = [
     dungeonname: {
       de: 'Kanigroulas Unterschlupf',
       en: 'Kanigrula\'s Hideout',
-      es: '',
+      es: 'Guarida de Kanigrula',
       fr: '',
       pt: '',
     },
@@ -725,7 +724,7 @@ const DUNGEON_ROHDATEN = [
     dungeonname: {
       de: 'Weich Eich Dungeon',
       en: 'Soft Oak Dungeon',
-      es: '',
+      es: 'Mazmorra del Roble Blando',
       fr: '',
       pt: '',
     },
@@ -743,7 +742,7 @@ const DUNGEON_ROHDATEN = [
     dungeonname: {
       de: 'Tynrils Laboratorium',
       en: 'The Tynril Lab',
-      es: '',
+      es: 'Laboratorio del Tynril',
       fr: '',
       pt: '',
     },
@@ -766,7 +765,7 @@ const DUNGEON_ROHDATEN = [
     dungeonname: {
       de: 'King Ping Grotte',
       en: 'Royal Pingwin\'s Excavation',
-      es: '',
+      es: 'Excavación de Morsagūino Real',
       fr: '',
       pt: '',
     },
@@ -784,7 +783,7 @@ const DUNGEON_ROHDATEN = [
     dungeonname: {
       de: 'Grabhügel des langen Schlafs',
       en: 'Long Slumber\'s Barrow',
-      es: '',
+      es: 'Túmulo del Largo Sueño',
       fr: '',
       pt: '',
     },
@@ -802,7 +801,7 @@ const DUNGEON_ROHDATEN = [
     dungeonname: {
       de: 'Wrack der Black Rogg',
       en: 'The Wreck of the Hesperus',
-      es: '',
+      es: 'Restos del Roca Negra',
       fr: '',
       pt: '',
     },
@@ -820,7 +819,7 @@ const DUNGEON_ROHDATEN = [
     dungeonname: {
       de: 'Rattendungeon des Schlosses von Amakna',
       en: 'Amakna Castle Rat Dungeon',
-      es: '',
+      es: 'Mazmorra de las Ratas del Castillo de Amakna',
       fr: '',
       pt: '',
     },
@@ -843,7 +842,7 @@ const DUNGEON_ROHDATEN = [
     dungeonname: {
       de: 'Kimbo Blätterdach',
       en: 'Kimbo\'s Canopy',
-      es: '',
+      es: 'Canopea del Kimbo',
       fr: '',
       pt: '',
     },
@@ -861,7 +860,7 @@ const DUNGEON_ROHDATEN = [
     dungeonname: {
       de: 'Minotot Raum',
       en: 'Minotot Room',
-      es: '',
+      es: 'Sala del Minotot',
       fr: '',
       pt: '',
     },
@@ -879,7 +878,7 @@ const DUNGEON_ROHDATEN = [
     dungeonname: {
       de: 'Grabgewölbe der Obsidianter',
       en: 'The Obsidemon\'s Hypogeum',
-      es: '',
+      es: 'Hipogeo del Obsidiantre',
       fr: '',
       pt: '',
     },
@@ -897,7 +896,7 @@ const DUNGEON_ROHDATEN = [
     dungeonname: {
       de: 'Die überflutete Kapelle',
       en: 'The Flooded Chapel',
-      es: '',
+      es: 'Capilla Inundada',
       fr: '',
       pt: '',
     },
@@ -915,7 +914,7 @@ const DUNGEON_ROHDATEN = [
     dungeonname: {
       de: 'Eisfux Höhlen',
       en: 'Snowfoux Caverns',
-      es: '',
+      es: 'Cavernas Gélifux',
       fr: '',
       pt: '',
     },
@@ -933,7 +932,7 @@ const DUNGEON_ROHDATEN = [
     dungeonname: {
       de: 'Tal der Herrin über die Gewässer',
       en: 'Valley of the Lady of the water',
-      es: '',
+      es: 'Valle de la Dama del Agua',
       fr: '',
       pt: '',
     },
@@ -951,7 +950,7 @@ const DUNGEON_ROHDATEN = [
     dungeonname: {
       de: 'Pyramide von König Skai',
       en: 'Scale King\'s Pyramid',
-      es: '',
+      es: 'Pirámide del Rey Eskamoso',
       fr: '',
       pt: '',
     },
@@ -969,7 +968,7 @@ const DUNGEON_ROHDATEN = [
     dungeonname: {
       de: 'Unterschlupf des Korrianders',
       en: 'Korriander\'s Lair',
-      es: '',
+      es: 'Antro del Cil',
       fr: '',
       pt: '',
     },
@@ -987,7 +986,7 @@ const DUNGEON_ROHDATEN = [
     dungeonname: {
       de: 'Höhle des Riesenkrakamors',
       en: 'Lair of the Giant Kralove',
-      es: '',
+      es: 'Antro del Kralamar Gigante',
       fr: '',
       pt: '',
     },
@@ -1005,7 +1004,7 @@ const DUNGEON_ROHDATEN = [
     dungeonname: {
       de: 'Bworker Dungeon',
       en: 'Bworker Dungeon',
-      es: '',
+      es: 'Mazmorra del Bworker',
       fr: '',
       pt: '',
     },
@@ -1023,7 +1022,7 @@ const DUNGEON_ROHDATEN = [
     dungeonname: {
       de: 'Pilz-Dungeon',
       en: 'Fungus Dungeon',
-      es: '',
+      es: 'Mazmorra de los Fongos',
       fr: '',
       pt: '',
     },
@@ -1041,7 +1040,7 @@ const DUNGEON_ROHDATEN = [
     dungeonname: {
       de: 'Tanukouï Sans Werkstatt',
       en: 'Tanukoui San\'s Workshop',
-      es: '',
+      es: 'Taller de Tanukui San',
       fr: '',
       pt: '',
     },
@@ -1059,7 +1058,7 @@ const DUNGEON_ROHDATEN = [
     dungeonname: {
       de: 'Höhlen des Daxolossus',
       en: 'Kolosso\'s Cavern',
-      es: '',
+      es: 'Cavernas de Tejossus',
       fr: '',
       pt: '',
     },
@@ -1080,7 +1079,7 @@ const DUNGEON_ROHDATEN = [
     dungeonname: {
       de: 'Feuerwirrk-Fabrik',
       en: 'Fouxwork Factory',
-      es: '',
+      es: 'Fábrica de Fux Artificiales',
       fr: '',
       pt: '',
     },
@@ -1098,7 +1097,7 @@ const DUNGEON_ROHDATEN = [
     dungeonname: {
       de: 'Fujis Höhle',
       en: 'Foster Caverns',
-      es: '',
+      es: 'Cavernas Gélifux',
       fr: '',
       pt: '',
     },
@@ -1116,7 +1115,7 @@ const DUNGEON_ROHDATEN = [
     dungeonname: {
       de: 'Mine von Arkal',
       en: 'Sakai Mine',
-      es: '',
+      es: 'Mazmorra de la Mina de Kéfriho',
       fr: '',
       pt: '',
     },
@@ -1134,7 +1133,7 @@ const DUNGEON_ROHDATEN = [
     dungeonname: {
       de: 'Vorraum des Barbärenstockes',
       en: 'Bearbarian Antichamber',
-      es: '',
+      es: 'Antecámara de los Golosotes',
       fr: '',
       pt: '',
     },
@@ -1152,7 +1151,7 @@ const DUNGEON_ROHDATEN = [
     dungeonname: {
       de: 'Dojo des Windes',
       en: 'Wind Dojo',
-      es: '',
+      es: 'Dojo del Viento',
       fr: '',
       pt: '',
     },
@@ -1171,7 +1170,7 @@ const DUNGEON_ROHDATEN = [
     dungeonname: {
       de: 'Missiz Frizz Kaltschmiede',
       en: 'Missiz Frizz\'s Frostforge',
-      es: '',
+      es: 'Forjafria de Mizz Frizz',
       fr: '',
       pt: '',
     },
@@ -1189,7 +1188,7 @@ const DUNGEON_ROHDATEN = [
     dungeonname: {
       de: 'Sylarghs Transport',
       en: 'Sylargh\'s Carrier',
-      es: '',
+      es: 'Transportador de Sylargh',
       fr: '',
       pt: '',
     },
@@ -1207,7 +1206,7 @@ const DUNGEON_ROHDATEN = [
     dungeonname: {
       de: 'Die privaten Gesellschaftszimmer R.Klimms',
       en: 'Klime\'s Private Suite',
-      es: '',
+      es: 'Sala Privada de Klim',
       fr: '',
       pt: '',
     },
@@ -1225,7 +1224,7 @@ const DUNGEON_ROHDATEN = [
     dungeonname: {
       de: 'Nilezas Laboratorium',
       en: 'Nileza\'s Laboratory',
-      es: '',
+      es: 'Laboratorio de Nileza',
       fr: '',
       pt: '',
     },
@@ -1243,7 +1242,7 @@ const DUNGEON_ROHDATEN = [
     dungeonname: {
       de: 'Graf Primzahls Dungeon',
       en: 'The Count\'s Dungeon',
-      es: '',
+      es: 'Mazmorra del Conde Kontatrás',
       fr: '',
       pt: '',
     },
@@ -1261,7 +1260,7 @@ const DUNGEON_ROHDATEN = [
     dungeonname: {
       de: 'Damadryas Bambushain',
       en: 'Damadrya\'s Bamboo Grove',
-      es: '',
+      es: 'Bambuseria de Kodámade',
       fr: '',
       pt: '',
     },
@@ -1279,7 +1278,7 @@ const DUNGEON_ROHDATEN = [
     dungeonname: {
       de: 'Heiligtum der verirrten Seelen',
       en: 'Lost Soul\'s Sanctuary',
-      es: '',
+      es: 'Santuario de las almas perdidas',
       fr: '',
       pt: '',
     },
@@ -1298,14 +1297,12 @@ const DUNGEON_ROHDATEN = [
     dungeonname: {
       de: 'Insel der Ersteigung(25)',
       en: 'Ascension Island (25)',
-      es: '',
+      es: 'Isla de la Ascension (25)',
       fr: '',
       pt: '',
     },
     rooms: [
       { id: 'room1', monsterID: ['', '', '', '']},
-      { id: 'room2', monsterID: ['', '', '', '']},
-      { id: 'room3', monsterID: ['', '', '', '']},
     ],
     achievements: [''],
     bossID: 'mucane',
@@ -1315,14 +1312,12 @@ const DUNGEON_ROHDATEN = [
     dungeonname: {
       de: 'Insel der Ersteigung(50)',
       en: 'Ascension Island (50)',
-      es: '',
+      es: 'Isla de la Ascension (50)',
       fr: '',
       pt: '',
     },
     rooms: [
       { id: 'room1', monsterID: ['', '', '', '']},
-      { id: 'room2', monsterID: ['', '', '', '']},
-      { id: 'room3', monsterID: ['', '', '', '']},
     ],
     achievements: [''],
     bossID: 'ul_khan',
@@ -1332,14 +1327,12 @@ const DUNGEON_ROHDATEN = [
     dungeonname: {
       de: 'Insel der Ersteigung(75)',
       en: 'Ascension Island (75)',
-      es: '',
+      es: 'Isla de la Ascension (75)',
       fr: '',
       pt: '',
     },
     rooms: [
       { id: 'room1', monsterID: ['', '', '', '']},
-      { id: 'room2', monsterID: ['', '', '', '']},
-      { id: 'room3', monsterID: ['', '', '', '']},
     ],
     achievements: [''],
     bossID: 'mucane',
@@ -1349,14 +1342,12 @@ const DUNGEON_ROHDATEN = [
     dungeonname: {
       de: 'Insel der Ersteigung(100)',
       en: 'Ascension Island (100)',
-      es: '',
+      es: 'Isla de la Ascension (100)',
       fr: '',
       pt: '',
     },
     rooms: [
       { id: 'room1', monsterID: ['', '', '', '']},
-      { id: 'room2', monsterID: ['', '', '', '']},
-      { id: 'room3', monsterID: ['', '', '', '']},
     ],
     achievements: [''],
     bossID: 'ul_khan',
@@ -1368,7 +1359,7 @@ const DUNGEON_ROHDATEN = [
     dungeonname: {
       de: 'Schlafwandeln im Krater Minus',
       en: 'Sleepwalking Pinki Crater',
-      es: '',
+      es: 'Cráter Mino Sonámbulo',
       fr: '',
       pt: '',
     },
@@ -1386,7 +1377,7 @@ const DUNGEON_ROHDATEN = [
     dungeonname: {
       de: 'Erschöpft im Krater Minus',
       en: 'Exhausted Pinki Crater',
-      es: '',
+      es: 'Cráter Mino Agotado',
       fr: '',
       pt: '',
     },
@@ -1404,7 +1395,7 @@ const DUNGEON_ROHDATEN = [
     dungeonname: {
       de: 'Müde im Krater Minus',
       en: 'Tired Pinki Crater',
-      es: '',
+      es: 'Cráter Mino Cansado',
       fr: '',
       pt: '',
     },
@@ -1421,7 +1412,7 @@ const DUNGEON_ROHDATEN = [
     dungeonname: {
       de: 'Krater Minus',
       en: 'Pinki Crater',
-      es: '',
+      es: 'Cráter Mino',
       fr: '',
       pt: '',
     },
@@ -1435,11 +1426,11 @@ const DUNGEON_ROHDATEN = [
     dungeonLevel: 190
   },
   // -- Horrob Isle --
-  { dungeonID: '',
+  { dungeonID: 'caustic_rock_cove',
     dungeonname: {
-      de: '',
-      en: '',
-      es: '',
+      de: 'Knochenfelsenbucht',
+      en: 'Caustic Rock Cove',
+      es: 'Cala del Peñón Quemazón',
       fr: '',
       pt: '',
     },
@@ -1448,15 +1439,15 @@ const DUNGEON_ROHDATEN = [
       { id: 'room2', monsterID: ['', '', '', '']},
       { id: 'room3', monsterID: ['', '', '', '']},
     ],
-    achievements: ['', '', 'duo()'],
+    achievements: ['versatile', 'clean_hands', 'chrono(10)', 'duo(20)'],
     bossID: 'bone_shot',
-    dungeonLevel: 0
+    dungeonLevel: 60
   },
-  { dungeonID: '',
+  { dungeonID: 'al_howins_vegetable_patch',
     dungeonname: {
-      de: '',
-      en: '',
-      es: '',
+      de: 'Höll O\'Feens Gemüsegarten',
+      en: 'Al Howin\'s Vegetable Patch',
+      es: 'Huerto de Haluin',
       fr: '',
       pt: '',
     },
@@ -1465,15 +1456,16 @@ const DUNGEON_ROHDATEN = [
       { id: 'room2', monsterID: ['', '', '', '']},
       { id: 'room3', monsterID: ['', '', '', '']},
     ],
-    achievements: ['', '', 'duo()'],
-    bossID: 'al_howing',
-    dungeonLevel: 0
+    achievements: ['chrono(9)', 'impertinence', 'last', 'duo(20)'],
+    bossID: 'al_howin',
+    dungeonLevel: 90
   },
-  { dungeonID: '',
+  // Ghoulden Palace
+  { dungeonID: 'ghoulden_palace',
     dungeonname: {
-      de: '',
-      en: '',
-      es: '',
+      de: 'Ghuldener Palast',
+      en: 'Ghoulden Palace',
+      es: 'Ghulden Palace',
       fr: '',
       pt: '',
     },
@@ -1482,16 +1474,16 @@ const DUNGEON_ROHDATEN = [
       { id: 'room2', monsterID: ['', '', '', '']},
       { id: 'room3', monsterID: ['', '', '', '']},
     ],
-    achievements: ['', '', 'duo()'],
+    achievements: ['survivor', 'fainthearted', 'chrono(19)', 'duo(40)'],
     bossID: 'staff_deleghoul',
-    dungeonLevel: 0
+    dungeonLevel: 190
   },
-  // -- Kwismas --
-  { dungeonID: '',
+  // Kwismas Dungeon
+  { dungeonID: 'kwismas_dungeon',
     dungeonname: {
-      de: '',
-      en: '',
-      es: '',
+      de: 'Weißnachtsdungeon',
+      en: 'Kwismas Dungeon',
+      es: 'Mazmorra de Nawidad',
       fr: '',
       pt: '',
     },
@@ -1500,15 +1492,16 @@ const DUNGEON_ROHDATEN = [
       { id: 'room2', monsterID: ['', '', '', '']},
       { id: 'room3', monsterID: ['', '', '', '']},
     ],
-    achievements: ['', '', 'duo()'],
-    bossID: 'itzing',
-    dungeonLevel: 0
+    achievements: ['chrono(9)', 'impertinence', 'blitzkrieg', 'duo(20)'],
+    bossID: 'itzting',
+    dungeonLevel: 50
   },
-  { dungeonID: '',
+  // Kwismas Cavern
+  { dungeonID: 'kwismas_cavern',
     dungeonname: {
-      de: '',
-      en: '',
-      es: '',
+      de: 'Weißnachtshöhle',
+      en: 'Kwismas Cavern',
+      es: 'Cueva de Nawidad',
       fr: '',
       pt: '',
     },
@@ -1517,15 +1510,16 @@ const DUNGEON_ROHDATEN = [
       { id: 'room2', monsterID: ['', '', '', '']},
       { id: 'room3', monsterID: ['', '', '', '']},
     ],
-    achievements: ['', '', 'duo()'],
+    achievements: ['chrono(9)', 'first', 'statue', 'duo(20)'],
     bossID: 'father_kwismas',
-    dungeonLevel: 0
+    dungeonLevel: 110
   },
-  { dungeonID: '',
+  // Father Kwismas's House
+  { dungeonID: 'father_kwismass_house',
     dungeonname: {
-      de: '',
-      en: '',
-      es: '',
+      de: 'Haus des Weißnachtsmannes',
+      en: 'Father Kwismas\'s House',
+      es: 'Casa de Chanta Klaus',
       fr: '',
       pt: '',
     },
@@ -1534,9 +1528,196 @@ const DUNGEON_ROHDATEN = [
       { id: 'room2', monsterID: ['', '', '', '']},
       { id: 'room3', monsterID: ['', '', '', '']},
     ],
-    achievements: ['', '', 'duo()'],
+    achievements: ['chrono(9)', 'nomad', 'impertinence', 'duo(20)'],
     bossID: 'father_whupper',
-    dungeonLevel: 0
+    dungeonLevel: 180
+  },
+  // === Raid ===
+  // Dark Vlad's Domain
+  { dungeonID: 'dark_vlads_domain',
+    dungeonname: {
+      de: 'Dark Vlads Reich',
+      en: 'Dark Vlad\'s Domain',
+      es: 'Dominios de Dark Vlad',
+      fr: '',
+      pt: '',
+    },
+    rooms: [
+      { id: 'room1', monsterID: ['', '', '', '', '']},
+    ],
+    achievements: [
+      'just_in_time', 'blood_for_blood', 'unshakable_sentinel', 'in_full_sight',
+      'a_countless_multitude', 'in_the_shadows', 'tribal_madness', 'woody_impediments',
+      'horde_and_disorder', 'cards_in_hand', 'on_the_edge', 'experimental_alchemy',
+      'infernal_machine', 'dark_locks_dark_thoughts', 'unslakeable_thirst',
+    ],
+    // Just in Time/Genau rechtzeitg/Justo a tiempo: Xelor
+    // Blood for Blood/Blut für Blut/Sangre por sangre: Sacrier
+    // Unshakable Sentinel/Unerschütterlicher Wächter/Centinela Inquebrantable: Feca
+    // In Full Sight/Vor aller Augen/En tu propia barba: Enutrof
+    // A Countless Multitude/Unübersehbare Menge/Multitud incontable: Osamodas
+    // In the Shadows/Im Schatten/en las sombras: Sram
+    // Tribal Madness/Stammeswahnsinn/Locura Tribal: Masqueraider
+    // Woody Impediments/Hözerne Fesseln/Trabas Boscosas: Sadida
+    // Horde and Disorder/Hordnung und Unhordnung/Horda y desorden: Iop
+    // Cards in Hand/Alle Karten in der Hand/Cartas en mano: Ecaflip
+    // On the Edge/Auf Messers Schneide/Por poco: Cra
+    // Experimental Alchemy/Experimentelle Alchemie/Alquimia experimental: Eniripsa
+    // Infernal Machine/Höllenmaschine/Máquina infernal: Foggernaut
+    // Dark Locks, Dark Thoughts/Lunte und finstere Gedanken/Mecha y pensamientos oscuros: Rogue
+    // Unslakeable Thirst/Unstillbarer Durst/Sed insaciable: Pandawa
+    bossID: 'dark_vlad',
+    dungeonLevel: 190
+  },
+  // Belladonna's Domain
+  { dungeonID: 'belladonnas_domain',
+    dungeonname: {
+      de: 'Belladonnas Domäne',
+      en: 'Belladonna\'s Domain',
+      es: 'Dominios de Belladona',
+      fr: '',
+      pt: '',
+    },
+    rooms: [
+      { id: 'room1', monsterID: ['', '', '', '', '']},
+    ],
+    achievements: [
+      'just_in_time', 'blood_for_blood', 'unshakable_sentinel', 'in_full_sight',
+      'a_countless_multitude', 'in_the_shadows', 'tribal_madness', 'woody_impediments',
+      'horde_and_disorder', 'cards_in_hand', 'on_the_edge', 'experimental_alchemy',
+      'infernal_machine', 'dark_locks_dark_thoughts', 'unslakeable_thirst',
+    ],
+    bossID: 'exalted_belladonna',
+    dungeonLevel: 190
+  },
+  // === Lairs ===
+  { dungeonID: 'piwi_lair',
+    dungeonname: {
+      de: 'Piepmatz Unterschlupf',
+      en: 'Piwi Lair',
+      es: 'Guarida de los Píos',
+      fr: '',
+      pt: '',
+    },
+    rooms: [
+      { id: 'room1', monsterID: ['dark_piwi']},
+      { id: 'room2', monsterID: ['celestial_piwi']},
+    ],
+    achievements: ['quick', 'efficient', 'fast'], //es: Veloz, Expeditivo, Fulgurante
+    bossID: ['dark_piwi', 'celestial_piwi'],
+    dungeonLevel: 20
+  },
+  { dungeonID: 'plop_lair',
+    dungeonname: {
+      de: 'Suptoko Unterschlupf',
+      en: 'Plop Lair',
+      es: 'Guarida de los Pulps',
+      fr: '',
+      pt: '',
+    },
+    rooms: [
+      { id: 'room1', monsterID: ['azure_plop']},
+      { id: 'room2', monsterID: ['crimson_plop']},
+    ],
+    achievements: ['quick', 'efficient', 'fast'],
+    bossID: ['azure_plop', 'crimson_plop'],
+    dungeonLevel: 30
+  },
+  { dungeonID: 'tofu_lair',
+    dungeonname: {
+      de: 'Tofu Unterschlupf',
+      en: 'Tofu lair',
+      es: 'Guarida de los Tofus',
+      fr: '',
+      pt: '',
+    },
+    rooms: [
+      { id: 'room1', monsterID: ['dark_tofu']},
+      { id: 'room2', monsterID: ['celestial_tofu']},
+    ],
+    achievements: ['quick', 'efficient', 'fast'],
+    bossID: ['dark_tofu', 'celestial_tofu'],
+    dungeonLevel: 40
+  },
+  { dungeonID: 'gobball_lair',
+    dungeonname: {
+      de: 'Fresssack Unterschlupf',
+      en: 'Gobball lair',
+      es: 'Guarida de los Jalatós',
+      fr: '',
+      pt: '',
+    },
+    rooms: [
+      { id: 'room1', monsterID: ['dark_gobball']},
+      { id: 'room2', monsterID: ['celestial_gobball']},
+    ],
+    achievements: ['quick', 'efficient', 'fast'],
+    bossID: ['dark_gobball', 'celestial_gobball'],
+    dungeonLevel: 50
+  },
+  { dungeonID: 'boar_lair',
+    dungeonname: {
+      de: 'Keiler Unterschlupf',
+      en: 'Boar Lair',
+      es: 'Guarida de los Jabalies',
+      fr: '',
+      pt: '',
+    },
+    rooms: [
+      { id: 'room1', monsterID: ['dark_boar']},
+      { id: 'room2', monsterID: ['celestial_boar']},
+    ],
+    achievements: ['quick', 'efficient', 'fast'],
+    bossID: ['dark_boar', 'celestial_boar'],
+    dungeonLevel: 60
+  },
+  { dungeonID: 'arachnee_lair',
+    dungeonname: {
+      de: 'Arachneen Unterschlupf',
+      en: 'Arachnee Lair',
+      es: 'Guarida de las Araknas',
+      fr: '',
+      pt: '',
+    },
+    rooms: [
+      { id: 'room1', monsterID: ['dark_arachnee']},
+      { id: 'room2', monsterID: ['celestial_arachnee']},
+    ],
+    achievements: ['quick', 'efficient', 'fast'],
+    bossID: ['dark_arachnee', 'celestial_arachnee'],
+    dungeonLevel: 70
+  },
+  { dungeonID: 'eltneg_trools_lair',
+    dungeonname: {
+      de: 'Unterschlupf der Litneg Trools',
+      en: 'Eltneg Trools\'s Lair',
+      es: 'Guarida de los Trools de Litneg',
+      fr: '',
+      pt: '',
+    },
+    rooms: [
+      { id: 'room1', monsterID: ['troologram']},
+      { id: 'room2', monsterID: ['troololens']},
+    ],
+    achievements: ['quick', 'efficient', 'fast'],
+    bossID: ['troologram', 'troololens'],
+    dungeonLevel: 80
+  },
+  { dungeonID: 'chapel_trools_lair',
+    dungeonname: {
+      de: 'Unterschlupf der Kapellen Trools',
+      en: 'Chapel Trools\'s Lair',
+      es: 'Guarida de los Trools de la Capilla',
+      fr: '',
+      pt: '',
+    },
+    rooms: [
+      { id: 'room1', monsterID: ['trooligophren']},
+      { id: 'room2', monsterID: ['troolibrius']},
+    ],
+    achievements: ['quick', 'efficient', 'fast'],
+    bossID: ['trooligophren', 'troolibrius'],
+    dungeonLevel: 90
   },
 ];
 
