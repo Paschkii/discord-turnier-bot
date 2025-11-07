@@ -67,6 +67,54 @@ const commands = {
     name: 'help',
     description: 'Show the help page with all commands',
   },
+  job: {
+    name: 'job',
+    description: 'Manage professions and levels',
+    subcommands: {
+      list: {
+        name: 'list',
+        description: 'Show the list of available professions',
+      },
+      set: {
+        name: 'set',
+        description: 'Register or update your profession and level',
+        options: {
+          profession: {
+            name: 'profession',
+            description: 'Choose a profession (autocomplete)',
+          },
+          level: {
+            name: 'level',
+            description: 'Level between 1 and 100 (optional)',
+          },
+        },
+      },
+      user: {
+        name: 'user',
+        description: 'Show the registered professions of a member',
+        options: {
+          target: {
+            name: 'user',
+            description: 'Select the member to inspect',
+          },
+        },
+      },
+      profession: {
+        name: 'profession',
+        description: 'List members registered for a profession',
+        options: {
+          profession: {
+            name: 'profession',
+            description: 'Choose a profession (autocomplete)',
+          },
+        },
+      },
+      help: {
+        name: 'help',
+        description: 'Show information about the job command',
+      },
+    },
+  },
   regeln: {
     name: 'rules',
     description: 'Show the tournament rules',

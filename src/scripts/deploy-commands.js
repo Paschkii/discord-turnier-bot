@@ -57,7 +57,7 @@ const buildLocalizations = (commandKey, path) => {
   return localizations;
 };
 
-const buildChoiceLocalizations = (commandKey, optionKey, choiceKey) => {
+const buildChoiceLocalizations = (commandKey, optionPath, choiceKey) => {
   const localizations = {};
   for (const [languageKey, commandSet] of Object.entries(languages)) {
     if (languageKey === DEFAULT_LANGUAGE) continue;
@@ -65,7 +65,7 @@ const buildChoiceLocalizations = (commandKey, optionKey, choiceKey) => {
     if (!locales) continue;
     const value = getNestedValue(
       commandSet?.commands?.[commandKey],
-      ['options', optionKey, 'choices', choiceKey, 'name'],
+      [...optionPath, 'choices', choiceKey, 'name'],
     );
     if (!value) continue;
     const localeList = Array.isArray(locales) ? locales : [locales];
@@ -98,31 +98,31 @@ const applyCommandLocalization = (builder, commandKey) => {
   return builder;
 };
 // Option mit Lokalisierungen versehen
-const applyOptionLocalization = (option, commandKey, optionKey) => {
-  const optionData = commandsEn[commandKey]?.options?.[optionKey];
+const applyOptionLocalizationAtPath = (option, commandKey, optionPath) => {
+  const optionData = getNestedValue(commandsEn[commandKey], optionPath);
   if (!optionData) {
-    throw new Error(`Unknown option ${optionKey} for command ${commandKey}`);
+    throw new Error(`Unknown option path ${optionPath.join('.')} for command ${commandKey}`);
   }
   option
     .setName(optionData.name)
     .setDescription(optionData.description);
 
-  applyLocalizations(option, 'setNameLocalizations', buildLocalizations(commandKey, ['options', optionKey, 'name']));
-  applyLocalizations(option, 'setDescriptionLocalizations', buildLocalizations(commandKey, ['options', optionKey, 'description']));
+  applyLocalizations(option, 'setNameLocalizations', buildLocalizations(commandKey, [...optionPath, 'name']));
+  applyLocalizations(option, 'setDescriptionLocalizations', buildLocalizations(commandKey, [...optionPath, 'description']));
 
   if (optionData.choices) {
     const choiceEntries = Object.entries(optionData.choices);
     if (!choiceEntries.length) {
-      throw new Error(`Command ${commandKey} option ${optionKey} defines choices but none were provided`);
+      throw new Error(`Command ${commandKey} option ${optionPath.join('.')} defines choices but none were provided`);
     }
 
     const choices = choiceEntries.map(([choiceKey, choiceData]) => {
       if (!choiceData || !choiceData.name) {
-        throw new Error(`Invalid choice ${choiceKey} for option ${optionKey} in command ${commandKey}`);
+        throw new Error(`Invalid choice ${choiceKey} for option ${optionPath.join('.')} in command ${commandKey}`);
       }
 
       const value = choiceData.value ?? choiceKey;
-      const nameLocalizations = buildChoiceLocalizations(commandKey, optionKey, choiceKey);
+      const nameLocalizations = buildChoiceLocalizations(commandKey, optionPath, choiceKey);
 
       const choice = { name: choiceData.name, value };
       if (Object.keys(nameLocalizations).length > 0) {
@@ -136,6 +136,25 @@ const applyOptionLocalization = (option, commandKey, optionKey) => {
   }
 
   return option;
+};
+
+const applyOptionLocalization = (option, commandKey, optionKey) =>
+  applyOptionLocalizationAtPath(option, commandKey, ['options', optionKey]);
+
+const applySubcommandLocalization = (subcommand, commandKey, subcommandKey) => {
+  const subcommandData = commandsEn[commandKey]?.subcommands?.[subcommandKey];
+  if (!subcommandData) {
+    throw new Error(`Unknown subcommand ${subcommandKey} for command ${commandKey}`);
+  }
+
+  subcommand
+    .setName(subcommandData.name)
+    .setDescription(subcommandData.description);
+
+  applyLocalizations(subcommand, 'setNameLocalizations', buildLocalizations(commandKey, ['subcommands', subcommandKey, 'name']));
+  applyLocalizations(subcommand, 'setDescriptionLocalizations', buildLocalizations(commandKey, ['subcommands', subcommandKey, 'description']));
+
+  return subcommand;
 };
 
 // kleine Helper-Funktion: macht den Command "Guild-only"
@@ -206,6 +225,43 @@ const commands = [
   // /regeln
   guildOnly(
     applyCommandLocalization(new SlashCommandBuilder(), 'regeln')
+  ),
+  // /job
+  guildOnly(
+    applyCommandLocalization(new SlashCommandBuilder(), 'job')
+      .addSubcommand(sub =>
+        applySubcommandLocalization(sub, 'job', 'list')
+      )
+      .addSubcommand(sub =>
+        applySubcommandLocalization(sub, 'job', 'set')
+          .addStringOption(opt =>
+            applyOptionLocalizationAtPath(opt.setAutocomplete(true), 'job', ['subcommands', 'set', 'options', 'profession'])
+              .setRequired(true)
+          )
+          .addIntegerOption(opt =>
+            applyOptionLocalizationAtPath(opt, 'job', ['subcommands', 'set', 'options', 'level'])
+              .setRequired(false)
+              .setMinValue(1)
+              .setMaxValue(100)
+          )
+      )
+      .addSubcommand(sub =>
+        applySubcommandLocalization(sub, 'job', 'user')
+          .addUserOption(opt =>
+            applyOptionLocalizationAtPath(opt, 'job', ['subcommands', 'user', 'options', 'target'])
+              .setRequired(true)
+          )
+      )
+      .addSubcommand(sub =>
+        applySubcommandLocalization(sub, 'job', 'profession')
+          .addStringOption(opt =>
+            applyOptionLocalizationAtPath(opt.setAutocomplete(true), 'job', ['subcommands', 'profession', 'options', 'profession'])
+              .setRequired(true)
+          )
+      )
+      .addSubcommand(sub =>
+        applySubcommandLocalization(sub, 'job', 'help')
+      )
   ),
   // /pvp_info
   guildOnly(

@@ -15,6 +15,7 @@ const hilfe               = require('./hilfe');
 const language            = require('./language');
 const guild_name          = require('./guild_name');
 const hof_loeschen        = require('./hof_loeschen');
+const job                 = require('./job');
 const pott_setzen         = require('./pott_setzen');
 const pvp_info            = require('./pvp_info');
 const pvp_next            = require('./pvp_next');
@@ -45,6 +46,7 @@ const map = new Map([
   ['language', language],
   ['guild_name', guild_name],
   ['hof_loeschen', hof_loeschen],
+  ['job', job],
   ['pott_setzen', pott_setzen],
   ['regeln', regeln],
   ['registrieren', registrieren],

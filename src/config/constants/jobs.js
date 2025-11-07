@@ -32,4 +32,13 @@ const jobList = [
     { id: 'tailor' },
     { id: 'wandcarver' },
     { id: 'wandcarvmagus' },
-]
+];
+
+const JOB_IDS = jobList.map((job) => job.id);
+const JOB_ID_SET = new Set(JOB_IDS);
+
+module.exports = {
+  JOB_ID_SET,
+  JOB_IDS,
+  jobList,
+};

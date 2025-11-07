@@ -1,4 +1,3 @@
-
 // === Imports ===
 // Handhabt Autocomplete-Interaktionen
 const map = new Map([
@@ -6,6 +5,7 @@ const map = new Map([
   ['boss', require('./boss')],
   ['dungeon', require('./dungeon')],
   ['ergebnis_setzen', require('./ergebnis_setzen')],
+  ['job', require('./job')],
   ['pvp_start', require('./pvp_start')],
 ]);
 // === Getter ===

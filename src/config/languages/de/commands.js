@@ -67,6 +67,54 @@ const commands = {
     name: 'hilfe',
     description: 'Zeigt die Hilfeseite mit allen Befehlen',
   },
+  job: {
+    name: 'job',
+    description: 'Verwalte Berufe und Level',
+    subcommands: {
+      list: {
+        name: 'list',
+        description: 'Zeigt alle verfügbaren Berufe',
+      },
+      set: {
+        name: 'set',
+        description: 'Trage deinen Beruf und dein Level ein',
+        options: {
+          profession: {
+            name: 'profession',
+            description: 'Beruf auswählen (Autocomplete)',
+          },
+          level: {
+            name: 'level',
+            description: 'Level zwischen 1 und 100 (optional)',
+          },
+        },
+      },
+      user: {
+        name: 'user',
+        description: 'Zeigt die eingetragenen Berufe eines Mitglieds',
+        options: {
+          target: {
+            name: 'user',
+            description: 'Mitglied auswählen',
+          },
+        },
+      },
+      profession: {
+        name: 'profession',
+        description: 'Listet alle Mitglieder für einen Beruf auf',
+        options: {
+          profession: {
+            name: 'profession',
+            description: 'Beruf auswählen (Autocomplete)',
+          },
+        },
+      },
+      help: {
+        name: 'help',
+        description: 'Zeigt Infos zum Job-Befehl',
+      },
+    },
+  },
   regeln: {
     name: 'regeln',
     description: 'Zeigt die Turnierregeln',
