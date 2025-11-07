@@ -2991,7 +2991,12 @@ const BOSSE_LISTE = [
     characteristics: {
       healthPoints: 1200,
       actionPoints: 10,
-      movementPoints: 5
+      movementPoints: 5,
+      apParry: 40,
+      mpParry: 40,
+      lock: 40,
+      criticalResistance: 0,
+      pushbackResistance: 0
     },
     resistances: {
       neutral_percent: -10,
@@ -2999,6 +3004,11 @@ const BOSSE_LISTE = [
       fire_percent: 15,
       water_percent: 0,
       air_percent: 12,
+      neutral_fixed: 0,
+      earth_fixed: 0,
+      fire_fixed: 0,
+      water_fixed: 0,
+      air_fixed: 0
     }
   },
   // Al Howin
@@ -3018,7 +3028,12 @@ const BOSSE_LISTE = [
     characteristics: {
       healthPoints: 3300,
       actionPoints: 12,
-      movementPoints: 5
+      movementPoints: 5,
+      apParry: 33,
+      mpParry: 33,
+      lock: 33,
+      criticalResistance: 0,
+      pushbackResistance: 0
     },
     resistances: {
       neutral_percent: 13,
@@ -3026,6 +3041,11 @@ const BOSSE_LISTE = [
       fire_percent: 0,
       water_percent: 18,
       air_percent: 5,
+      neutral_fixed: 0,
+      earth_fixed: 0,
+      fire_fixed: 0,
+      water_fixed: 0,
+      air_fixed: 0
     }
   },
   // Staff Deleghoul
@@ -3045,7 +3065,12 @@ const BOSSE_LISTE = [
     characteristics: {
       healthPoints: 18000,
       actionPoints: 20,
-      movementPoints: 5
+      movementPoints: 5,
+      apParry: 80,
+      mpParry: 80,
+      lock: 100,
+      criticalResistance: 0,
+      pushbackResistance: 400
     },
     resistances: {
       neutral_percent: 130,
@@ -3053,6 +3078,11 @@ const BOSSE_LISTE = [
       fire_percent: 130,
       water_percent: 130,
       air_percent: 130,
+      neutral_fixed: 0,
+      earth_fixed: 0,
+      fire_fixed: 0,
+      water_fixed: 0,
+      air_fixed: 0
     }
   },
   // -- Kwismas --

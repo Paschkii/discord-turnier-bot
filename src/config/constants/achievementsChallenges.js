@@ -16,6 +16,7 @@ const ACHIEVEMENT_KEYS = Object.freeze([
   'quickAndFurious',
   'scanty',
   'statue',
+  'survivor',
   'tight',
   'timeFlies',
   'untouchable',

@@ -1,9 +1,10 @@
 const { ICON_BASE } = require('./shared');
 
 const MONSTER_LISTE = [
-    // === Albuera Archipelago ===
-    // ---
-    // --- Belladonna Island --- DUNGEON
+    // === Albuera Creatures ===
+    // --- Beach Creatures ---
+        // Aggressive Merkaptan
+    // --- Belladonna Creatures --- DUNGEON
     // Clobberstone
     { id: 'clobberstone',
         name: {
@@ -13,23 +14,7 @@ const MONSTER_LISTE = [
             fr: 'Caillatak',
             pt: '',
         },
-        imageUrl: `${ICON_BASE}/`,
-        level: 11-15,
-        region: '',
-        family: '',
-        homeDungeonID: '',
-        characteristics: {
-            vitality: 0,
-            actionPoints: 0,
-            movementPoints: 0
-        },
-        resistances: {
-            neutral: 0,
-            earth: 0,
-            fire: 0,
-            water: 0,
-            air: 0
-        }
+        imageUrl: `${ICON_BASE}/monster-icons/albuera-creatures/belladonnas-creatures/clobberstone.png`,
     },
     // Dolomanus
     { id: 'dolomanus',
@@ -40,23 +25,7 @@ const MONSTER_LISTE = [
             fr: 'Dolomain',
             pt: '',
         },
-        imageUrl: `${ICON_BASE}/`,
-        level: 11-15,
-        region: '',
-        family: '',
-        homeDungeonID: '',
-        characteristics: {
-            vitality: 0,
-            actionPoints: 0,
-            movementPoints: 0
-        },
-        resistances: {
-            neutral: 0,
-            earth: 0,
-            fire: 0,
-            water: 0,
-            air: 0
-        }
+        imageUrl: `${ICON_BASE}/monster-icons/albuera-creatures/belladonnas-creatures/dolomanus.png`,
     },
     // Marbmour
     { id: 'marbmour',
@@ -67,23 +36,7 @@ const MONSTER_LISTE = [
             fr: 'Marbmure',
             pt: '',
         },
-        imageUrl: `${ICON_BASE}/`,
-        level: 11-15,
-        region: '',
-        family: '',
-        homeDungeonID: '',
-        characteristics: {
-            vitality: 0,
-            actionPoints: 0,
-            movementPoints: 0
-        },
-        resistances: {
-            neutral: 0,
-            earth: 0,
-            fire: 0,
-            water: 0,
-            air: 0
-        }
+        imageUrl: `${ICON_BASE}/monster-icons/albuera-creatures/belladonnas-creatures/marbmour.png`,
     },
     // Ragnarock
     { id: 'ragnarock',
@@ -94,402 +47,573 @@ const MONSTER_LISTE = [
             fr: 'Ragnaroche',
             pt: '',
         },
-        imageUrl: `${ICON_BASE}/`,
-        level: 11-15,
-        region: '',
-        family: '',
-        homeDungeonID: '',
-        characteristics: {
-            vitality: 0,
-            actionPoints: 0,
-            movementPoints: 0
-        },
-        resistances: {
-            neutral: 0,
-            earth: 0,
-            fire: 0,
-            water: 0,
-            air: 0
-        }
+        imageUrl: `${ICON_BASE}/monster-icons/albuera-creatures/belladonnas-creatures/ragnarock.png`,
     },
 
-    // === Amakna ===
-    // --- Amakna Castle Tunnels --- DUNGEON
-        // Rat Bag
-        // Rat Basher
-        // Rat Pakk
-        // Rat Rah
-        // Rat Suenami
-        // Rat Chet
-    // --- Asse Coast ---
-        // Crab
-        // Mumussel
-    // --- Bandit Territory --- DUNGEON
-        // Dark Baker
-        // Dark Miner
-        // Dark Smith
-        // Rogue Clan Bandit
-    // --- Brouce Boulgoure's Clearing
-        // Blue Spimush
-        // Brown Spimush
-        // Green Spimush
-        // Mush Mush
-        // Red Spimush
-    // --- Bwork Village --- DUNGEON
-    // Bwork
-    { id: 'bwork',
+    // === Ascension Island ===
+    // --- Dodus ---
+    // Dokachu
+    { id: 'dokachu',
         name: {
-            de: 'Bwork',
-            en: 'Bwork',
+            de: 'Dokachu',
+            en: 'Dokachu',
             es: '',
-            fr: 'Bwork',
+            fr: '',
             pt: '',
         },
-        imageUrl: `${ICON_BASE}/`,
-        level: 0,
-        region: '',
-        family: '',
-        homeDungeonID: '',
-        characteristics: {
-            vitality: 0,
-            actionPoints: 0,
-            movementPoints: 0
-        },
-        resistances: {
-            neutral: 0,
-            earth: 0,
-            fire: 0,
-            water: 0,
-            air: 0
-        }
+        imageUrl: `${ICON_BASE}/monster-icons/ascension-island/dodus/dokachu.png`,
     },
-    // Bwork Archer
-    { id: 'bwork_archer',
+    // Dolbinos
+    { id: 'dolbinos',
         name: {
-            de: 'Bwork Bogenschütze',
-            en: 'Bwork Archer',
+            de: '',
+            en: 'Dolbinos',
             es: '',
-            fr: 'Bwork Archer',
+            fr: '',
             pt: '',
         },
-        imageUrl: `${ICON_BASE}/`,
-        level: 0,
-        region: '',
-        family: '',
-        homeDungeonID: '',
-        characteristics: {
-            vitality: 0,
-            actionPoints: 0,
-            movementPoints: 0
-        },
-        resistances: {
-            neutral: 0,
-            earth: 0,
-            fire: 0,
-            water: 0,
-            air: 0
-        }
+        imageUrl: `${ICON_BASE}/monster-icons/ascension-island/dodus/dolbinos.png`,
     },
-    // Bwork Magus
-    { id: 'bwork_magus',
+    // Dolivar
+    { id: 'dolivar',
         name: {
-            de: 'Bwork Magus',
-            en: 'Bwork Magus',
+            de: '',
+            en: 'Dolivar',
             es: '',
-            fr: 'Bwork Mage',
+            fr: '',
             pt: '',
         },
-        imageUrl: `${ICON_BASE}/`,
-        level: 0,
-        region: '',
-        family: '',
-        homeDungeonID: '',
-        characteristics: {
-            vitality: 0,
-            actionPoints: 0,
-            movementPoints: 0
-        },
-        resistances: {
-            neutral: 0,
-            earth: 0,
-            fire: 0,
-            water: 0,
-            air: 0
-        }
+        imageUrl: `${ICON_BASE}/monster-icons/ascension-island/dodus/dolivar.png`,
     },
-    // --- Crackler Mountain --- DUNGEON DUNGEON DUNGEON
-        // Earth Kwak
-        // Fire Kwak
-        // Ice Kwak
-        // Wind Kwak
-    // --- Dreggon Tunnels ---
-        // Alert Black Dreggon
-        // Alert Golden Dreggon
-        // Alert Sapphire Dreggon
-        // Alert White Dreggon
-        // Black Dreggon
-        // Golden Dreggon
-        // Sapphire Dreggon
-        // White Dreggon
-        // Immature Black Dreggon
-        // Immature Golden Dreggon
-        // Immature Sapphire Dreggon
-        // Immature White Dreggon
-        // Explosive Shell
-        // Aeroktor the Warrior
-        // Aquabralak the Warrior
-        // Ignilicrobur the Warrior
-        // Terrakubiack the Warrior
-    // --- Dreggon Village ---
-        // Alert Black Dreggon
-        // Alert Golden Dreggon
-        // Alert Sapphire Dreggon
-        // Alert White Dreggon
-        // Black Dreggon
-        // Golden Dreggon
-        // Sapphire Dreggon
-        // White Dreggon
-        // Immature Black Dreggon
-        // Immature Golden Dreggon
-        // Immature Sapphire Dreggon
-        // Immature White Dreggon
-        // Explosive Shell
-    // --- Edge of the Evil Forest ---
-        // Aggressive Arachnee
-        // Blue Larva
-        // Boar
-        // Green Larva
-        // Moskito
-        // Orange Larva
-        // Prespic
-        // Treechnid
-    // --- Gobball Corner ---
-        // Black Gobbly
-        // Gobball
-        // Gobball War Chief
-        // White Gobbly
-    // --- Kawaii River ---
-        // Crab
-    // --- Low Crackler Mountain ---
-        // Arachnee
-        // Crackler
-        // Crackrock
-        // Creakrock
-        // Plain Crackler
-    // --- Madrestam Harbour ---
-        // Blue Larva
-        // Crab
-    // --- Mushd Corner ---
-        // Black Gobbly
-        // Gobball
-        // White Gobbly
-        // Mushd
-    // --- Mysterious Rift ---
-        // Cyclouse
-        // Mastifang
-        // Sharcut
-        // Stapleworm
-        // Tremrus
-    // --- Passage to Brakmar ---
-        // Dark Baker
-        // Dark Miner
-        // Dark Smith
-        // One-Armed Bandit
-    // --- Porco Territory --- DUNGEON
-        // Dorgan Ation
-        // Farle's Pig
-        // Pignolia
-        // Pignolia
-    // --- Scaraleaf Plain --- DUNGEON
-    // Black Scaraleaf
-    { id: 'black_scaraleaf',
+    // Dostrogo
+    { id: 'dostrogo',
         name: {
-            de: 'Schwarzes Scarablatt',
-            en: 'Black Scaraleaf',
+            de: '',
+            en: 'Dostrogo',
             es: '',
-            fr: 'Scarafeuille Noir',
+            fr: '',
             pt: '',
         },
-        imageUrl: `${ICON_BASE}/`,
-        level: 0,
-        region: '',
-        family: '',
-        homeDungeonID: '',
-        characteristics: {
-            vitality: 0,
-            actionPoints: 0,
-            movementPoints: 0
-        },
-        resistances: {
-            neutral: 0,
-            earth: 0,
-            fire: 0,
-            water: 0,
-            air: 0
-        }
+        imageUrl: `${ICON_BASE}/monster-icons/ascension-island/dodus/dostrogo.png`,
     },
-    // Blue Scaraleaf
-    { id: 'blue_scaraleaf',
+    // --- Riftworms ---
+    // Cyclouse
+    { id: 'cyclouse',
         name: {
-            de: 'Blaues Scarablatt',
-            en: 'Blue Scaraleaf',
+            de: '',
+            en: 'Cyclouse',
             es: '',
-            fr: 'Scarafeuille Bleu',
+            fr: '',
             pt: '',
         },
-        imageUrl: `${ICON_BASE}/`,
-        level: 0,
-        region: '',
-        family: '',
-        homeDungeonID: '',
-        characteristics: {
-            vitality: 0,
-            actionPoints: 0,
-            movementPoints: 0
-        },
-        resistances: {
-            neutral: 0,
-            earth: 0,
-            fire: 0,
-            water: 0,
-            air: 0
-        }
+        imageUrl: `${ICON_BASE}/monster-icons/ascension-island/riftworms/cyclouse.png`,
     },
-    // Green Scaraleaf
-    { id: 'green_scaraleaf',
+    // Mastifang
+    { id: 'mastifang',
         name: {
-            de: 'Grünes Scarablatt',
-            en: 'Green Scaraleaf',
+            de: '',
+            en: 'Mastifang',
             es: '',
-            fr: 'Scarafeuille Verte',
+            fr: '',
             pt: '',
         },
-        imageUrl: `${ICON_BASE}/`,
-        level: 0,
-        region: '',
-        family: '',
-        homeDungeonID: '',
-        characteristics: {
-            vitality: 0,
-            actionPoints: 0,
-            movementPoints: 0
-        },
-        resistances: {
-            neutral: 0,
-            earth: 0,
-            fire: 0,
-            water: 0,
-            air: 0
-        }
+        imageUrl: `${ICON_BASE}/monster-icons/ascension-island/riftworms/mastifang.png`,
     },
-    // Red Scaraleaf
-    { id: 'red_scaraleaf',
+    // Sharcut
+    { id: 'sharcut',
         name: {
-            de: 'Rotes Scarablatt',
-            en: 'Red Scaraleaf',
+            de: '',
+            en: 'Sharcut',
             es: '',
-            fr: 'Scarafeuille Rouge',
+            fr: '',
             pt: '',
         },
-        imageUrl: `${ICON_BASE}/`,
-        level: 0,
-        region: '',
-        family: '',
-        homeDungeonID: '',
-        characteristics: {
-            vitality: 0,
-            actionPoints: 0,
-            movementPoints: 0
-        },
-        resistances: {
-            neutral: 0,
-            earth: 0,
-            fire: 0,
-            water: 0,
-            air: 0
-        }
+        imageUrl: `${ICON_BASE}/monster-icons/ascension-island/riftworms/sharcut.png`,
     },
-    // White Scaraleaf
-    { id: 'white_scaraleaf',
+    // Stapleworm
+    { id: 'stapleworm',
         name: {
-            de: 'Weißes Scarablatt',
-            en: 'White Scaraleaf',
+            de: '',
+            en: 'Stapleworm',
             es: '',
-            fr: 'Scarafeuille Blanc',
+            fr: '',
             pt: '',
         },
-        imageUrl: `${ICON_BASE}/`,
-        level: 0,
-        region: '',
-        family: '',
-        homeDungeonID: '',
-        characteristics: {
-            vitality: 0,
-            actionPoints: 0,
-            movementPoints: 0
-        },
-        resistances: {
-            neutral: 0,
-            earth: 0,
-            fire: 0,
-            water: 0,
-            air: 0
-        }
+        imageUrl: `${ICON_BASE}/monster-icons/ascension-island/riftworms/stapleworm.png`,
     },
-    // Immature Scaraleaf
-    { id: 'immature_scaraleaf',
+    // Tremrus
+    { id: 'tremrus',
         name: {
-            de: 'Unreifes Scarablatt',
-            en: 'Immature Scaraleaf',
+            de: '',
+            en: 'Tremrus',
             es: '',
-            fr: 'Scarafeuille immature',
+            fr: '',
             pt: '',
         },
-        imageUrl: `${ICON_BASE}/`,
-        level: 0,
-        region: '',
-        family: '',
-        homeDungeonID: '',
-        characteristics: {
-            vitality: 0,
-            actionPoints: 0,
-            movementPoints: 0
-        },
-        resistances: {
-            neutral: 0,
-            earth: 0,
-            fire: 0,
-            water: 0,
-            air: 0
-        }
+        imageUrl: `${ICON_BASE}/monster-icons/ascension-island/riftworms/tremrus.png`,
     },
-        // Air Spark
-        // Earth Spark
-        // Fire Spark
-        // Water Spark
-    // --- Sufokian Gulf Shoreline ---
-        // Crab
-        // Mumussel
-        // Starfish Trooper
-    // --- The Amakna Forest ---
-        // Aggressive Arachnee
-        // Arachnee
-        // Black Gobbly
-        // Blue Larva
-        // Boar
-        // Gobball
-        // Green Larva
-        // Moskito
-        // Orange Larva
-        // Prespic
-        // Snoowolf
-        // Treechnid
-        // White Gobbly
-    // --- The Bwork Camp ---
-        // Bwork
-        // Bwork Archer
-        // Bwork Magus
-    // Goblin
+    // --- Scaly ---
+    // Anchodyl
+    { id: 'anchodyl',
+        name: {
+            de: '',
+            en: 'Anchodyl',
+            es: '',
+            fr: '',
+            pt: '',
+        },
+        imageUrl: `${ICON_BASE}/monster-icons/ascension-island/scaly/anchodyl.png`,
+    },
+    // Crocelmet
+    { id: 'crocelmet',
+        name: {
+            de: '',
+            en: 'Crocelmet',
+            es: '',
+            fr: '',
+            pt: '',
+        },
+        imageUrl: `${ICON_BASE}/monster-icons/ascension-island/scaly/crocelmet.png`,
+    },
+    // Croclingy
+    { id: 'croclingy',
+        name: {
+            de: '',
+            en: 'Croclingy',
+            es: '',
+            fr: '',
+            pt: '',
+        },
+        imageUrl: `${ICON_BASE}/monster-icons/ascension-island/scaly/croclingy.png`,
+    },
+    // Crocopike
+    { id: 'crocopike',
+        name: {
+            de: '',
+            en: 'Crocopike',
+            es: '',
+            fr: '',
+            pt: '',
+        },
+        imageUrl: `${ICON_BASE}/monster-icons/ascension-island/scaly/crocopike.png`,
+    },
+    // Crokveeno
+    { id: 'crokveeno',
+        name: {
+            de: '',
+            en: 'Crokveeno',
+            es: '',
+            fr: '',
+            pt: '',
+        },
+        imageUrl: `${ICON_BASE}/monster-icons/ascension-island/scaly/crokveeno.png`,
+    },
+    // Feathodyl
+    { id: 'feathodyl',
+        name: {
+            de: '',
+            en: 'Feathodyl',
+            es: '',
+            fr: '',
+            pt: '',
+        },
+        imageUrl: `${ICON_BASE}/monster-icons/ascension-island/scaly/feathodyl.png`,
+    },
+    // --- Shushus ---
+    // Shuchu
+    { id: 'shuchu',
+        name: {
+            de: '',
+            en: 'Shuchu',
+            es: '',
+            fr: '',
+            pt: '',
+        },
+        imageUrl: `${ICON_BASE}/monster-icons/ascension-island/shushus/shuchu.png`,
+    },
+    // Shushkebab
+    { id: 'shushkebab',
+        name: {
+            de: '',
+            en: 'Shushkebab',
+            es: '',
+            fr: '',
+            pt: '',
+        },
+        imageUrl: `${ICON_BASE}/monster-icons/ascension-island/shushus/shushkebab.png`,
+    },
+    // Shushuaia
+    { id: 'shushuaia',
+        name: {
+            de: '',
+            en: 'Shushuaia',
+            es: '',
+            fr: '',
+            pt: '',
+        },
+        imageUrl: `${ICON_BASE}/monster-icons/ascension-island/shushus/shushuaia.png`,
+    },
+    // Shushlicker - Air
+    { id: 'shushlicker_air',
+        name: {
+            de: '',
+            en: 'Shushlicker (Air)',
+            es: '',
+            fr: '',
+            pt: '',
+        },
+        imageUrl: `${ICON_BASE}/monster-icons/ascension-island/shushus/shushlicker_air.png`,
+    },
+    // Shushlicker - Fire
+    { id: 'shushlicker_fire',
+        name: {
+            de: '',
+            en: 'Shushlicker (Fire)',
+            es: '',
+            fr: '',
+            pt: '',
+        },
+        imageUrl: `${ICON_BASE}/monster-icons/ascension-island/shushus/shushlicker_fire.png`,
+    },
+    // Shushlicker - Water
+    { id: 'shushlicker_water',
+        name: {
+            de: '',
+            en: 'Shushlicker (Water)',
+            es: '',
+            fr: '',
+            pt: '',
+        },
+        imageUrl: `${ICON_BASE}/monster-icons/ascension-island/shushus/shushlicker_water.png`,
+    },
+
+    // === Beach Creatures ===
+    // --- Beach Monsters ---
+    // Blue Snapper
+    { id: 'blue_snapper',
+        name: {
+            de: '',
+            en: 'Blue Snapper',
+            es: '',
+            fr: '',
+            pt: '',
+        },
+        imageUrl: `${ICON_BASE}/monster-icons/beach-creatures/beach-monsters/blue_snapper.png`,
+    },
+    // Green Snapper
+    { id: 'green_snapper',
+        name: {
+            de: '',
+            en: 'Green Snapper',
+            es: '',
+            fr: '',
+            pt: '',
+        },
+        imageUrl: `${ICON_BASE}/monster-icons/beach-creatures/beach-monsters/green_snapper.png`,
+    },
+    // Kloon Snapper
+    { id: 'kloon_snapper',
+        name: {
+            de: '',
+            en: 'Kloon Snapper',
+            es: '',
+            fr: '',
+            pt: '',
+        },
+        imageUrl: `${ICON_BASE}/monster-icons/beach-creatures/beach-monsters/kloon_snapper.png`,
+    },
+    // Orange Snapper
+    { id: 'orange_snapper',
+        name: {
+            de: '',
+            en: 'Orange Snapper',
+            es: '',
+            fr: '',
+            pt: '',
+        },
+        imageUrl: `${ICON_BASE}/monster-icons/beach-creatures/beach-monsters/orange_snapper.png`,
+    },
+    // White Snapper
+    { id: 'white_snapper',
+        name: {
+            de: '',
+            en: 'White Snapper',
+            es: '',
+            fr: '',
+            pt: '',
+        },
+        imageUrl: `${ICON_BASE}/monster-icons/beach-creatures/beach-monsters/white_snapper.png`,
+    },
+    // Crab
+    { id: 'crab',
+        name: {
+            de: '',
+            en: 'Crab',
+            es: '',
+            fr: '',
+            pt: '',
+        },
+        imageUrl: `${ICON_BASE}/monster-icons/beach-creatures/beach-monsters/crab.png`,
+    },
+    // Mumussel
+    { id: 'mumussel',
+        name: {
+            de: '',
+            en: 'Mumussel',
+            es: '',
+            fr: '',
+            pt: '',
+        },
+        imageUrl: `${ICON_BASE}/monster-icons/beach-creatures/beach-monsters/mumussel.png`,
+    },
+    // Raul Mops
+    { id: 'raul_mops',
+        name: {
+            de: '',
+            en: 'Raul Mops',
+            es: '',
+            fr: '',
+            pt: '',
+        },
+        imageUrl: `${ICON_BASE}/monster-icons/beach-creatures/beach-monsters/raul_mops.png`,
+    },
+    // Starfish Trooper
+    { id: 'starfish_trooper',
+        name: {
+            de: '',
+            en: 'Starfish Trooper',
+            es: '',
+            fr: '',
+            pt: '',
+        },
+        imageUrl: `${ICON_BASE}/monster-icons/beach-creatures/beach-monsters/starfish_trooper.png`,
+    },
+
+    // === Breeder Village Creatures ===
+    // --- Cave Minsters ---
+    // Cave Gobball
+    { id: 'cave_gobball',
+        name: {
+            de: '',
+            en: 'Cave Gobball',
+            es: '',
+            fr: '',
+            pt: '',
+        },
+        imageUrl: `${ICON_BASE}/monster-icons/breeder-village-creatures/cave-monsters/cave_gobball.png`,
+    },
+    // Gobkool
+    { id: 'gobkool',
+        name: {
+            de: '',
+            en: 'Gobkool',
+            es: '',
+            fr: '',
+            pt: '',
+        },
+        imageUrl: `${ICON_BASE}/monster-icons/breeder-village-creatures/cave-monsters/gobkool.png`,
+    },
+    // Diamondine
+    { id: 'diamondine',
+        name: {
+            de: '',
+            en: 'Diamondine',
+            es: '',
+            fr: '',
+            pt: '',
+        },
+        imageUrl: `${ICON_BASE}/monster-icons/breeder-village-creatures/cave-monsters/diamondine.png`,
+    },
+    // Emeralda
+    { id: 'emeralda',
+        name: {
+            de: '',
+            en: 'Emeralda',
+            es: '',
+            fr: '',
+            pt: '',
+        },
+        imageUrl: `${ICON_BASE}/monster-icons/breeder-village-creatures/cave-monsters/emeralda.png`,
+    },
+    // Ruby
+    { id: 'ruby',
+        name: {
+            de: '',
+            en: 'Ruby',
+            es: '',
+            fr: '',
+            pt: '',
+        },
+        imageUrl: `${ICON_BASE}/monster-icons/breeder-village-creatures/cave-monsters/ruby.png`,
+    },
+    // Sapphira
+    { id: 'sapphira',
+        name: {
+            de: '',
+            en: 'Sapphira',
+            es: '',
+            fr: '',
+            pt: '',
+        },
+        imageUrl: `${ICON_BASE}/monster-icons/breeder-village-creatures/cave-monsters/sapphira.png`,
+    },
+    // Emerald Doll
+    { id: 'emerald_doll',
+        name: {
+            de: '',
+            en: 'Emerald Doll',
+            es: '',
+            fr: '',
+            pt: '',
+        },
+        imageUrl: `${ICON_BASE}/monster-icons/breeder-village-creatures/cave-monsters/emerald_doll.png`,
+    },
+    // Lethal Doll
+    { id: 'lethal_doll',
+        name: {
+            de: '',
+            en: 'Lethal Doll',
+            es: '',
+            fr: '',
+            pt: '',
+        },
+        imageUrl: `${ICON_BASE}/monster-icons/breeder-village-creatures/cave-monsters/lethal_doll.png`,
+    },
+    // Starving Doll
+    { id: 'starving_doll',
+        name: {
+            de: '',
+            en: 'Starving Doll',
+            es: '',
+            fr: '',
+            pt: '',
+        },
+        imageUrl: `${ICON_BASE}/monster-icons/breeder-village-creatures/cave-monsters/starving_doll.png`,
+    },
+    // Explosive Totem
+    { id: 'explosive_totem',
+        name: {
+            de: '',
+            en: 'Explosive Totem',
+            es: '',
+            fr: '',
+            pt: '',
+        },
+        imageUrl: `${ICON_BASE}/monster-icons/breeder-village-creatures/cave-monsters/explosive_totem.png`,
+    },
+    // Healing Totem
+    { id: 'healing_totem',
+        name: {
+            de: '',
+            en: 'Healing Totem',
+            es: '',
+            fr: '',
+            pt: '',
+        },
+        imageUrl: `${ICON_BASE}/monster-icons/breeder-village-creatures/cave-monsters/healing_totem.png`,
+    },
+    // Motivating Totem
+    { id: 'motivating_totem',
+        name: {
+            de: '',
+            en: 'Motivating Totem',
+            es: '',
+            fr: '',
+            pt: '',
+        },
+        imageUrl: `${ICON_BASE}/monster-icons/breeder-village-creatures/cave-monsters/motivating_totem.png`,
+    },
+
+    // --- Koalaks ---
+    // Bloody Koalak
+    { id: 'bloody_koalak',
+        name: {
+            de: '',
+            en: 'Bloody Koalak',
+            es: '',
+            fr: '',
+            pt: '',
+        },
+        imageUrl: `${ICON_BASE}/monster-icons/breeder-village-creatures/koalaks/bloody_koalak.png`,
+    },
+    // Brown Warko
+    { id: 'brown_warko',
+        name: {
+            de: '',
+            en: 'Brown Warko',
+            es: '',
+            fr: '',
+            pt: '',
+        },
+        imageUrl: `${ICON_BASE}/monster-icons/breeder-village-creatures/koalaks/brown_warko.png`,
+    },
+    // Coco Koalak
+    { id: 'coco_koalak',
+        name: {
+            de: '',
+            en: 'Coco Koalak',
+            es: '',
+            fr: '',
+            pt: '',
+        },
+        imageUrl: `${ICON_BASE}/monster-icons/breeder-village-creatures/koalaks/coco_koalak.png`,
+    },
+    // Dok Alako
+    { id: 'dok_alako',
+        name: {
+            de: '',
+            en: 'Dok Alako',
+            es: '',
+            fr: '',
+            pt: '',
+        },
+        imageUrl: `${ICON_BASE}/monster-icons/breeder-village-creatures/koalaks/dok_alako.png`,
+    },
+    // Drakoalak
+    { id: 'drakoalak',
+        name: {
+            de: '',
+            en: 'Drakoalak',
+            es: '',
+            fr: '',
+            pt: '',
+        },
+        imageUrl: `${ICON_BASE}/monster-icons/breeder-village-creatures/koalaks/drakoalak.png`,
+    },
+    // Fisheralak
+    { id: 'fisheralak',
+        name: {
+            de: '',
+            en: 'Fisheralak',
+            es: '',
+            fr: '',
+            pt: '',
+        },
+        imageUrl: `${ICON_BASE}/monster-icons/breeder-village-creatures/koalaks/fisheralak.png`,
+    },
+    // Immature Koalak
+    { id: 'immature_koalak',
+        name: {
+            de: '',
+            en: 'Immature Koalak',
+            es: '',
+            fr: '',
+            pt: '',
+        },
+        imageUrl: `${ICON_BASE}/monster-icons/breeder-village-creatures/koalaks/immature_koalak.png`,
+    },
+    // Indigo Koalak
+    { id: 'indigo_koalak',
+        name: {
+            de: '',
+            en: 'Indigo Koalak',
+            es: '',
+            fr: '',
+            pt: '',
+        },
+        imageUrl: `${ICON_BASE}/monster-icons/breeder-village-creatures/koalaks/indigo_koalak.png`,
+    },
+    // Koalak Forester
     { id: '',
         name: {
             de: '',
@@ -498,897 +622,139 @@ const MONSTER_LISTE = [
             fr: '',
             pt: '',
         },
-        imageUrl: `${ICON_BASE}/`,
-        level: 0,
-        region: '',
-        family: '',
-        homeDungeonID: '',
-        characteristics: {
-            vitality: 0,
-            actionPoints: 0,
-            movementPoints: 0
-        },
-        resistances: {
-            neutral: 0,
-            earth: 0,
-            fire: 0,
-            water: 0,
-            air: 0
-        }
+        imageUrl: `${ICON_BASE}/monster-icons/breeder-village-creatures/koalaks/.png`,
     },
-        // Karne Raider
-        // Trool
-    // --- The Cemetery --- DUNGEON
-    // Chafer
-    { id: 'chafer',
-        name: {
-            de: 'Chafer',
-            en: 'Chafer',
-            es: '',
-            fr: 'Chafer',
-            pt: '',
-        },
-        imageUrl: `${ICON_BASE}/`,
-        level: 0,
-        region: '',
-        family: '',
-        homeDungeonID: '',
-        characteristics: {
-            vitality: 0,
-            actionPoints: 0,
-            movementPoints: 0
-        },
-        resistances: {
-            neutral: 0,
-            earth: 0,
-            fire: 0,
-            water: 0,
-            air: 0
-        }
-    },
-    // Chafer Foot Soldier
-    { id: 'chafer_foot_soldier',
-        name: {
-            de: '',
-            en: 'chafer_foot_soldier',
-            es: '',
-            fr: '',
-            pt: '',
-        },
-        imageUrl: `${ICON_BASE}/`,
-        level: 0,
-        region: '',
-        family: '',
-        homeDungeonID: '',
-        characteristics: {
-            vitality: 0,
-            actionPoints: 0,
-            movementPoints: 0
-        },
-        resistances: {
-            neutral: 0,
-            earth: 0,
-            fire: 0,
-            water: 0,
-            air: 0
-        }
-    },
-    // Draugur Chafer
-    { id: 'draugur_chafer',
-        name: {
-            de: '',
-            en: 'Draugur Chafer',
-            es: '',
-            fr: '',
-            pt: '',
-        },
-        imageUrl: `${ICON_BASE}/`,
-        level: 0,
-        region: '',
-        family: '',
-        homeDungeonID: '',
-        characteristics: {
-            vitality: 0,
-            actionPoints: 0,
-            movementPoints: 0
-        },
-        resistances: {
-            neutral: 0,
-            earth: 0,
-            fire: 0,
-            water: 0,
-            air: 0
-        }
-    },
-    // Evil Tofu
-    { id: 'evil_tofu',
-        name: {
-            de: '',
-            en: 'evil_tofu',
-            es: '',
-            fr: '',
-            pt: '',
-        },
-        imageUrl: `${ICON_BASE}/`,
-        level: 0,
-        region: '',
-        family: '',
-        homeDungeonID: '',
-        characteristics: {
-            vitality: 0,
-            actionPoints: 0,
-            movementPoints: 0
-        },
-        resistances: {
-            neutral: 0,
-            earth: 0,
-            fire: 0,
-            water: 0,
-            air: 0
-        }
-    },
-    // Invisible Chafer
-    { id: 'invisible_chafer',
-        name: {
-            de: '',
-            en: 'Invisible Chafer',
-            es: '',
-            fr: '',
-            pt: '',
-        },
-        imageUrl: `${ICON_BASE}/`,
-        level: 0,
-        region: '',
-        family: '',
-        homeDungeonID: '',
-        characteristics: {
-            vitality: 0,
-            actionPoints: 0,
-            movementPoints: 0
-        },
-        resistances: {
-            neutral: 0,
-            earth: 0,
-            fire: 0,
-            water: 0,
-            air: 0
-        }
-    },
-    // Kwoan
-    { id: 'kwoan',
-        name: {
-            de: 'Kwoan',
-            en: 'Kwoan',
-            es: '',
-            fr: 'Kwoan',
-            pt: '',
-        },
-        imageUrl: `${ICON_BASE}/`,
-        level: 0,
-        region: '',
-        family: '',
-        homeDungeonID: '',
-        characteristics: {
-            vitality: 0,
-            actionPoints: 0,
-            movementPoints: 0
-        },
-        resistances: {
-            neutral: 0,
-            earth: 0,
-            fire: 0,
-            water: 0,
-            air: 0
-        }
-    },
-    // Primitive Chafer
-    { id: 'primitive_chafer',
-        name: {
-            de: 'Primitiver Chafer',
-            en: 'Primitive Chafer',
-            es: '',
-            fr: '',
-            pt: '',
-        },
-        imageUrl: `${ICON_BASE}/`,
-        level: 0,
-        region: '',
-        family: '',
-        homeDungeonID: '',
-        characteristics: {
-            vitality: 0,
-            actionPoints: 0,
-            movementPoints: 0
-        },
-        resistances: {
-            neutral: 0,
-            earth: 0,
-            fire: 0,
-            water: 0,
-            air: 0
-        }
-    },
-    // Rib
-    { id: 'rib',
-        name: {
-            de: 'Ripp',
-            en: 'Rib',
-            es: '',
-            fr: '',
-            pt: '',
-        },
-        imageUrl: `${ICON_BASE}/`,
-        level: 0,
-        region: '',
-        family: '',
-        homeDungeonID: '',
-        characteristics: {
-            vitality: 0,
-            actionPoints: 0,
-            movementPoints: 0
-        },
-        resistances: {
-            neutral: 0,
-            earth: 0,
-            fire: 0,
-            water: 0,
-            air: 0
-        }
-    },
-    // --- The Countryside ---
-        // Blue Larva
-        // Golden Larva
-        // Green Larva
-        // Orange Larva
-    // --- The Crypts --- 
-        // Chafer Archer
-        // Chafer Foot Soldier
-        // Chafer Lancer
-    // Elite Chafer
-    { id: 'elite_chafer',
-        name: {
-            de: 'Elite Chafer',
-            en: 'Elite Chafer',
-            es: '',
-            fr: 'Chafer d\'Élite',
-            pt: '',
-        },
-        imageUrl: `${ICON_BASE}/`,
-        level: 0,
-        region: '',
-        family: '',
-        homeDungeonID: '',
-        characteristics: {
-            vitality: 0,
-            actionPoints: 0,
-            movementPoints: 0
-        },
-        resistances: {
-            neutral: 0,
-            earth: 0,
-            fire: 0,
-            water: 0,
-            air: 0
-        }
-    },
-        // Evil Tofu
-        // Grey Mouse
-        // Rib
-        // Vampire
-    // Vampire Master
-    { id: 'vampire_master',
-        name: {
-            de: 'Meister Vampir',
-            en: 'Vampire Master',
-            es: '',
-            fr: 'Maître Vampire',
-            pt: '',
-        },
-        imageUrl: `${ICON_BASE}/`,
-        level: 0,
-        region: '',
-        family: '',
-        homeDungeonID: '',
-        characteristics: {
-            vitality: 0,
-            actionPoints: 0,
-            movementPoints: 0
-        },
-        resistances: {
-            neutral: 0,
-            earth: 0,
-            fire: 0,
-            water: 0,
-            air: 0
-        }
-    },
-    // --- The Dreggon Peninsula -- 
-        // Alert Black Dreggon
-        // Alert Golden Dreggon
-        // Alert Sapphire Dreggon
-        // Alert White Dreggon
-        // Black Dreggon
-        // Golden Dreggon
-        // Sapphire Dreggon
-        // White Dreggon
-        // Immature Black Dreggon
-        // Immature Golden Dreggon
-        // Immature Sapphire Dreggon
-        // Immature White Dreggon
-        // Explosive Shell
-    // --- The Dreggons' Sanctuary --- DUNGEON
-        // Alert Black Dragoss
-        // Alert Golden Dragoss
-        // Alert Sapphire Dragoss
-        // Alert White Dragoss
-        // Dragostess
-        // Dreggon Warrior
-        // Flying Dreggon
-        // Black Dragoss
-        // Golden Dragoss
-        // Sapphire Dragoss
-        // White Dragoss
-        // Sauroshell
-        // Aerogoburius the Malicious
-        // Aqualikros the Merciless
-        // Ignirkocropos the Famished
-        // Terraburkahl the Perfidious
-    // --- The Evil Forest --- DUNGEON
-        // Arachmutated
-        // Daddy Longlex
-        // Gargantula
-        // Jumparak
-        // Venomica
-    // --- Goblin Camp ---
-        // Goblin
-        // Karne Rider
-    // --- The Ingalsses' Fields --- DUNGEON
-        // Arachnee
-        // Arachnid
-        // Blastofu
-        // Podgy Tofu
-        // Tofubine
-        // Tofuzmo
-        // Ugly Tofu
-    // --- The Jelly Peninsula --- DUNGEON
-        // Blue Jelly
-        // Lemony Jelly
-        // Mint Jelly
-        // Strawberry Jelly
-    // --- The Milicluster ---
-        // Aggressive Arachnee
-        // Blue Piwi
-        // Boar
-        // Green Piwi
-        // One-Armed Bandit
-        // Pink Piwi
-        // Prespic
-        // Purple Piwi
-        // Red Piwi
-        // Snoowolf
-        // Yellow Piwi
-    // --- The Swamp ---
-        // Arachnee
-        // Crocodyl
-        // Crocodyl Chief
-        // Major Arachnee
-        // Mushd
+    // Koalak Gravedigger
+    // Koalak Master
+    // Koalak Mummy
+    // Koalak Rider
+    // Koalak Warrior
+    // Mama Koalak
+    // Morello Cherry Koalak
+    // Pippin Koalak
+    // Piralak
+    // Purple Warko
+    // Reapalak
+    // Wild Koalak
+    // Workette
 
-    // === Astrub ===
-    // --- Astrub Fields ---
-    // Dark Rose
-    // Demonic Rose
-    { id: 'demonic_rose',
-        name: {
-            de: 'Dämonische Rose',
-            en: 'Demonic Rose',
-            es: '',
-            fr: 'Rose Démoniaque',
-            pt: '',
-        },
-        imageUrl: `${ICON_BASE}/`,
-        level: 25-33,
-        region: 'astrub',
-        family: '',
-        homeDungeonID: '',
-        characteristics: {
-            vitality: 0,
-            actionPoints: 0,
-            movementPoints: 0
-        },
-        resistances: {
-            neutral: 0,
-            earth: 0,
-            fire: 0,
-            water: 0,
-            air: 0
-        }
-    },
-    // Evil Dandelion
-    { id: 'evil_dandelion',
-        name: {
-            de: 'Teuflischer Löwenzahn',
-            en: 'Evil Dandelion',
-            es: '',
-            fr: 'Pissenlit Diabolique',
-            pt: '',
-        },
-        imageUrl: `${ICON_BASE}/`,
-        level: 26-34,
-        region: 'astrub',
-        family: '',
-        homeDungeonID: '',
-        characteristics: {
-            vitality: 0,
-            actionPoints: 0,
-            movementPoints: 0
-        },
-        resistances: {
-            neutral: 0,
-            earth: 0,
-            fire: 0,
-            water: 0,
-            air: 0
-        }
-    },
-    // Mush Mush
-    { id: 'mush_mush',
-        name: {
-            de: 'Pilzling',
-            en: 'Mush Mush',
-            es: '',
-            fr: 'Champ Champ',
-            pt: '',
-        },
-        imageUrl: `${ICON_BASE}/`,
-        level: 24-32,
-        region: 'astrub',
-        family: '',
-        homeDungeonID: '',
-        characteristics: {
-            vitality: 0,
-            actionPoints: 0,
-            movementPoints: 0
-        },
-        resistances: {
-            neutral: 0,
-            earth: 0,
-            fire: 0,
-            water: 0,
-            air: 0
-        }
-    },
-    // Wild Sunflower
-    { id: 'wild_sunflower',
-        name: {
-            de: 'Wilde Sonnenblume',
-            en: 'Wild Sunflower',
-            es: '',
-            fr: 'Tournesol Sauvage',
-            pt: '',
-        },
-        imageUrl: `${ICON_BASE}/`,
-        level: 27-35,
-        region: 'astrub',
-        family: '',
-        homeDungeonID: '',
-        characteristics: {
-            vitality: 0,
-            actionPoints: 0,
-            movementPoints: 0
-        },
-        resistances: {
-            neutral: 0,
-            earth: 0,
-            fire: 0,
-            water: 0,
-            air: 0
-        }
-    },
-    // --- Astrub Forest ---
-        // Arachnee
-        // Astrub Squirrel
-        // Grey Mouse
-        // Moskito
-    // --- Astrub Rocky Inlet --- DUNGEON
-        // Blue Snapper - Pichon Bleu
-        // Green Snapper - Pichon Verte
-        // Orange Snapper - Pichon Orange
-        // White Snapper - Pichon Blanc
-    // --- Astrub Sewers ---
-        // Ratworm Apprentice
-        // Sick Arachnee
-        // Sick Grossewer Rat
-        // Sick Tofu
-    // --- Astrub Suburbs ---
-        // Blue Piwi
-        // Green Piwi
-        // Pink Piwi
-        // Purple Piwi
-        // Red Piwi
-        // Yellow Piwi
-    // --- Cemetery of Heroes ---
-    // Garglyph
-    { id: 'garglyph',
-        name: {
-            de: 'Garglyphe',
-            en: 'Garglyph',
-            es: '',
-            fr: 'Garglyphe',
-            pt: '',
-        },
-        imageUrl: `${ICON_BASE}/`,
-        level: 0,
-        region: '',
-        family: '',
-        homeDungeonID: '',
-        characteristics: {
-            vitality: 0,
-            actionPoints: 0,
-            movementPoints: 0
-        },
-        resistances: {
-            neutral: 0,
-            earth: 0,
-            fire: 0,
-            water: 0,
-            air: 0
-        }
-    },
-    // Gargoyl
-    { id: 'gargoyl',
-        name: {
-            de: 'Gargoyle',
-            en: 'Gargoyl',
-            es: '',
-            fr: 'Gargrouille',
-            pt: '',
-        },
-        imageUrl: `${ICON_BASE}/`,
-        level: 0,
-        region: '',
-        family: '',
-        homeDungeonID: '',
-        characteristics: {
-            vitality: 0,
-            actionPoints: 0,
-            movementPoints: 0
-        },
-        resistances: {
-            neutral: 0,
-            earth: 0,
-            fire: 0,
-            water: 0,
-            air: 0
-        }
-    },
-    // Ouassingal
-    { id: '',
-        name: {
-            de: '',
-            en: '',
-            es: '',
-            fr: '',
-            pt: '',
-        },
-        imageUrl: `${ICON_BASE}/`,
-        level: 0,
-        region: '',
-        family: '',
-        homeDungeonID: '',
-        characteristics: {
-            vitality: 0,
-            actionPoints: 0,
-            movementPoints: 0
-        },
-        resistances: {
-            neutral: 0,
-            earth: 0,
-            fire: 0,
-            water: 0,
-            air: 0
-        }
-    },
-    // Ouassingue
-    { id: '',
-        name: {
-            de: '',
-            en: '',
-            es: '',
-            fr: '',
-            pt: '',
-        },
-        imageUrl: `${ICON_BASE}/`,
-        level: 0,
-        region: '',
-        family: '',
-        homeDungeonID: '',
-        characteristics: {
-            vitality: 0,
-            actionPoints: 0,
-            movementPoints: 0
-        },
-        resistances: {
-            neutral: 0,
-            earth: 0,
-            fire: 0,
-            water: 0,
-            air: 0
-        }
-    },
-    // --- Tainela --- DUNGEON
-        // Black Gobbly
-        // Gobball
-        // Gobball War Chief
-        // White Gobbly
-    // --- Tofu Corner --- DUNGEON
-    // Black Tofu
-    { id: 'black_tofu',
-        name: {
-            de: 'Schwarzer Tofu',
-            en: 'Black Tofu',
-            es: '',
-            fr: 'Tofu Noir',
-            pt: '',
-        },
-        imageUrl: `${ICON_BASE}/`,
-        level: 0,
-        region: 'astrub',
-        family: '',
-        homeDungeonID: '',
-        characteristics: {
-            vitality: 0,
-            actionPoints: 0,
-            movementPoints: 0
-        },
-        resistances: {
-            neutral: 0,
-            earth: 0,
-            fire: 0,
-            water: 0,
-            air: 0
-        }
-    },
-    // Tofoone
-    { id: 'tofoone',
-        name: {
-            de: 'Tofoone',
-            en: 'Tofoone',
-            es: '',
-            fr: 'Tofoune',
-            pt: '',
-        },
-        imageUrl: `${ICON_BASE}/`,
-        level: 0,
-        region: 'astrub',
-        family: '',
-        homeDungeonID: '',
-        characteristics: {
-            vitality: 0,
-            actionPoints: 0,
-            movementPoints: 0
-        },
-        resistances: {
-            neutral: 0,
-            earth: 0,
-            fire: 0,
-            water: 0,
-            air: 0
-        }
-    },
-    // Tofu
-    { id: 'tofu',
-        name: {
-            de: 'Tofu',
-            en: 'Tofu',
-            es: '',
-            fr: 'Tofu',
-            pt: '',
-        },
-        imageUrl: `${ICON_BASE}/`,
-        level: 0,
-        region: 'astrub',
-        family: '',
-        homeDungeonID: '',
-        characteristics: {
-            vitality: 0,
-            actionPoints: 0,
-            movementPoints: 0
-        },
-        resistances: {
-            neutral: 0,
-            earth: 0,
-            fire: 0,
-            water: 0,
-            air: 0
-        }
-    },
-    // Tofukaz
-    { id: 'tofukaz',
-        name: {
-            de: 'Tofukaz',
-            en: 'Tofukaz',
-            es: '',
-            fr: 'Tofukaz',
-            pt: '',
-        },
-        imageUrl: `${ICON_BASE}/`,
-        level: 0,
-        region: 'astrub',
-        family: '',
-        homeDungeonID: '',
-        characteristics: {
-            vitality: 0,
-            actionPoints: 0,
-            movementPoints: 0
-        },
-        resistances: {
-            neutral: 0,
-            earth: 0,
-            fire: 0,
-            water: 0,
-            air: 0
-        }
-    },
-    // Tofurby
-    { id: 'tofurby',
-        name: {
-            de: 'Tofurby',
-            en: 'Tofurby',
-            es: '',
-            fr: 'Tofu Ventripotent',
-            pt: '',
-        },
-        imageUrl: `${ICON_BASE}/`,
-        level: 0,
-        region: 'astrub',
-        family: '',
-        homeDungeonID: '',
-        characteristics: {
-            vitality: 0,
-            actionPoints: 0,
-            movementPoints: 0
-        },
-        resistances: {
-            neutral: 0,
-            earth: 0,
-            fire: 0,
-            water: 0,
-            air: 0
-        }
-    },
+    // === Cania Plains Creatures ===
+    // --- Bliblis ---
+    // --- Blops ---
+    // --- Boowolves ---
+    // --- Bworkventurers ---
+    // --- Crobaks ---
+    // --- Hard Head Stubbyobs ---
+    // --- Kanigs ---
+    // --- Lousy Pigs ---
+    // --- Minerocks ---
+    // --- Pilfielderers ---
+    // --- Undried ---
 
-    // === Bonta ===
-    // --- Bonta Pasture ---
-        // Fungi Master
-        // Mush Mush
-        // Wild Sunflower
-    // --- Bonta Sewers --- DUNGEON
-        // Grossewer Rat
-        // Grossewer Shaman
-        // Hyoactive Rat
-        // Major Arachnee
-        // Sewer Keeper
-    
-    // === Brakmar ===
-    // --- Brakmar City Walls ---
-        // Crobak
-        // Dark Baker
-        // Dark Miner
-        // Dark Smith
-        // Furious Whitish Fang
-    // --- Brakmar Sewers --- DUNGEON
-        // Grossewer Rat
-        // Grossewer Shaman
-        // Hyoactive Rat
-        // Major Arachnee
-        // Sewer Keeper
+    // === City Creatures ===
+    // --- Piwis ---
+    // --- Sewer Monsters ---
 
-    // === Cania Plains ===
-    // --- Bonta Cemetery --- DUNGEON
-        // Drowhirl
-        // Funerbroadsword
-        // Micrab
-        // Sucgunner
-    // --- Bwork Outpost ---
-        // Burnabwork
-        // Mabwork
-        // Megabwork
-        // Weirbwork
-    // --- Cania Bay ---
-        // Blue Snapper
-        // Green Snapper
-        // Kloon Snapper
-        // Orange Snapper
-        // White Snapper
-        // Crab
-        // Raul Mops
-        // Starfish Trooper
-    // --- Cania Forest ---
-        // Bliblimead
-        // Bliblitch
-        // Blibliternal
-        // Bliblycerin
-    // --- Cania Massif ---
-        // Coco Biblop
-        // Indigo Biblop
-        // Morello Cherry Biblop
-        // Pippin Biblop
-        // Coco Blop
-        // Indigo Blop
-        // Morello Cherry Biblop
-        // Pippin Blop
-        // Greedoblop
-    // --- Coast Road --- DUNGEON DUNGEON
-        // Coco Biblop
-        // Indigo Biblop
-        // Morello Cherry Biblop
-        // Pippin Biblop
-        // Coco Blop
-        // Indigo Blop
-        // Morello Cherry Biblop
-        // Pippin Blop
-    // --- Eltneg Wood ---
-        // Boowolf
-        // Mature Kaniger
-        // Miliboowolf
-        // Trool
-    // --- Kanig Territory --- DUNGEON
-        // Alyeena
-        // Felygiene
-        // Kannihilator
-        // Orfan
-    // --- Lousy Pig Plain ---
-        // Lousy Pig Knight
-        // Lousy Pig Shepherd
-        // Piglet
-        // Plain Boar
-    // --- Minerock Plains --- DUNGEON
-        // Crackblade
-        // Cracklerge
-        // Cracklope
-        // Elemearth
-    // --- Mount Neselite --- DUNGEON
-        // Breakrock Knight
-        // Knockarock
-        // Leatheraxer
-        // Yobbomark Knight
-        // Yobreaker
-    // --- Road to Brakmar --- DUNGEON
-        // Boowolf
-        // Mature Kaniger
-        // Miliboowolf
-        // Trool
-    // --- Rocky Road ---
-        // Coco Biblop
-        // Indigo Biblop
-        // Morello Cherry Biblop
-        // Pippin Biblop
-        // Coco Blop
-        // Indigo Blop
-        // Morello Cherry Biblop
-        // Pippin Blop
-        // Trunkiblop
-        // Plain Crackler
-    // --- Scree ---
-        // Blopshroom
-        // Coco Blop
-        // Indigo Blop
-        // Morello Cherry Blop
-        // Pippin Blop
-        // Plain Crackler
-    // --- The Cania Fields ---
-        // Beaztinga
-        // Fungi Master
-        // Kaniger
-        // Plains Larva
-    // --- The Crow's Domain --- DUNGEON
-        // Crovus
-        // Crowfox
-        // Drinker
-        // Tamed Crobak
-    
-    // === Dopple Territory ===
+    // === Field Creatures ===
+    // --- Field Plants ---
+    // --- Fields ---
+    // --- Fungi ---
+    // --- Gobballs ---
+    // --- Larvae ---
+    // --- Moskitos ---
+    // --- Tofus ---
+
+    // === Forest Creatures ===
+    // --- Arachnees ---
+    // --- Arak-Hai ---
+    // --- Dreggons ---
+    // --- Forest Animals ---
+    // --- Jellies ---
+    // --- Scaraleaves ---
+    // --- Treechnidians ---
+
+    // === Frigost Creatures ===
+    // --- Alchimeras ---
+    // --- Almas Cradle Monsters ---
+    // --- Armarines ---
+    // --- Bearbarians ---
+    // --- Fangs of Glass Monsters ---
+    // --- Frigost Village Monsters ---
+    // --- Leatherbods ---
+    // --- Lonesome Pinetrails Monsters ---
+    // --- Mastogobs ---
+    // --- Mechaniacs ---
+    // --- Petrified Forest Monsters ---
+    // --- Pingwins ---
+    // --- Sakai Monsters ---
+    // --- Sinistros ---
+    // --- Snowfoux ---
+    // --- Tears of Ouronigride Monsters ---
+
+    // === Humanoid Creatures ===
+    // --- Bandits ---
+    // --- Guards ---
+    // --- Imps ---
+    // --- NPCS ---
+
+    // === Kwismas Island Creatures ===
+    // --- Kwismas Monsters ---
+
+    // === Lair Guardians ===
+
+    // === Minotoror Island Creatures ===
+    // --- Minos ---
+
+    // === Moon Island Creatures ===
+    // --- Moon Island Kanniballs ---
+    // --- Moon Monsters ---
+    // --- Moon Pirates ---
+    // --- Moon Plants ---
+    // --- Moon Turtles ---
+
+    // === Moor Creatures ===
+    // --- Moor Monsters ---
+
+    // === Mountain Creatures ===
+    // --- Bworks ---
+    // --- Ctacklers ---
+    // --- Dragoturkeys ---
+    // --- Goblins ---
+    // --- Kwaks ---
+    // --- Pigs ---
+
+    // === Night Creatures ===
+    // --- Al Howins Monsters ---
+    // --- Chafers ---
+    // --- Ghosts ---
+    // --- Ghouls ---
+    // --- Night Monsters ---
+    // --- Pet Ghosts ---
+
+    // === Otomai Island Creatures ===
+    // --- Coral Beach Monsters ---
+    // --- Dark Jungle Monsters ---
+    // --- Grassy Plains Monsters ---
+    // --- Otomais Ark Monsters ---
+    // --- Peat Bog Monsters ---
+    // --- Tree Keeholo Monsters ---
+    // --- Zoth Village Monsters ---
+
+    // === Pandala Creatures ===
+    // --- Firefoux ---
+    // --- Khorundrums ---
+    // --- Kozaru ---
+    // --- Kwapa ---
+    // --- Lost Souls ---
+    // --- Plantalas ---
+    // --- Tanukis ---
+
+    // === Swamp Creatures ===
+    // --- Crocodylls ---
+    // --- Swamp Monsters ---
+
+    // === Wabbit Island Creatures ===
+    // --- Wabbits ---
 ];
 
-module.exports = { MONSTER_LISTE }
+module.exports = { MONSTER_LISTE };

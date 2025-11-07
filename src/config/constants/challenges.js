@@ -286,7 +286,7 @@ const CHALLENGES = [
             de: 'Freiheit',
             en: 'Freedom',
             es: 'Libertad',
-            fr: '',
+            fr: 'Liberté',
             pt: ''
         },
         description: {

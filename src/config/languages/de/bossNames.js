@@ -106,7 +106,7 @@ const bossNames = {
     itzting: 'Pisack',
     father_kwismas: 'Weißnachtsmann',
     father_whupper: 'Rubrächer der Knechter',
-    minotoball: '',
+    kwismas_minotoball: 'Weißnachts-Minotoball',
     // === Raid ===
     exalted_belladonna: 'Begeisterte Belladonna',
     dark_vlad: 'Dark Vlad',
