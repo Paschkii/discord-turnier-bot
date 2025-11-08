@@ -1,4 +1,4 @@
-const { EMOJI_LIST } = require('./emojis');
+const { EMOJI_DETAILS, EMOJI_LIST } = require('./emojis');
 const { CATEGORIES } = require('./achievementsChallenges');
 
 const DEFAULT_LOCALES = ['de', 'en', 'fr', 'es', 'it', 'pt'];
@@ -40,14 +40,45 @@ function getAchievementCategory(value) {
   return CATEGORY_BY_CANONICAL_KEY.get(canonical) || null;
 }
 
+function normalizeEmojiEntry(entry) {
+  if (!entry) return '';
+  if (typeof entry === 'string') {
+    return entry;
+  }
+  if (typeof entry === 'object') {
+    if (typeof entry.mention === 'string' && entry.mention.trim()) {
+      return entry.mention;
+    }
+    if (typeof entry.fallback === 'string' && entry.fallback.trim()) {
+      return entry.fallback;
+    }
+  }
+  return '';
+}
+
 function extractEmojiName(emoji) {
-  if (typeof emoji !== 'string') return '';
-  const match = emoji.match(/^<a?:(?<name>[^:>]+):\d+>$/);
+  const mention = normalizeEmojiEntry(emoji);
+  if (!mention) return '';
+  const match = mention.match(/^<a?:(?<name>[^:>]+):\d+>$/);
   return match?.groups?.name || '';
 }
 
+function resolveEmojiDetailMention(detail, variant) {
+  if (!detail || typeof detail !== 'object') {
+    return '';
+  }
+
+  if (variant) {
+    const variantDetail = detail.variants?.[variant];
+    const variantMention = normalizeEmojiEntry(variantDetail);
+    if (variantMention) return variantMention;
+  }
+
+  return normalizeEmojiEntry(detail);
+}
+
 function getAchievementEmoji(value, options = {}) {
-  const { categories, fallback = '' } = options || {};
+  const { categories, fallback = '', variant } = options || {};
   const canonical = normalizeAchievementKey(value);
   if (!canonical) return fallback || '';
 
@@ -78,7 +109,12 @@ function getAchievementEmoji(value, options = {}) {
   }
 
   for (const entry of categoriesToTry) {
-    const emoji = EMOJI_LIST?.[entry]?.[canonical];
+    const detailGroup = EMOJI_DETAILS?.[entry];
+    const detailEntry = detailGroup?.[canonical];
+    const detailMention = resolveEmojiDetailMention(detailEntry, variant);
+    if (detailMention) return detailMention;
+
+    const emoji = normalizeEmojiEntry(EMOJI_LIST?.[entry]?.[canonical]);
     if (emoji) return emoji;
   }
   return fallback || '';
@@ -115,4 +151,5 @@ module.exports = {
   getAchievementEmoji,
   getAchievementEmojiName,
   normalizeAchievementKey,
+  normalizeEmojiEntry,
 };

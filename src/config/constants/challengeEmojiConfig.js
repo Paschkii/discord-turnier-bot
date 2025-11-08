@@ -1,10 +1,11 @@
 const { CATEGORIES } = require('./achievementsChallenges');
-const { EMOJI_LIST } = require('./emojis');
+const { EMOJI_DETAILS, EMOJI_LIST } = require('./emojis');
 const {
   extractEmojiName,
   getAchievementEmoji,
   getAchievementEmojiName,
   normalizeAchievementKey,
+  normalizeEmojiEntry,
 } = require('./achievementUtils');
 
 const CHALLENGE_EMOJIS = (() => {
@@ -13,6 +14,7 @@ const CHALLENGE_EMOJIS = (() => {
 
   for (const [category, keys] of Object.entries(CATEGORIES)) {
     const emojiGroup = EMOJI_LIST?.[category];
+    const detailGroup = EMOJI_DETAILS?.[category];
     if (!emojiGroup || !Array.isArray(keys)) continue;
 
     for (const key of keys) {
@@ -20,11 +22,22 @@ const CHALLENGE_EMOJIS = (() => {
       const normalized = normalizeAchievementKey(key);
       if (!normalized || seen.has(normalized)) continue;
 
-      const emoji = emojiGroup[normalized] || getAchievementEmoji(normalized);
+      const emoji = normalizeEmojiEntry(emojiGroup[normalized]) || getAchievementEmoji(normalized);
       if (!emoji) continue;
 
       const name = extractEmojiName(emoji) || getAchievementEmojiName(normalized);
-      entries.push({ id: normalized, name, emoji });
+      const variants = {};
+      const detailEntry = detailGroup?.[normalized];
+      if (detailEntry && typeof detailEntry === 'object') {
+        for (const [variantName, variantDetail] of Object.entries(detailEntry.variants || {})) {
+          const mention = normalizeEmojiEntry(variantDetail);
+          if (mention) {
+            variants[variantName] = mention;
+          }
+        }
+      }
+
+      entries.push({ id: normalized, name, emoji, variants });
       seen.add(normalized);
     }
   }

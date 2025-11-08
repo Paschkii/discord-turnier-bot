@@ -1,215 +1,810 @@
 {
   "primaryStats": {
-    "level": "<:level:1427597125503553659>",
-    "vitality": "<:vitality:1427600430397128874>",
-    "healthPoints": "<:healthpoints:1427600289380171929>",
-    "wisdom": "<:wisdom:1428323165490380801>",
-    "neutral": "<:neutral:1427596926127308851>",
-    "strength": "<:strength:1427597058747142235>",
-    "intelligence": "<:intelligence:1427596766601150474>",
-    "chance": "<:chance:1427596695369416724>",
-    "agility": "<:agility:1427596513135165460>",
-    "actionPoints": "<:ap:1427596539064483902>",
-    "movementPoints": "<:mp:1427596871005896734>",
-    "initiative": "<:initiative:1427600254265589814>",
-    "prospection": "<:prospection:1427600569765199953>",
-    "range": "<:range:1427600507584647279>",
-    "summons": "<:summons:1427600461137182832>",
-    "pods": "<:pods:1427600616062189579>",
-    "elements": "<:elements:1427600196065427457>"
+    "level": {
+      "key": "level",
+      "fallback": "<:level:1427597125503553659>"
+    },
+    "vitality": {
+      "key": "vitality",
+      "fallback": "<:vitality:1427600430397128874>"
+    },
+    "healthPoints": {
+      "key": "healthpoints",
+      "fallback": "<:healthpoints:1427600289380171929>"
+    },
+    "wisdom": {
+      "key": "wisdom",
+      "fallback": "<:wisdom:1428323165490380801>"
+    },
+    "neutral": {
+      "key": "neutral",
+      "fallback": "<:neutral:1427596926127308851>"
+    },
+    "strength": {
+      "key": "strength",
+      "fallback": "<:strength:1427597058747142235>"
+    },
+    "intelligence": {
+      "key": "intelligence",
+      "fallback": "<:intelligence:1427596766601150474>"
+    },
+    "chance": {
+      "key": "chance",
+      "fallback": "<:chance:1427596695369416724>"
+    },
+    "agility": {
+      "key": "agility",
+      "fallback": "<:agility:1427596513135165460>"
+    },
+    "actionPoints": {
+      "key": "ap",
+      "fallback": "<:ap:1427596539064483902>"
+    },
+    "movementPoints": {
+      "key": "mp",
+      "fallback": "<:mp:1427596871005896734>"
+    },
+    "initiative": {
+      "key": "initiative",
+      "fallback": "<:initiative:1427600254265589814>"
+    },
+    "prospection": {
+      "key": "prospection",
+      "fallback": "<:prospection:1427600569765199953>"
+    },
+    "range": {
+      "key": "range",
+      "fallback": "<:range:1427600507584647279>"
+    },
+    "summons": {
+      "key": "summons",
+      "fallback": "<:summons:1427600461137182832>"
+    },
+    "pods": {
+      "key": "pods",
+      "fallback": "<:pods:1427600616062189579>"
+    },
+    "elements": {
+      "key": "elements",
+      "fallback": "<:elements:1427600196065427457>"
+    }
   },
   "secondaryStats": {
-    "apReduction": "<:apreduction:1427599517854859325>",
-    "apParry": "<:apparry:1427596572572516523>",
-    "mpReduction": "<:mpreduction:1427600678192414740>",
-    "mpParry": "<:mpparry:1427597395788693587>",
-    "criticalHits": "<:criticalhits:1427600738967621734>",
-    "heals": "<:heal:1427600231872073860>",
-    "lock": "<:lock:1427596624309391391>",
-    "dodge": "<:dodge:1427600110354694206>"
+    "apReduction": {
+      "key": "apreduction",
+      "fallback": "<:apreduction:1427599517854859325>"
+    },
+    "apParry": {
+      "key": "apparry",
+      "fallback": "<:apparry:1427596572572516523>"
+    },
+    "mpReduction": {
+      "key": "mpreduction",
+      "fallback": "<:mpreduction:1427600678192414740>"
+    },
+    "mpParry": {
+      "key": "mpparry",
+      "fallback": "<:mpparry:1427597395788693587>"
+    },
+    "criticalHits": {
+      "key": "criticalhits",
+      "fallback": "<:criticalhits:1427600738967621734>"
+    },
+    "heals": {
+      "key": "heal",
+      "fallback": "<:heal:1427600231872073860>"
+    },
+    "lock": {
+      "key": "lock",
+      "fallback": "<:lock:1427596624309391391>"
+    },
+    "dodge": {
+      "key": "dodge",
+      "fallback": "<:dodge:1427600110354694206>"
+    }
   },
   "damageStats": {
-    "damage": "<:damage:1427600169448505385>",
-    "power": "<:power:1427600595891785810>",
-    "criticalDamage": "<:criticaldamage:1427600082362044426>",
-    "neutralDamage": "<:neutraldamage:1427600055220568085>",
-    "earthDamage": "<:earthdamage:1427599964162232421>",
-    "fireDamage": "<:firedamage:1427599984567783484>",
-    "waterDamage": "<:waterdamage:1427600032076529755>",
-    "airDamage": "<:airdamage:1427599920818290748>",
-    "pushbackDamage": "<:pushbackdamage:1427600137684914216>"
+    "damage": {
+      "key": "damage",
+      "fallback": "<:damage:1427600169448505385>"
+    },
+    "power": {
+      "key": "power",
+      "fallback": "<:power:1427600595891785810>"
+    },
+    "criticalDamage": {
+      "key": "criticaldamage",
+      "fallback": "<:criticaldamage:1427600082362044426>"
+    },
+    "neutralDamage": {
+      "key": "neutraldamage",
+      "fallback": "<:neutraldamage:1427600055220568085>"
+    },
+    "earthDamage": {
+      "key": "earthdamage",
+      "fallback": "<:earthdamage:1427599964162232421>"
+    },
+    "fireDamage": {
+      "key": "firedamage",
+      "fallback": "<:firedamage:1427599984567783484>"
+    },
+    "waterDamage": {
+      "key": "waterdamage",
+      "fallback": "<:waterdamage:1427600032076529755>"
+    },
+    "airDamage": {
+      "key": "airdamage",
+      "fallback": "<:airdamage:1427599920818290748>"
+    },
+    "pushbackDamage": {
+      "key": "pushbackdamage",
+      "fallback": "<:pushbackdamage:1427600137684914216>"
+    }
   },
   "resistanceStats": {
-    "neutral_fixed": "<:neutral:1427596926127308851>",
-    "earth_fixed": "<:strength:1427597058747142235>",
-    "fire_fixed": "<:intelligence:1427596766601150474>",
-    "water_fixed": "<:chance:1427596695369416724>",
-    "air_fixed": "<:agility:1427596513135165460>",
-    "neutral_percent": "<:neutral:1427596926127308851>",
-    "earth_percent": "<:strength:1427597058747142235>",
-    "fire_percent": "<:intelligence:1427596766601150474>",
-    "water_percent": "<:chance:1427596695369416724>",
-    "air_percent": "<:agility:1427596513135165460>",
-    "criticalResistance": "<:criticalresistance:1427596825874927736>",
-    "pushbackResistance": "<:pushbackresistance:1427597202254987356>"
+    "neutral_fixed": {
+      "key": "neutral",
+      "fallback": "<:neutral:1427596926127308851>"
+    },
+    "earth_fixed": {
+      "key": "strength",
+      "fallback": "<:strength:1427597058747142235>"
+    },
+    "fire_fixed": {
+      "key": "intelligence",
+      "fallback": "<:intelligence:1427596766601150474>"
+    },
+    "water_fixed": {
+      "key": "chance",
+      "fallback": "<:chance:1427596695369416724>"
+    },
+    "air_fixed": {
+      "key": "agility",
+      "fallback": "<:agility:1427596513135165460>"
+    },
+    "neutral_percent": {
+      "key": "neutral",
+      "fallback": "<:neutral:1427596926127308851>"
+    },
+    "earth_percent": {
+      "key": "strength",
+      "fallback": "<:strength:1427597058747142235>"
+    },
+    "fire_percent": {
+      "key": "intelligence",
+      "fallback": "<:intelligence:1427596766601150474>"
+    },
+    "water_percent": {
+      "key": "chance",
+      "fallback": "<:chance:1427596695369416724>"
+    },
+    "air_percent": {
+      "key": "agility",
+      "fallback": "<:agility:1427596513135165460>"
+    },
+    "criticalResistance": {
+      "key": "criticalresistance",
+      "fallback": "<:criticalresistance:1427596825874927736>"
+    },
+    "pushbackResistance": {
+      "key": "pushbackresistance",
+      "fallback": "<:pushbackresistance:1427597202254987356>"
+    }
   },
   "achievements": {
-    "blitzkrieg": "<:achieve_blitzkrieg:1427602827475423343>",
-    "chrono": "<:achieve_chrono:1427603292757692486>",
-    "cleanHands": "<:achieve_cleanhands:1427603327687983104>",
-    "duel": "<:achieve_duel:1427603358298148964>",
-    "duo": "<:achieve_duo:1427603408096985088>",
-    "fainthearted": "<:achieve_fainthearted:1427603462228807802>",
-    "first": "<:achieve_first:1427603506227052597>",
-    "freedom": "<:achieve_freedom:1429117708334665848>",
-    "hermit": "<:achieve_hermit:1427603536253943869>",
-    "impertinence": "<:achieve_impertinence:1427603644035108894>",
-    "last": "<:achieve_last:1427603680407847075>",
-    "nomad": "<:achieve_nomad:1427603717015867463>",
-    "quickAndFurious": "<:achieve_quickandfurious:1428743970263007282>",
-    "scanty": "<:achieve_scanty:1427603748229877871>",
-    "statue": "<:achieve_statue:1427603778688913508>",
-    "tight": "<:achieve_tight:1427603809177305109>",
-    "timeFlies": "<:achieve_timeflies:1427603842173763697>",
-    "versatile": "<:achieve_versatile:1427603876231774288>",
-    "zombie": "<:achieve_zombie:1427603914626302063>"
+    "blitzkrieg": {
+      "key": "achieve_blitzkrieg",
+      "fallback": "<:achieve_blitzkrieg:1427602827475423343>"
+    },
+    "chrono": {
+      "key": "achieve_chrono",
+      "fallback": "<:achieve_chrono:1427603292757692486>"
+    },
+    "cleanHands": {
+      "key": "achieve_cleanhands",
+      "fallback": "<:achieve_cleanhands:1427603327687983104>"
+    },
+    "duel": {
+      "key": "achieve_duel",
+      "fallback": "<:achieve_duel:1427603358298148964>"
+    },
+    "duo": {
+      "key": "achieve_duo",
+      "fallback": "<:achieve_duo:1427603408096985088>"
+    },
+    "fainthearted": {
+      "key": "achieve_fainthearted",
+      "fallback": "<:achieve_fainthearted:1427603462228807802>"
+    },
+    "first": {
+      "key": "achieve_first",
+      "fallback": "<:achieve_first:1427603506227052597>"
+    },
+    "freedom": {
+      "key": "achieve_freedom",
+      "fallback": "<:achieve_freedom:1429117708334665848>"
+    },
+    "hermit": {
+      "key": "achieve_hermit",
+      "fallback": "<:achieve_hermit:1427603536253943869>"
+    },
+    "impertinence": {
+      "key": "achieve_impertinence",
+      "fallback": "<:achieve_impertinence:1427603644035108894>"
+    },
+    "last": {
+      "key": "achieve_last",
+      "fallback": "<:achieve_last:1427603680407847075>"
+    },
+    "nomad": {
+      "key": "achieve_nomad",
+      "fallback": "<:achieve_nomad:1427603717015867463>"
+    },
+    "quickAndFurious": {
+      "key": "achieve_quickandfurious",
+      "fallback": "<:achieve_quickandfurious:1428743970263007282>"
+    },
+    "scanty": {
+      "key": "achieve_scanty",
+      "fallback": "<:achieve_scanty:1427603748229877871>"
+    },
+    "statue": {
+      "key": "achieve_statue",
+      "fallback": "<:achieve_statue:1427603778688913508>"
+    },
+    "tight": {
+      "key": "achieve_tight",
+      "fallback": "<:achieve_tight:1427603809177305109>"
+    },
+    "timeFlies": {
+      "key": "achieve_timeflies",
+      "fallback": "<:achieve_timeflies:1427603842173763697>"
+    },
+    "versatile": {
+      "key": "achieve_versatile",
+      "fallback": "<:achieve_versatile:1427603876231774288>"
+    },
+    "zombie": {
+      "key": "achieve_zombie",
+      "fallback": "<:achieve_zombie:1427603914626302063>"
+    }
   },
   "challenges": {
-    "barbaric": "<:chall_barbaric:1427601736348073984>",
-    "battleRoyal": "<:chall_battleroyal:1427601749132447744>",
-    "chrono": "<:chall_chrono:1427601766257786993>",
-    "cleanHands": "<:chall_cleanhands:1427601817746800682>",
-    "contamination": "<:chall_contamination:1427601842208243732>",
-    "contractKiller": "<:chall_contractkiller:1427601876290900089>",
-    "cruel": "<:chall_cruel:1427601902144852008>",
-    "elitist": "<:chall_elitist:1427601928287944724>",
-    "evasive": "<:chall_evasive:1427601949846671501>",
-    "exuberant": "<:chall_exuberant:1427601971518373952>",
-    "fainthearted": "<:chall_fainthearted:1427601990720028722>",
-    "unwillingVolunteer": "<:chall_unwillingvolunteer:1427602008247894066>",
-    "focus": "<:chall_focus:1427602030889009192>",
-    "foresighted": "<:chall_foresighted:1427602054762729572>",
-    "gangster": "<:chall_gangster:1427602086346096813>",
-    "impertinence": "<:chall_impertinence:1427602132613464115>",
-    "keepMoving": "<:chall_keepmoving:1427602162577575977>",
-    "loyalFriend": "<:chall_loyalfriend:1429117951478468648>",
-    "reprieve": "<:chall_reprieve:1427602193904701580>",
-    "maniac": "<:chall_maniac:1427602217430548593>",
-    "mystique": "<:chall_mystique:1427602253065486367>",
-    "noRush": "<:chall_norush:1427602281095757907>",
-    "nomad": "<:chall_nomad:1427602305141837874>",
-    "quickAndFurious": "<:chall_quickandfurious:1427602332111343626>",
-    "rootedToTheSpot": "<:chall_rootedtothespot:1427602356052426762>",
-    "scanty": "<:chall_scanty:1427602377602764901>",
-    "scapegoat": "<:chall_scapegoat:1427602416647274506>",
-    "selfSacrifice": "<:chall_selfsacrifice:1427602449757114409>",
-    "sharing": "<:chall_sharing:1427602474801430592>",
-    "sightseeing": "<:chall_sightseeing:1429117953483214970>",
-    "static": "<:chall_static:1427602500277506139>",
-    "statue": "<:chall_statue:1427602519886135378>",
-    "tight": "<:chall_tight:1429117955517448242>",
-    "timeFlies": "<:chall_timeflies:1427602541486801016>",
-    "toEachHisPwn": "<:chall_toeachhispwn:1429117957216272465>",
-    "twoForThePriceOfOne": "<:chall_twoforthepriceofone:1427602565666832404>",
-    "untouchable": "<:chall_untouchable:1427602594754203759>",
-    "versatile": "<:chall_versatile:1427602615591764009>",
-    "zombie": "<:chall_zombie:1427602635149672489>"
+    "barbaric": {
+      "key": "chall_barbaric",
+      "fallback": "<:chall_barbaric:1427601736348073984>"
+    },
+    "battleRoyal": {
+      "key": "chall_battleroyal",
+      "fallback": "<:chall_battleroyal:1427601749132447744>"
+    },
+    "chrono": {
+      "key": "chall_chrono",
+      "fallback": "<:chall_chrono:1427601766257786993>"
+    },
+    "cleanHands": {
+      "key": "chall_cleanhands",
+      "fallback": "<:chall_cleanhands:1427601817746800682>"
+    },
+    "contamination": {
+      "key": "chall_contamination",
+      "fallback": "<:chall_contamination:1427601842208243732>"
+    },
+    "contractKiller": {
+      "key": "chall_contractkiller",
+      "fallback": "<:chall_contractkiller:1427601876290900089>"
+    },
+    "cruel": {
+      "key": "chall_cruel",
+      "fallback": "<:chall_cruel:1427601902144852008>"
+    },
+    "elitist": {
+      "key": "chall_elitist",
+      "fallback": "<:chall_elitist:1427601928287944724>"
+    },
+    "evasive": {
+      "key": "chall_evasive",
+      "fallback": "<:chall_evasive:1427601949846671501>"
+    },
+    "exuberant": {
+      "key": "chall_exuberant",
+      "fallback": "<:chall_exuberant:1427601971518373952>"
+    },
+    "fainthearted": {
+      "key": "chall_fainthearted",
+      "fallback": "<:chall_fainthearted:1427601990720028722>"
+    },
+    "unwillingVolunteer": {
+      "key": "chall_unwillingvolunteer",
+      "fallback": "<:chall_unwillingvolunteer:1427602008247894066>"
+    },
+    "focus": {
+      "key": "chall_focus",
+      "fallback": "<:chall_focus:1427602030889009192>"
+    },
+    "foresighted": {
+      "key": "chall_foresighted",
+      "fallback": "<:chall_foresighted:1427602054762729572>"
+    },
+    "gangster": {
+      "key": "chall_gangster",
+      "fallback": "<:chall_gangster:1427602086346096813>"
+    },
+    "impertinence": {
+      "key": "chall_impertinence",
+      "fallback": "<:chall_impertinence:1427602132613464115>"
+    },
+    "keepMoving": {
+      "key": "chall_keepmoving",
+      "fallback": "<:chall_keepmoving:1427602162577575977>"
+    },
+    "loyalFriend": {
+      "key": "chall_loyalfriend",
+      "fallback": "<:chall_loyalfriend:1429117951478468648>"
+    },
+    "reprieve": {
+      "key": "chall_reprieve",
+      "fallback": "<:chall_reprieve:1427602193904701580>"
+    },
+    "maniac": {
+      "key": "chall_maniac",
+      "fallback": "<:chall_maniac:1427602217430548593>"
+    },
+    "mystique": {
+      "key": "chall_mystique",
+      "fallback": "<:chall_mystique:1427602253065486367>"
+    },
+    "noRush": {
+      "key": "chall_norush",
+      "fallback": "<:chall_norush:1427602281095757907>"
+    },
+    "nomad": {
+      "key": "chall_nomad",
+      "fallback": "<:chall_nomad:1427602305141837874>"
+    },
+    "quickAndFurious": {
+      "key": "chall_quickandfurious",
+      "fallback": "<:chall_quickandfurious:1427602332111343626>"
+    },
+    "rootedToTheSpot": {
+      "key": "chall_rootedtothespot",
+      "fallback": "<:chall_rootedtothespot:1427602356052426762>"
+    },
+    "scanty": {
+      "key": "chall_scanty",
+      "fallback": "<:chall_scanty:1427602377602764901>"
+    },
+    "scapegoat": {
+      "key": "chall_scapegoat",
+      "fallback": "<:chall_scapegoat:1427602416647274506>"
+    },
+    "selfSacrifice": {
+      "key": "chall_selfsacrifice",
+      "fallback": "<:chall_selfsacrifice:1427602449757114409>"
+    },
+    "sharing": {
+      "key": "chall_sharing",
+      "fallback": "<:chall_sharing:1427602474801430592>"
+    },
+    "sightseeing": {
+      "key": "chall_sightseeing",
+      "fallback": "<:chall_sightseeing:1429117953483214970>"
+    },
+    "static": {
+      "key": "chall_static",
+      "fallback": "<:chall_static:1427602500277506139>"
+    },
+    "statue": {
+      "key": "chall_statue",
+      "fallback": "<:chall_statue:1427602519886135378>"
+    },
+    "tight": {
+      "key": "chall_tight",
+      "fallback": "<:chall_tight:1429117955517448242>"
+    },
+    "timeFlies": {
+      "key": "chall_timeflies",
+      "fallback": "<:chall_timeflies:1427602541486801016>"
+    },
+    "toEachHisPwn": {
+      "key": "chall_toeachhispwn",
+      "fallback": "<:chall_toeachhispwn:1429117957216272465>"
+    },
+    "twoForThePriceOfOne": {
+      "key": "chall_twoforthepriceofone",
+      "fallback": "<:chall_twoforthepriceofone:1427602565666832404>"
+    },
+    "untouchable": {
+      "key": "chall_untouchable",
+      "fallback": "<:chall_untouchable:1427602594754203759>"
+    },
+    "versatile": {
+      "key": "chall_versatile",
+      "fallback": "<:chall_versatile:1427602615591764009>"
+    },
+    "zombie": {
+      "key": "chall_zombie",
+      "fallback": "<:chall_zombie:1427602635149672489>"
+    }
   },
   "otherIcons": {
     "avaIcons": {
-      "ava_clock": "<:ava_clock:1427599741406937089>",
-      "ava_shield": "<:ava_shield:1427599763838074952>",
-      "ava_star": "<:ava_star:1427599781190176809>",
-      "ava_healerpotion": "<:ava_healerpotion:1427600783419117570>",
-      "ava_undertakerpotion": "<:ava_undertakerpotion:1427600836074143775>",
-      "ava_sentinelpotion": "<:ava_sentinelpotion:1427600846061047932>",
-      "ava_prism": "<:ava_prism:1427600800015847445>",
-      "ava_prism_placed": "<:ava_prismplaced:1427600813089620058>",
-      "ava_teleportmodul": "<:ava_teleportmodul:1427600824242278472>"
+      "ava_clock": {
+        "key": "ava_clock",
+        "fallback": "<:ava_clock:1427599741406937089>"
+      },
+      "ava_shield": {
+        "key": "ava_shield",
+        "fallback": "<:ava_shield:1427599763838074952>"
+      },
+      "ava_star": {
+        "key": "ava_star",
+        "fallback": "<:ava_star:1427599781190176809>"
+      },
+      "ava_healerpotion": {
+        "key": "ava_healerpotion",
+        "fallback": "<:ava_healerpotion:1427600783419117570>"
+      },
+      "ava_undertakerpotion": {
+        "key": "ava_undertakerpotion",
+        "fallback": "<:ava_undertakerpotion:1427600836074143775>"
+      },
+      "ava_sentinelpotion": {
+        "key": "ava_sentinelpotion",
+        "fallback": "<:ava_sentinelpotion:1427600846061047932>"
+      },
+      "ava_prism": {
+        "key": "ava_prism",
+        "fallback": "<:ava_prism:1427600800015847445>"
+      },
+      "ava_prism_placed": {
+        "key": "ava_prismplaced",
+        "fallback": "<:ava_prismplaced:1427600813089620058>"
+      },
+      "ava_teleportmodul": {
+        "key": "ava_teleportmodul",
+        "fallback": "<:ava_teleportmodul:1427600824242278472>"
+      }
     },
     "buttonIcons": {
-      "increase": "<:increase:1427600531882246145>",
-      "achievements": "<:achievements:1427602660533604495>",
-      "almanax": "<:almanax:1427602674097979473>",
-      "attributes": "<:attributes:1427602686769102911>",
-      "closeWindow": "<:closewindow:1427602700832342046>",
-      "endturn": "<:endturn:1427602710756331520>",
-      "marketplace": "<:marketplace:1427602722999373855>",
-      "monsterCompendium": "<:monstercompendium:1427602732562251786>",
-      "questbook": "<:questbook:1427602743283028041>",
-      "ready": "<:ready:1427602752590319647>",
-      "refresh": "<:refresh:1427602763839443005>",
-      "sidekicks": "<:sidekicks:1427602776153915452>",
-      "spells": "<:spells:1427602787423752302>"
+      "increase": {
+        "key": "increase",
+        "fallback": "<:increase:1427600531882246145>"
+      },
+      "achievements": {
+        "key": "achievements",
+        "fallback": "<:achievements:1427602660533604495>"
+      },
+      "almanax": {
+        "key": "almanax",
+        "fallback": "<:almanax:1427602674097979473>"
+      },
+      "attributes": {
+        "key": "attributes",
+        "fallback": "<:attributes:1427602686769102911>"
+      },
+      "closeWindow": {
+        "key": "closewindow",
+        "fallback": "<:closewindow:1427602700832342046>"
+      },
+      "endturn": {
+        "key": "endturn",
+        "fallback": "<:endturn:1427602710756331520>"
+      },
+      "marketplace": {
+        "key": "marketplace",
+        "fallback": "<:marketplace:1427602722999373855>"
+      },
+      "monsterCompendium": {
+        "key": "monstercompendium",
+        "fallback": "<:monstercompendium:1427602732562251786>"
+      },
+      "questbook": {
+        "key": "questbook",
+        "fallback": "<:questbook:1427602743283028041>"
+      },
+      "ready": {
+        "key": "ready",
+        "fallback": "<:ready:1427602752590319647>"
+      },
+      "refresh": {
+        "key": "refresh",
+        "fallback": "<:refresh:1427602763839443005>"
+      },
+      "sidekicks": {
+        "key": "sidekicks",
+        "fallback": "<:sidekicks:1427602776153915452>"
+      },
+      "spells": {
+        "key": "spells",
+        "fallback": "<:spells:1427602787423752302>"
+      }
     }
   },
   "classes": {
-    "cra": "<:cra:1427597431775952939>",
-    "ecaflip": "<:ecaflip:1427597459340656761>",
-    "eniripsa": "<:eniripsa:1427597482073919650>",
-    "enutrof": "<:enutrof:1427597502541987952>",
-    "feca": "<:feca:1427597522049699850>",
-    "foggernaut": "<:foggernaut:1427597557064007790>",
-    "iop": "<:iop:1427597605202034698>",
-    "masqueraider": "<:masqueraider:1427597627226325053>",
-    "osamodas": "<:osamodas:1427597656489988117>",
-    "pandawa": "<:pandawa:1427597688735662111>",
-    "rogue": "<:rogue:1427597716518731798>",
-    "sacrier": "<:sacrieur:1427597742779138068>",
-    "sadida": "<:sadida:1427597762131656836>",
-    "sram": "<:sram:1427597781660598363>",
-    "xelor": "<:xelor:1427597797971984485>"
-  },
-  "classIcons": {
-    "craFemale": "<:cra_female:1427601190765592607>",
-    "craMale": "<:cra_male:1427601203055034443>",
-    "ecaflipFemale": "<:ecaflip_female:1427601217063878769>",
-    "ecaflipMale": "<:ecaflip_male:1427601230502432919>",
-    "eniripsaFemale": "<:eniripsa_female:1427601248655245382>",
-    "eniripsaMale": "<:eniripsa_male:1427601257958342786>",
-    "enutrofFemale": "<:enutrof_female:1427601274307739819>",
-    "enutrofMale": "<:enutrof_male:1427601287293308939>",
-    "fecaFemale": "<:feca_female:1427601299335024711>",
-    "fecaMale": "<:feca_male:1427601311586582641>",
-    "foggernautFemale": "<:foggernaut_female:1427601325914591262>",
-    "foggernautMale": "<:foggernaut_male:1427601338283327571>",
-    "iopFemale": "<:iop_female:1427601354834186270>",
-    "iopMale": "<:iop_male:1427601370139066458>",
-    "masqueraiderFemale": "<:masqueraider_female:1427601389877461074>",
-    "masqueraiderMale": "<:masqueraider_male:1427601408613683223>",
-    "osamodasFemale": "<:osamodas_female:1427601429992050777>",
-    "osamodasMale": "<:osamodas_male:1427601458160865321>",
-    "pandawaFemale": "<:pandawa_female:1427601483976802405>",
-    "pandawaMale": "<:pandawa_male:1427601507913826345>",
-    "rogueFemale": "<:rogue_female:1427601529329946714>",
-    "rogueMale": "<:rogue_male:1427601547789074582>",
-    "sacrierFemale": "<:sacrier_female:1427601564788330566>",
-    "sacrierMale": "<:sacrier_male:1427601581351632956>",
-    "sadidaFemale": "<:sadida_female:1427601602591850628>",
-    "sadidaMale": "<:sadida_male:1427601622825177139>",
-    "sramFemale": "<:sram_female:1427601643767070760>",
-    "sramMale": "<:sram_male:1427601661584740392>",
-    "xelorFemale": "<:xelor_female:1427601686737850389>",
-    "xelorMale": "<:xelor_male:1427601701992398878>"
+    "cra": {
+      "key": "cra",
+      "fallback": "<:cra:1427597431775952939>",
+      "variants": {
+        "female": {
+          "key": "cra_female",
+          "fallback": "<:cra_female:1427601190765592607>"
+        },
+        "male": {
+          "key": "cra_male",
+          "fallback": "<:cra_male:1427601203055034443>"
+        }
+      }
+    },
+    "ecaflip": {
+      "key": "ecaflip",
+      "fallback": "<:ecaflip:1427597459340656761>",
+      "variants": {
+        "female": {
+          "key": "ecaflip_female",
+          "fallback": "<:ecaflip_female:1427601217063878769>"
+        },
+        "male": {
+          "key": "ecaflip_male",
+          "fallback": "<:ecaflip_male:1427601230502432919>"
+        }
+      }
+    },
+    "eniripsa": {
+      "key": "eniripsa",
+      "fallback": "<:eniripsa:1427597482073919650>",
+      "variants": {
+        "female": {
+          "key": "eniripsa_female",
+          "fallback": "<:eniripsa_female:1427601248655245382>"
+        },
+        "male": {
+          "key": "eniripsa_male",
+          "fallback": "<:eniripsa_male:1427601257958342786>"
+        }
+      }
+    },
+    "enutrof": {
+      "key": "enutrof",
+      "fallback": "<:enutrof:1427597502541987952>",
+      "variants": {
+        "female": {
+          "key": "enutrof_female",
+          "fallback": "<:enutrof_female:1427601274307739819>"
+        },
+        "male": {
+          "key": "enutrof_male",
+          "fallback": "<:enutrof_male:1427601287293308939>"
+        }
+      }
+    },
+    "feca": {
+      "key": "feca",
+      "fallback": "<:feca:1427597522049699850>",
+      "variants": {
+        "female": {
+          "key": "feca_female",
+          "fallback": "<:feca_female:1427601299335024711>"
+        },
+        "male": {
+          "key": "feca_male",
+          "fallback": "<:feca_male:1427601311586582641>"
+        }
+      }
+    },
+    "foggernaut": {
+      "key": "foggernaut",
+      "fallback": "<:foggernaut:1427597557064007790>",
+      "variants": {
+        "female": {
+          "key": "foggernaut_female",
+          "fallback": "<:foggernaut_female:1427601325914591262>"
+        },
+        "male": {
+          "key": "foggernaut_male",
+          "fallback": "<:foggernaut_male:1427601338283327571>"
+        }
+      }
+    },
+    "iop": {
+      "key": "iop",
+      "fallback": "<:iop:1427597605202034698>",
+      "variants": {
+        "female": {
+          "key": "iop_female",
+          "fallback": "<:iop_female:1427601354834186270>"
+        },
+        "male": {
+          "key": "iop_male",
+          "fallback": "<:iop_male:1427601370139066458>"
+        }
+      }
+    },
+    "masqueraider": {
+      "key": "masqueraider",
+      "fallback": "<:masqueraider:1427597627226325053>",
+      "variants": {
+        "female": {
+          "key": "masqueraider_female",
+          "fallback": "<:masqueraider_female:1427601389877461074>"
+        },
+        "male": {
+          "key": "masqueraider_male",
+          "fallback": "<:masqueraider_male:1427601408613683223>"
+        }
+      }
+    },
+    "osamodas": {
+      "key": "osamodas",
+      "fallback": "<:osamodas:1427597656489988117>",
+      "variants": {
+        "female": {
+          "key": "osamodas_female",
+          "fallback": "<:osamodas_female:1427601429992050777>"
+        },
+        "male": {
+          "key": "osamodas_male",
+          "fallback": "<:osamodas_male:1427601458160865321>"
+        }
+      }
+    },
+    "pandawa": {
+      "key": "pandawa",
+      "fallback": "<:pandawa:1427597688735662111>",
+      "variants": {
+        "female": {
+          "key": "pandawa_female",
+          "fallback": "<:pandawa_female:1427601483976802405>"
+        },
+        "male": {
+          "key": "pandawa_male",
+          "fallback": "<:pandawa_male:1427601507913826345>"
+        }
+      }
+    },
+    "rogue": {
+      "key": "rogue",
+      "fallback": "<:rogue:1427597716518731798>",
+      "variants": {
+        "female": {
+          "key": "rogue_female",
+          "fallback": "<:rogue_female:1427601529329946714>"
+        },
+        "male": {
+          "key": "rogue_male",
+          "fallback": "<:rogue_male:1427601547789074582>"
+        }
+      }
+    },
+    "sacrier": {
+      "key": "sacrieur",
+      "fallback": "<:sacrieur:1427597742779138068>",
+      "variants": {
+        "female": {
+          "key": "sacrier_female",
+          "fallback": "<:sacrier_female:1427601564788330566>"
+        },
+        "male": {
+          "key": "sacrier_male",
+          "fallback": "<:sacrier_male:1427601581351632956>"
+        }
+      }
+    },
+    "sadida": {
+      "key": "sadida",
+      "fallback": "<:sadida:1427597762131656836>",
+      "variants": {
+        "female": {
+          "key": "sadida_female",
+          "fallback": "<:sadida_female:1427601602591850628>"
+        },
+        "male": {
+          "key": "sadida_male",
+          "fallback": "<:sadida_male:1427601622825177139>"
+        }
+      }
+    },
+    "sram": {
+      "key": "sram",
+      "fallback": "<:sram:1427597781660598363>",
+      "variants": {
+        "female": {
+          "key": "sram_female",
+          "fallback": "<:sram_female:1427601643767070760>"
+        },
+        "male": {
+          "key": "sram_male",
+          "fallback": "<:sram_male:1427601661584740392>"
+        }
+      }
+    },
+    "xelor": {
+      "key": "xelor",
+      "fallback": "<:xelor:1427597797971984485>",
+      "variants": {
+        "female": {
+          "key": "xelor_female",
+          "fallback": "<:xelor_female:1427601686737850389>"
+        },
+        "male": {
+          "key": "xelor_male",
+          "fallback": "<:xelor_male:1427601701992398878>"
+        }
+      }
+    }
   },
   "dofusIcons": {
-    "dofawa": "<:dofawa:1427600888528375838>",
-    "dofushu": "<:dofushu:1427600899374842006>",
-    "dolmanax": "<:dolmanax:1427600921910706276>",
-    "domakuro": "<:domakuro:1427600931649884241>",
-    "dorigami": "<:dorigami:1427600942513131620>",
-    "icedofus": "<:icedofus:1427600953582030939>",
-    "aiwuztheyadofus": "<:aiwuztheyadofus:1427600967335022603>",
-    "kaliptusdofus": "<:kaliptusdofus:1427600982501752883>",
-    "cawottdofus": "<:cawottdofus:1427601009982701649>",
-    "magmamaticdofus": "<:magmaticdofus:1427601020409610341>",
-    "ochredofus": "<:ochredofus:1427601032141213846>",
-    "crimsondofus": "<:crimsondofus:1427601053318250537>",
-    "blackspotteddofus": "<:blackspotteddofus:1427601073463492708>",
-    "silverdofus": "<:silverdofus:1427601093554081822>",
-    "emeralddofus": "<:emeralddofus:1427601108460638341>",
-    "turqouisedofus": "<:turqouisedofus:1427601123333636196>",
-    "vulbisdofus": "<:vulbisdofus:1427601137661644850>",
-    "timelessicedofus": "<:timelessicedofus:1427601150613655613>"
+    "dofawa": {
+      "key": "dofawa",
+      "fallback": "<:dofawa:1427600888528375838>"
+    },
+    "dofushu": {
+      "key": "dofushu",
+      "fallback": "<:dofushu:1427600899374842006>"
+    },
+    "dolmanax": {
+      "key": "dolmanax",
+      "fallback": "<:dolmanax:1427600921910706276>"
+    },
+    "domakuro": {
+      "key": "domakuro",
+      "fallback": "<:domakuro:1427600931649884241>"
+    },
+    "dorigami": {
+      "key": "dorigami",
+      "fallback": "<:dorigami:1427600942513131620>"
+    },
+    "icedofus": {
+      "key": "icedofus",
+      "fallback": "<:icedofus:1427600953582030939>"
+    },
+    "aiwuztheyadofus": {
+      "key": "aiwuztheyadofus",
+      "fallback": "<:aiwuztheyadofus:1427600967335022603>"
+    },
+    "kaliptusdofus": {
+      "key": "kaliptusdofus",
+      "fallback": "<:kaliptusdofus:1427600982501752883>"
+    },
+    "cawottdofus": {
+      "key": "cawottdofus",
+      "fallback": "<:cawottdofus:1427601009982701649>"
+    },
+    "magmamaticdofus": {
+      "key": "magmaticdofus",
+      "fallback": "<:magmaticdofus:1427601020409610341>"
+    },
+    "ochredofus": {
+      "key": "ochredofus",
+      "fallback": "<:ochredofus:1427601032141213846>"
+    },
+    "crimsondofus": {
+      "key": "crimsondofus",
+      "fallback": "<:crimsondofus:1427601053318250537>"
+    },
+    "blackspotteddofus": {
+      "key": "blackspotteddofus",
+      "fallback": "<:blackspotteddofus:1427601073463492708>"
+    },
+    "silverdofus": {
+      "key": "silverdofus",
+      "fallback": "<:silverdofus:1427601093554081822>"
+    },
+    "emeralddofus": {
+      "key": "emeralddofus",
+      "fallback": "<:emeralddofus:1427601108460638341>"
+    },
+    "turqouisedofus": {
+      "key": "turqouisedofus",
+      "fallback": "<:turqouisedofus:1427601123333636196>"
+    },
+    "vulbisdofus": {
+      "key": "vulbisdofus",
+      "fallback": "<:vulbisdofus:1427601137661644850>"
+    },
+    "timelessicedofus": {
+      "key": "timelessicedofus",
+      "fallback": "<:timelessicedofus:1427601150613655613>"
+    }
   }
 }
