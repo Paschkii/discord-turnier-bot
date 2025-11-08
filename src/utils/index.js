@@ -147,8 +147,17 @@ function logToModerator(ctx, text) {
   }
 }
 
+const {
+  applyResistances,
+  applyStatScaling,
+  calculateSpellDamage,
+} = require('./spellDamage');
+
 // === Exports ===
 module.exports = {
+  applyResistances,
+  applyStatScaling,
+  calculateSpellDamage,
   formatMK,
   mkToTokens,
   logToModerator,

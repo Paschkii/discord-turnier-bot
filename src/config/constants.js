@@ -16,6 +16,7 @@ const { KLASSE_LISTE } = require('./constants/classes');
 const { PHASE_LABEL } = require('./constants/phases');
 const { REGION_LISTE } = require('./constants/regions');
 const { RESISTANCE_TYPES } = require('./constants/resistances');
+const { SPELLS_BY_CLASS, SPELL_LIST } = require('./constants/spells');
 
 function getPhaseLabel(phase, locale = 'de') {
   const entry = PHASE_LABEL[phase];
@@ -36,10 +37,12 @@ module.exports = {
   HELP_COMMANDS,
   ICON_BASE,
   KLASSE_LISTE,
-  SUPPORTED_LOCALES,
   PHASE_LABEL,
   REGION_LISTE,
   RESISTANCE_TYPES,
   resolveDiscordEmoji,
   resolveLocaleKey,
+  SPELLS_BY_CLASS,
+  SPELL_LIST,
+  SUPPORTED_LOCALES,
 };

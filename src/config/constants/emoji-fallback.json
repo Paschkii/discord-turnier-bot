@@ -806,5 +806,127 @@
       "key": "timelessicedofus",
       "fallback": "<:timelessicedofus:1427601150613655613>"
     }
+    },
+  "spells": {
+    "spell_magic_arrow": {
+      "key": "spell_magic_arrow",
+      "fallback": "🏹"
+    },
+    "spell_stormfire": {
+      "key": "spell_stormfire",
+      "fallback": "🌪️"
+    },
+    "spell_lucky_claw": {
+      "key": "spell_lucky_claw",
+      "fallback": "🐾"
+    },
+    "spell_tarot_throw": {
+      "key": "spell_tarot_throw",
+      "fallback": "🃏"
+    },
+    "spell_regeneration_word": {
+      "key": "spell_regeneration_word",
+      "fallback": "💖"
+    },
+    "spell_revitalizing_word": {
+      "key": "spell_revitalizing_word",
+      "fallback": "✨"
+    },
+    "spell_coin_toss": {
+      "key": "spell_coin_toss",
+      "fallback": "🪙"
+    },
+    "spell_riches_scent": {
+      "key": "spell_riches_scent",
+      "fallback": "👃"
+    },
+    "spell_flame_glyph": {
+      "key": "spell_flame_glyph",
+      "fallback": "🔥"
+    },
+    "spell_fortified_shield": {
+      "key": "spell_fortified_shield",
+      "fallback": "🛡️"
+    },
+    "spell_quick_bomb": {
+      "key": "spell_quick_bomb",
+      "fallback": "💣"
+    },
+    "spell_pulsar": {
+      "key": "spell_pulsar",
+      "fallback": "💥"
+    },
+    "spell_sword_blow": {
+      "key": "spell_sword_blow",
+      "fallback": "⚔️"
+    },
+    "spell_wrath": {
+      "key": "spell_wrath",
+      "fallback": "🌋"
+    },
+    "spell_psycho_mask": {
+      "key": "spell_psycho_mask",
+      "fallback": "🎭"
+    },
+    "spell_whip_kick": {
+      "key": "spell_whip_kick",
+      "fallback": "🌀"
+    },
+    "spell_summon_tofu": {
+      "key": "spell_summon_tofu",
+      "fallback": "🐤"
+    },
+    "spell_animal_synergy": {
+      "key": "spell_animal_synergy",
+      "fallback": "🐾"
+    },
+    "spell_explosive_flask": {
+      "key": "spell_explosive_flask",
+      "fallback": "🍶"
+    },
+    "spell_bamboo_milk": {
+      "key": "spell_bamboo_milk",
+      "fallback": "🥛"
+    },
+    "spell_bloodthirsty_madness": {
+      "key": "spell_bloodthirsty_madness",
+      "fallback": "🩸"
+    },
+    "spell_punishment": {
+      "key": "spell_punishment",
+      "fallback": "⚖️"
+    },
+    "spell_brambly": {
+      "key": "spell_brambly",
+      "fallback": "🌿"
+    },
+    "spell_tree_armor": {
+      "key": "spell_tree_armor",
+      "fallback": "🌳"
+    },
+    "spell_ambush": {
+      "key": "spell_ambush",
+      "fallback": "🗡️"
+    },
+    "spell_invisibility": {
+      "key": "spell_invisibility",
+      "fallback": "🫥"
+    },
+    "spell_harpooner": {
+      "key": "spell_harpooner",
+      "fallback": "🎯"
+    },
+    "spell_salvo": {
+      "key": "spell_salvo",
+      "fallback": "💨"
+    },
+    "spell_sandglass": {
+      "key": "spell_sandglass",
+      "fallback": "⏳"
+    },
+    "spell_time_theft": {
+      "key": "spell_time_theft",
+      "fallback": "🕰️"
+    }
   }
 }
