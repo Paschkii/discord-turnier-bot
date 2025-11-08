@@ -249,7 +249,7 @@ const commands = [
         applySubcommandLocalization(sub, 'job', 'user')
           .addUserOption(opt =>
             applyOptionLocalizationAtPath(opt, 'job', ['subcommands', 'user', 'options', 'target'])
-              .setRequired(true)
+              .setRequired(false)
           )
       )
       .addSubcommand(sub =>

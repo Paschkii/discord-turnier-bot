@@ -177,7 +177,7 @@ async function handleSet(interaction, locale) {
 }
 
 async function handleUser(interaction, locale) {
-  const user = interaction.options.getUser('target', true);
+  const user = interaction.options.getUser('target') ?? interaction.user;
   const jobs = sortUserJobs(getUserJobs(user.id), locale);
 
   if (!jobs.length) {
