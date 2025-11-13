@@ -74,6 +74,17 @@ const commands = {
       list: {
         name: 'list',
         description: 'Afficher la liste des métiers disponibles',
+        options: {
+          sortBy: {
+            name: 'sort_by',
+            description: 'Choisir l\'ordre de tri de la liste',
+            choices: {
+              alphabet: { name: 'Alphabet', value: 'alphabet' },
+              type: { name: 'Type', value: 'type' },
+              group: { name: 'Groupe', value: 'group' },
+            },
+          },
+        },
       },
       set: {
         name: 'set',

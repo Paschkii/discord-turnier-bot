@@ -231,6 +231,10 @@ const commands = [
     applyCommandLocalization(new SlashCommandBuilder(), 'job')
       .addSubcommand(sub =>
         applySubcommandLocalization(sub, 'job', 'list')
+          .addStringOption(opt =>
+            applyOptionLocalizationAtPath(opt, 'job', ['subcommands', 'list', 'options', 'sortBy'])
+              .setRequired(false)
+          )
       )
       .addSubcommand(sub =>
         applySubcommandLocalization(sub, 'job', 'set')

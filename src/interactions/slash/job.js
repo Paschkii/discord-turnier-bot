@@ -17,6 +17,8 @@ const {
 
 const EMBED_COLOR = 0x5865f2;
 
+const JOB_LIST_SORT_CHOICES = new Set(['alphabet', 'type', 'group']);
+
 const TEXT = {
   de: {
     helpDescription: [
@@ -89,23 +91,16 @@ function t(locale, key, params = {}) {
   return value ?? '';
 }
 
-function buildListEmbed(locale) {
-  const jobs = getSortedJobs(locale);
-  const columns = [[], []];
-  jobs.forEach(({ id }, index) => {
-    const columnIndex = index % 2 === 0 ? 0 : 1;
-    columns[columnIndex].push(formatJobLabel(id, locale));
-  });
-  const [firstColumn, secondColumn] = columns.map((entries) => (entries.length ? entries.join('\n') : '—'));
+function buildListEmbed(locale, sortBy) {
+  const jobs = getSortedJobs(locale, sortBy);
+  const entries = jobs.map(({ id }) => formatJobLabel(id, locale));
+  const listValue = entries.length ? entries.join('\n') : '—';
 
   const embed = new EmbedBuilder()
     .setColor(EMBED_COLOR)
     .setTitle(t(locale, 'listTitle'))
     .setDescription(t(locale, 'listDescription'))
-    .addFields(
-      { name: '\u200B', value: firstColumn, inline: true },
-      { name: '\u200B', value: secondColumn, inline: true },
-    );
+    .addFields({ name: '\u200B', value: listValue, inline: false });
 
   const footer = t(locale, 'listFooter');
   if (footer) {
@@ -126,7 +121,10 @@ function sortUserJobs(entries, locale) {
 }
 
 async function handleList(interaction, locale) {
-  const embed = buildListEmbed(locale);
+  const sortByOption = interaction.options.getString('sort_by') || 'alphabet';
+  const sortBy = JOB_LIST_SORT_CHOICES.has(sortByOption) ? sortByOption : 'alphabet';
+
+  const embed = buildListEmbed(locale, sortBy);
   return interaction.reply({ embeds: [embed] });
 }
 

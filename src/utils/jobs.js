@@ -1,4 +1,4 @@
-const { jobList, JOB_ID_SET } = require('../config/constants/jobs');
+const { jobList, JOB_ID_SET, JOB_TYPE_ORDER } = require('../config/constants/jobs');
 const jobNamesByLocale = require('../config/languages/jobNames');
 const { getEmojiByKey } = require('../config/constants/emojiSnapshot');
 
@@ -54,14 +54,14 @@ function getJobEmoji(jobId) {
 }
 
 function buildJobEntries(locale) {
-  return jobList.map(({ id }) => ({
+  return jobList.map(({ id, type, variantGroup }) => ({
     id,
     name: getJobName(id, locale),
     emoji: getJobEmoji(id),
   }));
 }
 
-function sortJobs(entries, locale) {
+function sortJobsAlphabetically(entries, locale) {
   const collator = getCollator(locale);
   return [...entries].sort((a, b) => {
     const nameCompare = collator.compare(a.name, b.name);
@@ -70,9 +70,41 @@ function sortJobs(entries, locale) {
   });
 }
 
+function sortJobsByType(entries, locale) {
+  const collator = getCollator(locale);
+  const typeRank = (type) => {
+    const index = JOB_TYPE_ORDER.indexOf(type);
+    return index === -1 ? JOB_TYPE_ORDER.length : index;
+  };
+
+  return [...entries].sort((a, b) => {
+    const typeCompare = typeRank(a.type) - typeRank(b.type);
+    if (typeCompare !== 0) return typeCompare;
+
+    const nameCompare = collator.compare(a.name, b.name);
+    if (nameCompare !== 0) return nameCompare;
+
+    return a.id.localeCompare(b.id);
+  });
+}
+
+function sortJobsByVariantGroup(entries, locale) {
+  const collator = getCollator(locale);
+
+  return [...entries].sort((a, b) => {
+    const groupCompare = collator.compare(a.variantGroup, b.variantGroup);
+    if (groupCompare !== 0) return groupCompare;
+
+    const nameCompare = collator.compare(a.name, b.name);
+    if (nameCompare !== 0) return nameCompare;
+
+    return a.id.localeCompare(b.id);
+  });
+}
+
 function buildJobChoices(locale, query = '', limit = 25) {
   const normalizedQuery = typeof query === 'string' ? query.trim().toLowerCase() : '';
-  const entries = sortJobs(buildJobEntries(locale), locale).filter(({ id, name }) => {
+  const entries = sortJobsAlphabetically(buildJobEntries(locale), locale).filter(({ id, name }) => {
     if (!normalizedQuery) return true;
     return (
       name.toLowerCase().includes(normalizedQuery)
@@ -82,8 +114,17 @@ function buildJobChoices(locale, query = '', limit = 25) {
   return entries.slice(0, limit).map(({ id, name }) => ({ name, value: id }));
 }
 
-function getSortedJobs(locale) {
-  return sortJobs(buildJobEntries(locale), locale);
+function getSortedJobs(locale, sortBy = 'alphabet') {
+  const entries = buildJobEntries(locale);
+  switch (sortBy) {
+    case 'type':
+      return sortJobsByType(entries, locale);
+    case 'group':
+      return sortJobsByVariantGroup(entries, locale);
+    case 'alphabet':
+    default:
+      return sortJobsAlphabetically(entries, locale);
+  }
 }
 
 function formatJobLabel(jobId, locale, { includeEmoji = true } = {}) {
