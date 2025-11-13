@@ -240,7 +240,7 @@ const commands = [
           )
           .addIntegerOption(opt =>
             applyOptionLocalizationAtPath(opt, 'job', ['subcommands', 'set', 'options', 'level'])
-              .setRequired(false)
+              .setRequired(true)
               .setMinValue(1)
               .setMaxValue(100)
           )

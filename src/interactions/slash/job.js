@@ -35,7 +35,7 @@ const TEXT = {
     listTitle: 'Berufe',
     professionEmpty: ({ jobName }) => `ℹ️ Für **${jobName}** ist noch niemand eingetragen.`,
     professionError: '❌ Fehler beim Laden des Berufs.',
-    professionTitle: ({ jobName }) => `${jobName} — Eingetragene Mitglieder`,
+    professionFooter: 'Eingetragene Mitglieder',
     setError: '❌ Fehler beim Speichern des Berufs.',
     setDescription: 'Du kannst dein Level jederzeit ändern.',
     setSuccess: ({ jobName, level }) => `✅ **${jobName}** wurde mit Level **${level}** eingetragen.`,
@@ -61,7 +61,7 @@ const TEXT = {
     listTitle: 'Professions',
     professionEmpty: ({ jobName }) => `ℹ️ Nobody has registered **${jobName}** yet.`,
     professionError: '❌ Failed to load the profession data.',
-    professionTitle: ({ jobName }) => `${jobName} — Registered members`,
+    professionFooter: 'Registered members',
     setError: '❌ Failed to save the profession.',
     setDescription: 'You can update your level at any time.',
     setSuccess: ({ jobName, level }) => `✅ Registered **${jobName}** at level **${level}**.`,
@@ -91,15 +91,12 @@ function t(locale, key, params = {}) {
 
 function buildListEmbed(locale) {
   const jobs = getSortedJobs(locale);
-  const half = Math.ceil(jobs.length / 2);
-  const firstColumn = jobs
-    .slice(0, half)
-    .map(({ id }) => formatJobLabel(id, locale))
-    .join('\n') || '—';
-  const secondColumn = jobs
-    .slice(half)
-    .map(({ id }) => formatJobLabel(id, locale))
-    .join('\n') || '—';
+  const columns = [[], []];
+  jobs.forEach(({ id }, index) => {
+    const columnIndex = index % 2 === 0 ? 0 : 1;
+    columns[columnIndex].push(formatJobLabel(id, locale));
+  });
+  const [firstColumn, secondColumn] = columns.map((entries) => (entries.length ? entries.join('\n') : '—'));
 
   const embed = new EmbedBuilder()
     .setColor(EMBED_COLOR)
@@ -158,14 +155,14 @@ async function handleSet(interaction, locale) {
     return interaction.reply({ content: t(locale, 'invalidJob'), flags: MessageFlags.Ephemeral });
   }
 
-  const requestedLevel = interaction.options.getInteger('level');
-  if (requestedLevel != null && (requestedLevel < MIN_LEVEL || requestedLevel > MAX_LEVEL)) {
+  const requestedLevel = interaction.options.getInteger('level', true);
+  if (requestedLevel < MIN_LEVEL || requestedLevel > MAX_LEVEL) {
     return interaction.reply({ content: t(locale, 'invalidLevel'), flags: MessageFlags.Ephemeral });
   }
 
   let stored;
   try {
-    stored = await setJobLevel(interaction.guildId, interaction.user.id, jobId, requestedLevel ?? MIN_LEVEL);
+    stored = await setJobLevel(interaction.guildId, interaction.user.id, jobId, requestedLevel);
   } catch (err) {
     if (err && err.message === 'INVALID_JOB') {
       return interaction.reply({ content: t(locale, 'invalidJob'), flags: MessageFlags.Ephemeral });
@@ -247,6 +244,7 @@ async function handleProfession(interaction, locale) {
   }
 
   const jobName = getJobName(jobId, locale);
+  const jobLabel = formatJobLabel(jobId, locale);
   const description = entries
     .sort((a, b) => {
       if (b.level !== a.level) return b.level - a.level;
@@ -257,8 +255,13 @@ async function handleProfession(interaction, locale) {
 
   const embed = new EmbedBuilder()
     .setColor(EMBED_COLOR)
-    .setTitle(t(locale, 'professionTitle', { jobName }))
+    .setTitle(jobLabel)
     .setDescription(description);
+
+  const professionFooter = t(locale, 'professionFooter', { jobName });
+  if (professionFooter) {
+    embed.setFooter({ text: professionFooter });
+  }
 
   return interaction.reply({ embeds: [embed] });
 }
