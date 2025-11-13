@@ -94,32 +94,16 @@ function t(locale, key, params = {}) {
 function buildListEmbed(locale, sortBy) {
   const jobs = getSortedJobs(locale, sortBy);
   const entries = jobs.map(({ id }) => formatJobLabel(id, locale));
-  const listFields = [];
-  if (!entries.length) {
-    listFields.push('—');
-  } else {
-    let current = '';
-    for (const entry of entries) {
-      const nextValue = current ? `${current}\n${entry}` : entry;
-      if (nextValue.length > 1024) {
-        if (current) {
-          listFields.push(current);
-        }
-        current = entry;
-      } else {
-        current = nextValue;
-      }
-    }
-    if (current) {
-      listFields.push(current);
-    }
+  const listContent = entries.join('\n') || '—';
+  const descriptionParts = [t(locale, 'listDescription')];
+  if (listContent) {
+    descriptionParts.push(listContent);
   }
 
   const embed = new EmbedBuilder()
     .setColor(EMBED_COLOR)
     .setTitle(t(locale, 'listTitle'))
-    .setDescription(t(locale, 'listDescription'))
-    .addFields(listFields.map((value) => ({ name: '\u200B', value, inline: false })));
+    .setDescription(descriptionParts.filter(Boolean).join('\n\n'));
 
   const footer = t(locale, 'listFooter');
   if (footer) {

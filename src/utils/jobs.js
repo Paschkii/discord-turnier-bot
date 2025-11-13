@@ -56,6 +56,8 @@ function getJobEmoji(jobId) {
 function buildJobEntries(locale) {
   return jobList.map(({ id, type, variantGroup }) => ({
     id,
+    type,
+    variantGroup: variantGroup || '',
     name: getJobName(id, locale),
     emoji: getJobEmoji(id),
   }));
