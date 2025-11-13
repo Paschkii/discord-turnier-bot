@@ -237,7 +237,7 @@ const commands = {
     },
   },
   pvpStart: {
-    name: 'start_tournament',
+    name: 'pvp_start',
     description: 'Start the tournament (choose the mode)',
     options: {
       modus: {
