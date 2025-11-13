@@ -39,6 +39,8 @@ const TEXT = {
     setError: '❌ Fehler beim Speichern des Berufs.',
     setDescription: 'Du kannst dein Level jederzeit ändern.',
     setSuccess: ({ jobName, level }) => `✅ **${jobName}** wurde mit Level **${level}** eingetragen.`,
+    guildOnly: '❌ Dieser Befehl ist nur in Servern verfügbar.',
+    userError: '❌ Fehler beim Laden der Berufe.',
     userEmpty: ({ userMention }) => `ℹ️ ${userMention} hat noch keine Berufe eingetragen.`,
     userTitle: ({ displayName }) => `Berufe von ${displayName}`,
   },
@@ -63,6 +65,8 @@ const TEXT = {
     setError: '❌ Failed to save the profession.',
     setDescription: 'You can update your level at any time.',
     setSuccess: ({ jobName, level }) => `✅ Registered **${jobName}** at level **${level}**.`,
+    guildOnly: '❌ This command is only available inside servers.',
+    userError: '❌ Failed to load the professions.',
     userEmpty: ({ userMention }) => `ℹ️ ${userMention} has not registered any professions yet.`,
     userTitle: ({ displayName }) => `Professions of ${displayName}`,
   },
@@ -144,6 +148,9 @@ async function handleHelp(interaction, locale) {
 }
 
 async function handleSet(interaction, locale) {
+  if (!interaction.guildId) {
+    return interaction.reply({ content: t(locale, 'guildOnly'), flags: MessageFlags.Ephemeral });
+  }
   const jobIdRaw = interaction.options.getString('profession', true);
   const jobId = normalizeJobId(jobIdRaw);
 
@@ -158,10 +165,13 @@ async function handleSet(interaction, locale) {
 
   let stored;
   try {
-    stored = setJobLevel(interaction.user.id, jobId, requestedLevel ?? MIN_LEVEL);
+    stored = await setJobLevel(interaction.guildId, interaction.user.id, jobId, requestedLevel ?? MIN_LEVEL);
   } catch (err) {
     if (err && err.message === 'INVALID_JOB') {
       return interaction.reply({ content: t(locale, 'invalidJob'), flags: MessageFlags.Ephemeral });
+    }
+    if (err && err.message === 'GUILD_ID_REQUIRED') {
+      return interaction.reply({ content: t(locale, 'guildOnly'), flags: MessageFlags.Ephemeral });
     }
     console.error('[job] setJobLevel failed', err);
     return interaction.reply({ content: t(locale, 'setError'), flags: MessageFlags.Ephemeral });
@@ -177,8 +187,17 @@ async function handleSet(interaction, locale) {
 }
 
 async function handleUser(interaction, locale) {
+  if (!interaction.guildId) {
+    return interaction.reply({ content: t(locale, 'guildOnly'), flags: MessageFlags.Ephemeral });
+  }
   const user = interaction.options.getUser('target') ?? interaction.user;
-  const jobs = sortUserJobs(getUserJobs(user.id), locale);
+  let jobs;
+  try {
+    jobs = sortUserJobs(await getUserJobs(interaction.guildId, user.id), locale);
+  } catch (err) {
+    console.error('[job] getUserJobs failed', err);
+    return interaction.reply({ content: t(locale, 'userError'), flags: MessageFlags.Ephemeral });
+  }
 
   if (!jobs.length) {
     return interaction.reply({ content: t(locale, 'userEmpty', { userMention: user.toString() }), flags: MessageFlags.Ephemeral });
@@ -197,6 +216,10 @@ async function handleUser(interaction, locale) {
 }
 
 async function handleProfession(interaction, locale) {
+  if (!interaction.guildId) {
+    return interaction.reply({ content: t(locale, 'guildOnly'), flags: MessageFlags.Ephemeral });
+  }
+
   const jobIdRaw = interaction.options.getString('profession', true);
   const jobId = normalizeJobId(jobIdRaw);
 
@@ -206,10 +229,13 @@ async function handleProfession(interaction, locale) {
 
   let entries;
   try {
-    entries = getUsersForJob(jobId);
+    entries = await getUsersForJob(interaction.guildId, jobId);
   } catch (err) {
     if (err && err.message === 'INVALID_JOB') {
       return interaction.reply({ content: t(locale, 'invalidJob'), flags: MessageFlags.Ephemeral });
+    }
+    if (err && err.message === 'GUILD_ID_REQUIRED') {
+      return interaction.reply({ content: t(locale, 'guildOnly'), flags: MessageFlags.Ephemeral });
     }
     console.error('[job] getUsersForJob failed', err);
     return interaction.reply({ content: t(locale, 'professionError'), flags: MessageFlags.Ephemeral });

@@ -35,6 +35,19 @@ async function initDB() {
         updated_at TIMESTAMP DEFAULT NOW()
       );
     `);
+    
+    // Jobs in Datenbank speichern
+    await pool.query(`
+      CREATE TABLE IF NOT EXISTS user_jobs (
+        id SERIAL PRIMARY KEY,
+        guild_id TEXT NOT NULL,
+        user_id TEXT NOT NULL,
+        job_id TEXT NOT NULL,
+        level INTEGER NOT NULL CHECK (level BETWEEN 1 AND 100),
+        updated_at TIMESTAMP DEFAULT NOW(),
+        CONSTRAINT user_jobs_unique UNIQUE (guild_id, user_id, job_id)
+      );
+    `);
 
     // Guild name hinzufügen, falls aus alten Deploys fehlt (idempotent)
     await pool.query(`
@@ -113,6 +126,8 @@ async function initDB() {
     await pool.query(`CREATE INDEX IF NOT EXISTS turniere_status_created_idx ON turniere (status, created_at DESC);`);
     await pool.query(`CREATE INDEX IF NOT EXISTS turniere_guild_status_created_idx ON turniere (guild_id, status, created_at DESC);`);
     await pool.query(`CREATE UNIQUE INDEX IF NOT EXISTS guild_settings_guild_id_idx ON guild_settings (guild_id);`);
+    await pool.query(`CREATE INDEX IF NOT EXISTS user_jobs_guild_user_idx ON user_jobs (guild_id, user_id);`);
+    await pool.query(`CREATE INDEX IF NOT EXISTS user_jobs_guild_job_idx ON user_jobs (guild_id, job_id);`);
 
     console.log('✅ Datenbank-Initialisierung abgeschlossen');
   } catch (err) {
