@@ -18,5 +18,5 @@ Bot of Twelve is a Discord bot built for Dofus-Touch-inspired communities that w
 - `/register` – let players pick their class and join the open tournament queue.
 - `/pvp_start`, `/pvp_next`, `/pvp_info`, `/pvp_stop` – manage PvP rounds, scheduling, and match info for ongoing tournaments.
 - `/pvm_start` & `/pvm_stop` – coordinate cooperative PvM dungeon runs with the same tooling.
-- `/hall_of_fame` & `/hof_loeschen` – celebrate past champions or prune outdated entries.
+- `/hall_of_fame` & `/delet_hof` – celebrate past champions or prune outdated entries.
 - `/language` & `/guild_name` – customize guild-specific presentation in just a few clicks.
