@@ -45,7 +45,7 @@ async function run(interaction) {
 
   const currentLanguage = await getGuildLanguage(guildId);
   if (currentLanguage === requestedLanguage) {
-    const view = buildLanguageView(locale, currentLanguage, 'unchanged');
+    const view = buildLanguageView(currentLanguage || locale, currentLanguage, 'unchanged');
     return interaction.update(view);
   }
 
@@ -57,7 +57,8 @@ async function run(interaction) {
     return interaction.reply({ content: message, flags: MessageFlags.Ephemeral });
   }
 
-  const view = buildLanguageView(locale, requestedLanguage, 'success');
+  const responseLocale = requestedLanguage || locale;
+  const view = buildLanguageView(responseLocale, requestedLanguage, 'success');
   return interaction.update(view);
 }
 

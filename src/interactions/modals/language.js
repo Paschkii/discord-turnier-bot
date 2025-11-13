@@ -50,9 +50,10 @@ async function run(interaction) {
 
   const currentLanguage = await getGuildLanguage(guildId);
   if (currentLanguage === requestedLanguage) {
-    const view = buildLanguageView(locale, currentLanguage, 'unchanged');
+    const responseLocale = currentLanguage || locale;
+    const view = buildLanguageView(responseLocale, currentLanguage, 'unchanged');
     await updateOriginalMessage(interaction, view);
-    const embed = buildLanguageEmbed(locale, 'unchanged', currentLanguage);
+    const embed = buildLanguageEmbed(responseLocale, 'unchanged', currentLanguage);
     return interaction.reply({ embeds: [embed], flags: MessageFlags.Ephemeral });
   }
 
@@ -64,9 +65,10 @@ async function run(interaction) {
     return interaction.reply({ content: message, flags: MessageFlags.Ephemeral });
   }
 
-  const view = buildLanguageView(locale, requestedLanguage, 'success');
+  const responseLocale = requestedLanguage || locale;
+  const view = buildLanguageView(responseLocale, requestedLanguage, 'success');
   await updateOriginalMessage(interaction, view);
-  const embed = buildLanguageEmbed(locale, 'success', requestedLanguage);
+  const embed = buildLanguageEmbed(responseLocale, 'success', requestedLanguage);
   return interaction.reply({ embeds: [embed], flags: MessageFlags.Ephemeral });
 }
 

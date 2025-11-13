@@ -39,7 +39,7 @@ async function execute(interaction) {
   }
 
   if (currentLanguage === requestedLanguage) {
-    const view = buildLanguageView(locale, currentLanguage, 'unchanged');
+    const view = buildLanguageView(currentLanguage || locale, currentLanguage, 'unchanged');
     return interaction.reply({ ...view, flags: MessageFlags.Ephemeral });
   }
 
@@ -51,7 +51,8 @@ async function execute(interaction) {
     return interaction.reply({ content: message, flags: MessageFlags.Ephemeral });
   }
 
-  const view = buildLanguageView(locale, requestedLanguage, 'success');
+  const responseLocale = requestedLanguage || locale;
+  const view = buildLanguageView(responseLocale, requestedLanguage, 'success');
   return interaction.reply({ ...view, flags: MessageFlags.Ephemeral });
 }
 
